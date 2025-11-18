@@ -516,11 +516,11 @@
 
     <div class="container">
 
-        <!-- STATS OVERVIEW -->
+         <!-- STATS OVERVIEW -->
         <div class="stats">
             <div class="stat-box">
                 <div class="stat-icon">📚</div>
-                <div class="stat-number">200+</div>
+                <div class="stat-number">500+</div>
                 <div class="stat-label">Vocabulary Words</div>
             </div>
             <div class="stat-box">
@@ -530,23 +530,45 @@
             </div>
             <div class="stat-box">
                 <div class="stat-icon">💬</div>
-                <div class="stat-number">20+</div>
+                <div class="stat-number">30+</div>
                 <div class="stat-label">Conversations</div>
             </div>
             <div class="stat-box">
                 <div class="stat-icon">⏱️</div>
-                <div class="stat-number">~40h</div>
+                <div class="stat-number">~50h</div>
                 <div class="stat-label">Study Time</div>
             </div>
         </div>
 
-   <!-- VOCABULARY SECTION -->
+    <!-- VOCABULARY SECTION -->
         <div class="section-header">
             <h2>📚 A1 Vocabulary</h2>
             <p>Learn essential German words for everyday situations</p>
         </div>
 
         <div class="content-grid">
+            <!-- Basic Essentials (NEW) -->
+            <div class="content-card">
+                <span class="card-icon">⭐</span>
+                <h3>Essential Basics</h3>
+                <p>Greetings, numbers, time, and the most important words to start speaking German immediately.</p>
+                <ul class="lesson-list">
+                    <li class="lesson-item">
+                        <a href="../vocabulary/basic-vocabulary.html" class="lesson-link">
+                            <span>Greetings & Basic Communication</span>
+                            <span class="lesson-status status-complete">✓ Available</span>
+                        </a>
+                    </li>
+                    <li class="lesson-item">
+                        <a href="../vocabulary/a1-vocabulary-Timing-Numbers.html" class="lesson-link">
+                            <span>Time & Numbers</span>
+                            <span class="lesson-status status-complete">✓ Available</span>
+                        </a>
+                    </li>
+                </ul>
+                <a href="../vocabulary/basic-vocabulary.html" class="card-btn">Start Here →</a>
+            </div>
+
             <!-- People & Family -->
             <div class="content-card">
                 <span class="card-icon">👨‍👩‍👧</span>
@@ -560,7 +582,7 @@
                         </a>
                     </li>
                 </ul>
-                <a href="../vocabulary/a1-vocabulary-family.html" class="card-btn">Start Learning →</a>
+                <a href="../vocabulary/a1-vocabulary-family.html" class="card-btn">Learn Family Words →</a>
             </div>
 
             <!-- Body & Health -->
@@ -576,7 +598,23 @@
                         </a>
                     </li>
                 </ul>
-                <a href="../vocabulary/a1-vocabulary-body.html" class="card-btn">Start Learning →</a>
+                <a href="../vocabulary/a1-vocabulary-body.html" class="card-btn">Learn Body Words →</a>
+            </div>
+
+            <!-- Food & Dining -->
+            <div class="content-card">
+                <span class="card-icon">🍽️</span>
+                <h3>Food & Dining</h3>
+                <p>Food, drinks, restaurants, shopping, and ordering meals.</p>
+                <ul class="lesson-list">
+                    <li class="lesson-item">
+                        <a href="../vocabulary/basic-vocabulary-food.html" class="lesson-link">
+                            <span>Food & Shopping Essentials</span>
+                            <span class="lesson-status status-complete">✓ Available</span>
+                        </a>
+                    </li>
+                </ul>
+                <a href="../vocabulary/basic-vocabulary-food.html" class="card-btn">Learn Food Words →</a>
             </div>
 
             <!-- Home & Living -->
@@ -594,39 +632,8 @@
                 </ul>
                 <a href="../vocabulary/a1-vocabulary-home.html" class="card-btn" style="opacity: 0.6; cursor: not-allowed;">Coming Soon</a>
             </div>
-
-            <!-- Food & Dining -->
-            <div class="content-card">
-                <span class="card-icon">🍽️</span>
-                <h3>Food & Dining</h3>
-                <p>Food, drinks, restaurants, and ordering meals.</p>
-                <ul class="lesson-list">
-                    <li class="lesson-item">
-                        <span class="lesson-link">
-                            <span>Food & Drinks</span>
-                            <span class="lesson-status status-new">🔜 Coming Soon</span>
-                        </span>
-                    </li>
-                </ul>
-                <a href="../vocabulary/a1-vocabulary-food.html" class="card-btn" style="opacity: 0.6; cursor: not-allowed;">Coming Soon</a>
-            </div>
-
-            <!-- Time & Numbers -->
-            <div class="content-card">
-                <span class="card-icon">🕐</span>
-                <h3>Time & Numbers</h3>
-                <p>Telling time, days, months, numbers, and calendar vocabulary.</p>
-                <ul class="lesson-list">
-                    <li class="lesson-item">
-                        <span class="lesson-link">
-                            <span>Time & Calendar</span>
-                            <span class="lesson-status status-new">🔜 Coming Soon</span>
-                        </span>
-                    </li>
-                </ul>
-                <a href="../vocabulary/a1-vocabulary-time.html" class="card-btn" style="opacity: 0.6; cursor: not-allowed;">Coming Soon</a>
-            </div>
         </div>
+
 
         <!-- GRAMMAR SECTION -->
         <div class="section-header">
@@ -830,17 +837,17 @@
         </div>
     </footer>
 
-    <script>
+      <script>
         // Simulate progress (replace with actual progress tracking)
         window.addEventListener('load', function() {
             setTimeout(() => {
                 const progressFill = document.getElementById('progressFill');
-                const progress = 15; // Example: 15% complete
+                const progress = 25; // Updated: 25% complete (5 lessons available)
                 progressFill.style.width = progress + '%';
                 progressFill.textContent = progress + '%';
-                
+
                 // Update completed lessons
-                document.getElementById('completedLessons').textContent = '2';
+                document.getElementById('completedLessons').textContent = '5';
                 document.getElementById('totalLessons').textContent = '30';
             }, 500);
         });
