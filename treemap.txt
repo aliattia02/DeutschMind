@@ -1,0 +1,89 @@
+german-learning-hub/
+├── index.html (✅ Updated with new naming convention)
+│
+├── pages/
+│   ├── level-a1.html (✅ Updated - A1 hub page)
+│   ├── level-a2.html (🔜 A2 hub page - to be created)
+│   ├── level-b1.html (🔜 B1 hub page - to be created)
+│   ├── level-b2.html (🔜 B2 hub page - to be created)
+│   ├── level-c1.html (🔜 C1 hub page - to be created)
+│   ├── level-c2.html (🔜 C2 hub page - to be created)
+│   ├── vocabulary.html (✅ Updated - Vocabulary hub)
+│   ├── grammar.html (🔜 Grammar hub - to be created)
+│   ├── practice.html (🔜 Practice hub - to be created)
+│   ├── tools.html (🔜 Tools hub - to be created)
+│   └── resources.html (🔜 Resources hub - to be created)
+│
+├── vocabulary/
+│   ├── a1-vocabulary-family.html (✅ Created - People & Family)
+│   ├── a1-vocabulary-body.html (✅ Created - Body & Health)
+│   ├── a1-vocabulary-home.html (🔜 Home & Living)
+│   ├── a1-vocabulary-food.html (🔜 Food & Dining)
+│   ├── a1-vocabulary-time.html (🔜 Time & Numbers)
+│   ├── a2-vocabulary-travel.html (🔜 Travel & Places)
+│   ├── a2-vocabulary-shopping.html (🔜 Shopping & Money)
+│   ├── a2-vocabulary-weather.html (🔜 Weather & Nature)
+│   ├── a2-vocabulary-work.html (🔜 Work & Education)
+│   ├── b1-vocabulary-hobbies.html (🔜 Hobbies & Activities)
+│   ├── b1-vocabulary-communication.html (🔜 Communication)
+│   ├── b1-vocabulary-technology.html (🔜 Technology & Media)
+│   ├── b2-vocabulary-politics.html (🔜 Politics & Current Affairs)
+│   ├── b2-vocabulary-culture.html (🔜 Culture & Arts)
+│   ├── b2-vocabulary-professional.html (🔜 Professional Life)
+│   ├── c1-vocabulary-business.html (🔜 Business & Economics)
+│   ├── c1-vocabulary-law.html (🔜 Law & Justice)
+│   └── c2-vocabulary-literature.html (🔜 Literary Language)
+│
+├── grammar/
+│   ├── a1-grammar-articles.html (🔜 Articles - der/die/das)
+│   ├── a1-grammar-plurals.html (🔜 Plural Forms)
+│   ├── a1-grammar-present.html (🔜 Present Tense)
+│   ├── a1-grammar-nominativ.html (🔜 Nominativ Case)
+│   ├── a2-grammar-akkusativ.html (🔜 Akkusativ Case)
+│   ├── a2-grammar-perfekt.html (🔜 Past Tense - Perfekt)
+│   ├── a2-grammar-modal.html (🔜 Modal Verbs)
+│   ├── b1-grammar-dativ.html (🔜 Dativ Case)
+│   ├── b1-grammar-prateritum.html (🔜 Simple Past - Präteritum)
+│   ├── b1-grammar-subordinate.html (🔜 Subordinate Clauses)
+│   ├── b2-grammar-genitiv.html (🔜 Genitiv Case)
+│   ├── b2-grammar-passive.html (🔜 Passive Voice)
+│   ├── b2-grammar-konjunktiv.html (🔜 Konjunktiv II)
+│   ├── c1-grammar-advanced.html (🔜 Advanced Grammar)
+│   └── c2-grammar-mastery.html (🔜 Grammar Mastery)
+│
+├── tools/
+│   ├── flashcards.html (🔜 Flashcard System)
+│   ├── quiz.html (🔜 Quiz & Games)
+│   ├── progress.html (🔜 Progress Tracker)
+│   ├── planner.html (🔜 Study Planner)
+│   └── daily-practice.html (🔜 Daily Practice)
+│
+├── practice/
+│   ├── a1-conversations.html (🔜 A1 Conversations)
+│   ├── a2-conversations.html (🔜 A2 Conversations)
+│   ├── b1-conversations.html (🔜 B1 Conversations)
+│   ├── listening.html (🔜 Listening Practice)
+│   ├── writing.html (🔜 Writing Exercises)
+│   └── pronunciation.html (🔜 Pronunciation Guide)
+│
+├── resources/
+│   ├── resources-beginner.html (🔜 Beginner Resources A1-A2)
+│   ├── resources-intermediate.html (🔜 Intermediate Resources B1-B2)
+│   ├── resources-advanced.html (🔜 Advanced Resources C1-C2)
+│   ├── media.html (🔜 German Media Recommendations)
+│   └── links.html (🔜 Useful External Links)
+│
+├── assets/
+│   ├── css/
+│   │   └── main.css (🔜 Main stylesheet)
+│   ├── js/
+│   │   └── main.js (🔜 Main JavaScript)
+│   ├── images/
+│   │   └── (🔜 Site images)
+│   └── audio/
+│       └── (🔜 German audio files)
+│
+├── about.html (🔜 About the Platform)
+├── contact.html (🔜 Contact Form)
+├── settings.html (🔜 User Settings)
+└── README.md (🔜 Project Documentation)

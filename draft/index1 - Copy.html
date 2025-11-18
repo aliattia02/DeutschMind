@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🇩🇪 German Learning Hub - A1 to C2 Journey</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION BAR */
+        .navbar {
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #FFCE00;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #000000 0%, #DD0000 50%, #FFCE00 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="80" opacity="0.05">🇩🇪</text></svg>');
+            background-size: 200px;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            opacity: 0.95;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero-description {
+            font-size: 1.3em;
+            margin-bottom: 40px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .hero-btn {
+            background: white;
+            color: #DD0000;
+            border: none;
+            padding: 18px 45px;
+            font-size: 1.3em;
+            font-weight: bold;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
+            background: #FFCE00;
+            color: #000;
+        }
+
+        .hero-btn.secondary {
+            background: transparent;
+            color: white;
+            border: 3px solid white;
+        }
+
+        .hero-btn.secondary:hover {
+            background: white;
+            color: #DD0000;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* SECTION HEADERS */
+        .section-header {
+            text-align: center;
+            margin: 80px 0 50px;
+        }
+
+        .section-header h2 {
+            font-size: 3.5em;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            margin-bottom: 15px;
+        }
+
+        .section-header p {
+            font-size: 1.4em;
+            color: rgba(255,255,255,0.95);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* LEARNING PATH - LEVEL CARDS */
+        .level-path {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .level-card {
+            background: white;
+            border-radius: 25px;
+            padding: 40px;
+            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            display: grid;
+            grid-template-columns: 200px 1fr auto;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .level-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 8px;
+            height: 100%;
+        }
+
+        .level-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        }
+
+        /* Level Colors */
+        .level-a1::before { background: linear-gradient(180deg, #4CAF50, #388E3C); }
+        .level-a2::before { background: linear-gradient(180deg, #8BC34A, #689F38); }
+        .level-b1::before { background: linear-gradient(180deg, #FFC107, #FFA000); }
+        .level-b2::before { background: linear-gradient(180deg, #FF9800, #F57C00); }
+        .level-c1::before { background: linear-gradient(180deg, #FF5722, #E64A19); }
+        .level-c2::before { background: linear-gradient(180deg, #F44336, #D32F2F); }
+
+        .level-icon {
+            text-align: center;
+        }
+
+        .level-badge {
+            display: inline-block;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5em;
+            font-weight: bold;
+            color: white;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .level-a1 .level-badge { background: linear-gradient(135deg, #4CAF50, #388E3C); }
+        .level-a2 .level-badge { background: linear-gradient(135deg, #8BC34A, #689F38); }
+        .level-b1 .level-badge { background: linear-gradient(135deg, #FFC107, #FFA000); }
+        .level-b2 .level-badge { background: linear-gradient(135deg, #FF9800, #F57C00); }
+        .level-c1 .level-badge { background: linear-gradient(135deg, #FF5722, #E64A19); }
+        .level-c2 .level-badge { background: linear-gradient(135deg, #F44336, #D32F2F); }
+
+        .level-content h3 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .level-description {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .level-topics {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+        }
+
+        .topic-tag {
+            background: rgba(102, 126, 234, 0.1);
+            color: #667eea;
+            padding: 6px 15px;
+            border-radius: 15px;
+            font-size: 0.95em;
+            font-weight: 600;
+        }
+
+        .level-action {
+            text-align: center;
+        }
+
+        .level-btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 35px;
+            font-size: 1.2em;
+            font-weight: bold;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .level-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        /* TOPIC CARDS (SECONDARY NAVIGATION) */
+        .topic-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .topic-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .topic-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .topic-icon {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .topic-card h3 {
+            font-size: 1.8em;
+            color: #DD0000;
+            margin-bottom: 15px;
+        }
+
+        .topic-card p {
+            font-size: 1.1em;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .topic-level-badge {
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 15px;
+            font-size: 0.9em;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .level-badge-a1 { background: #4CAF50; color: white; }
+        .level-badge-a2 { background: #8BC34A; color: white; }
+        .level-badge-b1 { background: #FFC107; color: #333; }
+        .level-badge-b2 { background: #FF9800; color: white; }
+
+        .topic-link {
+            display: inline-block;
+            padding: 10px 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: 15px;
+        }
+
+        .topic-link:hover {
+            background: linear-gradient(135deg, #764ba2, #667eea);
+            transform: scale(1.05);
+        }
+
+        /* STATS */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin: 60px 0;
+        }
+
+        .stat-box {
+            background: white;
+            padding: 35px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .stat-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
+        }
+
+        .stat-icon {
+            font-size: 3em;
+            margin-bottom: 15px;
+        }
+
+        .stat-number {
+            font-size: 3.5em;
+            font-weight: bold;
+            color: #DD0000;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1.3em;
+            color: #666;
+        }
+
+        /* FEATURES */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin: 60px 0;
+        }
+
+        .feature-box {
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 20px;
+            padding: 35px;
+            text-align: center;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .feature-box:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-5px);
+            border-color: rgba(255,255,255,0.5);
+        }
+
+        .feature-icon {
+            font-size: 3.5em;
+            margin-bottom: 20px;
+        }
+
+        .feature-box h3 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+        }
+
+        .feature-box p {
+            font-size: 1.1em;
+            opacity: 0.95;
+            line-height: 1.6;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 50px 20px 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-section h4 {
+            font-size: 1.6em;
+            margin-bottom: 20px;
+            color: #FFCE00;
+        }
+
+        .footer-section a {
+            display: block;
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+            font-size: 1.1em;
+        }
+
+        .footer-section a:hover {
+            color: #FFCE00;
+            transform: translateX(5px);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            margin: 10px 0;
+            font-size: 1.1em;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 968px) {
+            .level-card {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .level-badge {
+                margin: 0 auto;
+            }
+
+            .hero h1 {
+                font-size: 3em;
+            }
+
+            .section-header h2 {
+                font-size: 2.5em;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-links {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.2em;
+            }
+
+            .hero-subtitle {
+                font-size: 1.3em;
+            }
+
+            .hero-description {
+                font-size: 1.1em;
+            }
+
+            .hero-btn {
+                padding: 12px 30px;
+                font-size: 1.1em;
+            }
+
+            .section-header h2 {
+                font-size: 2em;
+            }
+
+            .level-content h3 {
+                font-size: 1.6em;
+            }
+
+            .topic-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🇩🇪 German Hub</a>
+            <div class="nav-links">
+                <a href="#levels" class="nav-link">📚 Levels</a>
+                <a href="#topics" class="nav-link">🎯 Topics</a>
+                <a href="tools/progress.html" class="nav-link">📊 Progress</a>
+                <a href="grammar/grammar-articles.html" class="nav-link">📖 Grammar</a>
+                <a href="about.html" class="nav-link">ℹ️ About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>🇩🇪 German Learning Hub</h1>
+            <p class="hero-subtitle">Your Complete Journey from A1 to C2</p>
+            <p class="hero-description">Interactive Audio Learning • Structured Path • Progress Tracking</p>
+            <div class="hero-buttons">
+                <a href="#levels" class="hero-btn">Start Your Journey</a>
+                <a href="tools/progress.html" class="hero-btn secondary">Track Progress</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- FEATURES -->
+        <div class="section-header">
+            <h2>✨ Why Learn Here?</h2>
+            <p>Everything you need to master German, all in one place</p>
+        </div>
+
+        <div class="features">
+            <div class="feature-box">
+                <div class="feature-icon">🎯</div>
+                <h3>Structured Path</h3>
+                <p>Follow the proven CEFR framework from A1 beginner to C2 mastery</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🔊</div>
+                <h3>Audio Learning</h3>
+                <p>Click any word to hear native German pronunciation with adjustable speed</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🎨</div>
+                <h3>Visual Memory</h3>
+                <p>Color-coded articles: Der (Blue) • Das (Green) • Die (Red)</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">📊</div>
+                <h3>Track Progress</h3>
+                <p>Monitor your journey with detailed statistics and achievements</p>
+            </div>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-icon">📚</div>
+                <div class="stat-number">3000+</div>
+                <div class="stat-label">Vocabulary Words</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">📖</div>
+                <div class="stat-number">60+</div>
+                <div class="stat-label">Grammar Lessons</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">💬</div>
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Conversations</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-icon">🎮</div>
+                <div class="stat-number">200+</div>
+                <div class="stat-label">Practice Exercises</div>
+            </div>
+        </div>
+
+        <!-- LEARNING PATH BY LEVEL (PRIMARY) -->
+        <div class="section-header" id="levels">
+            <h2>🎓 Your Learning Path</h2>
+            <p>Choose your level and start your journey to German fluency</p>
+        </div>
+
+        <div class="level-path">
+
+            <!-- A1 LEVEL -->
+            <div class="level-card level-a1">
+                <div class="level-icon">
+                    <div class="level-badge">A1</div>
+                </div>
+                <div class="level-content">
+                    <h3>Beginner</h3>
+                    <p class="level-description">Start your German journey with essential vocabulary, basic grammar, and simple conversations. Perfect for absolute beginners!</p>
+                    <div class="level-topics">
+                        <span class="topic-tag">👨‍👩‍👧 People & Family</span>
+                        <span class="topic-tag">🏥 Body & Health</span>
+                        <span class="topic-tag">🏠 Home & Daily Life</span>
+                        <span class="topic-tag">🍽️ Food & Drinks</span>
+                        <span class="topic-tag">🕐 Time & Numbers</span>
+                    </div>
+                </div>
+                <div class="level-action">
+                    <a href="levels/level-a1.html" class="level-btn">Start A1 →</a>
+                </div>
+            </div>
+
+            <!-- A2 LEVEL -->
+            <div class="level-card level-a2">
+                <div class="level-icon">
+                    <div class="level-badge">A2</div>
+                </div>
+                <div class="level-content">
+                    <h3>Elementary</h3>
+                    <p class="level-description">Build on your foundation with expanded vocabulary, more complex grammar, and practical everyday situations.</p>
+                    <div class="level-topics">
+                        <span class="topic-tag">🌍 Travel & Places</span>
+                        <span class="topic-tag">🛍️ Shopping & Money</span>
+                        <span class="topic-tag">🌦️ Weather & Nature</span>
+                        <span class="topic-tag">💼 Work & Jobs</span>
+                        <span class="topic-tag">🎨 Hobbies & Free Time</span>
+                    </div>
+                </div>
+                <div class="level-action">
+                    <a href="levels/level-a2.html" class="level-btn">Start A2 →</a>
+                </div>
+            </div>
+
+            <!-- B1 LEVEL -->
+            <div class="level-card level-b1">
+                <div class="level-icon">
+                    <div class="level-badge">B1</div>
+                </div>
+                <div class="level-content">
+                    <h3>Intermediate</h3>
+                    <p class="level-description">Develop fluency in everyday situations, express opinions, and understand main points of standard texts.</p>
+                    <div class="level-topics">
+                        <span class="topic-tag">💬 Communication</span>
+                        <span class="topic-tag">🏥 Health & Medicine</span>
+                        <span class="topic-tag">📱 Technology & Media</span>
+                        <span class="topic-tag">🌍 Environment & Society</span>
+                        <span class="topic-tag">📚 Education & Learning</span>
+                    </div>
+                </div>
+                <div class="level-action">
+                    <a href="levels/level-b1.html" class="level-btn">Start B1 →</a>
+                </div>
+            </div>
+
+            <!-- B2 LEVEL -->
+            <div class="level-card level-b2">
+                <div class="level-icon">
+                    <div class="level-badge">B2</div>
+                </div>
+                <div class="level-content">
+                    <h3>Upper Intermediate</h3>
+                    <p class="level-description">Master complex texts, spontaneous conversations, and detailed discussions on abstract topics.</p>
+                    <div class="level-topics">
+                        <span class="topic-tag">🏛️ Politics & Current Affairs</span>
+                        <span class="topic-tag">🎭 Culture & Arts</span>
+                        <span class="topic-tag">💼 Professional Life</span>
+                        <span class="topic-tag">🔬 Science & Innovation</span>
+                        <span class="topic-tag">🌍 Global Issues</span>
+                    </div>
+                </div>
+                <div class="level-action">
+                    <a href="levels/level-b2.html" class="level-btn">Start B2 →</a>
+                </div>
+            </div>
+
+            <!-- C1 LEVEL -->
+            <div class="level-card level-c1">
+                <div class="level-icon">
+                    <div class="level-badge">C1</div>
+                </div>
+                <div class="level-content">
+                    <h3>Advanced</h3>
+                    <p class="level-description">Express yourself fluently and spontaneously, use language flexibly for social, academic, and professional purposes.</p>
+                    <div class="level-topics">
+                        <span class="topic-tag">📊 Business & Economics</span>
+                        <span class="topic-tag">⚖️ Law & Justice</span>
+                        <span class="topic-tag">🧬 Advanced Sciences</span>
+                        <span class="topic-tag">📖 Literature & Philosophy</span>
+                        <span class="topic-tag">🎯 Idioms & Expressions</span>
+                    </div>
+                </div>
+                <div class="level-action">
+                    <a href="levels/level-c1.html" class="level-btn">Start C1 →</a>
+                </div>
+            </div>
+
+            <!-- C2 LEVEL -->
+            <div class="level-card level-c2">
+                <div class="level-icon">
+                    <div class="level-badge">C2</div>
+                </div>
+                <div class="level-content">
+                    <h3>Mastery</h3>
+                    <p class="level-description">Understand virtually everything, express yourself with precision and nuance at a native-like level.</p>
+                    <div class="level-topics">
+                        <span class="topic-tag">🎨 Literary Language</span>
+                        <span class="topic-tag">🔬 Specialized Terminology</span>
+                        <span class="topic-tag">🌐 Regional Variations</span>
+                        <span class="topic-tag">📰 Media & Journalism</span>
+                        <span class="topic-tag">🎭 Cultural Nuances</span>
+                    </div>
+                </div>
+                <div class="level-action">
+                    <a href="levels/level-c2.html" class="level-btn">Start C2 →</a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- BROWSE BY TOPIC (SECONDARY NAVIGATION) -->
+        <div class="section-header" id="topics">
+            <h2>🎯 Or Browse by Topic</h2>
+            <p>Jump directly to vocabulary you need right now</p>
+        </div>
+
+        <div class="topic-grid">
+
+            <div class="topic-card">
+                <span class="topic-icon">👨‍👩‍👧</span>
+                <h3>People & Family</h3>
+                <p>Family members, relationships, and people-related vocabulary</p>
+                <span class="topic-level-badge level-badge-a1">A1 Level</span>
+                <br>
+                <a href="vocabulary/vocabulary-family.html" class="topic-link">Learn Now →</a>
+            </div>
+
+            <div class="topic-card">
+                <span class="topic-icon">🏥</span>
+                <h3>Body & Health</h3>
+                <p>Body parts, health, medical terms, and doctor visits</p>
+                <span class="topic-level-badge level-badge-a1">A1 Level</span>
+                <br>
+                <a href="vocabulary/vocabulary-health.html" class="topic-link">Learn Now →</a>
+            </div>
+
+            <div class="topic-card">
+                <span class="topic-icon">🏠</span>
+                <h3>Home & Living</h3>
+                <p>Rooms, furniture, household items, and daily routines</p>
+                <span class="topic-level-badge level-badge-a1">A1 Level</span>
+                <br>
+                <a href="vocabulary/vocabulary-home.html" class="topic-link">Coming Soon</a>
+            </div>
+
+            <div class="topic-card">
+                <span class="topic-icon">🍽️</span>
+                <h3>Food & Dining</h3>
+                <p>Food, drinks, restaurants, and meal vocabulary</p>
+                <span class="topic-level-badge level-badge-a1">A1 Level</span>
+                <br>
+                <a href="vocabulary/vocabulary-food.html" class="topic-link">Coming Soon</a>
+            </div>
+
+            <div class="topic-card">
+                <span class="topic-icon">🌍</span>
+                <h3>Travel & Places</h3>
+                <p>Countries, cities, directions, and transportation</p>
+                <span class="topic-level-badge level-badge-a2">A2 Level</span>
+                <br>
+                <a href="vocabulary/vocabulary-travel.html" class="topic-link">Coming Soon</a>
+            </div>
+
+            <div class="topic-card">
+                <span class="topic-icon">🛍️</span>
+                <h3>Shopping & Money</h3>
+                <p>Stores, prices, banking, and financial terms</p>
+                <span class="topic-level-badge level-badge-a2">A2 Level</span>
+                <br>
+                <a href="vocabulary/vocabulary-shopping.html" class="topic-link">Coming Soon</a>
+            </div>
+
+            <div class="topic-card">
+                <span class="topic-icon">🌦️</span>
+                <h3>Weather & Nature</h3>
+                <p>Weather, seasons, environment, and nature</p>
+                <span class="topic-level-badge level-badge-a2">A2 Level</span>
+                <br>
+                <a href="vocabulary/vocabulary-nature.html" class="topic-link">Coming Soon</a>
+            </div>
+
+            <div class="topic-card">
+                <span class="topic-icon">💼</span>
+                <h3>Work & Education</h3>
+                <p>Jobs, workplace, school, and professional terms</p>
+                <span class="topic-level-badge level-badge-a2">A2 Level</span>
+                <br>
+                <a href="vocabulary/vocabulary-work.html" class="topic-link">Coming Soon</a>
+            </div>
+
+            <div class="topic-card">
+                <span class="topic-icon">🎨</span>
+                <h3>Hobbies & Activities</h3>
+                <p>Sports, music, art, and leisure activities</p>
+                <span class="topic-level-badge level-badge-b1">B1 Level</span>
+                <br>
+                <a href="vocabulary/vocabulary-hobbies.html" class="topic-link">Coming Soon</a>
+            </div>
+
+            <div class="topic-card">
+                <span class="topic-icon">💬</span>
+                <h3>Communication</h3>
+                <p>Phone, email, social media, conversations</p>
+                <span class="topic-level-badge level-badge-b1">B1 Level</span>
+                <br>
+                <a href="vocabulary/vocabulary-communication.html" class="topic-link">Coming Soon</a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>Levels</h4>
+                <a href="levels/level-a1.html">🟢 A1 - Beginner</a>
+                <a href="levels/level-a2.html">🔵 A2 - Elementary</a>
+                <a href="levels/level-b1.html">🟡 B1 - Intermediate</a>
+                <a href="levels/level-b2.html">🟠 B2 - Upper Intermediate</a>
+                <a href="levels/level-c1.html">🔴 C1 - Advanced</a>
+                <a href="levels/level-c2.html">🟣 C2 - Mastery</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Vocabulary</h4>
+                <a href="vocabulary/vocabulary-family.html">👨‍👩‍👧 People & Family</a>
+                <a href="vocabulary/vocabulary-health.html">🏥 Body & Health</a>
+                <a href="vocabulary/vocabulary-home.html">🏠 Home & Living</a>
+                <a href="vocabulary/vocabulary-food.html">🍽️ Food & Dining</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Tools & Practice</h4>
+                <a href="tools/flashcards.html">🎴 Flashcards</a>
+                <a href="tools/quiz.html">🎮 Quiz & Games</a>
+                <a href="tools/progress.html">📊 Progress Tracker</a>
+                <a href="practice/conversations.html">💬 Conversations</a>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="grammar/grammar-articles.html">📖 Grammar Guide</a>
+                <a href="resources/media.html">🎵 German Media</a>
+                <a href="about.html">ℹ️ About</a>
+                <a href="contact.html">📧 Contact</a>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p><strong>🇩🇪 German Learning Hub</strong></p>
+            <p>Your Complete A1 to C2 Journey</p>
+            <p style="margin-top: 20px;">Created by: <strong>aliattia02</strong> | © 2025</p>
+            <p style="margin-top: 10px; font-size: 0.95em; opacity: 0.8;">
+                Last Updated: 2025-11-17 19:56:49 UTC
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>

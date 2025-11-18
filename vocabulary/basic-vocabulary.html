@@ -1,0 +1,1724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary - Interactive Audio Learning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(90deg, #000000, #DD0000, #FFCE00);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        .audio-controls {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .audio-controls h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .control-group select,
+        .control-group input {
+            padding: 8px 15px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .play-all-btn {
+            background: linear-gradient(135deg, #DD0000, #FFCE00);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .play-all-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .tab-button {
+            background: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .tab-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #DD0000;
+            color: white;
+        }
+
+        .tab-button.active {
+            background: #DD0000;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .card h2 {
+            color: #DD0000;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #FFCE00;
+            padding-bottom: 10px;
+        }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .vocab-table th {
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        /* COLOR-CODED HEADERS FOR EACH ARTICLE */
+        /* der = BLUE, das = GREEN, die = RED */
+        .vocab-table.der th {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+
+        .vocab-table.das th {
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+        }
+
+        .vocab-table.die th {
+            background: linear-gradient(135deg, #F44336, #D32F2F);
+        }
+
+        .vocab-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .vocab-table tr {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* PERMANENT COLOR-CODED ROW BACKGROUNDS */
+        /* der = BLUE, das = GREEN, die = RED */
+        .vocab-table.der tbody tr {
+            background: #E3F2FD;
+        }
+
+        .vocab-table.das tbody tr {
+            background: #E8F5E9;
+        }
+
+        .vocab-table.die tbody tr {
+            background: #FFEBEE;
+        }
+
+        /* DARKER ON HOVER */
+        .vocab-table.der tbody tr:hover {
+            background: #BBDEFB;
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+        }
+
+        .vocab-table.das tbody tr:hover {
+            background: #C8E6C9;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+        }
+
+        .vocab-table.die tbody tr:hover {
+            background: #FFCDD2;
+            box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+        }
+
+        .article {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* COLOR-CODED ARTICLES AND WORDS */
+        /* der = BLUE, das = GREEN, die = RED */
+        .vocab-table.der .article,
+        .vocab-table.der .german-word {
+            color: #1565C0;
+            font-weight: 700;
+        }
+
+        .vocab-table.das .article,
+        .vocab-table.das .german-word {
+            color: #2E7D32;
+            font-weight: 700;
+        }
+
+        .vocab-table.die .article,
+        .vocab-table.die .german-word {
+            color: #C62828;
+            font-weight: 700;
+        }
+        /* MOBILE-RESPONSIVE NOUNS TABLE */
+        @media (max-width: 768px) {
+            .vocab-table {
+                display: none; /* Hide table on mobile */
+            }
+
+            .mobile-noun-card {
+                display: block;
+                background: white;
+                border-left: 5px solid;
+                border-radius: 8px;
+                padding: 15px;
+                margin: 10px 0;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-noun-card.der {
+                border-color: #2196F3;
+                background: #E3F2FD;
+            }
+
+            .mobile-noun-card.das {
+                border-color: #4CAF50;
+                background: #E8F5E9;
+            }
+
+            .mobile-noun-card.die {
+                border-color: #F44336;
+                background: #FFEBEE;
+            }
+
+            .mobile-noun-card:active {
+                transform: scale(0.98);
+            }
+
+            .mobile-noun-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+            }
+
+            .mobile-article-word {
+                font-size: 1.3em;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .mobile-article-word.der {
+                color: #1565C0;
+            }
+
+            .mobile-article-word.das {
+                color: #2E7D32;
+            }
+
+            .mobile-article-word.die {
+                color: #C62828;
+            }
+
+            .mobile-audio-btn {
+                background: #FFCE00;
+                border: none;
+                padding: 8px 12px;
+                border-radius: 15px;
+                font-size: 1.1em;
+                cursor: pointer;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+
+            .mobile-audio-btn:active {
+                transform: scale(0.95);
+            }
+
+            .mobile-noun-details {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 8px 12px;
+                font-size: 0.95em;
+                margin-top: 10px;
+                padding-top: 10px;
+                border-top: 1px solid rgba(0,0,0,0.1);
+            }
+
+            .mobile-label {
+                font-weight: 600;
+                color: #666;
+            }
+
+            .mobile-plural {
+                color: #764ba2;
+                font-style: italic;
+                font-weight: 600;
+            }
+
+            .mobile-english {
+                color: #444;
+            }
+
+            /* Show mobile cards only on mobile */
+            .mobile-noun-cards {
+                display: none;
+            }
+
+            @media (max-width: 768px) {
+                .mobile-noun-cards {
+                    display: block;
+                }
+            }
+        }
+
+        /* Desktop: hide mobile cards */
+        @media (min-width: 769px) {
+            .mobile-noun-cards {
+                display: none;
+            }
+        }
+        .german-word {
+            font-size: 1.2em;
+        }
+
+        .english-word {
+            color: #666;
+        }
+
+        .plural {
+            color: #764ba2;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .word-pair {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .word-pair:hover {
+            transform: scale(1.05);
+        }
+
+        .word-pair .german {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .word-pair .english {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .opposite-arrow {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .word-pair .card-audio-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .word-pair .card-audio-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .expression-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .expression-item {
+            background: #f8f9fa;
+            margin: 10px 0;
+            padding: 20px;
+            border-left: 5px solid #DD0000;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .expression-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: #fff;
+        }
+
+        .expression-german {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 5px;
+        }
+
+        .expression-english {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        .conversation {
+            margin: 20px 0;
+        }
+
+        .message {
+            margin: 15px 0;
+            padding: 15px 20px;
+            border-radius: 20px;
+            max-width: 80%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .message:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transform: translateX(5px);
+        }
+
+        .message-a {
+            background: #667eea;
+            color: white;
+            margin-left: 0;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message-b {
+            background: #f093fb;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message-german {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .message-english {
+            font-size: 0.95em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .qa-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .qa-card {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .qa-card:hover {
+            border-color: #DD0000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .question {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .answer {
+            font-size: 1.1em;
+            color: #333;
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .qa-card:hover .answer {
+            display: block;
+        }
+
+        .sentence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .sentence-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sentence-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .sentence-german {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .sentence-english {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .audio-btn {
+            background: #FFCE00;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .audio-btn:hover {
+            background: #DD0000;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .audio-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .audio-status.show {
+            display: flex;
+        }
+
+        .audio-status .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        .section-icon {
+            font-size: 2em;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            .tabs {
+                flex-direction: column;
+            }
+            .tab-button {
+                width: 100%;
+            }
+            .word-grid {
+                grid-template-columns: 1fr;
+            }
+            .sentence-grid {
+                grid-template-columns: 1fr;
+            }
+            .message {
+                max-width: 90%;
+            }
+            .audio-controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================ -->
+    <!-- EDIT SECTION 1: HEADER INFORMATION -->
+    <!-- ============================================ -->
+    <header>
+        <h1>🇩🇪 Basic Words & Greetings </h1>
+        <p id="headerTopic">Group 5: Basic Words & Greetings (BASIC A1-B2) | Interactive Audio Learning</p>
+        <p style="font-size: 0.9em; margin-top: 10px;"Created by: aliattia02 | Date: 2025-11-16</p>
+    </header>
+
+    <div class="container">
+        <div class="audio-controls">
+            <h3>🔊 Audio Settings</h3>
+            <div class="control-group">
+                <label for="voiceSelect">Voice:</label>
+                <select id="voiceSelect">
+                    <option value="">Loading voices...</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="speedControl">Speed:</label>
+                <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+                <span id="speedValue">0.8x</span>
+            </div>
+            <div class="control-group">
+                <label for="pitchControl">Pitch:</label>
+                <input type="range" id="pitchControl" min="0.5" max="2" step="0.1" value="1">
+                <span id="pitchValue">1.0</span>
+            </div>
+            <button class="play-all-btn" onclick="playAllInSection()">▶ Play All in Section</button>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('nouns')">📚 Nouns</button>
+            <button class="tab-button" onclick="showTab('adjectives')">✨ Adjectives</button>
+            <button class="tab-button" onclick="showTab('verbs')">⚡ Verbs</button>
+            <button class="tab-button" onclick="showTab('expressions')">💬 Key Expressions</button>
+            <button class="tab-button" onclick="showTab('conversations')">🗣️ Conversations</button>
+            <button class="tab-button" onclick="showTab('qa')">❓ Q&A Practice</button>
+            <button class="tab-button" onclick="showTab('sentences')">📝 Quick Sentences</button>
+        </div>
+
+        <div id="nouns" class="tab-content active">
+            <div class="card">
+                <h2><span class="section-icon">📚</span>Nouns - Die Nomen</h2>
+                <div id="nounsContainer"></div>
+            </div>
+        </div>
+
+        <div id="adjectives" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">✨</span>Adjectives - Die Adjektive</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any card to hear the pronunciation!</p>
+                <div id="adjectivesContainer" class="word-grid"></div>
+            </div>
+        </div>
+
+        <div id="verbs" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">⚡</span>Verbs - Die Verben</h2>
+                <p style="margin-bottom: 20px;"><strong>*</strong> = Weak Verb | <strong>+</strong> = Strong Verb</p>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any card to hear the pronunciation!</p>
+                <div id="verbsContainer" class="word-grid"></div>
+            </div>
+        </div>
+
+        <div id="expressions" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">💬</span>Key Expressions - Wichtige Ausdrücke</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any expression to hear the pronunciation!</p>
+                <ul id="expressionsContainer" class="expression-list"></ul>
+            </div>
+        </div>
+
+        <div id="conversations" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">🗣️</span>Mini Conversations - Kurze Gespräche</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any message to hear it!</p>
+                <div id="conversationsContainer"></div>
+            </div>
+        </div>
+
+        <div id="qa" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">❓</span>Q&A Practice - Fragen und Antworten</h2>
+                <p style="margin-bottom: 20px; font-style: italic; color: #666;">💡 Hover over each card to see the answer, or click to hear it!</p>
+                <div id="qaContainer" class="qa-container"></div>
+            </div>
+        </div>
+
+        <div id="sentences" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">📝</span>Quick Sentences - Schnelle Sätze</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any sentence to hear it!</p>
+                <div id="sentencesContainer" class="sentence-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="audio-status" id="audioStatus">
+        <div class="spinner"></div>
+        <span id="audioStatusText">Speaking...</span>
+    </div>
+
+    <footer>
+        <p><strong>German Vocabulary - Interactive Audio Learning</strong></p>
+        <p>Created for German Learners | © 2025 aliattia02</p>
+        <p>🔧 Interactive Audio Learning Platform</p>
+        <p style="margin-top: 20px; font-size: 0.9em;">
+            🎯 Click anywhere to hear pronunciation | 💪 Practice makes perfect!
+        </p>
+        <p style="margin-top: 10px; font-size: 0.8em; opacity: 0.8;">
+            Last Updated: 2025-11-16
+        </p>
+    </footer>
+
+    <script>
+        // ============================================
+        // BASIC A1-B2 - ESSENTIAL BASICS & COMMUNICATION (ENHANCED)
+        // ============================================
+        
+        // ============================================
+        // EDIT SECTION 2: CSV DATA - NOUNS
+        // ============================================
+        const nounsCSV = `
+das,Wort,Wörter,die Wörter,Word
+das,Beispiel,-e,die Beispiele,Example
+das,Gespräch,-e,die Gespräche,Conversation
+das,Problem,-e,die Probleme,Problem
+das,Missverständnis,-se,die Missverständnisse,Misunderstanding
+das,Deutsch,---,---,German
+das,Englisch,---,---,English (language)
+das,Telefon,-e,die Telefone,Telephone
+das,Jahr,-e,die Jahre,Year
+das,Leben,---,das Leben,Life
+das,Geld,-er,die Gelder,Money
+das,Land,Länder,die Länder,Country
+das,Ding,-e,die Dinge,Thing
+das,Handy,-s,die Handys,Mobile phone
+das,Auto,-s,die Autos,Car
+das,Buch,Bücher,die Bücher,Book
+der,Gruß,Grüße,die Grüße,Greeting
+der,Morgen,---,die Morgen,Morning
+der,Abend,-e,die Abende,Evening
+der,Tag,-e,die Tage,Day
+der,Name,-en,die Namen,Name
+der,Dank,---,---,Thanks
+der,Fehler,---,die Fehler,Mistake
+der,Anfang,Anfänge,die Anfänge,Beginning
+der,Mensch,-en,die Menschen,Human/Person
+der,Mann,Männer,die Männer,Man
+der,Ort,-e,die Orte,Place
+der,Weg,-e,die Wege,Way/Path
+der,Euro,-s,die Euros,Euro
+der,Cent,-s,die Cents,Cent
+der,Freund,-e,die Freunde,Friend (male)
+der,Beruf,-e,die Berufe,Profession
+die,Begrüßung,-en,die Begrüßungen,Greeting
+die,Frage,-n,die Fragen,Question
+die,Antwort,-en,die Antworten,Answer
+die,Hilfe,-n,die Hilfen,Help
+die,Entschuldigung,-en,die Entschuldigungen,Apology
+die,Bitte,-n,die Bitten,Request
+die,Höflichkeit,-en,die Höflichkeiten,Politeness
+die,Sprache,-n,die Sprachen,Language
+die,Zeit,-en,die Zeiten,Time
+die,Freude,-n,die Freuden,Joy
+die,Frau,-en,die Frauen,Woman
+die,Person,-en,die Personen,Person
+die,Nummer,-n,die Nummern,Number
+die,Adresse,-n,die Adressen,Address
+die,Stadt,Städte,die Städte,City
+die,Straße,-n,die Straßen,Street
+die,Uhr,-en,die Uhren,Clock/Time
+die,Freundin,-nen,die Freundinnen,Friend (female)
+die,Arbeit,-en,die Arbeiten,Work
+die,Schule,-n,die Schulen,School
+die,Zahl,-en,die Zahlen,Number
+die,E-Mail,-s,die E-Mails,Email
+        `.trim();
+
+        // ============================================
+        // EDIT SECTION 3: CSV DATA - ADJECTIVES
+        // ============================================
+        const adjectivesCSV = `
+höflich,polite,unhöflich,rude
+freundlich,friendly,unfreundlich,unfriendly
+wichtig,important,unwichtig,unimportant
+richtig,correct,falsch,wrong
+einfach,easy,schwierig,difficult
+klar,clear,unklar,unclear
+gut,good,schlecht,bad
+nett,nice,böse,evil/angry
+groß,big/tall,klein,small
+lang,long,kurz,short
+viel,much/many,wenig,little/few
+mehr,more,weniger,less
+alle,all,keine,none
+viele,many,wenige,few
+langsam,slow,schnell,fast
+laut,loud,leise,quiet
+neu,new,alt,old
+jung,young,alt,old
+fertig,ready,unfertig,unfinished
+froh,happy,traurig,sad
+teuer,expensive,billig,cheap
+möglich,possible,unmöglich,impossible
+        `.trim();
+
+        // ============================================
+        // EDIT SECTION 4: CSV DATA - VERBS
+        // ============================================
+        const verbsCSV = `
+weak,sagen,say,schweigen,be silent
+weak,fragen,ask,antworten,answer
+weak,danken,thank,bitten,request
+weak,grüßen,greet,verabschieden,say goodbye
+weak,helfen,help,stören,disturb
+weak,verstehen,understand,missverstehen,misunderstand
+weak,sprechen,speak,zuhören,listen
+weak,wiederholen,repeat,vergessen,forget
+weak,lernen,learn,lehren,teach
+weak,erklären,explain,zeigen,show
+weak,machen,make/do,tun,do
+weak,arbeiten,work,spielen,play
+weak,leben,live,sterben,die
+weak,wohnen,reside,bleiben,stay
+strong,heißen,be called,nennen,name
+strong,kennen,know,erkennen,recognize
+strong,kommen,come,gehen,go
+strong,sein,be,haben,have
+strong,wissen,know (fact),können,can/be able
+strong,müssen,must,wollen,want
+        `.trim();
+
+        // ============================================
+        // EDIT SECTION 5: CSV DATA - EXPRESSIONS
+        // ============================================
+        const expressionsCSV = `
+Hallo!,Hello!
+Guten Morgen!,Good morning!
+Guten Tag!,Good day!
+Guten Abend!,Good evening!
+Gute Nacht!,Good night!
+Auf Wiedersehen!,Goodbye!
+Tschüss!,Bye!
+Bis bald!,See you soon!
+Bis später!,See you later!
+Bis morgen!,See you tomorrow!
+Danke (schön)!,Thank you!
+Vielen Dank!,Thank you very much!
+Bitte (schön)!,You're welcome! / Please!
+Gern geschehen!,You're welcome!
+Entschuldigung!,Excuse me! / Sorry!
+Wie bitte?,Pardon? / What?
+Kein Problem!,No problem!
+Ja / Nein,Yes / No
+Vielleicht,Maybe
+Natürlich,Of course
+Gern / Gerne,Gladly / With pleasure
+Verstehe,I understand
+Verstehe nicht,I don't understand
+Alles klar,All clear / Okay
+        `.trim();
+
+        // ============================================
+        // EDIT SECTION 6: CSV DATA - CONVERSATIONS
+        // ============================================
+        const conversationsCSV = `
+Meeting Someone|A,Guten Tag!,Good day!
+Meeting Someone|B,Guten Tag!,Good day!
+Meeting Someone|A,Wie heißen Sie?,What is your name?
+Meeting Someone|B,Ich heiße Maria. Und Sie?,My name is Maria. And you?
+Meeting Someone|A,Ich bin Thomas.,I am Thomas.
+Meeting Someone|B,Sehr angenehm!,Very pleased to meet you!
+Meeting Someone|A,Freut mich auch!,Pleased to meet you too!
+Meeting Someone|B,Woher kommen Sie?,Where are you from?
+Meeting Someone|A,Ich komme aus Deutschland.,I come from Germany.
+Asking for Help|A,Entschuldigung!,Excuse me!
+Asking for Help|B,Ja bitte?,Yes please?
+Asking for Help|A,Sprechen Sie Englisch?,Do you speak English?
+Asking for Help|B,Ja ein bisschen.,Yes a little.
+Asking for Help|A,Können Sie mir helfen?,Can you help me?
+Asking for Help|B,Natürlich! Kein Problem.,Of course! No problem.
+Asking for Help|A,Wo ist die Adresse?,Where is the address?
+Asking for Help|B,Hier ist die Straße.,Here is the street.
+Asking for Help|A,Vielen Dank!,Thank you very much!
+Asking for Help|B,Gern geschehen!,You're welcome!
+Basic Interaction|A,Verstehen Sie Deutsch?,Do you understand German?
+Basic Interaction|B,Ja aber langsam bitte.,Yes but slowly please.
+Basic Interaction|A,Kein Problem. Ich spreche langsam.,No problem. I speak slowly.
+Basic Interaction|B,Danke schön!,Thank you!
+Basic Interaction|A,Haben Sie Fragen?,Do you have questions?
+Basic Interaction|B,Ja eine Frage.,Yes one question.
+Basic Interaction|A,Was ist Ihre Telefonnummer?,What is your phone number?
+Basic Interaction|B,Meine Nummer ist 0176...,My number is 0176...
+At Work/School|A,Guten Morgen! Wie geht es Ihnen?,Good morning! How are you?
+At Work/School|B,Gut danke. Und Ihnen?,Good thanks. And you?
+At Work/School|A,Sehr gut danke.,Very good thanks.
+At Work/School|B,Was machen Sie?,What do you do?
+At Work/School|A,Ich arbeite hier.,I work here.
+At Work/School|B,Wo arbeiten Sie?,Where do you work?
+At Work/School|A,In der Stadt.,In the city.
+Making Friends|A,Hallo! Ich heiße Anna.,Hello! My name is Anna.
+Making Friends|B,Hallo Anna! Ich bin Max.,Hello Anna! I'm Max.
+Making Friends|A,Freut mich!,Pleased to meet you!
+Making Friends|B,Woher kommst du?,Where are you from?
+Making Friends|A,Ich komme aus Berlin.,I come from Berlin.
+Making Friends|B,Cool! Ich auch!,Cool! Me too!
+        `.trim();
+
+        // ============================================
+        // EDIT SECTION 7: CSV DATA - Q&A
+        // ============================================
+        const qaCSV = `
+Wie heißen Sie? / Wie heißt du?,Ich heiße... (My name is...)
+Woher kommen Sie? / Woher kommst du?,Ich komme aus... (I come from...)
+Wo wohnen Sie? / Wo wohnst du?,Ich wohne in... (I live in...)
+Wie geht's? / Wie geht es Ihnen?,Gut danke. Und Ihnen? (Good thanks. And you?)
+Sprechen Sie Deutsch?,Ja ein bisschen. (Yes a little.)
+Verstehen Sie mich?,Ja ich verstehe. (Yes I understand.)
+Können Sie das wiederholen?,Ja natürlich. (Yes of course.)
+Wie sagt man das auf Deutsch?,Man sagt... (One says...)
+Was ist das?,Das ist... (That is...)
+Wie viel kostet das?,Das kostet... Euro. (That costs... euros.)
+Wo ist...?,Hier / Da / Dort (Here / There / There)
+Haben Sie...?,Ja ich habe... / Nein ich habe nicht... (Yes I have... / No I don't have...)
+        `.trim();
+
+        // ============================================
+        // EDIT SECTION 8: CSV DATA - SENTENCES
+        // ============================================
+        const sentencesCSV = `
+Ich heiße Peter.,My name is Peter.
+Ich bin 25 Jahre alt.,I am 25 years old.
+Ich komme aus Deutschland.,I come from Germany.
+Ich wohne in Berlin.,I live in Berlin.
+Ich spreche Deutsch und Englisch.,I speak German and English.
+Meine Telefonnummer ist...,My phone number is...
+Meine E-Mail ist...,My email is...
+Guten Morgen wie geht's?,Good morning how are you?
+Hallo! Schön dich zu sehen!,Hello! Nice to see you!
+Auf Wiedersehen! Bis morgen!,Goodbye! See you tomorrow!
+Tschüss! Bis später!,Bye! See you later!
+Schönen Tag noch!,Have a nice day!
+Schönes Wochenende!,Have a nice weekend!
+Danke für Ihre Hilfe!,Thank you for your help!
+Bitte sehr!,You're very welcome!
+Entschuldigung ich verstehe nicht.,Sorry I don't understand.
+Kein Problem!,No problem!
+Das macht nichts.,That doesn't matter.
+Sprechen Sie bitte langsam.,Please speak slowly.
+Können Sie das wiederholen?,Can you repeat that?
+Wie bitte?,Pardon?
+Ich verstehe.,I understand.
+Ich spreche ein bisschen Deutsch.,I speak a little German.
+Was bedeutet das?,What does that mean?
+Wie schreibt man das?,How do you write that?
+Ich brauche Hilfe.,I need help.
+Wo ist die Toilette?,Where is the toilet?
+Ich habe eine Frage.,I have a question.
+Das ist wichtig.,That is important.
+Das ist kein Problem.,That is no problem.
+Das kostet fünf Euro.,That costs five euros.
+        `.trim();
+        // ============================================
+        // SPEECH SYNTHESIS - FIXED FOR PLURAL ISSUE
+        // ============================================
+        let germanVoice = null;
+        let currentUtterance = null;
+        let isSpeaking = false;
+        let isPlayingSequence = false; // NEW: Track if playing a sequence
+
+        function loadVoices() {
+            const voices = window.speechSynthesis.getVoices();
+            const voiceSelect = document.getElementById('voiceSelect');
+            voiceSelect.innerHTML = '';
+
+            const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
+
+            if (germanVoices.length === 0) {
+                voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
+                germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+            } else {
+                germanVoices.forEach((voice, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = `${voice.name} (${voice.lang})`;
+                    voiceSelect.appendChild(option);
+                    if (index === 0) germanVoice = voice;
+                });
+            }
+            console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
+        }
+
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+        loadVoices();
+        setTimeout(loadVoices, 100);
+        setTimeout(loadVoices, 500);
+
+        document.getElementById('voiceSelect').addEventListener('change', function(e) {
+            stopAllSpeech();
+            const voices = window.speechSynthesis.getVoices();
+            const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
+            germanVoice = germanVoices[e.target.value] || voices[0];
+            console.log('🔄 Voice changed to:', germanVoice ? germanVoice.name : 'default');
+        });
+
+        document.getElementById('speedControl').addEventListener('input', function(e) {
+            document.getElementById('speedValue').textContent = e.target.value + 'x';
+        });
+
+        document.getElementById('pitchControl').addEventListener('input', function(e) {
+            document.getElementById('pitchValue').textContent = e.target.value;
+        });
+
+        // IMPROVED: Simple speak function without debouncing for sequences
+        function speak(text, callback) {
+            if (!text || text.trim() === '') {
+                console.warn('⚠️ Empty text, skipping');
+                if (callback) callback();
+                return;
+            }
+
+            text = text.replace('🔊', '').trim();
+
+            // Only stop if NOT playing a sequence
+            if (!isPlayingSequence) {
+                stopAllSpeech();
+            }
+
+            setTimeout(() => {
+                speakNow(text, callback);
+            }, 100);
+        }
+
+        function stopAllSpeech() {
+            isPlayingSequence = false;
+            window.speechSynthesis.cancel();
+            isSpeaking = false;
+            hideAudioStatus();
+            console.log('⏹️ All speech stopped');
+        }
+
+        function speakNow(text, callback) {
+            if (!('speechSynthesis' in window)) {
+                alert('⚠️ Text-to-speech not supported.\n\nUse Chrome, Firefox, Edge, or Safari.');
+                if (callback) callback();
+                return;
+            }
+
+            showAudioStatus(text);
+            console.log('🗣️ Speaking:', text);
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'de-DE';
+            if (germanVoice) utterance.voice = germanVoice;
+            utterance.rate = parseFloat(document.getElementById('speedControl').value);
+            utterance.pitch = parseFloat(document.getElementById('pitchControl').value);
+            utterance.volume = 1.0;
+
+            let hasEnded = false;
+
+            utterance.onstart = function() {
+                isSpeaking = true;
+                console.log('▶️ Started:', text.substring(0, 40));
+            };
+
+            utterance.onend = function() {
+                if (hasEnded) return;
+                hasEnded = true;
+                isSpeaking = false;
+                hideAudioStatus();
+                console.log('✅ Ended:', text.substring(0, 40));
+                if (callback) setTimeout(callback, 100);
+            };
+
+            utterance.onerror = function(event) {
+                if (hasEnded) return;
+                hasEnded = true;
+                isSpeaking = false;
+                hideAudioStatus();
+                
+                if (event.error !== 'interrupted' && event.error !== 'canceled') {
+                    console.error('❌ Speech error:', event.error);
+                } else {
+                    console.log('ℹ️ Speech ' + event.error);
+                }
+                if (callback) callback();
+            };
+
+            currentUtterance = utterance;
+
+            try {
+                window.speechSynthesis.speak(utterance);
+            } catch (error) {
+                console.error('❌ Speak failed:', error);
+                isSpeaking = false;
+                hideAudioStatus();
+                if (callback) callback();
+            }
+        }
+
+        function showAudioStatus(text) {
+            const status = document.getElementById('audioStatus');
+            const statusText = document.getElementById('audioStatusText');
+            const displayText = text.length > 40 ? text.substring(0, 40) + '...' : text;
+            statusText.textContent = `🔊 ${displayText}`;
+            status.classList.add('show');
+        }
+
+        function hideAudioStatus() {
+            setTimeout(() => {
+                document.getElementById('audioStatus').classList.remove('show');
+            }, 300);
+        }
+
+        // ============================================
+        // SPECIFIC SPEAK FUNCTIONS
+        // ============================================
+        function speakAdjective(word1, word2) {
+            if (event) event.stopPropagation();
+            console.log('🔤 Adjective pair:', word1, word2);
+            isPlayingSequence = true;
+            speak(word1, function() {
+                setTimeout(() => {
+                    speak(word2, function() {
+                        isPlayingSequence = false;
+                    });
+                }, 800);
+            });
+        }
+
+        function speakVerb(verb1, verb2) {
+            if (event) event.stopPropagation();
+            const cleanVerb1 = verb1.replace(/[\*\+]/g, '').trim();
+            const cleanVerb2 = verb2.replace(/[\*\+]/g, '').trim();
+            console.log('⚡ Verb pair:', cleanVerb1, cleanVerb2);
+            isPlayingSequence = true;
+            speak(cleanVerb1, function() {
+                setTimeout(() => {
+                    speak(cleanVerb2, function() {
+                        isPlayingSequence = false;
+                    });
+                }, 800);
+            });
+        }
+
+        function speakQA(question, answer) {
+            if (event) event.stopPropagation();
+            console.log('❓ Q&A:', question, answer);
+            isPlayingSequence = true;
+            speak(question, function() {
+                setTimeout(() => {
+                    speak(answer, function() {
+                        isPlayingSequence = false;
+                    });
+                }, 1200);
+            });
+        }
+
+        // NEW: Noun function with plural
+        function speakNounRow(article, singular, pluralFull) {
+            if (event) event.stopPropagation();
+            speakNounWithPlural(article, singular, pluralFull);
+        }
+
+        function speakNounWithPlural(article, singular, pluralFull) {
+            console.log('📚 Noun with plural:', article, singular, '→', pluralFull);
+            isPlayingSequence = true;
+            
+            speak(`${article} ${singular}`, function() {
+                if (pluralFull !== '---' && pluralFull !== 'kein Plural') {
+                    setTimeout(() => {
+                        speak(pluralFull, function() {
+                            isPlayingSequence = false;
+                        });
+                    }, 300);
+                } else {
+                    isPlayingSequence = false;
+                }
+            });
+        }
+
+        // ============================================
+        // PLAY ALL IN SECTION
+        // ============================================
+        let playAllActive = false;
+        let playAllIndex = 0;
+        let playAllTexts = [];
+
+        function playAllInSection() {
+            const playBtn = document.querySelector('.play-all-btn');
+
+            if (playAllActive) {
+                playAllActive = false;
+                stopAllSpeech();
+                playBtn.textContent = '▶ Play All in Section';
+                console.log('⏹️ Play all stopped');
+                return;
+            }
+
+            const activeTab = document.querySelector('.tab-content.active');
+            const tabId = activeTab.id;
+            playAllTexts = [];
+
+            switch(tabId) {
+                case 'nouns':
+                    const nounsData = parseCSV(nounsCSV);
+                    nounsData.forEach(row => {
+                        const [article, german, pluralNotation, pluralFull, english] = row;
+                        playAllTexts.push(`${article} ${german}`);
+                        if (pluralFull !== '---' && pluralFull !== 'kein Plural') {
+                            playAllTexts.push(pluralFull);
+                        }
+                    });
+                    break;
+
+                case 'adjectives':
+                    const adjCards = activeTab.querySelectorAll('.word-pair');
+                    adjCards.forEach(card => {
+                        const germans = card.querySelectorAll('.german');
+                        germans.forEach(g => playAllTexts.push(g.textContent.trim()));
+                    });
+                    break;
+
+                case 'verbs':
+                    const verbCards = activeTab.querySelectorAll('.word-pair');
+                    verbCards.forEach(card => {
+                        const germans = card.querySelectorAll('.german');
+                        germans.forEach(g => {
+                            const cleanText = g.textContent.replace(/[\*\+]/g, '').trim();
+                            playAllTexts.push(cleanText);
+                        });
+                    });
+                    break;
+
+                case 'expressions':
+                    const exprs = activeTab.querySelectorAll('.expression-german');
+                    exprs.forEach(expr => playAllTexts.push(expr.textContent.replace('🔊', '').trim()));
+                    break;
+
+                case 'conversations':
+                    const messages = activeTab.querySelectorAll('.message-german');
+                    messages.forEach(msg => playAllTexts.push(msg.textContent.replace('🔊', '').trim()));
+                    break;
+
+                case 'qa':
+                    const questions = activeTab.querySelectorAll('.question');
+                    questions.forEach(q => playAllTexts.push(q.textContent.replace('🔊', '').trim()));
+                    break;
+
+                case 'sentences':
+                    const sentences = activeTab.querySelectorAll('.sentence-german');
+                    sentences.forEach(s => playAllTexts.push(s.textContent.replace('🔊', '').trim()));
+                    break;
+            }
+
+            if (playAllTexts.length === 0) {
+                alert('No items to play in this section.');
+                return;
+            }
+
+            console.log('📚 Playing', playAllTexts.length, 'items');
+            playAllActive = true;
+            isPlayingSequence = true;
+            playAllIndex = 0;
+            playBtn.textContent = '⏹️ Stop Playing';
+
+            playNextInSequence(playBtn);
+        }
+
+        function playNextInSequence(playBtn) {
+            if (!playAllActive || playAllIndex >= playAllTexts.length) {
+                playAllActive = false;
+                isPlayingSequence = false;
+                playBtn.textContent = '▶ Play All in Section';
+                hideAudioStatus();
+
+                if (playAllIndex >= playAllTexts.length) {
+                    setTimeout(() => {
+                        alert('✅ Finished playing all ' + playAllTexts.length + ' items!');
+                    }, 500);
+                }
+                return;
+            }
+
+            const progress = Math.round(((playAllIndex + 1) / playAllTexts.length) * 100);
+            console.log(`🔊 Progress: ${playAllIndex + 1}/${playAllTexts.length} (${progress}%)`);
+
+            const currentText = playAllTexts[playAllIndex];
+            playAllIndex++;
+
+            speak(currentText, function() {
+                setTimeout(() => {
+                    playNextInSequence(playBtn);
+                }, 1000);
+            });
+        }
+
+        // ============================================
+        // TAB SWITCHING
+        // ============================================
+        function showTab(tabName) {
+            stopAllSpeech();
+            playAllActive = false;
+
+            const playBtn = document.querySelector('.play-all-btn');
+            if (playBtn) playBtn.textContent = '▶ Play All in Section';
+
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            if (event && event.target) event.target.classList.add('active');
+
+            console.log('📑 Tab:', tabName);
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // ============================================
+        // CSV PARSERS AND RENDERERS
+        // ============================================
+        function parseCSV(csv) {
+            return csv.split('\n')
+                .map(line => line.trim())
+                .filter(line => line.length > 0)
+                .map(line => line.split(',').map(cell => cell.trim()));
+        }
+
+                function renderNouns() {
+            const data = parseCSV(nounsCSV);
+            const grouped = { das: [], der: [], die: [] };
+
+            data.forEach(row => {
+                const [article, german, pluralNotation, pluralFull, english] = row;
+                grouped[article].push({ article, german, pluralNotation, pluralFull, english });
+            });
+
+            const articles = [
+                { key: 'der', label: 'Maskulinum (der)', color: '#2196F3' },
+                { key: 'das', label: 'Neutrum (das)', color: '#4CAF50' },
+                { key: 'die', label: 'Femininum (die)', color: '#F44336' }
+            ];
+
+            // ============================================
+            // DESKTOP TABLE VIEW
+            // ============================================
+            let tableHtml = '';
+            articles.forEach(({ key, label, color }) => {
+                if (grouped[key].length > 0) {
+                    tableHtml += `<h3 style="color: ${color}; margin-top: 40px;">${label}</h3>`;
+                    tableHtml += `<table class="vocab-table ${key}">
+                        <thead>
+                            <tr>
+                                <th>Article</th>
+                                <th>German</th>
+                                <th>Plural</th>
+                                <th>English</th>
+                                <th>Audio</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+                    grouped[key].forEach(word => {
+                        const escapedSingular = word.german.replace(/'/g, "\\'");
+                        const escapedPlural = word.pluralFull.replace(/'/g, "\\'");
+
+                        tableHtml += `<tr onclick="speakNounRow('${word.article}', '${escapedSingular}', '${escapedPlural}')">
+                            <td class="article ${word.article}">${word.article}</td>
+                            <td class="german-word">${word.german}</td>
+                            <td class="plural">${word.pluralNotation}</td>
+                            <td class="english-word">${word.english}</td>
+                            <td><button class="audio-btn" onclick="event.stopPropagation(); speakNounWithPlural('${word.article}', '${escapedSingular}', '${escapedPlural}')">🔊</button></td>
+                        </tr>`;
+                    });
+
+                    tableHtml += `</tbody></table>`;
+                }
+            });
+
+            // ============================================
+            // MOBILE CARD VIEW
+            // ============================================
+            let mobileHtml = '<div class="mobile-noun-cards">';
+
+            articles.forEach(({ key, label, color }) => {
+                if (grouped[key].length > 0) {
+                    mobileHtml += `<h3 style="color: ${color}; margin-top: 30px; margin-bottom: 15px;">${label}</h3>`;
+
+                    grouped[key].forEach(word => {
+                        const escapedSingular = word.german.replace(/'/g, "\\'");
+                        const escapedPlural = word.pluralFull.replace(/'/g, "\\'");
+
+                        mobileHtml += `
+                        <div class="mobile-noun-card ${word.article}" onclick="speakNounRow('${word.article}', '${escapedSingular}', '${escapedPlural}')">
+                            <div class="mobile-noun-header">
+                                <div class="mobile-article-word ${word.article}">
+                                    <span>${word.article}</span>
+                                    <span>${word.german}</span>
+                                </div>
+                                <button class="mobile-audio-btn" onclick="event.stopPropagation(); speakNounWithPlural('${word.article}', '${escapedSingular}', '${escapedPlural}')">🔊</button>
+                            </div>
+                            <div class="mobile-noun-details">
+                                <span class="mobile-label">Plural:</span>
+                                <span class="mobile-plural">${word.pluralNotation}</span>
+                                <span class="mobile-label">English:</span>
+                                <span class="mobile-english">${word.english}</span>
+                            </div>
+                        </div>`;
+                    });
+                }
+            });
+
+            mobileHtml += '</div>';
+
+            // Combine both views
+            document.getElementById('nounsContainer').innerHTML = tableHtml + mobileHtml;
+        }
+
+        function renderAdjectives() {
+            const data = parseCSV(adjectivesCSV);
+            let html = '';
+
+            data.forEach(row => {
+                const [word1, english1, word2, english2] = row;
+                html += `<div class="word-pair" onclick="speakAdjective('${word1}', '${word2}')">
+                    <div class="card-audio-btn">🔊</div>
+                    <div class="german">${word1}</div>
+                    <div class="english">${english1}</div>
+                    <div class="opposite-arrow">⟷</div>
+                    <div class="german">${word2}</div>
+                    <div class="english">${english2}</div>
+                </div>`;
+            });
+
+            document.getElementById('adjectivesContainer').innerHTML = html;
+        }
+
+        function renderVerbs() {
+            const data = parseCSV(verbsCSV);
+            let html = '';
+
+            data.forEach(row => {
+                const [type, verb1, english1, verb2, english2] = row;
+                const prefix = type === 'weak' ? '*' : '+';
+                const gradient = type === 'weak' 
+                    ? 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
+                    : 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
+                
+                html += `<div class="word-pair" style="background: ${gradient};" onclick="speakVerb('${verb1}', '${verb2}')">
+                    <div class="card-audio-btn">🔊</div>
+                    <div class="german">${prefix}${verb1}</div>
+                    <div class="english">${english1}</div>
+                    <div class="opposite-arrow">⟷</div>
+                    <div class="german">${prefix}${verb2}</div>
+                    <div class="english">${english2}</div>
+                </div>`;
+            });
+
+            document.getElementById('verbsContainer').innerHTML = html;
+        }
+
+        function renderExpressions() {
+            const data = parseCSV(expressionsCSV);
+            let html = '';
+
+            data.forEach(row => {
+                const [german, english] = row;
+                const escapedGerman = german.replace(/'/g, "\\'");
+                html += `<li class="expression-item" onclick="speak('${escapedGerman}')">
+                    <div class="expression-german">${german} 🔊</div>
+                    <div class="expression-english">${english}</div>
+                </li>`;
+            });
+
+            document.getElementById('expressionsContainer').innerHTML = html;
+        }
+
+        function renderConversations() {
+            const data = parseCSV(conversationsCSV);
+            const conversations = {};
+
+            data.forEach(row => {
+                const [titleSpeaker, german, english] = row;
+                const [title, speaker] = titleSpeaker.split('|');
+                
+                if (!conversations[title]) {
+                    conversations[title] = [];
+                }
+                conversations[title].push({ speaker, german, english });
+            });
+
+            let html = '';
+            Object.keys(conversations).forEach((title, index) => {
+                html += `<h3 style="color: #667eea; margin-top: ${index > 0 ? '40px' : '30px'};">Conversation ${index + 1}: ${title}</h3>`;
+                html += `<div class="conversation">`;
+                
+                conversations[title].forEach(msg => {
+                    const messageClass = msg.speaker === 'A' ? 'message-a' : 'message-b';
+                    const escapedGerman = msg.german.replace(/'/g, "\\'");
+                    html += `<div class="message ${messageClass}" onclick="speak('${escapedGerman}')">
+                        <div class="message-german">${msg.german} 🔊</div>
+                        <div class="message-english">${msg.english}</div>
+                    </div>`;
+                });
+                
+                html += `</div>`;
+            });
+
+            document.getElementById('conversationsContainer').innerHTML = html;
+        }
+
+        function renderQA() {
+            const data = parseCSV(qaCSV);
+            let html = '';
+
+            data.forEach(row => {
+                const [question, answer] = row;
+                const escapedQ = question.replace(/'/g, "\\'");
+                const escapedA = answer.replace(/'/g, "\\'");
+                html += `<div class="qa-card" onclick="speakQA('${escapedQ}', '${escapedA}')">
+                    <div class="question">${question} 🔊</div>
+                    <div class="answer">${answer}</div>
+                </div>`;
+            });
+
+            document.getElementById('qaContainer').innerHTML = html;
+        }
+
+        function renderSentences() {
+            const data = parseCSV(sentencesCSV);
+            let html = '';
+
+            data.forEach(row => {
+                const [german, english] = row;
+                const escapedGerman = german.replace(/'/g, "\\'");
+                html += `<div class="sentence-card" onclick="speak('${escapedGerman}')">
+                    <div class="sentence-german">${german} 🔊</div>
+                    <div class="sentence-english">${english}</div>
+                </div>`;
+            });
+
+            document.getElementById('sentencesContainer').innerHTML = html;
+        }
+
+        // ============================================
+        // KEYBOARD SHORTCUTS
+        // ============================================
+        document.addEventListener('keydown', function(e) {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+            if (e.key === 's' || e.key === 'S' || e.key === 'Escape') {
+                stopAllSpeech();
+                playAllActive = false;
+                const playBtn = document.querySelector('.play-all-btn');
+                if (playBtn) playBtn.textContent = '▶ Play All in Section';
+                console.log('⏹️ Stopped by keyboard');
+            }
+
+            if (e.key === 'p' || e.key === 'P') {
+                playAllInSection();
+            }
+
+            const tabMap = {
+                '1': 'nouns',
+                '2': 'adjectives',
+                '3': 'verbs',
+                '4': 'expressions',
+                '5': 'conversations',
+                '6': 'qa',
+                '7': 'sentences'
+            };
+
+            if (tabMap[e.key]) {
+                const buttons = document.querySelectorAll('.tab-button');
+                buttons.forEach((btn, idx) => {
+                    if (Object.values(tabMap)[idx] === tabMap[e.key]) {
+                        btn.click();
+                    }
+                });
+            }
+        });
+
+        // ============================================
+        // CLEANUP
+        // ============================================
+        window.addEventListener('beforeunload', function() {
+            stopAllSpeech();
+        });
+
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                stopAllSpeech();
+                playAllActive = false;
+            }
+        });
+
+        // ============================================
+        // INITIALIZE
+        // ============================================
+        window.addEventListener('load', function() {
+            console.log('🇩🇪 German Vocabulary Loaded!');
+            console.log('💡 Shortcuts: S/Esc=Stop | P=Play All | 1-7=Tabs');
+
+            renderNouns();
+            renderAdjectives();
+            renderVerbs();
+            renderExpressions();
+            renderConversations();
+            renderQA();
+            renderSentences();
+
+            loadVoices();
+            setTimeout(loadVoices, 100);
+            setTimeout(loadVoices, 500);
+            setTimeout(loadVoices, 1000);
+
+            if (!('speechSynthesis' in window)) {
+                alert('⚠️ Text-to-speech not supported.\n\nPlease use Chrome, Firefox, Edge, or Safari.');
+            }
+        });
+    </script>
+</body>
+</html>
