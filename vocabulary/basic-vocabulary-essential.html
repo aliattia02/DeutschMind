@@ -1,0 +1,955 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A1 English-German Basic Vocabulary - Interactive Audio Learning</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(90deg, #000000, #DD0000, #FFCE00);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        .audio-controls {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .audio-controls h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .control-group select,
+        .control-group input {
+            padding: 8px 15px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .play-all-btn {
+            background: linear-gradient(135deg, #DD0000, #FFCE00);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .play-all-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .tab-button {
+            background: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .tab-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #DD0000;
+            color: white;
+        }
+
+        .tab-button.active {
+            background: #DD0000;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .card h2 {
+            color: #DD0000;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #FFCE00;
+            padding-bottom: 10px;
+        }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .vocab-table th {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        .vocab-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .vocab-table tr {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .vocab-table tbody tr {
+            background: #f8f9fa;
+        }
+
+        .vocab-table tbody tr:hover {
+            background: #e3f2fd;
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .vocab-table td:nth-child(odd) {
+            font-weight: 700;
+            color: #1565C0;
+            font-size: 1.1em;
+        }
+
+        .vocab-table td:nth-child(even) {
+            color: #666;
+        }
+
+        .audio-btn {
+            background: #FFCE00;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .audio-btn:hover {
+            background: #DD0000;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .audio-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .audio-status.show {
+            display: flex;
+        }
+
+        .audio-status .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        .section-icon {
+            font-size: 2em;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            .tabs {
+                flex-direction: column;
+            }
+            .tab-button {
+                width: 100%;
+            }
+            .audio-controls {
+                flex-direction: column;
+            }
+            
+            .vocab-table {
+                font-size: 0.9em;
+            }
+            
+            .vocab-table th,
+            .vocab-table td {
+                padding: 8px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div style="background: #000; padding: 15px; text-align: center;">
+        <a href="../index.html" style="color: #FFCE00; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🏠 Home</a>
+        <a href="../index.html#levels" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📚 Levels</a>
+        <a href="../index.html#categories" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🎯 Categories</a>
+        <a href="../tools/progress.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📊 Progress</a>
+        <a href="../about.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">ℹ️ About</a>
+    </div>
+
+    <header>
+        <h1>🇩🇪 A1 Basic Vocabulary</h1>
+        <p>Essential English-German Words (A1 Level) | Interactive Audio Learning</p>
+        <p style="font-size: 0.9em; margin-top: 10px;">Created by: aliattia02 | Date: 2025-01-21</p>
+    </header>
+
+    <div class="container">
+        <div class="audio-controls">
+            <h3>🔊 Audio Settings</h3>
+            <div class="control-group">
+                <label for="voiceSelect">Voice:</label>
+                <select id="voiceSelect">
+                    <option value="">Loading voices...</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="speedControl">Speed:</label>
+                <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+                <span id="speedValue">0.8x</span>
+            </div>
+            <div class="control-group">
+                <label for="pitchControl">Pitch:</label>
+                <input type="range" id="pitchControl" min="0.5" max="2" step="0.1" value="1">
+                <span id="pitchValue">1.0</span>
+            </div>
+            <button class="play-all-btn" onclick="playAllInSection()">▶ Play All in Section</button>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('pronouns')">👥 Pronouns</button>
+            <button class="tab-button" onclick="showTab('questions')">❓ Questions</button>
+            <button class="tab-button" onclick="showTab('prepositions')">📍 Prepositions</button>
+            <button class="tab-button" onclick="showTab('numbers')">🔢 Numbers</button>
+            <button class="tab-button" onclick="showTab('time')">⏰ Time Words</button>
+            <button class="tab-button" onclick="showTab('verbs')">⚡ Verbs</button>
+            <button class="tab-button" onclick="showTab('adjectives')">✨ Adjectives</button>
+            <button class="tab-button" onclick="showTab('nouns')">📚 Nouns</button>
+            <button class="tab-button" onclick="showTab('expressions')">💬 Expressions</button>
+            <button class="tab-button" onclick="showTab('conjunctions')">🔗 Conjunctions</button>
+        </div>
+
+        <div id="pronouns" class="tab-content active">
+            <div class="card">
+                <h2><span class="section-icon">👥</span>Pronouns & Determiners</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation!</p>
+                <div id="pronounsContainer"></div>
+            </div>
+        </div>
+
+        <div id="questions" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">❓</span>Question Words</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation!</p>
+                <div id="questionsContainer"></div>
+            </div>
+        </div>
+
+        <div id="prepositions" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">📍</span>Prepositions</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation!</p>
+                <div id="prepositionsContainer"></div>
+            </div>
+        </div>
+
+        <div id="numbers" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">🔢</span>Numbers</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation!</p>
+                <div id="numbersContainer"></div>
+            </div>
+        </div>
+
+        <div id="time" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">⏰</span>Time Words</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation!</p>
+                <div id="timeContainer"></div>
+            </div>
+        </div>
+
+        <div id="verbs" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">⚡</span>Common Verbs</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation!</p>
+                <div id="verbsContainer"></div>
+            </div>
+        </div>
+
+        <div id="adjectives" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">✨</span>Common Adjectives</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation!</p>
+                <div id="adjectivesContainer"></div>
+            </div>
+        </div>
+
+        <div id="nouns" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">📚</span>Common Nouns</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation!</p>
+                <div id="nounsContainer"></div>
+            </div>
+        </div>
+
+        <div id="expressions" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">💬</span>Basic Expressions</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation!</p>
+                <div id="expressionsContainer"></div>
+            </div>
+        </div>
+
+        <div id="conjunctions" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">🔗</span>Conjunctions & Adverbs</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation!</p>
+                <div id="conjunctionsContainer"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="audio-status" id="audioStatus">
+        <div class="spinner"></div>
+        <span id="audioStatusText">Speaking...</span>
+    </div>
+
+    <footer>
+        <p><strong>A1 English-German Basic Vocabulary - Interactive Audio Learning</strong></p>
+        <p>Created for German Learners | © 2025 aliattia02</p>
+        <p>🔧 Interactive Audio Learning Platform</p>
+        <p style="margin-top: 20px; font-size: 0.9em;">
+            🎯 Click anywhere to hear pronunciation | 💪 Practice makes perfect!
+        </p>
+        <p style="margin-top: 10px; font-size: 0.8em; opacity: 0.8;">
+            Last Updated: 2025-01-21
+        </p>
+    </footer>
+
+    <script>
+        // ============================================
+        // A1 VOCABULARY DATA
+        // ============================================
+
+        const vocabularyData = {
+            pronouns: [
+                ["I", "ich", "you", "du/Sie", "he", "er", "she", "sie"],
+                ["it", "es", "we", "wir", "they", "sie", "my", "mein"],
+                ["your", "dein/Ihr", "his", "sein", "her", "ihr", "its", "sein"],
+                ["our", "unser", "their", "ihr", "this", "dies/dieser", "that", "das/jener"],
+                ["these", "diese", "those", "jene", "me", "mich/mir", "him", "ihn/ihm"],
+                ["us", "uns", "them", "sie/ihnen", "myself", "mich selbst", "yourself", "dich selbst"],
+                ["some", "einige/etwas", "any", "irgendein/welche", "all", "alle", "many", "viele"],
+                ["much", "viel", "few", "wenige", "little", "wenig", "every", "jeder"],
+                ["each", "jeder", "both", "beide", "other", "andere", "another", "ein anderer"]
+            ],
+            
+            questions: [
+                ["who", "wer", "what", "was", "where", "wo", "when", "wann"],
+                ["why", "warum", "how", "wie", "which", "welcher", "whose", "wessen"],
+                ["whom", "wen/wem", "how much", "wie viel", "how many", "wie viele", "how old", "wie alt"]
+            ],
+            
+            prepositions: [
+                ["in", "in", "on", "auf", "at", "an/bei/um", "to", "zu/nach"],
+                ["from", "von/aus", "with", "mit", "for", "für", "of", "von"],
+                ["about", "über", "by", "bei/von", "under", "unter", "over", "über"],
+                ["between", "zwischen", "behind", "hinter", "in front of", "vor", "next to", "neben"],
+                ["near", "nahe/bei", "opposite", "gegenüber", "up", "hoch/hinauf", "down", "runter/hinunter"],
+                ["into", "in", "out of", "aus", "through", "durch", "across", "über/quer"],
+                ["along", "entlang", "around", "um/herum", "above", "über", "below", "unter"],
+                ["before", "vor", "after", "nach", "during", "während", "until", "bis"],
+                ["since", "seit", "without", "ohne", "inside", "innen/drinnen", "outside", "außen/draußen"]
+            ],
+            
+            numbers: [
+                ["one", "eins", "two", "zwei", "three", "drei", "four", "vier"],
+                ["five", "fünf", "six", "sechs", "seven", "sieben", "eight", "acht"],
+                ["nine", "neun", "ten", "zehn", "eleven", "elf", "twelve", "zwölf"],
+                ["thirteen", "dreizehn", "fourteen", "vierzehn", "fifteen", "fünfzehn", "sixteen", "sechzehn"],
+                ["seventeen", "siebzehn", "eighteen", "achtzehn", "nineteen", "neunzehn", "twenty", "zwanzig"],
+                ["thirty", "dreißig", "forty", "vierzig", "fifty", "fünfzig", "sixty", "sechzig"],
+                ["seventy", "siebzig", "eighty", "achtzig", "ninety", "neunzig", "hundred", "hundert"],
+                ["thousand", "tausend", "million", "Million", "first", "erste", "second", "zweite"],
+                ["third", "dritte", "fourth", "vierte", "fifth", "fünfte", "last", "letzte"]
+            ],
+            
+            time: [
+                ["today", "heute", "tomorrow", "morgen", "yesterday", "gestern", "morning", "Morgen"],
+                ["afternoon", "Nachmittag", "evening", "Abend", "night", "Nacht", "hour", "Stunde"],
+                ["minute", "Minute", "second", "Sekunde", "always", "immer", "never", "nie/niemals"],
+                ["sometimes", "manchmal", "often", "oft", "usually", "normalerweise", "now", "jetzt"],
+                ["then", "dann", "soon", "bald", "again", "wieder", "already", "schon"],
+                ["still", "noch", "yet", "noch/schon", "ago", "vor", "later", "später"]
+            ],
+            
+            verbs: [
+                ["be", "sein", "have", "haben", "do", "tun/machen", "make", "machen"],
+                ["go", "gehen", "come", "kommen", "see", "sehen", "know", "wissen/kennen"],
+                ["get", "bekommen/werden", "give", "geben", "take", "nehmen", "think", "denken"],
+                ["want", "wollen", "need", "brauchen", "like", "mögen", "love", "lieben"],
+                ["help", "helfen", "work", "arbeiten", "live", "leben/wohnen", "play", "spielen"],
+                ["try", "versuchen", "use", "benutzen", "feel", "fühlen", "find", "finden"],
+                ["tell", "erzählen/sagen", "ask", "fragen", "call", "anrufen/nennen", "leave", "verlassen/gehen"],
+                ["put", "legen/stellen", "sit", "sitzen", "stand", "stehen", "run", "laufen/rennen"],
+                ["walk", "gehen/laufen", "open", "öffnen", "close", "schließen", "start", "anfangen/starten"],
+                ["stop", "aufhören/stoppen", "turn", "drehen/abbiegen", "move", "bewegen/umziehen", "look", "schauen/gucken"],
+                ["listen", "zuhören", "speak", "sprechen", "read", "lesen", "write", "schreiben"],
+                ["learn", "lernen", "teach", "unterrichten", "show", "zeigen", "bring", "bringen"],
+                ["buy", "kaufen", "sell", "verkaufen", "pay", "bezahlen", "cost", "kosten"],
+                ["spend", "ausgeben/verbringen", "save", "sparen/retten", "meet", "treffen", "visit", "besuchen"],
+                ["stay", "bleiben", "arrive", "ankommen", "wait", "warten", "remember", "sich erinnern"],
+                ["forget", "vergessen", "understand", "verstehen", "believe", "glauben", "hope", "hoffen"],
+                ["become", "werden", "change", "ändern/wechseln", "", "", "", ""]
+            ],
+            
+            adjectives: [
+                ["good", "gut", "bad", "schlecht", "big", "groß", "small", "klein"],
+                ["new", "neu", "old", "alt", "hot", "heiß", "cold", "kalt"],
+                ["long", "lang", "short", "kurz", "high", "hoch", "low", "niedrig"],
+                ["happy", "glücklich", "sad", "traurig", "easy", "leicht/einfach", "difficult", "schwierig"],
+                ["right", "richtig/rechts", "wrong", "falsch", "full", "voll", "empty", "leer"],
+                ["strong", "stark", "weak", "schwach", "fast", "schnell", "slow", "langsam"],
+                ["young", "jung", "beautiful", "schön", "ugly", "hässlich", "clean", "sauber"],
+                ["dirty", "schmutzig", "rich", "reich", "poor", "arm", "cheap", "billig/günstig"],
+                ["expensive", "teuer", "free", "frei/kostenlos", "busy", "beschäftigt", "tired", "müde"],
+                ["hungry", "hungrig", "thirsty", "durstig", "sick", "krank", "healthy", "gesund"],
+                ["ready", "bereit/fertig", "late", "spät", "early", "früh", "same", "gleich/selbe"],
+                ["different", "anders/verschieden", "important", "wichtig", "interesting", "interessant", "boring", "langweilig"],
+                ["nice", "nett/schön", "kind", "nett/freundlich", "friendly", "freundlich", "angry", "wütend/böse"],
+                ["afraid", "ängstlich", "sorry", "leid/entschuldigung", "", "", "", ""]
+            ],
+            
+            nouns: [
+                ["man", "Mann/der", "woman", "Frau/die", "child", "Kind/das", "person", "Person/die"],
+                ["people", "Leute/die", "thing", "Ding/das", "place", "Ort/der", "time", "Zeit/die"],
+                ["way", "Weg/der", "year", "Jahr/das", "day", "Tag/der", "week", "Woche/die"],
+                ["hand", "Hand/die", "eye", "Auge/das", "head", "Kopf/der", "face", "Gesicht/das"],
+                ["body", "Körper/der", "life", "Leben/das", "world", "Welt/die", "work", "Arbeit/die"],
+                ["problem", "Problem/das", "question", "Frage/die", "answer", "Antwort/die", "idea", "Idee/die"],
+                ["end", "Ende/das", "part", "Teil/der", "side", "Seite/die", "number", "Nummer/die"],
+                ["name", "Name/der", "word", "Wort/das", "", "", "", ""]
+            ],
+            
+            expressions: [
+                ["yes", "ja", "no", "nein", "please", "bitte", "thank you", "danke"],
+                ["thanks", "danke", "sorry", "Entschuldigung/tut mir leid", "excuse me", "Entschuldigung", "hello", "Hallo"],
+                ["hi", "Hi/Hallo", "goodbye", "Auf Wiedersehen", "bye", "Tschüss", "okay", "okay"],
+                ["OK", "OK", "pardon", "wie bitte", "welcome", "willkommen", "good morning", "Guten Morgen"],
+                ["good night", "Gute Nacht", "see you", "Bis später/dann", "", "", "", ""]
+            ],
+            
+            conjunctions: [
+                ["and", "und", "but", "aber", "or", "oder", "so", "so/also"],
+                ["because", "weil", "if", "wenn/falls", "when", "wann/als", "while", "während"],
+                ["than", "als", "as", "als/wie", "very", "sehr", "too", "zu/auch"],
+                ["also", "auch", "only", "nur", "just", "gerade/nur", "really", "wirklich"],
+                ["well", "gut/nun", "not", "nicht", "here", "hier", "there", "dort/da"],
+                ["where", "wo", "everywhere", "überall", "somewhere", "irgendwo", "nowhere", "nirgendwo"]
+            ]
+        };
+
+        // ============================================
+        // SPEECH SYNTHESIS
+        // ============================================
+        let germanVoice = null;
+        let currentUtterance = null;
+        let isSpeaking = false;
+        let isPlayingSequence = false;
+
+        function loadVoices() {
+            const voices = window.speechSynthesis.getVoices();
+            const voiceSelect = document.getElementById('voiceSelect');
+            voiceSelect.innerHTML = '';
+
+            const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
+
+            if (germanVoices.length === 0) {
+                voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
+                germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+            } else {
+                germanVoices.forEach((voice, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = `${voice.name} (${voice.lang})`;
+                    voiceSelect.appendChild(option);
+                    if (index === 0) germanVoice = voice;
+                });
+            }
+            console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
+        }
+
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+        loadVoices();
+        setTimeout(loadVoices, 100);
+        setTimeout(loadVoices, 500);
+
+        document.getElementById('voiceSelect').addEventListener('change', function(e) {
+            stopAllSpeech();
+            const voices = window.speechSynthesis.getVoices();
+            const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
+            germanVoice = germanVoices[e.target.value] || voices[0];
+            console.log('🔄 Voice changed to:', germanVoice ? germanVoice.name : 'default');
+        });
+
+        document.getElementById('speedControl').addEventListener('input', function(e) {
+            document.getElementById('speedValue').textContent = e.target.value + 'x';
+        });
+
+        document.getElementById('pitchControl').addEventListener('input', function(e) {
+            document.getElementById('pitchValue').textContent = e.target.value;
+        });
+
+        function speak(text, callback) {
+            if (!text || text.trim() === '') {
+                console.warn('⚠️ Empty text, skipping');
+                if (callback) callback();
+                return;
+            }
+
+            text = text.replace('🔊', '').trim();
+
+            if (!isPlayingSequence) {
+                stopAllSpeech();
+            }
+
+            setTimeout(() => {
+                speakNow(text, callback);
+            }, 100);
+        }
+
+        function stopAllSpeech() {
+            isPlayingSequence = false;
+            window.speechSynthesis.cancel();
+            isSpeaking = false;
+            hideAudioStatus();
+            console.log('⏹️ All speech stopped');
+        }
+
+        function speakNow(text, callback) {
+            if (!('speechSynthesis' in window)) {
+                alert('⚠️ Text-to-speech not supported.\n\nUse Chrome, Firefox, Edge, or Safari.');
+                if (callback) callback();
+                return;
+            }
+
+            showAudioStatus(text);
+            console.log('🗣️ Speaking:', text);
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'de-DE';
+            if (germanVoice) utterance.voice = germanVoice;
+            utterance.rate = parseFloat(document.getElementById('speedControl').value);
+            utterance.pitch = parseFloat(document.getElementById('pitchControl').value);
+            utterance.volume = 1.0;
+
+            let hasEnded = false;
+
+            utterance.onstart = function() {
+                isSpeaking = true;
+                console.log('▶️ Started:', text.substring(0, 40));
+            };
+
+            utterance.onend = function() {
+                if (hasEnded) return;
+                hasEnded = true;
+                isSpeaking = false;
+                hideAudioStatus();
+                console.log('✅ Ended:', text.substring(0, 40));
+                if (callback) setTimeout(callback, 100);
+            };
+
+            utterance.onerror = function(event) {
+                if (hasEnded) return;
+                hasEnded = true;
+                isSpeaking = false;
+                hideAudioStatus();
+                
+                if (event.error !== 'interrupted' && event.error !== 'canceled') {
+                    console.error('❌ Speech error:', event.error);
+                } else {
+                    console.log('ℹ️ Speech ' + event.error);
+                }
+                if (callback) callback();
+            };
+
+            currentUtterance = utterance;
+
+            try {
+                window.speechSynthesis.speak(utterance);
+            } catch (error) {
+                console.error('❌ Speak failed:', error);
+                isSpeaking = false;
+                hideAudioStatus();
+                if (callback) callback();
+            }
+        }
+
+        function showAudioStatus(text) {
+            const status = document.getElementById('audioStatus');
+            const statusText = document.getElementById('audioStatusText');
+            const displayText = text.length > 40 ? text.substring(0, 40) + '...' : text;
+            statusText.textContent = `🔊 ${displayText}`;
+            status.classList.add('show');
+        }
+
+        function hideAudioStatus() {
+            setTimeout(() => {
+                document.getElementById('audioStatus').classList.remove('show');
+            }, 300);
+        }
+
+        function speakRow(germanWords) {
+            if (event) event.stopPropagation();
+            const validWords = germanWords.filter(w => w && w.trim() !== '');
+            if (validWords.length === 0) return;
+            
+            console.log('🗣️ Row:', validWords);
+            isPlayingSequence = true;
+            
+            let index = 0;
+            function speakNext() {
+                if (index >= validWords.length) {
+                    isPlayingSequence = false;
+                    return;
+                }
+                
+                speak(validWords[index], function() {
+                    index++;
+                    setTimeout(speakNext, 400);
+                });
+            }
+            
+            speakNext();
+        }
+
+        // ============================================
+        // PLAY ALL IN SECTION
+        // ============================================
+        let playAllActive = false;
+        let playAllIndex = 0;
+        let playAllTexts = [];
+
+        function playAllInSection() {
+            const playBtn = document.querySelector('.play-all-btn');
+
+            if (playAllActive) {
+                playAllActive = false;
+                stopAllSpeech();
+                playBtn.textContent = '▶ Play All in Section';
+                console.log('⏹️ Play all stopped');
+                return;
+            }
+
+            const activeTab = document.querySelector('.tab-content.active');
+            const tabId = activeTab.id;
+            playAllTexts = [];
+
+            if (vocabularyData[tabId]) {
+                vocabularyData[tabId].forEach(row => {
+                    for (let i = 1; i < row.length; i += 2) {
+                        if (row[i] && row[i].trim() !== '') {
+                            playAllTexts.push(row[i]);
+                        }
+                    }
+                });
+            }
+
+            if (playAllTexts.length === 0) {
+                alert('No items to play in this section.');
+                return;
+            }
+
+            console.log('📚 Playing', playAllTexts.length, 'items');
+            playAllActive = true;
+            isPlayingSequence = true;
+            playAllIndex = 0;
+            playBtn.textContent = '⏹️ Stop Playing';
+
+            playNextInSequence(playBtn);
+        }
+
+        function playNextInSequence(playBtn) {
+            if (!playAllActive || playAllIndex >= playAllTexts.length) {
+                playAllActive = false;
+                isPlayingSequence = false;
+                playBtn.textContent = '▶ Play All in Section';
+                hideAudioStatus();
+
+                if (playAllIndex >= playAllTexts.length) {
+                    setTimeout(() => {
+                        alert('✅ Finished playing all ' + playAllTexts.length + ' items!');
+                    }, 500);
+                }
+                return;
+            }
+
+            const progress = Math.round(((playAllIndex + 1) / playAllTexts.length) * 100);
+            console.log(`🔊 Progress: ${playAllIndex + 1}/${playAllTexts.length} (${progress}%)`);
+
+            const currentText = playAllTexts[playAllIndex];
+            playAllIndex++;
+
+            speak(currentText, function() {
+                setTimeout(() => {
+                    playNextInSequence(playBtn);
+                }, 800);
+            });
+        }
+
+        // ============================================
+        // TAB SWITCHING
+        // ============================================
+        function showTab(tabName) {
+            stopAllSpeech();
+            playAllActive = false;
+
+            const playBtn = document.querySelector('.play-all-btn');
+            if (playBtn) playBtn.textContent = '▶ Play All in Section';
+
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            if (event && event.target) event.target.classList.add('active');
+
+            console.log('📑 Tab:', tabName);
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // ============================================
+        // RENDER TABLES
+        // ============================================
+        function renderTable(data, containerId) {
+            let html = '<table class="vocab-table"><thead><tr>';
+            html += '<th>English</th><th>German</th><th>English</th><th>German</th>';
+            html += '<th>English</th><th>German</th><th>English</th><th>German</th>';
+            html += '</tr></thead><tbody>';
+
+            data.forEach(row => {
+                const germanWords = [row[1], row[3], row[5], row[7]].filter(w => w && w.trim() !== '');
+                const rowData = germanWords.map(w => `'${w.replace(/'/g, "\\'")}'`).join(', ');
+                
+                html += `<tr onclick="speakRow([${rowData}])">`;
+                for (let i = 0; i < 8; i++) {
+                    html += `<td>${row[i] || ''}</td>`;
+                }
+                html += '</tr>';
+            });
+
+            html += '</tbody></table>';
+            document.getElementById(containerId).innerHTML = html;
+        }
+
+        // ============================================
+        // KEYBOARD SHORTCUTS
+        // ============================================
+        document.addEventListener('keydown', function(e) {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+            if (e.key === 's' || e.key === 'S' || e.key === 'Escape') {
+                stopAllSpeech();
+                playAllActive = false;
+                const playBtn = document.querySelector('.play-all-btn');
+                if (playBtn) playBtn.textContent = '▶ Play All in Section';
+                console.log('⏹️ Stopped by keyboard');
+            }
+
+            if (e.key === 'p' || e.key === 'P') {
+                playAllInSection();
+            }
+
+            const tabMap = {
+                '1': 'pronouns',
+                '2': 'questions',
+                '3': 'prepositions',
+                '4': 'numbers',
+                '5': 'time',
+                '6': 'verbs',
+                '7': 'adjectives',
+                '8': 'nouns',
+                '9': 'expressions',
+                '0': 'conjunctions'
+            };
+
+            if (tabMap[e.key]) {
+                const buttons = document.querySelectorAll('.tab-button');
+                buttons.forEach((btn, idx) => {
+                    if (Object.values(tabMap)[idx] === tabMap[e.key]) {
+                        btn.click();
+                    }
+                });
+            }
+        });
+
+        // ============================================
+        // CLEANUP
+        // ============================================
+        window.addEventListener('beforeunload', function() {
+            stopAllSpeech();
+        });
+
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                stopAllSpeech();
+                playAllActive = false;
+            }
+        });
+
+        // ============================================
+        // INITIALIZE
+        // ============================================
+        window.addEventListener('load', function() {
+            console.log('🇩🇪 A1 Vocabulary Loaded!');
+            console.log('💡 Shortcuts: S/Esc=Stop | P=Play All | 1-9/0=Tabs');
+
+            renderTable(vocabularyData.pronouns, 'pronounsContainer');
+            renderTable(vocabularyData.questions, 'questionsContainer');
+            renderTable(vocabularyData.prepositions, 'prepositionsContainer');
+            renderTable(vocabularyData.numbers, 'numbersContainer');
+            renderTable(vocabularyData.time, 'timeContainer');
+            renderTable(vocabularyData.verbs, 'verbsContainer');
+            renderTable(vocabularyData.adjectives, 'adjectivesContainer');
+            renderTable(vocabularyData.nouns, 'nounsContainer');
+            renderTable(vocabularyData.expressions, 'expressionsContainer');
+            renderTable(vocabularyData.conjunctions, 'conjunctionsContainer');
+
+            loadVoices();
+            setTimeout(loadVoices, 100);
+            setTimeout(loadVoices, 500);
+            setTimeout(loadVoices, 1000);
+
+            if (!('speechSynthesis' in window)) {
+                alert('⚠️ Text-to-speech not supported.\n\nPlease use Chrome, Firefox, Edge, or Safari.');
+            }
+        });
+    </script>
+</body>
+</html>

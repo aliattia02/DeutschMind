@@ -548,11 +548,17 @@
 
         <div class="content-grid">
             <!-- Basic Essentials (NEW) -->
-            <div class="content-card">
+            <div class="content-card" style="border: 3px solid #FFCE00;">
                 <span class="card-icon">⭐</span>
                 <h3>Essential Basics</h3>
-                <p>Greetings, numbers, time, and the most important words to start speaking German immediately.</p>
+                <p><strong>START HERE!</strong> Pronouns, question words, prepositions, numbers, time, verbs, adjectives, nouns, expressions, and conjunctions.</p>
                 <ul class="lesson-list">
+                    <li class="lesson-item">
+                        <a href="../vocabulary/basic-vocabulary-essential.html" class="lesson-link">
+                            <span>A1 Essential Words & Phrases</span>
+                            <span class="lesson-status status-complete">✓ Available</span>
+                        </a>
+                    </li>
                     <li class="lesson-item">
                         <a href="../vocabulary/basic-vocabulary.html" class="lesson-link">
                             <span>Greetings & Basic Communication</span>
@@ -566,7 +572,7 @@
                         </a>
                     </li>
                 </ul>
-                <a href="../vocabulary/basic-vocabulary.html" class="card-btn">Start Here →</a>
+                <a href="../vocabulary/basic-vocabulary-essential.html" class="card-btn">Start Here →</a>
             </div>
 
             <!-- People & Family -->
@@ -624,15 +630,15 @@
     <p>Rooms, furniture, household items, and daily routines.</p>
     <ul class="lesson-list">
         <li class="lesson-item">
-            <span class="lesson-link">
+            <a href="../vocabulary/basic-vocabulary-home-living.html" class="lesson-link">
                 <span>Home Vocabulary</span>
-                <span class="lesson-status status-available">✅ Available</span>
-            </span>
+                <span class="lesson-status status-complete">✓ Available</span>
+            </a>
         </li>
     </ul>
-    <a href="../vocabulary/basic-vocabulary-home-living.html" class="card-btn">Start Learning 🎯</a>
+    <a href="../vocabulary/basic-vocabulary-home-living.html" class="card-btn">Start Learning →</a>
 </div>
-
+        </div>
 
         <!-- GRAMMAR SECTION -->
         <div class="section-header">
@@ -831,7 +837,7 @@
                 Created by: <strong>aliattia02</strong> | © 2025
             </p>
             <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.7;">
-                Last Updated: 2025-11-17 20:24:23 UTC
+                Last Updated: 2025-01-21 20:36:15 UTC
             </p>
         </div>
     </footer>
@@ -841,12 +847,12 @@
         window.addEventListener('load', function() {
             setTimeout(() => {
                 const progressFill = document.getElementById('progressFill');
-                const progress = 25; // Updated: 25% complete (5 lessons available)
+                const progress = 30; // Updated: 30% complete (6 lessons available)
                 progressFill.style.width = progress + '%';
                 progressFill.textContent = progress + '%';
 
                 // Update completed lessons
-                document.getElementById('completedLessons').textContent = '5';
+                document.getElementById('completedLessons').textContent = '6';
                 document.getElementById('totalLessons').textContent = '30';
             }, 500);
         });
