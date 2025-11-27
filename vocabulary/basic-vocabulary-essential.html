@@ -89,7 +89,7 @@
             border: none;
             padding: 12px 30px;
             border-radius: 25px;
-            font-size: 1.1em;
+            font-size: 1. 1em;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.3s ease;
@@ -115,11 +115,11 @@
             border: none;
             padding: 15px 30px;
             border-radius: 25px;
-            font-size: 1.1em;
+            font-size: 1. 1em;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0. 2);
         }
 
         .tab-button:hover {
@@ -134,7 +134,7 @@
             color: white;
         }
 
-        .tab-content {
+        . tab-content {
             display: none;
             animation: fadeIn 0.5s ease;
         }
@@ -164,6 +164,9 @@
             padding-bottom: 10px;
         }
 
+        /* ========================================== */
+        /* VOCABULARY TABLE - 4 COLUMNS ALWAYS */
+        /* ========================================== */
         .vocab-table {
             width: 100%;
             border-collapse: collapse;
@@ -207,23 +210,6 @@
             color: #666;
         }
 
-        .audio-btn {
-            background: #FFCE00;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9em;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .audio-btn:hover {
-            background: #DD0000;
-            color: white;
-            transform: scale(1.1);
-        }
-
         .audio-status {
             position: fixed;
             bottom: 20px;
@@ -243,7 +229,7 @@
             display: flex;
         }
 
-        .audio-status .spinner {
+        .audio-status . spinner {
             width: 20px;
             height: 20px;
             border: 3px solid rgba(255,255,255,0.3);
@@ -268,45 +254,93 @@
             margin: 10px 0;
         }
 
-        .section-icon {
+        . section-icon {
             font-size: 2em;
             margin-right: 10px;
             vertical-align: middle;
         }
 
-        /* Mobile Responsiveness */
+        /* ========================================== */
+        /* MOBILE RESPONSIVE */
+        /* ========================================== */
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2em;
             }
+
+            header p {
+                font-size: 1em;
+            }
+
             .tabs {
                 flex-direction: column;
             }
+
             .tab-button {
                 width: 100%;
+                padding: 12px 20px;
+                font-size: 1em;
             }
+
             .audio-controls {
                 flex-direction: column;
             }
+
+            .control-group {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            .play-all-btn {
+                width: 100%;
+            }
             
             .vocab-table {
-                font-size: 0.9em;
+                font-size: 0. 9em;
             }
             
             .vocab-table th,
             .vocab-table td {
-                padding: 8px 10px;
+                padding: 10px 8px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .card h2 {
+                font-size: 1.6em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.6em;
+            }
+
+            . vocab-table {
+                font-size: 0.85em;
+            }
+
+            .vocab-table th,
+            .vocab-table td {
+                padding: 8px 5px;
+            }
+
+            . section-icon {
+                font-size: 1.5em;
             }
         }
     </style>
 </head>
 <body>
+    <!-- NAVIGATION -->
     <div style="background: #000; padding: 15px; text-align: center;">
         <a href="../index.html" style="color: #FFCE00; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🏠 Home</a>
         <a href="../index.html#levels" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📚 Levels</a>
         <a href="../index.html#categories" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🎯 Categories</a>
         <a href="../tools/progress.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📊 Progress</a>
-        <a href="../about.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">ℹ️ About</a>
+        <a href="../about. html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">ℹ️ About</a>
     </div>
 
     <header>
@@ -332,7 +366,7 @@
             <div class="control-group">
                 <label for="pitchControl">Pitch:</label>
                 <input type="range" id="pitchControl" min="0.5" max="2" step="0.1" value="1">
-                <span id="pitchValue">1.0</span>
+                <span id="pitchValue">1. 0</span>
             </div>
             <button class="play-all-btn" onclick="playAllInSection()">▶ Play All in Section</button>
         </div>
@@ -353,7 +387,7 @@
         <div id="pronouns" class="tab-content active">
             <div class="card">
                 <h2><span class="section-icon">👥</span>Pronouns & Determiners</h2>
-                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation!</p>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation! </p>
                 <div id="pronounsContainer"></div>
             </div>
         </div>
@@ -377,7 +411,7 @@
         <div id="numbers" class="tab-content">
             <div class="card">
                 <h2><span class="section-icon">🔢</span>Numbers</h2>
-                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation!</p>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation! </p>
                 <div id="numbersContainer"></div>
             </div>
         </div>
@@ -436,12 +470,13 @@
         <span id="audioStatusText">Speaking...</span>
     </div>
 
+    <!-- FOOTER -->
     <footer>
         <p><strong>A1 English-German Basic Vocabulary - Interactive Audio Learning</strong></p>
         <p>Created for German Learners | © 2025 aliattia02</p>
         <p>🔧 Interactive Audio Learning Platform</p>
         <p style="margin-top: 20px; font-size: 0.9em;">
-            🎯 Click anywhere to hear pronunciation | 💪 Practice makes perfect!
+            🎯 Click anywhere to hear pronunciation | 💪 Practice makes perfect! 
         </p>
         <p style="margin-top: 10px; font-size: 0.8em; opacity: 0.8;">
             Last Updated: 2025-01-21
@@ -584,21 +619,21 @@
             const voiceSelect = document.getElementById('voiceSelect');
             voiceSelect.innerHTML = '';
 
-            const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
+            const germanVoices = voices.filter(voice => voice.lang. startsWith('de'));
 
             if (germanVoices.length === 0) {
                 voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
-                germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+                germanVoice = voices. find(v => v.lang.includes('en')) || voices[0];
             } else {
                 germanVoices.forEach((voice, index) => {
                     const option = document.createElement('option');
                     option.value = index;
-                    option.textContent = `${voice.name} (${voice.lang})`;
+                    option. textContent = `${voice.name} (${voice.lang})`;
                     voiceSelect.appendChild(option);
                     if (index === 0) germanVoice = voice;
                 });
             }
-            console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
+            console.log('✅ Voice loaded:', germanVoice ?  germanVoice.name : 'None');
         }
 
         if (speechSynthesis.onvoiceschanged !== undefined) {
@@ -610,7 +645,7 @@
 
         document.getElementById('voiceSelect').addEventListener('change', function(e) {
             stopAllSpeech();
-            const voices = window.speechSynthesis.getVoices();
+            const voices = window.speechSynthesis. getVoices();
             const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
             germanVoice = germanVoices[e.target.value] || voices[0];
             console.log('🔄 Voice changed to:', germanVoice ? germanVoice.name : 'default');
@@ -625,7 +660,7 @@
         });
 
         function speak(text, callback) {
-            if (!text || text.trim() === '') {
+            if (! text || text.trim() === '') {
                 console.warn('⚠️ Empty text, skipping');
                 if (callback) callback();
                 return;
@@ -633,7 +668,7 @@
 
             text = text.replace('🔊', '').trim();
 
-            if (!isPlayingSequence) {
+            if (! isPlayingSequence) {
                 stopAllSpeech();
             }
 
@@ -664,14 +699,14 @@
             utterance.lang = 'de-DE';
             if (germanVoice) utterance.voice = germanVoice;
             utterance.rate = parseFloat(document.getElementById('speedControl').value);
-            utterance.pitch = parseFloat(document.getElementById('pitchControl').value);
-            utterance.volume = 1.0;
+            utterance. pitch = parseFloat(document.getElementById('pitchControl').value);
+            utterance.volume = 1. 0;
 
             let hasEnded = false;
 
             utterance.onstart = function() {
                 isSpeaking = true;
-                console.log('▶️ Started:', text.substring(0, 40));
+                console.log('▶️ Started:', text. substring(0, 40));
             };
 
             utterance.onend = function() {
@@ -679,7 +714,7 @@
                 hasEnded = true;
                 isSpeaking = false;
                 hideAudioStatus();
-                console.log('✅ Ended:', text.substring(0, 40));
+                console. log('✅ Ended:', text.substring(0, 40));
                 if (callback) setTimeout(callback, 100);
             };
 
@@ -719,7 +754,7 @@
 
         function hideAudioStatus() {
             setTimeout(() => {
-                document.getElementById('audioStatus').classList.remove('show');
+                document.getElementById('audioStatus').classList. remove('show');
             }, 300);
         }
 
@@ -794,7 +829,7 @@
         }
 
         function playNextInSequence(playBtn) {
-            if (!playAllActive || playAllIndex >= playAllTexts.length) {
+            if (! playAllActive || playAllIndex >= playAllTexts.length) {
                 playAllActive = false;
                 isPlayingSequence = false;
                 playBtn.textContent = '▶ Play All in Section';
@@ -802,7 +837,7 @@
 
                 if (playAllIndex >= playAllTexts.length) {
                     setTimeout(() => {
-                        alert('✅ Finished playing all ' + playAllTexts.length + ' items!');
+                        alert('✅ Finished playing all ' + playAllTexts.length + ' items! ');
                     }, 500);
                 }
                 return;
@@ -831,41 +866,49 @@
             const playBtn = document.querySelector('.play-all-btn');
             if (playBtn) playBtn.textContent = '▶ Play All in Section';
 
-            const tabs = document.querySelectorAll('.tab-content');
-            tabs.forEach(tab => tab.classList.remove('active'));
+            const tabs = document.querySelectorAll('. tab-content');
+            tabs. forEach(tab => tab.classList.remove('active'));
 
-            const buttons = document.querySelectorAll('.tab-button');
-            buttons.forEach(btn => btn.classList.remove('active'));
+            const buttons = document.querySelectorAll('. tab-button');
+            buttons. forEach(btn => btn.classList.remove('active'));
 
-            document.getElementById(tabName).classList.add('active');
-            if (event && event.target) event.target.classList.add('active');
+            document.getElementById(tabName).classList. add('active');
+            if (event && event.target) event.target. classList.add('active');
 
             console.log('📑 Tab:', tabName);
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         // ============================================
-        // RENDER TABLES
+        // RENDER TABLES - 4 COLUMNS ALWAYS
         // ============================================
         function renderTable(data, containerId) {
             let html = '<table class="vocab-table"><thead><tr>';
             html += '<th>English</th><th>German</th><th>English</th><th>German</th>';
-            html += '<th>English</th><th>German</th><th>English</th><th>German</th>';
             html += '</tr></thead><tbody>';
 
             data.forEach(row => {
-                const germanWords = [row[1], row[3], row[5], row[7]].filter(w => w && w.trim() !== '');
-                const rowData = germanWords.map(w => `'${w.replace(/'/g, "\\'")}'`).join(', ');
+                // Collect all German words from original 8-column row
+                const allGermanWords = [row[1], row[3], row[5], row[7]]. filter(w => w && w. trim() !== '');
                 
-                html += `<tr onclick="speakRow([${rowData}])">`;
-                for (let i = 0; i < 8; i++) {
-                    html += `<td>${row[i] || ''}</td>`;
+                // Create rows with 2 word pairs each (4 columns)
+                for (let i = 0; i < 8; i += 4) {
+                    if (row[i] || row[i+2]) {  // If there's content in this group
+                        const germanPair = [row[i+1], row[i+3]].filter(w => w && w.trim() !== '');
+                        const rowData = germanPair.map(w => `'${w. replace(/'/g, "\\'")}'`).join(', ');
+                        
+                        html += `<tr onclick="speakRow([${rowData}])">`;
+                        html += `<td>${row[i] || ''}</td>`;
+                        html += `<td>${row[i+1] || ''}</td>`;
+                        html += `<td>${row[i+2] || ''}</td>`;
+                        html += `<td>${row[i+3] || ''}</td>`;
+                        html += '</tr>';
+                    }
                 }
-                html += '</tr>';
             });
 
             html += '</tbody></table>';
-            document.getElementById(containerId).innerHTML = html;
+            document. getElementById(containerId).innerHTML = html;
         }
 
         // ============================================
@@ -882,7 +925,7 @@
                 console.log('⏹️ Stopped by keyboard');
             }
 
-            if (e.key === 'p' || e.key === 'P') {
+            if (e.key === 'p' || e. key === 'P') {
                 playAllInSection();
             }
 
@@ -900,8 +943,8 @@
             };
 
             if (tabMap[e.key]) {
-                const buttons = document.querySelectorAll('.tab-button');
-                buttons.forEach((btn, idx) => {
+                const buttons = document.querySelectorAll('. tab-button');
+                buttons. forEach((btn, idx) => {
                     if (Object.values(tabMap)[idx] === tabMap[e.key]) {
                         btn.click();
                     }
@@ -927,13 +970,13 @@
         // INITIALIZE
         // ============================================
         window.addEventListener('load', function() {
-            console.log('🇩🇪 A1 Vocabulary Loaded!');
+            console.log('🇩🇪 A1 Vocabulary Loaded! ');
             console.log('💡 Shortcuts: S/Esc=Stop | P=Play All | 1-9/0=Tabs');
 
-            renderTable(vocabularyData.pronouns, 'pronounsContainer');
+            renderTable(vocabularyData. pronouns, 'pronounsContainer');
             renderTable(vocabularyData.questions, 'questionsContainer');
             renderTable(vocabularyData.prepositions, 'prepositionsContainer');
-            renderTable(vocabularyData.numbers, 'numbersContainer');
+            renderTable(vocabularyData. numbers, 'numbersContainer');
             renderTable(vocabularyData.time, 'timeContainer');
             renderTable(vocabularyData.verbs, 'verbsContainer');
             renderTable(vocabularyData.adjectives, 'adjectivesContainer');
@@ -946,7 +989,7 @@
             setTimeout(loadVoices, 500);
             setTimeout(loadVoices, 1000);
 
-            if (!('speechSynthesis' in window)) {
+            if (! ('speechSynthesis' in window)) {
                 alert('⚠️ Text-to-speech not supported.\n\nPlease use Chrome, Firefox, Edge, or Safari.');
             }
         });
