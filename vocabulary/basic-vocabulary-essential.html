@@ -115,11 +115,11 @@
             border: none;
             padding: 15px 30px;
             border-radius: 25px;
-            font-size: 1. 1em;
+            font-size: 1.1em;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0. 2);
+            transition: all 0. 3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
         }
 
         .tab-button:hover {
@@ -134,7 +134,7 @@
             color: white;
         }
 
-        . tab-content {
+        .tab-content {
             display: none;
             animation: fadeIn 0.5s ease;
         }
@@ -164,9 +164,6 @@
             padding-bottom: 10px;
         }
 
-        /* ========================================== */
-        /* VOCABULARY TABLE - 4 COLUMNS ALWAYS */
-        /* ========================================== */
         .vocab-table {
             width: 100%;
             border-collapse: collapse;
@@ -182,11 +179,12 @@
         }
 
         .vocab-table td {
-            padding: 12px 15px;
+            padding: 15px;
             border-bottom: 1px solid #ddd;
+            font-size: 1.05em;
         }
 
-        .vocab-table tr {
+        . vocab-table tr {
             cursor: pointer;
             transition: all 0.3s ease;
         }
@@ -198,16 +196,34 @@
         .vocab-table tbody tr:hover {
             background: #e3f2fd;
             box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+            transform: scale(1.01);
         }
 
         .vocab-table td:nth-child(odd) {
             font-weight: 700;
             color: #1565C0;
-            font-size: 1.1em;
         }
 
-        .vocab-table td:nth-child(even) {
+        . vocab-table td:nth-child(even) {
             color: #666;
+            font-weight: 600;
+        }
+
+        .audio-btn {
+            background: #FFCE00;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .audio-btn:hover {
+            background: #DD0000;
+            color: white;
+            transform: scale(1.1);
         }
 
         .audio-status {
@@ -260,43 +276,23 @@
             vertical-align: middle;
         }
 
-        /* ========================================== */
-        /* MOBILE RESPONSIVE */
-        /* ========================================== */
+        /* Mobile Responsiveness */
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2em;
             }
-
-            header p {
-                font-size: 1em;
-            }
-
-            .tabs {
+            . tabs {
                 flex-direction: column;
             }
-
             .tab-button {
                 width: 100%;
-                padding: 12px 20px;
-                font-size: 1em;
             }
-
             .audio-controls {
                 flex-direction: column;
             }
-
-            .control-group {
-                width: 100%;
-                justify-content: space-between;
-            }
-
-            .play-all-btn {
-                width: 100%;
-            }
             
             .vocab-table {
-                font-size: 0. 9em;
+                font-size: 0.9em;
             }
             
             .vocab-table th,
@@ -304,43 +300,30 @@
                 padding: 10px 8px;
             }
 
-            .card {
-                padding: 20px;
-            }
-
-            .card h2 {
-                font-size: 1.6em;
+            .vocab-table td {
+                font-size: 0.95em;
             }
         }
 
         @media (max-width: 480px) {
-            header h1 {
-                font-size: 1.6em;
-            }
-
             . vocab-table {
-                font-size: 0.85em;
+                font-size: 0.8em;
             }
-
+            
             .vocab-table th,
             .vocab-table td {
                 padding: 8px 5px;
-            }
-
-            . section-icon {
-                font-size: 1.5em;
             }
         }
     </style>
 </head>
 <body>
-    <!-- NAVIGATION -->
     <div style="background: #000; padding: 15px; text-align: center;">
         <a href="../index.html" style="color: #FFCE00; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🏠 Home</a>
         <a href="../index.html#levels" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📚 Levels</a>
         <a href="../index.html#categories" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🎯 Categories</a>
         <a href="../tools/progress.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📊 Progress</a>
-        <a href="../about. html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">ℹ️ About</a>
+        <a href="../about.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">ℹ️ About</a>
     </div>
 
     <header>
@@ -365,7 +348,7 @@
             </div>
             <div class="control-group">
                 <label for="pitchControl">Pitch:</label>
-                <input type="range" id="pitchControl" min="0.5" max="2" step="0.1" value="1">
+                <input type="range" id="pitchControl" min="0.5" max="2" step="0. 1" value="1">
                 <span id="pitchValue">1. 0</span>
             </div>
             <button class="play-all-btn" onclick="playAllInSection()">▶ Play All in Section</button>
@@ -387,7 +370,7 @@
         <div id="pronouns" class="tab-content active">
             <div class="card">
                 <h2><span class="section-icon">👥</span>Pronouns & Determiners</h2>
-                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation! </p>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any row to hear the German pronunciation!</p>
                 <div id="pronounsContainer"></div>
             </div>
         </div>
@@ -470,7 +453,6 @@
         <span id="audioStatusText">Speaking...</span>
     </div>
 
-    <!-- FOOTER -->
     <footer>
         <p><strong>A1 English-German Basic Vocabulary - Interactive Audio Learning</strong></p>
         <p>Created for German Learners | © 2025 aliattia02</p>
@@ -485,124 +467,206 @@
 
     <script>
         // ============================================
-        // A1 VOCABULARY DATA
+        // A1 VOCABULARY DATA (Reorganized for 4 columns)
         // ============================================
 
         const vocabularyData = {
             pronouns: [
-                ["I", "ich", "you", "du/Sie", "he", "er", "she", "sie"],
-                ["it", "es", "we", "wir", "they", "sie", "my", "mein"],
-                ["your", "dein/Ihr", "his", "sein", "her", "ihr", "its", "sein"],
-                ["our", "unser", "their", "ihr", "this", "dies/dieser", "that", "das/jener"],
-                ["these", "diese", "those", "jene", "me", "mich/mir", "him", "ihn/ihm"],
-                ["us", "uns", "them", "sie/ihnen", "myself", "mich selbst", "yourself", "dich selbst"],
-                ["some", "einige/etwas", "any", "irgendein/welche", "all", "alle", "many", "viele"],
-                ["much", "viel", "few", "wenige", "little", "wenig", "every", "jeder"],
-                ["each", "jeder", "both", "beide", "other", "andere", "another", "ein anderer"]
+                ["I", "ich", "you", "du/Sie"],
+                ["he", "er", "she", "sie"],
+                ["it", "es", "we", "wir"],
+                ["they", "sie", "my", "mein"],
+                ["your", "dein/Ihr", "his", "sein"],
+                ["her", "ihr", "its", "sein"],
+                ["our", "unser", "their", "ihr"],
+                ["this", "dies/dieser", "that", "das/jener"],
+                ["these", "diese", "those", "jene"],
+                ["me", "mich/mir", "him", "ihn/ihm"],
+                ["us", "uns", "them", "sie/ihnen"],
+                ["myself", "mich selbst", "yourself", "dich selbst"],
+                ["some", "einige/etwas", "any", "irgendein/welche"],
+                ["all", "alle", "many", "viele"],
+                ["much", "viel", "few", "wenige"],
+                ["little", "wenig", "every", "jeder"],
+                ["each", "jeder", "both", "beide"],
+                ["other", "andere", "another", "ein anderer"]
             ],
             
             questions: [
-                ["who", "wer", "what", "was", "where", "wo", "when", "wann"],
-                ["why", "warum", "how", "wie", "which", "welcher", "whose", "wessen"],
-                ["whom", "wen/wem", "how much", "wie viel", "how many", "wie viele", "how old", "wie alt"]
+                ["who", "wer", "what", "was"],
+                ["where", "wo", "when", "wann"],
+                ["why", "warum", "how", "wie"],
+                ["which", "welcher", "whose", "wessen"],
+                ["whom", "wen/wem", "how much", "wie viel"],
+                ["how many", "wie viele", "how old", "wie alt"]
             ],
             
             prepositions: [
-                ["in", "in", "on", "auf", "at", "an/bei/um", "to", "zu/nach"],
-                ["from", "von/aus", "with", "mit", "for", "für", "of", "von"],
-                ["about", "über", "by", "bei/von", "under", "unter", "over", "über"],
-                ["between", "zwischen", "behind", "hinter", "in front of", "vor", "next to", "neben"],
-                ["near", "nahe/bei", "opposite", "gegenüber", "up", "hoch/hinauf", "down", "runter/hinunter"],
-                ["into", "in", "out of", "aus", "through", "durch", "across", "über/quer"],
-                ["along", "entlang", "around", "um/herum", "above", "über", "below", "unter"],
-                ["before", "vor", "after", "nach", "during", "während", "until", "bis"],
-                ["since", "seit", "without", "ohne", "inside", "innen/drinnen", "outside", "außen/draußen"]
+                ["in", "in", "on", "auf"],
+                ["at", "an/bei/um", "to", "zu/nach"],
+                ["from", "von/aus", "with", "mit"],
+                ["for", "für", "of", "von"],
+                ["about", "über", "by", "bei/von"],
+                ["under", "unter", "over", "über"],
+                ["between", "zwischen", "behind", "hinter"],
+                ["in front of", "vor", "next to", "neben"],
+                ["near", "nahe/bei", "opposite", "gegenüber"],
+                ["up", "hoch/hinauf", "down", "runter/hinunter"],
+                ["into", "in", "out of", "aus"],
+                ["through", "durch", "across", "über/quer"],
+                ["along", "entlang", "around", "um/herum"],
+                ["above", "über", "below", "unter"],
+                ["before", "vor", "after", "nach"],
+                ["during", "während", "until", "bis"],
+                ["since", "seit", "without", "ohne"],
+                ["inside", "innen/drinnen", "outside", "außen/draußen"]
             ],
             
             numbers: [
-                ["one", "eins", "two", "zwei", "three", "drei", "four", "vier"],
-                ["five", "fünf", "six", "sechs", "seven", "sieben", "eight", "acht"],
-                ["nine", "neun", "ten", "zehn", "eleven", "elf", "twelve", "zwölf"],
-                ["thirteen", "dreizehn", "fourteen", "vierzehn", "fifteen", "fünfzehn", "sixteen", "sechzehn"],
-                ["seventeen", "siebzehn", "eighteen", "achtzehn", "nineteen", "neunzehn", "twenty", "zwanzig"],
-                ["thirty", "dreißig", "forty", "vierzig", "fifty", "fünfzig", "sixty", "sechzig"],
-                ["seventy", "siebzig", "eighty", "achtzig", "ninety", "neunzig", "hundred", "hundert"],
-                ["thousand", "tausend", "million", "Million", "first", "erste", "second", "zweite"],
-                ["third", "dritte", "fourth", "vierte", "fifth", "fünfte", "last", "letzte"]
+                ["one", "eins", "two", "zwei"],
+                ["three", "drei", "four", "vier"],
+                ["five", "fünf", "six", "sechs"],
+                ["seven", "sieben", "eight", "acht"],
+                ["nine", "neun", "ten", "zehn"],
+                ["eleven", "elf", "twelve", "zwölf"],
+                ["thirteen", "dreizehn", "fourteen", "vierzehn"],
+                ["fifteen", "fünfzehn", "sixteen", "sechzehn"],
+                ["seventeen", "siebzehn", "eighteen", "achtzehn"],
+                ["nineteen", "neunzehn", "twenty", "zwanzig"],
+                ["thirty", "dreißig", "forty", "vierzig"],
+                ["fifty", "fünfzig", "sixty", "sechzig"],
+                ["seventy", "siebzig", "eighty", "achtzig"],
+                ["ninety", "neunzig", "hundred", "hundert"],
+                ["thousand", "tausend", "million", "Million"],
+                ["first", "erste", "second", "zweite"],
+                ["third", "dritte", "fourth", "vierte"],
+                ["fifth", "fünfte", "last", "letzte"]
             ],
             
             time: [
-                ["today", "heute", "tomorrow", "morgen", "yesterday", "gestern", "morning", "Morgen"],
-                ["afternoon", "Nachmittag", "evening", "Abend", "night", "Nacht", "hour", "Stunde"],
-                ["minute", "Minute", "second", "Sekunde", "always", "immer", "never", "nie/niemals"],
-                ["sometimes", "manchmal", "often", "oft", "usually", "normalerweise", "now", "jetzt"],
-                ["then", "dann", "soon", "bald", "again", "wieder", "already", "schon"],
-                ["still", "noch", "yet", "noch/schon", "ago", "vor", "later", "später"]
+                ["today", "heute", "tomorrow", "morgen"],
+                ["yesterday", "gestern", "morning", "Morgen"],
+                ["afternoon", "Nachmittag", "evening", "Abend"],
+                ["night", "Nacht", "hour", "Stunde"],
+                ["minute", "Minute", "second", "Sekunde"],
+                ["always", "immer", "never", "nie/niemals"],
+                ["sometimes", "manchmal", "often", "oft"],
+                ["usually", "normalerweise", "now", "jetzt"],
+                ["then", "dann", "soon", "bald"],
+                ["again", "wieder", "already", "schon"],
+                ["still", "noch", "yet", "noch/schon"],
+                ["ago", "vor", "later", "später"]
             ],
             
             verbs: [
-                ["be", "sein", "have", "haben", "do", "tun/machen", "make", "machen"],
-                ["go", "gehen", "come", "kommen", "see", "sehen", "know", "wissen/kennen"],
-                ["get", "bekommen/werden", "give", "geben", "take", "nehmen", "think", "denken"],
-                ["want", "wollen", "need", "brauchen", "like", "mögen", "love", "lieben"],
-                ["help", "helfen", "work", "arbeiten", "live", "leben/wohnen", "play", "spielen"],
-                ["try", "versuchen", "use", "benutzen", "feel", "fühlen", "find", "finden"],
-                ["tell", "erzählen/sagen", "ask", "fragen", "call", "anrufen/nennen", "leave", "verlassen/gehen"],
-                ["put", "legen/stellen", "sit", "sitzen", "stand", "stehen", "run", "laufen/rennen"],
-                ["walk", "gehen/laufen", "open", "öffnen", "close", "schließen", "start", "anfangen/starten"],
-                ["stop", "aufhören/stoppen", "turn", "drehen/abbiegen", "move", "bewegen/umziehen", "look", "schauen/gucken"],
-                ["listen", "zuhören", "speak", "sprechen", "read", "lesen", "write", "schreiben"],
-                ["learn", "lernen", "teach", "unterrichten", "show", "zeigen", "bring", "bringen"],
-                ["buy", "kaufen", "sell", "verkaufen", "pay", "bezahlen", "cost", "kosten"],
-                ["spend", "ausgeben/verbringen", "save", "sparen/retten", "meet", "treffen", "visit", "besuchen"],
-                ["stay", "bleiben", "arrive", "ankommen", "wait", "warten", "remember", "sich erinnern"],
-                ["forget", "vergessen", "understand", "verstehen", "believe", "glauben", "hope", "hoffen"],
-                ["become", "werden", "change", "ändern/wechseln", "", "", "", ""]
+                ["be", "sein", "have", "haben"],
+                ["do", "tun/machen", "make", "machen"],
+                ["go", "gehen", "come", "kommen"],
+                ["see", "sehen", "know", "wissen/kennen"],
+                ["get", "bekommen/werden", "give", "geben"],
+                ["take", "nehmen", "think", "denken"],
+                ["want", "wollen", "need", "brauchen"],
+                ["like", "mögen", "love", "lieben"],
+                ["help", "helfen", "work", "arbeiten"],
+                ["live", "leben/wohnen", "play", "spielen"],
+                ["try", "versuchen", "use", "benutzen"],
+                ["feel", "fühlen", "find", "finden"],
+                ["tell", "erzählen/sagen", "ask", "fragen"],
+                ["call", "anrufen/nennen", "leave", "verlassen/gehen"],
+                ["put", "legen/stellen", "sit", "sitzen"],
+                ["stand", "stehen", "run", "laufen/rennen"],
+                ["walk", "gehen/laufen", "open", "öffnen"],
+                ["close", "schließen", "start", "anfangen/starten"],
+                ["stop", "aufhören/stoppen", "turn", "drehen/abbiegen"],
+                ["move", "bewegen/umziehen", "look", "schauen/gucken"],
+                ["listen", "zuhören", "speak", "sprechen"],
+                ["read", "lesen", "write", "schreiben"],
+                ["learn", "lernen", "teach", "unterrichten"],
+                ["show", "zeigen", "bring", "bringen"],
+                ["buy", "kaufen", "sell", "verkaufen"],
+                ["pay", "bezahlen", "cost", "kosten"],
+                ["spend", "ausgeben/verbringen", "save", "sparen/retten"],
+                ["meet", "treffen", "visit", "besuchen"],
+                ["stay", "bleiben", "arrive", "ankommen"],
+                ["wait", "warten", "remember", "sich erinnern"],
+                ["forget", "vergessen", "understand", "verstehen"],
+                ["believe", "glauben", "hope", "hoffen"],
+                ["become", "werden", "change", "ändern/wechseln"]
             ],
             
             adjectives: [
-                ["good", "gut", "bad", "schlecht", "big", "groß", "small", "klein"],
-                ["new", "neu", "old", "alt", "hot", "heiß", "cold", "kalt"],
-                ["long", "lang", "short", "kurz", "high", "hoch", "low", "niedrig"],
-                ["happy", "glücklich", "sad", "traurig", "easy", "leicht/einfach", "difficult", "schwierig"],
-                ["right", "richtig/rechts", "wrong", "falsch", "full", "voll", "empty", "leer"],
-                ["strong", "stark", "weak", "schwach", "fast", "schnell", "slow", "langsam"],
-                ["young", "jung", "beautiful", "schön", "ugly", "hässlich", "clean", "sauber"],
-                ["dirty", "schmutzig", "rich", "reich", "poor", "arm", "cheap", "billig/günstig"],
-                ["expensive", "teuer", "free", "frei/kostenlos", "busy", "beschäftigt", "tired", "müde"],
-                ["hungry", "hungrig", "thirsty", "durstig", "sick", "krank", "healthy", "gesund"],
-                ["ready", "bereit/fertig", "late", "spät", "early", "früh", "same", "gleich/selbe"],
-                ["different", "anders/verschieden", "important", "wichtig", "interesting", "interessant", "boring", "langweilig"],
-                ["nice", "nett/schön", "kind", "nett/freundlich", "friendly", "freundlich", "angry", "wütend/böse"],
-                ["afraid", "ängstlich", "sorry", "leid/entschuldigung", "", "", "", ""]
+                ["good", "gut", "bad", "schlecht"],
+                ["big", "groß", "small", "klein"],
+                ["new", "neu", "old", "alt"],
+                ["hot", "heiß", "cold", "kalt"],
+                ["long", "lang", "short", "kurz"],
+                ["high", "hoch", "low", "niedrig"],
+                ["happy", "glücklich", "sad", "traurig"],
+                ["easy", "leicht/einfach", "difficult", "schwierig"],
+                ["right", "richtig/rechts", "wrong", "falsch"],
+                ["full", "voll", "empty", "leer"],
+                ["strong", "stark", "weak", "schwach"],
+                ["fast", "schnell", "slow", "langsam"],
+                ["young", "jung", "beautiful", "schön"],
+                ["ugly", "hässlich", "clean", "sauber"],
+                ["dirty", "schmutzig", "rich", "reich"],
+                ["poor", "arm", "cheap", "billig/günstig"],
+                ["expensive", "teuer", "free", "frei/kostenlos"],
+                ["busy", "beschäftigt", "tired", "müde"],
+                ["hungry", "hungrig", "thirsty", "durstig"],
+                ["sick", "krank", "healthy", "gesund"],
+                ["ready", "bereit/fertig", "late", "spät"],
+                ["early", "früh", "same", "gleich/selbe"],
+                ["different", "anders/verschieden", "important", "wichtig"],
+                ["interesting", "interessant", "boring", "langweilig"],
+                ["nice", "nett/schön", "kind", "nett/freundlich"],
+                ["friendly", "freundlich", "angry", "wütend/böse"],
+                ["afraid", "ängstlich", "sorry", "leid/entschuldigung"]
             ],
             
             nouns: [
-                ["man", "Mann/der", "woman", "Frau/die", "child", "Kind/das", "person", "Person/die"],
-                ["people", "Leute/die", "thing", "Ding/das", "place", "Ort/der", "time", "Zeit/die"],
-                ["way", "Weg/der", "year", "Jahr/das", "day", "Tag/der", "week", "Woche/die"],
-                ["hand", "Hand/die", "eye", "Auge/das", "head", "Kopf/der", "face", "Gesicht/das"],
-                ["body", "Körper/der", "life", "Leben/das", "world", "Welt/die", "work", "Arbeit/die"],
-                ["problem", "Problem/das", "question", "Frage/die", "answer", "Antwort/die", "idea", "Idee/die"],
-                ["end", "Ende/das", "part", "Teil/der", "side", "Seite/die", "number", "Nummer/die"],
-                ["name", "Name/der", "word", "Wort/das", "", "", "", ""]
+                ["man", "Mann/der", "woman", "Frau/die"],
+                ["child", "Kind/das", "person", "Person/die"],
+                ["people", "Leute/die", "thing", "Ding/das"],
+                ["place", "Ort/der", "time", "Zeit/die"],
+                ["way", "Weg/der", "year", "Jahr/das"],
+                ["day", "Tag/der", "week", "Woche/die"],
+                ["hand", "Hand/die", "eye", "Auge/das"],
+                ["head", "Kopf/der", "face", "Gesicht/das"],
+                ["body", "Körper/der", "life", "Leben/das"],
+                ["world", "Welt/die", "work", "Arbeit/die"],
+                ["problem", "Problem/das", "question", "Frage/die"],
+                ["answer", "Antwort/die", "idea", "Idee/die"],
+                ["end", "Ende/das", "part", "Teil/der"],
+                ["side", "Seite/die", "number", "Nummer/die"],
+                ["name", "Name/der", "word", "Wort/das"]
             ],
             
             expressions: [
-                ["yes", "ja", "no", "nein", "please", "bitte", "thank you", "danke"],
-                ["thanks", "danke", "sorry", "Entschuldigung/tut mir leid", "excuse me", "Entschuldigung", "hello", "Hallo"],
-                ["hi", "Hi/Hallo", "goodbye", "Auf Wiedersehen", "bye", "Tschüss", "okay", "okay"],
-                ["OK", "OK", "pardon", "wie bitte", "welcome", "willkommen", "good morning", "Guten Morgen"],
-                ["good night", "Gute Nacht", "see you", "Bis später/dann", "", "", "", ""]
+                ["yes", "ja", "no", "nein"],
+                ["please", "bitte", "thank you", "danke"],
+                ["thanks", "danke", "sorry", "Entschuldigung/tut mir leid"],
+                ["excuse me", "Entschuldigung", "hello", "Hallo"],
+                ["hi", "Hi/Hallo", "goodbye", "Auf Wiedersehen"],
+                ["bye", "Tschüss", "okay", "okay"],
+                ["OK", "OK", "pardon", "wie bitte"],
+                ["welcome", "willkommen", "good morning", "Guten Morgen"],
+                ["good night", "Gute Nacht", "see you", "Bis später/dann"]
             ],
             
             conjunctions: [
-                ["and", "und", "but", "aber", "or", "oder", "so", "so/also"],
-                ["because", "weil", "if", "wenn/falls", "when", "wann/als", "while", "während"],
-                ["than", "als", "as", "als/wie", "very", "sehr", "too", "zu/auch"],
-                ["also", "auch", "only", "nur", "just", "gerade/nur", "really", "wirklich"],
-                ["well", "gut/nun", "not", "nicht", "here", "hier", "there", "dort/da"],
-                ["where", "wo", "everywhere", "überall", "somewhere", "irgendwo", "nowhere", "nirgendwo"]
+                ["and", "und", "but", "aber"],
+                ["or", "oder", "so", "so/also"],
+                ["because", "weil", "if", "wenn/falls"],
+                ["when", "wann/als", "while", "während"],
+                ["than", "als", "as", "als/wie"],
+                ["very", "sehr", "too", "zu/auch"],
+                ["also", "auch", "only", "nur"],
+                ["just", "gerade/nur", "really", "wirklich"],
+                ["well", "gut/nun", "not", "nicht"],
+                ["here", "hier", "there", "dort/da"],
+                ["where", "wo", "everywhere", "überall"],
+                ["somewhere", "irgendwo", "nowhere", "nirgendwo"]
             ]
         };
 
@@ -642,10 +706,11 @@
         loadVoices();
         setTimeout(loadVoices, 100);
         setTimeout(loadVoices, 500);
+        setTimeout(loadVoices, 1000);
 
         document.getElementById('voiceSelect').addEventListener('change', function(e) {
             stopAllSpeech();
-            const voices = window.speechSynthesis. getVoices();
+            const voices = window.speechSynthesis.getVoices();
             const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
             germanVoice = germanVoices[e.target.value] || voices[0];
             console.log('🔄 Voice changed to:', germanVoice ? germanVoice.name : 'default');
@@ -660,7 +725,7 @@
         });
 
         function speak(text, callback) {
-            if (! text || text.trim() === '') {
+            if (!text || text.trim() === '') {
                 console.warn('⚠️ Empty text, skipping');
                 if (callback) callback();
                 return;
@@ -700,7 +765,7 @@
             if (germanVoice) utterance.voice = germanVoice;
             utterance.rate = parseFloat(document.getElementById('speedControl').value);
             utterance. pitch = parseFloat(document.getElementById('pitchControl').value);
-            utterance.volume = 1. 0;
+            utterance.volume = 1.0;
 
             let hasEnded = false;
 
@@ -806,8 +871,9 @@
 
             if (vocabularyData[tabId]) {
                 vocabularyData[tabId].forEach(row => {
+                    // For 4-column tables, German is at index 1 and 3
                     for (let i = 1; i < row.length; i += 2) {
-                        if (row[i] && row[i].trim() !== '') {
+                        if (row[i] && row[i]. trim() !== '') {
                             playAllTexts.push(row[i]);
                         }
                     }
@@ -866,21 +932,21 @@
             const playBtn = document.querySelector('.play-all-btn');
             if (playBtn) playBtn.textContent = '▶ Play All in Section';
 
-            const tabs = document.querySelectorAll('. tab-content');
+            const tabs = document.querySelectorAll('.tab-content');
             tabs. forEach(tab => tab.classList.remove('active'));
 
-            const buttons = document.querySelectorAll('. tab-button');
+            const buttons = document.querySelectorAll('.tab-button');
             buttons. forEach(btn => btn.classList.remove('active'));
 
             document.getElementById(tabName).classList. add('active');
-            if (event && event.target) event.target. classList.add('active');
+            if (event && event.target) event.target.classList.add('active');
 
             console.log('📑 Tab:', tabName);
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
         // ============================================
-        // RENDER TABLES - 4 COLUMNS ALWAYS
+        // RENDER TABLES (4 COLUMNS)
         // ============================================
         function renderTable(data, containerId) {
             let html = '<table class="vocab-table"><thead><tr>';
@@ -888,27 +954,19 @@
             html += '</tr></thead><tbody>';
 
             data.forEach(row => {
-                // Collect all German words from original 8-column row
-                const allGermanWords = [row[1], row[3], row[5], row[7]]. filter(w => w && w. trim() !== '');
+                // Extract German words from positions 1 and 3
+                const germanWords = [row[1], row[3]]. filter(w => w && w. trim() !== '');
+                const rowData = germanWords.map(w => `'${w. replace(/'/g, "\\'")}'`).join(', ');
                 
-                // Create rows with 2 word pairs each (4 columns)
-                for (let i = 0; i < 8; i += 4) {
-                    if (row[i] || row[i+2]) {  // If there's content in this group
-                        const germanPair = [row[i+1], row[i+3]].filter(w => w && w.trim() !== '');
-                        const rowData = germanPair.map(w => `'${w. replace(/'/g, "\\'")}'`).join(', ');
-                        
-                        html += `<tr onclick="speakRow([${rowData}])">`;
-                        html += `<td>${row[i] || ''}</td>`;
-                        html += `<td>${row[i+1] || ''}</td>`;
-                        html += `<td>${row[i+2] || ''}</td>`;
-                        html += `<td>${row[i+3] || ''}</td>`;
-                        html += '</tr>';
-                    }
+                html += `<tr onclick="speakRow([${rowData}])">`;
+                for (let i = 0; i < 4; i++) {
+                    html += `<td>${row[i] || ''}</td>`;
                 }
+                html += '</tr>';
             });
 
             html += '</tbody></table>';
-            document. getElementById(containerId).innerHTML = html;
+            document.getElementById(containerId).innerHTML = html;
         }
 
         // ============================================
@@ -925,7 +983,7 @@
                 console.log('⏹️ Stopped by keyboard');
             }
 
-            if (e.key === 'p' || e. key === 'P') {
+            if (e.key === 'p' || e.key === 'P') {
                 playAllInSection();
             }
 
@@ -976,12 +1034,12 @@
             renderTable(vocabularyData. pronouns, 'pronounsContainer');
             renderTable(vocabularyData.questions, 'questionsContainer');
             renderTable(vocabularyData.prepositions, 'prepositionsContainer');
-            renderTable(vocabularyData. numbers, 'numbersContainer');
+            renderTable(vocabularyData.numbers, 'numbersContainer');
             renderTable(vocabularyData.time, 'timeContainer');
             renderTable(vocabularyData.verbs, 'verbsContainer');
-            renderTable(vocabularyData.adjectives, 'adjectivesContainer');
+            renderTable(vocabularyData. adjectives, 'adjectivesContainer');
             renderTable(vocabularyData.nouns, 'nounsContainer');
-            renderTable(vocabularyData.expressions, 'expressionsContainer');
+            renderTable(vocabularyData. expressions, 'expressionsContainer');
             renderTable(vocabularyData.conjunctions, 'conjunctionsContainer');
 
             loadVoices();
