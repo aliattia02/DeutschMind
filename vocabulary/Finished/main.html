@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎓 Kenntnisse - Legal & Professional German</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION */
+        .navbar {
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #667eea;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            background: rgba(102, 126, 234, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* HERO */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '⚖️';
+            position: absolute;
+            font-size: 25em;
+            opacity: 0.1;
+            top: -50px;
+            right: -50px;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 4.5em;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero-subtitle {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+            opacity: 0.95;
+        }
+
+        .hero-description {
+            font-size: 1.2em;
+            max-width: 900px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        /* CATEGORY SECTION */
+        .category-section {
+            margin: 60px 0;
+        }
+
+        .category-header {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .category-icon {
+            font-size: 4em;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            width: 100px;
+            height: 100px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .category-info h2 {
+            font-size: 2.5em;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .category-info p {
+            font-size: 1.2em;
+            color: #666;
+        }
+
+        /* RESOURCE GRID */
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 25px;
+        }
+
+        .resource-card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #667eea, #764ba2);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.3);
+        }
+
+        .resource-type {
+            display: inline-block;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .type-combined {
+            background: #E3F2FD;
+            color: #1976D2;
+        }
+
+        .type-interactive {
+            background: #F3E5F5;
+            color: #7B1FA2;
+        }
+
+        .resource-card h3 {
+            font-size: 1.6em;
+            margin-bottom: 15px;
+            color: #333;
+            line-height: 1.4;
+        }
+
+        .resource-card p {
+            font-size: 1.05em;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .resource-link:hover {
+            transform: translateX(5px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1a1a1a;
+            color: white;
+            padding: 40px 20px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .footer-nav {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .footer-nav a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-nav a:hover {
+            color: #667eea;
+        }
+
+        /* ANIMATIONS */
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5em;
+            }
+
+            .resource-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .category-header {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .category-info h2 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="../../index.html" class="nav-logo">🇩🇪 German Hub</a>
+            <div class="nav-links">
+                <a href="../vocabulary.html" class="nav-link">← Back to Vocabulary</a>
+                <a href="../../index.html" class="nav-link">🏠 Home</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>🎓 Kenntnisse</h1>
+            <p class="hero-subtitle">Legal & Professional German Resources</p>
+            <p class="hero-description">
+                Master specialized vocabulary for German law, healthcare, business, and professional contexts.
+                Each resource includes both comprehensive word lists and interactive learning modules.
+            </p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <!-- LEGAL & RIGHTS SECTION -->
+        <div class="category-section">
+            <div class="category-header">
+                <div class="category-icon">⚖️</div>
+                <div class="category-info">
+                    <h2>German Legal System & Rights</h2>
+                    <p>Essential vocabulary for understanding German law and your rights</p>
+                </div>
+            </div>
+
+            <div class="resource-grid">
+                <!-- Recht 1 - Medicines -->
+                <div class="resource-card">
+                    <span class="resource-type type-combined">📚 Combined</span>
+                    <h3>Recht 1: Arzneimittel (Medicines Law)</h3>
+                    <p>Comprehensive vocabulary for pharmaceutical law, drug regulations, and medicine-related legal terms.</p>
+                    <a href="Recht_1_Arzneimittel_combined.html" class="resource-link">Study Materials →</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-type type-interactive">🎮 Interactive</span>
+                    <h3>Recht 1: Arzneimittel (Interactive)</h3>
+                    <p>Practice and test your knowledge of pharmaceutical law vocabulary with interactive exercises.</p>
+                    <a href="Recht_1_Arzneimittel_interactive.html" class="resource-link">Start Practice →</a>
+                </div>
+
+                <!-- Recht 2 - Narcotics -->
+                <div class="resource-card">
+                    <span class="resource-type type-combined">📚 Combined</span>
+                    <h3>Recht 2: Betäubungsmittel (Narcotics Law)</h3>
+                    <p>Legal terminology related to controlled substances, narcotics regulations, and prescription drugs.</p>
+                    <a href="Recht_2_Betubungsmittel_combined.html" class="resource-link">Study Materials →</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-type type-interactive">🎮 Interactive</span>
+                    <h3>Recht 2: Betäubungsmittel (Interactive)</h3>
+                    <p>Interactive practice for narcotics law vocabulary and controlled substance terminology.</p>
+                    <a href="Recht_2_Betubungsmittel_interactive.html" class="resource-link">Start Practice →</a>
+                </div>
+
+                <!-- Recht 3 - Medical Products -->
+                <div class="resource-card">
+                    <span class="resource-type type-combined">📚 Combined</span>
+                    <h3>Recht 3: Medizinprodukte (Medical Devices Law)</h3>
+                    <p>Vocabulary for medical products law, blood products, and veterinary medicines regulations.</p>
+                    <a href="RECHT_3_MedizinprodukteBlutprodukte_Tierarzneimittel_combined.html" class="resource-link">Study Materials →</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-type type-interactive">🎮 Interactive</span>
+                    <h3>Recht 3: Medizinprodukte (Interactive)</h3>
+                    <p>Practice medical devices and veterinary medicine law terminology interactively.</p>
+                    <a href="RECHT_3_MedizinprodukteBlutprodukte_Tierarzneimittel_interactive.html" class="resource-link">Start Practice →</a>
+                </div>
+
+                <!-- Recht 4 - Hazardous Substances -->
+                <div class="resource-card">
+                    <span class="resource-type type-combined">📚 Combined</span>
+                    <h3>Recht 4: Gefahrstoff-, Chemikalien- & Lebensmittelrecht</h3>
+                    <p>Legal terms for hazardous materials, chemical law, and food safety regulations.</p>
+                    <a href="Recht_4_Gefahrstoffrecht_Chemikalienrecht_und_Lebensmittelrecht_combined (1).html" class="resource-link">Study Materials →</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-type type-interactive">🎮 Interactive</span>
+                    <h3>Recht 4: Gefahrstoff-, Chemikalien- & Lebensmittelrecht (Interactive)</h3>
+                    <p>Interactive exercises for hazardous materials and food law vocabulary.</p>
+                    <a href="Recht_4_Gefahrstoffrecht_Chemikalienrecht_und_Lebensmittelrecht_interactive (1).html" class="resource-link">Start Practice →</a>
+                </div>
+
+                <!-- Recht 5 - Pharmacy Operations -->
+                <div class="resource-card">
+                    <span class="resource-type type-combined">📚 Combined</span>
+                    <h3>Recht 5: Apothekenbetrieb & Eichrecht</h3>
+                    <p>Vocabulary for pharmacy operations law and calibration regulations.</p>
+                    <a href="Recht_5_Apothekenbetrieb_und_Eichrecht_combined (1).html" class="resource-link">Study Materials →</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-type type-interactive">🎮 Interactive</span>
+                    <h3>Recht 5: Apothekenbetrieb & Eichrecht (Interactive)</h3>
+                    <p>Practice pharmacy operations and calibration law terminology.</p>
+                    <a href="Recht_5_Apothekenbetrieb_und_Eichrecht_interactive (1).html" class="resource-link">Start Practice →</a>
+                </div>
+
+                <!-- Recht 6 - General Legal & Healthcare -->
+                <div class="resource-card">
+                    <span class="resource-type type-combined">📚 Combined</span>
+                    <h3>Recht 6: Allgemeine Rechtskunde & Gesundheitsverwaltung</h3>
+                    <p>General legal knowledge and healthcare administration terminology.</p>
+                    <a href="Recht_6_Allgemeine_Rechtskunde_und_Gesundheitsverwaltung_combined.html" class="resource-link">Study Materials →</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-type type-interactive">🎮 Interactive</span>
+                    <h3>Recht 6: Allgemeine Rechtskunde & Gesundheitsverwaltung (Interactive)</h3>
+                    <p>Interactive practice for general legal and healthcare administration vocabulary.</p>
+                    <a href="Recht_6_Allgemeine_Rechtskunde_und_Gesundheitsverwaltung_interactive.html" class="resource-link">Start Practice →</a>
+                </div>
+
+                <!-- Recht 7 - Labor Law -->
+                <div class="resource-card">
+                    <span class="resource-type type-combined">📚 Combined</span>
+                    <h3>Recht 7: ARBEITSRECHT (Labor Law)</h3>
+                    <p>Essential vocabulary for German employment law and workplace regulations.</p>
+                    <a href="Recht_7_ARBEITSRECHT_Labor_Law_combined.html" class="resource-link">Study Materials →</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-type type-interactive">🎮 Interactive</span>
+                    <h3>Recht 7: ARBEITSRECHT (Interactive)</h3>
+                    <p>Practice German labor law and employment terminology interactively.</p>
+                    <a href="Recht_7_ARBEITSRECHT_Labor_Law_interactive.html" class="resource-link">Start Practice →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- BUSINESS & FINANCE SECTION -->
+        <div class="category-section">
+            <div class="category-header">
+                <div class="category-icon">💼</div>
+                <div class="category-info">
+                    <h2>Business, Finance & Accounting</h2>
+                    <p>Professional vocabulary for business and financial contexts</p>
+                </div>
+            </div>
+
+            <div class="resource-grid">
+                <!-- Recht 8 - Accounting & Finance -->
+                <div class="resource-card">
+                    <span class="resource-type type-combined">📚 Combined</span>
+                    <h3>Recht 8: Buchführung, Bilanzierung & Finanzierung</h3>
+                    <p>Comprehensive vocabulary for bookkeeping, accounting, pharmacy finance, and financial management.</p>
+                    <a href="Recht_8_Buchfhrung_Bilanzierung_und_Finanzierung_Pharmacy_Accounting__Finance_combined.html" class="resource-link">Study Materials →</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-type type-interactive">🎮 Interactive</span>
+                    <h3>Recht 8: Buchführung, Bilanzierung & Finanzierung (Interactive)</h3>
+                    <p>Practice accounting and finance terminology with interactive exercises.</p>
+                    <a href="Recht_8_Buchfhrung_Bilanzierung_und_Finanzierung_Pharmacy_Accounting__Finance_interactive.html" class="resource-link">Start Practice →</a>
+                </div>
+
+                <!-- Recht 9 - Tax Law -->
+                <div class="resource-card">
+                    <span class="resource-type type-combined">📚 Combined</span>
+                    <h3>Recht 9: Steuerrecht & Sozialversicherung</h3>
+                    <p>Tax law and social insurance vocabulary for professional contexts.</p>
+                    <a href="Recht_9_Steuerrecht_und_Sozialversicherung_Tax_Law__Social_Insurance_combined.html" class="resource-link">Study Materials →</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-type type-interactive">🎮 Interactive</span>
+                    <h3>Recht 9: Steuerrecht & Sozialversicherung (Interactive)</h3>
+                    <p>Interactive practice for tax law and social insurance terminology.</p>
+                    <a href="Recht_9_Steuerrecht_und_Sozialversicherung_Tax_Law__Social_Insurance_interactive.html" class="resource-link">Start Practice →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- HEALTHCARE & PHARMACY SECTION -->
+        <div class="category-section">
+            <div class="category-header">
+                <div class="category-icon">🏥</div>
+                <div class="category-info">
+                    <h2>Healthcare & Pharmaceutical Systems</h2>
+                    <p>Specialized vocabulary for healthcare professionals</p>
+                </div>
+            </div>
+
+            <div class="resource-grid">
+                <!-- Recht 10 - Pharmaceutical Market -->
+                <div class="resource-card">
+                    <span class="resource-type type-combined">📚 Combined</span>
+                    <h3>Recht 10: Arzneimittelmarkt & Pharmakökonomie</h3>
+                    <p>Pharmaceutical market dynamics and pharmacoeconomics terminology.</p>
+                    <a href="Recht_10_Arzneimittelmarkt_und_Pharmakokonomie_combined.html" class="resource-link">Study Materials →</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-type type-interactive">🎮 Interactive</span>
+                    <h3>Recht 10: Arzneimittelmarkt & Pharmakökonomie (Interactive)</h3>
+                    <p>Practice pharmaceutical market and pharmacoeconomics vocabulary.</p>
+                    <a href="Recht_10_Arzneimittelmarkt_und_Pharmakokonomie_interactive.html" class="resource-link">Start Practice →</a>
+                </div>
+
+                <!-- SGB V - Health Insurance System -->
+                <div class="resource-card">
+                    <span class="resource-type type-combined">📚 Combined</span>
+                    <h3>SGB V: Health Insurance System & Drug Pricing</h3>
+                    <p>German health insurance vocabulary and pharmaceutical pricing regulations.</p>
+                    <a href="SGB_V__AMPreisV_-_Health_Insurance_System__Drug_Pricing_combined (1).html" class="resource-link">Study Materials →</a>
+                </div>
+
+                <div class="resource-card">
+                    <span class="resource-type type-interactive">🎮 Interactive</span>
+                    <h3>SGB V: Health Insurance System & Drug Pricing (Interactive)</h3>
+                    <p>Interactive practice for health insurance and drug pricing terminology.</p>
+                    <a href="SGB_V__AMPreisV_-_Health_Insurance_System__Drug_Pricing_interactive (1).html" class="resource-link">Start Practice →</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- SPECIALIZED TERMINOLOGY SECTION -->
+        <div class="category-section">
+            <div class="category-header">
+                <div class="category-icon">📖</div>
+                <div class="category-info">
+                    <h2>Specialized Terminology</h2>
+                    <p>Advanced vocabulary and phrases for professional communication</p>
+                </div>
+            </div>
+
+            <div class="resource-grid">
+                <!-- FSP Multi-Nouns -->
+                <div class="resource-card">
+                    <span class="resource-type type-combined">📚 Reference</span>
+                    <h3>FSP: Multi-Nouns, Vocabulary & Phrases</h3>
+                    <p>Comprehensive collection of compound nouns, specialized vocabulary, and professional phrases for FSP preparation.</p>
+                    <a href="FSP-mult-nouns_vocab_phrases.html" class="resource-link">View Reference →</a>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-content">
+            <h3 style="color: #667eea; margin-bottom: 20px;">Master Professional German</h3>
+            <div class="footer-nav">
+                <a href="../vocabulary.html">← Back to Vocabulary</a>
+                <a href="../../index.html">🏠 Home</a>
+                <a href="../../tools/progress.html">📊 Track Progress</a>
+            </div>
+            <p style="margin-top: 30px; opacity: 0.8;">
+                Created by: <strong>aliattia02</strong> | © 2025
+            </p>
+            <p style="margin-top: 10px; font-size: 0.9em; opacity: 0.7;">
+                Specialized German Legal & Professional Resources
+            </p>
+        </div>
+    </footer>
+
+</body>
+</html>
