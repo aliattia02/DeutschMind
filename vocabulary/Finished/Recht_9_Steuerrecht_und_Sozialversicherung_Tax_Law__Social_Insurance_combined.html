@@ -1,0 +1,1346 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary & Phrases - Steuerrecht und Sozialversicherung (Tax Law & Social Insurance)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 5px;
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .zoom-label {
+            font-size: 0.75em;
+            font-weight: bold;
+            color: #666;
+            padding: 0 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .zoom-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 3px;
+            min-width: 40px;
+        }
+
+        .zoom-btn:hover {
+            background: #555;
+        }
+
+        .zoom-level {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .print-button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .print-button:hover {
+            background: #333;
+        }
+
+        .content-wrapper {
+            max-width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* SECTION DIVIDER */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* NOUN TABLE STYLING */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f5f5f5;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 4%;
+            max-width: 50px;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 17%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 13%;
+        }
+
+        /* Color coding for articles */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ADJECTIVE/VERB TABLE STYLING */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col {
+            font-weight: 600;
+            width: 15%;
+        }
+
+        .word-table .english-col {
+            color: #333;
+            width: 10%;
+        }
+
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* EXPRESSIONS TABLE */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .expressions-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* CONVERSATIONS TABLE */
+        .conversations-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #2C3E50 !important;
+            color: white !important;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: center;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td {
+            padding: 6px 8px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .conversations-table .speaker-cell {
+            width: 4%;
+            font-weight: bold;
+            text-align: center;
+            background: #E8E8E8 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .german-cell {
+            width: 22%;
+            font-weight: 600;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .english-cell {
+            width: 22%;
+            color: #333;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Q&A TABLE */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .qa-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFE6E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 25%;
+            background: #E6F7E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* SENTENCES TABLE */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .sentences-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #F0E6FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #E6FFE6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9 !important;
+            border-top: 2px solid #666;
+            font-size: 1em;
+            page-break-before: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info h3 {
+            font-size: 1.43em;
+            margin-bottom: 5px;
+        }
+
+        .footer-info p {
+            margin: 3px 0;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        @media print {
+            body {
+                padding: 5px;
+                max-width: 100%;
+            }
+
+            .controls {
+                display: none !important;
+            }
+
+            .content-wrapper {
+                max-width: 100%;
+            }
+
+            .table-section {
+                overflow-x: visible;
+                max-width: 100%;
+                margin-bottom: 2px;
+                page-break-inside: auto;
+            }
+
+            .table-section h2 {
+                margin-top: 2px;
+                page-break-after: avoid;
+                page-break-before: auto;
+            }
+
+            .header {
+                page-break-after: avoid;
+                margin-bottom: 10px;
+            }
+
+            .footer-info {
+                display: none !important;
+            }
+
+            .section-divider {
+                page-break-before: always;
+            }
+
+            @page {
+                margin: 1cm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        @media screen {
+            .controls {
+                display: flex !important;
+            }
+            
+            body {
+                max-width: 1400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="zoom-controls">
+            <span class="zoom-label">📚 Vocab:</span>
+            <button class="zoom-btn" onclick="zoomOutVocab()" title="Zoom Out Vocab">−</button>
+            <span class="zoom-level" id="zoomLevelVocab">100%</span>
+            <button class="zoom-btn" onclick="zoomInVocab()" title="Zoom In Vocab">+</button>
+            <button class="zoom-btn" onclick="resetZoomVocab()" title="Reset Zoom Vocab">⟲</button>
+        </div>
+        <div class="zoom-controls">
+            <span class="zoom-label">💬 Phrases:</span>
+            <button class="zoom-btn" onclick="zoomOutPhrases()" title="Zoom Out Phrases">−</button>
+            <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+            <button class="zoom-btn" onclick="zoomInPhrases()" title="Zoom In Phrases">+</button>
+            <button class="zoom-btn" onclick="resetZoomPhrases()" title="Reset Zoom Phrases">⟲</button>
+        </div>
+        <button class="print-button" onclick="window.print()">🖨️ Print</button>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 German Vocabulary & Phrases - Steuerrecht und Sozialversicherung (Tax Law & Social Insurance)</h1>
+        </div>
+
+        <!-- VOCABULARY SECTION -->
+        <div id="vocabSection">
+            <!-- TABLE 1: NOUNS -->
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col style="width: 19%;">
+                        <col style="width: 9%;">
+                        <col style="width: 17%;">
+                        <col style="width: 5%;">
+                        <col style="width: 19%;">
+                        <col style="width: 9%;">
+                        <col style="width: 17%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives & Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES & SENTENCES</h2>
+        </div>
+
+        <!-- PHRASES SECTION -->
+        <div id="phrasesSection">
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions & Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- REFERENCE INFORMATION -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Document Info:</strong> Topic: Pharmaceutical Law | Level: Professional/Academic | Created: 2025</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Väter, Mütter = full form with umlaut | --- = no change | kein Plural = no plural form</p>
+            <p><strong>Color Coding:</strong> <span style="color: #1565C0;">■ der (blue)</span> | <span style="color: #2E7D32;">■ das (green)</span> | <span style="color: #C62828;">■ die (red)</span></p>
+            <p><strong>Prefix Guide:</strong> - prefix = Adjective | * prefix = Weak Verb | + prefix = Strong Verb</p>
+            <p><strong>Organization:</strong> Horizontal pairs are opposites (Column 1 ↔ Column 2, Column 3 ↔ Column 4)</p>
+        </div>
+    </div>
+
+    <script>
+// ============================================
+// ZOOM FUNCTIONALITY - SEPARATE FOR EACH SECTION
+// ============================================
+let vocabZoom = 100;
+let phrasesZoom = 100;
+const zoomStep = 10;
+const minZoom = 50;
+const maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    const section = document.getElementById('vocabSection');
+    const zoomLevel = document.getElementById('zoomLevelVocab');
+    
+    const newFontSize = baseFontSize * (vocabZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${vocabZoom}%`;
+}
+
+function updatePhrasesZoom() {
+    const section = document.getElementById('phrasesSection');
+    const zoomLevel = document.getElementById('zoomLevelPhrases');
+    
+    const newFontSize = baseFontSize * (phrasesZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${phrasesZoom}%`;
+}
+
+function zoomInVocab() {
+    if (vocabZoom < maxZoom) {
+        vocabZoom += zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function zoomOutVocab() {
+    if (vocabZoom > minZoom) {
+        vocabZoom -= zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function resetZoomVocab() {
+    vocabZoom = 100;
+    updateVocabZoom();
+}
+
+function zoomInPhrases() {
+    if (phrasesZoom < maxZoom) {
+        phrasesZoom += zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function zoomOutPhrases() {
+    if (phrasesZoom > minZoom) {
+        phrasesZoom -= zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function resetZoomPhrases() {
+    phrasesZoom = 100;
+    updatePhrasesZoom();
+}
+
+window.addEventListener('load', function() {
+    updateVocabZoom();
+    updatePhrasesZoom();
+});
+
+// ============================================
+// CSV DATA - NOUNS
+// ============================================
+const nounsCSV = `
+das,Steuerrecht,-e,die Steuerrechte,tax-law
+das,Sozialversicherungswesen,-,die Sozialversicherungswesen,social-insurance-system
+das,Finanzamt,Finanzämter,die Finanzämter,tax-office
+das,Bruttogehalt,Bruttogehälter,die Bruttogehälter,gross-salary
+das,Nettogehalt,Nettogehälter,die Nettogehälter,net-salary
+das,Arbeitsentgelt,-e,die Arbeitsentgelte,employment-income
+das,Einkommen,-,die Einkommen,income
+das,Entgelt,-e,die Entgelte,remuneration
+das,Versorgungswerk,-e,die Versorgungswerke,pension-fund
+das,Umlageverfahren,-,die Umlageverfahren,pay-as-you-go-system
+das,Alterseinkünftegesetz,-e,die Alterseinkünftegesetze,retirement-income-act
+das,Faktorverfahren,-,die Faktorverfahren,factor-method
+das,Splittingverfahren,-,die Splittingverfahren,income-splitting
+das,Realsplitting,-,die Realsplittings,real-splitting
+das,Pauschbeträge,-,die Pauschbeträge,standard-deduction
+das,Homeoffice,-s,die Homeoffices,home-office
+das,Arbeitszimmer,-,die Arbeitszimmer,study-room
+das,Arbeitsmittel,-,die Arbeitsmittel,work-equipment
+das,Lastschriftverfahren,-,die Lastschriftverfahren,direct-debit
+das,Mandat,-e,die Mandate,mandate
+der,Hebesatz,Hebesätze,die Hebesätze,assessment-rate
+der,Gewerbeertrag,Gewerbeerträge,die Gewerbeerträge,trade-income
+der,Steuermessbetrag,Steuermessbeträge,die Steuermessbeträge,tax-base-amount
+der,Freibetrag,Freibeträge,die Freibeträge,tax-allowance
+der,Grundfreibetrag,Grundfreibeträge,die Grundfreibeträge,basic-allowance
+der,Entlastungsbetrag,Entlastungsbeträge,die Entlastungsbeträge,relief-amount
+der,Altersentlastungsbetrag,Altersentlastungsbeträge,die Altersentlastungsbeträge,age-relief-amount
+der,Grenzsteuersatz,Grenzsteuersätze,die Grenzsteuersätze,marginal-tax-rate
+der,Spitzensteuersatz,Spitzensteuersätze,die Spitzensteuersätze,top-tax-rate
+der,Solidaritätszuschlag,Solidaritätszuschläge,die Solidaritätszuschläge,solidarity-surcharge
+der,Vorsteuerabzug,Vorsteuerabzüge,die Vorsteuerabzüge,input-tax-deduction
+der,Regelsteuersatz,Regelsteuersätze,die Regelsteuersätze,standard-tax-rate
+der,Steuersatz,Steuersätze,die Steuersätze,tax-rate
+der,Beitragssatz,Beitragssätze,die Beitragssätze,contribution-rate
+der,Versicherungsbeitrag,Versicherungsbeiträge,die Versicherungsbeiträge,insurance-contribution
+der,Arbeitgeberanteil,-e,die Arbeitgeberanteile,employer-contribution
+der,Arbeitnehmeranteil,-e,die Arbeitnehmeranteile,employee-contribution
+der,Rentenbeitrag,Rentenbeiträge,die Rentenbeiträge,pension-contribution
+der,Pflegebeitrag,Pflegebeiträge,die Pflegebeiträge,care-insurance-contribution
+der,Entgeltpunkt,-e,die Entgeltpunkte,earnings-point
+der,Versicherungsträger,-,die Versicherungsträger,insurance-provider
+der,Sozialversicherungsausweis,-e,die Sozialversicherungsausweise,social-insurance-card
+der,Berufsgenossenschaft,-en,die Berufsgenossenschaften,employers-liability-insurance
+der,Pflegegrad,-e,die Pflegegrade,care-level
+der,Zusatzbeitrag,Zusatzbeiträge,die Zusatzbeiträge,additional-contribution
+der,Minijob,-s,die Minijobs,mini-job
+der,Mindestlohn,Mindestlöhne,die Mindestlöhne,minimum-wage
+die,Abgabenordnung,-en,die Abgabenordnungen,tax-code
+die,Einkommensteuer,-n,die Einkommensteuern,income-tax
+die,Gewerbesteuer,-n,die Gewerbesteuern,trade-tax
+die,Umsatzsteuer,-n,die Umsatzsteuern,value-added-tax
+die,Lohnsteuer,-n,die Lohnsteuern,wage-tax
+die,Vorsteuer,-n,die Vorsteuern,input-tax
+die,Zahllast,-en,die Zahllasten,tax-liability
+die,Vorauszahlung,-en,die Vorauszahlungen,advance-payment
+die,Steuererklärung,-en,die Steuererklärungen,tax-return
+die,Steuerpflicht,-en,die Steuerpflichten,tax-obligation
+die,Bemessungsgrundlage,-n,die Bemessungsgrundlagen,assessment-base
+die,Beitragsbemessungsgrenze,-n,die Beitragsbemessungsgrenzen,contribution-ceiling
+die,Einkunftsart,-en,die Einkunftsarten,type-of-income
+die,Betriebsausgabe,-n,die Betriebsausgaben,business-expense
+die,Werbungskosten,nur P,die Werbungskosten,work-related-expenses
+die,Sonderausgabe,-n,die Sonderausgaben,special-expenses
+die,Entfernungspauschale,-n,die Entfernungspauschalen,commuting-allowance
+die,Fortbildungskosten,nur P,die Fortbildungskosten,training-costs
+die,Bewerbungskosten,nur P,die Bewerbungskosten,application-costs
+die,Umzugskosten,nur P,die Umzugskosten,relocation-costs
+die,Vorsorgeaufwendung,-en,die Vorsorgeaufwendungen,pension-contributions
+die,Altersvorsorge,-n,die Altersvorsorgen,retirement-provision
+die,Krankenversicherung,-en,die Krankenversicherungen,health-insurance
+die,Pflegeversicherung,-en,die Pflegeversicherungen,care-insurance
+die,Rentenversicherung,-en,die Rentenversicherungen,pension-insurance
+die,Arbeitslosenversicherung,-en,die Arbeitslosenversicherungen,unemployment-insurance
+die,Unfallversicherung,-en,die Unfallversicherungen,accident-insurance
+die,Regelaltersgrenze,-n,die Regelaltersgrenzen,standard-retirement-age
+die,Erwerbsminderung,-en,die Erwerbsminderungen,reduced-earning-capacity
+die,Pflegebedürftigkeit,-en,die Pflegebedürftigkeiten,need-for-care
+die,Wartezeit,-en,die Wartezeiten,qualifying-period
+die,Familienversicherung,-en,die Familienversicherungen,family-insurance
+die,Zuzahlung,-en,die Zuzahlungen,co-payment
+die,Belastungsgrenze,-n,die Belastungsgrenzen,burden-limit
+die,Ersatzkasse,-n,die Ersatzkassen,substitute-fund
+die,Ortskrankenkasse,-n,die Ortskrankenkassen,local-sickness-fund
+die,Betriebskrankenkasse,-n,die Betriebskrankenkassen,company-health-fund
+die,Berufsgenossenschaft,-en,die Berufsgenossenschaften,trade-association
+die,Lohnsteuerklasse,-n,die Lohnsteuerklassen,tax-class
+die,Jahresarbeitsentgeltgrenze,-n,die Jahresarbeitsentgeltgrenzen,annual-income-threshold
+die,Haushaltsführung,-en,die Haushaltsführungen,housekeeping
+die,Progressionszone,-n,die Progressionszonen,progression-zone
+die,Splittingtabelle,-n,die Splittingtabellen,splitting-table
+die,Grundtabelle,-n,die Grundtabellen,basic-table
+
+`.trim();
+
+// ============================================
+// CSV DATA - ADJECTIVES
+// ============================================
+const adjectivesCSV = `
+-steuerpflichtig,taxable,-steuerfrei,tax-exempt
+-versicherungspflichtig,compulsory-insured,-versicherungsfrei,exempt-from-insurance
+-beitragspflichtig,contribution-liable,-beitragsfrei,contribution-free
+-abzugsfähig,deductible,-nicht-abzugsfähig,non-deductible
+-pflichtversichert,compulsorily-insured,-freiwillig-versichert,voluntarily-insured
+-sozialversicherungspflichtig,subject-to-social-insurance,-sozialversicherungsfrei,exempt-from-social-insurance
+-gesetzlich,statutory,-privat,private
+-progressiv,progressive,-proportional,proportional
+-brutto,gross,-netto,net
+-kurzfristig,short-term,-langfristig,long-term
+-geringfügig,marginal,-regulär,regular
+-unbeschränkt,unlimited,-beschränkt,limited
+-erwerbstätig,gainfully-employed,-erwerbslos,unemployed
+-rentenversicherungspflichtig,pension-insured,-rentenversicherungsfrei,pension-exempt
+
+`.trim();
+
+// ============================================
+// CSV DATA - VERBS
+// ============================================
+const verbsCSV = `
+*versteuern,tax,*abführen,remit
+*erheben,levy,*einziehen,collect
+*anrechnen,credit,*verrechnen,offset
+*erstatten,refund,*zurückzahlen,repay
+*geltend-machen,claim,*beantragen,apply-for
+*einbehalten,withhold,*abziehen,deduct
+*veranlagen,assess,*festsetzen,determine
+*beitragen,contribute,*einzahlen,pay-in
+*versichern,insure,*absichern,secure
+*befreien,exempt,*entlasten,relieve
+*bezuschussen,subsidize,*fördern,support
+*abrechnen,bill,*verrechnen,settle
+*überschreiten,exceed,*unterschreiten,fall-below
+*mindern,reduce,*erhöhen,increase
++erwerben,acquire,+verlieren,lose
++vorziehen,bring-forward,+vortragen,carry-forward
++unterliegen,be-subject-to,+entfallen,lapse
++entstehen,arise,+erlöschen,expire
++gelten,apply,+bestehen,exist
++beitreten,join,+austreten,leave
+
+`.trim();
+
+// ============================================
+// CSV DATA - EXPRESSIONS
+// ============================================
+const expressionsCSV = `
+Die Steuererklärung ist abzugeben.,The tax return must be filed.
+Der Freibetrag wird gewährt.,The allowance is granted.
+Die Beiträge werden eingezogen.,Contributions are collected.
+Das zu versteuernde Einkommen beträgt.,Taxable income amounts to.
+Die Zuzahlung ist zu leisten.,The co-payment must be made.
+Die Belastungsgrenze ist erreicht.,The burden limit is reached.
+Der Arbeitgeber führt die Lohnsteuer ab.,The employer remits wage tax.
+Die Vorsteuer wird abgezogen.,Input tax is deducted.
+Es besteht Versicherungspflicht.,There is compulsory insurance.
+Die Wartezeit ist erfüllt.,The qualifying period is met.
+Der Beitragssatz beträgt.,The contribution rate is.
+Die Rentenversicherung wird bezahlt.,Pension insurance is paid.
+Die Steuer wird vom Gehalt einbehalten.,Tax is withheld from salary.
+Der Gewerbeertrag wird ermittelt.,Trade income is determined.
+Die Krankenversicherung übernimmt die Kosten.,Health insurance covers the costs.
+
+`.trim();
+
+// ============================================
+// CSV DATA - CONVERSATIONS
+// ============================================
+const conversationsCSV = `
+Steuererklärung|A,Müssen Sie eine Steuererklärung abgeben?,Do you have to file a tax return?
+Steuererklärung|B,Ja als Apotheker bin ich dazu verpflichtet.,Yes as a pharmacist I am obliged to.
+Steuererklärung|A,Welche Werbungskosten können Sie geltend machen?,What work expenses can you claim?
+Steuererklärung|B,Ich habe Fortbildungskosten und Fahrtkosten.,I have training costs and travel expenses.
+Steuererklärung|A,Haben Sie Belege dafür?,Do you have receipts for that?
+Steuererklärung|B,Ja alle Belege sind vorhanden.,Yes all receipts are available.
+Sozialversicherung|A,Sind Sie sozialversicherungspflichtig beschäftigt?,Are you employed subject to social insurance?
+Sozialversicherung|B,Ja ich bin angestellter Apotheker.,Yes I am an employed pharmacist.
+Sozialversicherung|A,Welche Beiträge werden abgezogen?,Which contributions are deducted?
+Sozialversicherung|B,Kranken Pflege Renten und Arbeitslosenversicherung.,Health care pension and unemployment insurance.
+Sozialversicherung|A,Zahlt der Arbeitgeber die Hälfte?,Does the employer pay half?
+Sozialversicherung|B,Ja außer bei der Pflegeversicherung.,Yes except for care insurance.
+Lohnabrechnung|A,Verstehen Sie Ihre Lohnabrechnung?,Do you understand your payslip?
+Lohnabrechnung|B,Nicht ganz wo finde ich die Lohnsteuer?,Not quite where do I find wage tax?
+Lohnabrechnung|A,Die Lohnsteuer steht unter den Abzügen.,Wage tax is under deductions.
+Lohnabrechnung|B,Und die Sozialversicherungsbeiträge auch?,And social insurance contributions too?
+Lohnabrechnung|A,Ja beides wird vom Bruttogehalt abgezogen.,Yes both are deducted from gross salary.
+Lohnabrechnung|B,Dann ergibt sich das Nettogehalt.,Then the net salary results.
+
+`.trim();
+
+// ============================================
+// CSV DATA - Q&A
+// ============================================
+const qaCSV = `
+Was ist die Gewerbesteuer?,Die Gewerbesteuer besteuert den Ertrag eines Gewerbebetriebs. (Trade tax taxes the income of a business.)
+Wer zahlt Einkommensteuer?,Natürliche Personen mit Wohnsitz im Inland. (Natural persons with residence in Germany.)
+Was ist der Grundfreibetrag?,Der Grundfreibetrag ist steuerfrei im Jahr 2026 12384 Euro. (Basic allowance is tax-free in 2026 12384 euros.)
+Was bedeutet Splittingtarif?,Splittingtarif gilt für verheiratete Steuerpflichtige. (Splitting tariff applies to married taxpayers.)
+Was ist Umsatzsteuer?,Umsatzsteuer ist eine Steuer auf Lieferungen und Leistungen. (VAT is tax on supplies and services.)
+Wie hoch ist die Regelumsatzsteuer?,Die Regelumsatzsteuer beträgt 19 Prozent. (Standard VAT rate is 19 percent.)
+Was sind Werbungskosten?,Werbungskosten dienen dem Erwerb von Einnahmen. (Work expenses serve to acquire income.)
+Was ist die Entfernungspauschale?,Die Entfernungspauschale beträgt 0,38 Euro pro Kilometer. (Commuting allowance is 0.38 euros per kilometer.)
+Was sind Sonderausgaben?,Sonderausgaben sind weder Betriebsausgaben noch Werbungskosten. (Special expenses are neither business expenses nor work expenses.)
+Welche Sozialversicherungen gibt es?,Kranken Pflege Renten Arbeitslosen und Unfallversicherung. (Health care pension unemployment and accident insurance.)
+Was ist die Beitragsbemessungsgrenze?,Die Grenze bis zu der Beiträge berechnet werden. (The limit up to which contributions are calculated.)
+Wer zahlt die Unfallversicherung?,Der Arbeitgeber zahlt die Unfallversicherung allein. (The employer pays accident insurance alone.)
+Was ist ein Minijob?,Ein Minijob ist eine geringfügige Beschäftigung bis 538 Euro. (A mini-job is marginal employment up to 538 euros.)
+Was bedeutet Versicherungspflicht?,Versicherungspflicht bedeutet man muss versichert sein. (Compulsory insurance means one must be insured.)
+Was ist die Regelaltersgrenze?,Die Regelaltersgrenze liegt bei 67 Jahren. (Standard retirement age is 67 years.)
+Wann besteht Familienversicherung?,Bei gesetzlicher Krankenversicherung für Angehörige. (With statutory health insurance for dependents.)
+Was ist ein Pflegegrad?,Ein Pflegegrad bestimmt den Umfang der Pflegeleistungen. (A care level determines the scope of care benefits.)
+Was sind Zuzahlungen?,Zuzahlungen sind Eigenbeteiligungen der Versicherten. (Co-payments are patient contributions.)
+Was ist die Belastungsgrenze?,Die Grenze bei der Zuzahlungsbefreiung eintritt. (The limit where co-payment exemption occurs.)
+Welche Lohnsteuerklassen gibt es?,Es gibt sechs Lohnsteuerklassen. (There are six tax classes.)
+
+`.trim();
+
+// ============================================
+// CSV DATA - SENTENCES
+// ============================================
+const sentencesCSV = `
+Steuern sind Geldleistungen ohne Gegenleistung.,Taxes are monetary payments without consideration.
+Die Einkommensteuer wird auf das Einkommen erhoben.,Income tax is levied on income.
+Die Gewerbesteuer wird von der Gemeinde erhoben.,Trade tax is levied by the municipality.
+Der Hebesatz wird von der Gemeinde festgelegt.,The assessment rate is set by the municipality.
+Die Umsatzsteuer wird prozentual vom Entgelt berechnet.,VAT is calculated as percentage of remuneration.
+Die Vorsteuer kann abgezogen werden.,Input tax can be deducted.
+Das zu versteuernde Einkommen ist die Bemessungsgrundlage.,Taxable income is the assessment base.
+Die Lohnsteuer wird vom Arbeitgeber einbehalten.,Wage tax is withheld by the employer.
+Der Solidaritätszuschlag beträgt 5,5 Prozent.,The solidarity surcharge is 5.5 percent.
+Die Entfernungspauschale beträgt 0,38 Euro pro Kilometer.,The commuting allowance is 0.38 euros per kilometer.
+Werbungskosten mindern die steuerpflichtigen Einkünfte.,Work expenses reduce taxable income.
+Sonderausgaben sind von den Einkünften abziehbar.,Special expenses are deductible from income.
+Die Sozialversicherung hat fünf Zweige.,Social insurance has five branches.
+Die Beiträge richten sich nach dem Bruttogehalt.,Contributions are based on gross salary.
+Die Krankenversicherung übernimmt die Behandlungskosten.,Health insurance covers treatment costs.
+Die Rentenversicherung sichert das Alter ab.,Pension insurance secures old age.
+Die Pflegeversicherung zahlt bei Pflegebedürftigkeit.,Care insurance pays for need of care.
+Die Arbeitslosenversicherung zahlt Arbeitslosengeld.,Unemployment insurance pays unemployment benefit.
+Die Unfallversicherung zahlt der Arbeitgeber allein.,The employer pays accident insurance alone.
+Die Beitragsbemessungsgrenze begrenzt die Beiträge.,The contribution ceiling limits contributions.
+Die Regelaltersgrenze liegt bei 67 Jahren.,The standard retirement age is 67 years.
+Versicherte zahlen Zuzahlungen zu Arzneimitteln.,Insured persons pay co-payments for medicines.
+Die Belastungsgrenze beträgt 2 Prozent des Einkommens.,The burden limit is 2 percent of income.
+Chronisch Kranke zahlen nur 1 Prozent.,Chronically ill pay only 1 percent.
+Ein Minijob ist sozialversicherungsfrei für den Arbeitnehmer.,A mini-job is exempt from social insurance for employee.
+Der Arbeitgeber zahlt pauschale Beiträge beim Minijob.,The employer pays flat-rate contributions for mini-job.
+Die Apothekerversorgung ersetzt die gesetzliche Rentenversicherung.,Pharmacist pension fund replaces statutory pension insurance.
+Der Befreiungsantrag muss innerhalb drei Monaten gestellt werden.,The exemption application must be filed within three months.
+Die Familienversicherung ist beitragsfrei.,Family insurance is contribution-free.
+Die Lohnsteuerklasse bestimmt die Lohnsteuer.,The tax class determines wage tax.
+
+`.trim();
+
+// ============================================
+// PARSE CSV FUNCTION
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .map(line => line.split(',').map(cell => cell.trim()));
+}
+
+// ============================================
+// RENDER NOUNS TABLE
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV);
+    const grouped = { das: [], der: [], die: [] };
+
+    data.forEach(row => {
+        const [article, german, pluralNotation, pluralFull, english] = row;
+        grouped[article].push({ article, german, pluralNotation, pluralFull, english });
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    const articles = ['der', 'das', 'die'];
+    
+    articles.forEach((article, articleIndex) => {
+        const words = grouped[article];
+        const numRows = Math.ceil(words.length / 2);
+        
+        for (let row = 0; row < numRows; row++) {
+            const word1 = words[row];
+            const word2 = words[row + numRows];
+            
+            const rowClass = `${article}-row`;
+            const articleClass = `${article}-article`;
+            
+            html += `<tr class="${rowClass}">`;
+            
+            if (word1) {
+                html += `<td class="article-cell ${articleClass}">${word1.article}</td>`;
+                html += `<td class="german-cell">${word1.german}</td>`;
+                html += `<td class="plural-cell">${word1.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word1.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            if (word2) {
+                html += `<td class="article-cell ${articleClass}">${word2.article}</td>`;
+                html += `<td class="german-cell">${word2.german}</td>`;
+                html += `<td class="plural-cell">${word2.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        if (articleIndex < articles.length - 1) {
+            html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+        }
+    });
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS TABLE
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV);
+    const verbData = parseCSV(verbsCSV);
+    
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    // Process adjectives - split into two halves like nouns table
+    const numAdjRows = Math.ceil(adjData.length / 2);
+    
+    for (let i = 0; i < numAdjRows; i++) {
+        html += `<tr class="adjective-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (adjData[i]) {
+            const row = adjData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numAdjRows;
+        if (adjData[secondRowIndex]) {
+            const row = adjData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+
+    // Process verbs - split into two halves like nouns table
+    const numVerbRows = Math.ceil(verbData.length / 2);
+    
+    for (let i = 0; i < numVerbRows; i++) {
+        html += `<tr class="verb-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (verbData[i]) {
+            const row = verbData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numVerbRows;
+        if (verbData[secondRowIndex]) {
+            const row = verbData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS TABLE
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV);
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const data = parseCSV(conversationsCSV);
+    const container = document.getElementById('conversationsContainer');
+    
+    const conversations = {};
+    data.forEach(row => {
+        const parts = row[0].split('|');
+        const title = parts[0];
+        const speaker = parts[1];
+        const german = row[1];
+        const english = row[2];
+        
+        if (!conversations[title]) {
+            conversations[title] = [];
+        }
+        conversations[title].push({ speaker, german, english });
+    });
+    
+    let html = '';
+    for (const [title, lines] of Object.entries(conversations)) {
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="7" class="conversation-title">${title}</td></tr>`;
+        
+        for (let i = 0; i < lines.length; i += 2) {
+            html += `<tr>`;
+            
+            html += `<td class="speaker-cell">${lines[i].speaker}</td>`;
+            html += `<td class="german-cell">${lines[i].german}</td>`;
+            html += `<td class="english-cell">${lines[i].english}</td>`;
+            
+            html += `<td style="width: 1%; background: #ddd; border: none;"></td>`;
+            
+            if (i + 1 < lines.length) {
+                html += `<td class="speaker-cell">${lines[i + 1].speaker}</td>`;
+                html += `<td class="german-cell">${lines[i + 1].german}</td>`;
+                html += `<td class="english-cell">${lines[i + 1].english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        html += `</table>`;
+    }
+    
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A TABLE
+// ============================================
+function renderQATable() {
+    const data = parseCSV(qaCSV);
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [question1, answer1] = data[i];
+        html += `<td class="question-cell">${question1}</td>`;
+        html += `<td class="answer-cell">${answer1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [question2, answer2] = data[i + 1];
+            html += `<td class="question-cell">${question2}</td>`;
+            html += `<td class="answer-cell">${answer2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES TABLE
+// ============================================
+function renderSentencesTable() {
+    const data = parseCSV(sentencesCSV);
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// INITIALIZE ON PAGE LOAD
+// ============================================
+window.addEventListener('load', function() {
+    console.log('📚 Rendering all tables...');
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ All tables rendered successfully!');
+});
+    </script>
+</body>
+</html>

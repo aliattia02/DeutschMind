@@ -1,0 +1,1332 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary & Phrases - Buchführung, Bilanzierung und Finanzierung (Pharmacy Accounting & Finance)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 5px;
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .zoom-label {
+            font-size: 0.75em;
+            font-weight: bold;
+            color: #666;
+            padding: 0 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .zoom-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 3px;
+            min-width: 40px;
+        }
+
+        .zoom-btn:hover {
+            background: #555;
+        }
+
+        .zoom-level {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .print-button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .print-button:hover {
+            background: #333;
+        }
+
+        .content-wrapper {
+            max-width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* SECTION DIVIDER */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* NOUN TABLE STYLING */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f5f5f5;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 4%;
+            max-width: 50px;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 17%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 13%;
+        }
+
+        /* Color coding for articles */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ADJECTIVE/VERB TABLE STYLING */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col {
+            font-weight: 600;
+            width: 15%;
+        }
+
+        .word-table .english-col {
+            color: #333;
+            width: 10%;
+        }
+
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* EXPRESSIONS TABLE */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .expressions-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* CONVERSATIONS TABLE */
+        .conversations-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #2C3E50 !important;
+            color: white !important;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: center;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td {
+            padding: 6px 8px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .conversations-table .speaker-cell {
+            width: 4%;
+            font-weight: bold;
+            text-align: center;
+            background: #E8E8E8 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .german-cell {
+            width: 22%;
+            font-weight: 600;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .english-cell {
+            width: 22%;
+            color: #333;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Q&A TABLE */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .qa-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFE6E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 25%;
+            background: #E6F7E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* SENTENCES TABLE */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .sentences-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #F0E6FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #E6FFE6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9 !important;
+            border-top: 2px solid #666;
+            font-size: 1em;
+            page-break-before: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info h3 {
+            font-size: 1.43em;
+            margin-bottom: 5px;
+        }
+
+        .footer-info p {
+            margin: 3px 0;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        @media print {
+            body {
+                padding: 5px;
+                max-width: 100%;
+            }
+
+            .controls {
+                display: none !important;
+            }
+
+            .content-wrapper {
+                max-width: 100%;
+            }
+
+            .table-section {
+                overflow-x: visible;
+                max-width: 100%;
+                margin-bottom: 2px;
+                page-break-inside: auto;
+            }
+
+            .table-section h2 {
+                margin-top: 2px;
+                page-break-after: avoid;
+                page-break-before: auto;
+            }
+
+            .header {
+                page-break-after: avoid;
+                margin-bottom: 10px;
+            }
+
+            .footer-info {
+                display: none !important;
+            }
+
+            .section-divider {
+                page-break-before: always;
+            }
+
+            @page {
+                margin: 1cm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        @media screen {
+            .controls {
+                display: flex !important;
+            }
+            
+            body {
+                max-width: 1400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="zoom-controls">
+            <span class="zoom-label">📚 Vocab:</span>
+            <button class="zoom-btn" onclick="zoomOutVocab()" title="Zoom Out Vocab">−</button>
+            <span class="zoom-level" id="zoomLevelVocab">100%</span>
+            <button class="zoom-btn" onclick="zoomInVocab()" title="Zoom In Vocab">+</button>
+            <button class="zoom-btn" onclick="resetZoomVocab()" title="Reset Zoom Vocab">⟲</button>
+        </div>
+        <div class="zoom-controls">
+            <span class="zoom-label">💬 Phrases:</span>
+            <button class="zoom-btn" onclick="zoomOutPhrases()" title="Zoom Out Phrases">−</button>
+            <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+            <button class="zoom-btn" onclick="zoomInPhrases()" title="Zoom In Phrases">+</button>
+            <button class="zoom-btn" onclick="resetZoomPhrases()" title="Reset Zoom Phrases">⟲</button>
+        </div>
+        <button class="print-button" onclick="window.print()">🖨️ Print</button>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 German Vocabulary & Phrases - Buchführung, Bilanzierung und Finanzierung (Pharmacy Accounting & Finance)</h1>
+        </div>
+
+        <!-- VOCABULARY SECTION -->
+        <div id="vocabSection">
+            <!-- TABLE 1: NOUNS -->
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col style="width: 19%;">
+                        <col style="width: 9%;">
+                        <col style="width: 17%;">
+                        <col style="width: 5%;">
+                        <col style="width: 19%;">
+                        <col style="width: 9%;">
+                        <col style="width: 17%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives & Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES & SENTENCES</h2>
+        </div>
+
+        <!-- PHRASES SECTION -->
+        <div id="phrasesSection">
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions & Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- REFERENCE INFORMATION -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Document Info:</strong> Topic: Pharmaceutical Law | Level: Professional/Academic | Created: 2025</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Väter, Mütter = full form with umlaut | --- = no change | kein Plural = no plural form</p>
+            <p><strong>Color Coding:</strong> <span style="color: #1565C0;">■ der (blue)</span> | <span style="color: #2E7D32;">■ das (green)</span> | <span style="color: #C62828;">■ die (red)</span></p>
+            <p><strong>Prefix Guide:</strong> - prefix = Adjective | * prefix = Weak Verb | + prefix = Strong Verb</p>
+            <p><strong>Organization:</strong> Horizontal pairs are opposites (Column 1 ↔ Column 2, Column 3 ↔ Column 4)</p>
+        </div>
+    </div>
+
+    <script>
+// ============================================
+// ZOOM FUNCTIONALITY - SEPARATE FOR EACH SECTION
+// ============================================
+let vocabZoom = 100;
+let phrasesZoom = 100;
+const zoomStep = 10;
+const minZoom = 50;
+const maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    const section = document.getElementById('vocabSection');
+    const zoomLevel = document.getElementById('zoomLevelVocab');
+    
+    const newFontSize = baseFontSize * (vocabZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${vocabZoom}%`;
+}
+
+function updatePhrasesZoom() {
+    const section = document.getElementById('phrasesSection');
+    const zoomLevel = document.getElementById('zoomLevelPhrases');
+    
+    const newFontSize = baseFontSize * (phrasesZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${phrasesZoom}%`;
+}
+
+function zoomInVocab() {
+    if (vocabZoom < maxZoom) {
+        vocabZoom += zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function zoomOutVocab() {
+    if (vocabZoom > minZoom) {
+        vocabZoom -= zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function resetZoomVocab() {
+    vocabZoom = 100;
+    updateVocabZoom();
+}
+
+function zoomInPhrases() {
+    if (phrasesZoom < maxZoom) {
+        phrasesZoom += zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function zoomOutPhrases() {
+    if (phrasesZoom > minZoom) {
+        phrasesZoom -= zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function resetZoomPhrases() {
+    phrasesZoom = 100;
+    updatePhrasesZoom();
+}
+
+window.addEventListener('load', function() {
+    updateVocabZoom();
+    updatePhrasesZoom();
+});
+
+// ============================================
+// CSV DATA - NOUNS
+// ============================================
+const nounsCSV = `
+das,Rechnungswesen,-,die Rechnungswesen,accounting
+das,Anlagevermögen,-,die Anlagevermögen,fixed-assets
+das,Umlaufvermögen,-,die Umlaufvermögen,current-assets
+das,Eigenkapital,-,die Eigenkapital,equity
+das,Fremdkapital,-,die Fremdkapital,debt-capital
+das,Inventar,-e,die Inventare,inventory-list
+das,Warenlager,---,die Warenlager,stock
+das,Bankguthaben,-,die Bankguthaben,bank-balance
+das,Darlehen,-,die Darlehen,loan
+das,Zahlungsziel,-e,die Zahlungsziele,payment-term
+das,Skonto,-s,die Skonti,cash-discount
+das,Leasing,-s,die Leasings,leasing
+das,Pfandrecht,-e,die Pfandrechte,lien
+das,Kontokorrent,-e,die Kontokorrent,current-account
+das,Mandat,-e,die Mandate,mandate
+der,Jahresabschluss,Jahresabschlüsse,die Jahresabschlüsse,annual-statement
+der,Geschäftsvorfall,Geschäftsvorfälle,die Geschäftsvorfälle,business-transaction
+der,Wareneinsatz,Wareneinsätze,die Wareneinsätze,cost-of-goods
+der,Rohgewinn,-e,die Rohgewinne,gross-profit
+der,Jahresüberschuss,Jahresüberschüsse,die Jahresüberschüsse,annual-surplus
+der,Fehlbetrag,Fehlbeträge,die Fehlbeträge,deficit
+der,Kontenrahmen,-,die Kontenrahmen,chart-of-accounts
+der,Buchungssatz,Buchungssätze,die Buchungssätze,journal-entry
+der,Anfangsbestand,Anfangsbestände,die Anfangsbestände,opening-balance
+der,Schlussbestand,Schlussbestände,die Schlussbestände,closing-balance
+der,Lieferantenkredit,-e,die Lieferantenkredite,supplier-credit
+der,Bankkredit,-e,die Bankkredite,bank-loan
+der,Zinssatz,Zinssätze,die Zinssätze,interest-rate
+der,Kapitaldienst,-e,die Kapitaldienste,debt-service
+der,Firmenwert,-e,die Firmenwerte,goodwill
+der,Eigentumsvorbehalt,-e,die Eigentumsvorbehalte,retention-of-title
+der,Bürge,-n,die Bürgen,guarantor
+der,Gläubiger,-,die Gläubiger,creditor
+der,Schuldner,-,die Schuldner,debtor
+der,Großhandel,---,die Großhandel,wholesaler
+der,Übernahmepreis,-e,die Übernahmepreise,purchase-price
+der,Kaufpreis,-e,die Kaufpreise,buying-price
+der,Liquiditätsgrad,-e,die Liquiditätsgrade,liquidity-ratio
+die,Bilanz,-en,die Bilanzen,balance-sheet
+die,Gewinn-und-Verlustrechnung,-en,die Gewinn-und-Verlustrechnungen,profit-loss-statement
+die,Buchführung,-en,die Buchführungen,bookkeeping
+die,Inventur,-en,die Inventuren,stocktaking
+die,Abschreibung,-en,die Abschreibungen,depreciation
+die,Rückstellung,-en,die Rückstellungen,provision
+die,Verbindlichkeit,-en,die Verbindlichkeiten,liability
+die,Forderung,-en,die Forderungen,receivable
+die,Tilgung,-en,die Tilgungen,repayment
+die,Zinszahlung,-en,die Zinszahlungen,interest-payment
+die,Finanzierung,-en,die Finanzierungen,financing
+die,Investition,-en,die Investitionen,investment
+die,Kostenrechnung,-en,die Kostenrechnungen,cost-accounting
+die,Kalkulation,-en,die Kalkulationen,calculation
+die,Rentabilität,-en,die Rentabilitäten,profitability
+die,Liquidität,-en,die Liquiditäten,liquidity
+die,Sicherheit,-en,die Sicherheiten,collateral
+die,Bürgschaft,-en,die Bürgschaften,guarantee
+die,Hypothek,-en,die Hypotheken,mortgage
+die,Grundschuld,-en,die Grundschulden,land-charge
+die,Zession,-en,die Zessionen,assignment
+die,Abtretung,-en,die Abtretungen,cession
+die,Valutierung,-en,die Valutierungen,funding
+die,Bereitstellung,-en,die Bereitstellungen,provision
+die,Sicherheitsleistung,-en,die Sicherheitsleistungen,security-deposit
+die,Kapitalstruktur,-en,die Kapitalstrukturen,capital-structure
+die,Eigenfinanzierung,-en,die Eigenfinanzierungen,equity-financing
+die,Fremdfinanzierung,-en,die Fremdfinanzierungen,debt-financing
+die,Innenfinanzierung,-en,die Innenfinanzierungen,internal-financing
+die,Außenfinanzierung,-en,die Außenfinanzierungen,external-financing
+die,Umschlagshäufigkeit,-en,die Umschlagshäufigkeiten,turnover-rate
+die,Kennziffer,-n,die Kennziffern,ratio
+die,Bilanzsumme,-n,die Bilanzsummen,balance-total
+die,Aktivseite,-n,die Aktivseiten,asset-side
+die,Passivseite,-n,die Passivseiten,liability-side
+die,Mittelherkunft,Mittelherkünfte,die Mittelherkünfte,source-of-funds
+die,Mittelverwendung,-en,die Mittelverwendungen,use-of-funds
+
+`.trim();
+
+// ============================================
+// CSV DATA - ADJECTIVES
+// ============================================
+const adjectivesCSV = `
+-kurzfristig,short-term,-langfristig,long-term
+-liquide,liquid,-illiquide,illiquid
+-fällig,due,-überfällig,overdue
+-gesichert,secured,-ungesichert,unsecured
+-beweglich,movable,-unbeweglich,immovable
+-planmäßig,scheduled,-außerplanmäßig,unscheduled
+-abnutzbar,depreciable,-nicht-abnutzbar,non-depreciable
+-akzessorisch,accessory,-fiduziarisch,fiduciary
+-unkündbar,irrevocable,-kündbar,revocable
+-zahlungsfähig,solvent,-zahlungsunfähig,insolvent
+-buchhalterisch,accounting,-kalkulatorisch,imputed
+-erfolgswirksam,affecting-profit,-erfolgsneutral,profit-neutral
+-betriebsnotwendig,operationally-necessary,-nicht-betriebsnotwendig,non-operational
+-werthaltig,valuable,-wertlos,worthless
+
+`.trim();
+
+// ============================================
+// CSV DATA - VERBS
+// ============================================
+const verbsCSV = `
+*buchen,post,*verbuchen,book
+*bilanzieren,balance,*abschließen,close
+*tilgen,repay,*zurückzahlen,pay-back
+*abschreiben,depreciate,*aufschreiben,write-up
+*finanzieren,finance,*refinanzieren,refinance
+*sichern,secure,*absichern,hedge
+*auszahlen,disburse,*einzahlen,deposit
+*verpfänden,pledge,*übereignen,transfer-ownership
+*belegen,document,*nachweisen,prove
+*saldieren,balance-out,*verrechnen,offset
+*fälligstellen,call-due,*stunden,defer
+*valutieren,fund,*abrufen,draw-down
+*besichern,collateralize,*hinterlegen,lodge
+*aktivieren,capitalize,*passivieren,recognize-as-liability
+*kalkulieren,calculate,*ermitteln,determine
++abtreten,assign,+übertragen,transfer
++eingehen,enter-into,+aufnehmen,take-out
++zurückführen,trace-back,+herleiten,derive
++bestehen,exist,+vorliegen,be-present
++belasten,debit,+erhalten,receive
+
+`.trim();
+
+// ============================================
+// CSV DATA - EXPRESSIONS
+// ============================================
+const expressionsCSV = `
+Die Bilanz muss ausgeglichen sein.,The balance sheet must balance.
+Wir müssen die Bücher abschließen.,We must close the books.
+Der Kredit ist besichert.,The loan is secured.
+Die Zahlung ist fällig.,The payment is due.
+Wir buchen auf verschiedene Konten.,We post to different accounts.
+Das wird in der GuV erfasst.,That is recorded in the P&L.
+Die Liquidität muss gewährleistet sein.,Liquidity must be ensured.
+Wir nehmen eine Abschreibung vor.,We make a depreciation.
+Der Betrag wird saldiert.,The amount is balanced out.
+Das Darlehen wird getilgt.,The loan is being repaid.
+Wir aktivieren das Anlagevermögen.,We capitalize the fixed assets.
+Die Forderung wird abgetreten.,The receivable is assigned.
+Das Eigenkapital erhöht sich.,Equity increases.
+Die Verbindlichkeiten werden fällig.,The liabilities become due.
+Wir müssen Sicherheiten stellen.,We must provide collateral.
+
+`.trim();
+
+// ============================================
+// CSV DATA - CONVERSATIONS
+// ============================================
+const conversationsCSV = `
+Finanzierungsgespräch|A,Wie hoch ist der Kapitalbedarf?,What is the capital requirement?
+Finanzierungsgespräch|B,Wir benötigen 500.000 Euro für die Übernahme.,We need 500000 euros for the takeover.
+Finanzierungsgespräch|A,Wie viel Eigenkapital können Sie einbringen?,How much equity can you contribute?
+Finanzierungsgespräch|B,Wir haben 150.000 Euro Eigenkapital.,We have 150000 euros equity.
+Finanzierungsgespräch|A,Welche Sicherheiten können Sie stellen?,What collateral can you provide?
+Finanzierungsgespräch|B,Wir können eine Grundschuld anbieten.,We can offer a land charge.
+Finanzierungsgespräch|A,Die Laufzeit beträgt zehn Jahre.,The term is ten years.
+Finanzierungsgespräch|B,Wie hoch ist der Zinssatz?,What is the interest rate?
+Buchhaltung|A,Haben Sie die Monatsabschlüsse fertig?,Do you have the monthly closings ready?
+Buchhaltung|B,Ja die Bilanz ist ausgeglichen.,Yes the balance sheet balances.
+Buchhaltung|A,Wie hoch ist der Jahresüberschuss?,What is the annual surplus?
+Buchhaltung|B,Der Gewinn beträgt 120.000 Euro.,The profit is 120000 euros.
+Buchhaltung|A,Müssen wir Abschreibungen vornehmen?,Do we need to make depreciation?
+Buchhaltung|B,Ja auf die Sachanlagen 20.000 Euro.,Yes on fixed assets 20000 euros.
+Liquiditätsplanung|A,Wie ist unsere Liquiditätslage?,What is our liquidity situation?
+Liquiditätsplanung|B,Wir haben ausreichend liquide Mittel.,We have sufficient liquid funds.
+Liquiditätsplanung|A,Wann werden die Forderungen fällig?,When do the receivables become due?
+Liquiditätsplanung|B,Die Krankenkassen zahlen nächste Woche.,The insurers pay next week.
+Liquiditätsplanung|A,Müssen wir Verbindlichkeiten begleichen?,Must we settle liabilities?
+Liquiditätsplanung|B,Ja der Großhandel zieht morgen ein.,Yes the wholesaler debits tomorrow.
+
+`.trim();
+
+// ============================================
+// CSV DATA - Q&A
+// ============================================
+const qaCSV = `
+Was ist die Bilanz?,Die Bilanz zeigt Vermögen und Kapital. (The balance sheet shows assets and capital.)
+Wann mussInventur gemacht werden?,Die Inventur muss zum Jahresende erfolgen. (Stocktaking must be done at year-end.)
+Was ist der Unterschied zwischen Soll und Haben?,Soll ist links Haben ist rechts im Konto. (Debit is left credit is right in the account.)
+Wie berechnet man den Wareneinsatz?,Anfangsbestand plus Einkauf minus Endbestand. (Opening stock plus purchases minus closing stock.)
+Was bedeutet Abschreibung?,Abschreibung ist die Wertminderung des Anlagevermögens. (Depreciation is the reduction in value of fixed assets.)
+Was ist eine Rückstellung?,Eine Rückstellung ist für ungewisse Verbindlichkeiten. (A provision is for uncertain liabilities.)
+Wie unterscheiden sich Eigenkapital und Fremdkapital?,Eigenkapital gehört dem Inhaber Fremdkapital ist geliehen. (Equity belongs to owner debt is borrowed.)
+Was ist ein Aktivtausch?,Ein Aktivtausch verändert nur die Aktivseite. (An asset exchange only changes the asset side.)
+Was bedeutet Tilgung?,Tilgung ist die Rückzahlung eines Darlehens. (Repayment is paying back a loan.)
+Was ist der Kontokorrentkredit?,Der Kontokorrentkredit ist ein kurzfristiger Überziehungskredit. (Current account credit is short-term overdraft.)
+Wofür steht GuV?,GuV steht für Gewinn-und-Verlustrechnung. (GuV stands for profit and loss statement.)
+Was ist Skonto?,Skonto ist ein Preisnachlass bei schneller Zahlung. (Cash discount is a price reduction for quick payment.)
+Was bedeutet Liquidität?,Liquidität ist die Zahlungsfähigkeit des Unternehmens. (Liquidity is the solvency of the company.)
+Was ist eine Bürgschaft?,Eine Bürgschaft ist eine Personensicherheit für Kredite. (A guarantee is personal security for loans.)
+Was ist der derivative Firmenwert?,Der Firmenwert ist die Differenz zwischen Kaufpreis und Substanzwert. (Goodwill is the difference between purchase price and asset value.)
+Wie funktioniert das SEPA-Lastschriftverfahren?,Der Zahlungsempfänger zieht den Betrag vom Konto ein. (The payee debits the amount from the account.)
+Was ist eine Grundschuld?,Eine Grundschuld ist ein Grundpfandrecht zur Kreditsicherung. (A land charge is a real property lien for loan security.)
+Was bedeutet Forderungszession?,Forderungszession ist die Abtretung von Forderungen als Sicherheit. (Assignment of receivables is transferring claims as security.)
+Was ist der Unterschied zwischen Leasing und Kauf?,Beim Leasing bleibt das Eigentum beim Leasinggeber. (With leasing ownership remains with lessor.)
+Wie berechnet man die Eigenkapitalquote?,Eigenkapital geteilt durch Bilanzsumme mal 100. (Equity divided by balance total times 100.)
+
+`.trim();
+
+// ============================================
+// CSV DATA - SENTENCES
+// ============================================
+const sentencesCSV = `
+Die Bilanz wird zum Jahresende erstellt.,The balance sheet is prepared at year-end.
+Das Rechnungswesen erfasst alle Geschäftsvorfälle.,Accounting records all business transactions.
+Die Inventur ist die körperliche Bestandsaufnahme.,Stocktaking is the physical inventory count.
+Jeder Geschäftsvorfall verändert die Bilanz.,Every business transaction changes the balance sheet.
+Die Abschreibung mindert den Buchwert.,Depreciation reduces the book value.
+Das Eigenkapital ist auf der Passivseite.,Equity is on the liability side.
+Die Aktiva zeigen die Mittelverwendung.,Assets show the use of funds.
+Die Passiva zeigen die Mittelherkunft.,Liabilities show the source of funds.
+Der Jahresüberschuss erhöht das Eigenkapital.,Annual surplus increases equity.
+Rückstellungen werden für ungewisse Verbindlichkeiten gebildet.,Provisions are made for uncertain liabilities.
+Die Gewinn-und-Verlustrechnung zeigt den Erfolg.,The profit and loss statement shows success.
+Der Wareneinsatz wird vom Umsatz abgezogen.,Cost of goods is deducted from revenue.
+Die Liquidität muss jederzeit gesichert sein.,Liquidity must be secured at all times.
+Langfristiges Vermögen wird langfristig finanziert.,Long-term assets are financed long-term.
+Der Kontokorrentkredit dient der kurzfristigen Finanzierung.,Current account credit serves short-term financing.
+Das Annuitätendarlehen hat gleichbleibende Raten.,The annuity loan has constant installments.
+Beim Tilgungsdarlehen sinken die Raten.,With repayment loans the installments decrease.
+Die Sicherheiten werden im Grundbuch eingetragen.,The collateral is recorded in the land register.
+Der Eigentumsvorbehalt sichert den Lieferantenkredit.,Retention of title secures supplier credit.
+Die Forderungen werden an den Großhandel abgetreten.,Receivables are assigned to the wholesaler.
+Der Firmenwert wird über 15 Jahre abgeschrieben.,Goodwill is depreciated over 15 years.
+Die Sachanlagen gehören zum Anlagevermögen.,Fixed assets belong to non-current assets.
+Das Warenlager ist Teil des Umlaufvermögens.,Inventory is part of current assets.
+Die Buchführung muss ordnungsgemäß sein.,Bookkeeping must be proper.
+Alle Belege müssen aufbewahrt werden.,All documents must be retained.
+Die Finanzplanung sichert die Zahlungsfähigkeit.,Financial planning ensures solvency.
+Der Kapitalbedarf wird durch die Investitionsplanung ermittelt.,Capital requirement is determined by investment planning.
+Die Rentabilität zeigt die Ertragskraft.,Profitability shows earning power.
+Der Rohgewinn ist die Differenz zwischen Umsatz und Wareneinsatz.,Gross profit is the difference between revenue and cost of goods.
+Die Personalkosten sind ein wichtiger Kostenfaktor.,Personnel costs are an important cost factor.
+
+`.trim();
+
+// ============================================
+// PARSE CSV FUNCTION
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .map(line => line.split(',').map(cell => cell.trim()));
+}
+
+// ============================================
+// RENDER NOUNS TABLE
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV);
+    const grouped = { das: [], der: [], die: [] };
+
+    data.forEach(row => {
+        const [article, german, pluralNotation, pluralFull, english] = row;
+        grouped[article].push({ article, german, pluralNotation, pluralFull, english });
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    const articles = ['der', 'das', 'die'];
+    
+    articles.forEach((article, articleIndex) => {
+        const words = grouped[article];
+        const numRows = Math.ceil(words.length / 2);
+        
+        for (let row = 0; row < numRows; row++) {
+            const word1 = words[row];
+            const word2 = words[row + numRows];
+            
+            const rowClass = `${article}-row`;
+            const articleClass = `${article}-article`;
+            
+            html += `<tr class="${rowClass}">`;
+            
+            if (word1) {
+                html += `<td class="article-cell ${articleClass}">${word1.article}</td>`;
+                html += `<td class="german-cell">${word1.german}</td>`;
+                html += `<td class="plural-cell">${word1.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word1.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            if (word2) {
+                html += `<td class="article-cell ${articleClass}">${word2.article}</td>`;
+                html += `<td class="german-cell">${word2.german}</td>`;
+                html += `<td class="plural-cell">${word2.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        if (articleIndex < articles.length - 1) {
+            html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+        }
+    });
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS TABLE
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV);
+    const verbData = parseCSV(verbsCSV);
+    
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    // Process adjectives - split into two halves like nouns table
+    const numAdjRows = Math.ceil(adjData.length / 2);
+    
+    for (let i = 0; i < numAdjRows; i++) {
+        html += `<tr class="adjective-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (adjData[i]) {
+            const row = adjData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numAdjRows;
+        if (adjData[secondRowIndex]) {
+            const row = adjData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+
+    // Process verbs - split into two halves like nouns table
+    const numVerbRows = Math.ceil(verbData.length / 2);
+    
+    for (let i = 0; i < numVerbRows; i++) {
+        html += `<tr class="verb-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (verbData[i]) {
+            const row = verbData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numVerbRows;
+        if (verbData[secondRowIndex]) {
+            const row = verbData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS TABLE
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV);
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const data = parseCSV(conversationsCSV);
+    const container = document.getElementById('conversationsContainer');
+    
+    const conversations = {};
+    data.forEach(row => {
+        const parts = row[0].split('|');
+        const title = parts[0];
+        const speaker = parts[1];
+        const german = row[1];
+        const english = row[2];
+        
+        if (!conversations[title]) {
+            conversations[title] = [];
+        }
+        conversations[title].push({ speaker, german, english });
+    });
+    
+    let html = '';
+    for (const [title, lines] of Object.entries(conversations)) {
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="7" class="conversation-title">${title}</td></tr>`;
+        
+        for (let i = 0; i < lines.length; i += 2) {
+            html += `<tr>`;
+            
+            html += `<td class="speaker-cell">${lines[i].speaker}</td>`;
+            html += `<td class="german-cell">${lines[i].german}</td>`;
+            html += `<td class="english-cell">${lines[i].english}</td>`;
+            
+            html += `<td style="width: 1%; background: #ddd; border: none;"></td>`;
+            
+            if (i + 1 < lines.length) {
+                html += `<td class="speaker-cell">${lines[i + 1].speaker}</td>`;
+                html += `<td class="german-cell">${lines[i + 1].german}</td>`;
+                html += `<td class="english-cell">${lines[i + 1].english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        html += `</table>`;
+    }
+    
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A TABLE
+// ============================================
+function renderQATable() {
+    const data = parseCSV(qaCSV);
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [question1, answer1] = data[i];
+        html += `<td class="question-cell">${question1}</td>`;
+        html += `<td class="answer-cell">${answer1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [question2, answer2] = data[i + 1];
+            html += `<td class="question-cell">${question2}</td>`;
+            html += `<td class="answer-cell">${answer2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES TABLE
+// ============================================
+function renderSentencesTable() {
+    const data = parseCSV(sentencesCSV);
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// INITIALIZE ON PAGE LOAD
+// ============================================
+window.addEventListener('load', function() {
+    console.log('📚 Rendering all tables...');
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ All tables rendered successfully!');
+});
+    </script>
+</body>
+</html>

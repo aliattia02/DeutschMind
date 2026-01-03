@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary & Phrases - Allgemeine Rechtskunde und Gesundheitsverwaltung</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 5px;
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .zoom-label {
+            font-size: 0.75em;
+            font-weight: bold;
+            color: #666;
+            padding: 0 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .zoom-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 3px;
+            min-width: 40px;
+        }
+
+        .zoom-btn:hover {
+            background: #555;
+        }
+
+        .zoom-level {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .print-button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .print-button:hover {
+            background: #333;
+        }
+
+        .content-wrapper {
+            max-width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* SECTION DIVIDER */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* NOUN TABLE STYLING */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f5f5f5;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 4%;
+            max-width: 50px;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 17%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 13%;
+        }
+
+        /* Color coding for articles */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ADJECTIVE/VERB TABLE STYLING */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col {
+            font-weight: 600;
+            width: 15%;
+        }
+
+        .word-table .english-col {
+            color: #333;
+            width: 10%;
+        }
+
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* EXPRESSIONS TABLE */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .expressions-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* CONVERSATIONS TABLE */
+        .conversations-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #2C3E50 !important;
+            color: white !important;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: center;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td {
+            padding: 6px 8px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .conversations-table .speaker-cell {
+            width: 4%;
+            font-weight: bold;
+            text-align: center;
+            background: #E8E8E8 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .german-cell {
+            width: 22%;
+            font-weight: 600;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .english-cell {
+            width: 22%;
+            color: #333;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Q&A TABLE */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .qa-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFE6E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 25%;
+            background: #E6F7E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* SENTENCES TABLE */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .sentences-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #F0E6FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #E6FFE6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9 !important;
+            border-top: 2px solid #666;
+            font-size: 1em;
+            page-break-before: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info h3 {
+            font-size: 1.43em;
+            margin-bottom: 5px;
+        }
+
+        .footer-info p {
+            margin: 3px 0;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        @media print {
+            body {
+                padding: 5px;
+                max-width: 100%;
+            }
+
+            .controls {
+                display: none !important;
+            }
+
+            .content-wrapper {
+                max-width: 100%;
+            }
+
+            .table-section {
+                overflow-x: visible;
+                max-width: 100%;
+                margin-bottom: 2px;
+                page-break-inside: auto;
+            }
+
+            .table-section h2 {
+                margin-top: 2px;
+                page-break-after: avoid;
+                page-break-before: auto;
+            }
+
+            .header {
+                page-break-after: avoid;
+                margin-bottom: 10px;
+            }
+
+            .footer-info {
+                display: none !important;
+            }
+
+            .section-divider {
+                page-break-before: always;
+            }
+
+            @page {
+                margin: 1cm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        @media screen {
+            .controls {
+                display: flex !important;
+            }
+            
+            body {
+                max-width: 1400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="zoom-controls">
+            <span class="zoom-label">📚 Vocab:</span>
+            <button class="zoom-btn" onclick="zoomOutVocab()" title="Zoom Out Vocab">−</button>
+            <span class="zoom-level" id="zoomLevelVocab">100%</span>
+            <button class="zoom-btn" onclick="zoomInVocab()" title="Zoom In Vocab">+</button>
+            <button class="zoom-btn" onclick="resetZoomVocab()" title="Reset Zoom Vocab">⟲</button>
+        </div>
+        <div class="zoom-controls">
+            <span class="zoom-label">💬 Phrases:</span>
+            <button class="zoom-btn" onclick="zoomOutPhrases()" title="Zoom Out Phrases">−</button>
+            <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+            <button class="zoom-btn" onclick="zoomInPhrases()" title="Zoom In Phrases">+</button>
+            <button class="zoom-btn" onclick="resetZoomPhrases()" title="Reset Zoom Phrases">⟲</button>
+        </div>
+        <button class="print-button" onclick="window.print()">🖨️ Print</button>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 German Vocabulary & Phrases - Allgemeine Rechtskunde und Gesundheitsverwaltung</h1>
+        </div>
+
+        <!-- VOCABULARY SECTION -->
+        <div id="vocabSection">
+            <!-- TABLE 1: NOUNS -->
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col style="width: 19%;">
+                        <col style="width: 9%;">
+                        <col style="width: 17%;">
+                        <col style="width: 5%;">
+                        <col style="width: 19%;">
+                        <col style="width: 9%;">
+                        <col style="width: 17%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives & Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES & SENTENCES</h2>
+        </div>
+
+        <!-- PHRASES SECTION -->
+        <div id="phrasesSection">
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions & Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- REFERENCE INFORMATION -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Document Info:</strong> Topic: Pharmaceutical Law | Level: Professional/Academic | Created: 2025</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Väter, Mütter = full form with umlaut | --- = no change | kein Plural = no plural form</p>
+            <p><strong>Color Coding:</strong> <span style="color: #1565C0;">■ der (blue)</span> | <span style="color: #2E7D32;">■ das (green)</span> | <span style="color: #C62828;">■ die (red)</span></p>
+            <p><strong>Prefix Guide:</strong> - prefix = Adjective | * prefix = Weak Verb | + prefix = Strong Verb</p>
+            <p><strong>Organization:</strong> Horizontal pairs are opposites (Column 1 ↔ Column 2, Column 3 ↔ Column 4)</p>
+        </div>
+    </div>
+
+    <script>
+// ============================================
+// ZOOM FUNCTIONALITY - SEPARATE FOR EACH SECTION
+// ============================================
+let vocabZoom = 100;
+let phrasesZoom = 100;
+const zoomStep = 10;
+const minZoom = 50;
+const maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    const section = document.getElementById('vocabSection');
+    const zoomLevel = document.getElementById('zoomLevelVocab');
+    
+    const newFontSize = baseFontSize * (vocabZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${vocabZoom}%`;
+}
+
+function updatePhrasesZoom() {
+    const section = document.getElementById('phrasesSection');
+    const zoomLevel = document.getElementById('zoomLevelPhrases');
+    
+    const newFontSize = baseFontSize * (phrasesZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${phrasesZoom}%`;
+}
+
+function zoomInVocab() {
+    if (vocabZoom < maxZoom) {
+        vocabZoom += zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function zoomOutVocab() {
+    if (vocabZoom > minZoom) {
+        vocabZoom -= zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function resetZoomVocab() {
+    vocabZoom = 100;
+    updateVocabZoom();
+}
+
+function zoomInPhrases() {
+    if (phrasesZoom < maxZoom) {
+        phrasesZoom += zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function zoomOutPhrases() {
+    if (phrasesZoom > minZoom) {
+        phrasesZoom -= zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function resetZoomPhrases() {
+    phrasesZoom = 100;
+    updatePhrasesZoom();
+}
+
+window.addEventListener('load', function() {
+    updateVocabZoom();
+    updatePhrasesZoom();
+});
+
+// ============================================
+// CSV DATA - NOUNS
+// ============================================
+const nounsCSV = `
+das,Recht,-e,die Rechte,Law/Right
+das,Rechtssystem,-e,die Rechtssysteme,Legal system
+das,Grundgesetz,-e,die Grundgesetze,Basic Law/Constitution
+das,Zivilrecht,---,---,Civil law
+das,Strafrecht,---,---,Criminal law
+das,Verwaltungsrecht,---,---,Administrative law
+das,Staatsrecht,---,---,Constitutional law
+das,Völkerrecht,---,---,International law
+das,Europarecht,---,---,European law
+das,Verwaltungsverfahren,=,die Verwaltungsverfahren,Administrative procedure
+das,Gerichtsverfahren,=,die Gerichtsverfahren,Court procedure
+das,Gesetzgebungsverfahren,=,die Gesetzgebungsverfahren,Legislative procedure
+das,Grundrecht,-e,die Grundrechte,Fundamental right
+das,Justizgrundrecht,-e,die Justizgrundrechte,Judicial fundamental right
+das,Bundesstaatsprinzip,-ien,die Bundesstaatsprinzipien,Federal principle
+das,Gewaltenteilungsprinzip,-ien,die Gewaltenteilungsprinzipien,Separation of powers principle
+das,Demokratieprinzip,-ien,die Demokratieprinzipien,Democratic principle
+das,Legalitätsprinzip,-ien,die Legalitätsprinzipien,Legality principle
+das,Opportunitätsprinzip,-ien,die Opportunitätsprinzipien,Opportunity principle
+das,Gesetzlichkeitsprinzip,-ien,die Gesetzlichkeitsprinzipien,Principle of legality
+das,Selbstbelastungsverbot,-e,die Selbstbelastungsverbote,Prohibition of self-incrimination
+das,Rückwirkungsverbot,-e,die Rückwirkungsverbote,Prohibition of retroactivity
+das,Doppelbestrafungsverbot,-e,die Doppelbestrafungsverbote,Prohibition of double jeopardy
+das,Ausnahmegericht,-e,die Ausnahmegerichte,Exceptional court
+das,Sondergericht,-e,die Sondergerichte,Special court
+das,Verwaltungsgericht,-e,die Verwaltungsgerichte,Administrative court
+das,Oberverwaltungsgericht,-e,die Oberverwaltungsgerichte,Higher administrative court
+das,Bundesverwaltungsgericht,-e,die Bundesverwaltungsgerichte,Federal Administrative Court
+das,Sozialgericht,-e,die Sozialgerichte,Social court
+das,Arbeitsgericht,-e,die Arbeitsgerichte,Labor court
+das,Finanzgericht,-e,die Finanzgerichte,Tax court
+das,Amtsgericht,Amtsgerichte,die Amtsgerichte,Local court
+das,Landgericht,-e,die Landgerichte,Regional court
+das,Oberlandesgericht,-e,die Oberlandesgerichte,Higher Regional Court
+das,Bundesverfassungsgericht,-e,die Bundesverfassungsgerichte,Federal Constitutional Court
+das,Ermessen,=,die Ermessen,Discretion
+das,Gesetzesvorbehalt,-e,die Gesetzesvorbehalte,Reservation of law
+das,Über-Unterordnungsverhältnis,-se,die Über-Unterordnungsverhältnisse,Hierarchical relationship
+das,Gleichordnungsverhältnis,-se,die Gleichordnungsverhältnisse,Equal relationship
+das,Parlament,-e,die Parlamente,Parliament
+das,Bundesgesetzblatt,Bundesgesetzblätter,die Bundesgesetzblätter,Federal Law Gazette
+das,Bundesland,Bundesländer,die Bundesländer,Federal state
+das,Ministerium,Ministerien,die Ministerien,Ministry
+das,Gesundheitsministerium,Gesundheitsministerien,die Gesundheitsministerien,Ministry of Health
+das,Staatsministerium,Staatsministerien,die Staatsministerien,State Ministry
+das,Landesamt,Landesämter,die Landesämter,State Office
+das,Bundesamt,Bundesämter,die Bundesämter,Federal Office
+das,Regierungspräsidium,Regierungspräsidien,die Regierungspräsidien,District Government
+das,Landratsamt,Landratsämter,die Landratsämter,District Office
+das,Gesundheitsamt,Gesundheitsämter,die Gesundheitsämter,Public Health Office
+das,Veterinäramt,Veterinärämter,die Veterinärämter,Veterinary Office
+das,Hoheitsrecht,-e,die Hoheitsrechte,Sovereign right
+das,Satzungsrecht,-e,die Satzungsrechte,Bylaw authority
+das,Primärrecht,-e,die Primärrechte,Primary law
+das,Sekundärrecht,-e,die Sekundärrechte,Secondary law
+das,Formblatt,Formblätter,die Formblätter,Form
+das,Zitiergebot,-e,die Zitiergebote,Citation requirement
+der,Gesetzgeber,=,die Gesetzgeber,Legislator
+der,Staat,-en,die Staaten,State
+der,Bund,Bünde,die Bünde,Federation
+der,Bundesrat,Bundesräte,die Bundesräte,Federal Council
+der,Bundestag,-e,die Bundestage,Federal Parliament
+der,Landtag,-e,die Landtage,State Parliament
+der,Bundespräsident,-en,die Bundespräsidenten,Federal President
+der,Bundeskanzler,=,die Bundeskanzler,Federal Chancellor
+der,Bundesminister,=,die Bundesminister,Federal Minister
+der,Ministerpräsident,-en,die Ministerpräsidenten,Minister President
+der,Abgeordnete,-n,die Abgeordneten,Member of Parliament
+der,Bürger,=,die Bürger,Citizen
+der,Richter,=,die Richter,Judge
+der,Berufsrichter,=,die Berufsrichter,Professional judge
+der,Ehrenamtliche Richter,=,die Ehrenamtlichen Richter,Lay judge
+der,Schöffe,-n,die Schöffen,Lay assessor
+der,Staatsanwalt,Staatsanwälte,die Staatsanwälte,Prosecutor
+der,Rechtsanwalt,Rechtsanwälte,die Rechtsanwälte,Lawyer
+der,Angeklagte,-n,die Angeklagten,Accused/Defendant
+der,Beklagte,-n,die Beklagten,Defendant
+der,Kläger,=,die Kläger,Plaintiff
+der,Bescheid,-e,die Bescheide,Decision/Notice
+der,Verwaltungsakt,-e,die Verwaltungsakte,Administrative act
+der,Gesetzentwurf,Gesetzentwürfe,die Gesetzentwürfe,Bill/Draft law
+der,Beschluss,Beschlüsse,die Beschlüsse,Resolution/Decision
+der,Einspruch,Einsprüche,die Einsprüche,Objection
+der,Widerspruch,Widersprüche,die Widersprüche,Administrative appeal
+der,Rechtsbehelf,-e,die Rechtsbehelfe,Legal remedy
+der,Instanzenweg,-e,die Instanzenwege,Hierarchy of courts
+der,Gerichtsbescheid,-e,die Gerichtsbescheide,Court order
+der,Haftbefehl,-e,die Haftbefehle,Arrest warrant
+der,Durchsuchungsbefehl,-e,die Durchsuchungsbefehle,Search warrant
+der,Freiheitsentzug,Freiheitsentzüge,die Freiheitsentzüge,Deprivation of liberty
+der,Gewahrsam,=,die Gewahrsame,Custody
+der,Vertragspartner,=,die Vertragspartner,Contracting party
+der,Mandant,-en,die Mandanten,Client
+der,Auftraggeber,=,die Auftraggeber,Principal
+der,Sachverhalt,-e,die Sachverhalte,Facts of the case
+der,Sachverstände,-n,die Sachverständigen,Expert
+der,Zeuge,-n,die Zeugen,Witness
+der,Betroffene,-n,die Betroffenen,Person concerned
+der,Streitwert,-e,die Streitwerte,Value in dispute
+der,Vollzug,Vollzüge,die Vollzüge,Enforcement
+der,Verstoß,Verstöße,die Verstöße,Violation
+der,Eingriff,-e,die Eingriffe,Intervention/Infringement
+der,Rechtsweg,-e,die Rechtswege,Legal recourse
+der,Wahlhelfer,=,die Wahlhelfer,Election assistant
+der,Volkszähler,=,die Volkszähler,Census taker
+der,Feuerwehrdienst,-e,die Feuerwehrdienste,Fire service
+der,Schöffendienst,-e,die Schöffendienste,Lay judge service
+der,Vertrag,Verträge,die Verträge,Contract/Treaty
+der,Kaufvertrag,Kaufverträge,die Kaufverträge,Purchase contract
+der,Mietvertrag,Mietverträge,die Mietverträge,Rental contract
+der,Arbeitsvertrag,Arbeitsverträge,die Arbeitsverträge,Employment contract
+der,Werkvertrag,Werkverträge,die Werkverträge,Contract for work
+der,EU-Vertrag,EU-Verträge,die EU-Verträge,EU Treaty
+der,Mitgliedstaat,-en,die Mitgliedstaaten,Member state
+der,Geltungsbereich,-e,die Geltungsbereiche,Scope of application
+der,Zuständigkeit,-en,die Zuständigkeiten,Jurisdiction/Competence
+der,Handlungsspielraum,Handlungsspielräume,die Handlungsspielräume,Room for maneuver
+der,Gesetzesvollzug,Gesetzesvollzüge,die Gesetzesvollzüge,Law enforcement
+der,Stufenplan,Stufenpläne,die Stufenpläne,Graduated plan
+die,Rechtskunde,---,---,Legal studies
+die,Gesundheitsverwaltung,-en,die Gesundheitsverwaltungen,Health administration
+die,Gesetzgebung,-en,die Gesetzgebungen,Legislation
+die,Legislative,---,---,Legislature
+die,Exekutive,---,---,Executive
+die,Judikative,---,---,Judiciary
+die,Rechtsprechung,-en,die Rechtsprechungen,Jurisprudence
+die,Verwaltung,-en,die Verwaltungen,Administration
+die,Behörde,-n,die Behörden,Authority
+die,Oberste Landesgesundheitsbehörde,-n,die Obersten Landesgesundheitsbehörden,Supreme State Health Authority
+die,Höhere Landesgesundheitsbehörde,-n,die Höheren Landesgesundheitsbehörden,Higher State Health Authority
+die,Untere Landesgesundheitsbehörde,-n,die Unteren Landesgesundheitsbehörden,Lower State Health Authority
+die,Bezirksregierung,-en,die Bezirksregierungen,District government
+die,Kreisverwaltungsbehörde,-n,die Kreisverwaltungsbehörden,District administrative authority
+die,Selbstverwaltung,-en,die Selbstverwaltungen,Self-administration
+die,Kommunale Selbstverwaltung,-en,die Kommunalen Selbstverwaltungen,Municipal self-government
+die,Satzungsautonomie,-n,die Satzungsautonomien,Bylaw autonomy
+die,Körperschaft,-en,die Körperschaften,Corporation
+die,Körperschaft des öffentlichen Rechts,-en,die Körperschaften des öffentlichen Rechts,Public corporation
+die,Anstalt,-en,die Anstalten,Institution
+die,Stiftung,-en,die Stiftungen,Foundation
+die,Sozialversicherung,-en,die Sozialversicherungen,Social insurance
+die,Krankenkasse,-n,die Krankenkassen,Health insurance
+die,Kassenärztliche Vereinigung,-en,die Kassenärztlichen Vereinigungen,Association of Statutory Health Insurance Physicians
+die,Heilberufekammer,-n,die Heilberufekammern,Healthcare professional chamber
+die,Landesapothekerkammer,-n,die Landesapothekerkammern,State Pharmacy Chamber
+die,Bundesapothekerkammer,-n,die Bundesapothekerkammern,Federal Pharmacy Chamber
+die,Berufsordnung,-en,die Berufsordnungen,Professional code
+die,Hauptsatzung,-en,die Hauptsatzungen,Main statute
+die,Beitragsordnung,-en,die Beitragsordnungen,Contribution regulations
+die,Weiterbildungsordnung,-en,die Weiterbildungsordnungen,Further education regulations
+die,Wahlordnung,-en,die Wahlordnungen,Electoral regulations
+die,Delegiertenversammlung,-en,die Delegiertenversammlungen,Delegates' assembly
+die,Kammerversammlung,-en,die Kammerversammlungen,Chamber assembly
+die,Rechtsaufsicht,-en,die Rechtsaufsichten,Legal supervision
+die,Fachaufsicht,-en,die Fachaufsichten,Technical supervision
+die,Dienstaufsicht,-en,die Dienstaufsichten,Service supervision
+die,Berufsgerichtsbarkeit,-en,die Berufsgerichtsbarkeiten,Professional judiciary
+die,Instanz,-en,die Instanzen,Instance/Level
+die,Berufung,-en,die Berufungen,Appeal
+die,Revision,-en,die Revisionen,Revision/Final appeal
+die,Klage,-n,die Klagen,Lawsuit/Complaint
+die,Anfechtungsklage,-n,die Anfechtungsklagen,Action for annulment
+die,Verpflichtungsklage,-n,die Verpflichtungsklagen,Action for performance
+die,Feststellungsklage,-n,die Feststellungsklagen,Action for declaratory judgment
+die,Fortsetzungsfeststellungsklage,-n,die Fortsetzungsfeststellungsklagen,Continued declaratory action
+die,Leistungsklage,-n,die Leistungsklagen,Action for performance
+die,Unterlassungsklage,-n,die Unterlassungsklagen,Action for injunction
+die,Normenkontrolle,-n,die Normenkontrollen,Judicial review of norms
+die,Verfassungsbeschwerde,-n,die Verfassungsbeschwerden,Constitutional complaint
+die,Gegenvorstellung,-en,die Gegenvorstellungen,Remonstrance
+die,Aufsichtsbeschwerde,-n,die Aufsichtsbeschwerden,Supervisory complaint
+die,Dienstaufsichtsbeschwerde,-n,die Dienstaufsichtsbeschwerden,Service supervisory complaint
+die,Frist,-en,die Fristen,Deadline
+die,Monatsfrist,-en,die Monatsfristen,One-month deadline
+die,Jahresfrist,-en,die Jahresfristen,One-year deadline
+die,Rechtsbehelfsbelehrung,-en,die Rechtsbehelfsbelehrungen,Legal remedy instructions
+die,Suspensivwirkung,-en,die Suspensivwirkungen,Suspensive effect
+die,Aufschiebende Wirkung,-en,die Aufschiebenden Wirkungen,Suspensive effect
+die,Kostenpflicht,-en,die Kostenpflichten,Cost obligation
+die,Kostenfreiheit,-en,die Kostenfreiheiten,Cost exemption
+die,Parteimaxime,-n,die Parteimaximen,Party presentation principle
+die,Beibringungsgrundsatz,Beibringungsgrundsätze,die Beibringungsgrundsätze,Principle of party presentation
+die,Amtsermittlung,-en,die Amtsermittlungen,Official investigation
+die,Untersuchungsgrundsatz,Untersuchungsgrundsätze,die Untersuchungsgrundsätze,Inquisitorial principle
+die,Beweislast,-en,die Beweislasten,Burden of proof
+die,Zivilprozessordnung,-en,die Zivilprozessordnungen,Code of Civil Procedure (ZPO)
+die,Strafprozessordnung,-en,die Strafprozessordnungen,Code of Criminal Procedure (StPO)
+die,Verwaltungsgerichtsordnung,-en,die Verwaltungsgerichtsordnungen,Code of Administrative Court Procedure (VwGO)
+die,Verwaltungsverfahrensgesetz,-e,die Verwaltungsverfahrensgesetze,Administrative Procedure Act (VwVfG)
+die,Zwangsvollstreckung,-en,die Zwangsvollstreckungen,Enforcement
+die,Vollstreckung,-en,die Vollstreckungen,Execution
+die,Anhörung,-en,die Anhörungen,Hearing
+die,Akteneinsicht,-en,die Akteneinsichten,Access to files
+die,Äußerung,-en,die Äußerungen,Statement
+die,Vernichtung,-en,die Vernichtungen,Destruction
+die,Menschenwürde,---,---,Human dignity
+die,Handlungsfreiheit,-en,die Handlungsfreiheiten,Freedom of action
+die,Berufsfreiheit,-en,die Berufsfreiheiten,Freedom of occupation
+die,Versammlungsfreiheit,-en,die Versammlungsfreiheiten,Freedom of assembly
+die,Vereinigungsfreiheit,-en,die Vereinigungsfreiheiten,Freedom of association
+die,Koalitionsfreiheit,-en,die Koalitionsfreiheiten,Freedom of coalition
+die,Meinungsfreiheit,-en,die Meinungsfreiheiten,Freedom of expression
+die,Religionsfreiheit,-en,die Religionsfreiheiten,Freedom of religion
+die,Gewissensfreiheit,-en,die Gewissensfreiheiten,Freedom of conscience
+die,Kunstfreiheit,-en,die Kunstfreiheiten,Freedom of art
+die,Wissenschaftsfreiheit,-en,die Wissenschaftsfreiheiten,Academic freedom
+die,Freizügigkeit,-en,die Freizügigkeiten,Freedom of movement
+die,Unverletzlichkeit,-en,die Unverletzlichkeiten,Inviolability
+die,Körperliche Unversehrtheit,---,---,Physical integrity
+die,Gleichbehandlung,-en,die Gleichbehandlungen,Equal treatment
+die,Diskriminierung,-en,die Diskriminierungen,Discrimination
+die,Verhältnismäßigkeit,-en,die Verhältnismäßigkeiten,Proportionality
+die,Erforderlichkeit,-en,die Erforderlichkeiten,Necessity
+die,Geeignetheit,-en,die Geeignetheiten,Suitability
+die,Zumutbarkeit,-en,die Zumutbarkeiten,Reasonableness
+die,Abwägung,-en,die Abwägungen,Balancing
+die,Güterabwägung,-en,die Güterabwägungen,Balancing of interests
+die,Schutzpflicht,-en,die Schutzpflichten,Duty to protect
+die,Drittwirkung,-en,die Drittwirkungen,Third-party effect
+die,Generalklausel,-n,die Generalklauseln,General clause
+die,Treu und Glauben,---,---,Good faith
+die,Sittenwidrigkeit,-en,die Sittenwidrigkeiten,Immorality
+die,Fürsorgepflicht,-en,die Fürsorgepflichten,Duty of care
+die,Treue,---,---,Loyalty
+die,Bundestreue,---,---,Federal loyalty
+die,Normenhierarchie,-n,die Normenhierarchien,Hierarchy of norms
+die,Verfassungsmäßigkeit,-en,die Verfassungsmäßigkeiten,Constitutionality
+die,Rechtmäßigkeit,-en,die Rechtmäßigkeiten,Lawfulness
+die,Zweckmäßigkeit,-en,die Zweckmäßigkeiten,Expediency
+die,Legalität,-en,die Legalitäten,Legality
+die,Legitimität,-en,die Legitimitäten,Legitimacy
+die,Legitimation,-en,die Legitimationen,Legitimation
+die,Homogenität,-en,die Homogenitäten,Homogeneity
+die,Ewigkeitsklausel,-n,die Ewigkeitsklauseln,Eternity clause
+die,Unantastbarkeit,-en,die Unantastbarkeiten,Inviolability
+die,Unveräußerlichkeit,-en,die Unveräußerlichkeiten,Inalienability
+die,Unverwirkbarkeit,-en,die Unverwirkbarkeiten,Non-forfeitability
+die,Unverfügbarkeit,-en,die Unverfügbarkeiten,Non-disposability
+die,Vertragsfreiheit,-en,die Vertragsfreiheiten,Freedom of contract
+die,Privatautonomie,-n,die Privatautonomien,Private autonomy
+die,Tarifautonomie,-n,die Tarifautonomien,Collective bargaining autonomy
+die,Tarifvertrag,Tarifverträge,die Tarifverträge,Collective agreement
+die,Gewerkschaft,-en,die Gewerkschaften,Trade union
+die,Arbeitgeberverband,Arbeitgeberverbände,die Arbeitgeberverbände,Employers' association
+die,Konkurrenz,-en,die Konkurrenzen,Concurrence
+die,Konkurrierende Gesetzgebung,-en,die Konkurrierenden Gesetzgebungen,Concurrent legislation
+die,Ausschließliche Gesetzgebung,-en,die Ausschließlichen Gesetzgebungen,Exclusive legislation
+die,Abweichungsgesetzgebung,-en,die Abweichungsgesetzgebungen,Deviating legislation
+die,Erforderlichkeitsklausel,-n,die Erforderlichkeitsklauseln,Necessity clause
+die,Rahmengesetzgebung,-en,die Rahmengesetzgebungen,Framework legislation
+die,Föderalismusreform,-en,die Föderalismusreformen,Federalism reform
+die,Länderzuständigkeit,-en,die Länderzuständigkeiten,State competence
+die,Bundeszuständigkeit,-en,die Bundeszuständigkeiten,Federal competence
+die,Gesetzgebungskompetenz,-en,die Gesetzgebungskompetenzen,Legislative competence
+die,Gesetzgebungsbefugnis,-se,die Gesetzgebungsbefugnisse,Legislative authority
+die,Ermächtigung,-en,die Ermächtigungen,Authorization
+die,Ermächtigungsgrundlage,-n,die Ermächtigungsgrundlagen,Authorization basis
+die,Verordnungsgeber,=,die Verordnungsgeber,Regulatory authority
+die,Richtlinie,-n,die Richtlinien,Directive
+die,EU-Richtlinie,-n,die EU-Richtlinien,EU directive
+die,EU-Verordnung,-en,die EU-Verordnungen,EU regulation
+die,Durchgriffswirkung,-en,die Durchgriffswirkungen,Direct effect
+die,Umsetzung,-en,die Umsetzungen,Implementation
+die,Umsetzungsfrist,-en,die Umsetzungsfristen,Implementation deadline
+die,Umsetzungsverbot,-e,die Umsetzungsverbote,Implementation prohibition
+die,Durchführungsverordnung,-en,die Durchführungsverordnungen,Implementing regulation
+die,Delegierte Verordnung,-en,die Delegierten Verordnungen,Delegated regulation
+die,Empfehlung,-en,die Empfehlungen,Recommendation
+die,Stellungnahme,-n,die Stellungnahmen,Opinion
+die,Harmonisierung,-en,die Harmonisierungen,Harmonization
+die,Vertragsverletzung,-en,die Vertragsverletzungen,Infringement of treaty
+die,Vertragsverletzungsverfahren,=,die Vertragsverletzungsverfahren,Infringement proceedings
+die,Grundfreiheit,-en,die Grundfreiheiten,Fundamental freedom
+die,Warenverkehrsfreiheit,-en,die Warenverkehrsfreiheiten,Free movement of goods
+die,Personenfreizügigkeit,-en,die Personenfreizügigkeiten,Free movement of persons
+die,Arbeitnehmerfreizügigkeit,-en,die Arbeitnehmerfreizügigkeiten,Free movement of workers
+die,Niederlassungsfreiheit,-en,die Niederlassungsfreiheiten,Freedom of establishment
+die,Dienstleistungsfreiheit,-en,die Dienstleistungsfreiheiten,Freedom to provide services
+die,Kapitalverkehrsfreiheit,-en,die Kapitalverkehrsfreiheiten,Free movement of capital
+die,Zahlungsverkehrsfreiheit,-en,die Zahlungsverkehrsfreiheiten,Free movement of payments
+die,Zollunion,-en,die Zollunionen,Customs union
+die,Einfuhrbeschränkung,-en,die Einfuhrbeschränkungen,Import restriction
+die,Ausfuhrbeschränkung,-en,die Ausfuhrbeschränkungen,Export restriction
+die,Mengenbeschränkung,-en,die Mengenbeschränkungen,Quantitative restriction
+die,Maßnahme gleicher Wirkung,-n,die Maßnahmen gleicher Wirkung,Measure having equivalent effect
+die,Lesungen,nur P,die Lesungen,Readings
+die,Schlussabstimmung,-en,die Schlussabstimmungen,Final vote
+die,Zustimmung,-en,die Zustimmungen,Consent/Approval
+die,Mehrheit,-en,die Mehrheiten,Majority
+die,Einfache Mehrheit,-en,die Einfachen Mehrheiten,Simple majority
+die,Absolute Mehrheit,-en,die Absoluten Mehrheiten,Absolute majority
+die,Zweidrittelmehrheit,-en,die Zweidrittelmenheiten,Two-thirds majority
+die,Kanzlermehrheit,-en,die Kanzlermehrheiten,Chancellor majority
+die,Vermittlungsausschuss,Vermittlungsausschüsse,die Vermittlungsausschüsse,Mediation committee
+die,Zustimmungsgesetz,-e,die Zustimmungsgesetze,Consent law
+die,Einspruchsgesetz,-e,die Einspruchsgesetze,Objection law
+die,Ausfertigung,-en,die Ausfertigungen,Authentication
+die,Gegenzeichnung,-en,die Gegenzeichnungen,Countersignature
+die,Verkündung,-en,die Verkündungen,Promulgation
+die,Inkrafttretung,-en,die Inkrafttretungen,Entry into force
+die,Wesentlichkeitstheorie,-n,die Wesentlichkeitstheorien,Essentiality theory
+die,Bestimmtheit,-en,die Bestimmtheiten,Definiteness
+die,Bestimmtheitsgrundsatz,Bestimmtheitsgrundsätze,die Bestimmtheitsgrundsätze,Principle of legal certainty
+
+`.trim();
+
+// ============================================
+// CSV DATA - ADJECTIVES
+// ============================================
+const adjectivesCSV = `
+-förmlich,formal,-formlos,informal
+-verbindlich,binding,-unverbindlich,non-binding
+-rechtmäßig,lawful,-rechtswidrig,unlawful
+-zulässig,permissible,-unzulässig,inadmissible
+-zuständig,competent,-unzuständig,incompetent
+-wirksam,effective,-unwirksam,ineffective
+-rechtskräftig,legally-binding,-anfechtbar,contestable
+-öffentlich,public,-privat,private
+-staatlich,governmental,-nichtstaatlich,non-governmental
+-originär,original,-abgeleitet,derived
+-ausschließlich,exclusive,-konkurrierend,concurrent
+-sachlich,substantive,-formell,procedural
+-materiell,material,-verfahrensrechtlich,procedural
+-übergeordnet,superior,-nachgeordnet,subordinate
+-oberst,supreme,-unterst,lowest
+-wesentlich,essential,-unwesentlich,non-essential
+-gebunden,bound,-frei,free
+-unmittelbar,direct,-mittelbar,indirect
+-generell,general,-abstrakt,abstract
+-verfassungsgemäß,constitutional,-verfassungswidrig,unconstitutional
+
+`.trim();
+
+// ============================================
+// CSV DATA - VERBS
+// ============================================
+const verbsCSV = `
+*erlassen,enact,*aufheben,repeal
+*verkünden,promulgate,*veröffentlichen,publish
+*beschließen,resolve,*ablehnen,reject
+*ermächtigen,authorize,*entziehen,withdraw
+*verpflichten,obligate,*berechtigen,entitle
+*anordnen,order,*verbieten,prohibit
+*vollziehen,execute,*durchsetzen,enforce
+*überwachen,supervise,*kontrollieren,control
+*genehmigen,approve,*verweigern,refuse
+*widerrufen,revoke,*zurücknehmen,withdraw
+*anfechten,challenge,*verteidigen,defend
+*klagen,sue,*beklagen,complain
+*entscheiden,decide,*urteilen,judge
+*verhandeln,negotiate,*schlichten,mediate
+*aussagen,testify,*beweisen,prove
+*anhören,hear,*vernehmen,question
+*ratifizieren,ratify,*unterzeichnen,sign
+*delegieren,delegate,*übertragen,transfer
+*regeln,regulate,*normieren,standardize
+*interpretieren,interpret,*auslegen,construe
++gelten,apply,+bestehen,exist
++verstoßen,violate,+einhalten,comply
++unterliegen,be-subject-to,+obliegen,be-incumbent-upon
++eingreifen,intervene,+unterlassen,omit
++ergreifen,take-action,+erhalten,receive
++eingehen,enter-into,+schließen,conclude
++widersprechen,contradict,+entsprechen,correspond
++vorliegen,be-present,+fehlen,be-absent
++ergehen,be-issued,+zustehen,be-entitled
++binden,bind,+verpflichten,commit
+
+`.trim();
+
+// ============================================
+// CSV DATA - EXPRESSIONS
+// ============================================
+const expressionsCSV = `
+Welche Behörde ist zuständig?,Which authority is competent?
+Das Gesetz tritt in Kraft.,The law enters into force.
+Der Bescheid ist rechtskräftig.,The decision is legally binding.
+Es besteht Rechtsanspruch.,There is a legal entitlement.
+Die Frist läuft ab.,The deadline expires.
+Das verstößt gegen Grundrechte.,That violates fundamental rights.
+Es gilt der Grundsatz der Verhältnismäßigkeit.,The principle of proportionality applies.
+Der Antrag wurde genehmigt.,The application was approved.
+Hiergegen kann Widerspruch eingelegt werden.,An objection can be filed against this.
+Die Approbation wurde erteilt.,The license was granted.
+Es liegt im Ermessen der Behörde.,It is at the discretion of the authority.
+Das Verfahren ist kostenpflichtig.,The procedure involves costs.
+Der Verwaltungsakt ist nichtig.,The administrative act is void.
+Es besteht aufschiebende Wirkung.,There is suspensive effect.
+Die Norm ist verfassungswidrig.,The norm is unconstitutional.
+Bundesrecht bricht Landesrecht.,Federal law overrides state law.
+Das unterliegt der Rechtsaufsicht.,That is subject to legal supervision.
+Es gilt das Legalitätsprinzip.,The legality principle applies.
+Die Entscheidung ist bindend.,The decision is binding.
+Hierfür ist eine Ermächtigungsgrundlage erforderlich.,An authorization basis is required for this.
+
+`.trim();
+
+// ============================================
+// CSV DATA - CONVERSATIONS
+// ============================================
+const conversationsCSV = `
+Administrative Procedure|A,Guten Tag. Ich möchte eine Betriebserlaubnis beantragen.,Good day. I would like to apply for an operating license.
+Administrative Procedure|B,Welche Unterlagen haben Sie mitgebracht?,What documents have you brought?
+Administrative Procedure|A,Hier ist meine Approbation und der Nachweis der persönlichen Voraussetzungen.,Here is my license and proof of personal requirements.
+Administrative Procedure|B,Gut. Sind die sachlichen Voraussetzungen erfüllt?,Good. Are the substantive requirements met?
+Administrative Procedure|A,Ja alle Anforderungen der ApBetrO sind erfüllt.,Yes all requirements of the ApBetrO are met.
+Administrative Procedure|B,Dann können wir den Antrag bearbeiten. Die Bearbeitungszeit beträgt etwa vier Wochen.,Then we can process the application. Processing time is about four weeks.
+Administrative Procedure|A,Gibt es ein Widerspruchsrecht?,Is there a right to object?
+Administrative Procedure|B,Ja. Sie haben bei einem ablehnenden Bescheid einen Monat Zeit Widerspruch einzulegen.,Yes. You have one month to file an objection in case of a negative decision.
+Legal Consultation|A,Ich habe einen Beitragsbescheid der Kammer erhalten. Ist der rechtmäßig?,I received a membership fee notice from the chamber. Is it lawful?
+Legal Consultation|B,Die Kammer hat die Befugnis Beiträge zu erheben.,The chamber has the authority to levy fees.
+Legal Consultation|A,Kann ich dagegen vorgehen?,Can I take action against it?
+Legal Consultation|B,Ja. Sie können binnen eines Monats Widerspruch einlegen.,Yes. You can file an objection within one month.
+Legal Consultation|A,Was passiert wenn der Widerspruch erfolglos bleibt?,What happens if the objection is unsuccessful?
+Legal Consultation|B,Dann können Sie vor dem Verwaltungsgericht klagen.,Then you can sue in administrative court.
+Legal Consultation|A,Hat das aufschiebende Wirkung?,Does that have suspensive effect?
+Legal Consultation|B,Ja in der Regel schon.,Yes usually it does.
+Court Hearing|A,Hiermit eröffne ich die mündliche Verhandlung.,I hereby open the oral hearing.
+Court Hearing|B,Die Klägerin beantragt die Aufhebung des Bescheids.,The plaintiff requests the annulment of the decision.
+Court Hearing|A,Auf welcher Rechtsgrundlage beruht der Bescheid?,On what legal basis does the decision rest?
+Court Hearing|B,Die Beklagte beruft sich auf Paragraph 4 des Apothekengesetzes.,The defendant refers to Section 4 of the Pharmacy Act.
+Court Hearing|A,Sind die Voraussetzungen erfüllt?,Are the requirements met?
+Court Hearing|B,Ja alle sachlichen und persönlichen Voraussetzungen liegen vor.,Yes all substantive and personal requirements are present.
+Court Hearing|A,Das Gericht wird das Verfahren vertagen.,The court will adjourn the proceedings.
+Court Hearing|B,Wann wird das Urteil verkündet?,When will the judgment be announced?
+
+`.trim();
+
+// ============================================
+// CSV DATA - Q&A
+// ============================================
+const qaCSV = `
+Was ist eine Rechtsverordnung?,Eine Rechtsverordnung ist eine von der Verwaltung erlassene Norm. Sie benötigt eine Ermächtigungsgrundlage. (A regulation is a norm issued by the administration. It requires an authorization basis.)
+Was bedeutet Gewaltenteilung?,Gewaltenteilung bedeutet die Aufteilung der Staatsgewalt in Legislative Judikative und Exekutive. (Separation of powers means the division of state power into legislative judicial and executive branches.)
+Was sind Grundrechte?,Grundrechte sind Abwehrrechte des Bürgers gegen den Staat. Sie stehen im Grundgesetz. (Fundamental rights are defensive rights of citizens against the state. They are in the Basic Law.)
+Welche Gesetze gibt es im materiellen Sinn?,Im materiellen Sinn gibt es formelle Gesetze Rechtsverordnungen und Satzungen. (In the material sense there are formal laws regulations and statutes.)
+Was ist ein Verwaltungsakt?,Ein Verwaltungsakt ist eine hoheitliche Maßnahme einer Behörde zur Regelung eines Einzelfalls. (An administrative act is a sovereign measure by an authority to regulate an individual case.)
+Wer kann Gesetze initiieren?,Gesetze können von der Bundesregierung vom Bundestag und vom Bundesrat initiiert werden. (Laws can be initiated by the federal government the Bundestag and the Bundesrat.)
+Was bedeutet konkurrierende Gesetzgebung?,Bei konkurrierender Gesetzgebung dürfen Länder nur tätig werden wenn der Bund nicht tätig geworden ist. (In concurrent legislation states may only act if the federation has not acted.)
+Was ist der Unterschied zwischen Zivilrecht und Öffentlichem Recht?,Zivilrecht regelt Beziehungen zwischen Privatpersonen. Öffentliches Recht regelt das Verhältnis Bürger-Staat. (Civil law regulates relationships between private persons. Public law regulates the citizen-state relationship.)
+Was ist eine Apothekerkammer?,Eine Apothekerkammer ist eine Körperschaft des öffentlichen Rechts mit Pflichtmitgliedschaft. (A pharmacists' chamber is a public law corporation with mandatory membership.)
+Welche Aufgaben hat die Bezirksregierung im Apothekenrecht?,Die Bezirksregierung erteilt Approbationen und kontrolliert Krankenhausapotheken. (The district government grants licenses and controls hospital pharmacies.)
+Was ist das Bundesgesundheitsministerium?,Das Bundesgesundheitsministerium ist die oberste Gesundheitsbehörde des Bundes. (The Federal Ministry of Health is the supreme health authority of the federation.)
+Welche Behörde erteilt die Apothekenbetriebserlaubnis?,Die Kreisverwaltungsbehörde erteilt die Apothekenbetriebserlaubnis. (The district administrative authority grants the pharmacy operating license.)
+Was macht das BfArM?,Das BfArM führt das Arzneimittelgesetz durch und lässt Arzneimittel zu. (The BfArM implements the Medicines Act and approves medicines.)
+Was bedeutet Bundesrecht bricht Landesrecht?,Bundesrecht bricht Landesrecht bedeutet dass Bundesrecht Vorrang vor Landesrecht hat. (Federal law breaks state law means that federal law takes precedence over state law.)
+Welche Grundfreiheiten gibt es in der EU?,Es gibt freien Warenverkehr Freizügigkeit Dienstleistungsfreiheit und freien Kapitalverkehr. (There is free movement of goods persons services and capital.)
+
+`.trim();
+
+// ============================================
+// CSV DATA - SENTENCES
+// ============================================
+const sentencesCSV = `
+Das Grundgesetz ist die Verfassung der Bundesrepublik Deutschland.,The Basic Law is the constitution of the Federal Republic of Germany.
+Grundrechte sind unveräußerlich und unantastbar.,Fundamental rights are inalienable and inviolable.
+Der Bundestag beschließt Gesetze mit einfacher Mehrheit.,The Bundestag passes laws with a simple majority.
+Die Verwaltung vollzieht die Gesetze.,The administration executes the laws.
+Gerichte sprechen Recht unabhängig und nur dem Gesetz unterworfen.,Courts administer justice independently and subject only to the law.
+Eine Rechtsverordnung benötigt eine Ermächtigungsgrundlage.,A regulation requires an authorization basis.
+Der Verwaltungsakt muss schriftlich begründet werden.,The administrative act must be justified in writing.
+Gegen einen Bescheid kann Widerspruch eingelegt werden.,An objection can be filed against a decision.
+Die Widerspruchsfrist beträgt einen Monat.,The objection period is one month.
+Im Verwaltungsprozess gilt der Amtsermittlungsgrundsatz.,The inquisitorial principle applies in administrative proceedings.
+Die Apothekerkammer ist eine Körperschaft des öffentlichen Rechts.,The pharmacists' chamber is a public law corporation.
+Die Mitgliedschaft in der Kammer ist gesetzlich vorgeschrieben.,Membership in the chamber is legally required.
+Die Kammer unterliegt der Rechtsaufsicht des Ministeriums.,The chamber is subject to the legal supervision of the ministry.
+Bundesrecht hat Vorrang vor Landesrecht.,Federal law takes precedence over state law.
+Die Berufsordnung regelt die Berufspflichten.,The professional code regulates professional duties.
+Das Apothekengesetz enthält eine Ermächtigungsgrundlage für die ApBetrO.,The Pharmacy Act contains an authorization basis for the ApBetrO.
+Die Bezirksregierung ist die höhere Landesgesundheitsbehörde.,The district government is the higher state health authority.
+Das BfArM lässt Fertigarzneimittel zu.,The BfArM approves finished medicinal products.
+Europarecht steht über einfachem Bundesrecht.,European law stands above simple federal law.
+Die vier Grundfreiheiten der EU sind verbindlich.,The four fundamental freedoms of the EU are binding.
+
+`.trim();
+
+// ============================================
+// PARSE CSV FUNCTION
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .map(line => line.split(',').map(cell => cell.trim()));
+}
+
+// ============================================
+// RENDER NOUNS TABLE
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV);
+    const grouped = { das: [], der: [], die: [] };
+
+    data.forEach(row => {
+        const [article, german, pluralNotation, pluralFull, english] = row;
+        grouped[article].push({ article, german, pluralNotation, pluralFull, english });
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    const articles = ['der', 'das', 'die'];
+    
+    articles.forEach((article, articleIndex) => {
+        const words = grouped[article];
+        const numRows = Math.ceil(words.length / 2);
+        
+        for (let row = 0; row < numRows; row++) {
+            const word1 = words[row];
+            const word2 = words[row + numRows];
+            
+            const rowClass = `${article}-row`;
+            const articleClass = `${article}-article`;
+            
+            html += `<tr class="${rowClass}">`;
+            
+            if (word1) {
+                html += `<td class="article-cell ${articleClass}">${word1.article}</td>`;
+                html += `<td class="german-cell">${word1.german}</td>`;
+                html += `<td class="plural-cell">${word1.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word1.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            if (word2) {
+                html += `<td class="article-cell ${articleClass}">${word2.article}</td>`;
+                html += `<td class="german-cell">${word2.german}</td>`;
+                html += `<td class="plural-cell">${word2.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        if (articleIndex < articles.length - 1) {
+            html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+        }
+    });
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS TABLE
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV);
+    const verbData = parseCSV(verbsCSV);
+    
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    // Process adjectives - split into two halves like nouns table
+    const numAdjRows = Math.ceil(adjData.length / 2);
+    
+    for (let i = 0; i < numAdjRows; i++) {
+        html += `<tr class="adjective-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (adjData[i]) {
+            const row = adjData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numAdjRows;
+        if (adjData[secondRowIndex]) {
+            const row = adjData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+
+    // Process verbs - split into two halves like nouns table
+    const numVerbRows = Math.ceil(verbData.length / 2);
+    
+    for (let i = 0; i < numVerbRows; i++) {
+        html += `<tr class="verb-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (verbData[i]) {
+            const row = verbData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numVerbRows;
+        if (verbData[secondRowIndex]) {
+            const row = verbData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS TABLE
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV);
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const data = parseCSV(conversationsCSV);
+    const container = document.getElementById('conversationsContainer');
+    
+    const conversations = {};
+    data.forEach(row => {
+        const parts = row[0].split('|');
+        const title = parts[0];
+        const speaker = parts[1];
+        const german = row[1];
+        const english = row[2];
+        
+        if (!conversations[title]) {
+            conversations[title] = [];
+        }
+        conversations[title].push({ speaker, german, english });
+    });
+    
+    let html = '';
+    for (const [title, lines] of Object.entries(conversations)) {
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="7" class="conversation-title">${title}</td></tr>`;
+        
+        for (let i = 0; i < lines.length; i += 2) {
+            html += `<tr>`;
+            
+            html += `<td class="speaker-cell">${lines[i].speaker}</td>`;
+            html += `<td class="german-cell">${lines[i].german}</td>`;
+            html += `<td class="english-cell">${lines[i].english}</td>`;
+            
+            html += `<td style="width: 1%; background: #ddd; border: none;"></td>`;
+            
+            if (i + 1 < lines.length) {
+                html += `<td class="speaker-cell">${lines[i + 1].speaker}</td>`;
+                html += `<td class="german-cell">${lines[i + 1].german}</td>`;
+                html += `<td class="english-cell">${lines[i + 1].english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        html += `</table>`;
+    }
+    
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A TABLE
+// ============================================
+function renderQATable() {
+    const data = parseCSV(qaCSV);
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [question1, answer1] = data[i];
+        html += `<td class="question-cell">${question1}</td>`;
+        html += `<td class="answer-cell">${answer1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [question2, answer2] = data[i + 1];
+            html += `<td class="question-cell">${question2}</td>`;
+            html += `<td class="answer-cell">${answer2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES TABLE
+// ============================================
+function renderSentencesTable() {
+    const data = parseCSV(sentencesCSV);
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// INITIALIZE ON PAGE LOAD
+// ============================================
+window.addEventListener('load', function() {
+    console.log('📚 Rendering all tables...');
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ All tables rendered successfully!');
+});
+    </script>
+</body>
+</html>

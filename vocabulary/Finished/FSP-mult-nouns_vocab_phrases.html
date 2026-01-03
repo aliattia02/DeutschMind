@@ -1,0 +1,1869 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary & Phrases - Arzneimittelrecht</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 5px;
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .zoom-label {
+            font-size: 0.75em;
+            font-weight: bold;
+            color: #666;
+            padding: 0 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .zoom-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 3px;
+            min-width: 40px;
+        }
+
+        .zoom-btn:hover {
+            background: #555;
+        }
+
+        .zoom-level {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .print-button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .print-button:hover {
+            background: #333;
+        }
+
+        .content-wrapper {
+            max-width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* SECTION DIVIDER */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+     .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section.noun-section {
+            page-break-before: always;
+        }
+
+        .table-section.noun-section:first-of-type {
+            page-break-before: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* NOUN TABLE STYLING */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f5f5f5;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 4%;
+            max-width: 50px;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 23%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 10%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 13%;
+        }
+
+        /* Color coding for articles */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ADJECTIVE/VERB TABLE STYLING */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col {
+            font-weight: 600;
+            width: 15%;
+        }
+
+        .word-table .english-col {
+            color: #333;
+            width: 10%;
+        }
+
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* EXPRESSIONS TABLE */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .expressions-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* CONVERSATIONS TABLE */
+        .conversations-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #2C3E50 !important;
+            color: white !important;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: center;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td {
+            padding: 6px 8px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .conversations-table .speaker-cell {
+            width: 4%;
+            font-weight: bold;
+            text-align: center;
+            background: #E8E8E8 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .german-cell {
+            width: 22%;
+            font-weight: 600;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .english-cell {
+            width: 22%;
+            color: #333;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Q&A TABLE */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .qa-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFE6E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 25%;
+            background: #E6F7E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* SENTENCES TABLE */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .sentences-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #F0E6FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #E6FFE6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9 !important;
+            border-top: 2px solid #666;
+            font-size: 1em;
+            page-break-before: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info h3 {
+            font-size: 1.43em;
+            margin-bottom: 5px;
+        }
+
+        .footer-info p {
+            margin: 3px 0;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        @media print {
+            body {
+                padding: 5px;
+                max-width: 100%;
+            }
+
+            .controls {
+                display: none !important;
+            }
+
+            .content-wrapper {
+                max-width: 100%;
+            }
+
+              .table-section {
+                overflow-x: visible;
+                max-width: 100%;
+                margin-bottom: 2px;
+                page-break-inside: auto;
+            }
+
+            .table-section.noun-section {
+                page-break-before: always;
+                page-break-inside: avoid;
+            }
+
+            .table-section.noun-section:first-of-type {
+                page-break-before: auto;
+            }
+
+            .table-section h2 {
+                margin-top: 2px;
+                page-break-after: avoid;
+                page-break-before: auto;
+            }
+
+            .header {
+                page-break-after: avoid;
+                margin-bottom: 10px;
+            }
+
+            .footer-info {
+                display: none !important;
+            }
+
+            .section-divider {
+                page-break-before: always;
+            }
+
+            @page {
+                margin: 1cm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        @media screen {
+            .controls {
+                display: flex !important;
+            }
+            
+            body {
+                max-width: 1400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="zoom-controls">
+            <span class="zoom-label">📚 Vocab:</span>
+            <button class="zoom-btn" onclick="zoomOutVocab()" title="Zoom Out Vocab">−</button>
+            <span class="zoom-level" id="zoomLevelVocab">100%</span>
+            <button class="zoom-btn" onclick="zoomInVocab()" title="Zoom In Vocab">+</button>
+            <button class="zoom-btn" onclick="resetZoomVocab()" title="Reset Zoom Vocab">⟲</button>
+        </div>
+        <div class="zoom-controls">
+            <span class="zoom-label">💬 Phrases:</span>
+            <button class="zoom-btn" onclick="zoomOutPhrases()" title="Zoom Out Phrases">−</button>
+            <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+            <button class="zoom-btn" onclick="zoomInPhrases()" title="Zoom In Phrases">+</button>
+            <button class="zoom-btn" onclick="resetZoomPhrases()" title="Reset Zoom Phrases">⟲</button>
+        </div>
+        <button class="print-button" onclick="window.print()">🖨️ Print</button>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 German Vocabulary & Phrases - Arzneimittelrecht</h1>
+        </div>
+
+        <!-- VOCABULARY SECTION -->
+        <div id="vocabSection">
+<div class="table-section noun-section">
+                <h2>Table 1A: Nouns </h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col style="width: 17%;">
+                        <col style="width: 8%;">
+                        <col style="width: 20%;">
+                        <col style="width: 5%;">
+                        <col style="width: 17%;">
+                        <col style="width: 8%;">
+                        <col style="width: 20%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody1"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 1B: NOUNS - People & Roles -->
+            <div class="table-section noun-section">
+                <h2>Table 1B: Nouns </h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col style="width: 17%;">
+                        <col style="width: 8%;">
+                        <col style="width: 20%;">
+                        <col style="width: 5%;">
+                        <col style="width: 17%;">
+                        <col style="width: 8%;">
+                        <col style="width: 20%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody2"></tbody>
+                </table>
+            </div>
+
+            <div class="table-section noun-section">
+                <h2>Table 1C: Nouns </h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col style="width: 17%;">
+                        <col style="width: 8%;">
+                        <col style="width: 20%;">
+                        <col style="width: 5%;">
+                        <col style="width: 17%;">
+                        <col style="width: 8%;">
+                        <col style="width: 20%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody3"></tbody>
+                </table>
+            </div>
+
+            <div class="table-section noun-section">
+                <h2>Table 1D: Nouns </h2>
+
+                <table class="noun-table">
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col style="width: 17%;">
+                        <col style="width: 8%;">
+                        <col style="width: 20%;">
+                        <col style="width: 5%;">
+                        <col style="width: 17%;">
+                        <col style="width: 8%;">
+                        <col style="width: 20%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody4"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives & Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES & SENTENCES</h2>
+        </div>
+
+        <!-- PHRASES SECTION -->
+        <div id="phrasesSection">
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions & Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- REFERENCE INFORMATION -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Document Info:</strong> Topic: Pharmaceutical Law | Level: Professional/Academic | Created: 2025</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Väter, Mütter = full form with umlaut | --- = no change | kein Plural = no plural form</p>
+            <p><strong>Color Coding:</strong> <span style="color: #1565C0;">■ der (blue)</span> | <span style="color: #2E7D32;">■ das (green)</span> | <span style="color: #C62828;">■ die (red)</span></p>
+            <p><strong>Prefix Guide:</strong> - prefix = Adjective | * prefix = Weak Verb | + prefix = Strong Verb</p>
+            <p><strong>Organization:</strong> Horizontal pairs are opposites (Column 1 ↔ Column 2, Column 3 ↔ Column 4)</p>
+        </div>
+    </div>
+
+    <script>
+// ============================================
+// ZOOM FUNCTIONALITY - SEPARATE FOR EACH SECTION
+// ============================================
+let vocabZoom = 100;
+let phrasesZoom = 100;
+const zoomStep = 10;
+const minZoom = 50;
+const maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    const section = document.getElementById('vocabSection');
+    const zoomLevel = document.getElementById('zoomLevelVocab');
+    
+    const newFontSize = baseFontSize * (vocabZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${vocabZoom}%`;
+}
+
+function updatePhrasesZoom() {
+    const section = document.getElementById('phrasesSection');
+    const zoomLevel = document.getElementById('zoomLevelPhrases');
+    
+    const newFontSize = baseFontSize * (phrasesZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${phrasesZoom}%`;
+}
+
+function zoomInVocab() {
+    if (vocabZoom < maxZoom) {
+        vocabZoom += zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function zoomOutVocab() {
+    if (vocabZoom > minZoom) {
+        vocabZoom -= zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function resetZoomVocab() {
+    vocabZoom = 100;
+    updateVocabZoom();
+}
+
+function zoomInPhrases() {
+    if (phrasesZoom < maxZoom) {
+        phrasesZoom += zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function zoomOutPhrases() {
+    if (phrasesZoom > minZoom) {
+        phrasesZoom -= zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function resetZoomPhrases() {
+    phrasesZoom = 100;
+    updatePhrasesZoom();
+}
+
+window.addEventListener('load', function() {
+    updateVocabZoom();
+    updatePhrasesZoom();
+});
+// ============================================
+// NOUNS CATEGORY 1: MEDICATIONS & PREPARATIONS
+// ============================================
+
+const nouns1CSV = `
+das,Medikament,-e,die Medikamente,Medication
+das,Arzneimittel,=,die Arzneimittel,Medicine
+das,Präparat,-e,die Präparate,Preparation
+das,Generikum,Generika,die Generika,Generic
+das,Antibiotikum,Antibiotika,die Antibiotika,Antibiotic
+das,Antimykotikum,Antimykotika,die Antimykotika,Antifungal
+das,Analgetikum,Analgetika,die Analgetika,Analgesic
+das,Antidepressivum,Antidepressiva,die Antidepressiva,Antidepressant
+das,Antipsychotikum,Antipsychotika,die Antipsychotika,Antipsychotic
+das,Antiemetikum,Antiemetika,die Antiemetika,Antiemetic
+das,Sedativum,Sedativa,die Sedativa,Sedative
+das,Hypnotikum,Hypnotika,die Hypnotika,Hypnotic
+das,Antihypertensivum,Antihypertensiva,die Antihypertensiva,Antihypertensive
+das,Antidiabetikum,Antidiabetika,die Antidiabetika,Antidiabetic
+das,Spasmolytikum,Spasmolytika,die Spasmolytika,Spasmolytic
+das,Antirheumatikum,Antirheumatika,die Antirheumatika,Antirheumatic
+das,Antiepileptikum,Antiepileptika,die Antiepileptika,Antiepileptic
+das,Expektorans,Expektoranzien,die Expektoranzien,Expectorant
+das,Antitussivum,Antitussiva,die Antitussiva,Antitussive
+das,Antipyretikum,Antipyretika,die Antipyretika,Antipyretic
+das,Antiphlogistikum,Antiphlogistika,die Antiphlogistika,Anti-inflammatory
+das,Antimigränikum,Antimigränika,die Antimigränika,Antimigraine
+das,Antiallergikum,Antiallergika,die Antiallergika,Antiallergic
+das,Antidiarrhoikum,Antidiarrhoika,die Antidiarrhoika,Antidiarrheal
+das,Laxans,Laxanzien,die Laxanzien,Laxative
+das,Anxiolytikum,Anxiolytika,die Anxiolytika,Anxiolytic
+das,Kortikosteroid,-e,die Kortikosteroide,Corticosteroid
+das,Diuretikum,Diuretika,die Diuretika,Diuretic
+das,Probiotikum,Probiotika,die Probiotika,Probiotic
+das,Narkotikum,Narkotika,die Narkotika,Narcotic
+das,Homöopathikum,Homöopathika,die Homöopathika,Homeopathic
+das,Virostatikum,Virostatika,die Virostatika,Antiviral
+das,Anthelminthikum,Anthelminthika,die Anthelminthika,Anthelmintic
+das,Aerosol,-e,die Aerosole,Aerosol
+das,Gel,-e,die Gele,Gel
+das,Wasser,=,die Wasser,Water
+das,Arzneiwasser,=,die Arzneiwasser,Medicinal water
+das,Fluidum,Fluida,die Fluida,Fluid
+das,Öl,-e,die Öle,Oil
+das,Pulver,=,die Pulver,Powder
+das,Granulat,-e,die Granulate,Granulate
+das,Dragee,-s,die Dragees,Dragee
+das,Retardpräparat,-e,die Retardpräparate,Extended-release
+das,Depot-Präparat,-e,die Depot-Präparate,Depot preparation
+das,Extrakt,-e,die Extrakte,Extract
+das,Zäpfchen,=,die Zäpfchen,Suppository
+das,Pflaster,=,die Pflaster,Patch
+das,Implantat,-e,die Implantate,Implant
+der,Gerinnungshemmer,=,die Gerinnungshemmer,Anticoagulant
+der,Thrombozytenaggregationshemmer,=,die Thrombozytenaggregationshemmer,Platelet inhibitor
+der,Blutdrucksenker,=,die Blutdrucksenker,BP reducer
+der,Blutzuckersenker,=,die Blutzuckersenker,Glucose reducer
+der,Lipidsenker,=,die Lipidsenker,Lipid reducer
+der,Antagonist,-en,die Antagonisten,Antagonist
+der,Agonist,-en,die Agonisten,Agonist
+der,Blocker,=,die Blocker,Blocker
+der,Rezeptorantagonist,-en,die Rezeptorantagonisten,Receptor antagonist
+der,Schmerzmittel,=,die Schmerzmittel,Pain reliever
+der,Hustenstiller,=,die Hustenstiller,Cough suppressant
+der,Hustenlöser,=,die Hustenlöser,Expectorant
+der,Immunsuppressor,-en,die Immunsuppressoren,Immunosuppressant
+der,Wirkstoff,-e,die Wirkstoffe,Active ingredient
+der,Arzneistoff,-e,die Arzneistoffe,Medicinal substance
+der,Betäubungsmittel,=,die Betäubungsmittel,Narcotic
+der,Impfstoff,-e,die Impfstoffe,Vaccine
+der,Wirkstoffgehalt,-e,die Wirkstoffgehalte,Active content
+der,Placebo,-s,die Placebos,Placebo
+der,Beta-Blocker,=,die Beta-Blocker,Beta blocker
+der,Entwässerungsmittel,=,die Entwässerungsmittel,Diuretic
+der,Immunmodulator,-en,die Immunmodulatoren,Immunomodulator
+der,Entzündungshemmer,=,die Entzündungshemmer,Anti-inflammatory
+der,Bronchodilatator,-en,die Bronchodilatatoren,Bronchodilator
+der,Schleimlöser,=,die Schleimlöser,Expectorant
+der,Säureblocker,=,die Säureblocker,Acid blocker
+der,Magenschutz,---,---,Gastric protector
+der,Blähungshemmer,=,die Blähungshemmer,Antiflatulent
+der,Virenhemmer,=,die Virenhemmer,Antiviral
+der,Pilzhemmer,=,die Pilzhemmer,Antifungal
+der,Antiparasitär,-e,die Antiparasitäre,Antiparasitic
+der,Beruhigungsmittel,=,die Beruhigungsmittel,Sedative
+der,Schlafmittel,=,die Schlafmittel,Sleeping aid
+der,Stimmungsaufheller,=,die Stimmungsaufheller,Mood enhancer
+der,Sirup,-e,die Sirupe,Syrup
+der,Saft,Säfte,die Säfte,Juice
+der,Tropfen,=,die Tropfen,Drops
+der,Elixier,-e,die Elixiere,Elixir
+der,Stick,-s,die Sticks,Stick
+der,Beutel,=,die Beutel,Sachet
+der,Puder,=,die Puder,Powder
+der,Honig,-e,die Honige,Honey
+der,Klistier,-e,die Klistiere,Enema
+der,Inhalator,-en,die Inhalatoren,Inhaler
+der,Verband,Verbände,die Verbände,Dressing
+der,Applikator,-en,die Applikatoren,Applicator
+der,Wirkstoffpflaster,=,die Wirkstoffpflaster,Transdermal patch
+die,Indikation,-en,die Indikationen,Indication
+die,Nebenwirkung,-en,die Nebenwirkungen,Side effect
+die,Wirkung,-en,die Wirkungen,Effect
+die,Wechselwirkung,-en,die Wechselwirkungen,Interaction
+die,Dosierung,-en,die Dosierungen,Dosage
+die,Tablette,-n,die Tabletten,Tablet
+die,Kapsel,-n,die Kapseln,Capsule
+die,Infusion,-en,die Infusionen,Infusion
+die,Injektion,-en,die Injektionen,Injection
+die,Creme,-s,die Cremes,Cream
+die,Salbe,-n,die Salben,Ointment
+die,Suspension,-en,die Suspensionen,Suspension
+die,Tinktur,-en,die Tinkturen,Tincture
+die,Arznei,-en,die Arzneien,Medicine
+die,Verschreibung,-en,die Verschreibungen,Prescription
+die,Rezeptur,-en,die Rezepturen,Compounding
+die,Kontraindikation,-en,die Kontraindikationen,Contraindication
+die,Basiscreme,-s,die Basecremes,Base cream
+die,Dragees,nur P,die Dragees,Dragees
+die,Paste,-n,die Pasten,Paste
+die,Schmerztablette,-n,die Schmerztabletten,Pain tablet
+die,Migränetablette,-n,die Migränetabletten,Migraine tablet
+die,Herztablette,-n,die Herztabletten,Heart tablet
+die,Blutdrucktherapie,-n,die Blutdrucktherapien,BP therapy
+die,Hustenlösung,-en,die Hustenlösungen,Cough solution
+die,Inhalationslösung,-en,die Inhalationslösungen,Inhalation solution
+die,Erkältungsmedizin,-en,die Erkältungsmedizinen,Cold medicine
+die,Magensäureblocker,=,die Magensäureblocker,Acid blocker
+die,Verdauungshilfe,-n,die Verdauungshilfen,Digestive aid
+die,Infektionsarznei,-en,die Infektionsarzneien,Infection medicine
+die,Beruhigungstablette,-n,die Beruhigungstabletten,Tranquilizer
+die,Psychopharmaka,nur P,die Psychopharmaka,Psychotropic drugs
+die,Hormontherapie,-n,die Hormontherapien,Hormone therapy
+die,Krebstherapie,-n,die Krebstherapien,Cancer therapy
+die,Lösung,-en,die Lösungen,Solution
+die,Emulsion,-en,die Emulsionen,Emulsion
+die,Lotion,-en,die Lotionen,Lotion
+die,Schüttelmixtur,-en,die Schüttelmixtur,Shake mixture
+die,Brausetablette,-n,die Brausetabletten,Effervescent tablet
+die,Schmelztablette,-n,die Schmelztabletten,Melt tablet
+die,Filmtablette,-n,die Filmtabletten,Film-coated tablet
+die,Pille,-n,die Pillen,Pill
+die,Vaginalcreme,-s,die Vaginalcremes,Vaginal cream
+die,Ampulle,-n,die Ampullen,Ampoule
+die,Spritze,-n,die Spritzen,Syringe
+die,Augentropfen,nur P,die Augentropfen,Eye drops
+die,Ohrentropfen,nur P,die Ohrentropfen,Ear drops
+die,Nasentropfen,nur P,die Nasentropfen,Nasal drops
+`.trim();
+
+
+
+
+// ============================================
+// NOUNS CATEGORY 2: BODY SYSTEMS & ANATOMY
+// ============================================
+
+const nouns2CSV = `
+das,Atmungssystem,-e,die Atmungssysteme,Respiratory system
+das,Nasenloch,Nasenlöcher,die Nasenlöcher,Nostril
+das,Lungengewebe,=,die Lungengewebe,Lung tissue
+das,Gehirn,-e,die Gehirne,Brain
+das,Rückenmark,---,---,Spinal cord
+das,Liquor,---,---,CSF
+das,Nervensystem,-e,die Nervensysteme,Nervous system
+das,Blut,---,---,Blood
+das,Herz,-en,die Herzen,Heart
+das,Knochenmark,---,---,Bone marrow
+das,Rektum,Rekta,die Rekta,Rectum
+das,Peritoneum,---,---,Peritoneum
+das,Mageninnere,---,---,Gastric
+das,Verdauungssystem,-e,die Verdauungssysteme,Digestive system
+das,Gelenk,-e,die Gelenke,Joint
+das,Knochengewebe,=,die Knochengewebe,Bone tissue
+das,Bein,-e,die Beine,Legs
+das,Knie,=,die Knie,Knee
+das,Skelett,-e,die Skelette,Skeleton
+das,Hormonsystem,-e,die Hormonsysteme,Endocrine system
+das,Auge,-n,die Augen,Eye
+das,Trommelfell,-e,die Trommelfelle,Eardrum
+das,Ohr,-en,die Ohren,Ear
+das,Gesicht,-er,die Gesichter,Face
+das,Gewebe,=,die Gewebe,Tissue
+das,Organ,-e,die Organe,Organ
+das,Immunsystem,-e,die Immunsysteme,Immune system
+das,Becken,=,die Becken,Pelvis
+der,Atemweg,-e,die Atemwege,Airway
+der,Bronchien,nur P,die Bronchien,Bronchi
+der,Hals,Hälse,die Hälse,Neck
+der,Rachen,=,die Rachen,Pharynx
+der,Kehlkopf,Kehlköpfe,die Kehlköpfe,Larynx
+der,Kopf,Köpfe,die Köpfe,Head
+der,Nerv,-en,die Nerven,Nerve
+der,Wirbelkanal,Wirbelkanäle,die Wirbelkanäle,Spinal canal
+der,Lymphknoten,=,die Lymphknoten,Lymph node
+der,Kreislauf,Kreisläufe,die Kreisläufe,Circulatory system
+der,Blutdruck,---,---,Blood pressure
+der,Puls,-e,die Pulse,Pulse
+der,Mund,Münder,die Münder,Mouth
+der,Magen,Mägen,die Mägen,Stomach
+der,After,=,die After,Anus
+der,Zungenunterseite,-n,die Zungenunterseiten,Sublingual
+der,Bauch,Bäuche,die Bäuche,Abdomen
+der,Darm,Därme,die Därme,Intestine
+der,Dünndarm,Dünndärme,die Dünndärme,Small intestine
+der,Dickdarm,Dickdärme,die Dickdärme,Large intestine
+der,Enddarm,Enddärme,die Enddärme,Rectum
+der,Muskel,-n,die Muskeln,Muscle
+der,Gesäßmuskel,-n,die Gesäßmuskeln,Gluteal muscle
+der,Arm,-e,die Arme,Arm
+der,Finger,=,die Finger,Finger
+der,Daumen,=,die Daumen,Thumb
+der,Rumpf,Rümpfe,die Rümpfe,Torso
+der,Hormonhaushalt,---,---,Hormone balance
+der,Stoffwechsel,=,die Stoffwechsel,Metabolism
+der,Glaskörper,=,die Glaskörper,Vitreous body
+der,Zitzenkanal,Zitzenkanäle,die Zitzenkanäle,Teat canal
+der,Organismus,Organismen,die Organismen,Organism
+die,Lunge,-n,die Lungen,Lung
+die,Brusthöhle,-n,die Brusthöhlen,Thorax
+die,Nase,-n,die Nasen,Nose
+die,Atmung,-en,die Atmungen,Respiration
+die,Hirnventrikel,=,die Hirnventrikel,Brain ventricle
+die,Epiduralraum,Epiduralräume,die Epiduralräume,Epidural space
+die,Vene,-n,die Venen,Vein
+die,Arterie,-n,die Arterien,Artery
+die,Durchblutung,-en,die Durchblutungen,Blood circulation
+die,Zunge,-n,die Zungen,Tongue
+die,Speiseröhre,-n,die Speiseröhren,Esophagus
+die,Leber,-n,die Lebern,Liver
+die,Milz,-en,die Milzen,Spleen
+die,Bauchspeicheldrüse,-n,die Bauchspeicheldrüsen,Pancreas
+die,Verdauung,-en,die Verdauungen,Digestion
+die,Backe,-n,die Backen,Cheek
+die,Knochenhaut,Knochenhäute,die Knochenhäute,Periosteum
+die,Gelenkkapsel,-n,die Gelenkkapseln,Joint capsule
+die,Hand,Hände,die Hände,Hand
+die,Brust,Brüste,die Brüste,Chest
+die,Schilddrüse,-n,die Schilddrüsen,Thyroid gland
+die,Nebenniere,-n,die Nebennieren,Adrenal gland
+die,Bindehaut,Bindehäute,die Bindehäute,Conjunctiva
+die,Orbita,Orbitae,die Orbitae,Orbit
+die,Haut,Häute,die Häute,Skin
+die,Schleimhaut,Schleimhäute,die Schleimhäute,Mucous membrane
+die,Applikationsstelle,-n,die Applikationsstellen,Application site
+die,Oberhaut,Oberhäute,die Oberhäute,Epidermis
+die,Läsion,-en,die Läsionen,Lesion
+die,Wundheilung,-en,die Wundheilungen,Wound healing
+die,Gebärmutter,Gebärmütter,die Gebärmütter,Uterus
+die,Niere,-n,die Nieren,Kidney
+die,Blase,-n,die Blasen,Bladder
+die,Harnröhre,-n,die Harnröhren,Urethra
+die,Harnblase,-n,die Harnblasen,Bladder
+die,Ausscheidung,-en,die Ausscheidungen,Excretion
+die,Fortpflanzung,-en,die Fortpflanzungen,Reproduction
+die,Scheide,-n,die Scheiden,Vagina
+`.trim();
+
+
+// ============================================
+// NOUNS CATEGORY 3: DISEASES & SYMPTOMS
+// ============================================
+
+const nouns3CSV = `
+das,Herzversagen,---,---,Heart failure
+das,Herzrasen,---,---,Tachycardia
+das,Herzklopfen,---,---,Palpitations
+das,Kreislaufversagen,---,---,Circulatory failure
+das,Blackout,-s,die Blackouts,Syncope
+das,Asthma,---,---,Asthma
+das,Bronchospasmus,Bronchospasmen,die Bronchospasmen,Bronchospasm
+das,Lungenödem,-e,die Lungenödeme,Pulmonary edema
+das,Erbrechen,---,---,Vomiting
+das,Sodbrennen,---,---,Heartburn
+das,Magengeschwür,-e,die Magengeschwüre,Gastric ulcer
+das,Reizdarmsyndrom,-e,die Reizdarmsyndrome,Irritable bowel
+das,Rheuma,---,---,Rheumatism
+das,Trauma,Traumata,die Traumata,Trauma
+das,Gelenktrauma,Gelenktraumata,die Gelenktraumata,Joint trauma
+das,Ekzem,-e,die Ekzeme,Eczema
+das,Ödem,-e,die Ödeme,Edema
+das,Exanthem,-e,die Exantheme,Exanthema
+das,Glaukom,-e,die Glaukome,Glaucoma
+das,Koma,-s,die Komas,Coma
+das,Fieber,=,die Fieber,Fever
+das,Unwohlsein,---,---,Discomfort
+das,Unterzuckerung,-en,die Unterzuckerungen,Hypoglycemia
+das,Überzuckerung,-en,die Überzuckerungen,Hyperglycemia
+das,Symptom,-e,die Symptome,Symptom
+das,Karzinom,-e,die Karzinome,Carcinoma
+das,Multiorganversagen,---,---,Multiple organ failure
+das,Leiden,=,die Leiden,Suffering
+der,Herzinfarkt,-e,die Herzinfarkte,Heart attack
+der,Bluthochdruck,---,---,Hypertension
+der,Bluterguss,Blutergüsse,die Blutergüsse,Hematoma
+der,Schlaganfall,Schlaganfälle,die Schlaganfälle,Stroke
+der,Herzstillstand,Herzstillstände,die Herzstillstände,Cardiac arrest
+der,Gefäßverschluss,Gefäßverschlüsse,die Gefäßverschlüsse,Vascular occlusion
+der,Husten,=,die Husten,Cough
+der,Schnupfen,=,die Schnupfen,Runny nose
+der,Heuschnupfen,---,---,Hay fever
+der,Atemnot,---,---,Dyspnea
+der,Erstickungsanfall,Erstickungsanfälle,die Erstickungsanfälle,Asphyxia
+der,Durchfall,Durchfälle,die Durchfälle,Diarrhea
+der,Bauchschmerz,-en,die Bauchschmerzen,Abdominal pain
+der,Stuhlgang,---,---,Bowel movement
+der,Appetitlosigkeit,---,---,Loss of appetite
+der,Blähungen,nur P,die Blähungen,Flatulence
+der,Darmverschluss,Darmverschlüsse,die Darmverschlüsse,Intestinal obstruction
+der,Schmerz,-en,die Schmerzen,Pain
+der,Muskelkater,---,---,Muscle soreness
+der,Hexenschuss,---,---,Lumbago
+der,Gelenkschmerz,-en,die Gelenkschmerzen,Joint pain
+der,Rückenschmerz,-en,die Rückenschmerzen,Back pain
+der,Kopfschmerz,-en,die Kopfschmerzen,Headache
+der,Hautpilz,-e,die Hautpilze,Skin fungus
+der,Juckreiz,---,---,Itching
+der,Ausschlag,Ausschläge,die Ausschläge,Rash
+der,Lippenherpes,---,---,Cold sore
+der,Regelschmerz,-en,die Regelschmerzen,Menstrual pain
+der,Wechseljahre,nur P,die Wechseljahre,Menopause
+der,Mundgeruch,---,---,Halitosis
+der,Ohrgeräusche,nur P,die Ohrgeräusche,Tinnitus
+der,Heiserkeit,---,---,Hoarseness
+der,Schwindel,=,die Schwindel,Dizziness
+der,Gedächtnisverlust,-e,die Gedächtnisverluste,Memory loss
+der,Zittern,---,---,Tremor
+der,Diabetes,---,---,Diabetes
+der,Fettleibigkeit,---,---,Obesity
+der,Tumor,-en,die Tumoren,Tumor
+der,Virus,Viren,die Viren,Virus
+der,Pilz,-e,die Pilze,Fungus
+der,Krebs,---,---,Cancer
+die,Herzrhythmusstörung,-en,die Herzrhythmusstörungen,Arrhythmia
+die,Durchblutungsstörung,-en,die Durchblutungsstörungen,Circulatory disorder
+die,Gefäßverkalkung,-en,die Gefäßverkalkungen,Atherosclerosis
+die,Blutung,-en,die Blutungen,Bleeding
+die,Schwellung,-en,die Schwellungen,Swelling
+die,Wassereinlagerung,-en,die Wassereinlagerungen,Edema
+die,Thrombose,-n,die Thrombosen,Thrombosis
+die,Bronchitis,---,---,Bronchitis
+die,Nasennebenhöhlenentzündung,-en,die Nasennebenhöhlenentzündungen,Sinusitis
+die,Lungenentzündung,-en,die Lungenentzündungen,Pneumonia
+die,Erkältung,-en,die Erkältungen,Common cold
+die,Übelkeit,---,---,Nausea
+die,Verdauungsstörung,-en,die Verdauungsstörungen,Indigestion
+die,Verstopfung,-en,die Verstopfungen,Constipation
+die,Blinddarmentzündung,-en,die Blinddarmentzündungen,Appendicitis
+die,Gallenblasenentzündung,-en,die Gallenblasenentzündungen,Cholecystitis
+die,Leberentzündung,-en,die Leberentzündungen,Hepatitis
+die,Magenschleimhautentzündung,-en,die Magenschleimhautentzündungen,Gastritis
+die,Migräne,-n,die Migränen,Migraine
+die,Arthritis,---,---,Arthritis
+die,Lähmung,-en,die Lähmungen,Paralysis
+die,Muskelentzündung,-en,die Muskelentzündungen,Myositis
+die,Knochenschwund,---,---,Osteoporosis
+die,Allergie,-n,die Allergien,Allergy
+die,Schuppenflechte,---,---,Psoriasis
+die,Nesselsucht,---,---,Urticaria
+die,Hautrötung,-en,die Hautrötungen,Skin redness
+die,Hautentzündung,-en,die Hautentzündungen,Dermatitis
+die,Monatsblutung,-en,die Monatsblutungen,Menstruation
+die,Menorrhagie,-n,die Menorrhagien,Heavy period
+die,Schwangerschaft,-en,die Schwangerschaften,Pregnancy
+die,Blasenschwäche,---,---,Urinary incontinence
+die,Blasenentzündung,-en,die Blasenentzündungen,Cystitis
+die,Bindehautentzündung,-en,die Bindehautentzündungen,Conjunctivitis
+die,Zahnfleischentzündung,-en,die Zahnfleischentzündungen,Gingivitis
+die,Kehlkopfentzündung,-en,die Kehlkopfentzündungen,Laryngitis
+die,Mandelentzündung,-en,die Mandelentzündungen,Tonsillitis
+die,Mittelohrentzündung,-en,die Mittelohrentzündungen,Otitis media
+die,Konjunktivitis,---,---,Conjunctivitis
+die,Schlaflosigkeit,---,---,Insomnia
+die,Gehirnhautentzündung,-en,die Gehirnhautentzündungen,Meningitis
+die,Beruhigung,-en,die Beruhigungen,Sedation
+die,Orientierungslosigkeit,---,---,Disorientation
+die,Schilddrüsenunterfunktion,-en,die Schilddrüsenunterfunktionen,Hypothyroidism
+die,Vergiftung,-en,die Vergiftungen,Poisoning
+die,Krankheit,-en,die Krankheiten,Disease
+die,Infektion,-en,die Infektionen,Infection
+die,Pilzinfektion,-en,die Pilzinfektionen,Fungal infection
+`.trim();
+
+// ============================================
+// NOUNS CATEGORY 4: PHARMACY ADMINISTRATION
+// ============================================
+
+const nouns4CSV = `
+das,Rezept,-e,die Rezepte,Prescription
+das,Kassenrezept,-e,die Kassenrezepte,Health insurance prescription
+das,Privatrezept,-e,die Privatrezepte,Private prescription
+das,BtM-Rezept,-e,die BtM-Rezepte,Narcotic prescription
+das,Patientengespräch,-e,die Patientengespräche,Patient consultation
+das,Beratungsgespräch,-e,die Beratungsgespräche,Counseling session
+das,Rezeptbuch,Rezeptbücher,die Rezeptbücher,Prescription book
+das,Kundenkonto,Kundenkonten,die Kundenkonten,Customer account
+das,Kassensystem,-e,die Kassensysteme,Cash register system
+das,Labor,-e,die Labore,Laboratory
+das,Gerät,-e,die Geräte,Device
+das,Stethoskop,-e,die Stethoskope,Stethoscope
+das,Mikroskop,-e,die Mikroskope,Microscope
+das,Thermometer,=,die Thermometer,Thermometer
+das,Blutdruckmessgerät,-e,die Blutdruckmessgeräte,BP device
+das,Blutzuckermessgerät,-e,die Blutzuckermessgeräte,Glucose meter
+das,Inhalationsgerät,-e,die Inhalationsgeräte,Inhalation device
+der,Apotheker,=,die Apotheker,Pharmacist
+der,Kunde,-n,die Kunden,Customer
+der,Patient,-en,die Patienten,Patient
+der,Arzt,Ärzte,die Ärzte,Doctor
+der,Rezeptblock,Rezeptblöcke,die Rezeptblöcke,Prescription pad
+der,Versicherungsnachweis,-e,die Versicherungsnachweise,Insurance proof
+der,Rabatt,-e,die Rabatte,Discount
+der,Preis,-e,die Preise,Price
+der,Betrag,Beträge,die Beträge,Amount
+der,Beleg,-e,die Belege,Receipt
+der,Mörser,=,die Mörser,Mortar
+der,Pistill,-e,die Pistille,Pestle
+der,Spatel,=,die Spatel,Spatula
+der,Messbecher,=,die Messbecher,Measuring cup
+der,Messzylinder,=,die Messzylinder,Measuring cylinder
+der,Messlöffel,=,die Messlöffel,Measuring spoon
+der,Blutdruckmesser,=,die Blutdruckmesser,BP monitor
+der,Blutzuckermesser,=,die Blutzuckermesser,Glucose meter
+die,Apothekerin,-nen,die Apothekerinnen,Pharmacist
+die,Kundin,-nen,die Kundinnen,Customer
+die,Patientin,-nen,die Patientinnen,Patient
+die,Ärztin,-nen,die Ärztinnen,Doctor
+die,Rezeptgebühr,-en,die Rezeptgebühren,Prescription fee
+die,Etikette,-n,die Etiketten,Label
+die,Zuzahlung,-en,die Zuzahlungen,Co-payment
+die,Befreiung,-en,die Befreiungen,Exemption
+die,Krankenkasse,-n,die Krankenkassen,Health insurance
+die,Versicherungskarte,-n,die Versicherungskarten,Insurance card
+die,Quittung,-en,die Quittungen,Receipt
+die,Pinzette,-n,die Pinzetten,Tweezers
+die,Schere,-n,die Scheren,Scissors
+die,Waage,-n,die Waagen,Scale
+die,Pipette,-n,die Pipetten,Pipette
+die,Apotheke,-n,die Apotheken,Pharmacy
+die,Offizin,-en,die Offizinen,Dispensary
+die,Schublade,-n,die Schubladen,Drawer
+die,Verpackung,-en,die Verpackungen,Packaging
+`.trim();
+
+
+// ============================================
+// ADJECTIVES
+// ============================================
+const adjectivesCSV = `
+-wirksam,effective,-unwirksam,ineffective
+-zugelassen,approved,-verboten,prohibited
+-verschreibungspflichtig,prescription-required,-freiverkäuflich,over-the-counter
+-gültig,valid,-ungültig,invalid
+-vollständig,complete,-unvollständig,incomplete
+-sicher,safe,-gefährlich,dangerous
+-verträglich,tolerable,-unverträglich,intolerable
+-akut,acute,-chronisch,chronic
+-stark,strong,-schwach,weak
+-hoch,high,-niedrig,low
+-schnell,fast,-langsam,slow
+-häufig,frequent,-selten,rare
+-oral,oral,-parenteral,parenteral
+-lokal,local,-systemisch,systemic
+-steril,sterile,-unsteril,nonsterile
+-löslich,soluble,-unlöslich,insoluble
+-kühl,cool,-warm,warm
+-trocken,dry,-feucht,moist
+-dunkel,dark,-hell,bright
+-flüssig,liquid,-fest,solid
+-frisch,fresh,-abgelaufen,expired
+-original,original,-generisch,generic
+-rezeptfrei,non-prescription,-rezeptpflichtig,prescription-only
+-stationär,inpatient,-ambulant,outpatient
+-vorbeugend,preventive,-heilend,curative
+-innerlich,internal,-äußerlich,external
+-regelmäßig,regular,-unregelmäßig,irregular
+-nüchtern,fasting,-satt,fed
+-morgens,morning,-abends,evening
+-täglich,daily,-wöchentlich,weekly
+`.trim();
+
+
+// ============================================
+// VERBS
+// ============================================
+
+
+
+const verbsCSV = ` *verschreiben,prescribe,*abgeben,dispense
+*einnehmen,take,*anwenden,apply
+*dosieren,dose,*verabreichen,administer
+*lagern,store,*entsorgen,dispose
+*beraten,advise,*informieren,inform
+*prüfen,check,*kontrollieren,control
+*dokumentieren,document,*protokollieren,record
+*zulassen,approve,*verbieten,prohibit
+*bestellen,order,*liefern,deliver
+*bezahlen,pay,*erstatten,reimburse
+*mischen,mix,*trennen,separate
+*lösen,dissolve,*ausfällen,precipitate
+*verdünnen,dilute,*konzentrieren,concentrate
+*sterilisieren,sterilize,*desinfizieren,disinfect
+*kühlen,refrigerate,*erwärmen,warm
+*schütteln,shake,*rühren,stir
+*öffnen,open,*schließen,close
+*abmessen,measure,*wiegen,weigh
+*verpacken,pack,*auspacken,unpack
+*etikettieren,label,*kennzeichnen,mark
++empfehlen,recommend,+abraten,advise against
++verstehen,understand,+missverstehen,misunderstand
++bekommen,receive,+geben,give
++nehmen,take,+lassen,leave
++finden,find,+verlieren,lose
++sprechen,speak,+schweigen,be silent
++lesen,read,+schreiben,write
++sehen,see,+übersehen,overlook
++essen,eat,+trinken,drink
++schlafen,sleep,+aufwachen,wake up
++helfen,help,+schaden,harm
++beginnen,begin,+beenden,end
++tragen,carry,+ablegen,put down
++ziehen,pull,+drücken,push
++halten,hold,+loslassen,release
+`.trim();
+
+// ============================================
+// EXPRESSIONS
+// ============================================
+const expressionsCSV = `
+Haben Sie ein Rezept?,Do you have a prescription?
+Ich brauche Schmerzmittel.,I need pain medication.
+Wie oft soll ich das einnehmen?,How often should I take this?
+Nehmen Sie andere Medikamente?,Are you taking other medications?
+Das ist verschreibungspflichtig.,That requires a prescription.
+Haben Sie Allergien?,Do you have any allergies?
+Vor oder nach dem Essen?,Before or after meals?
+Wie lange dauert die Behandlung?,How long is the treatment?
+Bitte schütteln Sie die Flasche.,Please shake the bottle.
+Nicht auf leeren Magen einnehmen.,Do not take on an empty stomach.
+Kühl und trocken lagern.,Store in a cool dry place.
+Außerhalb der Reichweite von Kindern aufbewahren.,Keep out of reach of children.
+Lesen Sie die Packungsbeilage.,Read the package insert.
+Bei Nebenwirkungen zum Arzt gehen.,Consult a doctor if side effects occur.
+Das ist nicht mehr gültig.,This is no longer valid.
+Wann haben Sie die Beschwerden?,When do you have the symptoms?
+Nehmen Sie es dreimal täglich.,Take it three times daily.
+Haben Sie noch Fragen?,Do you have any questions?
+Das kostet zehn Euro Zuzahlung.,That costs ten euros co-payment.
+Möchten Sie das Original oder das Generikum?,Would you like the original or the generic?
+Die Wirkung tritt nach einer Stunde ein.,The effect occurs after one hour.
+Nicht mit Alkohol einnehmen.,Do not take with alcohol.
+Bis zum Verfallsdatum verwenden.,Use until the expiration date.
+Sind Sie schwanger oder stillen Sie?,Are you pregnant or breastfeeding?
+Das Medikament muss ich erst bestellen.,I need to order that medication first.
+`.trim();
+
+// ============================================
+// CONVERSATIONS
+// ============================================
+const conversationsCSV = `
+At the Pharmacy Counter|A,Guten Tag! Wie kann ich Ihnen helfen?,Good day! How can I help you?
+At the Pharmacy Counter|B,Ich habe hier ein Rezept vom Arzt.,I have a prescription from the doctor.
+At the Pharmacy Counter|A,Einen Moment bitte. Nehmen Sie derzeit andere Medikamente?,One moment please. Are you currently taking other medications?
+At the Pharmacy Counter|B,Ja ich nehme Blutdrucksenker.,Yes I take blood pressure medication.
+At the Pharmacy Counter|A,Gut das habe ich notiert. Haben Sie Allergien?,Good I have noted that. Do you have allergies?
+At the Pharmacy Counter|B,Nein keine Allergien.,No no allergies.
+At the Pharmacy Counter|A,Das Medikament nehmen Sie dreimal täglich nach dem Essen.,Take this medication three times daily after meals.
+At the Pharmacy Counter|B,Wie lange soll ich es nehmen?,How long should I take it?
+At the Pharmacy Counter|A,Bis die Packung leer ist. Etwa zehn Tage.,Until the package is empty. About ten days.
+At the Pharmacy Counter|B,Vielen Dank!,Thank you very much!
+Medication Counseling|A,Ich brauche etwas gegen Kopfschmerzen.,I need something for headaches.
+Medication Counseling|B,Wie oft haben Sie die Kopfschmerzen?,How often do you have headaches?
+Medication Counseling|A,Seit drei Tagen täglich.,Daily for three days.
+Medication Counseling|B,Nehmen Sie schon andere Schmerzmittel?,Are you already taking other pain medication?
+Medication Counseling|A,Nein noch nichts.,No nothing yet.
+Medication Counseling|B,Ich empfehle Ihnen Ibuprofen vierhundert Milligramm.,I recommend ibuprofen four hundred milligrams.
+Medication Counseling|A,Wie oft darf ich das nehmen?,How often may I take it?
+Medication Counseling|B,Bis zu dreimal täglich. Nehmen Sie es mit Essen.,Up to three times daily. Take it with food.
+Medication Counseling|A,Gibt es Nebenwirkungen?,Are there side effects?
+Medication Counseling|B,Manchmal Magenbeschwerden. Lesen Sie bitte die Packungsbeilage.,Sometimes stomach discomfort. Please read the package insert.
+Insurance and Payment|A,Ich möchte mein Rezept einlösen.,I would like to redeem my prescription.
+Insurance and Payment|B,Haben Sie Ihre Versicherungskarte dabei?,Do you have your insurance card with you?
+Insurance and Payment|A,Ja hier bitte.,Yes here please.
+Insurance and Payment|B,Das macht zehn Euro Zuzahlung.,That is ten euros co-payment.
+Insurance and Payment|A,Warum muss ich etwas bezahlen?,Why do I have to pay something?
+Insurance and Payment|B,Das ist die gesetzliche Zuzahlung für Erwachsene.,That is the statutory co-payment for adults.
+Insurance and Payment|A,Kann ich bar oder mit Karte zahlen?,Can I pay cash or by card?
+Insurance and Payment|B,Beides ist möglich. Wie möchten Sie zahlen?,Both are possible. How would you like to pay?
+Insurance and Payment|A,Mit Karte bitte.,By card please.
+Insurance and Payment|B,Hier ist Ihre Quittung. Gute Besserung!,Here is your receipt. Get well soon!
+Emergency Medication|A,Ich brauche dringend mein Asthma-Spray!,I urgently need my asthma spray!
+Emergency Medication|B,Haben Sie ein Rezept dabei?,Do you have a prescription with you?
+Emergency Medication|A,Nein aber ich bin Stammkunde hier.,No but I am a regular customer here.
+Emergency Medication|B,Ich schaue in Ihrer Akte. Welches Präparat nehmen Sie?,I will check your file. Which preparation do you take?
+Emergency Medication|A,Salbutamol Spray.,Salbutamol spray.
+Emergency Medication|B,Ich gebe Ihnen eine Packung. Bringen Sie bitte das Rezept nach.,I will give you one package. Please bring the prescription later.
+Emergency Medication|A,Vielen Dank! Das ist sehr wichtig für mich.,Thank you very much! This is very important for me.
+Emergency Medication|B,Geht es Ihnen jetzt besser?,Are you feeling better now?
+Emergency Medication|A,Ja danke. Ich hole das Rezept morgen.,Yes thank you. I will get the prescription tomorrow.
+Emergency Medication|B,Alles Gute!,All the best!
+`.trim();
+
+// ============================================
+// Q&A
+// ============================================
+const qaCSV = `
+Ist das Rezept noch gültig?,Ja es ist bis Ende des Monats gültig. (Yes it is valid until the end of the month.)
+Brauche ich ein Rezept für Antibiotika?,Ja Antibiotika sind verschreibungspflichtig. (Yes antibiotics require a prescription.)
+Wie lagere ich das Medikament?,Kühl und trocken bei Raumtemperatur lagern. (Store cool and dry at room temperature.)
+Kann ich das Medikament während der Schwangerschaft nehmen?,Bitte fragen Sie Ihren Arzt oder Apotheker. (Please ask your doctor or pharmacist.)
+Wie lange ist das Medikament haltbar?,Bis zum Verfallsdatum auf der Packung. (Until the expiration date on the package.)
+Was mache ich bei Nebenwirkungen?,Setzen Sie das Medikament ab und kontaktieren Sie einen Arzt. (Stop the medication and contact a doctor.)
+Kann ich Alkohol trinken während der Einnahme?,Nein vermeiden Sie Alkohol während der Behandlung. (No avoid alcohol during treatment.)
+Muss ich das Antibiotikum zu Ende nehmen?,Ja nehmen Sie es vollständig wie verschrieben. (Yes take it completely as prescribed.)
+Darf ich die Tablette teilen?,Nur wenn es auf der Packung steht. (Only if it says so on the package.)
+Was ist der Unterschied zwischen Original und Generikum?,Das Generikum hat denselben Wirkstoff aber ist günstiger. (The generic has the same active ingredient but is cheaper.)
+Wann tritt die Wirkung ein?,Normalerweise nach dreißig bis sechzig Minuten. (Normally after thirty to sixty minutes.)
+Kann ich zwei Schmerzmittel gleichzeitig nehmen?,Nein ohne ärztliche Rücksprache nicht empfohlen. (No not recommended without medical consultation.)
+Was bedeutet auf nüchternen Magen?,Mindestens eine Stunde vor dem Essen einnehmen. (Take at least one hour before eating.)
+Wie entsorge ich alte Medikamente?,Bringen Sie sie zur Apotheke zurück. (Bring them back to the pharmacy.)
+Brauche ich eine neue Verschreibung?,Ja das Rezept ist nur einmal einlösbar. (Yes the prescription can only be redeemed once.)
+`.trim();
+
+// ============================================
+// SENTENCES
+// ============================================
+const sentencesCSV = `
+Das Arzneimittel ist in Deutschland zugelassen.,The medicine is approved in Germany.
+Die Verschreibung muss vom Arzt unterschrieben sein.,The prescription must be signed by the doctor.
+Bitte bewahren Sie das Medikament kühl auf.,Please store the medication in a cool place.
+Die Tabletten sind vor dem Essen einzunehmen.,The tablets are to be taken before meals.
+Das Rezept ist nur einen Monat gültig.,The prescription is only valid for one month.
+Nebenwirkungen müssen dem Arzt gemeldet werden.,Side effects must be reported to the doctor.
+Die Apotheke berät Sie gerne bei Fragen.,The pharmacy is happy to advise you with questions.
+Das Generikum hat denselben Wirkstoff.,The generic has the same active ingredient.
+Kinder sollten andere Dosierungen erhalten.,Children should receive different dosages.
+Die Wechselwirkung mit anderen Medikamenten ist zu beachten.,The interaction with other medications must be considered.
+Das Antibiotikum tötet Bakterien ab.,The antibiotic kills bacteria.
+Schmerzmittel sollten nicht langfristig eingenommen werden.,Pain medication should not be taken long-term.
+Die Salbe wird dünn auf die Haut aufgetragen.,The ointment is applied thinly to the skin.
+Insulin muss im Kühlschrank gelagert werden.,Insulin must be stored in the refrigerator.
+Das Rezept kann nur in der Apotheke eingelöst werden.,The prescription can only be redeemed at the pharmacy.
+Blutdrucksenker müssen regelmäßig genommen werden.,Blood pressure medication must be taken regularly.
+Die Infusion wird langsam verabreicht.,The infusion is administered slowly.
+Das Medikament darf nicht geteilt werden.,The medication must not be divided.
+Hustensaft sollte vor Gebrauch geschüttelt werden.,Cough syrup should be shaken before use.
+Die Zuzahlung beträgt zehn Euro pro Medikament.,The co-payment is ten euros per medication.
+`.trim();
+// ============================================
+// PARSE CSV FUNCTION
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .map(line => line.split(',').map(cell => cell.trim()));
+}
+
+// ============================================
+// RENDER NOUNS TABLE - SUPPORTS BOTH SINGLE AND MULTIPLE TABLES
+// ============================================
+function renderNounsTable(csvData, tbodyId) {
+    const data = parseCSV(csvData);
+    const grouped = { das: [], der: [], die: [] };
+
+    data.forEach(row => {
+        const [article, german, pluralNotation, pluralFull, english] = row;
+        grouped[article].push({ article, german, pluralNotation, pluralFull, english });
+    });
+
+    const tbody = document.getElementById(tbodyId);
+    let html = '';
+
+    const articles = ['der', 'das', 'die'];
+    
+    articles.forEach((article, articleIndex) => {
+        const words = grouped[article];
+        if (words.length === 0) return; // Skip if no words for this article
+        
+        const numRows = Math.ceil(words.length / 2);
+        
+        for (let row = 0; row < numRows; row++) {
+            const word1 = words[row];
+            const word2 = words[row + numRows];
+            
+            const rowClass = `${article}-row`;
+            const articleClass = `${article}-article`;
+            
+            html += `<tr class="${rowClass}">`;
+            
+            if (word1) {
+                html += `<td class="article-cell ${articleClass}">${word1.article}</td>`;
+                html += `<td class="german-cell">${word1.german}</td>`;
+                html += `<td class="plural-cell">${word1.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word1.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            if (word2) {
+                html += `<td class="article-cell ${articleClass}">${word2.article}</td>`;
+                html += `<td class="german-cell">${word2.german}</td>`;
+                html += `<td class="plural-cell">${word2.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        if (articleIndex < articles.length - 1 && grouped[articles[articleIndex + 1]].length > 0) {
+            html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+        }
+    });
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS TABLE
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV);
+    const verbData = parseCSV(verbsCSV);
+    
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    // Process adjectives - split into two halves like nouns table
+    const numAdjRows = Math.ceil(adjData.length / 2);
+    
+    for (let i = 0; i < numAdjRows; i++) {
+        html += `<tr class="adjective-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (adjData[i]) {
+            const row = adjData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numAdjRows;
+        if (adjData[secondRowIndex]) {
+            const row = adjData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+
+    // Process verbs - split into two halves like nouns table
+    const numVerbRows = Math.ceil(verbData.length / 2);
+    
+    for (let i = 0; i < numVerbRows; i++) {
+        html += `<tr class="verb-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (verbData[i]) {
+            const row = verbData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numVerbRows;
+        if (verbData[secondRowIndex]) {
+            const row = verbData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS TABLE
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV);
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const data = parseCSV(conversationsCSV);
+    const container = document.getElementById('conversationsContainer');
+    
+    const conversations = {};
+    data.forEach(row => {
+        const parts = row[0].split('|');
+        const title = parts[0];
+        const speaker = parts[1];
+        const german = row[1];
+        const english = row[2];
+        
+        if (!conversations[title]) {
+            conversations[title] = [];
+        }
+        conversations[title].push({ speaker, german, english });
+    });
+    
+    let html = '';
+    for (const [title, lines] of Object.entries(conversations)) {
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="7" class="conversation-title">${title}</td></tr>`;
+        
+        for (let i = 0; i < lines.length; i += 2) {
+            html += `<tr>`;
+            
+            html += `<td class="speaker-cell">${lines[i].speaker}</td>`;
+            html += `<td class="german-cell">${lines[i].german}</td>`;
+            html += `<td class="english-cell">${lines[i].english}</td>`;
+            
+            html += `<td style="width: 1%; background: #ddd; border: none;"></td>`;
+            
+            if (i + 1 < lines.length) {
+                html += `<td class="speaker-cell">${lines[i + 1].speaker}</td>`;
+                html += `<td class="german-cell">${lines[i + 1].german}</td>`;
+                html += `<td class="english-cell">${lines[i + 1].english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        html += `</table>`;
+    }
+    
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A TABLE
+// ============================================
+function renderQATable() {
+    const data = parseCSV(qaCSV);
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [question1, answer1] = data[i];
+        html += `<td class="question-cell">${question1}</td>`;
+        html += `<td class="answer-cell">${answer1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [question2, answer2] = data[i + 1];
+            html += `<td class="question-cell">${question2}</td>`;
+            html += `<td class="answer-cell">${answer2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES TABLE
+// ============================================
+function renderSentencesTable() {
+    const data = parseCSV(sentencesCSV);
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// INITIALIZE ON PAGE LOAD
+// ============================================
+window.addEventListener('load', function() {
+    console.log('📚 Rendering all tables...');
+    
+    // Check if nounsCSV exists (single table mode), otherwise use multiple tables
+    if (typeof nounsCSV !== 'undefined') {
+        // Single table mode - render all nouns in one table
+        console.log('Using single noun table mode (nounsCSV)');
+        renderNounsTable(nounsCSV, 'nounTableBody1');
+        // Hide the other tables
+        document.getElementById('nounTableBody2').parentElement.parentElement.style.display = 'none';
+        document.getElementById('nounTableBody3').parentElement.parentElement.style.display = 'none';
+        document.getElementById('nounTableBody4').parentElement.parentElement.style.display = 'none';
+    } else {
+        // Multiple table mode - render separate categorized tables
+        console.log('Using multiple noun tables mode (nouns1CSV, nouns2CSV, etc.)');
+        if (typeof nouns1CSV !== 'undefined') {
+            renderNounsTable(nouns1CSV, 'nounTableBody1');
+        }
+        if (typeof nouns2CSV !== 'undefined') {
+            renderNounsTable(nouns2CSV, 'nounTableBody2');
+        }
+        if (typeof nouns3CSV !== 'undefined') {
+            renderNounsTable(nouns3CSV, 'nounTableBody3');
+        }
+        if (typeof nouns4CSV !== 'undefined') {
+            renderNounsTable(nouns4CSV, 'nounTableBody4');
+        }
+    }
+    
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ All tables rendered successfully!');
+});
+    </script>
+</body>
+</html>

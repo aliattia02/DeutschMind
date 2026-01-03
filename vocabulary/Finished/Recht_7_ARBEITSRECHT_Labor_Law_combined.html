@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary & Phrases - ARBEITSRECHT (Labor Law)</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 5px;
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .zoom-label {
+            font-size: 0.75em;
+            font-weight: bold;
+            color: #666;
+            padding: 0 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .zoom-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 3px;
+            min-width: 40px;
+        }
+
+        .zoom-btn:hover {
+            background: #555;
+        }
+
+        .zoom-level {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .print-button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .print-button:hover {
+            background: #333;
+        }
+
+        .content-wrapper {
+            max-width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* SECTION DIVIDER */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* NOUN TABLE STYLING */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f5f5f5;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 4%;
+            max-width: 50px;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 17%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 13%;
+        }
+
+        /* Color coding for articles */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ADJECTIVE/VERB TABLE STYLING */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col {
+            font-weight: 600;
+            width: 15%;
+        }
+
+        .word-table .english-col {
+            color: #333;
+            width: 10%;
+        }
+
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* EXPRESSIONS TABLE */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .expressions-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* CONVERSATIONS TABLE */
+        .conversations-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #2C3E50 !important;
+            color: white !important;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: center;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td {
+            padding: 6px 8px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .conversations-table .speaker-cell {
+            width: 4%;
+            font-weight: bold;
+            text-align: center;
+            background: #E8E8E8 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .german-cell {
+            width: 22%;
+            font-weight: 600;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .english-cell {
+            width: 22%;
+            color: #333;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Q&A TABLE */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .qa-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFE6E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 25%;
+            background: #E6F7E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* SENTENCES TABLE */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .sentences-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #F0E6FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #E6FFE6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9 !important;
+            border-top: 2px solid #666;
+            font-size: 1em;
+            page-break-before: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info h3 {
+            font-size: 1.43em;
+            margin-bottom: 5px;
+        }
+
+        .footer-info p {
+            margin: 3px 0;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        @media print {
+            body {
+                padding: 5px;
+                max-width: 100%;
+            }
+
+            .controls {
+                display: none !important;
+            }
+
+            .content-wrapper {
+                max-width: 100%;
+            }
+
+            .table-section {
+                overflow-x: visible;
+                max-width: 100%;
+                margin-bottom: 2px;
+                page-break-inside: auto;
+            }
+
+            .table-section h2 {
+                margin-top: 2px;
+                page-break-after: avoid;
+                page-break-before: auto;
+            }
+
+            .header {
+                page-break-after: avoid;
+                margin-bottom: 10px;
+            }
+
+            .footer-info {
+                display: none !important;
+            }
+
+            .section-divider {
+                page-break-before: always;
+            }
+
+            @page {
+                margin: 1cm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        @media screen {
+            .controls {
+                display: flex !important;
+            }
+            
+            body {
+                max-width: 1400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="zoom-controls">
+            <span class="zoom-label">📚 Vocab:</span>
+            <button class="zoom-btn" onclick="zoomOutVocab()" title="Zoom Out Vocab">−</button>
+            <span class="zoom-level" id="zoomLevelVocab">100%</span>
+            <button class="zoom-btn" onclick="zoomInVocab()" title="Zoom In Vocab">+</button>
+            <button class="zoom-btn" onclick="resetZoomVocab()" title="Reset Zoom Vocab">⟲</button>
+        </div>
+        <div class="zoom-controls">
+            <span class="zoom-label">💬 Phrases:</span>
+            <button class="zoom-btn" onclick="zoomOutPhrases()" title="Zoom Out Phrases">−</button>
+            <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+            <button class="zoom-btn" onclick="zoomInPhrases()" title="Zoom In Phrases">+</button>
+            <button class="zoom-btn" onclick="resetZoomPhrases()" title="Reset Zoom Phrases">⟲</button>
+        </div>
+        <button class="print-button" onclick="window.print()">🖨️ Print</button>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 German Vocabulary & Phrases - ARBEITSRECHT (Labor Law)</h1>
+        </div>
+
+        <!-- VOCABULARY SECTION -->
+        <div id="vocabSection">
+            <!-- TABLE 1: NOUNS -->
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col style="width: 19%;">
+                        <col style="width: 9%;">
+                        <col style="width: 17%;">
+                        <col style="width: 5%;">
+                        <col style="width: 19%;">
+                        <col style="width: 9%;">
+                        <col style="width: 17%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives & Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES & SENTENCES</h2>
+        </div>
+
+        <!-- PHRASES SECTION -->
+        <div id="phrasesSection">
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions & Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- REFERENCE INFORMATION -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Document Info:</strong> Topic: Pharmaceutical Law | Level: Professional/Academic | Created: 2025</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Väter, Mütter = full form with umlaut | --- = no change | kein Plural = no plural form</p>
+            <p><strong>Color Coding:</strong> <span style="color: #1565C0;">■ der (blue)</span> | <span style="color: #2E7D32;">■ das (green)</span> | <span style="color: #C62828;">■ die (red)</span></p>
+            <p><strong>Prefix Guide:</strong> - prefix = Adjective | * prefix = Weak Verb | + prefix = Strong Verb</p>
+            <p><strong>Organization:</strong> Horizontal pairs are opposites (Column 1 ↔ Column 2, Column 3 ↔ Column 4)</p>
+        </div>
+    </div>
+
+    <script>
+// ============================================
+// ZOOM FUNCTIONALITY - SEPARATE FOR EACH SECTION
+// ============================================
+let vocabZoom = 100;
+let phrasesZoom = 100;
+const zoomStep = 10;
+const minZoom = 50;
+const maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    const section = document.getElementById('vocabSection');
+    const zoomLevel = document.getElementById('zoomLevelVocab');
+    
+    const newFontSize = baseFontSize * (vocabZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${vocabZoom}%`;
+}
+
+function updatePhrasesZoom() {
+    const section = document.getElementById('phrasesSection');
+    const zoomLevel = document.getElementById('zoomLevelPhrases');
+    
+    const newFontSize = baseFontSize * (phrasesZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${phrasesZoom}%`;
+}
+
+function zoomInVocab() {
+    if (vocabZoom < maxZoom) {
+        vocabZoom += zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function zoomOutVocab() {
+    if (vocabZoom > minZoom) {
+        vocabZoom -= zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function resetZoomVocab() {
+    vocabZoom = 100;
+    updateVocabZoom();
+}
+
+function zoomInPhrases() {
+    if (phrasesZoom < maxZoom) {
+        phrasesZoom += zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function zoomOutPhrases() {
+    if (phrasesZoom > minZoom) {
+        phrasesZoom -= zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function resetZoomPhrases() {
+    phrasesZoom = 100;
+    updatePhrasesZoom();
+}
+
+window.addEventListener('load', function() {
+    updateVocabZoom();
+    updatePhrasesZoom();
+});
+
+// ============================================
+// CSV DATA - NOUNS
+// ============================================
+const nounsCSV = `
+das,Arbeitsverhältnis,-se,die Arbeitsverhältnisse,employment-relationship
+das,Nachweisgesetz,---,---,Evidence-Act
+das,Direktionsrecht,-e,die Direktionsrechte,directive-right
+das,Arbeitszeitkonto,-konten,die Arbeitszeitkonten,working-time-account
+das,Bruttogehalt,Bruttogehälter,die Bruttogehälter,gross-salary
+das,Monatsgehalt,Monatsgehälter,die Monatsgehälter,monthly-salary
+das,Entgelt,-e,die Entgelte,remuneration
+das,Jahresgehalt,Jahresgehälter,die Jahresgehälter,annual-salary
+das,Teilzeitgehalt,Teilzeitgehälter,die Teilzeitgehälter,part-time-salary
+das,Mutterschutzgesetz,-e,die Mutterschutzgesetze,maternity-protection-law
+das,Beschäftigungsverbot,-e,die Beschäftigungsverbote,employment-ban
+das,Kündigungsschutzgesetz,-e,die Kündigungsschutzgesetze,dismissal-protection-law
+das,Entgeltfortzahlungsgesetz,-e,die Entgeltfortzahlungsgesetze,continued-payment-law
+das,Jugendarbeitsschutzgesetz,-e,die Jugendarbeitsschutzgesetze,youth-employment-protection-law
+das,Schwerbehindertenrecht,-e,die Schwerbehindertenrechte,disabled-persons-law
+der,Arbeitsvertrag,Arbeitsverträge,die Arbeitsverträge,employment-contract
+der,Tarifvertrag,Tarifverträge,die Tarifverträge,collective-agreement
+der,Bundesrahmentarifvertrag,Bundesrahmentarifverträge,die Bundesrahmentarifverträge,federal-framework-agreement
+der,Arbeitgeber,---,die Arbeitgeber,employer
+der,Arbeitnehmer,---,die Arbeitnehmer,employee
+der,Arbeitgeberverband,Arbeitgeberverbände,die Arbeitgeberverbände,employers-association
+der,Beschäftigungsort,-e,die Beschäftigungsorte,place-of-employment
+der,Urlaubsanspruch,Urlaubsansprüche,die Urlaubsansprüche,vacation-entitlement
+der,Fortbildungsurlaub,-e,die Fortbildungsurlaube,training-leave
+der,Zusatzurlaub,-e,die Zusatzurlaube,additional-leave
+der,Notdienst,-e,die Notdienste,emergency-service
+der,Gehaltstarif,-e,die Gehaltstarife,salary-scale
+der,Kleinbetrieb,-e,die Kleinbetriebe,small-business
+der,Kündigungsgrund,Kündigungsgründe,die Kündigungsgründe,grounds-for-dismissal
+der,Rechtfertigungsgrund,Rechtfertigungsgründe,die Rechtfertigungsgründe,justification-ground
+der,Unwirksamkeitsgrund,Unwirksamkeitsgründe,die Unwirksamkeitsgründe,invalidity-ground
+die,Tarifbindung,-en,die Tarifbindungen,collective-agreement-coverage
+die,Bezugnahme,-n,die Bezugnahmen,reference
+die,Gewerkschaft,-en,die Gewerkschaften,trade-union
+die,Apothekengewerkschaft,-en,die Apothekengewerkschaften,pharmacy-union
+die,Tarifhoheit,---,---,collective-bargaining-autonomy
+die,Schutzvorschrift,-en,die Schutzvorschriften,protective-provision
+die,Arbeitszeit,-en,die Arbeitszeiten,working-time
+die,Vollzeit,---,---,full-time
+die,Teilzeit,---,---,part-time
+die,Mehrarbeit,-en,die Mehrarbeiten,overtime-work
+die,Nachtarbeit,---,---,night-work
+die,Sonntagsarbeit,---,---,Sunday-work
+die,Überstunde,-n,die Überstunden,overtime-hour
+die,Pause,-n,die Pausen,break
+die,Mindestpause,-n,die Mindestpausen,minimum-break
+die,Betriebszugehörigkeit,-en,die Betriebszugehörigkeiten,length-of-service
+die,Elternzeit,-en,die Elternzeiten,parental-leave
+die,Mutterschutzzeit,-en,die Mutterschutzzeiten,maternity-protection-period
+die,Probezeit,-en,die Probezeiten,probationary-period
+die,Kündigungsfrist,-en,die Kündigungsfristen,notice-period
+die,Änderungskündigung,-en,die Änderungskündigungen,change-dismissal
+die,Freistellung,-en,die Freistellungen,release-from-work
+die,Sonderzahlung,-en,die Sonderzahlungen,special-payment
+die,Altersvorsorge,-n,die Altersvorsorgen,retirement-provision
+die,Direktversicherung,-en,die Direktversicherungen,direct-insurance
+die,Beitragsbemessungsgrenze,-n,die Beitragsbemessungsgrenzen,contribution-assessment-ceiling
+die,Aufstockungsoption,-en,die Aufstockungsoptionen,top-up-option
+die,Gefährdungsbeurteilung,-en,die Gefährdungsbeurteilungen,risk-assessment
+die,Sonderabgabe,-n,die Sonderabgaben,special-levy
+die,Kündigungserschwernis,-se,die Kündigungserschwernisse,dismissal-impediment
+die,Gehaltsfortzahlung,-en,die Gehaltsfortzahlungen,continued-salary-payment
+die,Betriebsvereinbarung,-en,die Betriebsvereinbarungen,works-agreement
+die,Betriebsordnung,-en,die Betriebsordnungen,works-rules
+die,Ankündigungsfrist,-en,die Ankündigungsfristen,advance-notice-period
+die,Sozialversicherung,-en,die Sozialversicherungen,social-insurance
+die,Rentenversicherung,-en,die Rentenversicherungen,pension-insurance
+die,Gleichbehandlung,---,---,equal-treatment
+die,Arbeitsgerichtsbarkeit,---,---,labor-jurisdiction
+
+`.trim();
+
+// ============================================
+// CSV DATA - ADJECTIVES
+// ============================================
+const adjectivesCSV = `
+-tarifgebunden,bound-by-agreement,-tarifungebunden,not-bound-by-agreement
+-befristet,fixed-term,-unbefristet,permanent
+-vollzeitbeschäftigt,full-time-employed,-teilzeitbeschäftigt,part-time-employed
+-zuschlagspflichtig,subject-to-surcharge,-zuschlagsfrei,surcharge-free
+-sozialversicherungspflichtig,subject-to-social-insurance,-sozialversicherungsfrei,exempt-from-social-insurance
+-steuerpflichtig,taxable,-steuerfrei,tax-exempt
+-personenbedingt,personal,-verhaltensbedingt,behavioral
+-betriebsbedingt,operational,-wirtschaftlich,economic
+-sozialverträglich,socially-acceptable,-sozialwidrig,socially-adverse
+-gerechtfertigt,justified,-ungerechtfertigt,unjustified
+-wirksam,valid,-unwirksam,invalid
+-rechtmäßig,lawful,-rechtswidrig,unlawful
+-fristgerecht,timely,-fristlos,immediate
+-schriftlich,written,-mündlich,oral
+-vertretungsberechtigt,authorized-to-represent,-nicht-vertretungsberechtigt,not-authorized
+-approbiert,licensed,-nicht-approbiert,unlicensed
+-schwerbehindert,severely-disabled,-nicht-behindert,non-disabled
+-schwanger,pregnant,-nicht-schwanger,not-pregnant
+-jugendlich,juvenile,-erwachsen,adult
+-verhandelbar,negotiable,-nicht-verhandelbar,non-negotiable
+-anrechenbar,creditable,-nicht-anrechenbar,non-creditable
+
+`.trim();
+
+// ============================================
+// CSV DATA - VERBS
+// ============================================
+const verbsCSV = `
+*verhandeln,negotiate,*vereinbaren,agree-upon
+*beschäftigen,employ,*einstellen,hire
+*kündigen,terminate,*entlassen,dismiss
+*freisetzen,release,*entlassen,lay-off
+*auszahlen,pay-out,*einbehalten,withhold
+*aufstocken,increase,*reduzieren,reduce
+*vergüten,remunerate,*entlohnen,pay
+*anrechnen,credit,*abziehen,deduct
+*freistellen,release,*verpflichten,obligate
+*fortbilden,train,*schulen,educate
+*umrechnen,convert,*berechnen,calculate
+*nachreichen,submit-later,*vorlegen,present
+*unterzeichnen,sign,*unterschreiben,sign
+*aushändigen,hand-over,*zurückhalten,withhold
+*ankündigen,announce,*bekanntgeben,notify
+*übernehmen,assume,*ablehnen,decline
+*verteilen,distribute,*aufteilen,divide
+*ausscheiden,leave-employment,*eintreten,enter-employment
+*widerrufen,revoke,*bestätigen,confirm
+*geltendmachen,assert,*verzichten,waive
++gelten,apply,+bestehen,exist
++vorliegen,be-present,+fehlen,be-absent
++unterliegen,be-subject-to,+obliegen,be-incumbent-upon
++zustehen,be-entitled-to,+entfallen,lapse
++verstoßen,violate,+einhalten,comply-with
++eintreten,enter,+ausscheiden,leave
++entstehen,arise,+verfallen,expire
++erhalten,receive,+zahlen,pay
++betragen,amount-to,+umfassen,comprise
++ablaufen,expire,+beginnen,begin
+
+`.trim();
+
+// ============================================
+// CSV DATA - EXPRESSIONS
+// ============================================
+const expressionsCSV = `
+Es gilt der Tarifvertrag.,The collective agreement applies.
+Der Vertrag ist befristet.,The contract is fixed-term.
+Die Kündigungsfrist beträgt einen Monat.,The notice period is one month.
+Der Urlaubsanspruch beträgt 35 Werktage.,The vacation entitlement is 35 working days.
+Es besteht Tarifbindung.,There is collective agreement coverage.
+Der Arbeitgeber zahlt Entgelt fort.,The employer continues to pay remuneration.
+Die Probezeit dauert sechs Monate.,The probationary period lasts six months.
+Es gilt die Schriftform.,Written form is required.
+Der Anspruch verfällt nach drei Monaten.,The claim expires after three months.
+Die Kündigung ist sozial ungerechtfertigt.,The dismissal is socially unjustified.
+Es besteht ein Beschäftigungsverbot.,There is an employment ban.
+Der Arbeitnehmer hat Kündigungsschutz.,The employee has dismissal protection.
+Die Mehrarbeit wird mit Zuschlag vergütet.,Overtime is remunerated with a surcharge.
+Es gilt das Direktionsrecht des Arbeitgebers.,The employer's directive right applies.
+Der Vertrag unterliegt dem Nachweisgesetz.,The contract is subject to the Evidence Act.
+Die Betriebszugehörigkeit beträgt fünf Jahre.,The length of service is five years.
+Es besteht Anspruch auf Gehaltsfortzahlung.,There is entitlement to continued salary payment.
+Die Altersvorsorge ist steuer- und sozialversicherungsfrei.,Retirement provision is tax and social-insurance exempt.
+Der Arbeitgeber muss eine Gefährdungsbeurteilung erstellen.,The employer must create a risk assessment.
+Die Unwirksamkeit muss innerhalb von drei Wochen geltend gemacht werden.,The invalidity must be asserted within three weeks.
+
+`.trim();
+
+// ============================================
+// CSV DATA - CONVERSATIONS
+// ============================================
+const conversationsCSV = `
+Contract Negotiation|A,Guten Tag. Ich interessiere mich für die Stelle.,Good day. I am interested in the position.
+Contract Negotiation|B,Sehr gut. Es handelt sich um eine Vollzeitstelle mit 39 Stunden pro Woche.,Very good. It is a full-time position with 39 hours per week.
+Contract Negotiation|A,Gilt der Tarifvertrag?,Does the collective agreement apply?
+Contract Negotiation|B,Ja wir sind tarifgebunden. Sie erhalten das Gehalt nach dem Bundesrahmentarifvertrag.,Yes we are bound by the collective agreement. You will receive the salary according to the federal framework agreement.
+Contract Negotiation|A,Wie viele Urlaubstage stehen mir zu?,How many vacation days am I entitled to?
+Contract Negotiation|B,Sie haben Anspruch auf 35 Werktage Urlaub pro Jahr.,You are entitled to 35 working days of vacation per year.
+Contract Negotiation|A,Gibt es eine Probezeit?,Is there a probationary period?
+Contract Negotiation|B,Ja die Probezeit beträgt sechs Monate. In dieser Zeit gilt eine verkürzte Kündigungsfrist.,Yes the probationary period is six months. During this time a shortened notice period applies.
+Termination Discussion|A,Ich muss Ihnen leider mitteilen dass wir betriebsbedingt kündigen müssen.,I must unfortunately inform you that we must dismiss for operational reasons.
+Termination Discussion|B,Welche Kündigungsfrist gilt?,What notice period applies?
+Termination Discussion|A,Bei Ihrer Betriebszugehörigkeit von acht Jahren beträgt die Frist drei Monate.,With your length of service of eight years the period is three months.
+Termination Discussion|B,Kann ich gegen die Kündigung vorgehen?,Can I take action against the dismissal?
+Termination Discussion|A,Sie können innerhalb von drei Wochen Kündigungsschutzklage erheben.,You can file a dismissal protection suit within three weeks.
+Termination Discussion|B,Gibt es die Möglichkeit einer Änderungskündigung?,Is there the possibility of a change dismissal?
+Termination Discussion|A,Ja wir können Ihnen eine Teilzeitstelle mit reduzierten Stunden anbieten.,Yes we can offer you a part-time position with reduced hours.
+Termination Discussion|B,Ich werde mir das überlegen.,I will think about it.
+Salary Discussion|A,Wie berechnet sich mein Gehalt bei Teilzeit?,How is my salary calculated for part-time?
+Salary Discussion|B,Das Bruttogehalt wird mit Ihrer wöchentlichen Arbeitszeit multipliziert und durch 39 geteilt.,The gross salary is multiplied by your weekly working time and divided by 39.
+Salary Discussion|A,Wie werden Überstunden vergütet?,How is overtime remunerated?
+Salary Discussion|B,Die ersten zehn Stunden mit 15 Prozent Zuschlag ab der elften Stunde mit 25 Prozent.,The first ten hours with 15 percent surcharge from the eleventh hour with 25 percent.
+Salary Discussion|A,Bekomme ich ein 13. Monatsgehalt?,Do I receive a 13th monthly salary?
+Salary Discussion|B,Ja wenn das Arbeitsverhältnis länger als sechs Monate besteht.,Yes if the employment relationship exists longer than six months.
+Salary Discussion|A,Gibt es eine betriebliche Altersvorsorge?,Is there a company pension scheme?
+Salary Discussion|B,Ja der Arbeitgeber zahlt einen Beitrag zur Direktversicherung. Sie können diesen auch aufstocken.,Yes the employer pays a contribution to direct insurance. You can also increase this.
+
+`.trim();
+
+// ============================================
+// CSV DATA - Q&A
+// ============================================
+const qaCSV = `
+Was ist ein Tarifvertrag?,Ein Tarifvertrag ist eine Vereinbarung zwischen Arbeitgeberverband und Gewerkschaft. Er regelt Arbeitsbedingungen wie Gehalt und Arbeitszeit. (A collective agreement is an agreement between employers' association and trade union. It regulates working conditions like salary and working time.)
+Wann gilt der Tarifvertrag?,Der Tarifvertrag gilt bei Tarifbindung vertraglicher Bezugnahme oder betrieblicher Übung. (The collective agreement applies with collective agreement coverage contractual reference or established practice.)
+Wie lang ist die tarifliche Arbeitszeit?,Die tarifliche Arbeitszeit beträgt seit August 2024 39 Stunden pro Woche. (The collectively agreed working time is 39 hours per week since August 2024.)
+Wie viel Urlaub steht mir zu?,Ab 2024 stehen 35 Werktage Urlaub zu. Nach vier Jahren Betriebszugehörigkeit ein Werktag mehr. (From 2024 35 working days of vacation are due. After four years of service one more working day.)
+Was ist das Nachweisgesetz?,Das Nachweisgesetz verpflichtet den Arbeitgeber wesentliche Arbeitsbedingungen schriftlich niederzulegen. (The Evidence Act obliges the employer to record essential working conditions in writing.)
+Was ist eine Änderungskündigung?,Eine Änderungskündigung ist die Kündigung des bisherigen Vertrags verbunden mit dem Angebot eines neuen Vertrags mit geänderten Bedingungen. (A change dismissal is the termination of the existing contract combined with the offer of a new contract with changed conditions.)
+Was bedeutet Direktionsrecht?,Das Direktionsrecht ist das Recht des Arbeitgebers die Arbeitszeit auf die Woche zu verteilen. (The directive right is the employer's right to distribute working time across the week.)
+Wie werden Berufsjahre berechnet?,Berufsjahre zählen ab Approbationserteilung. Elternzeit wird angerechnet. (Professional years count from license issuance. Parental leave is credited.)
+Was ist Mutterschutz?,Mutterschutz ist der Schutz schwangerer Arbeitnehmerinnen mit Beschäftigungsverboten und Kündigungsschutz. (Maternity protection is the protection of pregnant employees with employment bans and dismissal protection.)
+Wann gilt das Kündigungsschutzgesetz?,Das Kündigungsschutzgesetz gilt für Betriebe mit mehr als zehn Arbeitnehmern und Betriebszugehörigkeit über sechs Monate. (The Dismissal Protection Act applies to businesses with more than ten employees and length of service over six months.)
+Was sind Kündigungsgründe?,Kündigungsgründe können personenbedingt verhaltensbedingt oder betriebsbedingt sein. (Grounds for dismissal can be personal behavioral or operational.)
+Wie lang ist die Kündigungsfrist für Arbeitnehmer?,Die Kündigungsfrist für Arbeitnehmer beträgt einen Monat zum Monatsende. (The notice period for employees is one month to the end of the month.)
+Was ist Gehaltsfortzahlung?,Gehaltsfortzahlung ist die Zahlung von 100 Prozent des Arbeitslohns im Krankheitsfall für sechs Wochen. (Continued salary payment is the payment of 100 percent of the wage in case of illness for six weeks.)
+Was ist das 13. Monatsgehalt?,Das 13. Monatsgehalt ist eine Sonderzahlung von einem Tarifgehalt pro Jahr wenn das Arbeitsverhältnis länger als sechs Monate besteht. (The 13th monthly salary is a special payment of one collectively agreed salary per year if the employment relationship exists longer than six months.)
+Welche Zuschläge gibt es?,Es gibt Zuschläge für Mehrarbeit Nachtarbeit und Sonntagsarbeit. (There are surcharges for overtime night work and Sunday work.)
+
+`.trim();
+
+// ============================================
+// CSV DATA - SENTENCES
+// ============================================
+const sentencesCSV = `
+Der Arbeitsvertrag ist frei verhandelbar zwischen den Arbeitsvertragsparteien.,The employment contract is freely negotiable between the contracting parties.
+Es gelten die gesetzlichen Bestimmungen und einschlägigen Tarifverträge.,The statutory provisions and applicable collective agreements apply.
+Der Arbeitgeber muss am ersten Tag der Arbeitsleistung eine Niederschrift erstellen.,The employer must create a written record on the first day of work performance.
+Die tarifliche Arbeitszeit beträgt seit August 2024 39 Stunden pro Woche.,The collectively agreed working time is 39 hours per week since August 2024.
+Gesetzliche Mindestpausen betragen 30 Minuten bei mehr als sechs Stunden täglich.,Statutory minimum breaks are 30 minutes for more than six hours daily.
+Vertretungsberechtigte Mitarbeiter sind zur Übernahme von Notdiensten verpflichtet.,Employees authorized to represent are obliged to assume emergency services.
+Der Urlaubsanspruch beträgt ab 2024 35 Werktage pro Jahr.,The vacation entitlement is 35 working days per year from 2024.
+Nach vier Jahren Betriebszugehörigkeit gibt es einen zusätzlichen Urlaubstag.,After four years of service there is an additional vacation day.
+Berufsjahre zählen ab Approbationserteilung und Elternzeit wird angerechnet.,Professional years count from license issuance and parental leave is credited.
+Das Teilzeitgehalt wird anteilig zur tariflichen Arbeitszeit berechnet.,The part-time salary is calculated proportionally to the collectively agreed working time.
+Mehrarbeit wird ab der ersten Stunde mit 15 Prozent Zuschlag vergütet.,Overtime is remunerated from the first hour with a 15 percent surcharge.
+Das 13. Monatsgehalt beträgt ein Tarifgehalt wenn das Arbeitsverhältnis länger als sechs Monate besteht.,The 13th monthly salary is one collectively agreed salary if the employment relationship exists longer than six months.
+Die Kündigungsfrist für Arbeitnehmer beträgt einen Monat zum Monatsende.,The notice period for employees is one month to the end of the month.
+Die Kündigungsfrist für Arbeitgeber verlängert sich nach Betriebszugehörigkeit.,The notice period for employers extends according to length of service.
+Ansprüche verfallen nach drei Monaten nach Beendigung des Arbeitsverhältnisses.,Claims expire after three months after termination of the employment relationship.
+Der Arbeitgeber zahlt einen Beitrag zur Direktversicherung für Altersvorsorge.,The employer pays a contribution to direct insurance for retirement provision.
+Während der Mutterschutzzeit besteht ein absolutes Kündigungsverbot.,During the maternity protection period there is an absolute dismissal ban.
+Der Arbeitgeber zahlt im Krankheitsfall die ersten sechs Wochen 100 Prozent des Arbeitslohns.,The employer pays 100 percent of the wage for the first six weeks in case of illness.
+Das Kündigungsschutzgesetz gilt für Betriebe mit mehr als zehn Arbeitnehmern.,The Dismissal Protection Act applies to businesses with more than ten employees.
+Eine Kündigung ist unwirksam wenn sie sozial ungerechtfertigt ist.,A dismissal is invalid if it is socially unjustified.
+
+`.trim();
+
+// ============================================
+// PARSE CSV FUNCTION
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .map(line => line.split(',').map(cell => cell.trim()));
+}
+
+// ============================================
+// RENDER NOUNS TABLE
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV);
+    const grouped = { das: [], der: [], die: [] };
+
+    data.forEach(row => {
+        const [article, german, pluralNotation, pluralFull, english] = row;
+        grouped[article].push({ article, german, pluralNotation, pluralFull, english });
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    const articles = ['der', 'das', 'die'];
+    
+    articles.forEach((article, articleIndex) => {
+        const words = grouped[article];
+        const numRows = Math.ceil(words.length / 2);
+        
+        for (let row = 0; row < numRows; row++) {
+            const word1 = words[row];
+            const word2 = words[row + numRows];
+            
+            const rowClass = `${article}-row`;
+            const articleClass = `${article}-article`;
+            
+            html += `<tr class="${rowClass}">`;
+            
+            if (word1) {
+                html += `<td class="article-cell ${articleClass}">${word1.article}</td>`;
+                html += `<td class="german-cell">${word1.german}</td>`;
+                html += `<td class="plural-cell">${word1.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word1.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            if (word2) {
+                html += `<td class="article-cell ${articleClass}">${word2.article}</td>`;
+                html += `<td class="german-cell">${word2.german}</td>`;
+                html += `<td class="plural-cell">${word2.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        if (articleIndex < articles.length - 1) {
+            html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+        }
+    });
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS TABLE
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV);
+    const verbData = parseCSV(verbsCSV);
+    
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    // Process adjectives - split into two halves like nouns table
+    const numAdjRows = Math.ceil(adjData.length / 2);
+    
+    for (let i = 0; i < numAdjRows; i++) {
+        html += `<tr class="adjective-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (adjData[i]) {
+            const row = adjData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numAdjRows;
+        if (adjData[secondRowIndex]) {
+            const row = adjData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+
+    // Process verbs - split into two halves like nouns table
+    const numVerbRows = Math.ceil(verbData.length / 2);
+    
+    for (let i = 0; i < numVerbRows; i++) {
+        html += `<tr class="verb-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (verbData[i]) {
+            const row = verbData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numVerbRows;
+        if (verbData[secondRowIndex]) {
+            const row = verbData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS TABLE
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV);
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const data = parseCSV(conversationsCSV);
+    const container = document.getElementById('conversationsContainer');
+    
+    const conversations = {};
+    data.forEach(row => {
+        const parts = row[0].split('|');
+        const title = parts[0];
+        const speaker = parts[1];
+        const german = row[1];
+        const english = row[2];
+        
+        if (!conversations[title]) {
+            conversations[title] = [];
+        }
+        conversations[title].push({ speaker, german, english });
+    });
+    
+    let html = '';
+    for (const [title, lines] of Object.entries(conversations)) {
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="7" class="conversation-title">${title}</td></tr>`;
+        
+        for (let i = 0; i < lines.length; i += 2) {
+            html += `<tr>`;
+            
+            html += `<td class="speaker-cell">${lines[i].speaker}</td>`;
+            html += `<td class="german-cell">${lines[i].german}</td>`;
+            html += `<td class="english-cell">${lines[i].english}</td>`;
+            
+            html += `<td style="width: 1%; background: #ddd; border: none;"></td>`;
+            
+            if (i + 1 < lines.length) {
+                html += `<td class="speaker-cell">${lines[i + 1].speaker}</td>`;
+                html += `<td class="german-cell">${lines[i + 1].german}</td>`;
+                html += `<td class="english-cell">${lines[i + 1].english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        html += `</table>`;
+    }
+    
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A TABLE
+// ============================================
+function renderQATable() {
+    const data = parseCSV(qaCSV);
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [question1, answer1] = data[i];
+        html += `<td class="question-cell">${question1}</td>`;
+        html += `<td class="answer-cell">${answer1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [question2, answer2] = data[i + 1];
+            html += `<td class="question-cell">${question2}</td>`;
+            html += `<td class="answer-cell">${answer2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES TABLE
+// ============================================
+function renderSentencesTable() {
+    const data = parseCSV(sentencesCSV);
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// INITIALIZE ON PAGE LOAD
+// ============================================
+window.addEventListener('load', function() {
+    console.log('📚 Rendering all tables...');
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ All tables rendered successfully!');
+});
+    </script>
+</body>
+</html>

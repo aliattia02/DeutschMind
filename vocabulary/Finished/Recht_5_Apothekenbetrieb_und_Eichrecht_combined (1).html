@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary & Phrases - Apothekenbetrieb und Eichrecht</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 5px;
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .zoom-label {
+            font-size: 0.75em;
+            font-weight: bold;
+            color: #666;
+            padding: 0 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .zoom-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 3px;
+            min-width: 40px;
+        }
+
+        .zoom-btn:hover {
+            background: #555;
+        }
+
+        .zoom-level {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .print-button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .print-button:hover {
+            background: #333;
+        }
+
+        .content-wrapper {
+            max-width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* SECTION DIVIDER */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* NOUN TABLE STYLING */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f5f5f5;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 4%;
+            max-width: 50px;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 17%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 13%;
+        }
+
+        /* Color coding for articles */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ADJECTIVE/VERB TABLE STYLING */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col {
+            font-weight: 600;
+            width: 15%;
+        }
+
+        .word-table .english-col {
+            color: #333;
+            width: 10%;
+        }
+
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* EXPRESSIONS TABLE */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .expressions-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* CONVERSATIONS TABLE */
+        .conversations-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #2C3E50 !important;
+            color: white !important;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: center;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td {
+            padding: 6px 8px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .conversations-table .speaker-cell {
+            width: 4%;
+            font-weight: bold;
+            text-align: center;
+            background: #E8E8E8 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .german-cell {
+            width: 22%;
+            font-weight: 600;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .english-cell {
+            width: 22%;
+            color: #333;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Q&A TABLE */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .qa-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFE6E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 25%;
+            background: #E6F7E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* SENTENCES TABLE */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .sentences-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #F0E6FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #E6FFE6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9 !important;
+            border-top: 2px solid #666;
+            font-size: 1em;
+            page-break-before: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info h3 {
+            font-size: 1.43em;
+            margin-bottom: 5px;
+        }
+
+        .footer-info p {
+            margin: 3px 0;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        @media print {
+            body {
+                padding: 5px;
+                max-width: 100%;
+            }
+
+            .controls {
+                display: none !important;
+            }
+
+            .content-wrapper {
+                max-width: 100%;
+            }
+
+            .table-section {
+                overflow-x: visible;
+                max-width: 100%;
+                margin-bottom: 2px;
+                page-break-inside: auto;
+            }
+
+            .table-section h2 {
+                margin-top: 2px;
+                page-break-after: avoid;
+                page-break-before: auto;
+            }
+
+            .header {
+                page-break-after: avoid;
+                margin-bottom: 10px;
+            }
+
+            .footer-info {
+                display: none !important;
+            }
+
+            .section-divider {
+                page-break-before: always;
+            }
+
+            @page {
+                margin: 1cm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        @media screen {
+            .controls {
+                display: flex !important;
+            }
+            
+            body {
+                max-width: 1400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="zoom-controls">
+            <span class="zoom-label">📚 Vocab:</span>
+            <button class="zoom-btn" onclick="zoomOutVocab()" title="Zoom Out Vocab">−</button>
+            <span class="zoom-level" id="zoomLevelVocab">100%</span>
+            <button class="zoom-btn" onclick="zoomInVocab()" title="Zoom In Vocab">+</button>
+            <button class="zoom-btn" onclick="resetZoomVocab()" title="Reset Zoom Vocab">⟲</button>
+        </div>
+        <div class="zoom-controls">
+            <span class="zoom-label">💬 Phrases:</span>
+            <button class="zoom-btn" onclick="zoomOutPhrases()" title="Zoom Out Phrases">−</button>
+            <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+            <button class="zoom-btn" onclick="zoomInPhrases()" title="Zoom In Phrases">+</button>
+            <button class="zoom-btn" onclick="resetZoomPhrases()" title="Reset Zoom Phrases">⟲</button>
+        </div>
+        <button class="print-button" onclick="window.print()">🖨️ Print</button>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 German Vocabulary & Phrases - Apothekenbetrieb und Eichrecht</h1>
+        </div>
+
+        <!-- VOCABULARY SECTION -->
+        <div id="vocabSection">
+            <!-- TABLE 1: NOUNS -->
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col style="width: 19%;">
+                        <col style="width: 9%;">
+                        <col style="width: 17%;">
+                        <col style="width: 5%;">
+                        <col style="width: 19%;">
+                        <col style="width: 9%;">
+                        <col style="width: 17%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives & Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES & SENTENCES</h2>
+        </div>
+
+        <!-- PHRASES SECTION -->
+        <div id="phrasesSection">
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions & Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- REFERENCE INFORMATION -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Document Info:</strong> Topic: Pharmaceutical Law | Level: Professional/Academic | Created: 2025</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Väter, Mütter = full form with umlaut | --- = no change | kein Plural = no plural form</p>
+            <p><strong>Color Coding:</strong> <span style="color: #1565C0;">■ der (blue)</span> | <span style="color: #2E7D32;">■ das (green)</span> | <span style="color: #C62828;">■ die (red)</span></p>
+            <p><strong>Prefix Guide:</strong> - prefix = Adjective | * prefix = Weak Verb | + prefix = Strong Verb</p>
+            <p><strong>Organization:</strong> Horizontal pairs are opposites (Column 1 ↔ Column 2, Column 3 ↔ Column 4)</p>
+        </div>
+    </div>
+
+    <script>
+// ============================================
+// ZOOM FUNCTIONALITY - SEPARATE FOR EACH SECTION
+// ============================================
+let vocabZoom = 100;
+let phrasesZoom = 100;
+const zoomStep = 10;
+const minZoom = 50;
+const maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    const section = document.getElementById('vocabSection');
+    const zoomLevel = document.getElementById('zoomLevelVocab');
+    
+    const newFontSize = baseFontSize * (vocabZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${vocabZoom}%`;
+}
+
+function updatePhrasesZoom() {
+    const section = document.getElementById('phrasesSection');
+    const zoomLevel = document.getElementById('zoomLevelPhrases');
+    
+    const newFontSize = baseFontSize * (phrasesZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${phrasesZoom}%`;
+}
+
+function zoomInVocab() {
+    if (vocabZoom < maxZoom) {
+        vocabZoom += zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function zoomOutVocab() {
+    if (vocabZoom > minZoom) {
+        vocabZoom -= zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function resetZoomVocab() {
+    vocabZoom = 100;
+    updateVocabZoom();
+}
+
+function zoomInPhrases() {
+    if (phrasesZoom < maxZoom) {
+        phrasesZoom += zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function zoomOutPhrases() {
+    if (phrasesZoom > minZoom) {
+        phrasesZoom -= zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function resetZoomPhrases() {
+    phrasesZoom = 100;
+    updatePhrasesZoom();
+}
+
+window.addEventListener('load', function() {
+    updateVocabZoom();
+    updatePhrasesZoom();
+});
+
+// ============================================
+// CSV DATA - NOUNS
+// ============================================
+const nounsCSV = `
+das,Apothekenwesen,---,---,Pharmacy system
+das,Apothekengesetz,-e,die Apothekengesetze,Pharmacy Law (ApoG)
+das,Eichrecht,---,---,Calibration law
+das,Messgerät,-e,die Messgeräte,Measuring device
+das,Eichsiegel,=,die Eichsiegel,Calibration seal
+das,Bauartzulassung,-en,die Bauartzulassungen,Type approval
+das,Konformitätsbewertungsverfahren,=,die Konformitätsbewertungsverfahren,Conformity assessment
+das,Eichamt,Eichämter,die Eichämter,Calibration office
+das,Messzeugnis,-se,die Messzeugnisse,Measurement certificate
+das,Volumenmessgerät,-e,die Volumenmessgeräte,Volume measuring device
+das,Thermometer,=,die Thermometer,Thermometer
+das,Blutdruckmessgerät,-e,die Blutdruckmessgeräte,Blood pressure device
+das,Blutzuckermessgerät,-e,die Blutzuckermessgeräte,Glucose meter
+das,Prüfgewicht,-e,die Prüfgewichte,Test weight
+das,Eichzeichen,=,die Eichzeichen,Calibration mark
+das,Verfügungsrecht,-e,die Verfügungsrechte,Right of disposal
+das,Eigentumsrecht,-e,die Eigentumsrechte,Ownership right
+das,Grundbucheintrag,Grundbucheinträge,die Grundbucheinträge,Land registry entry
+das,Standgefäß,-e,die Standgefäße,Stock container
+das,Vorratsgefäß,-e,die Vorratsgefäße,Storage container
+das,Abgabegefäß,-e,die Abgabegefäße,Dispensing container
+das,Behältnis,-se,die Behältnisse,Container
+das,Öffentliche Interesse,---,---,Public interest
+das,Bundesverfassungsgericht,-e,die Bundesverfassungsgerichte,Federal Constitutional Court
+das,Führungszeugnis,-se,die Führungszeugnisse,Police clearance certificate
+das,Gewerbezentralregister,=,die Gewerbezentralregister,Central trade register
+das,Handelsregister,=,die Handelsregister,Commercial register
+das,Versorgungsgebiet,-e,die Versorgungsgebiete,Supply area
+das,Notfalldepot,-s,die Notfalldepots,Emergency depot
+das,Nachtdienstzimmer,=,die Nachtdienstzimmer,Night duty room
+das,Sicherheitsdatenblatt,Sicherheitsdatenblätter,die Sicherheitsdatenblätter,Safety data sheet
+das,Transfusionsgesetz,-e,die Transfusionsgesetze,Transfusion law
+das,Qualitätsmanagementsystem,-e,die Qualitätsmanagementsysteme,Quality management system
+das,QMS-Handbuch,QMS-Handbücher,die QMS-Handbücher,QMS manual
+das,Wareneingangsprotokoll,-e,die Wareneingangsprotokolle,Goods receipt protocol
+das,Herstellungsprotokoll,-e,die Herstellungsprotokolle,Manufacturing protocol
+das,Prüfprotokoll,-e,die Prüfprotokolle,Test protocol
+das,Hygienekonzept,-e,die Hygienekonzepte,Hygiene concept
+das,Reinraumlabor,-e,die Reinraumlabore,Clean room laboratory
+das,Zytostatikalabor,-e,die Zytostatikalabore,Cytostatic laboratory
+das,Sterillabor,-e,die Sterillabore,Sterile laboratory
+das,Abholfach,Abholfächer,die Abholfächer,Pick-up compartment
+das,Botendienst,-e,die Botendienste,Messenger service
+das,Ladenschlussgesetz,-e,die Ladenschlussgesetze,Shop closing law
+das,Fremdbesitzverbot,-e,die Fremdbesitzverbote,Third-party ownership prohibition
+das,Mehrbesitzverbot,-e,die Mehrbesitzverbote,Multiple ownership prohibition
+das,Zuweisungsverbot,-e,die Zuweisungsverbote,Referral prohibition
+das,Sortimentsbeschränkung,-en,die Sortimentsbeschränkungen,Assortment restriction
+das,Makelverbot,-e,die Makelverbote,Brokerage prohibition
+das,Inverkehrbringen,---,---,Placing on market
+das,Kontrahierungszwang,Kontrahierungszwänge,die Kontrahierungszwänge,Obligation to contract
+das,Substitutionsverbot,-e,die Substitutionsverbote,Substitution prohibition
+das,Rabattverbot,-e,die Rabattverbote,Discount prohibition
+das,Versorgungsvertrag,Versorgungsverträge,die Versorgungsverträge,Supply contract
+das,Regionalprinzip,-ien,die Regionalprinzipien,Regional principle
+das,Vier-Augen-Prinzip,-ien,die Vier-Augen-Prinzipien,Four-eyes principle
+der,Apothekenbetrieb,-e,die Apothekenbetriebe,Pharmacy operation
+der,Apothekenleiter,=,die Apothekenleiter,Pharmacy manager
+der,Erlaubnisinhaber,=,die Erlaubnisinhaber,License holder
+der,Filialleiter,=,die Filialleiter,Branch manager
+der,Verwalter,=,die Verwalter,Administrator
+der,Pächter,=,die Pächter,Tenant
+der,Verpächter,=,die Verpächter,Lessor
+der,Betriebserlaubnis,-se,die Betriebserlaubnisse,Operating license
+der,Pharmazierat,Pharmazieräte,die Pharmazieräte,Pharmacy counselor
+der,Sachverständige,-n,die Sachverständigen,Expert
+der,Einzelkaufmann,Einzelkaufleute,die Einzelkaufleute,Sole proprietor
+der,Gesellschafter,=,die Gesellschafter,Partner
+der,Stammapotheker,=,die Stammapotheker,Regular pharmacist
+der,Vertretungsapotheker,=,die Vertretungsapotheker,Substitute pharmacist
+der,Apothekerassistent,-en,die Apothekerassistenten,Pharmacy assistant (pre-1969)
+der,Pharmazieingenieur,-e,die Pharmazieingenieure,Pharmaceutical engineer (GDR)
+der,Apothekenassistent,-en,die Apothekenassistenten,Pharmacy assistant (GDR)
+der,Famulant,-en,die Famulanten,Pharmacy intern
+der,Praktikant,-en,die Praktikanten,Trainee
+der,Messbecher,=,die Messbecher,Measuring cup
+der,Messzylinder,=,die Messzylinder,Measuring cylinder
+der,Messlöffel,=,die Messlöffel,Measuring spoon
+der,Messkolben,=,die Messkolben,Volumetric flask
+der,Ziffernschritt,-e,die Ziffernschritte,Digit increment
+der,Flammpunkt,-e,die Flammpunkte,Flash point
+der,Siedepunkt,-e,die Siedepunkte,Boiling point
+der,Abzug,Abzüge,die Abzüge,Fume hood
+der,Laborabzug,Laborabzüge,die Laborabzüge,Laboratory fume hood
+der,Mörser,=,die Mörser,Mortar
+der,Pistill,-e,die Pistille,Pestle
+der,Spatel,=,die Spatel,Spatula
+der,Rezeptblock,Rezeptblöcke,die Rezeptblöcke,Prescription pad
+der,Versicherungsnachweis,-e,die Versicherungsnachweise,Insurance proof
+der,Eigenbeleg,-e,die Eigenbelege,Internal receipt
+der,Lieferschein,-e,die Lieferscheine,Delivery note
+der,Grundrissplan,Grundrisspläne,die Grundrisspläne,Floor plan
+der,Pachtvertrag,Pachtverträge,die Pachtverträge,Lease agreement
+der,Mietvertrag,Mietverträge,die Mietverträge,Rental agreement
+der,Kaufvertrag,Kaufverträge,die Kaufverträge,Purchase agreement
+der,Notstand,Notstände,die Notstände,State of emergency
+der,Notdienst,-e,die Notdienste,Emergency service
+der,Nachtdienst,-e,die Nachtdienste,Night service
+der,Notdienstfonds,-,die Notdienstfonds,Emergency service fund
+der,Dienstkreis,-e,die Dienstkreise,Service district
+der,Dienstbereitschaft,---,---,Service readiness
+der,Sonntagsdienst,-e,die Sonntagsdienste,Sunday service
+der,Botendienst,-e,die Botendienste,Messenger service
+der,Hautkontakt,-e,die Hautkontakte,Skin contact
+der,Augenkontakt,-e,die Augenkontakte,Eye contact
+der,Arbeitsplatzgrenzwert,-e,die Arbeitsplatzgrenzwerte,Workplace limit value
+der,Biologische Grenzwert,-e,die Biologischen Grenzwerte,Biological limit value
+der,Datenlogger,=,die Datenlogger,Data logger
+der,Kommissionierautomat,-en,die Kommissionierautomaten,Picking machine
+der,Tresor,-e,die Tresore,Safe
+der,Kühlschrank,Kühlschränke,die Kühlschränke,Refrigerator
+der,Verschluss,Verschlüsse,die Verschlüsse,Closure
+der,Schutzhandschuh,-e,die Schutzhandschuhe,Protective glove
+der,Atemschutz,---,---,Respiratory protection
+der,Augenschutz,---,---,Eye protection
+der,Gesichtsschutz,---,---,Face protection
+der,Mutterschutz,---,---,Maternity protection
+der,Jugendschutz,---,---,Youth protection
+der,Arbeitsschutz,---,---,Occupational safety
+der,Gewerbeaufsichtsamt,Gewerbeaufsichtsämter,die Gewerbeaufsichtsämter,Industrial inspectorate
+der,Rückruf,-e,die Rückrufe,Recall
+der,Handbrief,-e,die Handbriefe,Direct healthcare professional communication
+der,Rote Handbrief,-e,die Roten Handbriefe,Red hand letter
+der,Chargenrückruf,-e,die Chargenrückrufe,Batch recall
+der,Arzneimittelrückruf,-e,die Arzneimittelrückrufe,Drug recall
+die,Apothekenbetriebsordnung,-en,die Apothekenbetriebsordnungen,Pharmacy operating regulation (ApBetrO)
+die,Betriebsstätte,-n,die Betriebsstätten,Operating facility
+die,Geschäftsfähigkeit,---,---,Legal capacity
+die,Zuverlässigkeit,---,---,Reliability
+die,Sachkunde,---,---,Expertise
+die,Fachkunde,---,---,Specialized knowledge
+die,Approbation,-en,die Approbationen,License to practice
+die,Erlaubnisurkunde,-n,die Erlaubnisurkunden,License certificate
+die,Verfügungsgewalt,---,---,Power of disposal
+die,Handelsgesellschaft,-en,die Handelsgesellschaften,Trading company
+die,OHG,-s,die OHGs,General partnership
+die,GbR,-s,die GbRs,Civil law partnership
+die,Gesamtschuld,-en,die Gesamtschulden,Joint liability
+die,Haftung,-en,die Haftungen,Liability
+die,Kreisverwaltungsbehörde,-n,die Kreisverwaltungsbehörden,District administrative authority
+die,Bezirksregierung,-en,die Bezirksregierungen,District government
+die,Aufsichtsbehörde,-n,die Aufsichtsbehörden,Supervisory authority
+die,Abnahmebesichtigung,-en,die Abnahmebesichtigungen,Acceptance inspection
+die,Besichtigung,-en,die Besichtigungen,Inspection
+die,Überwachung,-en,die Überwachungen,Supervision
+die,Selbstinspektion,-en,die Selbstinspektionen,Self-inspection
+die,Einzelapotheke,-n,die Einzelapotheken,Single pharmacy
+die,Hauptapotheke,-n,die Hauptapotheken,Main pharmacy
+die,Filialapotheke,-n,die Filialapotheken,Branch pharmacy
+die,Zweigapotheke,-n,die Zweigapotheken,Auxiliary pharmacy
+die,Notapotheke,-n,die Notapotheken,Emergency pharmacy
+die,Krankenhausapotheke,-n,die Krankenhausapotheken,Hospital pharmacy
+die,Hausapotheke,-n,die Hausapotheken,Home dispensary
+die,Offizin,-en,die Offizinen,Dispensary
+die,Rezeptur,-en,die Rezepturen,Compounding area
+die,Teerezeptur,-en,die Teerezepturen,Tea compounding
+die,Freiwahl,-en,die Freiwahlen,Self-service area
+die,Handverkauf,Handverkäufe,die Handverkäufe,Over-counter sale
+die,Schublade,-n,die Schubladen,Drawer
+die,Verkehrsfläche,-n,die Verkehrsflächen,Traffic area
+die,Ladenstraße,-n,die Ladenstraßen,Shopping arcade
+die,Barrierefreiheit,---,---,Accessibility
+die,Raumeinheit,-en,die Raumeinheiten,Spatial unit
+die,Grundfläche,-n,die Grundflächen,Floor area
+die,Belüftung,-en,die Belüftungen,Ventilation
+die,Klimatisierung,-en,die Klimatisierungen,Air conditioning
+die,Beleuchtung,-en,die Beleuchtungen,Lighting
+die,Libelle,-n,die Libellen,Spirit level
+die,Nivellierung,-en,die Nivellierungen,Leveling
+die,Justierung,-en,die Justierungen,Adjustment
+die,Kalibrierung,-en,die Kalibrierungen,Calibration
+die,Eichung,-en,die Eichungen,Calibration (official)
+die,Nacheichung,-en,die Nacheichungen,Re-calibration
+die,Ersteichung,-en,die Ersteichungen,Initial calibration
+die,Eichfrist,-en,die Eichfristen,Calibration period
+die,Eichfähigkeit,---,---,Calibrability
+die,Eichpflicht,-en,die Eichpflichten,Calibration obligation
+die,Genauigkeitsklasse,-n,die Genauigkeitsklassen,Accuracy class
+die,Analysenwaage,-n,die Analysenwaagen,Analytical balance
+die,Feinwaage,-n,die Feinwaagen,Precision balance
+die,Rezepturwaage,-n,die Rezepturwaagen,Compounding scale
+die,Präzisionswaage,-n,die Präzisionswaagen,Precision scale
+die,Handelswaage,-n,die Handelswaagen,Trade scale
+die,Teewaage,-n,die Teewaagen,Tea scale
+die,Personenwaage,-n,die Personenwaagen,Person scale
+die,Säuglingswaage,-n,die Säuglingswaagen,Baby scale
+die,Mindestlast,-en,die Mindestlasten,Minimum load
+die,Höchstlast,-en,die Höchstlasten,Maximum load
+die,Einwaage,-n,die Einwaagen,Weighing
+die,Ist-Einwaage,-n,die Ist-Einwaagen,Actual weight
+die,Soll-Einwaage,-n,die Soll-Einwaagen,Target weight
+die,Anwärmzeit,-en,die Anwärmzeiten,Warm-up time
+die,Standby-Funktion,-en,die Standby-Funktionen,Standby function
+die,Bürette,-n,die Büretten,Burette
+die,Pipette,-n,die Pipetten,Pipette
+die,Pinzette,-n,die Pinzetten,Tweezers
+die,Schere,-n,die Scheren,Scissors
+die,Waage,-n,die Waagen,Scale
+die,Steinplatte,-n,die Steinplatten,Stone plate
+die,Wägetisch,-e,die Wägetische,Weighing table
+die,Quarantänelagerung,-en,die Quarantänelagerungen,Quarantine storage
+die,Verfügbarkeit,---,---,Availability
+die,Vorratshaltung,-en,die Vorratshaltungen,Stock keeping
+die,Sonderbevorratung,-en,die Sonderbevorratungen,Special stockpiling
+die,Temperaturüberwachung,-en,die Temperaturüberwachungen,Temperature monitoring
+die,Kühlkette,-n,die Kühlketten,Cold chain
+die,Versandhandelserlaubnis,-se,die Versandhandelserlaubnisse,Mail-order license
+die,Zweitzustellung,-en,die Zweitzustellungen,Second delivery
+die,Sendungsverfolgung,-en,die Sendungsverfolgungen,Shipment tracking
+die,Transportversicherung,-en,die Transportversicherungen,Transport insurance
+die,Heimversorgung,-en,die Heimversorgungen,Nursing home supply
+die,Krankenhausversorgung,-en,die Krankenhausversorgungen,Hospital supply
+die,Rezeptsammelstelle,-n,die Rezeptsammelstellen,Prescription collection point
+die,Abholzeit,-en,die Abholzeiten,Pick-up time
+die,Leerung,-en,die Leerungen,Emptying
+die,Verblisterung,-en,die Verblisterungen,Blister packaging
+die,Neuverpackung,-en,die Neuverpackungen,Repackaging
+die,Plausibilitätsprüfung,-en,die Plausibilitätsprüfungen,Plausibility check
+die,Herstellungsanweisung,-en,die Herstellungsanweisungen,Manufacturing instruction
+die,Herstellungsvorschrift,-en,die Herstellungsvorschriften,Manufacturing specification
+die,Prüfanweisung,-en,die Prüfanweisungen,Test instruction
+die,Risikoermittlung,-en,die Risikoermittlungen,Risk assessment
+die,Inprozesskontrolle,-n,die Inprozesskontrollen,In-process control
+die,Freigabe,-n,die Freigaben,Release
+die,Freigabevermerk,-e,die Freigabevermerke,Release note
+die,Chargendokumentation,-en,die Chargendokumentationen,Batch documentation
+die,Chargenbezeichnung,-en,die Chargenbezeichnungen,Batch designation
+die,Ausbeute,-n,die Ausbeuten,Yield
+die,Organoleptik,---,---,Organoleptic testing
+die,Ausstreichprobe,-n,die Ausstreichproben,Spreading test
+die,Schmelztemperatur,-en,die Schmelztemperaturen,Melting temperature
+die,Kapillarschmelzpunkt,-e,die Kapillarschmelzpunkte,Capillary melting point
+die,Sofortschmelzpunkt,-e,die Sofortschmelzpunkte,Instant melting point
+die,Identitätsprüfung,-en,die Identitätsprüfungen,Identity test
+die,Gehaltsprüfung,-en,die Gehaltsprüfungen,Content test
+die,Reinheitsprüfung,-en,die Reinheitsprüfungen,Purity test
+die,Magnetcodierung,-en,die Magnetcodierungen,Magnetic coding
+die,Kodierzeile,-n,die Kodierzeilen,Coding line
+die,Vertragsarztnummer,-n,die Vertragsarztnummern,Contract doctor number
+die,Betriebsstättennummer,-n,die Betriebsstättennummern,Practice ID number
+die,Pharmazentralnummer,-n,die Pharmazentralnummern,Pharmaceutical central number (PZN)
+die,Abzeichnungsbefugnis,-se,die Abzeichnungsbefugnisse,Signing authority
+die,Vorlagepflicht,-en,die Vorlagepflichten,Submission obligation
+die,Aufsichtspflicht,-en,die Aufsichtspflichten,Supervisory duty
+die,Beratungsbefugnis,-se,die Beratungsbefugnisse,Advisory authority
+die,Beratungspflicht,-en,die Beratungspflichten,Advisory obligation
+die,Schweigepflicht,-en,die Schweigepflichten,Confidentiality obligation
+die,Verschwiegenheitspflicht,-en,die Verschwiegenheitspflichten,Duty of confidentiality
+die,Meldepflicht,-en,die Meldepflichten,Reporting obligation
+die,Dokumentationspflicht,-en,die Dokumentationspflichten,Documentation obligation
+die,Aufbewahrungspflicht,-en,die Aufbewahrungspflichten,Retention obligation
+die,Aufbewahrungsfrist,-en,die Aufbewahrungsfristen,Retention period
+die,Vertretungsbefugnis,-se,die Vertretungsbefugnisse,Representation authority
+die,Geltungsdauer,-n,die Geltungsdauern,Validity period
+die,Befristung,-en,die Befristungen,Time limit
+die,Verlängerung,-en,die Verlängerungen,Extension
+die,Rücknahme,-n,die Rücknahmen,Withdrawal
+die,Widerruf,-e,die Widerruf,Revocation
+die,Insolvenz,-en,die Insolvenzen,Insolvency
+die,Ordnungswidrigkeit,-en,die Ordnungswidrigkeiten,Regulatory offense
+die,Straftat,-en,die Straftaten,Criminal offense
+die,Bußgeld,-er,die Bußgelder,Fine
+die,Geldstrafe,-n,die Geldstrafen,Monetary penalty
+die,Freiheitsstrafe,-n,die Freiheitsstrafen,Prison sentence
+die,Rechtsgüterabwägung,-en,die Rechtsgüterabwägungen,Balancing of legal interests
+die,Persönlichkeitsrecht,-e,die Persönlichkeitsrechte,Personality rights
+die,Gesundheitsgefährdung,-en,die Gesundheitsgefährdungen,Health hazard
+die,Rezeptfälschung,-en,die Rezeptfälschungen,Prescription forgery
+die,Manipulation,-en,die Manipulationen,Manipulation
+die,Arzneimittelfälschung,-en,die Arzneimittelfälschungen,Drug counterfeiting
+die,Verwechslungsgefahr,-en,die Verwechslungsgefahren,Risk of confusion
+die,Qualitätsminderung,-en,die Qualitätsminderungen,Quality impairment
+die,Arzneimittelsicherheit,---,---,Drug safety
+die,Gefahrenabwehr,-en,die Gefahrenabwehren,Hazard prevention
+die,Sendungsverfolgung,-en,die Sendungsverfolgungen,Package tracking
+die,Blindentastmarke,-n,die Blindentastmarken,Tactile warning for blind
+die,Hinweismarke,-n,die Hinweismarken,Warning label
+die,Erkennungszeichen,=,die Erkennungszeichen,Identification mark
+die,Allgemeinverfügung,-en,die Allgemeinverfügungen,General order
+die,Turnusregelung,-en,die Turnusregelungen,Rotation regulation
+die,Rufbereitschaft,-en,die Rufbereitschaften,On-call duty
+die,Rufweiterschaltung,-en,die Rufweiterschaltungen,Call forwarding
+die,Notdienstgebühr,-en,die Notdienstgebühren,Emergency service fee
+die,Vergütung,-en,die Vergütungen,Remuneration
+die,Öffnungszeit,-en,die Öffnungszeiten,Opening hours
+die,Mindestöffnungszeit,-en,die Mindestöffnungszeiten,Minimum opening hours
+die,Betriebsferien,nur P,die Betriebsferien,Business holidays
+die,Einzelbefreiung,-en,die Einzelbefreiungen,Individual exemption
+die,Sonderbefreiung,-en,die Sonderbefreiungen,Special exemption
+
+`.trim();
+
+// ============================================
+// CSV DATA - ADJECTIVES
+// ============================================
+const adjectivesCSV = `
+-eichpflichtig,requiring-calibration,-eichfrei,calibration-exempt
+-geeicht,calibrated,-ungeeicht,uncalibrated
+-selbsteinspielend,self-leveling,-nicht-selbsteinspielend,non-self-leveling
+-mechanisch,mechanical,-elektronisch,electronic
+-linksbündig,left-aligned,-rechtsbündig,right-aligned
+-verfügbar,available,-nicht-verfügbar,unavailable
+-geschäftsfähig,legally-competent,-geschäftsunfähig,legally-incompetent
+-zuverlässig,reliable,-unzuverlässig,unreliable
+-sachkundig,expert,-unsachkundig,inexpert
+-approbiert,licensed,-nicht-approbiert,unlicensed
+-persönlich,personal,-übertragbar,transferable
+-raumbezogen,premises-bound,-personenbezogen,person-bound
+-deckungsgleich,congruent,-abweichend,deviating
+-unbefristet,unlimited,-befristet,limited
+-vollzeitig,full-time,-teilzeitig,part-time
+-hauptberuflich,full-time-professional,-nebenberuflich,part-time-professional
+-gesamtschuldnerisch,jointly-liable,-einzelhaftend,individually-liable
+-gleichberechtigt,equal,-untergeordnet,subordinate
+-umsatzabhängig,turnover-dependent,-festgelegt,fixed
+-benachbart,neighboring,-entfernt,distant
+-kreisfrei,independent-city,-kreisangehörig,county-associated
+-ordnungsgemäß,proper,-mangelhaft,deficient
+-flächendeckend,comprehensive,-lückenhaft,incomplete
+-wechselseitig,mutual,-einseitig,unilateral
+-ständig,permanent,-zeitweise,temporary
+-abgelegen,remote,-zentral,central
+-barrierearm,low-barrier,-barrierefrei,barrier-free
+-erschütterungsfrei,vibration-free,-unstabil,unstable
+-waagerecht,horizontal,-senkrecht,vertical
+-nivelliert,leveled,-schief,crooked
+-lesbar,readable,-unleserlich,illegible
+-dauerhaft,permanent,-vorübergehend,temporary
+-vertraulich,confidential,-öffentlich,public
+-hygienisch,hygienic,-unhygienisch,unhygienic
+-raumhoch,floor-to-ceiling,-teilweise,partial
+-glatt,smooth,-rau,rough
+-abwaschbar,washable,-nicht-abwaschbar,non-washable
+-patientenbezogen,patient-specific,-standardisiert,standardized
+-patientenindividuell,patient-individual,-vorgefertigt,prefabricated
+-maschinell,mechanical,-manuell,manual
+-wieder-verwendbar,reusable,-einweg,disposable
+-organoleptisch,organoleptic,-analytisch,analytical
+-galenisch,galenic,-therapeutisch,therapeutic
+-dosisgleich,dose-equivalent,-unterschiedlich,different
+-stichprobenartig,random,-vollständig,complete
+-sensorisch,sensory,-instrumentell,instrumental
+-rechtsbündig,right-aligned,-zentriert,centered
+-einheitlich,uniform,-unterschiedlich,different
+-magnetisch,magnetic,-elektronisch,electronic
+-kodiert,coded,-unkodiert,uncoded
+-manipuliert,manipulated,-original,original
+-ausgeschrieben,written-out,-abgekürzt,abbreviated
+-kindlich,childish,-erwachsen,adult
+-linksbündig,left-aligned,-ungeordnet,disordered
+-missbräuchlich,abusive,-bestimmungsgemäß,intended
+-auffällig,conspicuous,-unauffällig,inconspicuous
+-kostenpflichtig,chargeable,-kostenfrei,free
+-entbindend,releasing,-verpflichtend,obligating
+-höherrangig,higher-ranking,-nachrangig,subordinate
+-strafrechtlich,criminal,-zivilrechtlich,civil
+-schweigeverpflichtet,bound-by-confidentiality,-mitteilungsberechtigt,authorized-to-disclose
+
+`.trim();
+
+// ============================================
+// CSV DATA - VERBS
+// ============================================
+const verbsCSV = `
+*betreiben,operate,*leiten,manage
+*obliegen,be-incumbent-upon,*verpflichten,obligate
+*sicherstellen,ensure,*gewährleisten,guarantee
+*bedürfen,require,*benötigen,need
+*beantragen,apply-for,*genehmigen,approve
+*nachweisen,prove,*belegen,document
+*verpachten,lease-out,*pachten,lease
+*erlöschen,expire,*widerrufen,revoke
++vorliegen,be-present,+bestehen,exist
++einholen,obtain,+vorlegen,submit
+*dokumentieren,document,*protokollieren,record
+*lagern,store,*aufbewahren,keep
+*prüfen,check,*kontrollieren,inspect
+*herstellen,manufacture,*fertigen,produce
++abgeben,dispense,+ausgeben,issue
+*kennzeichnen,label,*beschriften,mark
+*verschreiben,prescribe,*verordnen,order
+*beaufsichtigen,supervise,*überwachen,monitor
+*freigeben,release,*genehmigen,authorize
+*beliefern,supply,*versorgen,provide
++erwerben,acquire,+beziehen,obtain
+*entsorgen,dispose,*vernichten,destroy
+*melden,report,*anzeigen,notify
+*kalibrieren,calibrate,*justieren,adjust
+*eichen,calibrate-officially,*zertifizieren,certify
+*verweigern,refuse,*ablehnen,reject
+*ausführen,execute,*durchführen,carry-out
+*einhalten,comply-with,*befolgen,follow
+*verstoßen,violate,+unterliegen,be-subject-to
+*zurücknehmen,withdraw,*zurückrufen,recall
+
+`.trim();
+
+// ============================================
+// CSV DATA - EXPRESSIONS
+// ============================================
+const expressionsCSV = `
+Die Erlaubnis ist erforderlich.,Permission is required.
+Das Rezept ist gültig.,The prescription is valid.
+Die Dokumentation muss vollständig sein.,Documentation must be complete.
+Die Lagerung erfolgt unter Verschluss.,Storage is kept under lock.
+Die Waage ist eichpflichtig.,The scale requires official calibration.
+Das Verfallsdatum ist abgelaufen.,The expiration date has passed.
+Die Betriebserlaubnis erlischt.,The operating license expires.
+Der Nachweis liegt vor.,The proof is available.
+Die Verschreibung entspricht nicht.,The prescription does not comply.
+Das Qualitätsmanagementsystem ist erforderlich.,The quality management system is required.
+Die Abgabe ist zu verweigern.,Dispensing must be refused.
+Die Eichfrist läuft ab.,The calibration period expires.
+Der Verdacht auf Fälschung besteht.,Suspicion of forgery exists.
+Die Schweigepflicht ist zu beachten.,Confidentiality must be observed.
+Die Plausibilitätsprüfung ist durchzuführen.,Plausibility check must be performed.
+
+`.trim();
+
+// ============================================
+// CSV DATA - CONVERSATIONS
+// ============================================
+const conversationsCSV = `
+Pharmacy License Application|A,Ich möchte eine Betriebserlaubnis beantragen.,I would like to apply for an operating license.
+Pharmacy License Application|B,Welche Unterlagen benötigen Sie?,Which documents do you need?
+Pharmacy License Application|A,Polizeiliches Führungszeugnis und Approbationsurkunde.,Police clearance certificate and license certificate.
+Pharmacy License Application|B,Haben Sie die Verfügungsgewalt über die Räume?,Do you have control over the premises?
+Pharmacy License Application|A,Ja ich habe den Mietvertrag vorgelegt.,Yes I have submitted the lease agreement.
+Pharmacy License Application|B,Die Abnahmebesichtigung erfolgt durch den Pharmazierat.,The inspection is conducted by the pharmaceutical advisor.
+Scale Calibration|A,Wann muss die Waage geeicht werden?,When must the scale be calibrated?
+Scale Calibration|B,Selbsteinspielende Waagen alle zwei Jahre.,Self-leveling scales every two years.
+Scale Calibration|A,Ist das Eichzeichen noch gültig?,Is the calibration mark still valid?
+Scale Calibration|B,Nein die Frist ist abgelaufen.,No the period has expired.
+Scale Calibration|A,Wo kann ich die Eichung beantragen?,Where can I apply for calibration?
+Scale Calibration|B,Beim zuständigen Eichamt mindestens zehn Wochen vorher.,At the responsible calibration office at least ten weeks in advance.
+Prescription Verification|A,Haben Sie Bedenken bei dieser Verschreibung?,Do you have concerns about this prescription?
+Prescription Verification|B,Ja die Dosierung erscheint ungewöhnlich.,Yes the dosage seems unusual.
+Prescription Verification|A,Dann müssen Sie Rücksprache mit dem Arzt halten.,Then you must consult with the doctor.
+Prescription Verification|B,Die Abgabe ist erst nach Klärung möglich.,Dispensing is only possible after clarification.
+
+`.trim();
+
+// ============================================
+// CSV DATA - Q&A
+// ============================================
+const qaCSV = `
+Wer benötigt eine Betriebserlaubnis?,Jeder der eine Apotheke betreiben will. (Everyone who wants to operate a pharmacy.)
+Wie lange ist die Betriebserlaubnis gültig?,Sie ist unbefristet gültig. (It is valid indefinitely.)
+Wann erlischt die Betriebserlaubnis?,Wenn ein Jahr lang kein Gebrauch gemacht wird. (If not used for one year.)
+Was ist ein Filialverbund?,Eine Hauptapotheke und bis zu drei Filialapotheken. (One main pharmacy and up to three branch pharmacies.)
+Welche Handelsform ist zulässig?,Nur die OHG ist als besondere Handelsform erlaubt. (Only the OHG is permitted as special business form.)
+Was bedeutet Fremdbesitzverbot?,Keine Mitsprache von Nichtapothekern. (No participation of non-pharmacists.)
+Was ist Kontrahierungszwang?,Verschreibungen müssen ausgeführt werden. (Prescriptions must be filled.)
+Welche Räume sind erforderlich?,Offizin Labor Lagerraum und Nachtdienstzimmer. (Dispensary laboratory storage and on-call room.)
+Was ist die Mindestgröße?,Die Grundfläche muss mindestens 110 Quadratmeter betragen. (Floor area must be at least 110 square meters.)
+Wie oft muss die Waage geeicht werden?,Selbsteinspielende Waagen alle zwei Jahre. (Self-leveling scales every two years.)
+Was bedeutet pharmazeutische Tätigkeit?,Herstellung Prüfung Abgabe und Beratung. (Manufacturing testing dispensing and counseling.)
+Wer darf pharmazeutische Tätigkeiten ausführen?,Nur pharmazeutisches Personal. (Only pharmaceutical personnel.)
+Was ist die Schweigepflicht?,Verschwiegenheit über alles Bekannte aus der Berufsausübung. (Confidentiality about everything known from professional practice.)
+Wann darf die Abgabe verweigert werden?,Bei Verdacht auf missbräuchliche Anwendung. (Upon suspicion of misuse.)
+Was ist ein QMS?,Ein Qualitätsmanagementsystem zur Qualitätssicherung. (A quality management system for quality assurance.)
+Wie lange müssen Dokumentationen aufbewahrt werden?,Herstellung und Abgabe fünf Jahre. (Manufacturing and dispensing five years.)
+Was ist eine Rezeptfälschung?,Ein gefälschtes oder manipuliertes Rezept. (A forged or manipulated prescription.)
+Darf ein gefälschtes Rezept beliefert werden?,Nein die Abgabe ist verboten. (No dispensing is prohibited.)
+Was ist bei BTM zu beachten?,Lagerung unter Verschluss im Tresor. (Storage under lock in safe.)
+Was sind eichpflichtige Messgeräte?,Waagen zur Herstellung von Arzneimitteln. (Scales for manufacturing medicines.)
+
+`.trim();
+
+// ============================================
+// CSV DATA - SENTENCES
+// ============================================
+const sentencesCSV = `
+Die Apotheke bedarf der Erlaubnis der zuständigen Behörde.,The pharmacy requires permission from the competent authority.
+Der Erlaubnisinhaber trägt die volle Verantwortung.,The license holder bears full responsibility.
+Die Betriebserlaubnis ist personen- und raumbezogen.,The operating license is person- and premises-specific.
+Der Apotheker ist zur persönlichen Leitung verpflichtet.,The pharmacist is obligated to manage personally.
+Die Apotheke muss ordnungsgemäße Räume nachweisen.,The pharmacy must prove proper premises.
+Das pharmazeutische Personal arbeitet unter Aufsicht.,The pharmaceutical staff works under supervision.
+Die Dokumentation der Herstellung ist erforderlich.,Documentation of manufacturing is required.
+Die Lagerung muss die Qualität sicherstellen.,Storage must ensure quality.
+Betäubungsmittel werden unter Verschluss gelagert.,Narcotics are stored under lock.
+Die Waage benötigt eine gültige Eichung.,The scale requires valid calibration.
+Die Eichfrist beträgt zwei Jahre für Präzisionswaagen.,The calibration period is two years for precision scales.
+Die Plausibilitätsprüfung erfolgt durch den Apotheker.,The plausibility check is performed by the pharmacist.
+Ein gefälschtes Rezept darf nicht beliefert werden.,A forged prescription may not be dispensed.
+Die Schweigepflicht umfasst alle beruflichen Kenntnisse.,Confidentiality covers all professional knowledge.
+Der Kontrahierungszwang gilt für Verschreibungen.,The obligation to contract applies to prescriptions.
+Die Filialapotheke benötigt einen verantwortlichen Apotheker.,The branch pharmacy requires a responsible pharmacist.
+Das Qualitätsmanagementsystem beschreibt betriebliche Abläufe.,The quality management system describes operational processes.
+Die Abgabe erfolgt nur durch pharmazeutisches Personal.,Dispensing is done only by pharmaceutical personnel.
+Die Beratung ist eine pharmazeutische Tätigkeit.,Counseling is a pharmaceutical activity.
+Der Versandhandel erfordert eine zusätzliche Erlaubnis.,Mail order requires additional permission.
+
+`.trim();
+
+// ============================================
+// PARSE CSV FUNCTION
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .map(line => line.split(',').map(cell => cell.trim()));
+}
+
+// ============================================
+// RENDER NOUNS TABLE
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV);
+    const grouped = { das: [], der: [], die: [] };
+
+    data.forEach(row => {
+        const [article, german, pluralNotation, pluralFull, english] = row;
+        grouped[article].push({ article, german, pluralNotation, pluralFull, english });
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    const articles = ['der', 'das', 'die'];
+    
+    articles.forEach((article, articleIndex) => {
+        const words = grouped[article];
+        const numRows = Math.ceil(words.length / 2);
+        
+        for (let row = 0; row < numRows; row++) {
+            const word1 = words[row];
+            const word2 = words[row + numRows];
+            
+            const rowClass = `${article}-row`;
+            const articleClass = `${article}-article`;
+            
+            html += `<tr class="${rowClass}">`;
+            
+            if (word1) {
+                html += `<td class="article-cell ${articleClass}">${word1.article}</td>`;
+                html += `<td class="german-cell">${word1.german}</td>`;
+                html += `<td class="plural-cell">${word1.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word1.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            if (word2) {
+                html += `<td class="article-cell ${articleClass}">${word2.article}</td>`;
+                html += `<td class="german-cell">${word2.german}</td>`;
+                html += `<td class="plural-cell">${word2.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        if (articleIndex < articles.length - 1) {
+            html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+        }
+    });
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS TABLE
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV);
+    const verbData = parseCSV(verbsCSV);
+    
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    // Process adjectives - split into two halves like nouns table
+    const numAdjRows = Math.ceil(adjData.length / 2);
+    
+    for (let i = 0; i < numAdjRows; i++) {
+        html += `<tr class="adjective-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (adjData[i]) {
+            const row = adjData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numAdjRows;
+        if (adjData[secondRowIndex]) {
+            const row = adjData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+
+    // Process verbs - split into two halves like nouns table
+    const numVerbRows = Math.ceil(verbData.length / 2);
+    
+    for (let i = 0; i < numVerbRows; i++) {
+        html += `<tr class="verb-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (verbData[i]) {
+            const row = verbData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numVerbRows;
+        if (verbData[secondRowIndex]) {
+            const row = verbData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS TABLE
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV);
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const data = parseCSV(conversationsCSV);
+    const container = document.getElementById('conversationsContainer');
+    
+    const conversations = {};
+    data.forEach(row => {
+        const parts = row[0].split('|');
+        const title = parts[0];
+        const speaker = parts[1];
+        const german = row[1];
+        const english = row[2];
+        
+        if (!conversations[title]) {
+            conversations[title] = [];
+        }
+        conversations[title].push({ speaker, german, english });
+    });
+    
+    let html = '';
+    for (const [title, lines] of Object.entries(conversations)) {
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="7" class="conversation-title">${title}</td></tr>`;
+        
+        for (let i = 0; i < lines.length; i += 2) {
+            html += `<tr>`;
+            
+            html += `<td class="speaker-cell">${lines[i].speaker}</td>`;
+            html += `<td class="german-cell">${lines[i].german}</td>`;
+            html += `<td class="english-cell">${lines[i].english}</td>`;
+            
+            html += `<td style="width: 1%; background: #ddd; border: none;"></td>`;
+            
+            if (i + 1 < lines.length) {
+                html += `<td class="speaker-cell">${lines[i + 1].speaker}</td>`;
+                html += `<td class="german-cell">${lines[i + 1].german}</td>`;
+                html += `<td class="english-cell">${lines[i + 1].english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        html += `</table>`;
+    }
+    
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A TABLE
+// ============================================
+function renderQATable() {
+    const data = parseCSV(qaCSV);
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [question1, answer1] = data[i];
+        html += `<td class="question-cell">${question1}</td>`;
+        html += `<td class="answer-cell">${answer1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [question2, answer2] = data[i + 1];
+            html += `<td class="question-cell">${question2}</td>`;
+            html += `<td class="answer-cell">${answer2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES TABLE
+// ============================================
+function renderSentencesTable() {
+    const data = parseCSV(sentencesCSV);
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// INITIALIZE ON PAGE LOAD
+// ============================================
+window.addEventListener('load', function() {
+    console.log('📚 Rendering all tables...');
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ All tables rendered successfully!');
+});
+    </script>
+</body>
+</html>

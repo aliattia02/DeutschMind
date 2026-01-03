@@ -1,0 +1,1318 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary & Phrases - Arzneimittelmarkt und Pharmakoökonomie</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 5px;
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .zoom-label {
+            font-size: 0.75em;
+            font-weight: bold;
+            color: #666;
+            padding: 0 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .zoom-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 3px;
+            min-width: 40px;
+        }
+
+        .zoom-btn:hover {
+            background: #555;
+        }
+
+        .zoom-level {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .print-button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .print-button:hover {
+            background: #333;
+        }
+
+        .content-wrapper {
+            max-width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* SECTION DIVIDER */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* NOUN TABLE STYLING */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f5f5f5;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 4%;
+            max-width: 50px;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 17%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 13%;
+        }
+
+        /* Color coding for articles */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ADJECTIVE/VERB TABLE STYLING */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col {
+            font-weight: 600;
+            width: 15%;
+        }
+
+        .word-table .english-col {
+            color: #333;
+            width: 10%;
+        }
+
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* EXPRESSIONS TABLE */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .expressions-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* CONVERSATIONS TABLE */
+        .conversations-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #2C3E50 !important;
+            color: white !important;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: center;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td {
+            padding: 6px 8px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .conversations-table .speaker-cell {
+            width: 4%;
+            font-weight: bold;
+            text-align: center;
+            background: #E8E8E8 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .german-cell {
+            width: 22%;
+            font-weight: 600;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .english-cell {
+            width: 22%;
+            color: #333;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Q&A TABLE */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .qa-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFE6E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 25%;
+            background: #E6F7E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* SENTENCES TABLE */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .sentences-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #F0E6FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #E6FFE6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9 !important;
+            border-top: 2px solid #666;
+            font-size: 1em;
+            page-break-before: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info h3 {
+            font-size: 1.43em;
+            margin-bottom: 5px;
+        }
+
+        .footer-info p {
+            margin: 3px 0;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        @media print {
+            body {
+                padding: 5px;
+                max-width: 100%;
+            }
+
+            .controls {
+                display: none !important;
+            }
+
+            .content-wrapper {
+                max-width: 100%;
+            }
+
+            .table-section {
+                overflow-x: visible;
+                max-width: 100%;
+                margin-bottom: 2px;
+                page-break-inside: auto;
+            }
+
+            .table-section h2 {
+                margin-top: 2px;
+                page-break-after: avoid;
+                page-break-before: auto;
+            }
+
+            .header {
+                page-break-after: avoid;
+                margin-bottom: 10px;
+            }
+
+            .footer-info {
+                display: none !important;
+            }
+
+            .section-divider {
+                page-break-before: always;
+            }
+
+            @page {
+                margin: 1cm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        @media screen {
+            .controls {
+                display: flex !important;
+            }
+            
+            body {
+                max-width: 1400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="zoom-controls">
+            <span class="zoom-label">📚 Vocab:</span>
+            <button class="zoom-btn" onclick="zoomOutVocab()" title="Zoom Out Vocab">−</button>
+            <span class="zoom-level" id="zoomLevelVocab">100%</span>
+            <button class="zoom-btn" onclick="zoomInVocab()" title="Zoom In Vocab">+</button>
+            <button class="zoom-btn" onclick="resetZoomVocab()" title="Reset Zoom Vocab">⟲</button>
+        </div>
+        <div class="zoom-controls">
+            <span class="zoom-label">💬 Phrases:</span>
+            <button class="zoom-btn" onclick="zoomOutPhrases()" title="Zoom Out Phrases">−</button>
+            <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+            <button class="zoom-btn" onclick="zoomInPhrases()" title="Zoom In Phrases">+</button>
+            <button class="zoom-btn" onclick="resetZoomPhrases()" title="Reset Zoom Phrases">⟲</button>
+        </div>
+        <button class="print-button" onclick="window.print()">🖨️ Print</button>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 German Vocabulary & Phrases - Arzneimittelmarkt und Pharmakoökonomie</h1>
+        </div>
+
+        <!-- VOCABULARY SECTION -->
+        <div id="vocabSection">
+            <!-- TABLE 1: NOUNS -->
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col style="width: 19%;">
+                        <col style="width: 9%;">
+                        <col style="width: 17%;">
+                        <col style="width: 5%;">
+                        <col style="width: 19%;">
+                        <col style="width: 9%;">
+                        <col style="width: 17%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives & Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES & SENTENCES</h2>
+        </div>
+
+        <!-- PHRASES SECTION -->
+        <div id="phrasesSection">
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions & Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- REFERENCE INFORMATION -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Document Info:</strong> Topic: Pharmaceutical Law | Level: Professional/Academic | Created: 2025</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Väter, Mütter = full form with umlaut | --- = no change | kein Plural = no plural form</p>
+            <p><strong>Color Coding:</strong> <span style="color: #1565C0;">■ der (blue)</span> | <span style="color: #2E7D32;">■ das (green)</span> | <span style="color: #C62828;">■ die (red)</span></p>
+            <p><strong>Prefix Guide:</strong> - prefix = Adjective | * prefix = Weak Verb | + prefix = Strong Verb</p>
+            <p><strong>Organization:</strong> Horizontal pairs are opposites (Column 1 ↔ Column 2, Column 3 ↔ Column 4)</p>
+        </div>
+    </div>
+
+    <script>
+// ============================================
+// ZOOM FUNCTIONALITY - SEPARATE FOR EACH SECTION
+// ============================================
+let vocabZoom = 100;
+let phrasesZoom = 100;
+const zoomStep = 10;
+const minZoom = 50;
+const maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    const section = document.getElementById('vocabSection');
+    const zoomLevel = document.getElementById('zoomLevelVocab');
+    
+    const newFontSize = baseFontSize * (vocabZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${vocabZoom}%`;
+}
+
+function updatePhrasesZoom() {
+    const section = document.getElementById('phrasesSection');
+    const zoomLevel = document.getElementById('zoomLevelPhrases');
+    
+    const newFontSize = baseFontSize * (phrasesZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${phrasesZoom}%`;
+}
+
+function zoomInVocab() {
+    if (vocabZoom < maxZoom) {
+        vocabZoom += zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function zoomOutVocab() {
+    if (vocabZoom > minZoom) {
+        vocabZoom -= zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function resetZoomVocab() {
+    vocabZoom = 100;
+    updateVocabZoom();
+}
+
+function zoomInPhrases() {
+    if (phrasesZoom < maxZoom) {
+        phrasesZoom += zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function zoomOutPhrases() {
+    if (phrasesZoom > minZoom) {
+        phrasesZoom -= zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function resetZoomPhrases() {
+    phrasesZoom = 100;
+    updatePhrasesZoom();
+}
+
+window.addEventListener('load', function() {
+    updateVocabZoom();
+    updatePhrasesZoom();
+});
+
+// ============================================
+// CSV DATA - NOUNS
+// ============================================
+const nounsCSV = `
+das,Arzneimittel,-,die Arzneimittel,medication
+das,Betäubungsmittel,-,die Betäubungsmittel,narcotic
+das,Reserveantibiotikum,Reserveantibiotika,die Reserveantibiotika,reserve-antibiotic
+das,Kinderarzneimittel,-,die Kinderarzneimittel,pediatric-medication
+das,Gesundheitswesen,-,die Gesundheitswesen,healthcare-system
+das,Gesundheitsministerium,Gesundheitsministerien,die Gesundheitsministerien,health-ministry
+das,Inverkehrbringen,-,die Inverkehrbringen,market-authorization
+das,Dossier,-s,die Dossiers,dossier
+das,Schiedsamt,Schiedsämter,die Schiedsämter,arbitration-board
+das,Gremium,Gremien,die Gremien,committee
+das,Plenum,Plenen,die Plenen,plenary
+das,Orphan-Drug,-s,die Orphan-Drugs,orphan-drug
+das,Gutachten,-,die Gutachten,expert-opinion
+das,Studienprogramm,-e,die Studienprogramme,study-program
+das,Prüfkonzept,-e,die Prüfkonzepte,investigation-plan
+der,Binnenmarkt,Binnenmärkte,die Binnenmärkte,internal-market
+der,Wirtschaftsraum,Wirtschaftsräume,die Wirtschaftsräume,economic-area
+der,Bundesausschuss,Bundesausschüsse,die Bundesausschüsse,federal-committee
+der,Spitzenverband,Spitzenverbände,die Spitzenverbände,umbrella-organization
+der,Erstattungsbetrag,Erstattungsbeträge,die Erstattungsbeträge,reimbursement-amount
+der,Herstellerabgabepreis,-e,die Herstellerabgabepreise,manufacturer-price
+der,Großhandelszuschlag,Großhandelszuschläge,die Großhandelszuschläge,wholesale-markup
+der,Apothekenzuschlag,Apothekenzuschläge,die Apothekenzuschläge,pharmacy-markup
+der,Festbetrag,Festbeträge,die Festbeträge,reference-price
+der,Rabattvertrag,Rabattverträge,die Rabattverträge,discount-contract
+der,Lieferengpass,Lieferengpässe,die Lieferengpässe,supply-shortage
+der,Parallelexport,-e,die Parallelexporte,parallel-export
+der,Parallelimport,-e,die Parallelimporte,parallel-import
+der,Warenverkehr,---,nur Singular,free-movement-of-goods
+der,Unterlagenschutz,---,nur Singular,data-exclusivity
+der,Zusatznutzen,-,die Zusatznutzen,additional-benefit
+der,Wirkstoff,-e,die Wirkstoffe,active-ingredient
+der,Nutzwert,-e,die Nutzwerte,utility-value
+der,Grenznutzen,-,die Grenznutzen,marginal-benefit
+die,Zulassung,-en,die Zulassungen,authorization
+die,Nutzenbewertung,-en,die Nutzenbewertungen,benefit-assessment
+die,Vergleichstherapie,-n,die Vergleichstherapien,comparator-therapy
+die,Frühe-Nutzenbewertung,-en,die Frühen-Nutzenbewertungen,early-benefit-assessment
+die,Arzneimittelbehörde,-n,die Arzneimittelbehörden,medicines-agency
+die,Richtlinie,-n,die Richtlinien,directive
+die,Verordnung,-en,die Verordnungen,regulation
+die,Verschreibungspflicht,-en,die Verschreibungspflichten,prescription-requirement
+die,Kontingentierung,-en,die Kontingentierungen,quota-system
+die,Lagerhaltung,-en,die Lagerhaltungen,storage
+die,Meldepflicht,-en,die Meldepflichten,reporting-obligation
+die,Fälschung,-en,die Fälschungen,counterfeit
+die,Manipulation,-en,die Manipulationen,tampering
+die,Lieferkette,-n,die Lieferketten,supply-chain
+die,Echtheitsprüfung,-en,die Echtheitsprüfungen,authenticity-verification
+die,Marktexklusivität,-en,die Marktexklusivitäten,market-exclusivity
+die,Kostenanalyse,-n,die Kostenanalysen,cost-analysis
+die,Effektivität,-en,die Effektivitäten,effectiveness
+die,Effizienz,-en,die Effizienzen,efficiency
+die,Lebensqualität,-en,die Lebensqualitäten,quality-of-life
+die,Ressourcenknappheit,-en,die Ressourcenknappheiten,resource-scarcity
+die,Erstattung,-en,die Erstattungen,reimbursement
+die,Mehrwertsteuer,-n,die Mehrwertsteuern,value-added-tax
+die,Handelsstufe,-n,die Handelsstufen,distribution-level
+die,Pharmakooekonomie,---,nur Singular,pharmacoeconomics
+
+`.trim();
+
+// ============================================
+// CSV DATA - ADJECTIVES
+// ============================================
+const adjectivesCSV = `
+-zentralisiert,centralized,-dezentralisiert,decentralized
+-verpflichtend,mandatory,-freiwillig,voluntary
+-verschreibungspflichtig,prescription-only,-rezeptfrei,over-the-counter
+-zugelassen,approved,-nicht-zugelassen,not-approved
+-wirksam,effective,-unwirksam,ineffective
+-patentgeschützt,patent-protected,-patentfrei,off-patent
+-innovativ,innovative,-etabliert,established
+-kosteneffektiv,cost-effective,-unwirtschaftlich,uneconomical
+-evidenzbasiert,evidence-based,-empirisch,empirical
+-erstattungsfähig,reimbursable,-nicht-erstattungsfähig,non-reimbursable
+-verfügbar,available,-nicht-verfügbar,unavailable
+-vergleichbar,comparable,-unvergleichbar,incomparable
+-wirtschaftlich,economical,-teuer,expensive
+-zweckmäßig,appropriate,-unzweckmäßig,inappropriate
+-ausreichend,sufficient,-unzureichend,insufficient
+-unbedenklich,safe,-bedenklich,concerning
+-selten,rare,-häufig,common
+-lebensbedrohlich,life-threatening,-harmlos,harmless
+-multimorbid,multimorbid,-gesund,healthy
+-ambulant,outpatient,-stationär,inpatient
+
+`.trim();
+
+// ============================================
+// CSV DATA - VERBS
+// ============================================
+const verbsCSV = `
+*zulassen,authorize,*ablehnen,reject
+*erteilen,grant,*widerrufen,revoke
+*erstatten,reimburse,*ablehnen,deny
+*bewerten,assess,*beurteilen,evaluate
+*verhandeln,negotiate,*festlegen,determine
+*festsetzen,set,*anpassen,adjust
+*vorschreiben,prescribe,*empfehlen,recommend
+*kontrollieren,control,*überprüfen,inspect
+*dokumentieren,document,*nachweisen,prove
+*abgeben,dispense,*verschreiben,prescribe
+*genehmigen,approve,*verweigern,refuse
+*konkretisieren,specify,*definieren,define
+*quantifizieren,quantify,*messen,measure
+*einreichen,submit,*vorlegen,present
+*durchführen,conduct,*analysieren,analyze
++unterliegen,be-subject-to,+gelten,apply
++bestehen,exist,+vorliegen,be-present
++erhalten,receive,+geben,give
++beantragen,apply-for,+gewähren,grant
++beschließen,decide,+festlegen,determine
++betreffen,concern,+umfassen,include
++entsprechen,correspond-to,+abweichen,deviate
+
+`.trim();
+
+// ============================================
+// CSV DATA - EXPRESSIONS
+// ============================================
+const expressionsCSV = `
+Das Arzneimittel ist zugelassen.,The medication is authorized.
+Die Zulassung wurde erteilt.,The authorization was granted.
+Das unterliegt der Verschreibungspflicht.,That requires a prescription.
+Der Zusatznutzen ist belegt.,The additional benefit is proven.
+Es liegt ein Lieferengpass vor.,There is a supply shortage.
+Die Nutzenbewertung ist abgeschlossen.,The benefit assessment is complete.
+Der Erstattungsbetrag gilt rückwirkend.,The reimbursement amount applies retroactively.
+Das Dossier muss eingereicht werden.,The dossier must be submitted.
+Die Verhandlungen sind gescheitert.,The negotiations have failed.
+Es besteht Meldepflicht.,There is a reporting obligation.
+Die Kosten werden erstattet.,The costs are reimbursed.
+Das Medikament ist nicht erstattungsfähig.,The medication is not reimbursable.
+Die Studie wurde durchgeführt.,The study was conducted.
+Der Beschluss ist bindend.,The decision is binding.
+Die Echtheit muss geprüft werden.,Authenticity must be verified.
+
+`.trim();
+
+// ============================================
+// CSV DATA - CONVERSATIONS
+// ============================================
+const conversationsCSV = `
+AMNOG-Verfahren|A,Wurde das Dossier eingereicht?,Was the dossier submitted?
+AMNOG-Verfahren|B,Ja es wurde fristgerecht beim G-BA eingereicht.,Yes it was submitted to the G-BA on time.
+AMNOG-Verfahren|A,Wie lautet die Nutzenbewertung?,What is the benefit assessment?
+AMNOG-Verfahren|B,Es wurde ein beträchtlicher Zusatznutzen festgestellt.,A considerable additional benefit was determined.
+AMNOG-Verfahren|A,Wann beginnen die Preisverhandlungen?,When do the price negotiations begin?
+AMNOG-Verfahren|B,In sechs Monaten nach der Bewertung.,In six months after the assessment.
+Zulassungsverfahren|A,Welches Verfahren wird benötigt?,Which procedure is required?
+Zulassungsverfahren|B,Es ist ein zentralisiertes Verfahren vorgeschrieben.,A centralized procedure is mandatory.
+Zulassungsverfahren|A,Bei welcher Behörde wird beantragt?,At which agency is it applied for?
+Zulassungsverfahren|B,Bei der Europäischen Arzneimittelagentur EMA.,At the European Medicines Agency EMA.
+Zulassungsverfahren|A,Wie lange dauert das Verfahren?,How long does the procedure take?
+Zulassungsverfahren|B,In der Regel etwa zwölf Monate.,Usually about twelve months.
+Lieferengpass|A,Liegt ein Lieferengpass vor?,Is there a supply shortage?
+Lieferengpass|B,Ja seit über zwei Wochen.,Yes for over two weeks.
+Lieferengpass|A,Wurde das gemeldet?,Was that reported?
+Lieferengpass|B,Ja beim BfArM und bei den Apotheken.,Yes to BfArM and to the pharmacies.
+Lieferengpass|A,Was sind die Ursachen?,What are the causes?
+Lieferengpass|B,Produktionsprobleme und Parallelexport.,Production problems and parallel export.
+Pharmakoökonomie|A,Welche Kostenart wird betrachtet?,Which type of cost is considered?
+Pharmakoökonomie|B,Sowohl direkte als auch indirekte Kosten.,Both direct and indirect costs.
+Pharmakoökonomie|A,Was bedeutet QALY?,What does QALY mean?
+Pharmakoökonomie|B,Quality-adjusted life year - qualitätsbereinigtes Lebensjahr.,Quality-adjusted life year.
+Pharmakoökonomie|A,Wie wird Kosteneffektivität gemessen?,How is cost-effectiveness measured?
+Pharmakoökonomie|B,Durch das Verhältnis von Kosten zu Effekt.,Through the ratio of costs to effect.
+
+`.trim();
+
+// ============================================
+// CSV DATA - Q&A
+// ============================================
+const qaCSV = `
+Was ist AMNOG?,Das Arzneimittelmarktneuordnungsgesetz regelt die Nutzenbewertung. (The drug market reorganization act regulates benefit assessment.)
+Wer führt die Nutzenbewertung durch?,Der Gemeinsame Bundesausschuss bewertet den Zusatznutzen. (The Federal Joint Committee assesses the additional benefit.)
+Was ist ein Orphan Drug?,Ein Arzneimittel gegen seltene Erkrankungen. (A medication for rare diseases.)
+Was bedeutet zentralisierte Zulassung?,Eine EU-weite Zulassung durch die EMA. (An EU-wide authorization by the EMA.)
+Wann ist ein Arzneimittel verschreibungspflichtig?,Wenn es der Verschreibungspflicht unterliegt. (When it is subject to prescription requirement.)
+Was ist ein Lieferengpass?,Ein Lieferausfall von über zwei Wochen. (A supply failure of over two weeks.)
+Was ist die zweckmäßige Vergleichstherapie?,Die Therapie zum Vergleich der Nutzenbewertung. (The therapy for comparison in benefit assessment.)
+Was bedeutet Erstattungsbetrag?,Der Preis den die GKV zahlt. (The price that statutory health insurance pays.)
+Was sind direkte Kosten?,Kosten für Behandlung und Arzneimittel. (Costs for treatment and medication.)
+Was sind indirekte Kosten?,Kosten durch Produktivitätsverlust. (Costs from productivity loss.)
+Was ist ein QALY?,Ein qualitätsbereinigtes Lebensjahr. (A quality-adjusted life year.)
+Was macht das IQWiG?,Es erstellt Gutachten zur Nutzenbewertung. (It creates expert opinions for benefit assessment.)
+Was ist Pharmakoökonomie?,Die Analyse von Kosten und Nutzen der Arzneitherapie. (The analysis of costs and benefits of drug therapy.)
+Was bedeutet Kosteneffektivität?,Das beste Verhältnis zwischen Kosten und Wirkung. (The best ratio between costs and effect.)
+Wer verhandelt den Erstattungsbetrag?,Der GKV-Spitzenverband und der Hersteller. (The GKV umbrella organization and the manufacturer.)
+
+`.trim();
+
+// ============================================
+// CSV DATA - SENTENCES
+// ============================================
+const sentencesCSV = `
+Das Arzneimittel wurde zentral zugelassen.,The medication was centrally authorized.
+Die Nutzenbewertung ist verpflichtend.,The benefit assessment is mandatory.
+Der Zusatznutzen wurde quantifiziert.,The additional benefit was quantified.
+Die Preisverhandlungen sind abgeschlossen.,The price negotiations are concluded.
+Das Dossier wurde beim G-BA eingereicht.,The dossier was submitted to the G-BA.
+Der Erstattungsbetrag gilt ab dem siebten Monat.,The reimbursement amount applies from the seventh month.
+Die Zulassung erfolgte durch die EMA.,The authorization was granted by the EMA.
+Orphan Drugs erhalten Marktexklusivität.,Orphan drugs receive market exclusivity.
+Die Verschreibungspflicht besteht.,The prescription requirement exists.
+Ein Lieferengpass wurde gemeldet.,A supply shortage was reported.
+Die direkten Kosten umfassen Arzneimittel.,The direct costs include medication.
+Die indirekten Kosten entstehen durch Produktivitätsverlust.,The indirect costs arise from productivity loss.
+Die Kosteneffektivität wurde nachgewiesen.,The cost-effectiveness was proven.
+Die Lebensqualität wird in QALY gemessen.,The quality of life is measured in QALY.
+Das IQWiG erstellt unabhängige Gutachten.,The IQWiG creates independent expert opinions.
+Die Echtheitsprüfung erfolgt in der Apotheke.,The authenticity verification occurs in the pharmacy.
+Der Großhandel unterliegt strengen Kontrollen.,The wholesale trade is subject to strict controls.
+Die Mehrwertsteuer beträgt neunzehn Prozent.,The value-added tax is nineteen percent.
+Parallelexporte führen zu Lieferengpässen.,Parallel exports lead to supply shortages.
+Die Pharmakooekonomie analysiert Kosten und Nutzen.,Pharmacoeconomics analyzes costs and benefits.
+Das Wirtschaftlichkeitsgebot gilt für alle Leistungen.,The efficiency requirement applies to all services.
+Die Ressourcenknappheit erfordert Rationalisierung.,Resource scarcity requires rationalization.
+Kinderarzneimittel benötigen ein pädiatrisches Prüfkonzept.,Pediatric medications require a pediatric investigation plan.
+Reserveantibiotika sind von der Nutzenbewertung freigestellt.,Reserve antibiotics are exempt from benefit assessment.
+Die EU-HTA-Verordnung harmonisiert Bewertungen.,The EU-HTA regulation harmonizes assessments.
+
+`.trim();
+
+// ============================================
+// PARSE CSV FUNCTION
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .map(line => line.split(',').map(cell => cell.trim()));
+}
+
+// ============================================
+// RENDER NOUNS TABLE
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV);
+    const grouped = { das: [], der: [], die: [] };
+
+    data.forEach(row => {
+        const [article, german, pluralNotation, pluralFull, english] = row;
+        grouped[article].push({ article, german, pluralNotation, pluralFull, english });
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    const articles = ['der', 'das', 'die'];
+    
+    articles.forEach((article, articleIndex) => {
+        const words = grouped[article];
+        const numRows = Math.ceil(words.length / 2);
+        
+        for (let row = 0; row < numRows; row++) {
+            const word1 = words[row];
+            const word2 = words[row + numRows];
+            
+            const rowClass = `${article}-row`;
+            const articleClass = `${article}-article`;
+            
+            html += `<tr class="${rowClass}">`;
+            
+            if (word1) {
+                html += `<td class="article-cell ${articleClass}">${word1.article}</td>`;
+                html += `<td class="german-cell">${word1.german}</td>`;
+                html += `<td class="plural-cell">${word1.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word1.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            if (word2) {
+                html += `<td class="article-cell ${articleClass}">${word2.article}</td>`;
+                html += `<td class="german-cell">${word2.german}</td>`;
+                html += `<td class="plural-cell">${word2.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        if (articleIndex < articles.length - 1) {
+            html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+        }
+    });
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS TABLE
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV);
+    const verbData = parseCSV(verbsCSV);
+    
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    // Process adjectives - split into two halves like nouns table
+    const numAdjRows = Math.ceil(adjData.length / 2);
+    
+    for (let i = 0; i < numAdjRows; i++) {
+        html += `<tr class="adjective-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (adjData[i]) {
+            const row = adjData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numAdjRows;
+        if (adjData[secondRowIndex]) {
+            const row = adjData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+
+    // Process verbs - split into two halves like nouns table
+    const numVerbRows = Math.ceil(verbData.length / 2);
+    
+    for (let i = 0; i < numVerbRows; i++) {
+        html += `<tr class="verb-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (verbData[i]) {
+            const row = verbData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numVerbRows;
+        if (verbData[secondRowIndex]) {
+            const row = verbData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS TABLE
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV);
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const data = parseCSV(conversationsCSV);
+    const container = document.getElementById('conversationsContainer');
+    
+    const conversations = {};
+    data.forEach(row => {
+        const parts = row[0].split('|');
+        const title = parts[0];
+        const speaker = parts[1];
+        const german = row[1];
+        const english = row[2];
+        
+        if (!conversations[title]) {
+            conversations[title] = [];
+        }
+        conversations[title].push({ speaker, german, english });
+    });
+    
+    let html = '';
+    for (const [title, lines] of Object.entries(conversations)) {
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="7" class="conversation-title">${title}</td></tr>`;
+        
+        for (let i = 0; i < lines.length; i += 2) {
+            html += `<tr>`;
+            
+            html += `<td class="speaker-cell">${lines[i].speaker}</td>`;
+            html += `<td class="german-cell">${lines[i].german}</td>`;
+            html += `<td class="english-cell">${lines[i].english}</td>`;
+            
+            html += `<td style="width: 1%; background: #ddd; border: none;"></td>`;
+            
+            if (i + 1 < lines.length) {
+                html += `<td class="speaker-cell">${lines[i + 1].speaker}</td>`;
+                html += `<td class="german-cell">${lines[i + 1].german}</td>`;
+                html += `<td class="english-cell">${lines[i + 1].english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        html += `</table>`;
+    }
+    
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A TABLE
+// ============================================
+function renderQATable() {
+    const data = parseCSV(qaCSV);
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [question1, answer1] = data[i];
+        html += `<td class="question-cell">${question1}</td>`;
+        html += `<td class="answer-cell">${answer1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [question2, answer2] = data[i + 1];
+            html += `<td class="question-cell">${question2}</td>`;
+            html += `<td class="answer-cell">${answer2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES TABLE
+// ============================================
+function renderSentencesTable() {
+    const data = parseCSV(sentencesCSV);
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// INITIALIZE ON PAGE LOAD
+// ============================================
+window.addEventListener('load', function() {
+    console.log('📚 Rendering all tables...');
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ All tables rendered successfully!');
+});
+    </script>
+</body>
+</html>

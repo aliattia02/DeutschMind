@@ -1,0 +1,1427 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary & Phrases - Recht 4 Gefahrstoffrecht, Chemikalienrecht und Lebensmittelrecht</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 5px;
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .zoom-label {
+            font-size: 0.75em;
+            font-weight: bold;
+            color: #666;
+            padding: 0 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .zoom-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 3px;
+            min-width: 40px;
+        }
+
+        .zoom-btn:hover {
+            background: #555;
+        }
+
+        .zoom-level {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .print-button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .print-button:hover {
+            background: #333;
+        }
+
+        .content-wrapper {
+            max-width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* SECTION DIVIDER */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* NOUN TABLE STYLING */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f5f5f5;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 4%;
+            max-width: 50px;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 17%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 13%;
+        }
+
+        /* Color coding for articles */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ADJECTIVE/VERB TABLE STYLING */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col {
+            font-weight: 600;
+            width: 15%;
+        }
+
+        .word-table .english-col {
+            color: #333;
+            width: 10%;
+        }
+
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* EXPRESSIONS TABLE */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .expressions-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* CONVERSATIONS TABLE */
+        .conversations-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #2C3E50 !important;
+            color: white !important;
+            padding: 8px;
+            font-weight: bold;
+            font-size: 1.1em;
+            text-align: center;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td {
+            padding: 6px 8px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .conversations-table .speaker-cell {
+            width: 4%;
+            font-weight: bold;
+            text-align: center;
+            background: #E8E8E8 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .german-cell {
+            width: 22%;
+            font-weight: 600;
+            background: #FFF9E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .english-cell {
+            width: 22%;
+            color: #333;
+            background: #F0F8FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* Q&A TABLE */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .qa-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #FFE6E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 25%;
+            background: #E6F7E6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* SENTENCES TABLE */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+        }
+
+        .sentences-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 25%;
+            background: #F0E6FF !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            width: 25%;
+            background: #E6FFE6 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9 !important;
+            border-top: 2px solid #666;
+            font-size: 1em;
+            page-break-before: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info h3 {
+            font-size: 1.43em;
+            margin-bottom: 5px;
+        }
+
+        .footer-info p {
+            margin: 3px 0;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+        @media print {
+            body {
+                padding: 5px;
+                max-width: 100%;
+            }
+
+            .controls {
+                display: none !important;
+            }
+
+            .content-wrapper {
+                max-width: 100%;
+            }
+
+            .table-section {
+                overflow-x: visible;
+                max-width: 100%;
+                margin-bottom: 2px;
+                page-break-inside: auto;
+            }
+
+            .table-section h2 {
+                margin-top: 2px;
+                page-break-after: avoid;
+                page-break-before: auto;
+            }
+
+            .header {
+                page-break-after: avoid;
+                margin-bottom: 10px;
+            }
+
+            .footer-info {
+                display: none !important;
+            }
+
+            .section-divider {
+                page-break-before: always;
+            }
+
+            @page {
+                margin: 1cm;
+            }
+
+            * {
+                -webkit-print-color-adjust: exact !important;
+                print-color-adjust: exact !important;
+            }
+        }
+
+        @media screen {
+            .controls {
+                display: flex !important;
+            }
+            
+            body {
+                max-width: 1400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="zoom-controls">
+            <span class="zoom-label">📚 Vocab:</span>
+            <button class="zoom-btn" onclick="zoomOutVocab()" title="Zoom Out Vocab">−</button>
+            <span class="zoom-level" id="zoomLevelVocab">100%</span>
+            <button class="zoom-btn" onclick="zoomInVocab()" title="Zoom In Vocab">+</button>
+            <button class="zoom-btn" onclick="resetZoomVocab()" title="Reset Zoom Vocab">⟲</button>
+        </div>
+        <div class="zoom-controls">
+            <span class="zoom-label">💬 Phrases:</span>
+            <button class="zoom-btn" onclick="zoomOutPhrases()" title="Zoom Out Phrases">−</button>
+            <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+            <button class="zoom-btn" onclick="zoomInPhrases()" title="Zoom In Phrases">+</button>
+            <button class="zoom-btn" onclick="resetZoomPhrases()" title="Reset Zoom Phrases">⟲</button>
+        </div>
+        <button class="print-button" onclick="window.print()">🖨️ Print</button>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 German Vocabulary & Phrases - Recht 4 Gefahrstoffrecht, Chemikalienrecht und Lebensmittelrecht</h1>
+        </div>
+
+        <!-- VOCABULARY SECTION -->
+        <div id="vocabSection">
+            <!-- TABLE 1: NOUNS -->
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col style="width: 5%;">
+                        <col style="width: 19%;">
+                        <col style="width: 9%;">
+                        <col style="width: 17%;">
+                        <col style="width: 5%;">
+                        <col style="width: 19%;">
+                        <col style="width: 9%;">
+                        <col style="width: 17%;">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives & Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES & SENTENCES</h2>
+        </div>
+
+        <!-- PHRASES SECTION -->
+        <div id="phrasesSection">
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions & Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- REFERENCE INFORMATION -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Document Info:</strong> Topic: Pharmaceutical Law | Level: Professional/Academic | Created: 2025</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Väter, Mütter = full form with umlaut | --- = no change | kein Plural = no plural form</p>
+            <p><strong>Color Coding:</strong> <span style="color: #1565C0;">■ der (blue)</span> | <span style="color: #2E7D32;">■ das (green)</span> | <span style="color: #C62828;">■ die (red)</span></p>
+            <p><strong>Prefix Guide:</strong> - prefix = Adjective | * prefix = Weak Verb | + prefix = Strong Verb</p>
+            <p><strong>Organization:</strong> Horizontal pairs are opposites (Column 1 ↔ Column 2, Column 3 ↔ Column 4)</p>
+        </div>
+    </div>
+
+    <script>
+// ============================================
+// ZOOM FUNCTIONALITY - SEPARATE FOR EACH SECTION
+// ============================================
+let vocabZoom = 100;
+let phrasesZoom = 100;
+const zoomStep = 10;
+const minZoom = 50;
+const maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    const section = document.getElementById('vocabSection');
+    const zoomLevel = document.getElementById('zoomLevelVocab');
+    
+    const newFontSize = baseFontSize * (vocabZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${vocabZoom}%`;
+}
+
+function updatePhrasesZoom() {
+    const section = document.getElementById('phrasesSection');
+    const zoomLevel = document.getElementById('zoomLevelPhrases');
+    
+    const newFontSize = baseFontSize * (phrasesZoom / 100);
+    section.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${phrasesZoom}%`;
+}
+
+function zoomInVocab() {
+    if (vocabZoom < maxZoom) {
+        vocabZoom += zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function zoomOutVocab() {
+    if (vocabZoom > minZoom) {
+        vocabZoom -= zoomStep;
+        updateVocabZoom();
+    }
+}
+
+function resetZoomVocab() {
+    vocabZoom = 100;
+    updateVocabZoom();
+}
+
+function zoomInPhrases() {
+    if (phrasesZoom < maxZoom) {
+        phrasesZoom += zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function zoomOutPhrases() {
+    if (phrasesZoom > minZoom) {
+        phrasesZoom -= zoomStep;
+        updatePhrasesZoom();
+    }
+}
+
+function resetZoomPhrases() {
+    phrasesZoom = 100;
+    updatePhrasesZoom();
+}
+
+window.addEventListener('load', function() {
+    updateVocabZoom();
+    updatePhrasesZoom();
+});
+
+// ============================================
+// CSV DATA - NOUNS
+// ============================================
+const nounsCSV = `
+das,Gefahrstoffrecht,---,---,Hazardous substances law
+das,Chemikalienrecht,---,---,Chemical law
+das,Lebensmittelrecht,---,---,Food law
+das,Gefahrstoffverzeichnis,-se,die Gefahrstoffverzeichnisse,Hazardous substances register
+das,Sicherheitsdatenblatt,Sicherheitsdatenblätter,die Sicherheitsdatenblätter,Safety data sheet
+das,Explosionsschutzdokument,-e,die Explosionsschutzdokumente,Explosion protection document
+das,Piktogramm,-e,die Piktogramme,Pictogram
+das,Gefahrenpiktogramm,-e,die Gefahrenpiktogramme,Hazard pictogram
+das,Signalwort,-e,die Signalwörter,Signal word
+das,Etikett,-en,die Etiketten,Label
+das,Abgabegefäß,-e,die Abgabegefäße,Dispensing container
+das,Vorratsgefäß,-e,die Vorratsgefäße,Storage container
+das,Standgefäß,-e,die Standgefäße,Stock container
+das,Behältnis,-se,die Behältnisse,Container
+das,Formblatt,Formblätter,die Formblätter,Form
+das,Farbkonzept,-e,die Farbkonzepte,Color concept
+das,Arbeitsschutzgesetz,-e,die Arbeitsschutzgesetze,Occupational safety law
+das,Chemikaliengesetz,-e,die Chemikaliengesetze,Chemicals law
+das,Mutterschutzgesetz,-e,die Mutterschutzgesetze,Maternity protection law
+das,Jugendarbeitsschutzgesetz,-e,die Jugendarbeitsschutzgesetze,Youth employment protection law
+das,GHS-System,-e,die GHS-Systeme,GHS system
+das,Inverkehrbringen,---,---,Placing on market
+das,Biozidprodukt,-e,die Biozidprodukte,Biocidal product
+das,Desinfektionsmittel,=,die Desinfektionsmittel,Disinfectant
+das,Flächendesinfektionsmittel,=,die Flächendesinfektionsmittel,Surface disinfectant
+das,Händedesinfektionsmittel,=,die Händedesinfektionsmittel,Hand disinfectant
+das,Nahrungsergänzungsmittel,=,die Nahrungsergänzungsmittel,Dietary supplement
+das,Lebensmittel,=,die Lebensmittel,Food
+das,Kosmetikum,Kosmetika,die Kosmetika,Cosmetic
+das,Medizinprodukt,-e,die Medizinprodukte,Medical device
+das,Gemisch,-e,die Gemische,Mixture
+das,Reinstoff,-e,die Reinstoffe,Pure substance
+das,Lösungsmittel,=,die Lösungsmittel,Solvent
+das,Oxidationsmittel,=,die Oxidationsmittel,Oxidizing agent
+das,CMR-Stoff,-e,die CMR-Stoffe,CMR substance
+der,Gefahrstoff,-e,die Gefahrstoffe,Hazardous substance
+der,Wirkstoff,-e,die Wirkstoffe,Active substance
+der,Hilfsstoff,-e,die Hilfsstoffe,Excipient
+der,Ausgangsstoff,-e,die Ausgangsstoffe,Starting material
+der,Grundstoff,-e,die Grundstoffe,Basic substance
+der,Explosivstoff,-e,die Explosivstoffe,Explosive
+der,Gefahrenhinweis,-e,die Gefahrenhinweise,Hazard statement
+der,Sicherheitshinweis,-e,die Sicherheitshinweise,Precautionary statement
+der,H-Satz,H-Sätze,die H-Sätze,H-phrase
+der,P-Satz,P-Sätze,die P-Sätze,P-phrase
+der,EUH-Satz,EUH-Sätze,die EUH-Sätze,EUH-phrase
+der,Arbeitsplatzgrenzwert,-e,die Arbeitsplatzgrenzwerte,Workplace limit value
+der,Biologische Grenzwert,-e,die Biologischen Grenzwerte,Biological limit value
+der,Flammpunkt,-e,die Flammpunkte,Flash point
+der,Siedepunkt,-e,die Siedepunkte,Boiling point
+der,Abzug,Abzüge,die Abzüge,Fume hood
+der,Laborabzug,Laborabzüge,die Laborabzüge,Laboratory fume hood
+der,Verschluss,Verschlüsse,die Verschlüsse,Closure
+der,Schutzhandschuh,-e,die Schutzhandschuhe,Protective glove
+der,Atemschutz,---,---,Respiratory protection
+der,Augenschutz,---,---,Eye protection
+der,Gesichtsschutz,---,---,Face protection
+der,Arbeitgeber,=,die Arbeitgeber,Employer
+der,Arbeitnehmer,=,die Arbeitnehmer,Employee
+der,Beschäftigte,-n,die Beschäftigten,Employee
+der,Verwender,=,die Verwender,User
+der,Inverkehrbringer,=,die Inverkehrbringer,Marketer
+der,Hersteller,=,die Hersteller,Manufacturer
+der,Lieferant,-en,die Lieferanten,Supplier
+der,Händler,=,die Händler,Trader
+der,Verbraucher,=,die Verbraucher,Consumer
+der,Missbrauch,Missbräuche,die Missbräuche,Abuse
+der,Hautkontakt,-e,die Hautkontakte,Skin contact
+der,Augenkontakt,-e,die Augenkontakte,Eye contact
+der,UFI-Code,-s,die UFI-Codes,UFI code
+der,Altwirkstoff,-e,die Altwirkstoffe,Old active substance
+die,Gefahrstoffverordnung,-en,die Gefahrstoffverordnungen,Hazardous substances ordinance
+die,CLP-Verordnung,-en,die CLP-Verordnungen,CLP regulation
+die,REACH-Verordnung,-en,die REACH-Verordnungen,REACH regulation
+die,Biozid-Verordnung,-en,die Biozid-Verordnungen,Biocidal products regulation
+die,Chemikalienverbotsverordnung,-en,die Chemikalienverbotsverordnungen,Chemicals prohibition ordinance
+die,Explosivstoffverordnung,-en,die Explosivstoffverordnungen,Explosives regulation
+die,Nahrungsergänzungsmittelverordnung,-en,die Nahrungsergänzungsmittelverordnungen,Food supplement regulation
+die,Einstufung,-en,die Einstufungen,Classification
+die,Kennzeichnung,-en,die Kennzeichnungen,Labeling
+die,Verpackung,-en,die Verpackungen,Packaging
+die,Gefährdungsbeurteilung,-en,die Gefährdungsbeurteilungen,Risk assessment
+die,Betriebsanweisung,-en,die Betriebsanweisungen,Operating instruction
+die,Unterweisung,-en,die Unterweisungen,Instruction
+die,Sachkunde,---,---,Expertise
+die,Fachkunde,---,---,Specialized knowledge
+die,Schutzmaßnahme,-n,die Schutzmaßnahmen,Protective measure
+die,Substitution,-en,die Substitutionen,Substitution
+die,Exposition,-en,die Expositionen,Exposure
+die,Gefährdung,-en,die Gefährdungen,Hazard
+die,Gesundheitsgefahr,-en,die Gesundheitsgefahren,Health hazard
+die,Brandgefahr,-en,die Brandgefahren,Fire hazard
+die,Explosionsgefahr,-en,die Explosionsgefahren,Explosion hazard
+die,Umweltgefahr,-en,die Umweltgefahren,Environmental hazard
+die,Gefahrenklasse,-n,die Gefahrenklassen,Hazard class
+die,Gefahrenkategorie,-n,die Gefahrenkategorien,Hazard category
+die,Akute Toxizität,---,---,Acute toxicity
+die,Ätzwirkung,-en,die Ätzwirkungen,Corrosive effect
+die,Reizwirkung,-en,die Reizwirkungen,Irritant effect
+die,Sensibilisierung,-en,die Sensibilisierungen,Sensitization
+die,Aspirationsgefahr,-en,die Aspirationsgefahren,Aspiration hazard
+die,Kanzerogenität,---,---,Carcinogenicity
+die,Keimzellmutagenität,---,---,Germ cell mutagenicity
+die,Reproduktionstoxizität,---,---,Reproductive toxicity
+die,Zielorgantoxizität,---,---,Target organ toxicity
+die,Entzündbarkeit,---,---,Flammability
+die,Meldung,-en,die Meldungen,Notification
+die,Meldepflicht,-en,die Meldepflichten,Notification obligation
+die,Mitteilungspflicht,-en,die Mitteilungspflichten,Communication obligation
+die,Registriernummer,-n,die Registriernummern,Registration number
+die,Zulassungsnummer,-n,die Zulassungsnummern,Authorization number
+die,Chargennummer,-n,die Chargennummern,Batch number
+die,EG-Nummer,-n,die EG-Nummern,EC number
+die,Index-Nummer,-n,die Index-Nummern,Index number
+die,Blindentastmarke,-n,die Blindentastmarken,Tactile warning
+die,Kleinmengenregelung,-en,die Kleinmengenregelungen,Small quantity regulation
+die,Rangfolgeregelung,-en,die Rangfolgeregelungen,Precedence rule
+die,Übergangsregelung,-en,die Übergangsregelungen,Transitional provision
+die,Abgabebeschränkung,-en,die Abgabebeschränkungen,Supply restriction
+die,Abgabeerlaubnis,-se,die Abgabeerlaubnisse,Supply authorization
+die,Endverbleibserklärung,-en,die Endverbleibserklärungen,End-use declaration
+die,Identitätsfeststellung,-en,die Identitätsfeststellungen,Identity verification
+die,Dokumentation,-en,die Dokumentationen,Documentation
+die,Aufbewahrungsfrist,-en,die Aufbewahrungsfristen,Retention period
+die,Lagerung,-en,die Lagerungen,Storage
+die,Entsorgung,-en,die Entsorgungen,Disposal
+die,Giftinformationszentrale,-n,die Giftinformationszentralen,Poison information center
+die,Bundesopiumstelle,-n,die Bundesopiumstellen,Federal Opium Agency
+die,Bundesanstalt für Arbeitsschutz,---,---,Federal Institute for Occupational Safety
+die,Europäische Chemikalienagentur,---,---,European Chemicals Agency
+die,Produktart,-en,die Produktarten,Product type
+die,Hauptgruppe,-n,die Hauptgruppen,Main group
+die,Zweckbestimmung,-en,die Zweckbestimmungen,Intended purpose
+die,Werbung,-en,die Werbungen,Advertising
+die,Bereitstellung,---,---,Provision
+die,Vermarktung,-en,die Vermarktungen,Marketing
+die,Verkehrsfähigkeit,---,---,Marketability
+
+`.trim();
+
+// ============================================
+// CSV DATA - ADJECTIVES
+// ============================================
+const adjectivesCSV = `
+-gefährlich,hazardous,-ungefährlich,non-hazardous
+-giftig,toxic,-ungiftig,non-toxic
+-ätzend,corrosive,-nicht-ätzend,non-corrosive
+-reizend,irritant,-nicht-reizend,non-irritant
+-entzündbar,flammable,-nicht-entzündbar,non-flammable
+-leichtentzündbar,highly-flammable,-schwer-entzündbar,flame-retardant
+-explosiv,explosive,-nicht-explosiv,non-explosive
+-oxidierend,oxidizing,-reduzierend,reducing
+-sensibilisierend,sensitizing,-nicht-sensibilisierend,non-sensitizing
+-krebserzeugend,carcinogenic,-nicht-krebserzeugend,non-carcinogenic
+-erbgutverändernd,mutagenic,-nicht-erbgutverändernd,non-mutagenic
+-fortpflanzungsgefährdend,reprotoxic,-nicht-fortpflanzungsgefährdend,non-reprotoxic
+-gesundheitsschädlich,harmful-to-health,-gesundheitsfördernd,health-promoting
+-umweltgefährlich,environmentally-hazardous,-umweltfreundlich,environmentally-friendly
+-wassergefährdend,water-polluting,-wasserneutral,water-neutral
+-akut-toxisch,acutely-toxic,-chronisch-toxisch,chronically-toxic
+-verschreibungspflichtig,prescription-only,-freiverkäuflich,over-the-counter
+-zugelassen,authorized,-nicht-zugelassen,unauthorized
+-registriert,registered,-nicht-registriert,unregistered
+-gemeldet,notified,-nicht-gemeldet,unnotified
+-kennzeichnungspflichtig,requiring-labeling,-kennzeichnungsfrei,not-requiring-labeling
+-meldepflichtig,notifiable,-nicht-meldepflichtig,non-notifiable
+-genehmigt,approved,-nicht-genehmigt,not-approved
+-zulassungspflichtig,requiring-authorization,-zulassungsfrei,not-requiring-authorization
+-sachkundig,expert,-unsachkundig,inexpert
+-fachkundig,professionally-competent,-nicht-fachkundig,not-professionally-competent
+-kindergesichert,child-resistant,-nicht-kindergesichert,not-child-resistant
+-innerbetrieblich,in-house,-außerbetrieblich,external
+-berufsmäßig,professional,-privat,private
+-gewerblich,commercial,-nicht-gewerblich,non-commercial
+-verdächtig,suspicious,-unverdächtig,unsuspicious
+-irreführend,misleading,-korrekt,correct
+
+`.trim();
+
+// ============================================
+// CSV DATA - VERBS
+// ============================================
+const verbsCSV = `
+*einstufen,classify,*kennzeichnen,label
+*verpacken,package,*auspacken,unpack
+*lagern,store,*entsorgen,dispose
+*abgeben,dispense,*erwerben,acquire
+*herstellen,manufacture,*vernichten,destroy
+*bereitstellen,provide,*zurückhalten,withhold
+*vermarkten,market,*zurückrufen,recall
+*verwenden,use,*missbrauchen,misuse
+*anmelden,register,*abmelden,deregister
+*melden,notify,*verschweigen,conceal
+*dokumentieren,document,*löschen,delete
+*genehmigen,approve,*ablehnen,reject
+*zulassen,authorize,*verbieten,prohibit
+*registrieren,register,*streichen,delete
+*umfüllen,decant,*abfüllen,fill
+*etikettieren,label,*entfernen,remove
+*aufbewahren,keep,*wegwerfen,discard
+*schützen,protect,*gefährden,endanger
+*ersetzen,substitute,*beibehalten,retain
+*aktualisieren,update,*veralten,become-obsolete
+*bestätigen,confirm,*widerrufen,revoke
+*beauftragen,commission,*entbinden,release
+*unterweisen,instruct,*vernachlässigen,neglect
+*überprüfen,verify,*ignorieren,ignore
+*einhalten,comply-with,*verstoßen-gegen,violate
+*beraten,advise,*irreführen,mislead
+*informieren,inform,*verheimlichen,hide
+*nachweisen,prove,*verschleiern,obscure
+*festlegen,establish,*ändern,change
+*durchführen,carry-out,*unterlassen,omit
++gelten,be-valid,+verfallen,expire
++bestehen,exist,+entfallen,lapse
++unterliegen,be-subject-to,+befreien,exempt
++vorliegen,be-present,+fehlen,be-missing
++ausgehen-von,emanate-from,+zurückgehen,decrease
++enthalten,contain,+ausschließen,exclude
++erfordern,require,+verzichten-auf,waive
++gewährleisten,ensure,+gefährden,jeopardize
+
+`.trim();
+
+// ============================================
+// CSV DATA - EXPRESSIONS
+// ============================================
+const expressionsCSV = `
+Ist das Produkt zugelassen?,Is the product authorized?
+Welche Schutzmaßnahmen sind erforderlich?,What protective measures are required?
+Das Sicherheitsdatenblatt liegt vor.,The safety data sheet is available.
+Die Kennzeichnung muss aktualisiert werden.,The labeling must be updated.
+Ist eine Meldung erforderlich?,Is notification required?
+Das Produkt fällt unter die Übergangsregelung.,The product falls under transitional provisions.
+Eine Sachkunde ist nachzuweisen.,Expertise must be proven.
+Die Identität ist festzustellen.,Identity must be verified.
+Das Abgabebuch ist zu führen.,The supply record must be maintained.
+Schutzhandschuhe sind zu tragen.,Protective gloves must be worn.
+Der Arbeitsplatzgrenzwert ist einzuhalten.,The workplace limit value must be observed.
+Eine Gefährdungsbeurteilung ist zu erstellen.,A risk assessment must be prepared.
+Die Betriebsanweisung ist auszuhängen.,The operating instruction must be posted.
+Die Mitarbeiter sind zu unterweisen.,Employees must be instructed.
+Das Produkt ist kindergesichert zu verpacken.,The product must be packaged with child-resistant closure.
+Eine Blindentastmarke ist anzubringen.,A tactile warning must be attached.
+Das Gemisch ist zu melden.,The mixture must be notified.
+Die Registriernummer ist anzugeben.,The registration number must be stated.
+Ein UFI-Code ist zu generieren.,A UFI code must be generated.
+Die Zulassungsnummer ist auf dem Etikett.,The authorization number is on the label.
+
+`.trim();
+
+// ============================================
+// CSV DATA - CONVERSATIONS
+// ============================================
+const conversationsCSV = `
+Gefahrstoffabgabe|A,Guten Tag ich benötige Isopropanol.,Good day I need isopropanol.
+Gefahrstoffabgabe|B,Für welchen Verwendungszweck?,For what purpose?
+Gefahrstoffabgabe|A,Zur Desinfektion von Oberflächen.,For disinfection of surfaces.
+Gefahrstoffabgabe|B,Ich benötige Ihren Ausweis zur Identitätsfeststellung.,I need your ID for identity verification.
+Gefahrstoffabgabe|A,Hier bitte.,Here please.
+Gefahrstoffabgabe|B,Ich muss Sie über die Gefahren aufklären.,I must inform you about the hazards.
+Gefahrstoffabgabe|A,Verstanden.,Understood.
+Gefahrstoffabgabe|B,Bitte unterschreiben Sie im Abgabebuch.,Please sign in the supply record.
+Meldepflicht|A,Muss dieses Desinfektionsmittel gemeldet werden?,Must this disinfectant be notified?
+Meldepflicht|B,Ja es fällt unter die Übergangsregelung.,Yes it falls under transitional provisions.
+Meldepflicht|A,Wie erfolgt die Meldung?,How is the notification made?
+Meldepflicht|B,Über das Online-Portal der BAuA.,Via the BAuA online portal.
+Meldepflicht|A,Welche Angaben sind erforderlich?,What information is required?
+Meldepflicht|B,Wirkstoffe Konzentrationen und Verwendungszweck.,Active substances concentrations and intended use.
+Meldepflicht|A,Erhalte ich eine Registriernummer?,Will I receive a registration number?
+Meldepflicht|B,Ja diese ist auf dem Etikett anzugeben.,Yes this must be stated on the label.
+Kennzeichnung|A,Wie muss das Etikett aussehen?,How must the label look?
+Kennzeichnung|B,Es müssen Gefahrenpiktogramme vorhanden sein.,Hazard pictograms must be present.
+Kennzeichnung|A,Welche H-Sätze sind anzugeben?,Which H-phrases must be stated?
+Kennzeichnung|B,Die aus dem Sicherheitsdatenblatt ersichtlichen.,Those evident from the safety data sheet.
+Kennzeichnung|A,Sind P-Sätze auch erforderlich?,Are P-phrases also required?
+Kennzeichnung|B,Ja maximal sechs P-Sätze.,Yes maximum six P-phrases.
+
+`.trim();
+
+// ============================================
+// CSV DATA - Q&A
+// ============================================
+const qaCSV = `
+Was ist ein Gefahrstoff?,Ein Stoff mit gefährlichen Eigenschaften. (A substance with hazardous properties.)
+Was bedeutet CMR?,Krebserzeugend mutagen reproduktionstoxisch. (Carcinogenic mutagenic reprotoxic.)
+Was ist ein H-Satz?,Ein standardisierter Gefahrenhinweis. (A standardized hazard statement.)
+Was ist ein P-Satz?,Ein standardisierter Sicherheitshinweis. (A standardized precautionary statement.)
+Wofür steht GHS?,Globally Harmonized System. (Globally Harmonized System.)
+Was ist die CLP-Verordnung?,Classification Labelling Packaging Verordnung. (Classification Labelling Packaging regulation.)
+Was ist ein Sicherheitsdatenblatt?,Ein Dokument mit Informationen zu Gefahrstoffen. (A document with information on hazardous substances.)
+Wann ist eine Meldung erforderlich?,Bei Biozidprodukten mit Altwirkstoffen. (For biocidal products with old active substances.)
+Was ist ein UFI-Code?,Unique Formula Identifier für Gemische. (Unique Formula Identifier for mixtures.)
+Was ist ein Biozidprodukt?,Ein Mittel zur Bekämpfung von Schadorganismen. (An agent to combat harmful organisms.)
+Wann ist eine Zulassung erforderlich?,Bei Inverkehrbringen von Biozidprodukten. (When placing biocidal products on market.)
+Was ist eine Gefährdungsbeurteilung?,Bewertung der Gefährdung am Arbeitsplatz. (Assessment of workplace hazards.)
+Was ist eine Betriebsanweisung?,Anweisung für den sicheren Umgang. (Instruction for safe handling.)
+Was ist Sachkunde?,Befähigung zur Ausübung bestimmter Aufgaben. (Qualification for performing certain tasks.)
+Was ist die BAuA?,Bundesanstalt für Arbeitsschutz und Arbeitsmedizin. (Federal Institute for Occupational Safety.)
+Was ist die ECHA?,Europäische Chemikalienagentur. (European Chemicals Agency.)
+Was ist eine Produktart?,Kategorisierung nach Anwendungszweck. (Categorization by application purpose.)
+Was ist ein Altwirkstoff?,Wirkstoff der vor 2000 im Verkehr war. (Active substance marketed before 2000.)
+Was ist eine Übergangsregelung?,Regelung während des Genehmigungsverfahrens. (Regulation during approval process.)
+Was bedeutet PT?,Produktart bei Biozidprodukten. (Product type for biocidal products.)
+
+`.trim();
+
+// ============================================
+// CSV DATA - SENTENCES
+// ============================================
+const sentencesCSV = `
+Gefahrstoffe müssen korrekt gekennzeichnet werden.,Hazardous substances must be correctly labeled.
+Das Sicherheitsdatenblatt ist bereitzustellen.,The safety data sheet must be provided.
+Eine Gefährdungsbeurteilung ist zu erstellen.,A risk assessment must be prepared.
+Beschäftigte sind regelmäßig zu unterweisen.,Employees must be regularly instructed.
+CMR-Stoffe erfordern besondere Schutzmaßnahmen.,CMR substances require special protective measures.
+Die Einstufung erfolgt nach CLP-Verordnung.,Classification is carried out according to CLP regulation.
+Gefahrenpiktogramme warnen vor Gefahren.,Hazard pictograms warn of dangers.
+H-Sätze beschreiben die Art der Gefahr.,H-phrases describe the type of hazard.
+P-Sätze geben Sicherheitshinweise.,P-phrases provide safety advice.
+Biozidprodukte benötigen eine Zulassung.,Biocidal products require authorization.
+Altwirkstoffe unterliegen Übergangsregelungen.,Old active substances are subject to transitional provisions.
+Eine Meldung erfolgt über das BAuA-Portal.,Notification is made via the BAuA portal.
+Die Registriernummer ist anzugeben.,The registration number must be stated.
+Gemische sind meldepflichtig.,Mixtures are subject to notification.
+Ein UFI-Code identifiziert das Produkt.,A UFI code identifies the product.
+Kindergesicherte Verschlüsse sind vorgeschrieben.,Child-resistant closures are required.
+Blindentastmarken warnen Sehbehinderte.,Tactile warnings alert visually impaired.
+Die Abgabe ist zu dokumentieren.,Supply must be documented.
+Die Identität ist festzustellen.,Identity must be verified.
+Arbeitsplatzgrenzwerte sind einzuhalten.,Workplace limit values must be observed.
+
+`.trim();
+
+// ============================================
+// PARSE CSV FUNCTION
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .map(line => line.split(',').map(cell => cell.trim()));
+}
+
+// ============================================
+// RENDER NOUNS TABLE
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV);
+    const grouped = { das: [], der: [], die: [] };
+
+    data.forEach(row => {
+        const [article, german, pluralNotation, pluralFull, english] = row;
+        grouped[article].push({ article, german, pluralNotation, pluralFull, english });
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    const articles = ['der', 'das', 'die'];
+    
+    articles.forEach((article, articleIndex) => {
+        const words = grouped[article];
+        const numRows = Math.ceil(words.length / 2);
+        
+        for (let row = 0; row < numRows; row++) {
+            const word1 = words[row];
+            const word2 = words[row + numRows];
+            
+            const rowClass = `${article}-row`;
+            const articleClass = `${article}-article`;
+            
+            html += `<tr class="${rowClass}">`;
+            
+            if (word1) {
+                html += `<td class="article-cell ${articleClass}">${word1.article}</td>`;
+                html += `<td class="german-cell">${word1.german}</td>`;
+                html += `<td class="plural-cell">${word1.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word1.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            if (word2) {
+                html += `<td class="article-cell ${articleClass}">${word2.article}</td>`;
+                html += `<td class="german-cell">${word2.german}</td>`;
+                html += `<td class="plural-cell">${word2.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        if (articleIndex < articles.length - 1) {
+            html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+        }
+    });
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS TABLE
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV);
+    const verbData = parseCSV(verbsCSV);
+    
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    // Process adjectives - split into two halves like nouns table
+    const numAdjRows = Math.ceil(adjData.length / 2);
+    
+    for (let i = 0; i < numAdjRows; i++) {
+        html += `<tr class="adjective-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (adjData[i]) {
+            const row = adjData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numAdjRows;
+        if (adjData[secondRowIndex]) {
+            const row = adjData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    html += `<tr class="separator"><td colspan="8">-------</td></tr>`;
+
+    // Process verbs - split into two halves like nouns table
+    const numVerbRows = Math.ceil(verbData.length / 2);
+    
+    for (let i = 0; i < numVerbRows; i++) {
+        html += `<tr class="verb-row">`;
+        
+        // First half (left side - columns 1-4)
+        if (verbData[i]) {
+            const row = verbData[i];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        // Second half (right side - columns 5-8)
+        const secondRowIndex = i + numVerbRows;
+        if (verbData[secondRowIndex]) {
+            const row = verbData[secondRowIndex];
+            html += `<td class="german-col">${row[0] || ''}</td>`;
+            html += `<td class="english-col">${row[1] || ''}</td>`;
+            html += `<td class="german-col">${row[2] || ''}</td>`;
+            html += `<td class="english-col">${row[3] || ''}</td>`;
+        } else {
+            html += `<td></td><td></td><td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS TABLE
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV);
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const data = parseCSV(conversationsCSV);
+    const container = document.getElementById('conversationsContainer');
+    
+    const conversations = {};
+    data.forEach(row => {
+        const parts = row[0].split('|');
+        const title = parts[0];
+        const speaker = parts[1];
+        const german = row[1];
+        const english = row[2];
+        
+        if (!conversations[title]) {
+            conversations[title] = [];
+        }
+        conversations[title].push({ speaker, german, english });
+    });
+    
+    let html = '';
+    for (const [title, lines] of Object.entries(conversations)) {
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="7" class="conversation-title">${title}</td></tr>`;
+        
+        for (let i = 0; i < lines.length; i += 2) {
+            html += `<tr>`;
+            
+            html += `<td class="speaker-cell">${lines[i].speaker}</td>`;
+            html += `<td class="german-cell">${lines[i].german}</td>`;
+            html += `<td class="english-cell">${lines[i].english}</td>`;
+            
+            html += `<td style="width: 1%; background: #ddd; border: none;"></td>`;
+            
+            if (i + 1 < lines.length) {
+                html += `<td class="speaker-cell">${lines[i + 1].speaker}</td>`;
+                html += `<td class="german-cell">${lines[i + 1].german}</td>`;
+                html += `<td class="english-cell">${lines[i + 1].english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        html += `</table>`;
+    }
+    
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A TABLE
+// ============================================
+function renderQATable() {
+    const data = parseCSV(qaCSV);
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [question1, answer1] = data[i];
+        html += `<td class="question-cell">${question1}</td>`;
+        html += `<td class="answer-cell">${answer1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [question2, answer2] = data[i + 1];
+            html += `<td class="question-cell">${question2}</td>`;
+            html += `<td class="answer-cell">${answer2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES TABLE
+// ============================================
+function renderSentencesTable() {
+    const data = parseCSV(sentencesCSV);
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        html += `<tr>`;
+        
+        const [german1, english1] = data[i];
+        html += `<td class="german-cell">${german1}</td>`;
+        html += `<td class="english-cell">${english1}</td>`;
+        
+        if (i + 1 < data.length) {
+            const [german2, english2] = data[i + 1];
+            html += `<td class="german-cell">${german2}</td>`;
+            html += `<td class="english-cell">${english2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        
+        html += `</tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// INITIALIZE ON PAGE LOAD
+// ============================================
+window.addEventListener('load', function() {
+    console.log('📚 Rendering all tables...');
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ All tables rendered successfully!');
+});
+    </script>
+</body>
+</html>

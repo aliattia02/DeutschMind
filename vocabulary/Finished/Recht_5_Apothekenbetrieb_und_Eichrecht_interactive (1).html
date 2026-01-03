@@ -1,0 +1,1990 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary - Interactive Audio Learning - Apothekenbetrieb und Eichrecht</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(90deg, #000000, #DD0000, #FFCE00);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        .audio-controls {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .audio-controls h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .control-group select,
+        .control-group input {
+            padding: 8px 15px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .play-all-btn {
+            background: linear-gradient(135deg, #DD0000, #FFCE00);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .play-all-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .tab-button {
+            background: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .tab-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #DD0000;
+            color: white;
+        }
+
+        .tab-button.active {
+            background: #DD0000;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .card h2 {
+            color: #DD0000;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #FFCE00;
+            padding-bottom: 10px;
+        }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .vocab-table th {
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        /* COLOR-CODED HEADERS FOR EACH ARTICLE */
+        /* der = BLUE, das = GREEN, die = RED */
+        .vocab-table.der th {
+            background: linear-gradient(135deg, #2196F3, #1976D2);
+        }
+
+        .vocab-table.das th {
+            background: linear-gradient(135deg, #4CAF50, #388E3C);
+        }
+
+        .vocab-table.die th {
+            background: linear-gradient(135deg, #F44336, #D32F2F);
+        }
+
+        .vocab-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .vocab-table tr {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        /* PERMANENT COLOR-CODED ROW BACKGROUNDS */
+        /* der = BLUE, das = GREEN, die = RED */
+        .vocab-table.der tbody tr {
+            background: #E3F2FD;
+        }
+
+        .vocab-table.das tbody tr {
+            background: #E8F5E9;
+        }
+
+        .vocab-table.die tbody tr {
+            background: #FFEBEE;
+        }
+
+        /* DARKER ON HOVER */
+        .vocab-table.der tbody tr:hover {
+            background: #BBDEFB;
+            box-shadow: 0 2px 8px rgba(33, 150, 243, 0.3);
+        }
+
+        .vocab-table.das tbody tr:hover {
+            background: #C8E6C9;
+            box-shadow: 0 2px 8px rgba(76, 175, 80, 0.3);
+        }
+
+        .vocab-table.die tbody tr:hover {
+            background: #FFCDD2;
+            box-shadow: 0 2px 8px rgba(244, 67, 54, 0.3);
+        }
+
+        .article {
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+
+        /* COLOR-CODED ARTICLES AND WORDS */
+        /* der = BLUE, das = GREEN, die = RED */
+        .vocab-table.der .article,
+        .vocab-table.der .german-word {
+            color: #1565C0;
+            font-weight: 700;
+        }
+
+        .vocab-table.das .article,
+        .vocab-table.das .german-word {
+            color: #2E7D32;
+            font-weight: 700;
+        }
+
+        .vocab-table.die .article,
+        .vocab-table.die .german-word {
+            color: #C62828;
+            font-weight: 700;
+        }
+        /* MOBILE-RESPONSIVE NOUNS TABLE */
+        @media (max-width: 768px) {
+            .vocab-table {
+                display: none; /* Hide table on mobile */
+            }
+
+            .mobile-noun-card {
+                display: block;
+                background: white;
+                border-left: 5px solid;
+                border-radius: 8px;
+                padding: 15px;
+                margin: 10px 0;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-noun-card.der {
+                border-color: #2196F3;
+                background: #E3F2FD;
+            }
+
+            .mobile-noun-card.das {
+                border-color: #4CAF50;
+                background: #E8F5E9;
+            }
+
+            .mobile-noun-card.die {
+                border-color: #F44336;
+                background: #FFEBEE;
+            }
+
+            .mobile-noun-card:active {
+                transform: scale(0.98);
+            }
+
+            .mobile-noun-header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-bottom: 8px;
+            }
+
+            .mobile-article-word {
+                font-size: 1.3em;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                gap: 8px;
+            }
+
+            .mobile-article-word.der {
+                color: #1565C0;
+            }
+
+            .mobile-article-word.das {
+                color: #2E7D32;
+            }
+
+            .mobile-article-word.die {
+                color: #C62828;
+            }
+
+            .mobile-audio-btn {
+                background: #FFCE00;
+                border: none;
+                padding: 8px 12px;
+                border-radius: 15px;
+                font-size: 1.1em;
+                cursor: pointer;
+                box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            }
+
+            .mobile-audio-btn:active {
+                transform: scale(0.95);
+            }
+
+            .mobile-noun-details {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                gap: 8px 12px;
+                font-size: 0.95em;
+                margin-top: 10px;
+                padding-top: 10px;
+                border-top: 1px solid rgba(0,0,0,0.1);
+            }
+
+            .mobile-label {
+                font-weight: 600;
+                color: #666;
+            }
+
+            .mobile-plural {
+                color: #764ba2;
+                font-style: italic;
+                font-weight: 600;
+            }
+
+            .mobile-english {
+                color: #444;
+            }
+
+            /* Show mobile cards only on mobile */
+            .mobile-noun-cards {
+                display: none;
+            }
+
+            @media (max-width: 768px) {
+                .mobile-noun-cards {
+                    display: block;
+                }
+            }
+        }
+
+        /* Desktop: hide mobile cards */
+        @media (min-width: 769px) {
+            .mobile-noun-cards {
+                display: none;
+            }
+        }
+        .german-word {
+            font-size: 1.2em;
+        }
+
+        .english-word {
+            color: #666;
+        }
+
+        .plural {
+            color: #764ba2;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .word-pair {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .word-pair:hover {
+            transform: scale(1.05);
+        }
+
+        .word-pair .german {
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .word-pair .english {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .opposite-arrow {
+            font-size: 1.5em;
+            margin: 10px 0;
+        }
+
+        .word-pair .card-audio-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.3);
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .word-pair .card-audio-btn:hover {
+            background: white;
+            transform: scale(1.1);
+        }
+
+        .expression-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .expression-item {
+            background: #f8f9fa;
+            margin: 10px 0;
+            padding: 20px;
+            border-left: 5px solid #DD0000;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .expression-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: #fff;
+        }
+
+        .expression-german {
+            font-size: 1.4em;
+            font-weight: bold;
+            color: #000;
+            margin-bottom: 5px;
+        }
+
+        .expression-english {
+            font-size: 1.1em;
+            color: #666;
+        }
+
+        .conversation {
+            margin: 20px 0;
+        }
+
+        .message {
+            margin: 15px 0;
+            padding: 15px 20px;
+            border-radius: 20px;
+            max-width: 80%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .message:hover {
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+            transform: translateX(5px);
+        }
+
+        .message-a {
+            background: #667eea;
+            color: white;
+            margin-left: 0;
+            border-bottom-left-radius: 5px;
+        }
+
+        .message-b {
+            background: #f093fb;
+            color: white;
+            margin-left: auto;
+            border-bottom-right-radius: 5px;
+        }
+
+        .message-german {
+            font-size: 1.2em;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .message-english {
+            font-size: 0.95em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .qa-container {
+            display: grid;
+            gap: 20px;
+        }
+
+        .qa-card {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .qa-card:hover {
+            border-color: #DD0000;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        }
+
+        .question {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+
+        .answer {
+            font-size: 1.1em;
+            color: #333;
+            display: none;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px solid #ddd;
+        }
+
+        .qa-card:hover .answer {
+            display: block;
+        }
+
+        .sentence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .sentence-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sentence-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        .sentence-german {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .sentence-english {
+            font-size: 1em;
+            opacity: 0.9;
+        }
+
+        .audio-btn {
+            background: #FFCE00;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .audio-btn:hover {
+            background: #DD0000;
+            color: white;
+            transform: scale(1.1);
+        }
+
+        .audio-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .audio-status.show {
+            display: flex;
+        }
+
+        .audio-status .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 10px 0;
+        }
+
+        .section-icon {
+            font-size: 2em;
+            margin-right: 10px;
+            vertical-align: middle;
+        }
+
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+            .tabs {
+                flex-direction: column;
+            }
+            .tab-button {
+                width: 100%;
+            }
+            .word-grid {
+                grid-template-columns: 1fr;
+            }
+            .sentence-grid {
+                grid-template-columns: 1fr;
+            }
+            .message {
+                max-width: 90%;
+            }
+            .audio-controls {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- NAVIGATION -->
+<div style="background: #000; padding: 15px; text-align: center;">
+    <a href="../index.html" style="color: #FFCE00; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🏠 Home</a>
+    <a href="../index.html#levels" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📚 Levels</a>
+    <a href="../index.html#categories" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🎯 Categories</a>
+    <a href="../tools/progress.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📊 Progress</a>
+    <a href="../about.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">ℹ️ About</a>
+</div>
+
+    <!-- ============================================ -->
+    <!-- EDIT SECTION 1: HEADER INFORMATION -->
+    <!-- ============================================ -->
+    <header>
+        <h1>🇩🇪 Apothekenbetrieb und Eichrecht</h1>
+        <p id="headerTopic">Apothekenbetrieb und Eichrecht | Interactive Audio Learning</p>
+        <p style="font-size: 0.9em; margin-top: 10px;"Created by: aliattia02 | Date: 2025-11-16</p>
+    </header>
+
+    <div class="container">
+        <div class="audio-controls">
+            <h3>🔊 Audio Settings</h3>
+            <div class="control-group">
+                <label for="voiceSelect">Voice:</label>
+                <select id="voiceSelect">
+                    <option value="">Loading voices...</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="speedControl">Speed:</label>
+                <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+                <span id="speedValue">0.8x</span>
+            </div>
+            <div class="control-group">
+                <label for="pitchControl">Pitch:</label>
+                <input type="range" id="pitchControl" min="0.5" max="2" step="0.1" value="1">
+                <span id="pitchValue">1.0</span>
+            </div>
+            <button class="play-all-btn" onclick="playAllInSection()">▶ Play All in Section</button>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('nouns')">📚 Nouns</button>
+            <button class="tab-button" onclick="showTab('adjectives')">✨ Adjectives</button>
+            <button class="tab-button" onclick="showTab('verbs')">⚡ Verbs</button>
+            <button class="tab-button" onclick="showTab('expressions')">💬 Key Expressions</button>
+            <button class="tab-button" onclick="showTab('conversations')">🗣️ Conversations</button>
+            <button class="tab-button" onclick="showTab('qa')">❓ Q&A Practice</button>
+            <button class="tab-button" onclick="showTab('sentences')">📝 Quick Sentences</button>
+        </div>
+
+        <div id="nouns" class="tab-content active">
+            <div class="card">
+                <h2><span class="section-icon">📚</span>Nouns - Die Nomen</h2>
+                <div id="nounsContainer"></div>
+            </div>
+        </div>
+
+        <div id="adjectives" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">✨</span>Adjectives - Die Adjektive</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any card to hear the pronunciation!</p>
+                <div id="adjectivesContainer" class="word-grid"></div>
+            </div>
+        </div>
+
+        <div id="verbs" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">⚡</span>Verbs - Die Verben</h2>
+                <p style="margin-bottom: 20px;"><strong>*</strong> = Weak Verb | <strong>+</strong> = Strong Verb</p>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any card to hear the pronunciation!</p>
+                <div id="verbsContainer" class="word-grid"></div>
+            </div>
+        </div>
+
+        <div id="expressions" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">💬</span>Key Expressions - Wichtige Ausdrücke</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any expression to hear the pronunciation!</p>
+                <ul id="expressionsContainer" class="expression-list"></ul>
+            </div>
+        </div>
+
+        <div id="conversations" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">🗣️</span>Mini Conversations - Kurze Gespräche</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any message to hear it!</p>
+                <div id="conversationsContainer"></div>
+            </div>
+        </div>
+
+        <div id="qa" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">❓</span>Q&A Practice - Fragen und Antworten</h2>
+                <p style="margin-bottom: 20px; font-style: italic; color: #666;">💡 Hover over each card to see the answer, or click to hear it!</p>
+                <div id="qaContainer" class="qa-container"></div>
+            </div>
+        </div>
+
+        <div id="sentences" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">📝</span>Quick Sentences - Schnelle Sätze</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any sentence to hear it!</p>
+                <div id="sentencesContainer" class="sentence-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="audio-status" id="audioStatus">
+        <div class="spinner"></div>
+        <span id="audioStatusText">Speaking...</span>
+    </div>
+
+    <footer>
+        <p><strong>German Vocabulary - Interactive Audio Learning</strong></p>
+        <p>Created for German Learners | © 2025 aliattia02</p>
+        <p>🔧 Interactive Audio Learning Platform</p>
+        <p style="margin-top: 20px; font-size: 0.9em;">
+            🎯 Click anywhere to hear pronunciation | 💪 Practice makes perfect!
+        </p>
+        <p style="margin-top: 10px; font-size: 0.8em; opacity: 0.8;">
+            Last Updated: 2025-11-16
+        </p>
+    </footer>
+
+    <script>
+
+// ============================================
+// TOPIC: ARZNEIMITTELRECHT (Pharmaceutical Law)
+// ============================================
+
+// ============================================
+// EDIT SECTION 2: CSV DATA - NOUNS
+// ============================================
+const nounsCSV = `
+das,Apothekenwesen,---,---,Pharmacy system
+das,Apothekengesetz,-e,die Apothekengesetze,Pharmacy Law (ApoG)
+das,Eichrecht,---,---,Calibration law
+das,Messgerät,-e,die Messgeräte,Measuring device
+das,Eichsiegel,=,die Eichsiegel,Calibration seal
+das,Bauartzulassung,-en,die Bauartzulassungen,Type approval
+das,Konformitätsbewertungsverfahren,=,die Konformitätsbewertungsverfahren,Conformity assessment
+das,Eichamt,Eichämter,die Eichämter,Calibration office
+das,Messzeugnis,-se,die Messzeugnisse,Measurement certificate
+das,Volumenmessgerät,-e,die Volumenmessgeräte,Volume measuring device
+das,Thermometer,=,die Thermometer,Thermometer
+das,Blutdruckmessgerät,-e,die Blutdruckmessgeräte,Blood pressure device
+das,Blutzuckermessgerät,-e,die Blutzuckermessgeräte,Glucose meter
+das,Prüfgewicht,-e,die Prüfgewichte,Test weight
+das,Eichzeichen,=,die Eichzeichen,Calibration mark
+das,Verfügungsrecht,-e,die Verfügungsrechte,Right of disposal
+das,Eigentumsrecht,-e,die Eigentumsrechte,Ownership right
+das,Grundbucheintrag,Grundbucheinträge,die Grundbucheinträge,Land registry entry
+das,Standgefäß,-e,die Standgefäße,Stock container
+das,Vorratsgefäß,-e,die Vorratsgefäße,Storage container
+das,Abgabegefäß,-e,die Abgabegefäße,Dispensing container
+das,Behältnis,-se,die Behältnisse,Container
+das,Öffentliche Interesse,---,---,Public interest
+das,Bundesverfassungsgericht,-e,die Bundesverfassungsgerichte,Federal Constitutional Court
+das,Führungszeugnis,-se,die Führungszeugnisse,Police clearance certificate
+das,Gewerbezentralregister,=,die Gewerbezentralregister,Central trade register
+das,Handelsregister,=,die Handelsregister,Commercial register
+das,Versorgungsgebiet,-e,die Versorgungsgebiete,Supply area
+das,Notfalldepot,-s,die Notfalldepots,Emergency depot
+das,Nachtdienstzimmer,=,die Nachtdienstzimmer,Night duty room
+das,Sicherheitsdatenblatt,Sicherheitsdatenblätter,die Sicherheitsdatenblätter,Safety data sheet
+das,Transfusionsgesetz,-e,die Transfusionsgesetze,Transfusion law
+das,Qualitätsmanagementsystem,-e,die Qualitätsmanagementsysteme,Quality management system
+das,QMS-Handbuch,QMS-Handbücher,die QMS-Handbücher,QMS manual
+das,Wareneingangsprotokoll,-e,die Wareneingangsprotokolle,Goods receipt protocol
+das,Herstellungsprotokoll,-e,die Herstellungsprotokolle,Manufacturing protocol
+das,Prüfprotokoll,-e,die Prüfprotokolle,Test protocol
+das,Hygienekonzept,-e,die Hygienekonzepte,Hygiene concept
+das,Reinraumlabor,-e,die Reinraumlabore,Clean room laboratory
+das,Zytostatikalabor,-e,die Zytostatikalabore,Cytostatic laboratory
+das,Sterillabor,-e,die Sterillabore,Sterile laboratory
+das,Abholfach,Abholfächer,die Abholfächer,Pick-up compartment
+das,Botendienst,-e,die Botendienste,Messenger service
+das,Ladenschlussgesetz,-e,die Ladenschlussgesetze,Shop closing law
+das,Fremdbesitzverbot,-e,die Fremdbesitzverbote,Third-party ownership prohibition
+das,Mehrbesitzverbot,-e,die Mehrbesitzverbote,Multiple ownership prohibition
+das,Zuweisungsverbot,-e,die Zuweisungsverbote,Referral prohibition
+das,Sortimentsbeschränkung,-en,die Sortimentsbeschränkungen,Assortment restriction
+das,Makelverbot,-e,die Makelverbote,Brokerage prohibition
+das,Inverkehrbringen,---,---,Placing on market
+das,Kontrahierungszwang,Kontrahierungszwänge,die Kontrahierungszwänge,Obligation to contract
+das,Substitutionsverbot,-e,die Substitutionsverbote,Substitution prohibition
+das,Rabattverbot,-e,die Rabattverbote,Discount prohibition
+das,Versorgungsvertrag,Versorgungsverträge,die Versorgungsverträge,Supply contract
+das,Regionalprinzip,-ien,die Regionalprinzipien,Regional principle
+das,Vier-Augen-Prinzip,-ien,die Vier-Augen-Prinzipien,Four-eyes principle
+der,Apothekenbetrieb,-e,die Apothekenbetriebe,Pharmacy operation
+der,Apothekenleiter,=,die Apothekenleiter,Pharmacy manager
+der,Erlaubnisinhaber,=,die Erlaubnisinhaber,License holder
+der,Filialleiter,=,die Filialleiter,Branch manager
+der,Verwalter,=,die Verwalter,Administrator
+der,Pächter,=,die Pächter,Tenant
+der,Verpächter,=,die Verpächter,Lessor
+der,Betriebserlaubnis,-se,die Betriebserlaubnisse,Operating license
+der,Pharmazierat,Pharmazieräte,die Pharmazieräte,Pharmacy counselor
+der,Sachverständige,-n,die Sachverständigen,Expert
+der,Einzelkaufmann,Einzelkaufleute,die Einzelkaufleute,Sole proprietor
+der,Gesellschafter,=,die Gesellschafter,Partner
+der,Stammapotheker,=,die Stammapotheker,Regular pharmacist
+der,Vertretungsapotheker,=,die Vertretungsapotheker,Substitute pharmacist
+der,Apothekerassistent,-en,die Apothekerassistenten,Pharmacy assistant (pre-1969)
+der,Pharmazieingenieur,-e,die Pharmazieingenieure,Pharmaceutical engineer (GDR)
+der,Apothekenassistent,-en,die Apothekenassistenten,Pharmacy assistant (GDR)
+der,Famulant,-en,die Famulanten,Pharmacy intern
+der,Praktikant,-en,die Praktikanten,Trainee
+der,Messbecher,=,die Messbecher,Measuring cup
+der,Messzylinder,=,die Messzylinder,Measuring cylinder
+der,Messlöffel,=,die Messlöffel,Measuring spoon
+der,Messkolben,=,die Messkolben,Volumetric flask
+der,Ziffernschritt,-e,die Ziffernschritte,Digit increment
+der,Flammpunkt,-e,die Flammpunkte,Flash point
+der,Siedepunkt,-e,die Siedepunkte,Boiling point
+der,Abzug,Abzüge,die Abzüge,Fume hood
+der,Laborabzug,Laborabzüge,die Laborabzüge,Laboratory fume hood
+der,Mörser,=,die Mörser,Mortar
+der,Pistill,-e,die Pistille,Pestle
+der,Spatel,=,die Spatel,Spatula
+der,Rezeptblock,Rezeptblöcke,die Rezeptblöcke,Prescription pad
+der,Versicherungsnachweis,-e,die Versicherungsnachweise,Insurance proof
+der,Eigenbeleg,-e,die Eigenbelege,Internal receipt
+der,Lieferschein,-e,die Lieferscheine,Delivery note
+der,Grundrissplan,Grundrisspläne,die Grundrisspläne,Floor plan
+der,Pachtvertrag,Pachtverträge,die Pachtverträge,Lease agreement
+der,Mietvertrag,Mietverträge,die Mietverträge,Rental agreement
+der,Kaufvertrag,Kaufverträge,die Kaufverträge,Purchase agreement
+der,Notstand,Notstände,die Notstände,State of emergency
+der,Notdienst,-e,die Notdienste,Emergency service
+der,Nachtdienst,-e,die Nachtdienste,Night service
+der,Notdienstfonds,-,die Notdienstfonds,Emergency service fund
+der,Dienstkreis,-e,die Dienstkreise,Service district
+der,Dienstbereitschaft,---,---,Service readiness
+der,Sonntagsdienst,-e,die Sonntagsdienste,Sunday service
+der,Botendienst,-e,die Botendienste,Messenger service
+der,Hautkontakt,-e,die Hautkontakte,Skin contact
+der,Augenkontakt,-e,die Augenkontakte,Eye contact
+der,Arbeitsplatzgrenzwert,-e,die Arbeitsplatzgrenzwerte,Workplace limit value
+der,Biologische Grenzwert,-e,die Biologischen Grenzwerte,Biological limit value
+der,Datenlogger,=,die Datenlogger,Data logger
+der,Kommissionierautomat,-en,die Kommissionierautomaten,Picking machine
+der,Tresor,-e,die Tresore,Safe
+der,Kühlschrank,Kühlschränke,die Kühlschränke,Refrigerator
+der,Verschluss,Verschlüsse,die Verschlüsse,Closure
+der,Schutzhandschuh,-e,die Schutzhandschuhe,Protective glove
+der,Atemschutz,---,---,Respiratory protection
+der,Augenschutz,---,---,Eye protection
+der,Gesichtsschutz,---,---,Face protection
+der,Mutterschutz,---,---,Maternity protection
+der,Jugendschutz,---,---,Youth protection
+der,Arbeitsschutz,---,---,Occupational safety
+der,Gewerbeaufsichtsamt,Gewerbeaufsichtsämter,die Gewerbeaufsichtsämter,Industrial inspectorate
+der,Rückruf,-e,die Rückrufe,Recall
+der,Handbrief,-e,die Handbriefe,Direct healthcare professional communication
+der,Rote Handbrief,-e,die Roten Handbriefe,Red hand letter
+der,Chargenrückruf,-e,die Chargenrückrufe,Batch recall
+der,Arzneimittelrückruf,-e,die Arzneimittelrückrufe,Drug recall
+die,Apothekenbetriebsordnung,-en,die Apothekenbetriebsordnungen,Pharmacy operating regulation (ApBetrO)
+die,Betriebsstätte,-n,die Betriebsstätten,Operating facility
+die,Geschäftsfähigkeit,---,---,Legal capacity
+die,Zuverlässigkeit,---,---,Reliability
+die,Sachkunde,---,---,Expertise
+die,Fachkunde,---,---,Specialized knowledge
+die,Approbation,-en,die Approbationen,License to practice
+die,Erlaubnisurkunde,-n,die Erlaubnisurkunden,License certificate
+die,Verfügungsgewalt,---,---,Power of disposal
+die,Handelsgesellschaft,-en,die Handelsgesellschaften,Trading company
+die,OHG,-s,die OHGs,General partnership
+die,GbR,-s,die GbRs,Civil law partnership
+die,Gesamtschuld,-en,die Gesamtschulden,Joint liability
+die,Haftung,-en,die Haftungen,Liability
+die,Kreisverwaltungsbehörde,-n,die Kreisverwaltungsbehörden,District administrative authority
+die,Bezirksregierung,-en,die Bezirksregierungen,District government
+die,Aufsichtsbehörde,-n,die Aufsichtsbehörden,Supervisory authority
+die,Abnahmebesichtigung,-en,die Abnahmebesichtigungen,Acceptance inspection
+die,Besichtigung,-en,die Besichtigungen,Inspection
+die,Überwachung,-en,die Überwachungen,Supervision
+die,Selbstinspektion,-en,die Selbstinspektionen,Self-inspection
+die,Einzelapotheke,-n,die Einzelapotheken,Single pharmacy
+die,Hauptapotheke,-n,die Hauptapotheken,Main pharmacy
+die,Filialapotheke,-n,die Filialapotheken,Branch pharmacy
+die,Zweigapotheke,-n,die Zweigapotheken,Auxiliary pharmacy
+die,Notapotheke,-n,die Notapotheken,Emergency pharmacy
+die,Krankenhausapotheke,-n,die Krankenhausapotheken,Hospital pharmacy
+die,Hausapotheke,-n,die Hausapotheken,Home dispensary
+die,Offizin,-en,die Offizinen,Dispensary
+die,Rezeptur,-en,die Rezepturen,Compounding area
+die,Teerezeptur,-en,die Teerezepturen,Tea compounding
+die,Freiwahl,-en,die Freiwahlen,Self-service area
+die,Handverkauf,Handverkäufe,die Handverkäufe,Over-counter sale
+die,Schublade,-n,die Schubladen,Drawer
+die,Verkehrsfläche,-n,die Verkehrsflächen,Traffic area
+die,Ladenstraße,-n,die Ladenstraßen,Shopping arcade
+die,Barrierefreiheit,---,---,Accessibility
+die,Raumeinheit,-en,die Raumeinheiten,Spatial unit
+die,Grundfläche,-n,die Grundflächen,Floor area
+die,Belüftung,-en,die Belüftungen,Ventilation
+die,Klimatisierung,-en,die Klimatisierungen,Air conditioning
+die,Beleuchtung,-en,die Beleuchtungen,Lighting
+die,Libelle,-n,die Libellen,Spirit level
+die,Nivellierung,-en,die Nivellierungen,Leveling
+die,Justierung,-en,die Justierungen,Adjustment
+die,Kalibrierung,-en,die Kalibrierungen,Calibration
+die,Eichung,-en,die Eichungen,Calibration (official)
+die,Nacheichung,-en,die Nacheichungen,Re-calibration
+die,Ersteichung,-en,die Ersteichungen,Initial calibration
+die,Eichfrist,-en,die Eichfristen,Calibration period
+die,Eichfähigkeit,---,---,Calibrability
+die,Eichpflicht,-en,die Eichpflichten,Calibration obligation
+die,Genauigkeitsklasse,-n,die Genauigkeitsklassen,Accuracy class
+die,Analysenwaage,-n,die Analysenwaagen,Analytical balance
+die,Feinwaage,-n,die Feinwaagen,Precision balance
+die,Rezepturwaage,-n,die Rezepturwaagen,Compounding scale
+die,Präzisionswaage,-n,die Präzisionswaagen,Precision scale
+die,Handelswaage,-n,die Handelswaagen,Trade scale
+die,Teewaage,-n,die Teewaagen,Tea scale
+die,Personenwaage,-n,die Personenwaagen,Person scale
+die,Säuglingswaage,-n,die Säuglingswaagen,Baby scale
+die,Mindestlast,-en,die Mindestlasten,Minimum load
+die,Höchstlast,-en,die Höchstlasten,Maximum load
+die,Einwaage,-n,die Einwaagen,Weighing
+die,Ist-Einwaage,-n,die Ist-Einwaagen,Actual weight
+die,Soll-Einwaage,-n,die Soll-Einwaagen,Target weight
+die,Anwärmzeit,-en,die Anwärmzeiten,Warm-up time
+die,Standby-Funktion,-en,die Standby-Funktionen,Standby function
+die,Bürette,-n,die Büretten,Burette
+die,Pipette,-n,die Pipetten,Pipette
+die,Pinzette,-n,die Pinzetten,Tweezers
+die,Schere,-n,die Scheren,Scissors
+die,Waage,-n,die Waagen,Scale
+die,Steinplatte,-n,die Steinplatten,Stone plate
+die,Wägetisch,-e,die Wägetische,Weighing table
+die,Quarantänelagerung,-en,die Quarantänelagerungen,Quarantine storage
+die,Verfügbarkeit,---,---,Availability
+die,Vorratshaltung,-en,die Vorratshaltungen,Stock keeping
+die,Sonderbevorratung,-en,die Sonderbevorratungen,Special stockpiling
+die,Temperaturüberwachung,-en,die Temperaturüberwachungen,Temperature monitoring
+die,Kühlkette,-n,die Kühlketten,Cold chain
+die,Versandhandelserlaubnis,-se,die Versandhandelserlaubnisse,Mail-order license
+die,Zweitzustellung,-en,die Zweitzustellungen,Second delivery
+die,Sendungsverfolgung,-en,die Sendungsverfolgungen,Shipment tracking
+die,Transportversicherung,-en,die Transportversicherungen,Transport insurance
+die,Heimversorgung,-en,die Heimversorgungen,Nursing home supply
+die,Krankenhausversorgung,-en,die Krankenhausversorgungen,Hospital supply
+die,Rezeptsammelstelle,-n,die Rezeptsammelstellen,Prescription collection point
+die,Abholzeit,-en,die Abholzeiten,Pick-up time
+die,Leerung,-en,die Leerungen,Emptying
+die,Verblisterung,-en,die Verblisterungen,Blister packaging
+die,Neuverpackung,-en,die Neuverpackungen,Repackaging
+die,Plausibilitätsprüfung,-en,die Plausibilitätsprüfungen,Plausibility check
+die,Herstellungsanweisung,-en,die Herstellungsanweisungen,Manufacturing instruction
+die,Herstellungsvorschrift,-en,die Herstellungsvorschriften,Manufacturing specification
+die,Prüfanweisung,-en,die Prüfanweisungen,Test instruction
+die,Risikoermittlung,-en,die Risikoermittlungen,Risk assessment
+die,Inprozesskontrolle,-n,die Inprozesskontrollen,In-process control
+die,Freigabe,-n,die Freigaben,Release
+die,Freigabevermerk,-e,die Freigabevermerke,Release note
+die,Chargendokumentation,-en,die Chargendokumentationen,Batch documentation
+die,Chargenbezeichnung,-en,die Chargenbezeichnungen,Batch designation
+die,Ausbeute,-n,die Ausbeuten,Yield
+die,Organoleptik,---,---,Organoleptic testing
+die,Ausstreichprobe,-n,die Ausstreichproben,Spreading test
+die,Schmelztemperatur,-en,die Schmelztemperaturen,Melting temperature
+die,Kapillarschmelzpunkt,-e,die Kapillarschmelzpunkte,Capillary melting point
+die,Sofortschmelzpunkt,-e,die Sofortschmelzpunkte,Instant melting point
+die,Identitätsprüfung,-en,die Identitätsprüfungen,Identity test
+die,Gehaltsprüfung,-en,die Gehaltsprüfungen,Content test
+die,Reinheitsprüfung,-en,die Reinheitsprüfungen,Purity test
+die,Magnetcodierung,-en,die Magnetcodierungen,Magnetic coding
+die,Kodierzeile,-n,die Kodierzeilen,Coding line
+die,Vertragsarztnummer,-n,die Vertragsarztnummern,Contract doctor number
+die,Betriebsstättennummer,-n,die Betriebsstättennummern,Practice ID number
+die,Pharmazentralnummer,-n,die Pharmazentralnummern,Pharmaceutical central number (PZN)
+die,Abzeichnungsbefugnis,-se,die Abzeichnungsbefugnisse,Signing authority
+die,Vorlagepflicht,-en,die Vorlagepflichten,Submission obligation
+die,Aufsichtspflicht,-en,die Aufsichtspflichten,Supervisory duty
+die,Beratungsbefugnis,-se,die Beratungsbefugnisse,Advisory authority
+die,Beratungspflicht,-en,die Beratungspflichten,Advisory obligation
+die,Schweigepflicht,-en,die Schweigepflichten,Confidentiality obligation
+die,Verschwiegenheitspflicht,-en,die Verschwiegenheitspflichten,Duty of confidentiality
+die,Meldepflicht,-en,die Meldepflichten,Reporting obligation
+die,Dokumentationspflicht,-en,die Dokumentationspflichten,Documentation obligation
+die,Aufbewahrungspflicht,-en,die Aufbewahrungspflichten,Retention obligation
+die,Aufbewahrungsfrist,-en,die Aufbewahrungsfristen,Retention period
+die,Vertretungsbefugnis,-se,die Vertretungsbefugnisse,Representation authority
+die,Geltungsdauer,-n,die Geltungsdauern,Validity period
+die,Befristung,-en,die Befristungen,Time limit
+die,Verlängerung,-en,die Verlängerungen,Extension
+die,Rücknahme,-n,die Rücknahmen,Withdrawal
+die,Widerruf,-e,die Widerruf,Revocation
+die,Insolvenz,-en,die Insolvenzen,Insolvency
+die,Ordnungswidrigkeit,-en,die Ordnungswidrigkeiten,Regulatory offense
+die,Straftat,-en,die Straftaten,Criminal offense
+die,Bußgeld,-er,die Bußgelder,Fine
+die,Geldstrafe,-n,die Geldstrafen,Monetary penalty
+die,Freiheitsstrafe,-n,die Freiheitsstrafen,Prison sentence
+die,Rechtsgüterabwägung,-en,die Rechtsgüterabwägungen,Balancing of legal interests
+die,Persönlichkeitsrecht,-e,die Persönlichkeitsrechte,Personality rights
+die,Gesundheitsgefährdung,-en,die Gesundheitsgefährdungen,Health hazard
+die,Rezeptfälschung,-en,die Rezeptfälschungen,Prescription forgery
+die,Manipulation,-en,die Manipulationen,Manipulation
+die,Arzneimittelfälschung,-en,die Arzneimittelfälschungen,Drug counterfeiting
+die,Verwechslungsgefahr,-en,die Verwechslungsgefahren,Risk of confusion
+die,Qualitätsminderung,-en,die Qualitätsminderungen,Quality impairment
+die,Arzneimittelsicherheit,---,---,Drug safety
+die,Gefahrenabwehr,-en,die Gefahrenabwehren,Hazard prevention
+die,Sendungsverfolgung,-en,die Sendungsverfolgungen,Package tracking
+die,Blindentastmarke,-n,die Blindentastmarken,Tactile warning for blind
+die,Hinweismarke,-n,die Hinweismarken,Warning label
+die,Erkennungszeichen,=,die Erkennungszeichen,Identification mark
+die,Allgemeinverfügung,-en,die Allgemeinverfügungen,General order
+die,Turnusregelung,-en,die Turnusregelungen,Rotation regulation
+die,Rufbereitschaft,-en,die Rufbereitschaften,On-call duty
+die,Rufweiterschaltung,-en,die Rufweiterschaltungen,Call forwarding
+die,Notdienstgebühr,-en,die Notdienstgebühren,Emergency service fee
+die,Vergütung,-en,die Vergütungen,Remuneration
+die,Öffnungszeit,-en,die Öffnungszeiten,Opening hours
+die,Mindestöffnungszeit,-en,die Mindestöffnungszeiten,Minimum opening hours
+die,Betriebsferien,nur P,die Betriebsferien,Business holidays
+die,Einzelbefreiung,-en,die Einzelbefreiungen,Individual exemption
+die,Sonderbefreiung,-en,die Sonderbefreiungen,Special exemption
+
+`.trim();
+
+// ============================================
+// EDIT SECTION 3: CSV DATA - ADJECTIVES
+// ============================================
+const adjectivesCSV = `
+-eichpflichtig,requiring-calibration,-eichfrei,calibration-exempt
+-geeicht,calibrated,-ungeeicht,uncalibrated
+-selbsteinspielend,self-leveling,-nicht-selbsteinspielend,non-self-leveling
+-mechanisch,mechanical,-elektronisch,electronic
+-linksbündig,left-aligned,-rechtsbündig,right-aligned
+-verfügbar,available,-nicht-verfügbar,unavailable
+-geschäftsfähig,legally-competent,-geschäftsunfähig,legally-incompetent
+-zuverlässig,reliable,-unzuverlässig,unreliable
+-sachkundig,expert,-unsachkundig,inexpert
+-approbiert,licensed,-nicht-approbiert,unlicensed
+-persönlich,personal,-übertragbar,transferable
+-raumbezogen,premises-bound,-personenbezogen,person-bound
+-deckungsgleich,congruent,-abweichend,deviating
+-unbefristet,unlimited,-befristet,limited
+-vollzeitig,full-time,-teilzeitig,part-time
+-hauptberuflich,full-time-professional,-nebenberuflich,part-time-professional
+-gesamtschuldnerisch,jointly-liable,-einzelhaftend,individually-liable
+-gleichberechtigt,equal,-untergeordnet,subordinate
+-umsatzabhängig,turnover-dependent,-festgelegt,fixed
+-benachbart,neighboring,-entfernt,distant
+-kreisfrei,independent-city,-kreisangehörig,county-associated
+-ordnungsgemäß,proper,-mangelhaft,deficient
+-flächendeckend,comprehensive,-lückenhaft,incomplete
+-wechselseitig,mutual,-einseitig,unilateral
+-ständig,permanent,-zeitweise,temporary
+-abgelegen,remote,-zentral,central
+-barrierearm,low-barrier,-barrierefrei,barrier-free
+-erschütterungsfrei,vibration-free,-unstabil,unstable
+-waagerecht,horizontal,-senkrecht,vertical
+-nivelliert,leveled,-schief,crooked
+-lesbar,readable,-unleserlich,illegible
+-dauerhaft,permanent,-vorübergehend,temporary
+-vertraulich,confidential,-öffentlich,public
+-hygienisch,hygienic,-unhygienisch,unhygienic
+-raumhoch,floor-to-ceiling,-teilweise,partial
+-glatt,smooth,-rau,rough
+-abwaschbar,washable,-nicht-abwaschbar,non-washable
+-patientenbezogen,patient-specific,-standardisiert,standardized
+-patientenindividuell,patient-individual,-vorgefertigt,prefabricated
+-maschinell,mechanical,-manuell,manual
+-wieder-verwendbar,reusable,-einweg,disposable
+-organoleptisch,organoleptic,-analytisch,analytical
+-galenisch,galenic,-therapeutisch,therapeutic
+-dosisgleich,dose-equivalent,-unterschiedlich,different
+-stichprobenartig,random,-vollständig,complete
+-sensorisch,sensory,-instrumentell,instrumental
+-rechtsbündig,right-aligned,-zentriert,centered
+-einheitlich,uniform,-unterschiedlich,different
+-magnetisch,magnetic,-elektronisch,electronic
+-kodiert,coded,-unkodiert,uncoded
+-manipuliert,manipulated,-original,original
+-ausgeschrieben,written-out,-abgekürzt,abbreviated
+-kindlich,childish,-erwachsen,adult
+-linksbündig,left-aligned,-ungeordnet,disordered
+-missbräuchlich,abusive,-bestimmungsgemäß,intended
+-auffällig,conspicuous,-unauffällig,inconspicuous
+-kostenpflichtig,chargeable,-kostenfrei,free
+-entbindend,releasing,-verpflichtend,obligating
+-höherrangig,higher-ranking,-nachrangig,subordinate
+-strafrechtlich,criminal,-zivilrechtlich,civil
+-schweigeverpflichtet,bound-by-confidentiality,-mitteilungsberechtigt,authorized-to-disclose
+
+`.trim();
+
+// ============================================
+// EDIT SECTION 4: CSV DATA - VERBS
+// ============================================
+const verbsCSV = `
+*betreiben,operate,*leiten,manage
+*obliegen,be-incumbent-upon,*verpflichten,obligate
+*sicherstellen,ensure,*gewährleisten,guarantee
+*bedürfen,require,*benötigen,need
+*beantragen,apply-for,*genehmigen,approve
+*nachweisen,prove,*belegen,document
+*verpachten,lease-out,*pachten,lease
+*erlöschen,expire,*widerrufen,revoke
++vorliegen,be-present,+bestehen,exist
++einholen,obtain,+vorlegen,submit
+*dokumentieren,document,*protokollieren,record
+*lagern,store,*aufbewahren,keep
+*prüfen,check,*kontrollieren,inspect
+*herstellen,manufacture,*fertigen,produce
++abgeben,dispense,+ausgeben,issue
+*kennzeichnen,label,*beschriften,mark
+*verschreiben,prescribe,*verordnen,order
+*beaufsichtigen,supervise,*überwachen,monitor
+*freigeben,release,*genehmigen,authorize
+*beliefern,supply,*versorgen,provide
++erwerben,acquire,+beziehen,obtain
+*entsorgen,dispose,*vernichten,destroy
+*melden,report,*anzeigen,notify
+*kalibrieren,calibrate,*justieren,adjust
+*eichen,calibrate-officially,*zertifizieren,certify
+*verweigern,refuse,*ablehnen,reject
+*ausführen,execute,*durchführen,carry-out
+*einhalten,comply-with,*befolgen,follow
+*verstoßen,violate,+unterliegen,be-subject-to
+*zurücknehmen,withdraw,*zurückrufen,recall
+
+`.trim();
+
+// ============================================
+// EDIT SECTION 5: CSV DATA - EXPRESSIONS
+// ============================================
+const expressionsCSV = `
+Die Erlaubnis ist erforderlich.,Permission is required.
+Das Rezept ist gültig.,The prescription is valid.
+Die Dokumentation muss vollständig sein.,Documentation must be complete.
+Die Lagerung erfolgt unter Verschluss.,Storage is kept under lock.
+Die Waage ist eichpflichtig.,The scale requires official calibration.
+Das Verfallsdatum ist abgelaufen.,The expiration date has passed.
+Die Betriebserlaubnis erlischt.,The operating license expires.
+Der Nachweis liegt vor.,The proof is available.
+Die Verschreibung entspricht nicht.,The prescription does not comply.
+Das Qualitätsmanagementsystem ist erforderlich.,The quality management system is required.
+Die Abgabe ist zu verweigern.,Dispensing must be refused.
+Die Eichfrist läuft ab.,The calibration period expires.
+Der Verdacht auf Fälschung besteht.,Suspicion of forgery exists.
+Die Schweigepflicht ist zu beachten.,Confidentiality must be observed.
+Die Plausibilitätsprüfung ist durchzuführen.,Plausibility check must be performed.
+
+`.trim();
+
+// ============================================
+// EDIT SECTION 6: CSV DATA - CONVERSATIONS
+// ============================================
+const conversationsCSV = `
+Pharmacy License Application|A,Ich möchte eine Betriebserlaubnis beantragen.,I would like to apply for an operating license.
+Pharmacy License Application|B,Welche Unterlagen benötigen Sie?,Which documents do you need?
+Pharmacy License Application|A,Polizeiliches Führungszeugnis und Approbationsurkunde.,Police clearance certificate and license certificate.
+Pharmacy License Application|B,Haben Sie die Verfügungsgewalt über die Räume?,Do you have control over the premises?
+Pharmacy License Application|A,Ja ich habe den Mietvertrag vorgelegt.,Yes I have submitted the lease agreement.
+Pharmacy License Application|B,Die Abnahmebesichtigung erfolgt durch den Pharmazierat.,The inspection is conducted by the pharmaceutical advisor.
+Scale Calibration|A,Wann muss die Waage geeicht werden?,When must the scale be calibrated?
+Scale Calibration|B,Selbsteinspielende Waagen alle zwei Jahre.,Self-leveling scales every two years.
+Scale Calibration|A,Ist das Eichzeichen noch gültig?,Is the calibration mark still valid?
+Scale Calibration|B,Nein die Frist ist abgelaufen.,No the period has expired.
+Scale Calibration|A,Wo kann ich die Eichung beantragen?,Where can I apply for calibration?
+Scale Calibration|B,Beim zuständigen Eichamt mindestens zehn Wochen vorher.,At the responsible calibration office at least ten weeks in advance.
+Prescription Verification|A,Haben Sie Bedenken bei dieser Verschreibung?,Do you have concerns about this prescription?
+Prescription Verification|B,Ja die Dosierung erscheint ungewöhnlich.,Yes the dosage seems unusual.
+Prescription Verification|A,Dann müssen Sie Rücksprache mit dem Arzt halten.,Then you must consult with the doctor.
+Prescription Verification|B,Die Abgabe ist erst nach Klärung möglich.,Dispensing is only possible after clarification.
+
+`.trim();
+
+// ============================================
+// EDIT SECTION 7: CSV DATA - Q&A
+// ============================================
+const qaCSV = `
+Wer benötigt eine Betriebserlaubnis?,Jeder der eine Apotheke betreiben will. (Everyone who wants to operate a pharmacy.)
+Wie lange ist die Betriebserlaubnis gültig?,Sie ist unbefristet gültig. (It is valid indefinitely.)
+Wann erlischt die Betriebserlaubnis?,Wenn ein Jahr lang kein Gebrauch gemacht wird. (If not used for one year.)
+Was ist ein Filialverbund?,Eine Hauptapotheke und bis zu drei Filialapotheken. (One main pharmacy and up to three branch pharmacies.)
+Welche Handelsform ist zulässig?,Nur die OHG ist als besondere Handelsform erlaubt. (Only the OHG is permitted as special business form.)
+Was bedeutet Fremdbesitzverbot?,Keine Mitsprache von Nichtapothekern. (No participation of non-pharmacists.)
+Was ist Kontrahierungszwang?,Verschreibungen müssen ausgeführt werden. (Prescriptions must be filled.)
+Welche Räume sind erforderlich?,Offizin Labor Lagerraum und Nachtdienstzimmer. (Dispensary laboratory storage and on-call room.)
+Was ist die Mindestgröße?,Die Grundfläche muss mindestens 110 Quadratmeter betragen. (Floor area must be at least 110 square meters.)
+Wie oft muss die Waage geeicht werden?,Selbsteinspielende Waagen alle zwei Jahre. (Self-leveling scales every two years.)
+Was bedeutet pharmazeutische Tätigkeit?,Herstellung Prüfung Abgabe und Beratung. (Manufacturing testing dispensing and counseling.)
+Wer darf pharmazeutische Tätigkeiten ausführen?,Nur pharmazeutisches Personal. (Only pharmaceutical personnel.)
+Was ist die Schweigepflicht?,Verschwiegenheit über alles Bekannte aus der Berufsausübung. (Confidentiality about everything known from professional practice.)
+Wann darf die Abgabe verweigert werden?,Bei Verdacht auf missbräuchliche Anwendung. (Upon suspicion of misuse.)
+Was ist ein QMS?,Ein Qualitätsmanagementsystem zur Qualitätssicherung. (A quality management system for quality assurance.)
+Wie lange müssen Dokumentationen aufbewahrt werden?,Herstellung und Abgabe fünf Jahre. (Manufacturing and dispensing five years.)
+Was ist eine Rezeptfälschung?,Ein gefälschtes oder manipuliertes Rezept. (A forged or manipulated prescription.)
+Darf ein gefälschtes Rezept beliefert werden?,Nein die Abgabe ist verboten. (No dispensing is prohibited.)
+Was ist bei BTM zu beachten?,Lagerung unter Verschluss im Tresor. (Storage under lock in safe.)
+Was sind eichpflichtige Messgeräte?,Waagen zur Herstellung von Arzneimitteln. (Scales for manufacturing medicines.)
+
+`.trim();
+
+// ============================================
+// EDIT SECTION 8: CSV DATA - SENTENCES
+// ============================================
+const sentencesCSV = `
+Die Apotheke bedarf der Erlaubnis der zuständigen Behörde.,The pharmacy requires permission from the competent authority.
+Der Erlaubnisinhaber trägt die volle Verantwortung.,The license holder bears full responsibility.
+Die Betriebserlaubnis ist personen- und raumbezogen.,The operating license is person- and premises-specific.
+Der Apotheker ist zur persönlichen Leitung verpflichtet.,The pharmacist is obligated to manage personally.
+Die Apotheke muss ordnungsgemäße Räume nachweisen.,The pharmacy must prove proper premises.
+Das pharmazeutische Personal arbeitet unter Aufsicht.,The pharmaceutical staff works under supervision.
+Die Dokumentation der Herstellung ist erforderlich.,Documentation of manufacturing is required.
+Die Lagerung muss die Qualität sicherstellen.,Storage must ensure quality.
+Betäubungsmittel werden unter Verschluss gelagert.,Narcotics are stored under lock.
+Die Waage benötigt eine gültige Eichung.,The scale requires valid calibration.
+Die Eichfrist beträgt zwei Jahre für Präzisionswaagen.,The calibration period is two years for precision scales.
+Die Plausibilitätsprüfung erfolgt durch den Apotheker.,The plausibility check is performed by the pharmacist.
+Ein gefälschtes Rezept darf nicht beliefert werden.,A forged prescription may not be dispensed.
+Die Schweigepflicht umfasst alle beruflichen Kenntnisse.,Confidentiality covers all professional knowledge.
+Der Kontrahierungszwang gilt für Verschreibungen.,The obligation to contract applies to prescriptions.
+Die Filialapotheke benötigt einen verantwortlichen Apotheker.,The branch pharmacy requires a responsible pharmacist.
+Das Qualitätsmanagementsystem beschreibt betriebliche Abläufe.,The quality management system describes operational processes.
+Die Abgabe erfolgt nur durch pharmazeutisches Personal.,Dispensing is done only by pharmaceutical personnel.
+Die Beratung ist eine pharmazeutische Tätigkeit.,Counseling is a pharmaceutical activity.
+Der Versandhandel erfordert eine zusätzliche Erlaubnis.,Mail order requires additional permission.
+
+`.trim();
+
+        // ============================================
+        // SPEECH SYNTHESIS - FIXED FOR PLURAL ISSUE
+        // ============================================
+        let germanVoice = null;
+        let currentUtterance = null;
+        let isSpeaking = false;
+        let isPlayingSequence = false; // NEW: Track if playing a sequence
+
+        function loadVoices() {
+            const voices = window.speechSynthesis.getVoices();
+            const voiceSelect = document.getElementById('voiceSelect');
+            voiceSelect.innerHTML = '';
+
+            const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
+
+            if (germanVoices.length === 0) {
+                voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
+                germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+            } else {
+                germanVoices.forEach((voice, index) => {
+                    const option = document.createElement('option');
+                    option.value = index;
+                    option.textContent = `${voice.name} (${voice.lang})`;
+                    voiceSelect.appendChild(option);
+                    if (index === 0) germanVoice = voice;
+                });
+            }
+            console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
+        }
+
+        if (speechSynthesis.onvoiceschanged !== undefined) {
+            speechSynthesis.onvoiceschanged = loadVoices;
+        }
+        loadVoices();
+        setTimeout(loadVoices, 100);
+        setTimeout(loadVoices, 500);
+
+        document.getElementById('voiceSelect').addEventListener('change', function(e) {
+            stopAllSpeech();
+            const voices = window.speechSynthesis.getVoices();
+            const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
+            germanVoice = germanVoices[e.target.value] || voices[0];
+            console.log('🔄 Voice changed to:', germanVoice ? germanVoice.name : 'default');
+        });
+
+        document.getElementById('speedControl').addEventListener('input', function(e) {
+            document.getElementById('speedValue').textContent = e.target.value + 'x';
+        });
+
+        document.getElementById('pitchControl').addEventListener('input', function(e) {
+            document.getElementById('pitchValue').textContent = e.target.value;
+        });
+
+        // IMPROVED: Simple speak function without debouncing for sequences
+        function speak(text, callback) {
+            if (!text || text.trim() === '') {
+                console.warn('⚠️ Empty text, skipping');
+                if (callback) callback();
+                return;
+            }
+
+            text = text.replace('🔊', '').trim();
+
+            // Only stop if NOT playing a sequence
+            if (!isPlayingSequence) {
+                stopAllSpeech();
+            }
+
+            setTimeout(() => {
+                speakNow(text, callback);
+            }, 100);
+        }
+
+        function stopAllSpeech() {
+            isPlayingSequence = false;
+            window.speechSynthesis.cancel();
+            isSpeaking = false;
+            hideAudioStatus();
+            console.log('⏹️ All speech stopped');
+        }
+
+        function speakNow(text, callback) {
+            if (!('speechSynthesis' in window)) {
+                alert('⚠️ Text-to-speech not supported.\n\nUse Chrome, Firefox, Edge, or Safari.');
+                if (callback) callback();
+                return;
+            }
+
+            showAudioStatus(text);
+            console.log('🗣️ Speaking:', text);
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.lang = 'de-DE';
+            if (germanVoice) utterance.voice = germanVoice;
+            utterance.rate = parseFloat(document.getElementById('speedControl').value);
+            utterance.pitch = parseFloat(document.getElementById('pitchControl').value);
+            utterance.volume = 1.0;
+
+            let hasEnded = false;
+
+            utterance.onstart = function() {
+                isSpeaking = true;
+                console.log('▶️ Started:', text.substring(0, 40));
+            };
+
+            utterance.onend = function() {
+                if (hasEnded) return;
+                hasEnded = true;
+                isSpeaking = false;
+                hideAudioStatus();
+                console.log('✅ Ended:', text.substring(0, 40));
+                if (callback) setTimeout(callback, 100);
+            };
+
+            utterance.onerror = function(event) {
+                if (hasEnded) return;
+                hasEnded = true;
+                isSpeaking = false;
+                hideAudioStatus();
+                
+                if (event.error !== 'interrupted' && event.error !== 'canceled') {
+                    console.error('❌ Speech error:', event.error);
+                } else {
+                    console.log('ℹ️ Speech ' + event.error);
+                }
+                if (callback) callback();
+            };
+
+            currentUtterance = utterance;
+
+            try {
+                window.speechSynthesis.speak(utterance);
+            } catch (error) {
+                console.error('❌ Speak failed:', error);
+                isSpeaking = false;
+                hideAudioStatus();
+                if (callback) callback();
+            }
+        }
+
+        function showAudioStatus(text) {
+            const status = document.getElementById('audioStatus');
+            const statusText = document.getElementById('audioStatusText');
+            const displayText = text.length > 40 ? text.substring(0, 40) + '...' : text;
+            statusText.textContent = `🔊 ${displayText}`;
+            status.classList.add('show');
+        }
+
+        function hideAudioStatus() {
+            setTimeout(() => {
+                document.getElementById('audioStatus').classList.remove('show');
+            }, 300);
+        }
+
+        // ============================================
+        // SPECIFIC SPEAK FUNCTIONS
+        // ============================================
+        function speakAdjective(word1, word2) {
+            if (event) event.stopPropagation();
+            console.log('🔤 Adjective pair:', word1, word2);
+            isPlayingSequence = true;
+            speak(word1, function() {
+                setTimeout(() => {
+                    speak(word2, function() {
+                        isPlayingSequence = false;
+                    });
+                }, 800);
+            });
+        }
+
+        function speakVerb(verb1, verb2) {
+            if (event) event.stopPropagation();
+            const cleanVerb1 = verb1.replace(/[\*\+]/g, '').trim();
+            const cleanVerb2 = verb2.replace(/[\*\+]/g, '').trim();
+            console.log('⚡ Verb pair:', cleanVerb1, cleanVerb2);
+            isPlayingSequence = true;
+            speak(cleanVerb1, function() {
+                setTimeout(() => {
+                    speak(cleanVerb2, function() {
+                        isPlayingSequence = false;
+                    });
+                }, 800);
+            });
+        }
+
+        function speakQA(question, answer) {
+            if (event) event.stopPropagation();
+            console.log('❓ Q&A:', question, answer);
+            isPlayingSequence = true;
+            speak(question, function() {
+                setTimeout(() => {
+                    speak(answer, function() {
+                        isPlayingSequence = false;
+                    });
+                }, 1200);
+            });
+        }
+
+        // NEW: Noun function with plural
+        function speakNounRow(article, singular, pluralFull) {
+            if (event) event.stopPropagation();
+            speakNounWithPlural(article, singular, pluralFull);
+        }
+
+        function speakNounWithPlural(article, singular, pluralFull) {
+            console.log('📚 Noun with plural:', article, singular, '→', pluralFull);
+            isPlayingSequence = true;
+            
+            speak(`${article} ${singular}`, function() {
+                if (pluralFull !== '---' && pluralFull !== 'kein Plural') {
+                    setTimeout(() => {
+                        speak(pluralFull, function() {
+                            isPlayingSequence = false;
+                        });
+                    }, 300);
+                } else {
+                    isPlayingSequence = false;
+                }
+            });
+        }
+
+        // ============================================
+        // PLAY ALL IN SECTION
+        // ============================================
+        let playAllActive = false;
+        let playAllIndex = 0;
+        let playAllTexts = [];
+
+        function playAllInSection() {
+            const playBtn = document.querySelector('.play-all-btn');
+
+            if (playAllActive) {
+                playAllActive = false;
+                stopAllSpeech();
+                playBtn.textContent = '▶ Play All in Section';
+                console.log('⏹️ Play all stopped');
+                return;
+            }
+
+            const activeTab = document.querySelector('.tab-content.active');
+            const tabId = activeTab.id;
+            playAllTexts = [];
+
+            switch(tabId) {
+                case 'nouns':
+                    const nounsData = parseCSV(nounsCSV);
+                    nounsData.forEach(row => {
+                        const [article, german, pluralNotation, pluralFull, english] = row;
+                        playAllTexts.push(`${article} ${german}`);
+                        if (pluralFull !== '---' && pluralFull !== 'kein Plural') {
+                            playAllTexts.push(pluralFull);
+                        }
+                    });
+                    break;
+
+                case 'adjectives':
+                    const adjCards = activeTab.querySelectorAll('.word-pair');
+                    adjCards.forEach(card => {
+                        const germans = card.querySelectorAll('.german');
+                        germans.forEach(g => playAllTexts.push(g.textContent.trim()));
+                    });
+                    break;
+
+                case 'verbs':
+                    const verbCards = activeTab.querySelectorAll('.word-pair');
+                    verbCards.forEach(card => {
+                        const germans = card.querySelectorAll('.german');
+                        germans.forEach(g => {
+                            const cleanText = g.textContent.replace(/[\*\+]/g, '').trim();
+                            playAllTexts.push(cleanText);
+                        });
+                    });
+                    break;
+
+                case 'expressions':
+                    const exprs = activeTab.querySelectorAll('.expression-german');
+                    exprs.forEach(expr => playAllTexts.push(expr.textContent.replace('🔊', '').trim()));
+                    break;
+
+                case 'conversations':
+                    const messages = activeTab.querySelectorAll('.message-german');
+                    messages.forEach(msg => playAllTexts.push(msg.textContent.replace('🔊', '').trim()));
+                    break;
+
+                case 'qa':
+                    const questions = activeTab.querySelectorAll('.question');
+                    questions.forEach(q => playAllTexts.push(q.textContent.replace('🔊', '').trim()));
+                    break;
+
+                case 'sentences':
+                    const sentences = activeTab.querySelectorAll('.sentence-german');
+                    sentences.forEach(s => playAllTexts.push(s.textContent.replace('🔊', '').trim()));
+                    break;
+            }
+
+            if (playAllTexts.length === 0) {
+                alert('No items to play in this section.');
+                return;
+            }
+
+            console.log('📚 Playing', playAllTexts.length, 'items');
+            playAllActive = true;
+            isPlayingSequence = true;
+            playAllIndex = 0;
+            playBtn.textContent = '⏹️ Stop Playing';
+
+            playNextInSequence(playBtn);
+        }
+
+        function playNextInSequence(playBtn) {
+            if (!playAllActive || playAllIndex >= playAllTexts.length) {
+                playAllActive = false;
+                isPlayingSequence = false;
+                playBtn.textContent = '▶ Play All in Section';
+                hideAudioStatus();
+
+                if (playAllIndex >= playAllTexts.length) {
+                    setTimeout(() => {
+                        alert('✅ Finished playing all ' + playAllTexts.length + ' items!');
+                    }, 500);
+                }
+                return;
+            }
+
+            const progress = Math.round(((playAllIndex + 1) / playAllTexts.length) * 100);
+            console.log(`🔊 Progress: ${playAllIndex + 1}/${playAllTexts.length} (${progress}%)`);
+
+            const currentText = playAllTexts[playAllIndex];
+            playAllIndex++;
+
+            speak(currentText, function() {
+                setTimeout(() => {
+                    playNextInSequence(playBtn);
+                }, 1000);
+            });
+        }
+
+        // ============================================
+        // TAB SWITCHING
+        // ============================================
+        function showTab(tabName) {
+            stopAllSpeech();
+            playAllActive = false;
+
+            const playBtn = document.querySelector('.play-all-btn');
+            if (playBtn) playBtn.textContent = '▶ Play All in Section';
+
+            const tabs = document.querySelectorAll('.tab-content');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            const buttons = document.querySelectorAll('.tab-button');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabName).classList.add('active');
+            if (event && event.target) event.target.classList.add('active');
+
+            console.log('📑 Tab:', tabName);
+            window.scrollTo({top: 0, behavior: 'smooth'});
+        }
+
+        // ============================================
+        // CSV PARSERS AND RENDERERS
+        // ============================================
+        function parseCSV(csv) {
+            return csv.split('\n')
+                .map(line => line.trim())
+                .filter(line => line.length > 0)
+                .map(line => line.split(',').map(cell => cell.trim()));
+        }
+
+                function renderNouns() {
+            const data = parseCSV(nounsCSV);
+            const grouped = { das: [], der: [], die: [] };
+
+            data.forEach(row => {
+                const [article, german, pluralNotation, pluralFull, english] = row;
+                grouped[article].push({ article, german, pluralNotation, pluralFull, english });
+            });
+
+            const articles = [
+                { key: 'der', label: 'Maskulinum (der)', color: '#2196F3' },
+                { key: 'das', label: 'Neutrum (das)', color: '#4CAF50' },
+                { key: 'die', label: 'Femininum (die)', color: '#F44336' }
+            ];
+
+            // ============================================
+            // DESKTOP TABLE VIEW
+            // ============================================
+            let tableHtml = '';
+            articles.forEach(({ key, label, color }) => {
+                if (grouped[key].length > 0) {
+                    tableHtml += `<h3 style="color: ${color}; margin-top: 40px;">${label}</h3>`;
+                    tableHtml += `<table class="vocab-table ${key}">
+                        <thead>
+                            <tr>
+                                <th>Article</th>
+                                <th>German</th>
+                                <th>Plural</th>
+                                <th>English</th>
+                                <th>Audio</th>
+                            </tr>
+                        </thead>
+                        <tbody>`;
+
+                    grouped[key].forEach(word => {
+                        const escapedSingular = word.german.replace(/'/g, "\\'");
+                        const escapedPlural = word.pluralFull.replace(/'/g, "\\'");
+
+                        tableHtml += `<tr onclick="speakNounRow('${word.article}', '${escapedSingular}', '${escapedPlural}')">
+                            <td class="article ${word.article}">${word.article}</td>
+                            <td class="german-word">${word.german}</td>
+                            <td class="plural">${word.pluralNotation}</td>
+                            <td class="english-word">${word.english}</td>
+                            <td><button class="audio-btn" onclick="event.stopPropagation(); speakNounWithPlural('${word.article}', '${escapedSingular}', '${escapedPlural}')">🔊</button></td>
+                        </tr>`;
+                    });
+
+                    tableHtml += `</tbody></table>`;
+                }
+            });
+
+            // ============================================
+            // MOBILE CARD VIEW
+            // ============================================
+            let mobileHtml = '<div class="mobile-noun-cards">';
+
+            articles.forEach(({ key, label, color }) => {
+                if (grouped[key].length > 0) {
+                    mobileHtml += `<h3 style="color: ${color}; margin-top: 30px; margin-bottom: 15px;">${label}</h3>`;
+
+                    grouped[key].forEach(word => {
+                        const escapedSingular = word.german.replace(/'/g, "\\'");
+                        const escapedPlural = word.pluralFull.replace(/'/g, "\\'");
+
+                        mobileHtml += `
+                        <div class="mobile-noun-card ${word.article}" onclick="speakNounRow('${word.article}', '${escapedSingular}', '${escapedPlural}')">
+                            <div class="mobile-noun-header">
+                                <div class="mobile-article-word ${word.article}">
+                                    <span>${word.article}</span>
+                                    <span>${word.german}</span>
+                                </div>
+                                <button class="mobile-audio-btn" onclick="event.stopPropagation(); speakNounWithPlural('${word.article}', '${escapedSingular}', '${escapedPlural}')">🔊</button>
+                            </div>
+                            <div class="mobile-noun-details">
+                                <span class="mobile-label">Plural:</span>
+                                <span class="mobile-plural">${word.pluralNotation}</span>
+                                <span class="mobile-label">English:</span>
+                                <span class="mobile-english">${word.english}</span>
+                            </div>
+                        </div>`;
+                    });
+                }
+            });
+
+            mobileHtml += '</div>';
+
+            // Combine both views
+            document.getElementById('nounsContainer').innerHTML = tableHtml + mobileHtml;
+        }
+
+        function renderAdjectives() {
+            const data = parseCSV(adjectivesCSV);
+            let html = '';
+
+            data.forEach(row => {
+                const [word1, english1, word2, english2] = row;
+                html += `<div class="word-pair" onclick="speakAdjective('${word1}', '${word2}')">
+                    <div class="card-audio-btn">🔊</div>
+                    <div class="german">${word1}</div>
+                    <div class="english">${english1}</div>
+                    <div class="opposite-arrow">⟷</div>
+                    <div class="german">${word2}</div>
+                    <div class="english">${english2}</div>
+                </div>`;
+            });
+
+            document.getElementById('adjectivesContainer').innerHTML = html;
+        }
+
+        function renderVerbs() {
+            const data = parseCSV(verbsCSV);
+            let html = '';
+
+            data.forEach(row => {
+                const [type, verb1, english1, verb2, english2] = row;
+                const prefix = type === 'weak' ? '*' : '+';
+                const gradient = type === 'weak' 
+                    ? 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
+                    : 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
+                
+                html += `<div class="word-pair" style="background: ${gradient};" onclick="speakVerb('${verb1}', '${verb2}')">
+                    <div class="card-audio-btn">🔊</div>
+                    <div class="german">${prefix}${verb1}</div>
+                    <div class="english">${english1}</div>
+                    <div class="opposite-arrow">⟷</div>
+                    <div class="german">${prefix}${verb2}</div>
+                    <div class="english">${english2}</div>
+                </div>`;
+            });
+
+            document.getElementById('verbsContainer').innerHTML = html;
+        }
+
+        function renderExpressions() {
+            const data = parseCSV(expressionsCSV);
+            let html = '';
+
+            data.forEach(row => {
+                const [german, english] = row;
+                const escapedGerman = german.replace(/'/g, "\\'");
+                html += `<li class="expression-item" onclick="speak('${escapedGerman}')">
+                    <div class="expression-german">${german} 🔊</div>
+                    <div class="expression-english">${english}</div>
+                </li>`;
+            });
+
+            document.getElementById('expressionsContainer').innerHTML = html;
+        }
+
+        function renderConversations() {
+            const data = parseCSV(conversationsCSV);
+            const conversations = {};
+
+            data.forEach(row => {
+                const [titleSpeaker, german, english] = row;
+                const [title, speaker] = titleSpeaker.split('|');
+                
+                if (!conversations[title]) {
+                    conversations[title] = [];
+                }
+                conversations[title].push({ speaker, german, english });
+            });
+
+            let html = '';
+            Object.keys(conversations).forEach((title, index) => {
+                html += `<h3 style="color: #667eea; margin-top: ${index > 0 ? '40px' : '30px'};">Conversation ${index + 1}: ${title}</h3>`;
+                html += `<div class="conversation">`;
+                
+                conversations[title].forEach(msg => {
+                    const messageClass = msg.speaker === 'A' ? 'message-a' : 'message-b';
+                    const escapedGerman = msg.german.replace(/'/g, "\\'");
+                    html += `<div class="message ${messageClass}" onclick="speak('${escapedGerman}')">
+                        <div class="message-german">${msg.german} 🔊</div>
+                        <div class="message-english">${msg.english}</div>
+                    </div>`;
+                });
+                
+                html += `</div>`;
+            });
+
+            document.getElementById('conversationsContainer').innerHTML = html;
+        }
+
+        function renderQA() {
+            const data = parseCSV(qaCSV);
+            let html = '';
+
+            data.forEach(row => {
+                const [question, answer] = row;
+                const escapedQ = question.replace(/'/g, "\\'");
+                const escapedA = answer.replace(/'/g, "\\'");
+                html += `<div class="qa-card" onclick="speakQA('${escapedQ}', '${escapedA}')">
+                    <div class="question">${question} 🔊</div>
+                    <div class="answer">${answer}</div>
+                </div>`;
+            });
+
+            document.getElementById('qaContainer').innerHTML = html;
+        }
+
+        function renderSentences() {
+            const data = parseCSV(sentencesCSV);
+            let html = '';
+
+            data.forEach(row => {
+                const [german, english] = row;
+                const escapedGerman = german.replace(/'/g, "\\'");
+                html += `<div class="sentence-card" onclick="speak('${escapedGerman}')">
+                    <div class="sentence-german">${german} 🔊</div>
+                    <div class="sentence-english">${english}</div>
+                </div>`;
+            });
+
+            document.getElementById('sentencesContainer').innerHTML = html;
+        }
+
+        // ============================================
+        // KEYBOARD SHORTCUTS
+        // ============================================
+        document.addEventListener('keydown', function(e) {
+            if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+            if (e.key === 's' || e.key === 'S' || e.key === 'Escape') {
+                stopAllSpeech();
+                playAllActive = false;
+                const playBtn = document.querySelector('.play-all-btn');
+                if (playBtn) playBtn.textContent = '▶ Play All in Section';
+                console.log('⏹️ Stopped by keyboard');
+            }
+
+            if (e.key === 'p' || e.key === 'P') {
+                playAllInSection();
+            }
+
+            const tabMap = {
+                '1': 'nouns',
+                '2': 'adjectives',
+                '3': 'verbs',
+                '4': 'expressions',
+                '5': 'conversations',
+                '6': 'qa',
+                '7': 'sentences'
+            };
+
+            if (tabMap[e.key]) {
+                const buttons = document.querySelectorAll('.tab-button');
+                buttons.forEach((btn, idx) => {
+                    if (Object.values(tabMap)[idx] === tabMap[e.key]) {
+                        btn.click();
+                    }
+                });
+            }
+        });
+
+        // ============================================
+        // CLEANUP
+        // ============================================
+        window.addEventListener('beforeunload', function() {
+            stopAllSpeech();
+        });
+
+        document.addEventListener('visibilitychange', function() {
+            if (document.hidden) {
+                stopAllSpeech();
+                playAllActive = false;
+            }
+        });
+
+        // ============================================
+        // INITIALIZE
+        // ============================================
+        window.addEventListener('load', function() {
+            console.log('🇩🇪 German Vocabulary Loaded!');
+            console.log('💡 Shortcuts: S/Esc=Stop | P=Play All | 1-7=Tabs');
+
+            renderNouns();
+            renderAdjectives();
+            renderVerbs();
+            renderExpressions();
+            renderConversations();
+            renderQA();
+            renderSentences();
+
+            loadVoices();
+            setTimeout(loadVoices, 100);
+            setTimeout(loadVoices, 500);
+            setTimeout(loadVoices, 1000);
+
+            if (!('speechSynthesis' in window)) {
+                alert('⚠️ Text-to-speech not supported.\n\nPlease use Chrome, Firefox, Edge, or Safari.');
+            }
+        });
+    </script>
+</body>
+</html>
