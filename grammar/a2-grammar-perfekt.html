@@ -1,0 +1,1589 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A2 Grammar - Perfekt Tense | DeutschMind</title>
+    <link rel="stylesheet" href="grammar-base.css">
+    <style>
+        /* ============================================ */
+        /* PERFEKT TENSE - SPECIFIC STYLES             */
+        /* ============================================ */
+        
+        .haben-color { color: #4CAF50; }
+        .sein-color { color: #2196F3; }
+        .participle-color { color: #9C27B0; }
+        
+        .haben-bg { background: #E8F5E9; border: 3px solid #4CAF50; }
+        .sein-bg { background: #E3F2FD; border: 3px solid #2196F3; }
+
+        /* ============================================ */
+        /* FORMULA DISPLAY                             */
+        /* ============================================ */
+        .formula-box {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .formula {
+            font-size: 2.5em;
+            font-weight: 700;
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .formula-part {
+            padding: 15px 30px;
+            border-radius: 15px;
+            background: rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        .formula-plus {
+            font-size: 1.5em;
+            opacity: 0.8;
+        }
+
+        /* ============================================ */
+        /* AUXILIARY VERB CARDS                        */
+        /* ============================================ */
+        .auxiliary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .auxiliary-card {
+            border-radius: 20px;
+            padding: 30px;
+            color: white;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+        }
+
+        .auxiliary-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+        }
+
+        .auxiliary-card.haben {
+            background: linear-gradient(135deg, #66BB6A, #4CAF50);
+        }
+
+        .auxiliary-card.sein {
+            background: linear-gradient(135deg, #42A5F5, #2196F3);
+        }
+
+        .auxiliary-card h3 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .conjugation-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .conjugation-item {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .conjugation-item:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateX(5px);
+        }
+
+        .pronoun-label {
+            font-weight: 600;
+            margin-right: 15px;
+        }
+
+        /* ============================================ */
+        /* PARTICIPLE FORMATION                        */
+        /* ============================================ */
+        .participle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .participle-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .participle-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .participle-type {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #9C27B0;
+            margin-bottom: 15px;
+        }
+
+        .participle-pattern {
+            font-size: 1.8em;
+            color: #667eea;
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .participle-examples {
+            margin-top: 20px;
+        }
+
+        .example-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .infinitive {
+            color: #1565C0;
+            font-weight: 600;
+        }
+
+        .past-participle {
+            color: #9C27B0;
+            font-weight: 700;
+        }
+
+        /* ============================================ */
+        /* VERB CATEGORY CARDS                         */
+        /* ============================================ */
+        .verb-category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .category-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+        }
+
+        .category-card.haben-verbs::before {
+            background: linear-gradient(90deg, #66BB6A, #4CAF50);
+        }
+
+        .category-card.sein-verbs::before {
+            background: linear-gradient(90deg, #42A5F5, #2196F3);
+        }
+
+        .category-title {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .verb-list {
+            list-style: none;
+        }
+
+        .verb-list li {
+            padding: 12px 15px;
+            margin: 8px 0;
+            background: #f8f9fa;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .verb-list li:hover {
+            background: #e9ecef;
+            transform: translateX(5px);
+        }
+
+        .verb-infinitive {
+            font-weight: 600;
+            color: #667eea;
+        }
+
+        .verb-meaning {
+            color: #666;
+            font-style: italic;
+            margin-left: 10px;
+        }
+
+        /* ============================================ */
+        /* SENTENCE BUILDER                            */
+        /* ============================================ */
+        .sentence-builder {
+            background: #f8f9fa;
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+
+        .builder-example {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .sentence-parts {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+            font-size: 1.5em;
+        }
+
+        .part-subject {
+            padding: 15px 25px;
+            background: #E3F2FD;
+            border: 3px solid #2196F3;
+            border-radius: 15px;
+            font-weight: 700;
+        }
+
+        .part-auxiliary {
+            padding: 15px 25px;
+            background: #E8F5E9;
+            border: 3px solid #4CAF50;
+            border-radius: 15px;
+            font-weight: 700;
+        }
+
+        .part-participle {
+            padding: 15px 25px;
+            background: #F3E5F5;
+            border: 3px solid #9C27B0;
+            border-radius: 15px;
+            font-weight: 700;
+        }
+
+        .translation {
+            text-align: center;
+            color: #666;
+            font-style: italic;
+            margin-top: 15px;
+            font-size: 1.1em;
+        }
+
+        /* ============================================ */
+        /* PRACTICE EXERCISES                          */
+        /* ============================================ */
+        .practice-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 25px 0;
+        }
+
+        .practice-item {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .practice-prompt {
+            font-size: 1.2em;
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .practice-infinitive {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #667eea;
+            margin: 10px 0;
+        }
+
+        .practice-input {
+            width: 100%;
+            padding: 12px;
+            font-size: 1.1em;
+            border: 2px solid #ddd;
+            border-radius: 10px;
+            margin: 10px 0;
+        }
+
+        .practice-input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        .practice-feedback {
+            margin-top: 10px;
+            padding: 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            display: none;
+        }
+
+        .practice-feedback.correct {
+            display: block;
+            background: #E8F5E9;
+            color: #4CAF50;
+        }
+
+        .practice-feedback.incorrect {
+            display: block;
+            background: #FFEBEE;
+            color: #F44336;
+        }
+
+        /* ============================================ */
+        /* QUIZ SECTION                                */
+        /* ============================================ */
+        .quiz-container {
+            margin: 30px 0;
+        }
+
+        .quiz-progress {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 25px;
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        .quiz-progress-bar {
+            width: 100%;
+            height: 20px;
+            background: #e0e0e0;
+            border-radius: 10px;
+            overflow: hidden;
+            margin: 15px 0;
+        }
+
+        .quiz-progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #66BB6A);
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .quiz-score {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #333;
+        }
+
+        .quiz-question {
+            background: white;
+            border-radius: 20px;
+            padding: 35px;
+            margin: 25px 0;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .quiz-question-number {
+            color: #667eea;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .quiz-question-text {
+            font-size: 1.6em;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .quiz-question-german {
+            font-size: 1.8em;
+            color: #333;
+            margin: 25px 0;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .quiz-option {
+            background: white;
+            border: 3px solid #ddd;
+            border-radius: 15px;
+            padding: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .quiz-option:hover {
+            border-color: #667eea;
+            background: #f0f0ff;
+            transform: scale(1.02);
+        }
+
+        .quiz-option.selected {
+            border-color: #667eea;
+            background: #667eea;
+            color: white;
+        }
+
+        .quiz-option.correct {
+            border-color: #4CAF50;
+            background: #4CAF50;
+            color: white;
+        }
+
+        .quiz-option.incorrect {
+            border-color: #F44336;
+            background: #F44336;
+            color: white;
+        }
+
+        .quiz-option.disabled {
+            pointer-events: none;
+            opacity: 0.7;
+        }
+
+        .quiz-feedback {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            font-weight: 600;
+            font-size: 1.2em;
+            display: none;
+        }
+
+        .quiz-feedback.correct {
+            display: block;
+            background: #E8F5E9;
+            color: #2E7D32;
+        }
+
+        .quiz-feedback.incorrect {
+            display: block;
+            background: #FFEBEE;
+            color: #C62828;
+        }
+
+        .quiz-next-btn {
+            display: none;
+            margin-top: 25px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 1.2em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .quiz-next-btn.show {
+            display: inline-block;
+        }
+
+        .quiz-next-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .quiz-results {
+            display: none;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .quiz-results.show {
+            display: block;
+        }
+
+        .quiz-results h3 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 25px;
+        }
+
+        .quiz-results .final-score {
+            font-size: 5em;
+            font-weight: 700;
+            color: #4CAF50;
+            margin: 30px 0;
+        }
+
+        .quiz-results .score-message {
+            font-size: 1.5em;
+            color: #666;
+            margin-bottom: 35px;
+        }
+
+        /* ============================================ */
+        /* MOBILE RESPONSIVE                           */
+        /* ============================================ */
+        @media (max-width: 768px) {
+            .formula {
+                font-size: 1.8em;
+                flex-direction: column;
+            }
+
+            .auxiliary-grid,
+            .verb-category-grid,
+            .participle-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .sentence-parts {
+                flex-direction: column;
+                font-size: 1.2em;
+            }
+
+            .quiz-options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- NAVIGATION -->
+<div class="top-navigation">
+    <a href="../index.html">🏠 Home</a>
+    <a href="../index.html#levels">📚 Levels</a>
+    <a href="../index.html#categories">🎯 Categories</a>
+    <a href="../tools/progress.html">📊 Progress</a>
+    <a href="../about.html">ℹ️ About</a>
+</div>
+
+<header>
+    <h1>🇩🇪 Perfekt Tense - Das Perfekt</h1>
+    <p>A2 Grammar | Talking About the Past</p>
+    <p class="subtitle">Created by: aliattia02 | DeutschMind</p>
+</header>
+
+<div class="container">
+    <!-- AUDIO CONTROLS -->
+    <div class="audio-controls">
+        <h3>🔊 Audio Settings</h3>
+        <div class="control-group">
+            <label for="voiceSelect">Voice:</label>
+            <select id="voiceSelect">
+                <option value="">Loading voices...</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label for="speedControl">Speed:</label>
+            <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+            <span id="speedValue">0.8x</span>
+        </div>
+        <div class="control-group">
+            <label for="pitchControl">Pitch:</label>
+            <input type="range" id="pitchControl" min="0.5" max="2" step="0.1" value="1">
+            <span id="pitchValue">1.0</span>
+        </div>
+        <button class="play-all-btn" onclick="playAllExamples()">▶ Play All Examples</button>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab-button active" onclick="showTab('intro')">📖 What is Perfekt?</button>
+        <button class="tab-button" onclick="showTab('auxiliary')">🔧 haben vs sein</button>
+        <button class="tab-button" onclick="showTab('participles')">📝 Past Participles</button>
+        <button class="tab-button" onclick="showTab('examples')">💡 Examples</button>
+        <button class="tab-button" onclick="showTab('practice')">✏️ Practice</button>
+        <button class="tab-button" onclick="showTab('quiz')">🎯 Mini Quiz</button>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TAB 1: WHAT IS PERFEKT                      -->
+    <!-- ============================================ -->
+    <div id="intro" class="tab-content active">
+        <div class="card">
+            <h2><span class="section-icon">📖</span>What is the Perfekt Tense?</h2>
+            
+            <div class="explanation-box">
+                <p>The <strong>Perfekt</strong> is the most common past tense in German, especially in <strong>spoken language</strong>. It's similar to the present perfect in English ("I have done").</p>
+                <p>Use Perfekt to talk about completed actions in the past that have relevance to the present.</p>
+            </div>
+
+            <div class="formula-box">
+                <h3 style="font-size: 1.8em; margin-bottom: 20px;">The Perfekt Formula</h3>
+                <div class="formula">
+                    <div class="formula-part haben-color">haben/sein</div>
+                    <span class="formula-plus">+</span>
+                    <div class="formula-part participle-color">Past Participle</div>
+                </div>
+                <p style="margin-top: 20px; font-size: 1.2em; opacity: 0.95;">
+                    (conjugated auxiliary verb) + (past participle at the end)
+                </p>
+            </div>
+
+            <h3>📊 Examples</h3>
+            <div class="sentence-builder">
+                <div class="builder-example" onclick="speak('Ich habe gegessen')">
+                    <div class="sentence-parts">
+                        <span class="part-subject">Ich</span>
+                        <span class="part-auxiliary haben-color">habe</span>
+                        <span class="part-participle">gegessen</span>
+                    </div>
+                    <div class="translation">I have eaten / I ate</div>
+                </div>
+
+                <div class="builder-example" onclick="speak('Sie ist gekommen')">
+                    <div class="sentence-parts">
+                        <span class="part-subject">Sie</span>
+                        <span class="part-auxiliary sein-color">ist</span>
+                        <span class="part-participle">gekommen</span>
+                    </div>
+                    <div class="translation">She has come / She came</div>
+                </div>
+
+                <div class="builder-example" onclick="speak('Wir haben gelesen')">
+                    <div class="sentence-parts">
+                        <span class="part-subject">Wir</span>
+                        <span class="part-auxiliary haben-color">haben</span>
+                        <span class="part-participle">gelesen</span>
+                    </div>
+                    <div class="translation">We have read / We read</div>
+                </div>
+            </div>
+
+            <div class="key-point">
+                <strong>💡 Key Point:</strong> In German, the auxiliary verb is conjugated and placed in the second position, while the past participle goes to the <strong>end</strong> of the sentence!
+            </div>
+
+            <div class="mnemonic-box">
+                <h4>🧠 Memory Trick</h4>
+                <p>"<strong>H</strong>aben for most verbs, <strong>S</strong>ein for <strong>S</strong>pecial movement!"</p>
+                <div class="hint">Most verbs use haben, but verbs of movement/change use sein</div>
+            </div>
+
+            <h3>🎯 When to Use HABEN</h3>
+            <div class="category-card haben-verbs">
+                <h4 class="category-title haben-color">✅ Most Other Verbs</h4>
+                <p style="margin-bottom: 15px; color: #666;">ALL other verbs that don't fit the sein categories</p>
+                <ul class="verb-list">
+                    <li onclick="speak('machen machte gemacht')">
+                        <span class="verb-infinitive">machen</span>
+                        <span class="verb-meaning">→ to do/make</span>
+                    </li>
+                    <li onclick="speak('essen aß gegessen')">
+                        <span class="verb-infinitive">essen</span>
+                        <span class="verb-meaning">→ to eat</span>
+                    </li>
+                    <li onclick="speak('trinken trank getrunken')">
+                        <span class="verb-infinitive">trinken</span>
+                        <span class="verb-meaning">→ to drink</span>
+                    </li>
+                    <li onclick="speak('sehen sah gesehen')">
+                        <span class="verb-infinitive">sehen</span>
+                        <span class="verb-meaning">→ to see</span>
+                    </li>
+                    <li onclick="speak('kaufen kaufte gekauft')">
+                        <span class="verb-infinitive">kaufen</span>
+                        <span class="verb-meaning">→ to buy</span>
+                    </li>
+                    <li onclick="speak('lernen lernte gelernt')">
+                        <span class="verb-infinitive">lernen</span>
+                        <span class="verb-meaning">→ to learn</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TAB 3: PAST PARTICIPLES                     -->
+    <!-- ============================================ -->
+    <div id="participles" class="tab-content">
+        <div class="card">
+            <h2><span class="section-icon">📝</span>Forming Past Participles</h2>
+            
+            <div class="explanation-box">
+                <p>The <strong class="participle-color">past participle</strong> (Partizip II) is formed differently depending on whether the verb is regular or irregular.</p>
+            </div>
+
+            <div class="participle-grid">
+                <!-- Regular Verbs -->
+                <div class="participle-card">
+                    <div class="participle-type">✅ Regular Verbs (Weak)</div>
+                    <div class="participle-pattern">
+                        ge- + <span class="stem-color">stem</span> + <span class="ending-color">-t</span>
+                    </div>
+                    <div class="participle-examples">
+                        <div class="example-row">
+                            <span class="infinitive">machen</span>
+                            <span>→</span>
+                            <span class="past-participle">gemacht</span>
+                        </div>
+                        <div class="example-row">
+                            <span class="infinitive">lernen</span>
+                            <span>→</span>
+                            <span class="past-participle">gelernt</span>
+                        </div>
+                        <div class="example-row">
+                            <span class="infinitive">spielen</span>
+                            <span>→</span>
+                            <span class="past-participle">gespielt</span>
+                        </div>
+                        <div class="example-row">
+                            <span class="infinitive">kaufen</span>
+                            <span>→</span>
+                            <span class="past-participle">gekauft</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Irregular Verbs -->
+                <div class="participle-card">
+                    <div class="participle-type">⚡ Irregular Verbs (Strong)</div>
+                    <div class="participle-pattern">
+                        ge- + <span class="stem-color">changed stem</span> + <span class="ending-color">-en</span>
+                    </div>
+                    <div class="participle-examples">
+                        <div class="example-row">
+                            <span class="infinitive">essen</span>
+                            <span>→</span>
+                            <span class="past-participle">gegessen</span>
+                        </div>
+                        <div class="example-row">
+                            <span class="infinitive">trinken</span>
+                            <span>→</span>
+                            <span class="past-participle">getrunken</span>
+                        </div>
+                        <div class="example-row">
+                            <span class="infinitive">schreiben</span>
+                            <span>→</span>
+                            <span class="past-participle">geschrieben</span>
+                        </div>
+                        <div class="example-row">
+                            <span class="infinitive">gehen</span>
+                            <span>→</span>
+                            <span class="past-participle">gegangen</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Separable Verbs -->
+                <div class="participle-card">
+                    <div class="participle-type">✂️ Separable Verbs</div>
+                    <div class="participle-pattern">
+                        <span class="prefix-color">prefix</span> + ge- + <span class="stem-color">stem</span> + ending
+                    </div>
+                    <div class="participle-examples">
+                        <div class="example-row">
+                            <span class="infinitive">aufmachen</span>
+                            <span>→</span>
+                            <span class="past-participle">aufgemacht</span>
+                        </div>
+                        <div class="example-row">
+                            <span class="infinitive">einkaufen</span>
+                            <span>→</span>
+                            <span class="past-participle">eingekauft</span>
+                        </div>
+                        <div class="example-row">
+                            <span class="infinitive">anfangen</span>
+                            <span>→</span>
+                            <span class="past-participle">angefangen</span>
+                        </div>
+                        <div class="example-row">
+                            <span class="infinitive">mitkommen</span>
+                            <span>→</span>
+                            <span class="past-participle">mitgekommen</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Verbs without ge- -->
+                <div class="participle-card">
+                    <div class="participle-type">🚫 No ge- prefix</div>
+                    <div class="participle-pattern">
+                        <span class="stem-color">stem</span> + ending (no ge-)
+                    </div>
+                    <p style="margin: 15px 0; color: #666; font-size: 0.95em;">
+                        Verbs ending in -ieren and inseparable prefix verbs
+                    </p>
+                    <div class="participle-examples">
+                        <div class="example-row">
+                            <span class="infinitive">studieren</span>
+                            <span>→</span>
+                            <span class="past-participle">studiert</span>
+                        </div>
+                        <div class="example-row">
+                            <span class="infinitive">telefonieren</span>
+                            <span>→</span>
+                            <span class="past-participle">telefoniert</span>
+                        </div>
+                        <div class="example-row">
+                            <span class="infinitive">besuchen</span>
+                            <span>→</span>
+                            <span class="past-participle">besucht</span>
+                        </div>
+                        <div class="example-row">
+                            <span class="infinitive">verstehen</span>
+                            <span>→</span>
+                            <span class="past-participle">verstanden</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="key-point">
+                <strong>⚠️ Watch out!</strong> Inseparable prefixes (be-, er-, ver-, ent-, emp-, ge-, miss-, zer-) do NOT take "ge-" in the past participle!
+            </div>
+
+            <div class="mnemonic-box">
+                <h4>🧠 Memory Trick</h4>
+                <p>"<strong>Regular</strong> = ge + stem + <strong>T</strong> (like a <strong>T</strong>able)"</p>
+                <p>"<strong>Irregular</strong> = ge + changed stem + <strong>EN</strong> (like <strong>EN</strong>ergy!)"</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TAB 4: EXAMPLES                             -->
+    <!-- ============================================ -->
+    <div id="examples" class="tab-content">
+        <div class="card">
+            <h2><span class="section-icon">💡</span>Complete Sentence Examples</h2>
+            
+            <div class="explanation-box">
+                <p>Here are complete sentences showing how Perfekt is used in context. Click any sentence to hear it!</p>
+            </div>
+
+            <h3>🟢 With HABEN</h3>
+            <div class="example-grid">
+                <div class="example-card" onclick="speak('Ich habe gestern Pizza gegessen')">
+                    <div class="example-german">Ich habe gestern Pizza gegessen.</div>
+                    <div class="example-english">I ate pizza yesterday.</div>
+                    <div class="audio-icon">🔊</div>
+                </div>
+
+                <div class="example-card" onclick="speak('Wir haben einen Film gesehen')">
+                    <div class="example-german">Wir haben einen Film gesehen.</div>
+                    <div class="example-english">We watched a movie.</div>
+                    <div class="audio-icon">🔊</div>
+                </div>
+
+                <div class="example-card" onclick="speak('Er hat das Buch gelesen')">
+                    <div class="example-german">Er hat das Buch gelesen.</div>
+                    <div class="example-english">He read the book.</div>
+                    <div class="audio-icon">🔊</div>
+                </div>
+
+                <div class="example-card" onclick="speak('Sie hat Deutsch gelernt')">
+                    <div class="example-german">Sie hat Deutsch gelernt.</div>
+                    <div class="example-english">She learned German.</div>
+                    <div class="audio-icon">🔊</div>
+                </div>
+
+                <div class="example-card" onclick="speak('Habt ihr das verstanden')">
+                    <div class="example-german">Habt ihr das verstanden?</div>
+                    <div class="example-english">Did you understand that?</div>
+                    <div class="audio-icon">🔊</div>
+                </div>
+
+                <div class="example-card" onclick="speak('Ich habe meine Hausaufgaben gemacht')">
+                    <div class="example-german">Ich habe meine Hausaufgaben gemacht.</div>
+                    <div class="example-english">I did my homework.</div>
+                    <div class="audio-icon">🔊</div>
+                </div>
+            </div>
+
+            <h3>🔵 With SEIN</h3>
+            <div class="example-grid">
+                <div class="example-card" onclick="speak('Ich bin nach Berlin gefahren')">
+                    <div class="example-german">Ich bin nach Berlin gefahren.</div>
+                    <div class="example-english">I went to Berlin.</div>
+                    <div class="audio-icon">🔊</div>
+                </div>
+
+                <div class="example-card" onclick="speak('Sie ist gestern gekommen')">
+                    <div class="example-german">Sie ist gestern gekommen.</div>
+                    <div class="example-english">She came yesterday.</div>
+                    <div class="audio-icon">🔊</div>
+                </div>
+
+                <div class="example-card" onclick="speak('Wir sind ins Kino gegangen')">
+                    <div class="example-german">Wir sind ins Kino gegangen.</div>
+                    <div class="example-english">We went to the cinema.</div>
+                    <div class="audio-icon">🔊</div>
+                </div>
+
+                <div class="example-card" onclick="speak('Er ist Lehrer geworden')">
+                    <div class="example-german">Er ist Lehrer geworden.</div>
+                    <div class="example-english">He became a teacher.</div>
+                    <div class="audio-icon">🔊</div>
+                </div>
+
+                <div class="example-card" onclick="speak('Seid ihr spät aufgewacht')">
+                    <div class="example-german">Seid ihr spät aufgewacht?</div>
+                    <div class="example-english">Did you wake up late?</div>
+                    <div class="audio-icon">🔊</div>
+                </div>
+
+                <div class="example-card" onclick="speak('Das Auto ist schnell gefahren')">
+                    <div class="example-german">Das Auto ist schnell gefahren.</div>
+                    <div class="example-english">The car drove fast.</div>
+                    <div class="audio-icon">🔊</div>
+                </div>
+            </div>
+
+            <h3>📍 Word Order in Questions</h3>
+            <div class="sentence-builder">
+                <div class="builder-example" onclick="speak('Hast du das Buch gelesen')">
+                    <div class="sentence-parts">
+                        <span class="part-auxiliary haben-color">Hast</span>
+                        <span class="part-subject">du</span>
+                        <span>das Buch</span>
+                        <span class="part-participle">gelesen</span>
+                        <span>?</span>
+                    </div>
+                    <div class="translation">Have you read the book?</div>
+                </div>
+
+                <div class="builder-example" onclick="speak('Bist du nach Hause gegangen')">
+                    <div class="sentence-parts">
+                        <span class="part-auxiliary sein-color">Bist</span>
+                        <span class="part-subject">du</span>
+                        <span>nach Hause</span>
+                        <span class="part-participle">gegangen</span>
+                        <span>?</span>
+                    </div>
+                    <div class="translation">Did you go home?</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TAB 5: PRACTICE                             -->
+    <!-- ============================================ -->
+    <div id="practice" class="tab-content">
+        <div class="card">
+            <h2><span class="section-icon">✏️</span>Practice Exercises</h2>
+            
+            <div class="explanation-box">
+                <p>Complete these sentences by forming the correct Perfekt tense. Type your answer and press Enter or click Check!</p>
+            </div>
+
+            <div id="practiceContainer"></div>
+
+            <div style="text-align: center; margin-top: 30px;">
+                <button class="play-all-btn" onclick="checkAllAnswers()">✅ Check All Answers</button>
+                <button class="play-all-btn" onclick="resetPractice()" style="background: linear-gradient(135deg, #FF9800, #F57C00);">🔄 Reset</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TAB 6: MINI QUIZ                            -->
+    <!-- ============================================ -->
+    <div id="quiz" class="tab-content">
+        <div class="card">
+            <h2><span class="section-icon">🎯</span>Mini Quiz - Test Your Knowledge</h2>
+            
+            <div class="quiz-container" id="quizContainer">
+                <!-- Quiz Progress -->
+                <div class="quiz-progress">
+                    <div class="quiz-score">Score: <span id="quizScore">0</span> / <span id="quizTotal">10</span></div>
+                    <div class="quiz-progress-bar">
+                        <div class="quiz-progress-fill" id="quizProgressFill" style="width: 0%"></div>
+                    </div>
+                </div>
+
+                <!-- Quiz Question -->
+                <div id="quizQuestionArea"></div>
+
+                <!-- Quiz Results -->
+                <div class="quiz-results" id="quizResults">
+                    <h3>🎉 Quiz Complete!</h3>
+                    <div class="final-score" id="finalScore">0/10</div>
+                    <div class="score-message" id="scoreMessage">Great job!</div>
+                    <button class="play-all-btn" onclick="restartQuiz()">🔄 Try Again</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AUDIO STATUS -->
+<div class="audio-status" id="audioStatus">
+    <div class="spinner"></div>
+    <span id="audioStatusText">Speaking...</span>
+</div>
+
+<footer>
+    <p><strong>A2 Grammar - Perfekt Tense | DeutschMind</strong></p>
+    <p>Created for German Learners | © 2025 aliattia02</p>
+    <p>🎯 Click anywhere to hear pronunciation | 💪 Practice makes perfect!</p>
+    
+    <h3>📚 More Grammar Topics:</h3>
+    <div class="grammar-links">
+        <a href="present-tense.html" class="grammar-link">Present Tense</a>
+        <a href="nominative-case.html" class="grammar-link">Nominative Case</a>
+        <a href="grammar-articles.html" class="grammar-link">Articles</a>
+    </div>
+    
+    <a href="../index.html" class="back-link">← Back to Home</a>
+</footer>
+
+<!-- Load base JavaScript first, then specific JavaScript -->
+<script src="grammar-base.js"></script>
+<script>
+/* ============================================ */
+/* PERFEKT TENSE - SPECIFIC JAVASCRIPT         */
+/* ============================================ */
+
+// ============================================
+// PLAY ALL EXAMPLES
+// ============================================
+function playAllExamples() {
+    const examples = [
+        'Ich habe gegessen',
+        'Sie ist gekommen',
+        'Wir haben gelesen',
+        'Er ist nach Berlin gefahren',
+        'Ich habe das Buch gekauft'
+    ];
+    
+    if (window.GrammarBase && window.GrammarBase.speakSequentially) {
+        window.GrammarBase.speakSequentially(examples, 1500);
+    }
+}
+
+// ============================================
+// PRACTICE EXERCISES
+// ============================================
+const practiceExercises = [
+    {
+        prompt: 'Complete with haben or sein:',
+        sentence: 'Ich ___ Pizza gegessen.',
+        answer: 'habe',
+        translation: 'I ate pizza.'
+    },
+    {
+        prompt: 'Complete with haben or sein:',
+        sentence: 'Sie ___ nach Berlin gefahren.',
+        answer: 'ist',
+        translation: 'She went to Berlin.'
+    },
+    {
+        prompt: 'Complete with haben or sein:',
+        sentence: 'Wir ___ einen Film gesehen.',
+        answer: 'haben',
+        translation: 'We watched a movie.'
+    },
+    {
+        prompt: 'Complete with haben or sein:',
+        sentence: 'Er ___ schnell gelaufen.',
+        answer: 'ist',
+        translation: 'He ran fast.'
+    },
+    {
+        prompt: 'Complete with haben or sein:',
+        sentence: 'Ihr ___ Deutsch gelernt.',
+        answer: 'habt',
+        translation: 'You learned German.'
+    },
+    {
+        prompt: 'Complete with haben or sein:',
+        sentence: 'Du ___ ins Kino gegangen.',
+        answer: 'bist',
+        translation: 'You went to the cinema.'
+    },
+    {
+        prompt: 'Form the past participle:',
+        sentence: 'machen → ge___',
+        answer: 'macht',
+        translation: 'to do/make → done/made'
+    },
+    {
+        prompt: 'Form the past participle:',
+        sentence: 'essen → ge___',
+        answer: 'gessen',
+        translation: 'to eat → eaten'
+    }
+];
+
+function renderPractice() {
+    const container = document.getElementById('practiceContainer');
+    if (!container) return;
+    
+    container.innerHTML = '';
+    
+    practiceExercises.forEach((ex, i) => {
+        const div = document.createElement('div');
+        div.className = 'practice-item';
+        div.innerHTML = `
+            <div class="practice-prompt">${ex.prompt}</div>
+            <div class="practice-infinitive">${ex.sentence}</div>
+            <input type="text" 
+                   class="practice-input" 
+                   id="practice-${i}" 
+                   placeholder="Type your answer..."
+                   onkeypress="if(event.key==='Enter') checkAnswer(${i})">
+            <button class="check-btn" onclick="checkAnswer(${i})">Check Answer</button>
+            <div class="practice-feedback" id="feedback-${i}"></div>
+            <div style="color: #666; margin-top: 10px; font-style: italic;">${ex.translation}</div>
+        `;
+        container.appendChild(div);
+    });
+}
+
+function checkAnswer(index) {
+    const input = document.getElementById('practice-' + index);
+    const feedback = document.getElementById('feedback-' + index);
+    const answer = input.value.trim().toLowerCase();
+    const correct = practiceExercises[index].answer.toLowerCase();
+    
+    if (answer === correct) {
+        feedback.textContent = '✅ Correct! ' + practiceExercises[index].sentence.replace('___', correct);
+        feedback.className = 'practice-feedback correct';
+        input.style.borderColor = '#4CAF50';
+        input.style.background = '#E8F5E9';
+        if (window.GrammarBase && window.GrammarBase.speak) {
+            window.GrammarBase.speak('Richtig');
+        }
+    } else {
+        feedback.textContent = '❌ Incorrect. The correct answer is: ' + correct;
+        feedback.className = 'practice-feedback incorrect';
+        input.style.borderColor = '#F44336';
+        input.style.background = '#FFEBEE';
+    }
+}
+
+function checkAllAnswers() {
+    for (let i = 0; i < practiceExercises.length; i++) {
+        checkAnswer(i);
+    }
+}
+
+function resetPractice() {
+    practiceExercises.forEach((ex, i) => {
+        const input = document.getElementById('practice-' + i);
+        const feedback = document.getElementById('feedback-' + i);
+        if (input) {
+            input.value = '';
+            input.style.borderColor = '#ddd';
+            input.style.background = 'white';
+        }
+        if (feedback) {
+            feedback.textContent = '';
+            feedback.className = 'practice-feedback';
+        }
+    });
+}
+
+// ============================================
+// QUIZ SECTION
+// ============================================
+const quizQuestions = [
+    {
+        question: 'Which auxiliary verb does "essen" use?',
+        sentence: 'Ich ___ Pizza gegessen.',
+        options: ['habe', 'bin', 'hatte', 'war'],
+        correct: 0
+    },
+    {
+        question: 'Which auxiliary verb does "gehen" use?',
+        sentence: 'Wir ___ ins Kino gegangen.',
+        options: ['haben', 'sein', 'sind', 'waren'],
+        correct: 2
+    },
+    {
+        question: 'What is the past participle of "machen"?',
+        sentence: 'Ich habe es ___.',
+        options: ['gemachen', 'gemacht', 'macht', 'machen'],
+        correct: 1
+    },
+    {
+        question: 'Complete: Sie ___ einen Film gesehen.',
+        sentence: 'Sie ___ einen Film gesehen.',
+        options: ['ist', 'hat', 'haben', 'sind'],
+        correct: 1
+    },
+    {
+        question: 'What is the past participle of "kommen"?',
+        sentence: 'Er ist spät ___.',
+        options: ['gekommen', 'gekommt', 'kommen', 'kommt'],
+        correct: 0
+    },
+    {
+        question: 'Which is correct?',
+        sentence: 'Choose the correct Perfekt sentence:',
+        options: [
+            'Ich habe gegangen',
+            'Ich bin gegangen',
+            'Ich haben gegangen',
+            'Ich sein gegangen'
+        ],
+        correct: 1
+    },
+    {
+        question: 'Complete: Du ___ Deutsch gelernt.',
+        sentence: 'Du ___ Deutsch gelernt.',
+        options: ['bist', 'hast', 'haben', 'sein'],
+        correct: 1
+    },
+    {
+        question: 'What is the past participle of "trinken"?',
+        sentence: 'Sie hat Wasser ___.',
+        options: ['getrinkt', 'getrunken', 'trinken', 'trinkt'],
+        correct: 1
+    },
+    {
+        question: 'Which auxiliary verb does "fahren" (to drive) use?',
+        sentence: 'Er ___ nach Berlin gefahren.',
+        options: ['hat', 'ist', 'haben', 'sein'],
+        correct: 1
+    },
+    {
+        question: 'Complete: Ihr ___ das Buch gelesen.',
+        sentence: 'Ihr ___ das Buch gelesen.',
+        options: ['seid', 'habt', 'haben', 'sind'],
+        correct: 1
+    }
+];
+
+let currentQuestion = 0;
+let quizScore = 0;
+let answered = false;
+
+function renderQuiz() {
+    const questionArea = document.getElementById('quizQuestionArea');
+    const results = document.getElementById('quizResults');
+    
+    if (!questionArea || !results) return;
+    
+    results.classList.remove('show');
+    
+    if (currentQuestion >= quizQuestions.length) {
+        showQuizResults();
+        return;
+    }
+
+    const q = quizQuestions[currentQuestion];
+    
+    let html = '<div class="quiz-question">';
+    html += '<div class="quiz-question-number">Question ' + (currentQuestion + 1) + ' of ' + quizQuestions.length + '</div>';
+    html += '<div class="quiz-question-text">' + q.question + '</div>';
+    html += '<div class="quiz-question-german">' + q.sentence + '</div>';
+    html += '<div class="quiz-options">';
+    
+    for (let i = 0; i < q.options.length; i++) {
+        html += '<div class="quiz-option" id="option-' + i + '" onclick="selectAnswer(' + i + ')">' + q.options[i] + '</div>';
+    }
+    
+    html += '</div>';
+    html += '<div class="quiz-feedback" id="quizFeedback"></div>';
+    html += '<button class="quiz-next-btn" id="nextBtn" onclick="nextQuestion()">Next Question →</button>';
+    html += '</div>';
+
+    questionArea.innerHTML = html;
+    answered = false;
+    updateQuizProgress();
+}
+
+function selectAnswer(index) {
+    if (answered) return;
+    answered = true;
+
+    const q = quizQuestions[currentQuestion];
+    const options = document.querySelectorAll('.quiz-option');
+    const feedback = document.getElementById('quizFeedback');
+    const nextBtn = document.getElementById('nextBtn');
+
+    options.forEach((option, i) => {
+        option.classList.add('disabled');
+        if (i === q.correct) {
+            option.classList.add('correct');
+        } else if (i === index && index !== q.correct) {
+            option.classList.add('incorrect');
+        }
+    });
+
+    if (index === q.correct) {
+        quizScore++;
+        feedback.textContent = '✅ Correct! Well done!';
+        feedback.className = 'quiz-feedback correct';
+        if (window.GrammarBase && window.GrammarBase.speak) {
+            window.GrammarBase.speak('Richtig');
+        }
+    } else {
+        feedback.textContent = '❌ Incorrect. The correct answer is: ' + q.options[q.correct];
+        feedback.className = 'quiz-feedback incorrect';
+    }
+
+    nextBtn.classList.add('show');
+    updateQuizProgress();
+}
+
+function nextQuestion() {
+    currentQuestion++;
+    renderQuiz();
+}
+
+function updateQuizProgress() {
+    const scoreEl = document.getElementById('quizScore');
+    const totalEl = document.getElementById('quizTotal');
+    const fillEl = document.getElementById('quizProgressFill');
+    
+    if (scoreEl) scoreEl.textContent = quizScore;
+    if (totalEl) totalEl.textContent = quizQuestions.length;
+    
+    if (fillEl) {
+        const progress = (currentQuestion / quizQuestions.length) * 100;
+        fillEl.style.width = progress + '%';
+    }
+}
+
+function showQuizResults() {
+    const questionArea = document.getElementById('quizQuestionArea');
+    const results = document.getElementById('quizResults');
+    
+    if (questionArea) questionArea.innerHTML = '';
+    if (results) results.classList.add('show');
+    
+    const finalScoreEl = document.getElementById('finalScore');
+    const messageEl = document.getElementById('scoreMessage');
+    const fillEl = document.getElementById('quizProgressFill');
+    
+    if (finalScoreEl) {
+        finalScoreEl.textContent = quizScore + '/' + quizQuestions.length;
+    }
+    
+    const percentage = (quizScore / quizQuestions.length) * 100;
+    let message = '';
+    
+    if (percentage === 100) {
+        message = '🏆 Perfect! You are a Perfekt master!';
+    } else if (percentage >= 80) {
+        message = '🌟 Excellent! You really understand the Perfekt tense!';
+    } else if (percentage >= 60) {
+        message = '👍 Good job! Keep practicing!';
+    } else if (percentage >= 40) {
+        message = '📚 Not bad! Review the lessons and try again.';
+    } else {
+        message = '💪 Keep learning! Review the tabs and try again.';
+    }
+    
+    if (messageEl) messageEl.textContent = message;
+    if (fillEl) fillEl.style.width = '100%';
+}
+
+function restartQuiz() {
+    currentQuestion = 0;
+    quizScore = 0;
+    answered = false;
+    renderQuiz();
+}
+
+// ============================================
+// INITIALIZE
+// ============================================
+function initializePerfektPage() {
+    console.log('📖 Initializing Perfekt Tense Page...');
+    
+    setTimeout(() => {
+        renderPractice();
+        renderQuiz();
+        console.log('✅ Perfekt Tense Page Ready!');
+    }, 100);
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializePerfektPage);
+} else {
+    initializePerfektPage();
+}
+
+// Make functions globally accessible
+window.playAllExamples = playAllExamples;
+window.checkAnswer = checkAnswer;
+window.checkAllAnswers = checkAllAnswers;
+window.resetPractice = resetPractice;
+window.selectAnswer = selectAnswer;
+window.nextQuestion = nextQuestion;
+window.restartQuiz = restartQuiz;
+</script>
+
+</body>
+</html>
+    <div id="auxiliary" class="tab-content">
+        <div class="card">
+            <h2><span class="section-icon">🔧</span>haben vs sein - Which One?</h2>
+            
+            <div class="explanation-box">
+                <p>The choice between <strong class="haben-color">haben</strong> and <strong class="sein-color">sein</strong> depends on the type of verb you're using.</p>
+            </div>
+
+            <h3>📋 Conjugation Tables</h3>
+            <div class="auxiliary-grid">
+                <div class="auxiliary-card haben">
+                    <h3>haben</h3>
+                    <p style="text-align: center; margin-bottom: 20px; font-size: 1.1em;">Used with MOST verbs (~90%)</p>
+                    <ul class="conjugation-list">
+                        <li class="conjugation-item" onclick="speak('ich habe')">
+                            <span class="pronoun-label">ich</span>habe
+                        </li>
+                        <li class="conjugation-item" onclick="speak('du hast')">
+                            <span class="pronoun-label">du</span>hast
+                        </li>
+                        <li class="conjugation-item" onclick="speak('er hat')">
+                            <span class="pronoun-label">er/sie/es</span>hat
+                        </li>
+                        <li class="conjugation-item" onclick="speak('wir haben')">
+                            <span class="pronoun-label">wir</span>haben
+                        </li>
+                        <li class="conjugation-item" onclick="speak('ihr habt')">
+                            <span class="pronoun-label">ihr</span>habt
+                        </li>
+                        <li class="conjugation-item" onclick="speak('sie haben')">
+                            <span class="pronoun-label">sie/Sie</span>haben
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="auxiliary-card sein">
+                    <h3>sein</h3>
+                    <p style="text-align: center; margin-bottom: 20px; font-size: 1.1em;">Used with special verbs (~10%)</p>
+                    <ul class="conjugation-list">
+                        <li class="conjugation-item" onclick="speak('ich bin')">
+                            <span class="pronoun-label">ich</span>bin
+                        </li>
+                        <li class="conjugation-item" onclick="speak('du bist')">
+                            <span class="pronoun-label">du</span>bist
+                        </li>
+                        <li class="conjugation-item" onclick="speak('er ist')">
+                            <span class="pronoun-label">er/sie/es</span>ist
+                        </li>
+                        <li class="conjugation-item" onclick="speak('wir sind')">
+                            <span class="pronoun-label">wir</span>sind
+                        </li>
+                        <li class="conjugation-item" onclick="speak('ihr seid')">
+                            <span class="pronoun-label">ihr</span>seid
+                        </li>
+                        <li class="conjugation-item" onclick="speak('sie sind')">
+                            <span class="pronoun-label">sie/Sie</span>sind
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>🎯 When to Use SEIN</h3>
+            <div class="verb-category-grid">
+                <div class="category-card sein-verbs">
+                    <h4 class="category-title sein-color">🚶 Movement Verbs</h4>
+                    <p style="margin-bottom: 15px; color: #666;">Verbs that show movement from one place to another</p>
+                    <ul class="verb-list">
+                        <li onclick="speak('gehen ging gegangen')">
+                            <span class="verb-infinitive">gehen</span>
+                            <span class="verb-meaning">→ to go</span>
+                        </li>
+                        <li onclick="speak('kommen kam gekommen')">
+                            <span class="verb-infinitive">kommen</span>
+                            <span class="verb-meaning">→ to come</span>
+                        </li>
+                        <li onclick="speak('fahren fuhr gefahren')">
+                            <span class="verb-infinitive">fahren</span>
+                            <span class="verb-meaning">→ to drive/go</span>
+                        </li>
+                        <li onclick="speak('fliegen flog geflogen')">
+                            <span class="verb-infinitive">fliegen</span>
+                            <span class="verb-meaning">→ to fly</span>
+                        </li>
+                        <li onclick="speak('laufen lief gelaufen')">
+                            <span class="verb-infinitive">laufen</span>
+                            <span class="verb-meaning">→ to run/walk</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="category-card sein-verbs">
+                    <h4 class="category-title sein-color">🔄 Change of State</h4>
+                    <p style="margin-bottom: 15px; color: #666;">Verbs showing a change in condition</p>
+                    <ul class="verb-list">
+                        <li onclick="speak('werden wurde geworden')">
+                            <span class="verb-infinitive">werden</span>
+                            <span class="verb-meaning">→ to become</span>
+                        </li>
+                        <li onclick="speak('sterben starb gestorben')">
+                            <span class="verb-infinitive">sterben</span>
+                            <span class="verb-meaning">→ to die</span>
+                        </li>
+                        <li onclick="speak('wachsen wuchs gewachsen')">
+                            <span class="verb-infinitive">wachsen</span>
+                            <span class="verb-meaning">→ to grow</span>
+                        </li>
+                        <li onclick="speak('aufwachen wachte auf aufgewacht')">
+                            <span class="verb-infinitive">aufwachen</span>
+                            <span class="verb-meaning">→ to wake up</span>
+                        </li>
+                        <li onclick="speak('einschlafen schlief ein eingeschlafen')">
+                            <span class="verb-infinitive">einschlafen</span>
+                            <span class="verb-meaning">→ to fall asleep</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="category-card sein-verbs">
+                    <h4 class="category-title sein-color">⭐ Special Verbs</h4>
+                    <p style="margin-bottom: 15px; color: #666;">Always use sein</p>
+                    <ul class="verb-list">
+                        <li onclick="speak('sein war gewesen')">
+                            <span class="verb-infinitive">sein</span>
+                            <span class="verb-meaning">→ to be</span>
+                        </li>
+                        <li onclick="speak('bleiben blieb geblieben')">
+                            <span class="verb-infinitive">bleiben</span>
+                            <span class="verb-meaning">→ to stay</span>
+                        </li>
+                        <li onclick="speak('passieren passierte passiert')">
+                            <span class="verb-infinitive">passieren</span>
+                            <span class="verb-meaning">→ to happen</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>

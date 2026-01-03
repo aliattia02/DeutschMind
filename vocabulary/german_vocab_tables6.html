@@ -1,0 +1,767 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary Tables - Arzneimittelrecht</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .zoom-controls {
+            display: flex;
+            gap: 5px;
+            background: white;
+            padding: 5px;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .zoom-btn {
+            background: #333;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 3px;
+            min-width: 40px;
+        }
+
+        .zoom-btn:hover {
+            background: #555;
+        }
+
+        .zoom-level {
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+
+        .print-button {
+            background: #000;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+        }
+
+        .print-button:hover {
+            background: #333;
+        }
+
+        .content-wrapper {
+            /* Base font size controlled by JavaScript */
+            max-width: 100%;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        .table-section {
+            margin-bottom: 20px;
+            page-break-inside: avoid;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+        }
+
+        /* NOUN TABLE STYLING */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f5f5f5;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+        }
+
+
+     
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 4%;
+            max-width: 50px;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 23%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 10%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 13%;
+        }
+
+        /* Color coding for articles - SCREEN AND PRINT */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ADJECTIVE/VERB TABLE STYLING */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col {
+            font-weight: 600;
+            width: 15%;
+        }
+
+        .word-table .english-col {
+            color: #333;
+            width: 10%;
+        }
+
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info {
+            margin-top: 20px;
+            padding: 10px;
+            background: #f9f9f9 !important;
+            border-top: 2px solid #666;
+            font-size: 1em;
+            page-break-before: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .footer-info h3 {
+            font-size: 1.43em;
+            margin-bottom: 5px;
+        }
+
+        .footer-info p {
+            margin: 3px 0;
+            line-height: 1.4;
+            word-wrap: break-word;
+        }
+
+     /* ⬇️ THIS SECTION WAS UPDATED ⬇️ */
+@media print {
+    body {
+        padding: 5px;
+        max-width: 100%;
+    }
+
+    .controls {
+        display: none !important;
+    }
+
+    .content-wrapper {
+        /* Font size controlled by zoom - no override */
+        max-width: 100%;
+    }
+
+    .table-section {
+        page-break-inside: avoid;
+        overflow-x: visible;
+        max-width: 100%;
+    }
+
+    .header {
+        page-break-after: avoid;
+    }
+
+    .footer-info {
+        display: none !important;  /* ← CHANGED: was "page-break-inside: avoid;" */
+    }
+
+    /* Remove browser default headers and footers */
+    @page {                        /* ← ADDED: this entire block */
+        margin: 1cm;
+    }
+/* ⬆️ END OF UPDATED SECTION ⬆️ */
+
+    .noun-table,
+    .word-table {
+        width: 100%;
+        max-width: 100%;
+        table-layout: fixed;
+    }
+
+    .noun-table td,
+    .noun-table th,
+    .word-table td,
+    .word-table th {
+        font-size: 1em;
+        padding: 3px 2px;
+        word-wrap: break-word;
+        word-break: break-word;
+        hyphens: auto;
+    }
+
+    /* Ensure colors print */
+    * {
+        -webkit-print-color-adjust: exact !important;
+        print-color-adjust: exact !important;
+    }
+}
+
+        @media screen {
+            .controls {
+                display: flex !important;
+            }
+            
+            body {
+                max-width: 1400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <div class="zoom-controls">
+            <button class="zoom-btn" onclick="zoomOut()" title="Zoom Out (Vertical)">−</button>
+            <span class="zoom-level" id="zoomLevel">100%</span>
+            <button class="zoom-btn" onclick="zoomIn()" title="Zoom In (Vertical)">+</button>
+            <button class="zoom-btn" onclick="resetZoom()" title="Reset Zoom">⟲</button>
+        </div>
+        <button class="print-button" onclick="window.print()">🖨️ Print</button>
+    </div>
+
+    <div class="content-wrapper" id="contentWrapper">
+        <div class="header">
+            <h1>📚 German Vocabulary - Arzneimittelrecht</h1>
+        </div>
+
+        <!-- TABLE 1: NOUNS -->
+        <div class="table-section">
+            <h2>Table 1: Nouns (Die Nomen)</h2>
+
+            <table class="noun-table" id="nounTable">
+<colgroup>
+            <col style="width: 5%;">
+            <col style="width: 15%;">
+            <col style="width: 10%;">
+            <col style="width: 20%;">
+            <col style="width: 5%;">
+            <col style="width: 15%;">
+            <col style="width: 10%;">
+            <col style="width: 20%;">
+        </colgroup>
+                <thead>
+                    <tr>
+                        <th>Article</th>
+                        <th>German</th>
+                        <th>Plural</th>
+                        <th>English</th>
+                        <th>Article</th>
+                        <th>German</th>
+                        <th>Plural</th>
+                        <th>English</th>
+                    </tr>
+                </thead>
+                <tbody id="nounTableBody">
+                    <!-- Generated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- TABLE 2: ADJECTIVES & VERBS -->
+        <div class="table-section">
+            <h2>Table 2: Adjectives & Verbs with Opposites</h2>
+
+            <table class="word-table" id="wordTable">
+                <thead>
+                    <tr>
+                        <th>German</th>
+                        <th>English</th>
+                        <th>German</th>
+                        <th>English</th>
+                        <th>German</th>
+                        <th>English</th>
+                        <th>German</th>
+                        <th>English</th>
+                    </tr>
+                </thead>
+                <tbody id="wordTableBody">
+                    <!-- Generated by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- REFERENCE INFORMATION AT END -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Document Info:</strong> Topic: Pharmaceutical Law | Level: Professional/Academic | Created: 2025</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Väter, Mütter = full form with umlaut | --- = no change | kein Plural = no plural form</p>
+            <p><strong>Color Coding:</strong> <span style="color: #1565C0;">■ der (blue)</span> | <span style="color: #2E7D32;">■ das (green)</span> | <span style="color: #C62828;">■ die (red)</span></p>
+            <p><strong>Prefix Guide:</strong> - prefix = Adjective | * prefix = Weak Verb | + prefix = Strong Verb</p>
+            <p><strong>Organization:</strong> Horizontal pairs are opposites (Column 1 ↔ Column 2, Column 3 ↔ Column 4)</p>
+        </div>
+    </div>
+
+    <script>
+// ============================================
+// ZOOM FUNCTIONALITY - FONT SIZE BASED
+// ============================================
+let currentZoom = 100;
+const zoomStep = 10;
+const minZoom = 50;
+const maxZoom = 200;
+const baseFontSize = 0.7; // Base font size in em (70% of normal)
+
+function updateZoom() {
+    const wrapper = document.getElementById('contentWrapper');
+    const zoomLevel = document.getElementById('zoomLevel');
+    
+    // Calculate new font size based on zoom percentage
+    const newFontSize = baseFontSize * (currentZoom / 100);
+    wrapper.style.fontSize = `${newFontSize}em`;
+    
+    zoomLevel.textContent = `${currentZoom}%`;
+}
+
+function zoomIn() {
+    if (currentZoom < maxZoom) {
+        currentZoom += zoomStep;
+        updateZoom();
+    }
+}
+
+function zoomOut() {
+    if (currentZoom > minZoom) {
+        currentZoom -= zoomStep;
+        updateZoom();
+    }
+}
+
+function resetZoom() {
+    currentZoom = 100;
+    updateZoom();
+}
+
+// Initialize zoom on load
+window.addEventListener('load', function() {
+    updateZoom();
+});
+
+// ============================================
+// CSV DATA - NOUNS
+// ============================================
+const nounsCSV = `
+das,Arzneimittel,---,die Arzneimittel,Medicine/Drug
+das,Arzneimittelgesetz,---,---,Pharmaceutical Law (AMG)
+das,Rezept,-e,die Rezepte,Prescription
+das,Medikament,-e,die Medikamente,Medication
+das,Fertigarzneimittel,---,die Fertigarzneimittel,Finished medicinal product
+das,Generikum,Generika,die Generika,Generic drug
+das,Präparat,-e,die Präparate,Preparation
+das,Heilmittel,---,die Heilmittel,Remedy
+das,Betäubungsmittel,---,die Betäubungsmittel,Narcotic/Controlled substance
+das,Homöopathikum,Homöopathika,die Homöopathika,Homeopathic remedy
+das,Antibiotikum,Antibiotika,die Antibiotika,Antibiotic
+das,Schmerzmittel,---,die Schmerzmittel,Painkiller
+das,Blutzubereitungsmittel,---,die Blutzubereitungsmittel,Blood preparation
+das,Medizinprodukt,-e,die Medizinprodukte,Medical device
+das,Lebensmittel,---,die Lebensmittel,Food
+das,Kosmetikum,Kosmetika,die Kosmetika,Cosmetic
+das,Gesetz,-e,die Gesetze,Law
+das,Verbot,-e,die Verbote,Ban/Prohibition
+das,Inverkehrbringen,---,---,Placing on the market
+das,Risiko,Risiken,die Risiken,Risk
+das,Verfalldatum,---,die Verfalldaten,Expiration date
+der,Wirkstoff,-e,die Wirkstoffe,Active ingredient
+der,Beipackzettel,---,die Beipackzettel,Package insert/Leaflet
+der,Hersteller,---,die Hersteller,Manufacturer
+der,Pharmazeutische Unternehmer,---,die Pharmazeutischen Unternehmer,Marketing authorization holder
+der,Großhändler,---,die Großhändler,Wholesaler
+der,Apotheker,---,die Apotheker,Pharmacist
+der,Patient,-en,die Patienten,Patient
+der,Arzt,Ärzte,die Ärzte,Doctor
+der,Zahnarzt,Zahnärzte,die Zahnärzte,Dentist
+der,Tierarzt,Tierärzte,die Tierärzte,Veterinarian
+der,Missbrauch,---,---,Abuse/Misuse
+der,Nachweis,-e,die Nachweise,Proof/Evidence
+der,Vertrieb,---,---,Distribution
+der,Handel,---,---,Trade
+der,Bestand,Bestände,die Bestände,Stock/Inventory
+der,Mangel,Mängel,die Mängel,Shortage/Defect
+der,Sponsor,-en,die Sponsoren,Sponsor (clinical trial)
+der,Prüfer,---,die Prüfer,Investigator
+der,Verbraucher,---,die Verbraucher,Consumer
+die,Apotheke,-n,die Apotheken,Pharmacy
+die,Krankenhausapotheke,-n,die Krankenhausapotheken,Hospital pharmacy
+die,Verschreibung,-en,die Verschreibungen,Prescription
+die,Verschreibungspflicht,---,---,Prescription requirement
+die,Apothekenpflicht,---,---,Pharmacy-only requirement
+die,Abgabe,-n,die Abgaben,Dispensing
+die,Zulassung,-en,die Zulassungen,Marketing authorization
+die,Registrierung,-en,die Registrierungen,Registration
+die,Herstellungserlaubnis,-se,die Herstellungserlaubnisse,Manufacturing license
+die,Einfuhrerlaubnis,-se,die Einfuhrerlaubnisse,Import license
+die,Dosierung,-en,die Dosierungen,Dosage
+die,Packung,-en,die Packungen,Package
+die,Packungsbeilage,-n,die Packungsbeilagen,Package leaflet
+die,Fachinformation,-en,die Fachinformationen,Summary of product characteristics
+die,Wirkung,-en,die Wirkungen,Effect
+die,Nebenwirkung,-en,die Nebenwirkungen,Side effect/Adverse effect
+die,Wirksamkeit,---,---,Efficacy
+die,Unbedenklichkeit,---,---,Safety (lack of concerns)
+die,Qualität,---,---,Quality
+die,Dokumentation,-en,die Dokumentationen,Documentation
+die,Lagerung,-en,die Lagerungen,Storage
+die,Verordnung,-en,die Verordnungen,Regulation/Ordinance
+die,Beratung,-en,die Beratungen,Consultation/Counseling
+die,Prüfung,-en,die Prüfungen,Examination/Test
+die,Klinische Prüfung,-en,die Klinischen Prüfungen,Clinical trial
+die,Ethikkommission,-en,die Ethikkommissionen,Ethics committee
+die,Kontrolle,-n,die Kontrollen,Control/Inspection
+die,Überwachung,-en,die Überwachungen,Supervision/Monitoring
+die,Sicherheit,---,---,Safety
+die,Fälschung,-en,die Fälschungen,Counterfeit/Forgery
+die,Anlage,-n,die Anlagen,Annex/Schedule/Appendix
+die,Ausnahme,-n,die Ausnahmen,Exception
+die,Pflicht,-en,die Pflichten,Duty/Obligation
+die,Genehmigung,-en,die Genehmigungen,Approval/Authorization
+die,Kennzeichnung,-en,die Kennzeichnungen,Labeling
+die,Magistralrezeptur,-en,die Magistralrezepturen,Magistral preparation
+die,Defektur,-en,die Defekturen,Stock preparation
+die,Werbung,-en,die Werbungen,Advertising
+die,Zugabe,-n,die Zugaben,Gift/Premium
+die,Gebrauchsanweisung,-en,die Gebrauchsanweisungen,Instructions for use
+die,Indikation,-en,die Indikationen,Indication
+die,Gegenanzeige,-n,die Gegenanzeigen,Contraindication
+die,Aufmachung,-en,die Aufmachungen,Presentation/Packaging design
+`.trim();
+
+// ============================================
+// CSV DATA - ADJECTIVES
+// ============================================
+const adjectivesCSV = `
+-verschreibungspflichtig,prescription-only,-rezeptfrei,over-the-counter/non-prescription,-apothekenpflichtig,pharmacy-only,-freiverkäuflich,freely available
+-zugelassen,approved,-nicht zugelassen,not approved,-registriert,registered,-unregistriert,unregistered
+-wirksam,effective,-unwirksam,ineffective,-sicher,safe,-bedenklich,concerning/hazardous
+-unbedenklich,safe,-gefährlich,dangerous,-original,original,-gefälscht,counterfeit
+-legal,legal,-illegal,illegal,-gültig,valid,-ungültig,invalid
+-vollständig,complete,-unvollständig,incomplete,-notwendig,necessary,-unnötig,unnecessary
+-erlaubt,allowed,-verboten,prohibited,-zulässig,permissible,-unzulässig,inadmissible
+-kontrolliert,controlled,-unkontrolliert,uncontrolled,-dokumentiert,documented,-undokumentiert,undocumented
+-verfügbar,available,-nicht verfügbar,unavailable,-geeignet,suitable,-ungeeignet,unsuitable
+-sachkundig,expert/qualified,-unsachkundig,unqualified,-irreführend,misleading,-korrekt,correct
+-therapeutisch,therapeutic,-diagnostisch,diagnostic,-pharmakologisch,pharmacological,-toxikologisch,toxicological
+-homöopathisch,homeopathic,-pflanzlich,herbal,-radioaktiv,radioactive,-stabil,stable
+`.trim();
+
+// ============================================
+// CSV DATA - VERBS
+// ============================================
+const verbsCSV = `
+*verschreiben,prescribe,*abgeben,dispense,*verordnen,order/prescribe,*einnehmen,take (medicine)
+*dosieren,dose,*lagern,store,*beraten,advise/counsel,*informieren,inform
+*dokumentieren,document,*kennzeichnen,label,*prüfen,check/examine,*kontrollieren,control/inspect
+*zulassen,approve/authorize,*registrieren,register,*herstellen,manufacture,*produzieren,produce
+*vertreiben,distribute,*handeln,trade,*missbrauchen,abuse/misuse,*fälschen,counterfeit
+*beantragen,apply for,*genehmigen,approve,*überwachen,monitor/supervise,*melden,report
+*nachweisen,prove/demonstrate,*bestellen,order,*anwenden,apply/use,*verabreichen,administer
+*schützen,protect,*gefährden,endanger,*täuschen,deceive,*irreführen,mislead
+*bewerben,advertise,*werben,promote,*aufklären,inform/educate,*einwilligen,consent
+*umfüllen,decant/transfer,*abfüllen,fill/bottle,*abpacken,package,*beschriften,label
+*freigeben,release/approve,*sperren,block,*anfertigen,prepare/make,*zubereiten,prepare
+*gewinnen,obtain/extract,*verarbeiten,process,*behandeln,treat,*heilen,heal
+*lindern,relieve,*verhüten,prevent,,,,
++erhalten,receive/obtain,+ausgeben,issue/dispense,+bestehen,exist/pass,+unterliegen,be subject to
++gelten,be valid/apply,+verstoßen,violate,+enthalten,contain,+bringen,bring
++vorschreiben,prescribe/stipulate,+verbieten,prohibit,,,,
+`.trim();
+
+// ============================================
+// PARSE CSV FUNCTION
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0)
+        .map(line => line.split(',').map(cell => cell.trim()));
+}
+
+// ============================================
+// RENDER NOUNS TABLE - VERTICAL FILLING
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV);
+    const grouped = { das: [], der: [], die: [] };
+
+    // Group by article
+    data.forEach(row => {
+        const [article, german, pluralNotation, pluralFull, english] = row;
+        grouped[article].push({ article, german, pluralNotation, pluralFull, english });
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    // Order: das → der → die
+    const articles = ['das', 'der', 'die'];
+    
+    articles.forEach((article, articleIndex) => {
+        const words = grouped[article];
+        
+        // Calculate rows needed (half of words, rounded up)
+        const numRows = Math.ceil(words.length / 2);
+        
+        // Fill VERTICALLY: column 1 first, then column 2
+        for (let row = 0; row < numRows; row++) {
+            const word1 = words[row]; // First column (top to bottom)
+            const word2 = words[row + numRows]; // Second column (top to bottom)
+            
+            const rowClass = `${article}-row`;
+            const articleClass = `${article}-article`;
+            
+            html += `<tr class="${rowClass}">`;
+            
+            // First word (column 1)
+            if (word1) {
+                html += `<td class="article-cell ${articleClass}">${word1.article}</td>`;
+                html += `<td class="german-cell">${word1.german}</td>`;
+                html += `<td class="plural-cell">${word1.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word1.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            // Second word (column 2)
+            if (word2) {
+                html += `<td class="article-cell ${articleClass}">${word2.article}</td>`;
+                html += `<td class="german-cell">${word2.german}</td>`;
+                html += `<td class="plural-cell">${word2.pluralNotation}</td>`;
+                html += `<td class="english-cell">${word2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            
+            html += `</tr>`;
+        }
+        
+        // Add separator row between article groups (except after last)
+        if (articleIndex < articles.length - 1) {
+            html += `<tr class="separator">
+                <td colspan="8">-------</td>
+            </tr>`;
+        }
+    });
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS TABLE
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV);
+    const verbData = parseCSV(verbsCSV);
+    
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    // Render adjectives
+    adjData.forEach(row => {
+        html += `<tr class="adjective-row">`;
+        for (let i = 0; i < 8; i++) {
+            if (row[i]) {
+                const cellClass = i % 2 === 0 ? 'german-col' : 'english-col';
+                html += `<td class="${cellClass}">${row[i]}</td>`;
+            } else {
+                html += `<td></td>`;
+            }
+        }
+        html += `</tr>`;
+    });
+
+    // Separator between adjectives and verbs
+    html += `<tr class="separator">
+        <td colspan="8">-------</td>
+    </tr>`;
+
+    // Render verbs
+    verbData.forEach(row => {
+        html += `<tr class="verb-row">`;
+        for (let i = 0; i < 8; i++) {
+            if (row[i]) {
+                const cellClass = i % 2 === 0 ? 'german-col' : 'english-col';
+                html += `<td class="${cellClass}">${row[i]}</td>`;
+            } else {
+                html += `<td></td>`;
+            }
+        }
+        html += `</tr>`;
+    });
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// INITIALIZE ON PAGE LOAD
+// ============================================
+window.addEventListener('load', function() {
+    console.log('📚 Rendering vocabulary tables...');
+    renderNounsTable();
+    renderWordsTable();
+    console.log('✅ Tables rendered successfully!');
+});
+    </script>
+</body>
+</html>

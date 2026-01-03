@@ -3,11 +3,733 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grammar Articles</title>
+    <title>A1 Grammar - German Articles | DeutschMind</title>
+    <link rel="stylesheet" href="grammar-base.css">
 </head>
 <body>
-    <h1>Grammar Articles</h1>
-    <p>Content coming soon...</p>
-    <a href="../index.html">← Back to Home</a>
+<!-- NAVIGATION -->
+<div class="top-navigation">
+    <a href="../index.html">🏠 Home</a>
+    <a href="../index.html#levels">📚 Levels</a>
+    <a href="../index.html#categories">🎯 Categories</a>
+    <a href="../tools/progress.html">📊 Progress</a>
+    <a href="../about.html">ℹ️ About</a>
+</div>
+
+<header>
+    <h1>🇩🇪 German Articles - Die Artikel</h1>
+    <p>A1 Grammar | Master der, die, das with Interactive Learning</p>
+    <p class="subtitle">Created by: aliattia02 | DeutschMind</p>
+</header>
+
+<div class="container">
+    <!-- AUDIO CONTROLS -->
+    <div class="audio-controls">
+        <h3>🔊 Audio Settings</h3>
+        <div class="control-group">
+            <label for="voiceSelect">Voice:</label>
+            <select id="voiceSelect">
+                <option value="">Loading voices...</option>
+            </select>
+        </div>
+        <div class="control-group">
+            <label for="speedControl">Speed:</label>
+            <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+            <span id="speedValue">0.8x</span>
+        </div>
+        <div class="control-group">
+            <label for="pitchControl">Pitch:</label>
+            <input type="range" id="pitchControl" min="0.5" max="2" step="0.1" value="1">
+            <span id="pitchValue">1.0</span>
+        </div>
+        <button class="play-all-btn" onclick="playAllExamples()">▶ Play All Examples</button>
+    </div>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab-button active" onclick="showTab('introduction')">📖 Introduction</button>
+        <button class="tab-button" onclick="showTab('definite')">📘 Definite (der/die/das)</button>
+        <button class="tab-button" onclick="showTab('indefinite')">📗 Indefinite (ein/eine)</button>
+        <button class="tab-button" onclick="showTab('negation')">📕 Negation (kein/keine)</button>
+        <button class="tab-button" onclick="showTab('practice')">✏️ Practice</button>
+        <button class="tab-button" onclick="showTab('reference')">📋 Quick Reference</button>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TAB 1: INTRODUCTION                         -->
+    <!-- ============================================ -->
+    <div id="introduction" class="tab-content active">
+        <div class="card">
+            <h2><span class="section-icon">📖</span>What are German Articles?</h2>
+            
+            <div class="explanation-box">
+                <p>In German, every noun has a <strong>grammatical gender</strong>: masculine, feminine, or neuter. The article tells you which gender the noun has.</p>
+                <p>Unlike English (which only has "the" and "a/an"), German has <strong>different articles for each gender</strong>.</p>
+            </div>
+
+            <h3>🌍 English vs German Comparison</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>English</th>
+                        <th>German</th>
+                        <th>Gender</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr onclick="speak('der Mann')">
+                        <td>the man</td>
+                        <td class="der-color"><strong>der</strong> Mann</td>
+                        <td>Masculine ♂️</td>
+                    </tr>
+                    <tr onclick="speak('die Frau')">
+                        <td>the woman</td>
+                        <td class="die-color"><strong>die</strong> Frau</td>
+                        <td>Feminine ♀️</td>
+                    </tr>
+                    <tr onclick="speak('das Kind')">
+                        <td>the child</td>
+                        <td class="das-color"><strong>das</strong> Kind</td>
+                        <td>Neuter ⚪</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="key-point">
+                <strong>💡 Key Point:</strong> You must memorize the article WITH the noun! Don't just learn "Tisch" (table) – learn "<span class="der-color">der Tisch</span>"!
+            </div>
+
+            <h3>🎨 Our Color System</h3>
+            <div class="example-grid">
+                <div class="example-card der-bg" onclick="speak('der')">
+                    <span class="audio-icon">🔊</span>
+                    <div class="example-german der-color">der = BLUE 🔵</div>
+                    <div class="example-english">Masculine nouns</div>
+                </div>
+                <div class="example-card das-bg" onclick="speak('das')">
+                    <span class="audio-icon">🔊</span>
+                    <div class="example-german das-color">das = GREEN 🟢</div>
+                    <div class="example-english">Neuter nouns</div>
+                </div>
+                <div class="example-card die-bg" onclick="speak('die')">
+                    <span class="audio-icon">🔊</span>
+                    <div class="example-german die-color">die = RED 🔴</div>
+                    <div class="example-english">Feminine nouns</div>
+                </div>
+            </div>
+
+            <div class="mnemonic-box">
+                <h4>🧠 Memory Trick</h4>
+                <p>"<span class="der-color">der</span> <span class="die-color">die</span> <span class="das-color">das</span> - Learn them fast!"</p>
+                <div class="hint">Associate colors with genders: Blue=Strong(M), Red=Passionate(F), Green=Neutral(N)</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TAB 2: DEFINITE ARTICLES                    -->
+    <!-- ============================================ -->
+    <div id="definite" class="tab-content">
+        <div class="card">
+            <h2><span class="section-icon">📘</span>Definite Articles - der, die, das</h2>
+            
+            <div class="explanation-box">
+                <p>Definite articles are like "the" in English. They refer to <strong>specific</strong> things.</p>
+                <p>Example: "<strong>The</strong> book" = a specific book you're talking about.</p>
+            </div>
+
+            <!-- DER - Masculine -->
+            <h3 class="der-color">🔵 der (Masculine)</h3>
+            <table class="article-table">
+                <thead class="der-header">
+                    <tr>
+                        <th>German</th>
+                        <th>English</th>
+                        <th>Example Sentence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="der-bg" onclick="speak('der Mann')">
+                        <td class="article-word der-color">der Mann</td>
+                        <td>the man</td>
+                        <td class="article-example">Der Mann ist groß. (The man is tall.)</td>
+                    </tr>
+                    <tr class="der-bg" onclick="speak('der Tisch')">
+                        <td class="article-word der-color">der Tisch</td>
+                        <td>the table</td>
+                        <td class="article-example">Der Tisch ist neu. (The table is new.)</td>
+                    </tr>
+                    <tr class="der-bg" onclick="speak('der Hund')">
+                        <td class="article-word der-color">der Hund</td>
+                        <td>the dog</td>
+                        <td class="article-example">Der Hund ist klein. (The dog is small.)</td>
+                    </tr>
+                    <tr class="der-bg" onclick="speak('der Tag')">
+                        <td class="article-word der-color">der Tag</td>
+                        <td>the day</td>
+                        <td class="article-example">Der Tag ist schön. (The day is beautiful.)</td>
+                    </tr>
+                    <tr class="der-bg" onclick="speak('der Stuhl')">
+                        <td class="article-word der-color">der Stuhl</td>
+                        <td>the chair</td>
+                        <td class="article-example">Der Stuhl ist bequem. (The chair is comfortable.)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- DAS - Neuter -->
+            <h3 class="das-color">🟢 das (Neuter)</h3>
+            <table class="article-table">
+                <thead class="das-header">
+                    <tr>
+                        <th>German</th>
+                        <th>English</th>
+                        <th>Example Sentence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="das-bg" onclick="speak('das Kind')">
+                        <td class="article-word das-color">das Kind</td>
+                        <td>the child</td>
+                        <td class="article-example">Das Kind spielt. (The child plays.)</td>
+                    </tr>
+                    <tr class="das-bg" onclick="speak('das Buch')">
+                        <td class="article-word das-color">das Buch</td>
+                        <td>the book</td>
+                        <td class="article-example">Das Buch ist interessant. (The book is interesting.)</td>
+                    </tr>
+                    <tr class="das-bg" onclick="speak('das Haus')">
+                        <td class="article-word das-color">das Haus</td>
+                        <td>the house</td>
+                        <td class="article-example">Das Haus ist alt. (The house is old.)</td>
+                    </tr>
+                    <tr class="das-bg" onclick="speak('das Auto')">
+                        <td class="article-word das-color">das Auto</td>
+                        <td>the car</td>
+                        <td class="article-example">Das Auto ist schnell. (The car is fast.)</td>
+                    </tr>
+                    <tr class="das-bg" onclick="speak('das Mädchen')">
+                        <td class="article-word das-color">das Mädchen</td>
+                        <td>the girl</td>
+                        <td class="article-example">Das Mädchen lacht. (The girl laughs.)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- DIE - Feminine -->
+            <h3 class="die-color">🔴 die (Feminine)</h3>
+            <table class="article-table">
+                <thead class="die-header">
+                    <tr>
+                        <th>German</th>
+                        <th>English</th>
+                        <th>Example Sentence</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="die-bg" onclick="speak('die Frau')">
+                        <td class="article-word die-color">die Frau</td>
+                        <td>the woman</td>
+                        <td class="article-example">Die Frau ist nett. (The woman is nice.)</td>
+                    </tr>
+                    <tr class="die-bg" onclick="speak('die Lampe')">
+                        <td class="article-word die-color">die Lampe</td>
+                        <td>the lamp</td>
+                        <td class="article-example">Die Lampe ist hell. (The lamp is bright.)</td>
+                    </tr>
+                    <tr class="die-bg" onclick="speak('die Katze')">
+                        <td class="article-word die-color">die Katze</td>
+                        <td>the cat</td>
+                        <td class="article-example">Die Katze schläft. (The cat sleeps.)</td>
+                    </tr>
+                    <tr class="die-bg" onclick="speak('die Blume')">
+                        <td class="article-word die-color">die Blume</td>
+                        <td>the flower</td>
+                        <td class="article-example">Die Blume ist rot. (The flower is red.)</td>
+                    </tr>
+                    <tr class="die-bg" onclick="speak('die Tür')">
+                        <td class="article-word die-color">die Tür</td>
+                        <td>the door</td>
+                        <td class="article-example">Die Tür ist offen. (The door is open.)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="key-point">
+                <strong>💡 Remember:</strong> "die" is ALSO used for ALL plural nouns, regardless of their singular gender!<br>
+                <span class="die-color">die Männer</span> (the men), <span class="die-color">die Kinder</span> (the children), <span class="die-color">die Frauen</span> (the women)
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TAB 3: INDEFINITE ARTICLES                  -->
+    <!-- ============================================ -->
+    <div id="indefinite" class="tab-content">
+        <div class="card">
+            <h2><span class="section-icon">📗</span>Indefinite Articles - ein, eine</h2>
+            
+            <div class="explanation-box">
+                <p>Indefinite articles are like "a/an" in English. They refer to <strong>non-specific</strong> things.</p>
+                <p>Example: "I see <strong>a</strong> book" = any book, not a specific one.</p>
+            </div>
+
+            <h3>📊 Comparison Table</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Gender</th>
+                        <th>Definite (the)</th>
+                        <th>Indefinite (a/an)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr onclick="speak('der ein')">
+                        <td>Masculine ♂️</td>
+                        <td class="der-color"><strong>der</strong></td>
+                        <td class="der-color"><strong>ein</strong></td>
+                    </tr>
+                    <tr onclick="speak('das ein')">
+                        <td>Neuter ⚪</td>
+                        <td class="das-color"><strong>das</strong></td>
+                        <td class="das-color"><strong>ein</strong></td>
+                    </tr>
+                    <tr onclick="speak('die eine')">
+                        <td>Feminine ♀️</td>
+                        <td class="die-color"><strong>die</strong></td>
+                        <td class="die-color"><strong>eine</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="key-point">
+                <strong>💡 Notice:</strong> Masculine and Neuter share the same indefinite article: <strong>ein</strong>!<br>
+                Only Feminine is different: <strong>eine</strong>
+            </div>
+
+            <h3>📊 Examples with Audio</h3>
+            <div class="example-grid">
+                <div class="example-card der-bg" onclick="speak('ein Mann')">
+                    <span class="audio-icon">🔊</span>
+                    <div class="example-german der-color">ein Mann</div>
+                    <div class="example-english">a man (masculine)</div>
+                </div>
+                <div class="example-card der-bg" onclick="speak('ein Tisch')">
+                    <span class="audio-icon">🔊</span>
+                    <div class="example-german der-color">ein Tisch</div>
+                    <div class="example-english">a table (masculine)</div>
+                </div>
+                <div class="example-card das-bg" onclick="speak('ein Kind')">
+                    <span class="audio-icon">🔊</span>
+                    <div class="example-german das-color">ein Kind</div>
+                    <div class="example-english">a child (neuter)</div>
+                </div>
+                <div class="example-card das-bg" onclick="speak('ein Buch')">
+                    <span class="audio-icon">🔊</span>
+                    <div class="example-german das-color">ein Buch</div>
+                    <div class="example-english">a book (neuter)</div>
+                </div>
+                <div class="example-card die-bg" onclick="speak('eine Frau')">
+                    <span class="audio-icon">🔊</span>
+                    <div class="example-german die-color">eine Frau</div>
+                    <div class="example-english">a woman (feminine)</div>
+                </div>
+                <div class="example-card die-bg" onclick="speak('eine Lampe')">
+                    <span class="audio-icon">🔊</span>
+                    <div class="example-german die-color">eine Lampe</div>
+                    <div class="example-english">a lamp (feminine)</div>
+                </div>
+            </div>
+
+            <h3>📝 Example Sentences</h3>
+            <div class="example-grid">
+                <div class="example-card" onclick="speak('Ich sehe einen Mann')">
+                    <span class="audio-icon">🔊</span>
+                    <div class="example-german">Ich sehe <span class="der-color">einen Mann</span>.</div>
+                    <div class="example-english">I see a man.</div>
+                </div>
+                <div class="example-card" onclick="speak('Das ist ein Buch')">
+                    <span class="audio-icon">🔊</span>
+                    <div class="example-german">Das ist <span class="das-color">ein Buch</span>.</div>
+                    <div class="example-english">That is a book.</div>
+                </div>
+                <div class="example-card" onclick="speak('Hier ist eine Katze')">
+                    <span class="audio-icon">🔊</span>
+                    <div class="example-german">Hier ist <span class="die-color">eine Katze</span>.</div>
+                    <div class="example-english">Here is a cat.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TAB 4: NEGATION                             -->
+    <!-- ============================================ -->
+    <div id="negation" class="tab-content">
+        <div class="card">
+            <h2><span class="section-icon">📕</span>Negation - kein, keine</h2>
+            
+            <div class="explanation-box">
+                <p><strong>kein/keine</strong> means "no" or "not a/any". It's used to negate nouns.</p>
+                <p>Example: "I have <strong>no</strong> book" = Ich habe <strong>kein</strong> Buch.</p>
+            </div>
+
+            <h3>📊 Negation Pattern</h3>
+            <table class="comparison-table">
+                <thead>
+                    <tr>
+                        <th>Gender</th>
+                        <th>Indefinite</th>
+                        <th>Negative</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr onclick="speak('ein kein')">
+                        <td>Masculine ♂️</td>
+                        <td class="der-color">ein</td>
+                        <td class="der-color"><strong>kein</strong></td>
+                    </tr>
+                    <tr onclick="speak('ein kein')">
+                        <td>Neuter ⚪</td>
+                        <td class="das-color">ein</td>
+                        <td class="das-color"><strong>kein</strong></td>
+                    </tr>
+                    <tr onclick="speak('eine keine')">
+                        <td>Feminine ♀️</td>
+                        <td class="die-color">eine</td>
+                        <td class="die-color"><strong>keine</strong></td>
+                    </tr>
+                    <tr onclick="speak('keine')">
+                        <td>Plural</td>
+                        <td>---</td>
+                        <td class="die-color"><strong>keine</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="key-point">
+                <strong>💡 Pattern:</strong> Just add "k" in front of ein/eine!<br>
+                ein → <strong>k</strong>ein | eine → <strong>k</strong>eine
+            </div>
+
+            <h3>📊 Click to Reveal & Listen</h3>
+            <div class="reveal-card" onclick="toggleReveal(this); speak('Ich habe keinen Hund')">
+                <div class="reveal-question">❓ How do you say "I have no dog"?</div>
+                <div class="reveal-answer">
+                    <span class="der-color" style="font-size: 1.3em;">Ich habe keinen Hund.</span><br>
+                    (Hund is masculine, so kein → keinen in accusative)
+                </div>
+                <div class="reveal-hint">👆 Click to reveal & hear</div>
+            </div>
+
+            <div class="reveal-card" onclick="toggleReveal(this); speak('Das ist kein Problem')">
+                <div class="reveal-question">❓ How do you say "That's no problem"?</div>
+                <div class="reveal-answer">
+                    <span class="das-color" style="font-size: 1.3em;">Das ist kein Problem.</span><br>
+                    (Problem is neuter)
+                </div>
+                <div class="reveal-hint">👆 Click to reveal & hear</div>
+            </div>
+
+            <div class="reveal-card" onclick="toggleReveal(this); speak('Ich habe keine Zeit')">
+                <div class="reveal-question">❓ How do you say "I have no time"?</div>
+                <div class="reveal-answer">
+                    <span class="die-color" style="font-size: 1.3em;">Ich habe keine Zeit.</span><br>
+                    (Zeit is feminine)
+                </div>
+                <div class="reveal-hint">👆 Click to reveal & hear</div>
+            </div>
+
+            <div class="reveal-card" onclick="toggleReveal(this); speak('Hier sind keine Bücher')">
+                <div class="reveal-question">❓ How do you say "There are no books here"?</div>
+                <div class="reveal-answer">
+                    <span class="die-color" style="font-size: 1.3em;">Hier sind keine Bücher.</span><br>
+                    (Plural always uses keine)
+                </div>
+                <div class="reveal-hint">👆 Click to reveal & hear</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TAB 5: PRACTICE EXERCISES                   -->
+    <!-- ============================================ -->
+    <div id="practice" class="tab-content">
+        <div class="card">
+            <h2><span class="section-icon">✏️</span>Practice Exercises</h2>
+            
+            <div class="progress-container">
+                <div class="progress-text">Progress: <span id="scoreDisplay">0</span> / <span id="totalDisplay">10</span> correct</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill" style="width: 0%"></div>
+                </div>
+            </div>
+
+            <h3>Fill in the correct article:</h3>
+            
+            <div class="exercise-container" id="exerciseContainer">
+                <!-- Exercises will be generated by JavaScript -->
+            </div>
+
+            <button class="play-all-btn" onclick="resetExercises()" style="margin-top: 20px;">🔄 Reset Exercises</button>
+        </div>
+    </div>
+
+    <!-- ============================================ -->
+    <!-- TAB 6: QUICK REFERENCE                      -->
+    <!-- ============================================ -->
+    <div id="reference" class="tab-content">
+        <div class="card">
+            <h2><span class="section-icon">📋</span>Quick Reference - Cheat Sheet</h2>
+            
+            <h3>📊 All Articles at a Glance</h3>
+            <table class="reference-table">
+                <thead>
+                    <tr>
+                        <th>Type</th>
+                        <th>Masculine ♂️</th>
+                        <th>Neuter ⚪</th>
+                        <th>Feminine ♀️</th>
+                        <th>Plural</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>Definite</strong><br>(the)</td>
+                        <td class="der-cell">der</td>
+                        <td class="das-cell">das</td>
+                        <td class="die-cell">die</td>
+                        <td class="die-cell">die</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Indefinite</strong><br>(a/an)</td>
+                        <td class="der-cell">ein</td>
+                        <td class="das-cell">ein</td>
+                        <td class="die-cell">eine</td>
+                        <td>---</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Negative</strong><br>(no/not a)</td>
+                        <td class="der-cell">kein</td>
+                        <td class="das-cell">kein</td>
+                        <td class="die-cell">keine</td>
+                        <td class="die-cell">keine</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>🎯 Tips for Remembering Gender</h3>
+            <div class="example-grid">
+                <div class="example-card der-bg">
+                    <div class="example-german der-color">Usually Masculine (der):</div>
+                    <div class="example-english">
+                        • Days, months, seasons<br>
+                        • Male persons & animals<br>
+                        • Nouns ending in -er, -ling<br>
+                        • Most weather words
+                    </div>
+                </div>
+                <div class="example-card das-bg">
+                    <div class="example-german das-color">Usually Neuter (das):</div>
+                    <div class="example-english">
+                        • Diminutives (-chen, -lein)<br>
+                        • Infinitives used as nouns<br>
+                        • Most metals & chemicals<br>
+                        • Letters & musical notes
+                    </div>
+                </div>
+                <div class="example-card die-bg">
+                    <div class="example-german die-color">Usually Feminine (die):</div>
+                    <div class="example-english">
+                        • Female persons & animals<br>
+                        • Nouns ending in -ung, -heit, -keit<br>
+                        • Nouns ending in -schaft, -tion<br>
+                        • Most flowers & trees
+                    </div>
+                </div>
+            </div>
+
+            <div class="mnemonic-box">
+                <h4>🧠 Quick Memory Rhyme</h4>
+                <p>"<span class="der-color">Der</span> for men and days that pass,<br>
+                <span class="das-color">Das</span> for little things and glass,<br>
+                <span class="die-color">Die</span> for women, -ung, and -keit,<br>
+                Learn them well, and you'll be great!"</p>
+            </div>
+
+            <h3>⚠️ Common Mistakes to Avoid</h3>
+            <div class="key-point">
+                <strong>❌ Don't assume gender based on meaning!</strong><br>
+                • <span class="das-color">das Mädchen</span> (the girl) - is NEUTER, not feminine!<br>
+                • <span class="der-color">der Tisch</span> (the table) - is masculine (why? Just memorize it!)
+            </div>
+
+            <h3>📱 Study Tip</h3>
+            <div class="explanation-box">
+                <p><strong>🔄 Review Reminder:</strong> Come back to this page in 3 days to reinforce your learning!</p>
+                <p>Practice saying articles OUT LOUD with their nouns. Hearing yourself helps memory!</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- AUDIO STATUS -->
+<div class="audio-status" id="audioStatus">
+    <div class="spinner"></div>
+    <span id="audioStatusText">Speaking...</span>
+</div>
+
+<footer>
+    <p><strong>A1 Grammar - German Articles | DeutschMind</strong></p>
+    <p>Created for German Learners | © 2025 aliattia02</p>
+    <p>🎯 Click anywhere to hear pronunciation | 💪 Practice makes perfect!</p>
+    
+    <h3>📚 More Grammar Topics:</h3>
+    <div class="grammar-links">
+        <a href="a1-grammar-verbs.html" class="grammar-link">Present Tense Verbs</a>
+        <a href="a1-grammar-pronouns.html" class="grammar-link">Personal Pronouns</a>
+        <a href="a1-grammar-cases.html" class="grammar-link">The Four Cases</a>
+    </div>
+    
+    <a href="../index.html" class="back-link">← Back to Home</a>
+</footer>
+
+<!-- Load base JavaScript first, then specific JavaScript -->
+<script src="grammar-base.js"></script>
+<script>
+/* ============================================ */
+/* ARTICLE-SPECIFIC JAVASCRIPT                 */
+/* ============================================ */
+
+const exercises = [
+    { sentence: "___ Mann ist groß.", answer: "Der", options: ["Der", "Die", "Das"], gender: "der" },
+    { sentence: "___ Frau liest ein Buch.", answer: "Die", options: ["Der", "Die", "Das"], gender: "die" },
+    { sentence: "___ Kind spielt im Garten.", answer: "Das", options: ["Der", "Die", "Das"], gender: "das" },
+    { sentence: "Ich habe ___ Hund.", answer: "einen", options: ["ein", "eine", "einen"], gender: "der" },
+    { sentence: "Das ist ___ Lampe.", answer: "eine", options: ["ein", "eine", "einen"], gender: "die" },
+    { sentence: "Ich sehe ___ Auto.", answer: "ein", options: ["ein", "eine", "einen"], gender: "das" },
+    { sentence: "Er hat ___ Bruder.", answer: "keinen", options: ["kein", "keine", "keinen"], gender: "der" },
+    { sentence: "Sie hat ___ Zeit.", answer: "keine", options: ["kein", "keine", "keinen"], gender: "die" },
+    { sentence: "Wir haben ___ Geld.", answer: "kein", options: ["kein", "keine", "keinen"], gender: "das" },
+    { sentence: "___ Bücher sind interessant.", answer: "Die", options: ["Der", "Die", "Das"], gender: "die" }
+];
+
+let score = 0;
+let answered = {};
+
+function renderExercises() {
+    const container = document.getElementById('exerciseContainer');
+    if (!container) return;
+    container.innerHTML = '';
+
+    exercises.forEach((ex, index) => {
+        const item = document.createElement('div');
+        item.className = 'exercise-item';
+        item.id = `exercise-${index}`;
+
+        const optionsHTML = ex.options.map(opt => 
+            `<button class="exercise-option" onclick="checkAnswer(${index}, '${opt}', '${ex.answer}')">${opt}</button>`
+        ).join('');
+
+        item.innerHTML = `
+            <div class="exercise-sentence">
+                ${index + 1}. ${ex.sentence.replace('___', `<span class="exercise-blank" id="blank-${index}">?</span>`)}
+            </div>
+            <div class="exercise-options">${optionsHTML}</div>
+            <div class="exercise-feedback" id="feedback-${index}"></div>
+        `;
+        
+        container.appendChild(item);
+    });
+
+    updateProgress();
+}
+
+function checkAnswer(index, selected, correct) {
+    if (answered[index]) return;
+
+    const blank = document.getElementById(`blank-${index}`);
+    const feedback = document.getElementById(`feedback-${index}`);
+    const options = document.querySelectorAll(`#exercise-${index} .exercise-option`);
+
+    answered[index] = true;
+
+    options.forEach(opt => {
+        opt.style.pointerEvents = 'none';
+        if (opt.textContent === correct) {
+            opt.classList.add('correct');
+        } else if (opt.textContent === selected && selected !== correct) {
+            opt.classList.add('incorrect');
+        }
+    });
+
+    blank.textContent = correct;
+    blank.style.borderColor = selected === correct ? '#4CAF50' : '#F44336';
+
+    if (selected === correct) {
+        score++;
+        feedback.textContent = '✅ Correct! Well done!';
+        feedback.className = 'exercise-feedback correct';
+        speak(exercises[index].sentence.replace('___', correct));
+    } else {
+        feedback.textContent = `❌ Incorrect. The correct answer is "${correct}".`;
+        feedback.className = 'exercise-feedback incorrect';
+    }
+
+    updateProgress();
+}
+
+function updateProgress() {
+    const total = exercises.length;
+    const scoreDisplay = document.getElementById('scoreDisplay');
+    const totalDisplay = document.getElementById('totalDisplay');
+    const progressFill = document.getElementById('progressFill');
+    
+    if (scoreDisplay) scoreDisplay.textContent = score;
+    if (totalDisplay) totalDisplay.textContent = total;
+    if (progressFill) progressFill.style.width = `${(score / total) * 100}%`;
+}
+
+function resetExercises() {
+    score = 0;
+    answered = {};
+    renderExercises();
+    window.scrollTo({ top: document.getElementById('practice').offsetTop - 100, behavior: 'smooth' });
+}
+
+function playAllExamples() {
+    const examples = [
+        'der', 'die', 'das',
+        'der Mann', 'der Tisch', 'der Hund', 'der Tag', 'der Stuhl',
+        'das Kind', 'das Buch', 'das Haus', 'das Auto', 'das Mädchen',
+        'die Frau', 'die Lampe', 'die Katze', 'die Blume', 'die Tür',
+        'ein Mann', 'ein Tisch', 'ein Kind', 'ein Buch', 'eine Frau', 'eine Lampe',
+        'kein Problem', 'keine Zeit', 'keine Bücher'
+    ];
+    
+    console.log(`🔊 Playing ${examples.length} examples...`);
+    window.GrammarBase.speakSequentially(examples, 2000);
+}
+
+// Initialize exercises when page loads
+function initializeArticlesPage() {
+    console.log('📘 Initializing Articles Page...');
+    renderExercises();
+    console.log('✅ Articles Page Ready!');
+}
+
+// Run initialization
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initializeArticlesPage);
+} else {
+    initializeArticlesPage();
+}
+
+// Also make sure functions are globally accessible
+window.checkAnswer = checkAnswer;
+window.resetExercises = resetExercises;
+window.playAllExamples = playAllExamples;
+</script>
+
 </body>
 </html>
