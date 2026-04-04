@@ -185,6 +185,20 @@
             transition: opacity 0.2s;
         }
         .play-all-btn:hover { opacity: 0.85; }
+        .pause-btn {
+            background: #3a3a3a;
+            color: rgba(255,255,255,0.75);
+            border: 1px solid #555;
+            padding: 4px 11px;
+            border-radius: 10px;
+            font-size: 0.72em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: none;
+        }
+        .pause-btn:hover { background: #555; color: white; }
+        .pause-btn.paused { background: #667eea; color: white; border-color: #667eea; }
         .audio-row-sections {
             display: flex;
             align-items: center;
@@ -338,7 +352,9 @@
         @keyframes spin { to { transform: rotate(360deg); } }
 
         /* ── Active row highlight during Play All ── */
-        tr.playing-item td {
+        tr[data-playing="left"] td.left-pair,
+        tr[data-playing="right"] td.right-pair,
+        tr[data-playing="all"] td {
             background: rgba(255, 206, 0, 0.45) !important;
             box-shadow: inset 0 0 0 2px #FFCE00;
             -webkit-print-color-adjust: exact;
@@ -870,6 +886,7 @@
                     <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
                     <span class="speed-val" id="speedValue">0.8×</span>
                     <button class="play-all-btn" id="btnAll" onclick="playSection('all')">▶ All</button>
+                    <button class="pause-btn" id="pauseBtn" onclick="togglePause()">⏸ Pause</button>
                 </div>
                 <div class="audio-row-sections">
                     <span class="audio-section-label">from:</span>
@@ -1469,16 +1486,16 @@ function renderNounsTable() {
             const w2 = words[i + half] || null;
 
             html += `<tr class="${rowClass}">`;
-            html += `<td class="article-cell ${artClass}">${w1.article}</td>`;
-            html += `<td class="german-cell">${w1.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w1.article)}','${escAttr(w1.german)}','${escAttr(w1.pluralFull)}','${escAttr(w1.english)}')">🔊</button></td>`;
-            html += `<td class="plural-cell">${w1.pluralNotation}</td>`;
-            html += `<td class="english-cell">${w1.english}</td>`;
+            html += `<td class="article-cell ${artClass} left-pair">${w1.article}</td>`;
+            html += `<td class="german-cell left-pair">${w1.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w1.article)}','${escAttr(w1.german)}','${escAttr(w1.pluralFull)}','${escAttr(w1.english)}')">🔊</button></td>`;
+            html += `<td class="plural-cell left-pair">${w1.pluralNotation}</td>`;
+            html += `<td class="english-cell left-pair">${w1.english}</td>`;
 
             if (w2) {
-                html += `<td class="article-cell ${artClass}">${w2.article}</td>`;
-                html += `<td class="german-cell">${w2.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w2.article)}','${escAttr(w2.german)}','${escAttr(w2.pluralFull)}','${escAttr(w2.english)}')">🔊</button></td>`;
-                html += `<td class="plural-cell">${w2.pluralNotation}</td>`;
-                html += `<td class="english-cell">${w2.english}</td>`;
+                html += `<td class="article-cell ${artClass} right-pair">${w2.article}</td>`;
+                html += `<td class="german-cell right-pair">${w2.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w2.article)}','${escAttr(w2.german)}','${escAttr(w2.pluralFull)}','${escAttr(w2.english)}')">🔊</button></td>`;
+                html += `<td class="plural-cell right-pair">${w2.pluralNotation}</td>`;
+                html += `<td class="english-cell right-pair">${w2.english}</td>`;
             } else {
                 html += `<td></td><td></td><td></td><td></td>`;
             }
@@ -1514,11 +1531,11 @@ function renderWordsTable() {
             const r1 = adjData[i];
             const r2 = adjData[i + half] || null;
             html += `<tr class="adjective-row">`;
-            html += `<td class="german-col">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[2])}','${escAttr(r1[3])}','${escAttr(r1[4])}')">🔊</button></td><td class="english-col">${r1[2]}</td>`;
-            html += `<td class="german-col">${r1[3]}</td><td class="english-col">${r1[4]}</td>`;
+            html += `<td class="german-col left-pair">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[2])}','${escAttr(r1[3])}','${escAttr(r1[4])}')">🔊</button></td><td class="english-col left-pair">${r1[2]}</td>`;
+            html += `<td class="german-col left-pair">${r1[3]}</td><td class="english-col left-pair">${r1[4]}</td>`;
             if (r2) {
-                html += `<td class="german-col">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[2])}','${escAttr(r2[3])}','${escAttr(r2[4])}')">🔊</button></td><td class="english-col">${r2[2]}</td>`;
-                html += `<td class="german-col">${r2[3]}</td><td class="english-col">${r2[4]}</td>`;
+                html += `<td class="german-col right-pair">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[2])}','${escAttr(r2[3])}','${escAttr(r2[4])}')">🔊</button></td><td class="english-col right-pair">${r2[2]}</td>`;
+                html += `<td class="german-col right-pair">${r2[3]}</td><td class="english-col right-pair">${r2[4]}</td>`;
             } else {
                 html += `<td></td><td></td><td></td><td></td>`;
             }
@@ -1533,11 +1550,11 @@ function renderWordsTable() {
             const r1 = verbData[i];
             const r2 = verbData[i + half] || null;
             html += `<tr class="verb-row">`;
-            html += `<td class="german-col">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[2])}','${escAttr(r1[3])}','${escAttr(r1[4])}')">🔊</button></td><td class="english-col">${r1[2]}</td>`;
-            html += `<td class="german-col">${r1[3]}</td><td class="english-col">${r1[4]}</td>`;
+            html += `<td class="german-col left-pair">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[2])}','${escAttr(r1[3])}','${escAttr(r1[4])}')">🔊</button></td><td class="english-col left-pair">${r1[2]}</td>`;
+            html += `<td class="german-col left-pair">${r1[3]}</td><td class="english-col left-pair">${r1[4]}</td>`;
             if (r2) {
-                html += `<td class="german-col">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[2])}','${escAttr(r2[3])}','${escAttr(r2[4])}')">🔊</button></td><td class="english-col">${r2[2]}</td>`;
-                html += `<td class="german-col">${r2[3]}</td><td class="english-col">${r2[4]}</td>`;
+                html += `<td class="german-col right-pair">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[2])}','${escAttr(r2[3])}','${escAttr(r2[4])}')">🔊</button></td><td class="english-col right-pair">${r2[2]}</td>`;
+                html += `<td class="german-col right-pair">${r2[3]}</td><td class="english-col right-pair">${r2[4]}</td>`;
             } else {
                 html += `<td></td><td></td><td></td><td></td>`;
             }
@@ -1567,13 +1584,13 @@ function renderExpressionsTable() {
         const [lvl1, ger1, ...eng1parts] = data[i];
         const eng1 = eng1parts.join(',');
         html += `<tr>`;
-        html += `<td class="german-cell">${ger1} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(eng1)}','${escAttr(ger1)}')">🔊</button></td>`;
-        html += `<td class="english-cell">${eng1}</td>`;
+        html += `<td class="german-cell left-pair">${ger1} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(eng1)}','${escAttr(ger1)}')">🔊</button></td>`;
+        html += `<td class="english-cell left-pair">${eng1}</td>`;
         if (i + 1 < data.length) {
             const [lvl2, ger2, ...eng2parts] = data[i + 1];
             const eng2 = eng2parts.join(',');
-            html += `<td class="german-cell">${ger2} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(eng2)}','${escAttr(ger2)}')">🔊</button></td>`;
-            html += `<td class="english-cell">${eng2}</td>`;
+            html += `<td class="german-cell right-pair">${ger2} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(eng2)}','${escAttr(ger2)}')">🔊</button></td>`;
+            html += `<td class="english-cell right-pair">${eng2}</td>`;
         } else {
             html += `<td></td><td></td>`;
         }
@@ -1695,11 +1712,11 @@ function renderQATable() {
         const r1 = qaRows[i];
         const r2 = qaRows[i + 1] || null;
         html += `<tr>`;
-        html += `<td class="question-cell">${r1.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.question)}')">🔊</button></td>`;
-        html += `<td class="answer-cell">${r1.answer}</td>`;
+        html += `<td class="question-cell left-pair">${r1.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.question)}')">🔊</button></td>`;
+        html += `<td class="answer-cell left-pair">${r1.answer}</td>`;
         if (r2) {
-            html += `<td class="question-cell">${r2.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.question)}')">🔊</button></td>`;
-            html += `<td class="answer-cell">${r2.answer}</td>`;
+            html += `<td class="question-cell right-pair">${r2.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.question)}')">🔊</button></td>`;
+            html += `<td class="answer-cell right-pair">${r2.answer}</td>`;
         } else {
             html += `<td></td><td></td>`;
         }
@@ -1739,11 +1756,11 @@ function renderSentencesTable() {
         const r1 = sentRows[i];
         const r2 = sentRows[i + 1] || null;
         html += `<tr>`;
-        html += `<td class="german-cell">${r1.german} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(r1.english)}','${escAttr(r1.german)}')">🔊</button></td>`;
-        html += `<td class="english-cell">${r1.english}</td>`;
+        html += `<td class="german-cell left-pair">${r1.german} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(r1.english)}','${escAttr(r1.german)}')">🔊</button></td>`;
+        html += `<td class="english-cell left-pair">${r1.english}</td>`;
         if (r2) {
-            html += `<td class="german-cell">${r2.german} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(r2.english)}','${escAttr(r2.german)}')">🔊</button></td>`;
-            html += `<td class="english-cell">${r2.english}</td>`;
+            html += `<td class="german-cell right-pair">${r2.german} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(r2.english)}','${escAttr(r2.german)}')">🔊</button></td>`;
+            html += `<td class="english-cell right-pair">${r2.english}</td>`;
         } else {
             html += `<td></td><td></td>`;
         }
@@ -1822,20 +1839,22 @@ function loadVoices() {
     const voiceSelect = document.getElementById('voiceSelect');
     if (!voiceSelect) return;
     voiceSelect.innerHTML = '';
+
     const germanVoices = voices.filter(v => v.lang.startsWith('de'));
     if (germanVoices.length === 0) {
         voiceSelect.innerHTML = '<option value="">No German voice – using default</option>';
         germanVoice = voices.find(v => v.lang.includes('en')) || voices[0] || null;
     } else {
-        germanVoices.forEach((voice, index) => {
-            const option = document.createElement('option');
-            option.value = index;
-            option.textContent = `${voice.name} (${voice.lang})`;
-            voiceSelect.appendChild(option);
-            if (index === 0) germanVoice = voice;
+        germanVoices.forEach(voice => {
+            const opt = document.createElement('option');
+            opt.value = voice.name;
+            opt.textContent = `${voice.name} (${voice.lang})`;
+            voiceSelect.appendChild(opt);
         });
+        germanVoice = germanVoices[0];
     }
-    // Pick an English voice for bilingual playback
+
+    // Pick best English voice for bilingual playback
     const enVoices = voices.filter(v => v.lang.startsWith('en'));
     englishVoice = enVoices.find(v => v.lang === 'en-US') || enVoices[0] || null;
 }
@@ -1852,8 +1871,7 @@ document.addEventListener('DOMContentLoaded', function() {
         voiceSelect.addEventListener('change', function(e) {
             stopAllSpeech();
             const voices = window.speechSynthesis.getVoices();
-            const germanVoices = voices.filter(v => v.lang.startsWith('de'));
-            germanVoice = germanVoices[parseInt(e.target.value)] || voices[0] || null;
+            germanVoice = voices.find(v => v.name === e.target.value) || voices[0] || null;
         });
     }
     const speedControl = document.getElementById('speedControl');
@@ -1892,9 +1910,12 @@ function speak(text, callback, lang) {
 
 function stopAllSpeech() {
     isPlayingSequence = false;
+    playAllActive = false;
+    isPaused = false;
     if (typeof speechSynthesis !== 'undefined') window.speechSynthesis.cancel();
     isSpeaking = false;
     hideAudioStatus();
+    hidePauseBtn();
 }
 
 function speakNow(text, callback, lang) {
@@ -2006,35 +2027,21 @@ let playAllActive = false;
 let playAllIndex = 0;
 let playAllTexts = [];
 let currentPlaySection = null;
+let isPaused = false;
 
 // ============================================
 // PLAY HIGHLIGHT HELPERS
 // ============================================
 function clearPlayHighlight() {
-    document.querySelectorAll('tr.playing-item').forEach(el => el.classList.remove('playing-item'));
+    document.querySelectorAll('tr[data-playing]').forEach(el => el.removeAttribute('data-playing'));
 }
 
-function highlightAndScroll(el) {
+function highlightAndScroll(el, side) {
     clearPlayHighlight();
     if (!el) return;
-    el.classList.add('playing-item');
-    try {
-        const rect = el.getBoundingClientRect();
-        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-        const targetY = rect.top + scrollTop - (window.innerHeight / 2) + (rect.height / 2);
-        window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
-    } catch(e) {
-        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
+    el.setAttribute('data-playing', side || 'all');
+    // auto-scroll disabled
 }
-
-// ============================================
-// PLAY SECTION — data-driven, bilingual, with highlight
-// ============================================
-let playAllActive = false;
-let playAllIndex = 0;
-let playAllTexts = []; // each item: { text, lang?, el? }
-let currentPlaySection = null;
 
 // Nouns: English → article+singular → plural, with row highlight
 function collectNounItems(articleFilter) {
@@ -2046,16 +2053,16 @@ function collectNounItems(articleFilter) {
     const items = [];
     const half = Math.ceil(data.length / 2);
 
-    function pushNoun(row, domRow) {
+    function pushNoun(row, domRow, side) {
         const [lvl, art, ger, pn, pf, eng] = row;
-        if (eng) items.push({ text: eng, lang: 'en-US', el: domRow });
-        items.push({ text: art + ' ' + ger, el: domRow });
+        if (eng) items.push({ text: eng, lang: 'en-US', el: domRow, side });
+        items.push({ text: art + ' ' + ger, el: domRow, side });
         if (pf && pf !== '---' && pf !== 'nur P' && pf !== '=' && pf !== 'kein Plural') {
-            items.push({ text: pf, el: domRow });
+            items.push({ text: pf, el: domRow, side });
         }
     }
-    for (let i = 0; i < half; i++)           pushNoun(data[i],        domRows[i]      || null);
-    for (let i = half; i < data.length; i++) pushNoun(data[i],        domRows[i-half] || null);
+    for (let i = 0; i < half; i++)           pushNoun(data[i],        domRows[i]      || null, 'left');
+    for (let i = half; i < data.length; i++) pushNoun(data[i],        domRows[i-half] || null, 'right');
     return items;
 }
 
@@ -2069,15 +2076,15 @@ function collectWordItems(csv, rowClass) {
     const items = [];
     const half = Math.ceil(data.length / 2);
 
-    function pushPair(row, domRow) {
+    function pushPair(row, domRow, side) {
         const [lvl, w1, eng1, w2, eng2] = row;
-        if (eng1) items.push({ text: eng1, lang: 'en-US', el: domRow });
-        items.push({ text: w1.replace(/[*+\-]/g, '').trim(), el: domRow });
-        if (eng2) items.push({ text: eng2, lang: 'en-US', el: domRow });
-        items.push({ text: w2.replace(/[*+\-]/g, '').trim(), el: domRow });
+        if (eng1) items.push({ text: eng1, lang: 'en-US', el: domRow, side });
+        items.push({ text: w1.replace(/[*+\-]/g, '').trim(), el: domRow, side });
+        if (eng2) items.push({ text: eng2, lang: 'en-US', el: domRow, side });
+        items.push({ text: w2.replace(/[*+\-]/g, '').trim(), el: domRow, side });
     }
-    for (let i = 0; i < half; i++)           pushPair(data[i],        domRows[i]      || null);
-    for (let i = half; i < data.length; i++) pushPair(data[i],        domRows[i-half] || null);
+    for (let i = 0; i < half; i++)           pushPair(data[i],        domRows[i]      || null, 'left');
+    for (let i = half; i < data.length; i++) pushPair(data[i],        domRows[i-half] || null, 'right');
     return items;
 }
 
@@ -2094,9 +2101,10 @@ function collectExprItems() {
     [...evens, ...odds].forEach((row, idx) => {
         const [lvl, ger, ...engParts] = row;
         const eng = engParts.join(',');
+        const side = idx < evens.length ? 'left' : 'right';
         const domRow = domRows[idx < evens.length ? idx : idx - evens.length] || null;
-        if (eng) items.push({ text: eng, lang: 'en-US', el: domRow });
-        items.push({ text: ger, el: domRow });
+        if (eng) items.push({ text: eng, lang: 'en-US', el: domRow, side });
+        items.push({ text: ger, el: domRow, side });
     });
     return items;
 }
@@ -2167,12 +2175,12 @@ function collectSentItems() {
     const half = Math.ceil(rows.length / 2);
     const items = [];
     // left col: rows[0..half-1], right col: rows[half..end] — share domRows
-    function pushSent(row, domRow) {
-        if (row.english) items.push({ text: row.english, lang: 'en-US', el: domRow });
-        items.push({ text: row.german, el: domRow });
+    function pushSent(row, domRow, side) {
+        if (row.english) items.push({ text: row.english, lang: 'en-US', el: domRow, side });
+        items.push({ text: row.german, el: domRow, side });
     }
-    for (let i = 0; i < half; i++)           pushSent(rows[i],      domRows[i]      || null);
-    for (let i = half; i < rows.length; i++) pushSent(rows[i],      domRows[i-half] || null);
+    for (let i = 0; i < half; i++)           pushSent(rows[i],      domRows[i]      || null, 'left');
+    for (let i = half; i < rows.length; i++) pushSent(rows[i],      domRows[i-half] || null, 'right');
     return items;
 }
 
@@ -2181,6 +2189,30 @@ const sectionBtnIds = {
     adj: 'btnAdj', verb: 'btnVerb', expr: 'btnExpr',
     conv: 'btnConv', qa: 'btnQa', sent: 'btnSent'
 };
+
+function showPauseBtn() {
+    const btn = document.getElementById('pauseBtn');
+    if (btn) { btn.style.display = 'inline-block'; btn.classList.remove('paused'); btn.textContent = '⏸ Pause'; }
+}
+function hidePauseBtn() {
+    const btn = document.getElementById('pauseBtn');
+    if (btn) { btn.style.display = 'none'; btn.classList.remove('paused'); isPaused = false; }
+}
+function togglePause() {
+    const btn = document.getElementById('pauseBtn');
+    if (!playAllActive) return;
+    if (isPaused) {
+        isPaused = false;
+        if (btn) { btn.classList.remove('paused'); btn.textContent = '⏸ Pause'; }
+        window.speechSynthesis.resume();
+        // If synth already finished the utterance while paused, advance manually
+        if (!isSpeaking) setTimeout(playNextInSequence, 100);
+    } else {
+        isPaused = true;
+        if (btn) { btn.classList.add('paused'); btn.textContent = '▶ Resume'; }
+        window.speechSynthesis.pause();
+    }
+}
 
 function setPlayingBtn(section) {
     Object.entries(sectionBtnIds).forEach(([key, id]) => {
@@ -2231,7 +2263,9 @@ function playSection(section) {
     playAllIndex = 0;
     currentPlaySection = section;
     isPlayingSequence = true;
+    isPaused = false;
     setPlayingBtn(section);
+    showPauseBtn();
     playNextInSequence();
 }
 
@@ -2242,10 +2276,12 @@ function playNextInSequence() {
         currentPlaySection = null;
         setPlayingBtn(null);
         clearPlayHighlight();
+        hidePauseBtn();
         return;
     }
+    if (isPaused) return;  // wait for resume
     const item = playAllTexts[playAllIndex++];
-    highlightAndScroll(item.el || null);
+    highlightAndScroll(item.el || null, item.side || 'all');
     speak(item.text, () => setTimeout(playNextInSequence, 500), item.lang || 'de-DE');
 }
 
