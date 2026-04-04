@@ -1,0 +1,1666 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary - 22: Celebrations & Traditions</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #333;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background: linear-gradient(90deg, #000000, #DD0000, #FFCE00);
+            color: white;
+            text-align: center;
+            padding: 40px 20px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+        }
+
+        .audio-controls {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .audio-controls h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            width: 100%;
+        }
+
+        .control-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .control-group label {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .control-group select,
+        .control-group input {
+            padding: 8px 15px;
+            border: 2px solid #667eea;
+            border-radius: 8px;
+            font-size: 1em;
+            cursor: pointer;
+        }
+
+        .play-all-btn {
+            background: linear-gradient(135deg, #DD0000, #FFCE00);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .play-all-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+        }
+
+        .tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 30px;
+            padding: 0 20px;
+        }
+
+        .tab-button {
+            background: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 25px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .tab-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+            background: #DD0000;
+            color: white;
+        }
+
+        .tab-button.active {
+            background: #DD0000;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .card h2 {
+            color: #DD0000;
+            font-size: 2em;
+            margin-bottom: 20px;
+            border-bottom: 3px solid #FFCE00;
+            padding-bottom: 10px;
+        }
+
+        .vocab-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .vocab-table th {
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-size: 1.1em;
+        }
+
+        .vocab-table.der th { background: linear-gradient(135deg, #2196F3, #1976D2); }
+        .vocab-table.das th { background: linear-gradient(135deg, #4CAF50, #388E3C); }
+        .vocab-table.die th { background: linear-gradient(135deg, #F44336, #D32F2F); }
+
+        .vocab-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .vocab-table tr {
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .vocab-table.der tbody tr { background: #E3F2FD; }
+        .vocab-table.das tbody tr { background: #E8F5E9; }
+        .vocab-table.die tbody tr { background: #FFEBEE; }
+
+        .vocab-table.der tbody tr:hover { background: #BBDEFB; box-shadow: 0 2px 8px rgba(33,150,243,0.3); }
+        .vocab-table.das tbody tr:hover { background: #C8E6C9; box-shadow: 0 2px 8px rgba(76,175,80,0.3); }
+        .vocab-table.die tbody tr:hover { background: #FFCDD2; box-shadow: 0 2px 8px rgba(244,67,54,0.3); }
+
+        .article { font-weight: bold; font-size: 1.1em; }
+
+        .vocab-table.der .article, .vocab-table.der .german-word { color: #1565C0; font-weight: 700; }
+        .vocab-table.das .article, .vocab-table.das .german-word { color: #2E7D32; font-weight: 700; }
+        .vocab-table.die .article, .vocab-table.die .german-word { color: #C62828; font-weight: 700; }
+
+        @media (max-width: 768px) {
+            .vocab-table { display: none; }
+            .mobile-noun-card {
+                display: block;
+                background: white;
+                border-left: 5px solid;
+                border-radius: 8px;
+                padding: 15px;
+                margin: 10px 0;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .mobile-noun-card.der { border-color: #2196F3; background: #E3F2FD; }
+            .mobile-noun-card.das { border-color: #4CAF50; background: #E8F5E9; }
+            .mobile-noun-card.die { border-color: #F44336; background: #FFEBEE; }
+            .mobile-noun-card:active { transform: scale(0.98); }
+            .mobile-noun-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
+            .mobile-article-word { font-size: 1.3em; font-weight: 700; display: flex; align-items: center; gap: 8px; }
+            .mobile-article-word.der { color: #1565C0; }
+            .mobile-article-word.das { color: #2E7D32; }
+            .mobile-article-word.die { color: #C62828; }
+            .mobile-audio-btn { background: #FFCE00; border: none; padding: 8px 12px; border-radius: 15px; font-size: 1.1em; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
+            .mobile-audio-btn:active { transform: scale(0.95); }
+            .mobile-noun-details { display: grid; grid-template-columns: auto 1fr; gap: 8px 12px; font-size: 0.95em; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.1); }
+            .mobile-label { font-weight: 600; color: #666; }
+            .mobile-plural { color: #764ba2; font-style: italic; font-weight: 600; }
+            .mobile-english { color: #444; }
+            .mobile-noun-cards { display: none; }
+            @media (max-width: 768px) { .mobile-noun-cards { display: block; } }
+        }
+
+        @media (min-width: 769px) { .mobile-noun-cards { display: none; } }
+
+        .german-word { font-size: 1.2em; }
+        .english-word { color: #666; }
+        .plural { color: #764ba2; font-style: italic; font-weight: 600; }
+
+        .word-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .word-pair {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            position: relative;
+            cursor: pointer;
+        }
+
+        .word-pair:hover { transform: scale(1.05); }
+        .word-pair .german { font-size: 1.3em; font-weight: bold; margin-bottom: 5px; }
+        .word-pair .english { font-size: 1em; opacity: 0.9; }
+        .opposite-arrow { font-size: 1.5em; margin: 10px 0; }
+
+        .word-pair .card-audio-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255,255,255,0.3);
+            border: 2px solid white;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .word-pair .card-audio-btn:hover { background: white; transform: scale(1.1); }
+
+        .expression-list { list-style: none; padding: 0; }
+
+        .expression-item {
+            background: #f8f9fa;
+            margin: 10px 0;
+            padding: 20px;
+            border-left: 5px solid #DD0000;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .expression-item:hover { transform: translateX(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: #fff; }
+        .expression-german { font-size: 1.4em; font-weight: bold; color: #000; margin-bottom: 5px; }
+        .expression-english { font-size: 1.1em; color: #666; }
+
+        .conversation { margin: 20px 0; }
+
+        .message {
+            margin: 15px 0;
+            padding: 15px 20px;
+            border-radius: 20px;
+            max-width: 80%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .message:hover { box-shadow: 0 5px 20px rgba(0,0,0,0.2); transform: translateX(5px); }
+        .message-a { background: #667eea; color: white; margin-left: 0; border-bottom-left-radius: 5px; }
+        .message-b { background: #f093fb; color: white; margin-left: auto; border-bottom-right-radius: 5px; }
+        .message-german { font-size: 1.2em; font-weight: 600; margin-bottom: 5px; }
+        .message-english { font-size: 0.95em; opacity: 0.9; font-style: italic; }
+
+        .qa-container { display: grid; gap: 20px; }
+
+        .qa-card {
+            background: white;
+            border: 2px solid #667eea;
+            border-radius: 10px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .qa-card:hover { border-color: #DD0000; box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
+        .question { font-size: 1.3em; font-weight: bold; color: #667eea; margin-bottom: 10px; }
+        .answer { font-size: 1.1em; color: #333; display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; }
+        .qa-card:hover .answer { display: block; }
+
+        .sentence-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .sentence-card {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sentence-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+        .sentence-german { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; }
+        .sentence-english { font-size: 1em; opacity: 0.9; }
+
+        .audio-btn {
+            background: #FFCE00;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 0.9em;
+            margin-left: 10px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .audio-btn:hover { background: #DD0000; color: white; transform: scale(1.1); }
+
+        /* LEVEL FILTER BAR */
+        .level-filter-bar {
+            background: white;
+            padding: 15px 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .level-filter-label { font-weight: 700; color: #555; font-size: 0.95em; margin-right: 5px; white-space: nowrap; }
+
+        .level-btn {
+            border: none;
+            padding: 9px 22px;
+            border-radius: 20px;
+            font-size: 1em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            opacity: 0.45;
+            letter-spacing: 0.5px;
+        }
+
+        .level-btn:hover { opacity: 1; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
+        .level-btn.active { opacity: 1; box-shadow: 0 4px 14px rgba(0,0,0,0.3); transform: translateY(-1px); }
+
+        .level-btn[data-level="all"] { background: #764ba2; color: white; }
+        .level-btn[data-level="A1"]  { background: #4CAF50; color: white; }
+        .level-btn[data-level="A2"]  { background: #2196F3; color: white; }
+        .level-btn[data-level="B1"]  { background: #FF9800; color: white; }
+        .level-btn[data-level="B2"]  { background: #F44336; color: white; }
+
+        .level-badge {
+            display: inline-block;
+            font-size: 0.68em;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 10px;
+            margin-left: 7px;
+            vertical-align: middle;
+            letter-spacing: 0.5px;
+        }
+
+        .level-badge.A1 { background: #C8E6C9; color: #1B5E20; }
+        .level-badge.A2 { background: #BBDEFB; color: #0D47A1; }
+        .level-badge.B1 { background: #FFE0B2; color: #E65100; }
+        .level-badge.B2 { background: #FFCDD2; color: #B71C1C; }
+
+        .noun-article-section { }
+        .noun-article-section.hidden-group { display: none !important; }
+        .conversation-block { }
+        .conversation-block.hidden-group { display: none !important; }
+
+        .filter-count-msg { width: 100%; margin-top: 4px; font-size: 0.82em; color: #888; font-style: italic; }
+
+        .clear-filter-btn {
+            display: none;
+            position: fixed;
+            top: 22px;
+            right: 22px;
+            z-index: 2000;
+            background: white;
+            color: #333;
+            border: 2.5px solid #764ba2;
+            border-radius: 30px;
+            padding: 9px 20px 9px 14px;
+            font-size: 0.95em;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 18px rgba(118,75,162,0.25);
+            transition: all 0.2s ease;
+            align-items: center;
+            gap: 8px;
+            white-space: nowrap;
+        }
+
+        .clear-filter-btn:hover { background: #764ba2; color: white; transform: translateY(-2px); box-shadow: 0 6px 22px rgba(118,75,162,0.4); }
+        .clear-filter-btn.visible { display: flex; }
+
+        .clear-filter-btn .clear-x {
+            width: 20px;
+            height: 20px;
+            background: #764ba2;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85em;
+            font-weight: 900;
+            flex-shrink: 0;
+            transition: background 0.2s;
+        }
+
+        .clear-filter-btn:hover .clear-x { background: white; color: #764ba2; }
+
+        .audio-status {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            gap: 10px;
+            z-index: 1000;
+        }
+
+        .audio-status.show { display: flex; }
+
+        .audio-status .spinner {
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 50px;
+        }
+
+        footer p { margin: 10px 0; }
+        .section-icon { font-size: 2em; margin-right: 10px; vertical-align: middle; }
+
+        @media (max-width: 768px) {
+            header h1 { font-size: 2em; }
+            .tabs { flex-direction: column; }
+            .tab-button { width: 100%; }
+            .word-grid { grid-template-columns: 1fr; }
+            .sentence-grid { grid-template-columns: 1fr; }
+            .message { max-width: 90%; }
+            .audio-controls { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+<!-- NAVIGATION -->
+<div style="background: #000; padding: 15px; text-align: center;">
+    <a href="../index.html" style="color: #FFCE00; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🏠 Home</a>
+    <a href="../index.html#levels" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📚 Levels</a>
+    <a href="../index.html#categories" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🎯 Categories</a>
+    <a href="../tools/progress.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📊 Progress</a>
+    <a href="../about.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">ℹ️ About</a>
+</div>
+
+    <header>
+        <h1>22: Celebrations & Traditions</h1>
+        <p id="headerTopic">22: Celebrations & Traditions | Interactive Audio Learning</p>
+        <p style="font-size: 0.9em; margin-top: 10px;">Created by: aliattia02 | Date: 2025-11-16</p>
+    </header>
+
+    <div class="container">
+        <div class="audio-controls">
+            <h3>🔊 Audio Settings</h3>
+            <div class="control-group">
+                <label for="voiceSelect">Voice:</label>
+                <select id="voiceSelect">
+                    <option value="">Loading voices...</option>
+                </select>
+            </div>
+            <div class="control-group">
+                <label for="speedControl">Speed:</label>
+                <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+                <span id="speedValue">0.8x</span>
+            </div>
+            <div class="control-group">
+                <label for="pitchControl">Pitch:</label>
+                <input type="range" id="pitchControl" min="0.5" max="2" step="0.1" value="1">
+                <span id="pitchValue">1.0</span>
+            </div>
+            <button class="play-all-btn" onclick="playAllInSection()">▶ Play All in Section</button>
+        </div>
+
+        <button class="clear-filter-btn" id="clearFilterBtn" onclick="filterByLevel('all')">
+            <span class="clear-x">✕</span>
+            <span id="clearFilterLabel">Show All Levels</span>
+        </button>
+
+        <div class="level-filter-bar">
+            <span class="level-filter-label">🎯 Filter by Level:</span>
+            <button class="level-btn active" data-level="all" onclick="filterByLevel('all')">All Levels</button>
+            <button class="level-btn" data-level="A1" onclick="filterByLevel('A1')">A1 — Beginner</button>
+            <button class="level-btn" data-level="A2" onclick="filterByLevel('A2')">A2 — Elementary</button>
+            <button class="level-btn" data-level="B1" onclick="filterByLevel('B1')">B1 — Intermediate</button>
+            <button class="level-btn" data-level="B2" onclick="filterByLevel('B2')">B2 — Upper Intermediate</button>
+            <span class="filter-count-msg" id="filterCountMsg"></span>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('nouns', event)">📚 Nouns</button>
+            <button class="tab-button" onclick="showTab('adjectives', event)">✨ Adjectives</button>
+            <button class="tab-button" onclick="showTab('verbs', event)">⚡ Verbs</button>
+            <button class="tab-button" onclick="showTab('expressions', event)">💬 Key Expressions</button>
+            <button class="tab-button" onclick="showTab('conversations', event)">🗣️ Conversations</button>
+            <button class="tab-button" onclick="showTab('qa', event)">❓ Q&amp;A Practice</button>
+            <button class="tab-button" onclick="showTab('sentences', event)">📝 Quick Sentences</button>
+        </div>
+
+        <div id="nouns" class="tab-content active">
+            <div class="card">
+                <h2><span class="section-icon">📚</span>Nouns - Die Nomen</h2>
+                <div id="nounsContainer"></div>
+            </div>
+        </div>
+
+        <div id="adjectives" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">✨</span>Adjectives - Die Adjektive</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any card to hear the pronunciation!</p>
+                <div id="adjectivesContainer" class="word-grid"></div>
+            </div>
+        </div>
+
+        <div id="verbs" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">⚡</span>Verbs - Die Verben</h2>
+                <p style="margin-bottom: 20px;"><strong>*</strong> = Weak Verb | <strong>+</strong> = Strong Verb</p>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any card to hear the pronunciation!</p>
+                <div id="verbsContainer" class="word-grid"></div>
+            </div>
+        </div>
+
+        <div id="expressions" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">💬</span>Key Expressions - Wichtige Ausdrücke</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any expression to hear the pronunciation!</p>
+                <ul id="expressionsContainer" class="expression-list"></ul>
+            </div>
+        </div>
+
+        <div id="conversations" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">🗣️</span>Mini Conversations - Kurze Gespräche</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any message to hear it!</p>
+                <div id="conversationsContainer"></div>
+            </div>
+        </div>
+
+        <div id="qa" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">❓</span>Q&amp;A Practice - Fragen und Antworten</h2>
+                <p style="margin-bottom: 20px; font-style: italic; color: #666;">💡 Hover over each card to see the answer, or click to hear it!</p>
+                <div id="qaContainer" class="qa-container"></div>
+            </div>
+        </div>
+
+        <div id="sentences" class="tab-content">
+            <div class="card">
+                <h2><span class="section-icon">📝</span>Quick Sentences - Schnelle Sätze</h2>
+                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any sentence to hear it!</p>
+                <div id="sentencesContainer" class="sentence-grid"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="audio-status" id="audioStatus">
+        <div class="spinner"></div>
+        <span id="audioStatusText">Speaking...</span>
+    </div>
+
+    <footer>
+        <p><strong>German Vocabulary - Interactive Audio Learning</strong></p>
+        <p>Created for German Learners | © 2025 aliattia02</p>
+        <p>🔧 Interactive Audio Learning Platform</p>
+        <p style="margin-top: 20px; font-size: 0.9em;">🎯 Click anywhere to hear pronunciation | 💪 Practice makes perfect!</p>
+        <p style="margin-top: 10px; font-size: 0.8em; opacity: 0.8;">Last Updated: 2025-11-16</p>
+    </footer>
+
+    <script>
+
+// ============================================
+// VOCABULARY DATA
+// ============================================
+
+const nounsCSV = `
+// das — cluster: key holidays
+A1,das,Weihnachten,---,---,Christmas
+A1,das,Ostern,---,---,Easter
+A1,das,Silvester,---,---,New Year's Eve
+A1,das,Neujahr,---,---,New Year's Day
+// das — cluster: gifts & atmosphere
+A1,das,Geschenk,-e,die Geschenke,Gift
+A1,das,Kerzenlicht,---,---,Candlelight
+A2,das,Feuerwerk,-e,die Feuerwerke,Fireworks display
+A2,das,Konfetti,---,---,Confetti
+A2,das,Geburtstagskind,-er,die Geburtstagskinder,Birthday boy/girl
+A2,das,Festzelt,-e,die Festzelte,Festival tent
+A2,das,Volksfest,-e,die Volksfeste,Folk festival
+A2,das,Kostümfest,-e,die Kostümfeste,Costume party
+// das — cluster: rituals & ceremonies
+B1,das,Ritual,-e,die Rituale,Ritual
+B1,das,Ständchen,=,die Ständchen,Serenade
+B1,das,Festmahl,-er,die Festmähler,Banquet
+B1,das,Karnevalskostüm,-e,die Karnevalskostüme,Carnival costume
+B1,das,Festprogramm,-e,die Festprogramme,Festival programme
+B1,das,Tischgebet,-e,die Tischgebete,Grace before meals
+B2,das,Zeremoniell,-e,die Zeremonielle,Ceremonial protocol
+B2,das,Brauchtum,---,---,Folk customs
+B2,das,Weihrauch,---,---,Incense
+B2,das,Gelübde,=,die Gelübde,Vow
+// der — cluster: celebrations & special days
+A1,der,Geburtstag,-e,die Geburtstage,Birthday
+A1,der,Advent,---,---,Advent
+A2,der,Karneval,-e,die Karnevale,Carnival
+A2,der,Fasching,---,---,Fasching
+A2,der,Brauch,Bräuche,die Bräuche,Custom
+A2,der,Weihnachtstag,-e,die Weihnachtstage,Christmas Day
+A2,der,Toast,-s,die Toasts,Toast speech
+// der — cluster: seasonal symbols & food
+A2,der,Weihnachtsbaum,Weihnachtsbäume,die Weihnachtsbäume,Christmas tree
+A2,der,Adventskranz,Adventskränze,die Adventskränze,Advent wreath
+A2,der,Osterhase,-n,die Osterhasen,Easter bunny
+A2,der,Lebkuchen,=,die Lebkuchen,Gingerbread
+A2,der,Glühwein,-e,die Glühweine,Mulled wine
+A2,der,Geburtstagskuchen,=,die Geburtstagskuchen,Birthday cake
+// der — cluster: occasions & events
+B1,der,Heiligabend,---,---,Christmas Eve
+B1,der,Nikolaus,---,---,St Nicholas Day
+B1,der,Jahrestag,-e,die Jahrestage,Anniversary
+B1,der,Muttertag,-e,die Muttertage,Mother's Day
+B1,der,Vatertag,-e,die Vatertage,Father's Day
+B1,der,Nationalfeiertag,-e,die Nationalfeiertage,National holiday
+B1,der,Umzug,Umzüge,die Umzüge,Parade procession
+B1,der,Höhepunkt,-e,die Höhepunkte,High point
+B1,der,Sektempfang,-empfänge,die Sektempfänge,Champagne reception
+B1,der,Laternenumzug,Laternenumzüge,die Laternenumzüge,Lantern procession
+B2,der,Reformationstag,---,---,Reformation Day
+B2,der,Erntedanktag,-e,die Erntedanktage,Harvest Thanksgiving Day
+B2,der,Festredner,=,die Festredner,Keynote speaker
+B2,der,Festakt,-e,die Festakte,Ceremonial event
+B2,der,Trauerzug,Trauerzüge,die Trauerzüge,Funeral procession
+// die — cluster: celebrations & events
+A1,die,Feier,-n,die Feiern,Celebration
+A1,die,Party,-s,die Partys,Party
+A1,die,Einladung,-en,die Einladungen,Invitation
+// die — cluster: traditions & symbols
+A2,die,Tradition,-en,die Traditionen,Tradition
+A2,die,Überraschung,-en,die Überraschungen,Surprise
+A2,die,Dekoration,-en,die Dekorationen,Decoration
+A2,die,Girlande,-n,die Girlanden,Garland
+A2,die,Weihnachtszeit,---,---,Christmas season
+A2,die,Weihnachtskugel,-n,die Weihnachtskugeln,Christmas bauble
+A2,die,Laterne,-n,die Laternen,Lantern
+A2,die,Kirmes,-sen,die Kirmessen,Parish fair
+A2,die,Silvesternacht,Silvesternächte,die Silvesternächte,New Year's Eve night
+A2,die,Ostereiersuche,---,---,Easter egg hunt
+// die — cluster: religious & life events
+A2,die,Taufe,-n,die Taufen,Baptism
+B1,die,Zeremonie,-n,die Zeremonien,Ceremony
+B1,die,Konfirmation,-en,die Konfirmationen,Confirmation
+B1,die,Kommunion,-en,die Kommunionen,First Communion
+B1,die,Sitte,-n,die Sitten,Custom
+B1,die,Adventszeit,---,---,Advent season
+B1,die,Fastenzeit,---,---,Lent
+B1,die,Prozession,-en,die Prozessionen,Religious procession
+B1,die,Trauerfeier,-n,die Trauerfeiern,Memorial service
+B1,die,Rede,-n,die Reden,Speech
+B1,die,Ehrung,-en,die Ehrungen,Tribute
+B1,die,Feiertagsruhe,---,---,Holiday quiet
+// die — cluster: folk culture & heritage
+B2,die,Volkstradition,-en,die Volkstraditionen,Folk tradition
+B2,die,Gedenkfeier,-n,die Gedenkfeiern,Commemoration ceremony
+B2,die,Wallfahrt,-en,die Wallfahrten,Pilgrimage
+B2,die,Initiation,-en,die Initiationen,Initiation
+B2,die,Liturgie,-n,die Liturgien,Liturgy
+B2,die,Feiertagskultur,---,---,Holiday culture
+B2,die,Festschrift,-en,die Festschriften,Commemorative publication
+B2,die,Übergangsritus,-riten,die Übergangsriten,Rite of passage
+`.trim();
+
+const adjectivesCSV = `
+// cluster: celebration spirit
+A1,-fröhlich,cheerful,-betrübt,sorrowful
+A1,-feierlich,solemn,-ungezwungen,relaxed
+A1,-geschmückt,decorated,-schmucklos,undecorated
+A2,-ausgelassen,exuberant,-gedämpft,subdued
+A2,-überschwänglich,effusive,-reserviert,reserved
+A2,-stimmungsvoll,atmospheric,-stimmungslos,flat
+// cluster: decoration & setting
+A2,-beleuchtet,illuminated,-unbeleuchtet,unlit
+A2,-weihnachtlich,Christmassy,-österlich,Easter-related
+B1,-prächtig,magnificent,-unscheinbar,understated
+B1,-lärmend,noisy,-besinnlich,reflective
+// cluster: religious & cultural character
+A2,-religiös,religious,-weltlich,secular
+A2,-geistlich,spiritual,-profan,profane
+A2,-jährlich,annual,-einmalig,one-off
+B1,-sakral,sacred,-säkular,secular
+B1,-traditionsreich,rich in tradition,-traditionslos,without tradition
+// cluster: cultural value & roots
+A2,-althergebracht,age-old,-neuartig,novel
+B1,-symbolträchtig,symbolically charged,-bedeutungslos,meaningless
+B1,-volksverbunden,rooted in folk culture,-elitär,elitist
+B1,-wiederkehrend,recurring,-sporadisch,sporadic
+B2,-ritualisiert,ritualised,-regellos,unstructured
+B2,-brauchtumspflegend,tradition-preserving,-traditionsfeindlich,tradition-hostile
+B2,-interkonfessionell,interdenominational,-konfessionsgebunden,denomination-specific
+B2,-landesweit,nationwide,-örtlich,local
+B2,-gemeinschaftsstärkend,community-building,-vereinzelnd,isolating
+`.trim();
+
+const verbsCSV = `
+// cluster: organising & marking celebrations
+A1,*begehen,mark/celebrate,*veranstalten,organise
+A1,*schmücken,decorate,*anzünden,light
+A1,*gratulieren,congratulate,*zusammenkommen,come together
+// cluster: participating & giving
+A2,*verkleiden,dress up,*anstimmen,strike up
+A2,*überreichen,present,*verteilen,hand out
+A2,*beschenken,give gifts to,*überraschen,surprise
+A2,*weitergeben,pass down,*tradieren,hand down
+A2,*wünschen,wish,*ausblasen,blow out [candles]
+A2,*beten,pray,*fasten,fast
+// cluster: commemorating & practising
+A2,*umarmen,hug,*schunkeln,link arms and sway
+B1,*mitfeiern,join in the celebrations,*jubeln,cheer
+B1,*aufwarten,attend to guests,*verköstigen,cater for
+B1,*durchführen,carry out,*zelebrieren,celebrate formally
+B1,*aufbauen,set up,*abbauen,take down
+B1,*festhalten,preserve,*abschaffen,abolish
+B1,*enthüllen,unveil,*praktizieren,practise
+B1,*taufen,baptise,*konfirmieren,confirm
+// cluster: religious & ceremonial
+B2,*segnen,bless,*heiligen,sanctify
+B2,*gedenken,commemorate,*innehalten,pause in reflection
+B2,*ausrichten,host,*bekanntgeben,announce
+B2,*ritualisieren,ritualise,*institutionalisieren,institutionalise
+`.trim();
+
+const expressionsCSV = `
+// cluster: greetings & good wishes
+A1,Herzlichen Glückwunsch zum Geburtstag!,Happy birthday!
+A1,Frohe Weihnachten!,Merry Christmas!
+A1,Guten Rutsch ins neue Jahr!,Happy New Year!
+A1,Frohe Ostern!,Happy Easter!
+A1,Herzlichen Glückwunsch!,Congratulations!
+A2,Ich lade dich herzlich zu meiner Party ein.,I warmly invite you to my party.
+A2,Auf dein Wohl!,Cheers! / To your health!
+A2,Das ist eine tolle Überraschung!,That is a wonderful surprise!
+B1,Möge das neue Jahr all deine Wünsche erfüllen.,May the new year fulfil all your wishes.
+B2,Im Namen aller Anwesenden möchte ich eine Rede halten.,On behalf of all those present I would like to give a speech.
+// cluster: seasonal & religious expressions
+A1,Wann ist Weihnachten?,When is Christmas?
+A1,Wir zünden jeden Abend im Advent eine Kerze an.,We light a candle every evening during Advent.
+A2,Am Heiligabend öffnen wir unsere Geschenke.,On Christmas Eve we open our presents.
+A2,Der Osterhase hat Eier im Garten versteckt.,The Easter bunny has hidden eggs in the garden.
+A2,Zu Silvester gibt es immer ein großes Feuerwerk.,On New Year's Eve there is always a big fireworks display.
+B1,Die Fastenzeit dauert vierzig Tage vor Ostern.,Lent lasts forty days before Easter.
+B1,Die Prozession zieht durch die ganze Altstadt.,The procession winds through the whole old town.
+B2,Der Reformationstag wird in evangelischen Bundesländern als Feiertag begangen.,Reformation Day is observed as a public holiday in Protestant German states.
+// cluster: traditions & customs
+A1,Welche Traditionen gibt es in deiner Familie?,What traditions does your family have?
+A1,Zu Weihnachten schmücken wir immer unseren Weihnachtsbaum.,At Christmas we always decorate our Christmas tree.
+A2,In meiner Familie ist es Brauch Lebkuchen zu backen.,In my family it is a custom to bake gingerbread.
+A2,Zum Geburtstag bekommt man bei uns immer einen Geburtstagskuchen.,In our family you always get a birthday cake on your birthday.
+B1,Karneval ist ein althergebrachter Brauch der in Köln besonders ausgelassen gefeiert wird.,Carnival is an age-old custom that is celebrated with particular exuberance in Cologne.
+B1,Das Laternenumzug-Fest am elften November gehört zu den beliebtesten Bräuchen für Kinder.,The lantern procession on the eleventh of November is one of the most popular customs for children.
+B2,Übergangsriten markieren wichtige Lebensabschnitte wie Taufe Konfirmation oder Hochzeit.,Rites of passage mark important life stages such as baptism confirmation or marriage.
+// cluster: community & celebration
+A1,Wir feiern heute den Geburtstag meiner Mutter.,We are celebrating my mother's birthday today.
+A2,Das Volksfest dauert zehn Tage und lockt Besucher aus aller Welt an.,The folk festival lasts ten days and attracts visitors from all over the world.
+B1,Die Gedenkfeier wird jährlich zu Ehren der Kriegsopfer begangen.,The commemoration ceremony is held annually in honour of the war victims.
+B1,Bei der Konfirmation hält der Pfarrer eine bewegende Rede.,At the confirmation the pastor gives a moving speech.
+B2,Die Festschrift zum hundertjährigen Jubiläum enthält Beiträge von dreißig Autoren.,The commemorative publication for the centenary contains contributions from thirty authors.
+`.trim();
+
+// ============================================
+// CONVERSATIONS — format: level|Title|Speaker,german,english
+// ============================================
+const conversationsRaw = `
+A1|Talking About Family|A,Hast du Geschwister?,Do you have siblings?
+A1|Talking About Family|B,Ja ich habe einen Bruder und eine Schwester. Und du?,Yes I have a brother and a sister. And you?
+A1|Talking About Family|A,Ich bin Einzelkind. Wo wohnen deine Eltern?,I am an only child. Where do your parents live?
+A1|Talking About Family|B,Meine Eltern wohnen in Hamburg.,My parents live in Hamburg.
+A1|Talking About Family|A,Hast du auch Großeltern?,Do you also have grandparents?
+A1|Talking About Family|B,Ja meine Großmutter wohnt bei uns zu Hause.,Yes my grandmother lives with us at home.
+A1|Talking About Family|A,Wie alt ist sie?,How old is she?
+A1|Talking About Family|B,Sie ist achtzig Jahre alt und sehr aktiv.,She is eighty years old and very active.
+A2|Describing Your Family|A,Erzähl mir von deiner Familie.,Tell me about your family.
+A2|Describing Your Family|B,Wir sind eine große Familie. Ich habe drei Geschwister und viele Cousins.,We are a large family. I have three siblings and many cousins.
+A2|Describing Your Family|A,Verstehst du dich gut mit deinen Geschwistern?,Do you get along well with your siblings?
+A2|Describing Your Family|B,Ja wir verstehen uns sehr gut. Mein Bruder ist mein bester Freund.,Yes we get along very well. My brother is my best friend.
+A2|Describing Your Family|A,Sind deine Eltern noch verheiratet?,Are your parents still married?
+A2|Describing Your Family|B,Ja seit dreißig Jahren. Sie feiern nächstes Jahr ihr Jubiläum.,Yes for thirty years. They are celebrating their anniversary next year.
+A2|Describing Your Family|A,Das ist wunderbar! Habt ihr viele Familienfeste?,That is wonderful! Do you have many family celebrations?
+A2|Describing Your Family|B,Ja wir treffen die ganze Familie immer zu Weihnachten und Ostern.,Yes we always meet the whole family at Christmas and Easter.
+B1|Wedding Plans|A,Herzlichen Glückwunsch zur Verlobung! Wann ist die Hochzeit?,Congratulations on the engagement! When is the wedding?
+B1|Wedding Plans|B,Danke! Wir heiraten im September in einem kleinen Schloss.,Thank you! We are getting married in September in a small castle.
+B1|Wedding Plans|A,Habt ihr schon viele Gäste eingeladen?,Have you already invited many guests?
+B1|Wedding Plans|B,Ja wir laden die ganze Familie und enge Freunde ein. Das sind fast achtzig Personen.,Yes we are inviting the whole family and close friends. That is almost eighty people.
+B1|Wedding Plans|A,Und wer ist Trauzeuge?,And who is the best man?
+B1|Wedding Plans|B,Mein Bruder. Er hält auch eine Rede.,My brother. He is also giving a speech.
+B1|Wedding Plans|A,Werden die Kinder auch dabei sein?,Will the children be there too?
+B1|Wedding Plans|B,Ja natürlich. Meine Nichten sind die Blumenmädchen.,Yes of course. My nieces are the flower girls.
+B1|Wedding Plans|A,Das wird sicher ein unvergessliches Fest.,That will certainly be an unforgettable celebration.
+B1|Wedding Plans|B,Wir freuen uns riesig darauf.,We are very much looking forward to it.
+B2|Family Law Matters|A,Ich brauche Ihren Rat in einer Familienangelegenheit.,I need your advice in a family matter.
+B2|Family Law Matters|B,Natürlich. Worum geht es?,Of course. What is it about?
+B2|Family Law Matters|A,Mein Partner und ich haben uns getrennt. Wir haben ein Kind und wissen nicht wie das Sorgerecht geregelt wird.,My partner and I have separated. We have a child and do not know how custody is regulated.
+B2|Family Law Matters|B,Das Gericht entscheidet nach dem Kindeswohl. Meist wird gemeinsames Sorgerecht vereinbart.,The court decides based on the child's best interest. Joint custody is usually agreed upon.
+B2|Family Law Matters|A,Was ist wenn wir uns nicht einigen können?,What if we cannot agree?
+B2|Family Law Matters|B,Dann kann ein Mediator helfen bevor man vor Gericht geht.,Then a mediator can help before going to court.
+B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about visitation rights?
+B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
+`.trim();
+
+const qaCSV = `
+// cluster: basic celebrations
+A1,Was ist ein Geburtstag?,Der Tag an dem man geboren wurde. Man feiert ihn mit Familie und Freunden. (The day one was born. It is celebrated with family and friends.)
+A1,Was ist Weihnachten?,Ein christliches Fest im Dezember das die Geburt Jesu feiert. (A Christian festival in December celebrating the birth of Jesus.)
+A1,Was ist Ostern?,Ein christliches Fest im Frühling das die Auferstehung Jesu feiert. (A Christian festival in spring celebrating the resurrection of Jesus.)
+A1,Was ist Silvester?,Der letzte Tag des Jahres am einunddreißigsten Dezember. (The last day of the year on the thirty-first of December.)
+A1,Was ist eine Einladung?,Eine Aufforderung zu einem Fest oder einer Feier zu kommen. (A request to come to a celebration or party.)
+A1,Was ist ein Geschenk?,Etwas das man jemandem zur Freude schenkt ohne etwas dafür zu verlangen. (Something given to someone as a pleasure without expecting anything in return.)
+A1,Was ist ein Feuerwerk?,Bunte Lichter und Knaller am Himmel die zu besonderen Anlässen gezündet werden. (Colourful lights and bangs in the sky set off on special occasions.)
+A1,Was ist eine Feier?,Eine Veranstaltung bei der Menschen zusammenkommen um einen besonderen Anlass zu begehen. (An event where people come together to mark a special occasion.)
+// cluster: German seasonal customs
+A2,Was ist der Advent?,Die vier Wochen vor Weihnachten in denen man sich auf das Fest vorbereitet. (The four weeks before Christmas in which one prepares for the celebration.)
+A2,Was ist ein Adventskranz?,Ein Kranz mit vier Kerzen der im Advent aufgestellt wird. (A wreath with four candles set up during Advent.)
+A2,Was ist Karneval?,Ein volkstümliches Fest mit Kostümen Umzügen und ausgelassener Stimmung vor der Fastenzeit. (A folk festival with costumes parades and exuberant mood before Lent.)
+A2,Was ist der Nikolaustag?,Am sechsten Dezember bringt der Nikolaus Kindern Süßigkeiten oder Geschenke. (On the sixth of December St Nicholas brings children sweets or gifts.)
+A2,Was ist der Heiligabend?,Der vierundzwanzigste Dezember an dem in Deutschland Geschenke verteilt werden. (The twenty-fourth of December on which presents are distributed in Germany.)
+A2,Was sind Lebkuchen?,Traditionelles deutsches Weihnachtsgebäck aus Honig Gewürzen und Nüssen. (Traditional German Christmas biscuits made from honey spices and nuts.)
+A2,Was ist Glühwein?,Warmer gewürzter Rotwein der auf Weihnachtsmärkten getrunken wird. (Warm spiced red wine drunk at Christmas markets.)
+A2,Was ist eine Tradition?,Eine Gewohnheit oder ein Brauch der von Generation zu Generation weitergegeben wird. (A custom or practice passed down from generation to generation.)
+// cluster: religious & community traditions
+B1,Was ist die Fastenzeit?,Die vierzig Tage vor Ostern in denen manche Christen auf bestimmte Dinge verzichten. (The forty days before Easter in which some Christians abstain from certain things.)
+B1,Was ist eine Konfirmation?,Eine kirchliche Zeremonie bei der Jugendliche ihren Glauben öffentlich bekennen. (A church ceremony in which young people publicly profess their faith.)
+B1,Was ist eine Taufe?,Eine christliche Zeremonie bei der ein Mensch in die Gemeinschaft der Kirche aufgenommen wird. (A Christian ceremony in which a person is received into the community of the church.)
+B1,Was ist ein Nationalfeiertag?,Ein gesetzlicher Feiertag der an ein wichtiges nationales Ereignis erinnert. (A public holiday commemorating an important national event.)
+B1,Was ist ein Jahrestag?,Die jährliche Wiederkehr eines bedeutenden Ereignisses. (The annual recurrence of a significant event.)
+B1,Was ist ein Festmahl?,Ein festliches Abendessen das zu einem besonderen Anlass gemeinsam eingenommen wird. (A festive dinner shared together on a special occasion.)
+// cluster: cultural & advanced
+B2,Was ist ein Übergangsritus?,Eine Zeremonie die den Übergang von einem Lebensabschnitt zum nächsten markiert. (A ceremony marking the transition from one stage of life to the next.)
+B2,Was ist Brauchtum?,Die Gesamtheit der volkstümlichen Sitten und Traditionen einer Region oder Gemeinschaft. (The totality of the folk customs and traditions of a region or community.)
+B2,Was ist eine Festschrift?,Eine Sammlung von Beiträgen zu Ehren einer Person oder eines Jubiläums. (A collection of contributions in honour of a person or anniversary.)
+B2,Was ist eine Wallfahrt?,Eine religiöse Reise zu einem heiligen Ort als Ausdruck des Glaubens. (A religious journey to a holy place as an expression of faith.)
+B2,Was versteht man unter Liturgie?,Die festgelegten Gebete und Handlungen bei einem religiösen Gottesdienst. (The prescribed prayers and actions at a religious service.)
+`.trim();
+
+const sentencesCSV = `
+// cluster: birthdays & gifts
+A1,Heute ist mein Geburtstag und ich bekomme viele Geschenke.,Today is my birthday and I am receiving many gifts.
+A1,Herzlichen Glückwunsch zum Geburtstag wünscht dir die ganze Familie.,The whole family wishes you a happy birthday.
+A1,Wir schmücken das Haus für die Geburtstagsparty.,We are decorating the house for the birthday party.
+A1,Der Geburtstagskuchen steht schon auf dem Tisch.,The birthday cake is already on the table.
+A2,Zum Geburtstag habe ich einen Geburtstagskuchen mit Kerzen bekommen.,For my birthday I received a birthday cake with candles.
+A2,Die Einladungen für die Party wurden schon verschickt.,The invitations for the party have already been sent out.
+A2,Es war eine tolle Überraschung als alle Freunde plötzlich auftauchten.,It was a wonderful surprise when all friends suddenly appeared.
+// cluster: Christmas & Advent
+A1,Frohe Weihnachten wünscht unsere ganze Familie!,Our whole family wishes you a merry Christmas!
+A1,Zu Weihnachten schmücken wir immer den Weihnachtsbaum.,At Christmas we always decorate the Christmas tree.
+A1,Im Advent zünden wir jeden Sonntag eine Kerze am Adventskranz an.,In Advent we light a candle on the advent wreath every Sunday.
+A2,Am Heiligabend verteilen wir die Geschenke unter dem Weihnachtsbaum.,On Christmas Eve we hand out the presents under the Christmas tree.
+A2,Lebkuchen und Glühwein gehören fest zur deutschen Weihnachtstradition.,Gingerbread and mulled wine are a firm part of German Christmas tradition.
+A2,Auf dem Weihnachtsmarkt kaufen wir Weihnachtskugeln und Girlanden.,At the Christmas market we buy Christmas baubles and garlands.
+// cluster: other festivals & customs
+A1,Zu Silvester gibt es überall in Deutschland ein großes Feuerwerk.,On New Year's Eve there are big fireworks everywhere in Germany.
+A2,Beim Karneval verkleiden sich die Menschen in bunte Kostüme.,At carnival people dress up in colourful costumes.
+A2,Das Volksfest ist ein althergebrachter Brauch in vielen deutschen Regionen.,The folk festival is an age-old custom in many German regions.
+A2,Der Osterhase versteckt am Ostermorgen Eier im Garten.,On Easter morning the Easter bunny hides eggs in the garden.
+B1,Der Laternenumzug am elften November macht Kindern großen Spaß.,The lantern procession on the eleventh of November is great fun for children.
+B1,Die Konfirmation ist ein wichtiger Meilenstein im Leben junger Christen.,Confirmation is an important milestone in the lives of young Christians.
+// cluster: ceremonies & rites
+B1,Bei der Taufe wird das Kind in die Gemeinschaft der Kirche aufgenommen.,At the baptism the child is received into the community of the church.
+B1,Die Trauerfeier war sehr würdevoll und bewegend.,The memorial service was very dignified and moving.
+B1,Der Nationalfeiertag wird mit einer Gedenkfeier und einem Festakt begangen.,The national holiday is marked with a commemoration ceremony and a ceremonial event.
+B2,Die Liturgie der Weihnachtsmesse folgt einem jahrhundertealten Zeremoniell.,The liturgy of Christmas mass follows a centuries-old ceremonial protocol.
+B2,Übergangsriten wie Taufe und Konfirmation strukturieren die Biografie eines Menschen.,Rites of passage such as baptism and confirmation structure a person's biography.
+B2,Durch Wallfahrten drücken Gläubige ihre Frömmigkeit und Verbundenheit mit dem Glauben aus.,Through pilgrimages believers express their piety and connection to the faith.
+// cluster: traditions & cultural value
+B1,Das Brauchtum unterscheidet sich stark von Region zu Region in Deutschland.,Folk customs vary greatly from region to region in Germany.
+B2,Traditionsreiche Gemeinden pflegen ihre Volkstraditionen oft seit Jahrhunderten.,Tradition-rich communities often maintain their folk traditions for centuries.
+B2,Interkonfessionelle Feiern verbinden Menschen verschiedener Glaubensrichtungen miteinander.,Interdenominational celebrations connect people of different faiths with one another.
+B2,Die Feiertagskultur eines Landes spiegelt seine Geschichte und Werte wider.,The holiday culture of a country reflects its history and values.
+`.trim();
+
+// ============================================
+// CSV PARSER — strips blank lines AND comment lines
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(line => line.trim())
+        .filter(line => line.length > 0 && !line.startsWith('//'))
+        .map(line => line.split(',').map(cell => cell.trim()));
+}
+
+// ============================================
+// SPEECH SYNTHESIS
+// ============================================
+let germanVoice = null;
+let currentUtterance = null;
+let isSpeaking = false;
+let isPlayingSequence = false;
+let ttsWarmedUp = false;
+
+function loadVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    voiceSelect.innerHTML = '';
+    const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
+
+    if (germanVoices.length === 0) {
+        voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
+        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+    } else {
+        germanVoices.forEach((voice, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = `${voice.name} (${voice.lang})`;
+            voiceSelect.appendChild(option);
+            if (index === 0) germanVoice = voice;
+        });
+    }
+    console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
+}
+
+if (speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+}
+loadVoices();
+setTimeout(loadVoices, 100);
+setTimeout(loadVoices, 500);
+
+document.getElementById('voiceSelect').addEventListener('change', function(e) {
+    stopAllSpeech();
+    const voices = window.speechSynthesis.getVoices();
+    const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
+    germanVoice = germanVoices[e.target.value] || voices[0];
+});
+
+document.getElementById('speedControl').addEventListener('input', function(e) {
+    document.getElementById('speedValue').textContent = e.target.value + 'x';
+});
+
+document.getElementById('pitchControl').addEventListener('input', function(e) {
+    document.getElementById('pitchValue').textContent = e.target.value;
+});
+
+function warmUpTTS(callback) {
+    if (ttsWarmedUp) { callback(); return; }
+    const primer = new SpeechSynthesisUtterance(' ');
+    primer.volume = 0;
+    primer.lang = 'de-DE';
+    if (germanVoice) primer.voice = germanVoice;
+    primer.onend  = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    primer.onerror = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(primer);
+}
+
+function speak(text, callback) {
+    if (!text || text.trim() === '') {
+        if (callback) callback();
+        return;
+    }
+    text = text.replace('🔊', '').trim();
+    if (!isPlayingSequence) stopAllSpeech();
+    if (!ttsWarmedUp) {
+        warmUpTTS(() => speakNow(text, callback));
+    } else {
+        window.speechSynthesis.resume();
+        setTimeout(() => speakNow(text, callback), 100);
+    }
+}
+
+function stopAllSpeech() {
+    isPlayingSequence = false;
+    window.speechSynthesis.cancel();
+    isSpeaking = false;
+    hideAudioStatus();
+}
+
+function speakNow(text, callback) {
+    if (!('speechSynthesis' in window)) {
+        alert('⚠️ Text-to-speech not supported.');
+        if (callback) callback();
+        return;
+    }
+    showAudioStatus(text);
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'de-DE';
+    if (germanVoice) utterance.voice = germanVoice;
+    utterance.rate = parseFloat(document.getElementById('speedControl').value);
+    utterance.pitch = parseFloat(document.getElementById('pitchControl').value);
+    utterance.volume = 1.0;
+    let hasEnded = false;
+
+    utterance.onstart = () => { isSpeaking = true; };
+    utterance.onend = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) setTimeout(() => callback(true), 100);
+    };
+    utterance.onerror = (event) => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) callback(false);
+    };
+
+    currentUtterance = utterance;
+    try { window.speechSynthesis.speak(utterance); }
+    catch (error) {
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) callback(false);
+    }
+}
+
+function showAudioStatus(text) {
+    const status = document.getElementById('audioStatus');
+    const statusText = document.getElementById('audioStatusText');
+    statusText.textContent = `🔊 ${text.length > 40 ? text.substring(0, 40) + '...' : text}`;
+    status.classList.add('show');
+}
+
+function hideAudioStatus() {
+    setTimeout(() => { document.getElementById('audioStatus').classList.remove('show'); }, 300);
+}
+
+function speakAdjective(word1, word2) {
+    isPlayingSequence = true;
+    speak(word1, () => setTimeout(() => speak(word2, () => { isPlayingSequence = false; }), 800));
+}
+
+function speakVerb(verb1, verb2) {
+    const clean1 = verb1.replace(/[*+]/g, '').trim();
+    const clean2 = verb2.replace(/[*+]/g, '').trim();
+    isPlayingSequence = true;
+    speak(clean1, () => setTimeout(() => speak(clean2, () => { isPlayingSequence = false; }), 800));
+}
+
+function speakQA(question, answer) {
+    isPlayingSequence = true;
+    speak(question, () => setTimeout(() => speak(answer, () => { isPlayingSequence = false; }), 1200));
+}
+
+function speakNounRow(article, singular, pluralFull) {
+    speakNounWithPlural(article, singular, pluralFull);
+}
+
+function speakNounWithPlural(article, singular, pluralFull) {
+    isPlayingSequence = true;
+    speak(`${article} ${singular}`, (success) => {
+        if (success && pluralFull && pluralFull !== '---' && pluralFull !== 'kein Plural') {
+            setTimeout(() => speak(pluralFull, () => { isPlayingSequence = false; }), 350);
+        } else {
+            isPlayingSequence = false;
+        }
+    });
+}
+
+// ============================================
+// PLAY ALL IN SECTION
+// ============================================
+let playAllActive = false;
+let playAllIndex = 0;
+let playAllTexts = [];
+
+function playAllInSection() {
+    const playBtn = document.querySelector('.play-all-btn');
+    if (playAllActive) {
+        playAllActive = false;
+        stopAllSpeech();
+        playBtn.textContent = '▶ Play All in Section';
+        return;
+    }
+
+    const activeTab = document.querySelector('.tab-content.active');
+    const tabId = activeTab.id;
+    playAllTexts = [];
+
+    switch(tabId) {
+        case 'nouns':
+            parseCSV(nounsCSV).forEach(row => {
+                const [level, article, german, , pluralFull] = row;
+                if (currentLevel !== 'all' && level !== currentLevel) return;
+                playAllTexts.push(`${article} ${german}`);
+                if (pluralFull !== '---' && pluralFull !== 'kein Plural') playAllTexts.push(pluralFull);
+            });
+            break;
+        case 'adjectives':
+            activeTab.querySelectorAll('.word-pair').forEach(card => {
+                if (card.style.display === 'none') return;
+                card.querySelectorAll('.german').forEach(g => playAllTexts.push(g.textContent.replace(/[-*+]/g,'').trim()));
+            });
+            break;
+        case 'verbs':
+            activeTab.querySelectorAll('.word-pair').forEach(card => {
+                if (card.style.display === 'none') return;
+                card.querySelectorAll('.german').forEach(g => playAllTexts.push(g.textContent.replace(/[*+]/g,'').trim()));
+            });
+            break;
+        case 'expressions':
+            activeTab.querySelectorAll('.expression-item').forEach(item => {
+                if (item.style.display === 'none') return;
+                const g = item.querySelector('.expression-german');
+                if (g) playAllTexts.push(g.textContent.replace('🔊','').replace(/[AB][12]/g,'').trim());
+            });
+            break;
+        case 'conversations':
+            activeTab.querySelectorAll('.conversation-block').forEach(block => {
+                if (block.classList.contains('hidden-group')) return;
+                block.querySelectorAll('.message-german').forEach(msg => {
+                    playAllTexts.push(msg.textContent.replace('🔊','').trim());
+                });
+            });
+            break;
+        case 'qa':
+            activeTab.querySelectorAll('.qa-card').forEach(card => {
+                if (card.style.display === 'none') return;
+                const q = card.querySelector('.question');
+                if (q) playAllTexts.push(q.textContent.replace('🔊','').replace(/[AB][12]/g,'').trim());
+            });
+            break;
+        case 'sentences':
+            activeTab.querySelectorAll('.sentence-card').forEach(card => {
+                if (card.style.display === 'none') return;
+                const g = card.querySelector('.sentence-german');
+                if (g) playAllTexts.push(g.textContent.replace('🔊','').replace(/[AB][12]/g,'').trim());
+            });
+            break;
+    }
+
+    if (playAllTexts.length === 0) { alert('No items to play in this section.'); return; }
+
+    playAllActive = true;
+    isPlayingSequence = true;
+    playAllIndex = 0;
+    playBtn.textContent = '⏹️ Stop Playing';
+    playNextInSequence(playBtn);
+}
+
+function playNextInSequence(playBtn) {
+    if (!playAllActive || playAllIndex >= playAllTexts.length) {
+        playAllActive = false;
+        isPlayingSequence = false;
+        playBtn.textContent = '▶ Play All in Section';
+        hideAudioStatus();
+        if (playAllIndex >= playAllTexts.length) {
+            setTimeout(() => alert('✅ Finished playing all ' + playAllTexts.length + ' items!'), 500);
+        }
+        return;
+    }
+    const currentText = playAllTexts[playAllIndex++];
+    speak(currentText, () => setTimeout(() => playNextInSequence(playBtn), 1000));
+}
+
+// ============================================
+// TAB SWITCHING
+// ============================================
+function showTab(tabName, evt) {
+    stopAllSpeech();
+    playAllActive = false;
+    const playBtn = document.querySelector('.play-all-btn');
+    if (playBtn) playBtn.textContent = '▶ Play All in Section';
+
+    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+
+    document.getElementById(tabName).classList.add('active');
+    if (evt && evt.target) evt.target.classList.add('active');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ============================================
+// RENDER: NOUNS
+// ============================================
+function renderNouns() {
+    const data = parseCSV(nounsCSV);
+    const grouped = { das: [], der: [], die: [] };
+
+    data.forEach(row => {
+        const [level, article, german, pluralNotation, pluralFull, english] = row;
+        if (grouped[article] !== undefined) {
+            grouped[article].push({ level, article, german, pluralNotation, pluralFull, english });
+        }
+    });
+
+    const articles = [
+        { key: 'der', label: 'Maskulinum (der)', color: '#2196F3' },
+        { key: 'das', label: 'Neutrum (das)',    color: '#4CAF50' },
+        { key: 'die', label: 'Femininum (die)',  color: '#F44336' }
+    ];
+
+    let tableHtml = '';
+    articles.forEach(({ key, label, color }) => {
+        if (grouped[key].length === 0) return;
+        tableHtml += `<div class="noun-article-section" id="noun-section-table-${key}">`;
+        tableHtml += `<h3 style="color:${color};margin-top:40px;">${label}</h3>`;
+        tableHtml += `<table class="vocab-table ${key}"><thead><tr>
+            <th>Article</th><th>German</th><th>Plural</th><th>English</th><th>Level</th><th>Audio</th>
+        </tr></thead><tbody>`;
+
+        grouped[key].forEach(word => {
+            const es = word.german.replace(/'/g, "\\'");
+            const ep = word.pluralFull.replace(/'/g, "\\'");
+            tableHtml += `<tr data-level="${word.level}" onclick="speakNounRow('${word.article}','${es}','${ep}')">
+                <td class="article ${word.article}">${word.article}</td>
+                <td class="german-word">${word.german}</td>
+                <td class="plural">${word.pluralNotation}</td>
+                <td class="english-word">${word.english}</td>
+                <td><span class="level-badge ${word.level}">${word.level}</span></td>
+                <td><button class="audio-btn" onclick="event.stopPropagation();speakNounWithPlural('${word.article}','${es}','${ep}')">🔊</button></td>
+            </tr>`;
+        });
+
+        tableHtml += `</tbody></table></div>`;
+    });
+
+    let mobileHtml = '<div class="mobile-noun-cards">';
+    articles.forEach(({ key, label, color }) => {
+        if (grouped[key].length === 0) return;
+        mobileHtml += `<div class="noun-article-section" id="noun-section-mobile-${key}">`;
+        mobileHtml += `<h3 style="color:${color};margin-top:30px;margin-bottom:15px;">${label}</h3>`;
+        grouped[key].forEach(word => {
+            const es = word.german.replace(/'/g, "\\'");
+            const ep = word.pluralFull.replace(/'/g, "\\'");
+            mobileHtml += `<div class="mobile-noun-card ${word.article}" data-level="${word.level}" onclick="speakNounRow('${word.article}','${es}','${ep}')">
+                <div class="mobile-noun-header">
+                    <div class="mobile-article-word ${word.article}">
+                        <span>${word.article}</span><span>${word.german}</span>
+                        <span class="level-badge ${word.level}">${word.level}</span>
+                    </div>
+                    <button class="mobile-audio-btn" onclick="event.stopPropagation();speakNounWithPlural('${word.article}','${es}','${ep}')">🔊</button>
+                </div>
+                <div class="mobile-noun-details">
+                    <span class="mobile-label">Plural:</span><span class="mobile-plural">${word.pluralNotation}</span>
+                    <span class="mobile-label">English:</span><span class="mobile-english">${word.english}</span>
+                </div>
+            </div>`;
+        });
+        mobileHtml += `</div>`;
+    });
+    mobileHtml += '</div>';
+
+    document.getElementById('nounsContainer').innerHTML = tableHtml + mobileHtml;
+}
+
+// ============================================
+// RENDER: ADJECTIVES
+// ============================================
+function renderAdjectives() {
+    const data = parseCSV(adjectivesCSV);
+    let html = '';
+
+    data.forEach(row => {
+        if (row.length < 5) return; // guard against malformed rows
+        const [level, word1, english1, word2, english2] = row;
+        const e1 = word1.replace(/'/g, "\\'");
+        const e2 = word2.replace(/'/g, "\\'");
+        html += `<div class="word-pair" data-level="${level}" onclick="speakAdjective('${e1}','${e2}')">
+            <div class="card-audio-btn">🔊</div>
+            <span class="level-badge ${level}" style="position:absolute;top:10px;left:10px;">${level}</span>
+            <div class="german">${word1}</div>
+            <div class="english">${english1}</div>
+            <div class="opposite-arrow">⟷</div>
+            <div class="german">${word2}</div>
+            <div class="english">${english2}</div>
+        </div>`;
+    });
+
+    document.getElementById('adjectivesContainer').innerHTML = html;
+}
+
+// ============================================
+// RENDER: VERBS
+// ============================================
+function renderVerbs() {
+    const data = parseCSV(verbsCSV);
+    let html = '';
+
+    data.forEach(row => {
+        if (row.length < 5) return; // ← KEY FIX: skip comment-remnants or short rows
+        const [level, verb1raw, english1, verb2raw, english2] = row;
+        if (!verb1raw || !verb2raw) return; // extra safety guard
+
+        const isWeak = verb1raw.startsWith('*');
+        const gradient = isWeak
+            ? 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
+            : 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
+        const e1 = verb1raw.replace(/'/g, "\\'");
+        const e2 = verb2raw.replace(/'/g, "\\'");
+
+        html += `<div class="word-pair" style="background:${gradient};" data-level="${level}" onclick="speakVerb('${e1}','${e2}')">
+            <div class="card-audio-btn">🔊</div>
+            <span class="level-badge ${level}" style="position:absolute;top:10px;left:10px;">${level}</span>
+            <div class="german">${verb1raw}</div>
+            <div class="english">${english1}</div>
+            <div class="opposite-arrow">⟷</div>
+            <div class="german">${verb2raw}</div>
+            <div class="english">${english2}</div>
+        </div>`;
+    });
+
+    document.getElementById('verbsContainer').innerHTML = html;
+}
+
+// ============================================
+// RENDER: EXPRESSIONS
+// ============================================
+function renderExpressions() {
+    const data = parseCSV(expressionsCSV);
+    let html = '';
+
+    data.forEach(row => {
+        if (row.length < 3) return;
+        const level = row[0];
+        // German may contain commas — rejoin everything after first element
+        const german  = row[1];
+        const english = row.slice(2).join(',');
+        const eg = german.replace(/'/g, "\\'");
+
+        html += `<li class="expression-item" data-level="${level}" onclick="speak('${eg}')">
+            <div class="expression-german">${german} 🔊 <span class="level-badge ${level}">${level}</span></div>
+            <div class="expression-english">${english}</div>
+        </li>`;
+    });
+
+    document.getElementById('expressionsContainer').innerHTML = html;
+}
+
+// ============================================
+// RENDER: CONVERSATIONS
+// Parses the pipe-delimited raw string directly
+// (does NOT use parseCSV — uses its own parser)
+// ============================================
+function renderConversations() {
+    const lines = conversationsRaw.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+
+    const conversations = {};  // key → [{speaker, german, english}]
+    const convOrder     = [];
+    const convLevels    = {};
+
+    lines.forEach(line => {
+        // Format: LEVEL|Title|Speaker,german text,english text
+        const firstPipe  = line.indexOf('|');
+        const secondPipe = line.indexOf('|', firstPipe + 1);
+        const firstComma = line.indexOf(',', secondPipe + 1);
+        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+
+        const level   = line.substring(0, firstPipe).trim();
+        const title   = line.substring(firstPipe + 1, secondPipe).trim();
+        const speaker = line.substring(secondPipe + 1, firstComma).trim();
+        const rest    = line.substring(firstComma + 1);
+
+        const secondComma = rest.indexOf(',');
+        if (secondComma === -1) return;
+
+        const german  = rest.substring(0, secondComma).trim();
+        const english = rest.substring(secondComma + 1).trim();
+
+        const key = `${level}|${title}`;
+        if (!conversations[key]) {
+            conversations[key] = [];
+            convOrder.push(key);
+            convLevels[key] = level;
+        }
+        conversations[key].push({ speaker, german, english });
+    });
+
+    let html = '';
+    convOrder.forEach((key, index) => {
+        const level = convLevels[key];
+        const title = key.split('|').slice(1).join('|');
+        const msgs  = conversations[key];
+
+        html += `<div class="conversation-block" data-level="${level}">`;
+        html += `<h3 style="color:#667eea;margin-top:${index > 0 ? '40px' : '30px'};">
+            Conversation ${index + 1}: ${title}
+            <span class="level-badge ${level}" style="font-size:0.6em;vertical-align:middle;">${level}</span>
+        </h3>`;
+        html += `<div class="conversation">`;
+
+        msgs.forEach(msg => {
+            const cls = msg.speaker === 'A' ? 'message-a' : 'message-b';
+            const eg  = msg.german.replace(/'/g, "\\'");
+            html += `<div class="message ${cls}" onclick="speak('${eg}')">
+                <div class="message-german">${msg.german} 🔊</div>
+                <div class="message-english">${msg.english}</div>
+            </div>`;
+        });
+
+        html += `</div></div>`;
+    });
+
+    document.getElementById('conversationsContainer').innerHTML = html;
+}
+
+// ============================================
+// RENDER: Q&A
+// ============================================
+function renderQA() {
+    const lines = qaCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+
+    let html = '';
+    lines.forEach(line => {
+        const firstComma  = line.indexOf(',');
+        const secondComma = line.indexOf(',', firstComma + 1);
+        if (firstComma === -1 || secondComma === -1) return;
+
+        const level    = line.substring(0, firstComma).trim();
+        const question = line.substring(firstComma + 1, secondComma).trim();
+        const answer   = line.substring(secondComma + 1).trim();
+        const eq = question.replace(/'/g, "\\'");
+        const ea = answer.replace(/'/g, "\\'");
+
+        html += `<div class="qa-card" data-level="${level}" onclick="speakQA('${eq}','${ea}')">
+            <div class="question">${question} 🔊 <span class="level-badge ${level}">${level}</span></div>
+            <div class="answer">${answer}</div>
+        </div>`;
+    });
+
+    document.getElementById('qaContainer').innerHTML = html;
+}
+
+// ============================================
+// RENDER: SENTENCES
+// ============================================
+function renderSentences() {
+    const lines = sentencesCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+
+    let html = '';
+    lines.forEach(line => {
+        const firstComma  = line.indexOf(',');
+        const secondComma = line.indexOf(',', firstComma + 1);
+        if (firstComma === -1 || secondComma === -1) return;
+
+        const level   = line.substring(0, firstComma).trim();
+        const german  = line.substring(firstComma + 1, secondComma).trim();
+        const english = line.substring(secondComma + 1).trim();
+        const eg = german.replace(/'/g, "\\'");
+
+        html += `<div class="sentence-card" data-level="${level}" onclick="speak('${eg}')">
+            <div class="sentence-german">${german} 🔊 <span class="level-badge ${level}" style="background:rgba(255,255,255,0.25);color:white;">${level}</span></div>
+            <div class="sentence-english">${english}</div>
+        </div>`;
+    });
+
+    document.getElementById('sentencesContainer').innerHTML = html;
+}
+
+// ============================================
+// LEVEL FILTER
+// ============================================
+let currentLevel = 'all';
+
+function filterByLevel(level) {
+    currentLevel = level;
+    stopAllSpeech();
+    playAllActive = false;
+    const playBtn = document.querySelector('.play-all-btn');
+    if (playBtn) playBtn.textContent = '▶ Play All in Section';
+
+    document.querySelectorAll('.level-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.level === level);
+    });
+
+    let visibleCount = 0;
+    document.querySelectorAll('[data-level]').forEach(el => {
+        const show = level === 'all' || el.dataset.level === level;
+        el.style.display = show ? '' : 'none';
+        if (show) visibleCount++;
+    });
+
+    updateEmptyNounSections(level);
+
+    document.querySelectorAll('.conversation-block').forEach(block => {
+        const show = level === 'all' || block.dataset.level === level;
+        block.classList.toggle('hidden-group', !show);
+    });
+
+    const msg = document.getElementById('filterCountMsg');
+    if (msg) msg.textContent = level === 'all' ? '' : `Showing ${visibleCount} items tagged ${level}`;
+
+    const clearBtn = document.getElementById('clearFilterBtn');
+    const clearLabel = document.getElementById('clearFilterLabel');
+    if (clearBtn) {
+        if (level === 'all') {
+            clearBtn.classList.remove('visible');
+        } else {
+            const names = { A1: 'A1 — Beginner', A2: 'A2 — Elementary', B1: 'B1 — Intermediate', B2: 'B2 — Upper Intermediate' };
+            clearLabel.textContent = `Showing ${names[level] || level} — Show All`;
+            clearBtn.classList.add('visible');
+        }
+    }
+
+    if (level === 'all') {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+    } else {
+        history.replaceState(null, '', '#' + level);
+    }
+}
+
+function updateEmptyNounSections(level) {
+    ['der', 'das', 'die'].forEach(article => {
+        ['table', 'mobile'].forEach(type => {
+            const section = document.getElementById(`noun-section-${type}-${article}`);
+            if (!section) return;
+            const items = section.querySelectorAll('[data-level]');
+            const hasVisible = Array.from(items).some(c => level === 'all' || c.dataset.level === level);
+            section.classList.toggle('hidden-group', !hasVisible);
+        });
+    });
+}
+
+// ============================================
+// KEYBOARD SHORTCUTS
+// ============================================
+document.addEventListener('keydown', function(e) {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+
+    if (e.key === 's' || e.key === 'S' || e.key === 'Escape') {
+        stopAllSpeech();
+        playAllActive = false;
+        const playBtn = document.querySelector('.play-all-btn');
+        if (playBtn) playBtn.textContent = '▶ Play All in Section';
+    }
+
+    if (e.key === 'p' || e.key === 'P') playAllInSection();
+
+    const tabMap = { '1':'nouns','2':'adjectives','3':'verbs','4':'expressions','5':'conversations','6':'qa','7':'sentences' };
+    if (tabMap[e.key]) {
+        const tabBtns = document.querySelectorAll('.tab-button');
+        const tabKeys = Object.values(tabMap);
+        tabBtns.forEach((btn, idx) => {
+            if (tabKeys[idx] === tabMap[e.key]) btn.click();
+        });
+    }
+});
+
+// ============================================
+// CLEANUP
+// ============================================
+window.addEventListener('beforeunload', stopAllSpeech);
+document.addEventListener('visibilitychange', function() {
+    if (document.hidden) { stopAllSpeech(); playAllActive = false; }
+});
+
+// ============================================
+// INITIALIZE
+// ============================================
+window.addEventListener('load', function() {
+    console.log('🇩🇪 German Vocabulary Loaded!');
+    console.log('💡 Shortcuts: S/Esc=Stop | P=Play All | 1-7=Tabs');
+
+    renderNouns();
+    renderAdjectives();
+    renderVerbs();
+    renderExpressions();
+    renderConversations();
+    renderQA();
+    renderSentences();
+
+    loadVoices();
+    setTimeout(loadVoices, 100);
+    setTimeout(loadVoices, 500);
+    setTimeout(loadVoices, 1000);
+
+    const validLevels = ['A1', 'A2', 'B1', 'B2'];
+    const hash = window.location.hash.replace('#', '').toUpperCase();
+    if (validLevels.includes(hash)) filterByLevel(hash);
+
+    if (!('speechSynthesis' in window)) {
+        alert('⚠️ Text-to-speech not supported.\n\nPlease use Chrome, Firefox, Edge, or Safari.');
+    }
+});
+    </script>
+</body>
+</html>
