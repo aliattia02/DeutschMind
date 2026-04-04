@@ -1,0 +1,2203 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary - 20: Media & Technology</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           FIXED CONTROLS (screen only) — compact unified panel
+        ============================================ */
+        .controls {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1000;
+            max-width: 520px;
+        }
+
+        /* main dark pill wrapping level + audio */
+        .controls-main {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 7px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+        }
+
+        /* top bar: level filter + close btn */
+        .controls-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: nowrap;
+        }
+
+        .filter-label {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+
+        .level-btn {
+            border: 2px solid transparent;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.72em;
+            font-weight: 700;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.15s ease;
+        }
+        .level-btn:hover { opacity: 0.85; }
+        .level-btn.active { opacity: 1; border-color: white; }
+        .level-btn[data-level="all"] { background: #764ba2; color: white; }
+        .level-btn[data-level="A1"]  { background: #4CAF50; color: white; }
+        .level-btn[data-level="A2"]  { background: #2196F3; color: white; }
+        .level-btn[data-level="B1"]  { background: #FF9800; color: white; }
+        .level-btn[data-level="B2"]  { background: #F44336; color: white; }
+
+        .filter-count {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            margin-left: 2px;
+        }
+
+        /* close button — inline in top bar */
+        .controls-close {
+            margin-left: auto;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.55);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 4px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .controls-close:hover { background: rgba(255,255,255,0.18); color: white; }
+
+        /* ============================================
+           COLLAPSED TOGGLE BUTTON (when panel is hidden)
+        ============================================ */
+        .controls-toggle {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 1001;
+            background: #1a1a1a;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.78em;
+            cursor: pointer;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            display: none;
+        }
+        .controls-toggle:hover { background: #333; }
+        .controls.collapsed { display: none !important; }
+        .controls.collapsed + .controls-toggle,
+        body.controls-hidden .controls-toggle { display: block; }
+
+        /* ============================================
+           AUDIO PANEL (inside controls-main)
+        ============================================ */
+        .audio-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .audio-row-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .audio-panel-title {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+        .audio-panel label {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.68em;
+            white-space: nowrap;
+        }
+        .audio-panel select {
+            font-size: 0.68em;
+            padding: 2px 5px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #2a2a2a;
+            color: rgba(255,255,255,0.85);
+            cursor: pointer;
+            max-width: 130px;
+        }
+        .audio-panel input[type=range] {
+            width: 60px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+        .speed-val {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.68em;
+            min-width: 26px;
+        }
+        .play-all-btn {
+            background: linear-gradient(135deg, #DD0000, #FFCE00);
+            color: white;
+            border: none;
+            padding: 4px 11px;
+            border-radius: 10px;
+            font-size: 0.72em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .play-all-btn:hover { opacity: 0.85; }
+        .audio-row-sections {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .audio-section-label {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.35);
+            white-space: nowrap;
+        }
+        .audio-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.75em;
+        }
+        .section-play-btn {
+            background: #242424;
+            color: rgba(255,255,255,0.55);
+            border: 1px solid #3a3a3a;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.67em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        .section-play-btn:hover { background: #3a3a3a; color: white; }
+        .section-play-btn.playing { background: #667eea; color: white; border-color: #667eea; }
+        .section-play-btn[data-art="der"] { color: #90CAF9; }
+        .section-play-btn[data-art="das"] { color: #A5D6A7; }
+        .section-play-btn[data-art="die"] { color: #EF9A9A; }
+
+        .audio-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 0.78em;
+            padding: 0 2px;
+            opacity: 0.45;
+            transition: opacity 0.2s;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .audio-btn:hover { opacity: 1; }
+
+        /* ============================================
+           ZOOM + PRINT — collapsible (collapsed by default)
+        ============================================ */
+        .secondary-controls-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sec-toggle-btn {
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.45);
+            border: none;
+            padding: 2px 9px;
+            font-size: 0.67em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.15s;
+        }
+        .sec-toggle-btn:hover { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.8); }
+        .sec-toggle-btn.open { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.1); }
+
+        .secondary-controls {
+            display: none;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding-top: 4px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .secondary-controls.open { display: flex; }
+
+        /* compact zoom row */
+        .zoom-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .zoom-label {
+            font-size: 0.67em;
+            color: rgba(255,255,255,0.45);
+            white-space: nowrap;
+        }
+        .zoom-btn {
+            background: #333;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.8em;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .zoom-btn:hover { background: #555; }
+        .zoom-level {
+            font-weight: bold;
+            font-size: 0.68em;
+            color: rgba(255,255,255,0.65);
+            min-width: 30px;
+            text-align: center;
+        }
+        .zoom-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.8em;
+        }
+        .print-button {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: auto;
+        }
+        .print-button:hover { background: rgba(255,255,255,0.2); color: white; }
+
+        /* ============================================
+           AUDIO STATUS TOAST
+        ============================================ */
+        .audio-status {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            background: #667eea;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            gap: 8px;
+            z-index: 2000;
+            font-size: 0.82em;
+        }
+        .audio-status.show { display: flex; }
+        .audio-status .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            flex-shrink: 0;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+
+        /* ============================================
+           LEVEL BADGE (appears inside article cell)
+        ============================================ */
+        .lvl-badge {
+            display: inline-block;
+            font-size: 0.62em;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+            vertical-align: middle;
+            margin-left: 2px;
+            line-height: 1.4;
+        }
+        .lvl-badge.A1 { background: #C8E6C9; color: #1B5E20; }
+        .lvl-badge.A2 { background: #BBDEFB; color: #0D47A1; }
+        .lvl-badge.B1 { background: #FFE0B2; color: #E65100; }
+        .lvl-badge.B2 { background: #FFCDD2; color: #B71C1C; }
+
+        /* ============================================
+           PAGE HEADER
+        ============================================ */
+        .content-wrapper { max-width: 100%; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* ============================================
+           SECTION DIVIDER
+        ============================================ */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* ============================================
+           TABLE SECTION HEADERS
+        ============================================ */
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* ============================================
+           NOUN TABLE — 8 columns, article colors
+        ============================================ */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f0f0f0;
+            text-align: center;
+            font-weight: bold;
+            color: #555;
+            padding: 3px;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 6%;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 18%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 18%;
+        }
+
+        /* ARTICLE ROW COLORS */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ARTICLE TEXT COLORS */
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* NOUN TABLE COLGROUP widths */
+        .noun-col-art    { width: 6%; }
+        .noun-col-german { width: 18%; }
+        .noun-col-plural { width: 8%; }
+        .noun-col-eng    { width: 18%; }
+
+        /* ============================================
+           WORD TABLE (ADJ + VERB) — 8 columns
+        ============================================ */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col  { font-weight: 600; width: 15%; }
+        .word-table .english-col { color: #333; width: 10%; }
+
+        /* ADJECTIVE rows — warm yellow */
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* VERB rows — light blue */
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           EXPRESSIONS TABLE — 4 columns
+        ============================================ */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+            color: #000;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 22%;
+            font-style: italic;
+        }
+
+        /* ============================================
+           CONVERSATIONS TABLE — compact 4-col layout
+        ============================================ */
+        .conversations-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #667eea !important;
+            color: white !important;
+            font-weight: bold;
+            padding: 6px 8px;
+            font-size: 0.95em;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .conv-subheader {
+            background: #e8eaf6 !important;
+            font-weight: 700;
+            font-size: 0.78em;
+            color: #3949ab;
+            padding: 3px 6px;
+            border: 1px solid #c5cae9;
+            text-align: center;
+            letter-spacing: 0.3px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-a {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-a {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-b {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-b {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           Q&A TABLE — 4 columns
+        ============================================ */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            color: #1a237e;
+            width: 28%;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 22%;
+        }
+
+        /* ============================================
+           SENTENCES TABLE — 4 columns
+        ============================================ */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            font-style: italic;
+            width: 22%;
+        }
+
+        /* ============================================
+           FOOTER INFO
+        ============================================ */
+        .footer-info {
+            margin-top: 20px;
+            padding: 12px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.85em;
+            line-height: 1.8;
+        }
+
+        .footer-info h3 { margin-bottom: 6px; }
+
+        /* ============================================
+           PRINT STYLES
+        ============================================ */
+        @media print {
+            .controls          { display: none !important; }
+            .controls-toggle   { display: none !important; }
+            .level-filter-bar  { display: none !important; }
+            .audio-panel       { display: none !important; }
+            .audio-status      { display: none !important; }
+            .audio-btn         { display: none !important; }
+            .section-play-btn  { display: none !important; }
+            .footer-info       { display: none !important; }
+
+            body { padding: 0; font-size: 0.7em; }
+
+            .section-divider { page-break-before: always; }
+            .table-section { page-break-inside: auto; }
+            .noun-table, .word-table, .expressions-table,
+            .conversations-table, .qa-table, .sentences-table {
+                font-size: 1em;
+            }
+        }
+
+        @media screen {
+            body { padding-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         FIXED CONTROLS (screen only)
+    ============================================ -->
+    <button class="controls-toggle" id="controlsToggle" onclick="toggleControls()">⚙ Controls</button>
+    <div class="controls" id="controlsPanel">
+        <div class="controls-main">
+
+            <!-- Row 1: Level filter + close -->
+            <div class="controls-top">
+                <span class="filter-label">🎯</span>
+                <button class="level-btn active" data-level="all" onclick="filterByLevel('all')">All</button>
+                <button class="level-btn" data-level="A1"  onclick="filterByLevel('A1')">A1</button>
+                <button class="level-btn" data-level="A2"  onclick="filterByLevel('A2')">A2</button>
+                <button class="level-btn" data-level="B1"  onclick="filterByLevel('B1')">B1</button>
+                <button class="level-btn" data-level="B2"  onclick="filterByLevel('B2')">B2</button>
+                <span class="filter-count" id="filterCount"></span>
+                <button class="controls-close" onclick="toggleControls()">✕</button>
+            </div>
+
+            <!-- Row 2: Audio controls -->
+            <div class="audio-panel">
+                <div class="audio-row-top">
+                    <span class="audio-panel-title">🔊</span>
+                    <label for="voiceSelect">Voice:</label>
+                    <select id="voiceSelect"><option value="">Loading…</option></select>
+                    <label for="speedControl">Speed:</label>
+                    <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+                    <span class="speed-val" id="speedValue">0.8×</span>
+                    <button class="play-all-btn" id="btnAll" onclick="playSection('all')">▶ All</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnDer" data-art="der" onclick="playSection('der')">▶ der</button>
+                    <button class="section-play-btn" id="btnDas" data-art="das" onclick="playSection('das')">▶ das</button>
+                    <button class="section-play-btn" id="btnDie" data-art="die" onclick="playSection('die')">▶ die</button>
+                    <span class="audio-sep">|</span>
+                    <button class="section-play-btn" id="btnAdj" onclick="playSection('adj')">▶ Adj</button>
+                    <button class="section-play-btn" id="btnVerb" onclick="playSection('verb')">▶ Verbs</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnExpr" onclick="playSection('expr')">▶ Expr</button>
+                    <button class="section-play-btn" id="btnConv" onclick="playSection('conv')">▶ Conv</button>
+                    <button class="section-play-btn" id="btnQa" onclick="playSection('qa')">▶ Q&amp;A</button>
+                    <button class="section-play-btn" id="btnSent" onclick="playSection('sent')">▶ Sent</button>
+                </div>
+            </div>
+
+            <!-- Row 3: Zoom & Print toggle -->
+            <div class="secondary-controls-toggle">
+                <button class="sec-toggle-btn" id="secToggleBtn" onclick="toggleSecondary()">⚙ Zoom &amp; Print</button>
+            </div>
+            <div class="secondary-controls" id="secondaryControls">
+                <div class="zoom-row">
+                    <span class="zoom-label">📚 Vocab:</span>
+                    <button class="zoom-btn" onclick="zoomOutVocab()">−</button>
+                    <span class="zoom-level" id="zoomLevelVocab">100%</span>
+                    <button class="zoom-btn" onclick="zoomInVocab()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomVocab()">⟲</button>
+                </div>
+                <span class="zoom-sep">|</span>
+                <div class="zoom-row">
+                    <span class="zoom-label">💬 Phrases:</span>
+                    <button class="zoom-btn" onclick="zoomOutPhrases()">−</button>
+                    <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+                    <button class="zoom-btn" onclick="zoomInPhrases()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomPhrases()">⟲</button>
+                </div>
+                <button class="print-button" onclick="window.print()">🖨️ Print</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================
+         DOCUMENT HEADER
+    ============================================ -->
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 20: Media & Technology</h1>
+            <p style="font-size:0.75em; color:#555;">Personal Information & Identity · A1–B2 Level-Tagged Reference · aliattia02</p>
+        </div>
+
+        <!-- ============================================
+             VOCABULARY SECTION
+        ============================================ -->
+        <div id="vocabSection">
+
+            <!-- TABLE 1: NOUNS -->
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col class="noun-col-art">
+                        <col class="noun-col-german">
+                        <col class="noun-col-plural">
+                        <col class="noun-col-eng">
+                        <col class="noun-col-art">
+                        <col class="noun-col-german">
+                        <col class="noun-col-plural">
+                        <col class="noun-col-eng">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural ±</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural ±</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives &amp; Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES &amp; SENTENCES</h2>
+        </div>
+
+        <!-- ============================================
+             PHRASES SECTION
+        ============================================ -->
+        <div id="phrasesSection">
+
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions &amp; Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Topic:</strong> Home &amp; Living / Personal Information &amp; Identity &nbsp;|&nbsp; <strong>Created:</strong> 2025 — aliattia02</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Full form shown = umlaut change | --- = no change | nur P = plural only | = = no change</p>
+            <p><strong>Color Coding:</strong>
+                <span style="color:#1565C0; font-weight:bold;">■ der (blue)</span> &nbsp;
+                <span style="color:#2E7D32; font-weight:bold;">■ das (green)</span> &nbsp;
+                <span style="color:#C62828; font-weight:bold;">■ die (red)</span> &nbsp;|&nbsp;
+                Adjective rows: <span style="background:#FFF8E1; padding:1px 6px; border:1px solid #ddd;">yellow</span> &nbsp;
+                Verb rows: <span style="background:#E1F5FE; padding:1px 6px; border:1px solid #ddd;">blue</span>
+            </p>
+            <p><strong>Prefix Guide:</strong> - = Adjective &nbsp;|&nbsp; * = Weak Verb (regular) &nbsp;|&nbsp; + = Strong Verb (irregular)</p>
+            <p><strong>Levels:</strong>
+                <span class="lvl-badge A1">A1</span> Beginner &nbsp;
+                <span class="lvl-badge A2">A2</span> Elementary &nbsp;
+                <span class="lvl-badge B1">B1</span> Intermediate &nbsp;
+                <span class="lvl-badge B2">B2</span> Upper Intermediate
+            </p>
+        </div>
+    </div>
+
+    <div class="audio-status" id="audioStatus">
+        <div class="spinner"></div>
+        <span id="audioStatusText">Speaking…</span>
+    </div>
+
+    <script>
+
+// ============================================
+// ⭐ VOCABULARY DATA
+// ============================================
+
+const nounsCSV = `
+// das — cluster: devices & hardware
+A1,das,Smartphone,-s,die Smartphones,Smartphone
+A1,das,Tablet,-s,die Tablets,Tablet
+A2,das,Laptop,-s,die Laptops,Laptop
+A2,das,Ladekabel,=,die Ladekabel,Charging cable
+B1,das,Headset,-s,die Headsets,Headset
+B1,das,Betriebssystem,-e,die Betriebssysteme,Operating system
+B2,das,Peripheriegerät,-e,die Peripheriegeräte,Peripheral device
+// das — cluster: data & files
+A2,das,Passwort,Passwörter,die Passwörter,Password
+A2,das,Update,-s,die Updates,Software update
+B1,das,Backup,-s,die Backups,Backup
+B2,das,Datenleck,-s,die Datenlecks,Data breach
+// das — cluster: internet & networks
+A1,das,Internet,---,---,Internet
+A2,das,WLAN,---,---,Wi-Fi
+A2,das,Netz,-e,die Netze,Network
+B1,das,Glasfasernetz,-e,die Glasfasernetze,Fibre optic network
+B2,das,Darknet,---,---,Dark web
+// das — cluster: software & AI
+B1,das,Programm,-e,die Programme,Program
+B1,das,Interface,-s,die Interfaces,Interface
+B2,das,KI-Modell,-e,die KI-Modelle,AI model
+B2,das,Sprachmodell,-e,die Sprachmodelle,Language model
+// das — cluster: television & streaming
+A1,das,Fernsehen,---,---,Television
+A2,das,Streaming,---,---,Streaming
+B1,das,Abonnement,-s,die Abonnements,Subscription
+B2,das,Urheberrecht,-e,die Urheberrechte,Copyright
+B2,das,Sendeformat,-e,die Sendeformate,Broadcast format
+// der — cluster: devices & components
+A1,der,Computer,=,die Computer,Computer
+A1,der,Bildschirm,-e,die Bildschirme,Screen
+A2,der,Drucker,=,die Drucker,Printer
+A2,der,Akku,-s,die Akkus,Battery
+A2,der,Kopfhörer,=,die Kopfhörer,Headphones
+B1,der,Router,=,die Router,Router
+B1,der,Server,=,die Server,Server
+B2,der,Prozessor,-en,die Prozessoren,Processor
+// der — cluster: internet & browsing
+A1,der,Link,-s,die Links,Link
+A2,der,Browser,=,die Browser,Browser
+A2,der,Download,-s,die Downloads,Download
+A2,der,Upload,-s,die Uploads,Upload
+B2,der,Datenschutz,---,---,Data protection
+// der — cluster: social media & content
+A2,der,Post,-s,die Posts,Post
+A2,der,Hashtag,-s,die Hashtags,Hashtag
+A2,der,Influencer,=,die Influencer,Influencer
+B1,der,Feed,-s,die Feeds,Feed
+B1,der,Podcast,-s,die Podcasts,Podcast
+B2,der,Content,---,---,Content
+// der — cluster: journalism & news
+A2,der,Journalist,-en,die Journalisten,Journalist
+A2,der,Bericht,-e,die Berichte,Report
+B1,der,Chefredakteur,-e,die Chefredakteure,Editor-in-chief
+B2,der,Pressesprecher,=,die Pressesprecher,Press spokesperson
+// der — cluster: communication
+A1,der,Anruf,-e,die Anrufe,Phone call
+A2,der,Chat,-s,die Chats,Chat
+A2,der,Videoanruf,-e,die Videoanrufe,Video call
+B1,der,Messenger,=,die Messenger,Messaging app
+B2,der,Sprachassistent,-en,die Sprachassistenten,Voice assistant
+// die — cluster: devices & hardware
+A1,die,Tastatur,-en,die Tastaturen,Keyboard
+A1,die,Maus,Mäuse,die Mäuse,Mouse
+A2,die,Webcam,-s,die Webcams,Webcam
+A2,die,Festplatte,-n,die Festplatten,Hard drive
+B1,die,Grafikkarte,-n,die Grafikkarten,Graphics card
+B2,die,Cloudinfrastruktur,-en,die Cloudinfrastrukturen,Cloud infrastructure
+// die — cluster: internet & data
+A1,die,App,-s,die Apps,App
+A2,die,Cloud,---,---,Cloud
+A2,die,Datei,-en,die Dateien,File
+B1,die,Verschlüsselung,-en,die Verschlüsselungen,Encryption
+B1,die,Künstliche Intelligenz,---,---,Artificial intelligence
+B2,die,Cybersicherheit,---,---,Cybersecurity
+B2,die,Deepfake,-s,die Deepfakes,Deepfake
+// die — cluster: social media & platforms
+A1,die,Nachricht,-en,die Nachrichten,Message
+A2,die,Plattform,-en,die Plattformen,Platform
+A2,die,Story,-s,die Storys,Story
+B1,die,Reichweite,-n,die Reichweiten,Reach
+B2,die,Desinformation,---,---,Disinformation
+// die — cluster: television & radio
+A1,die,Sendung,-en,die Sendungen,Broadcast
+A2,die,Serie,-n,die Serien,Series
+A2,die,Folge,-n,die Folgen,Episode
+B1,die,Übertragung,-en,die Übertragungen,Transmission
+B2,die,Mediathek,-en,die Mediatheken,Media library
+// die — cluster: news & journalism
+A1,die,Zeitung,-en,die Zeitungen,Newspaper
+A2,die,Schlagzeile,-n,die Schlagzeilen,Headline
+A2,die,Redaktion,-en,die Redaktionen,Editorial team
+B1,die,Pressemitteilung,-en,die Pressemitteilungen,Press release
+B2,die,Nachrichtenagentur,-en,die Nachrichtenagenturen,News agency
+// die — cluster: technology & society
+A2,die,Technologie,-n,die Technologien,Technology
+B1,die,Automatisierung,---,---,Automation
+B1,die,Digitalisierung,---,---,Digitalisation
+B2,die,Datenbank,-en,die Datenbanken,Database
+B2,die,Netzwerksicherheit,---,---,Network security
+`.trim();
+
+const adjectivesCSV = `
+// cluster: connectivity & access
+A1,-online,online,-offline,offline
+A2,-drahtlos,wireless,-kabelgebunden,wired
+A2,-stumm,muted,-hörbar,audible
+A2,-lesbar,readable,-unleserlich,illegible
+// cluster: content & information quality
+A2,-seriös,reputable,-unseriös,disreputable
+A2,-viral,viral,-unbeachtet,unnoticed
+B1,-faktentreu,fact-based,-irreführend,misleading
+B2,-verifiziert,verified,-ungeprüft,unverified
+B2,-manipuliert,manipulated,-unbearbeitet,unedited
+// cluster: technology performance
+A1,-live,live,-aufgezeichnet,recorded
+A2,-hochauflösend,high-resolution,-pixelig,pixelated
+A2,-benutzerfreundlich,user-friendly,-unhandlich,unwieldy
+B1,-kompatibel,compatible,-inkompatibel,incompatible
+B1,-interaktiv,interactive,-statisch,static
+B2,-skalierbar,scalable,-starr,rigid
+// cluster: digital media & content
+B1,-immersiv,immersive,-oberflächlich,superficial
+B1,-streamingfähig,streaming-capable,-herunterladbar,downloadable
+B2,-algorithmisch,algorithmic,-redaktionell,editorial
+B2,-personalisiert,personalised,-standardisiert,standardised
+// cluster: privacy & security
+B1,-verschlüsselt,encrypted,-unverschlüsselt,unencrypted
+B1,-spurlos,untraceable,-rückverfolgbar,traceable
+B2,-datenschutzkonform,GDPR-compliant,-datenschutzverletzend,privacy-violating
+B2,-zensiert,censored,-unzensiert,uncensored
+B2,-automatisiert,automated,-handgesteuert,manually operated
+`.trim();
+
+const verbsCSV = `
+// cluster: basic device & communication use
+A1,*tippen,type,*klicken,click
+A1,*telefonieren,phone,*simsen,text
+A1,*empfangen,receive,*senden,send
+// cluster: internet & file management
+A2,*herunterladen,download,*hochladen,upload
+A2,*speichern,save,*löschen,delete
+A2,*aktualisieren,update,*deinstallieren,uninstall
+A2,*googeln,google,*browsen,browse
+A2,*chatten,chat,*videotelefonieren,video call
+// cluster: social media & content
+A2,*weiterleiten,forward,*liken,like
+A2,*posten,post,*taggen,tag
+B1,*folgen,follow,*entfolgen,unfollow
+B1,*verbreiten,spread,*zurückziehen,retract
+B1,*verlinken,link,*einbetten,embed
+// cluster: technical & development
+B1,*streamen,stream,*puffern,buffer
+B1,*programmieren,program,*debuggen,debug
+B1,*verschlüsseln,encrypt,*entschlüsseln,decrypt
+B1,*automatisieren,automate,*konfigurieren,configure
+// cluster: security & cybercrime
+B1,*hacken,hack,*patchen,patch
+B2,*zensieren,censor,*filtern,filter
+B2,*konvertieren,convert,*komprimieren,compress
+// cluster: AI & advanced tech
+B2,*trainieren,train,*feinabstimmen,fine-tune
+B2,*viralisieren,go viral,*demonetisieren,demonetise
+B2,*personalisieren,personalise,*anonymisieren,anonymise
+`.trim();
+
+const expressionsCSV = `
+// cluster: using devices & internet
+A1,Hast du ein Smartphone?,Do you have a smartphone?
+A1,Ich schaue gerne Fernsehen.,I like watching television.
+A1,Kann ich deine WLAN-Passwort haben?,Can I have your Wi-Fi password?
+A1,Die App ist kostenlos herunterzuladen.,The app is free to download.
+A1,Ich habe eine Nachricht bekommen.,I received a message.
+A2,Mein Akku ist fast leer.,My battery is almost empty.
+A2,Kannst du mir den Link schicken?,Can you send me the link?
+A2,Ich lade das Video gerade hoch.,I am uploading the video right now.
+B1,Das Betriebssystem muss dringend aktualisiert werden.,The operating system urgently needs to be updated.
+B2,Die Cloudinfrastruktur des Unternehmens wurde gehackt.,The company's cloud infrastructure was hacked.
+// cluster: social media & online communication
+A1,Ich folge vielen Leuten auf sozialen Medien.,I follow many people on social media.
+A2,Der Post ist viral gegangen.,The post went viral.
+A2,Hast du die Story schon gesehen?,Have you already seen the story?
+A2,Ich habe den Influencer entfolgt.,I unfollowed the influencer.
+B1,Der Algorithmus bestimmt was du in deinem Feed siehst.,The algorithm determines what you see in your feed.
+B1,Meine Reichweite ist diese Woche stark gestiegen.,My reach has increased significantly this week.
+B2,Personalisierte Werbung basiert auf deinen Suchdaten.,Personalised advertising is based on your search data.
+// cluster: news & journalism
+A1,Ich lese jeden Morgen die Zeitung.,I read the newspaper every morning.
+A2,Die Schlagzeile war sehr reißerisch.,The headline was very sensational.
+A2,Der Journalist hat einen langen Bericht geschrieben.,The journalist wrote a long report.
+B1,Die Redaktion hat die Pressemitteilung sofort veröffentlicht.,The editorial team published the press release immediately.
+B2,Desinformation verbreitet sich in sozialen Medien schneller als Fakten.,Disinformation spreads faster than facts on social media.
+// cluster: TV & streaming
+A2,Ich schaue diese Serie gerade im Streaming.,I am currently watching this series on streaming.
+A2,Die neue Folge kommt nächste Woche.,The new episode comes next week.
+B1,Das Abonnement lässt sich monatlich kündigen.,The subscription can be cancelled monthly.
+B2,Die Mediathek bietet alle Sendungen der letzten dreißig Tage an.,The media library offers all broadcasts from the last thirty days.
+// cluster: data & privacy
+B1,Du solltest ein sicheres Passwort verwenden.,You should use a secure password.
+B1,Deine Daten werden verschlüsselt übertragen.,Your data is transmitted encrypted.
+B2,Das Datenleck hat Millionen Nutzerdaten betroffen.,The data breach affected millions of user records.
+B2,Datenschutzkonformes Verhalten ist im digitalen Zeitalter unverzichtbar.,GDPR-compliant behaviour is indispensable in the digital age.
+`.trim();
+
+// ============================================
+// CONVERSATIONS DATA
+// format: level|Title|Speaker,german,english
+// ============================================
+const conversationsCSV = `
+A1|Auf dem Handy|A,Hast du WhatsApp?,Do you have WhatsApp?
+A1|Auf dem Handy|B,Ja natürlich. Schick mir deine Nummer.,Yes of course. Send me your number.
+A1|Auf dem Handy|A,Hier ist sie. Kannst du mich anrufen?,Here it is. Can you call me?
+A1|Auf dem Handy|B,Ich simse dir lieber.,I would rather text you.
+A1|Auf dem Handy|A,Ok. Wann bist du online?,Ok. When are you online?
+A1|Auf dem Handy|B,Abends meistens nach acht Uhr.,Usually in the evening after eight.
+A1|Auf dem Handy|A,Gut. Mein Akku ist gerade leer.,Good. My battery is just empty.
+A1|Auf dem Handy|B,Lad ihn auf. Ich warte.,Charge it. I will wait.
+A1|Auf dem Handy|A,Danke. Bis heute Abend!,Thanks. See you tonight!
+A1|Auf dem Handy|B,Bis dann!,See you then!
+A2|Serie schauen|A,Welche Serie schaust du gerade?,Which series are you watching right now?
+A2|Serie schauen|B,Ich schaue eine neue deutsche Serie im Streaming.,I am watching a new German series on streaming.
+A2|Serie schauen|A,Ist sie gut?,Is it good?
+A2|Serie schauen|B,Sehr. Die Schauspieler sind toll und die Folgen sind spannend.,Very. The actors are great and the episodes are exciting.
+A2|Serie schauen|A,Wie viele Folgen gibt es?,How many episodes are there?
+A2|Serie schauen|B,Acht Folgen. Ich habe schon vier gesehen.,Eight episodes. I have already seen four.
+A2|Serie schauen|A,Brauche ich ein Abonnement dafür?,Do I need a subscription for that?
+A2|Serie schauen|B,Ja aber der erste Monat ist kostenlos.,Yes but the first month is free.
+A2|Serie schauen|A,Super. Ich lade mir die App herunter.,Great. I will download the app.
+A2|Serie schauen|B,Und folg dem offiziellen Kanal. Die posten immer tolle Clips.,And follow the official channel. They always post great clips.
+B1|Soziale Medien|A,Mein letzter Post ist viral gegangen.,My last post went viral.
+B1|Soziale Medien|B,Wow wie viele Follower hast du jetzt?,Wow how many followers do you have now?
+B1|Soziale Medien|A,Fast zehntausend. Meine Reichweite hat sich verdoppelt.,Almost ten thousand. My reach has doubled.
+B1|Soziale Medien|B,Hast du den Algorithmus analysiert?,Have you analysed the algorithm?
+B1|Soziale Medien|A,Ein bisschen. Kurze Videos und Hashtags helfen viel.,A bit. Short videos and hashtags help a lot.
+B1|Soziale Medien|B,Aber pass auf. Zu viele gesponserte Posts schaden der Glaubwürdigkeit.,But watch out. Too many sponsored posts harm credibility.
+B1|Soziale Medien|A,Ich verlinke lieber seriöse Quellen als Werbung zu machen.,I prefer linking reputable sources rather than advertising.
+B1|Soziale Medien|B,Gut. Desinformation verbreitet sich leider sehr schnell.,Good. Disinformation unfortunately spreads very quickly.
+B1|Soziale Medien|A,Ich überprüfe alle Inhalte bevor ich sie teile.,I check all content before sharing it.
+B1|Soziale Medien|B,Das sollte jeder so machen.,Everyone should do it that way.
+B2|Digitale Sicherheit|A,Unser Server wurde letzte Nacht gehackt.,Our server was hacked last night.
+B2|Digitale Sicherheit|B,Das ist ernst. War das ein gezielter Angriff?,That is serious. Was it a targeted attack?
+B2|Digitale Sicherheit|A,Ja. Es war Ransomware. Viele Dateien sind verschlüsselt.,Yes. It was ransomware. Many files are encrypted.
+B2|Digitale Sicherheit|B,Habt ihr ein aktuelles Backup?,Do you have a current backup?
+B2|Digitale Sicherheit|A,Ja zum Glück. Wir können die Daten wiederherstellen.,Yes fortunately. We can restore the data.
+B2|Digitale Sicherheit|B,Ihr müsst eure Netzwerksicherheit dringend verbessern.,You urgently need to improve your network security.
+B2|Digitale Sicherheit|A,Wir werden alle Systeme patchen und die Passwörter ändern.,We will patch all systems and change the passwords.
+B2|Digitale Sicherheit|B,Auch Datenschutzkonformität muss geprüft werden.,GDPR compliance also needs to be checked.
+B2|Digitale Sicherheit|A,Ja. Der Datenschutzbeauftragte ist bereits informiert.,Yes. The data protection officer has already been informed.
+B2|Digitale Sicherheit|B,Gut. Cybersicherheit ist keine Selbstverständlichkeit.,Good. Cybersecurity should not be taken for granted.
+`.trim();
+
+const qaCSV = `
+// cluster: basic devices & internet
+A1,Was ist ein Smartphone?,Ein Handy mit Touchscreen und Internetzugang. (A mobile phone with touchscreen and internet access.)
+A1,Was ist eine App?,Ein kleines Programm das man auf einem Smartphone oder Tablet nutzt. (A small program used on a smartphone or tablet.)
+A1,Was ist das Internet?,Ein weltweites Netz das Computer und Geräte miteinander verbindet. (A worldwide network connecting computers and devices.)
+A1,Was ist eine Tastatur?,Ein Eingabegerät mit dem man Text in einen Computer tippt. (An input device used to type text into a computer.)
+A1,Was ist eine Sendung?,Ein Fernsehprogramm das zu einer bestimmten Zeit ausgestrahlt wird. (A television programme broadcast at a specific time.)
+A1,Was ist eine Zeitung?,Eine gedruckte oder digitale Publikation mit aktuellen Nachrichten. (A printed or digital publication with current news.)
+A1,Was ist ein Anruf?,Eine Verbindung über Telefon um mit jemandem zu sprechen. (A connection via telephone to talk to someone.)
+A1,Was ist WLAN?,Ein drahtloses Netz das Geräten Internetzugang gibt. (A wireless network that gives devices internet access.)
+// cluster: media & communication
+A2,Was ist ein Podcast?,Eine Audiosendung die man abonnieren und online anhören kann. (An audio broadcast that can be subscribed to and listened to online.)
+A2,Was ist Streaming?,Medieninhalte werden direkt über das Internet abgespielt ohne Download. (Media content is played directly via the internet without downloading.)
+A2,Was ist ein Hashtag?,Ein Schlagwort in sozialen Medien mit dem Inhalte kategorisiert werden. (A keyword on social media used to categorise content.)
+A2,Was ist ein Influencer?,Eine Person mit vielen Followern die Produkte oder Meinungen online verbreitet. (A person with many followers who spreads products or opinions online.)
+A2,Was ist eine Schlagzeile?,Die große Überschrift einer Nachricht die das Wichtigste zusammenfasst. (The large headline of a news story that summarises the key information.)
+A2,Was ist eine Redaktion?,Das Team von Journalisten das eine Zeitung oder Sendung erstellt. (The team of journalists who produce a newspaper or broadcast.)
+A2,Was macht ein Journalist?,Er oder sie recherchiert und berichtet über aktuelle Ereignisse. (He or she investigates and reports on current events.)
+A2,Was ist ein Update?,Eine neue Version von Software oder einer App die Fehler behebt oder neue Funktionen bringt. (A new version of software or an app that fixes errors or brings new features.)
+// cluster: social media & online safety
+B1,Was ist ein Algorithmus im Kontext sozialer Medien?,Ein Programm das entscheidet welche Inhalte einem Nutzer angezeigt werden. (A program that decides which content is shown to a user.)
+B1,Was versteht man unter Reichweite?,Die Anzahl der Menschen die ein Post oder Inhalt erreicht. (The number of people a post or piece of content reaches.)
+B1,Was ist Desinformation?,Falsche oder irreführende Informationen die absichtlich verbreitet werden. (False or misleading information that is deliberately spread.)
+B1,Was ist ein Datenschutzbeauftragter?,Eine Person die dafür sorgt dass ein Unternehmen Datenschutzgesetze einhält. (A person who ensures a company complies with data protection laws.)
+B1,Was ist Verschlüsselung?,Ein Verfahren das Daten so umwandelt dass nur Berechtigte sie lesen können. (A process that transforms data so only authorised persons can read it.)
+B1,Was bedeutet viral gehen?,Wenn ein Inhalt sich sehr schnell und weit in sozialen Medien verbreitet. (When content spreads very quickly and widely on social media.)
+// cluster: advanced technology & ethics
+B2,Was ist Cybersicherheit?,Der Schutz von Computersystemen und Netzwerken vor digitalen Angriffen. (The protection of computer systems and networks from digital attacks.)
+B2,Was ist ein Deepfake?,Ein mit KI erzeugtes Video in dem Personen etwas sagen oder tun was nicht real ist. (An AI-generated video in which people say or do something that is not real.)
+B2,Was ist Datenschutzkonformität?,Die Einhaltung gesetzlicher Vorschriften zum Schutz personenbezogener Daten. (Compliance with legal regulations for the protection of personal data.)
+B2,Was ist ein Sprachmodell?,Ein KI-System das Sprache versteht und erzeugt basierend auf riesigen Datenmengen. (An AI system that understands and generates language based on huge amounts of data.)
+B2,Was bedeutet demonetisieren?,Einem Inhalt oder Kanal die Möglichkeit entziehen durch Werbung Geld zu verdienen. (To remove from a piece of content or channel the ability to earn money through advertising.)
+`.trim();
+
+const sentencesCSV = `
+// cluster: everyday device & internet use
+A1,Ich schaue jeden Abend eine Sendung im Fernsehen.,I watch a broadcast on television every evening.
+A1,Mein Smartphone liegt immer auf dem Tisch.,My smartphone is always on the table.
+A1,Ich lese die Nachrichten jeden Morgen auf meiner App.,I read the news every morning on my app.
+A1,Klick auf den Link und lade die App herunter.,Click the link and download the app.
+A1,Das Internet bei mir zu Hause ist sehr schnell.,The internet at home is very fast.
+A2,Mein Akku ist leer und ich brauche ein Ladekabel.,My battery is empty and I need a charging cable.
+A2,Ich habe das Passwort vergessen und muss es zurücksetzen.,I have forgotten the password and need to reset it.
+A2,Die neue Serie hat acht Folgen und ist sehr spannend.,The new series has eight episodes and is very exciting.
+A2,Du kannst den Film über das Streaming direkt online schauen.,You can watch the film directly online via streaming.
+A2,Die Schlagzeile in der Zeitung war heute sehr dramatisch.,The headline in the newspaper was very dramatic today.
+A2,Ich folge vielen Journalisten und Redaktionen auf sozialen Medien.,I follow many journalists and editorial teams on social media.
+// cluster: social media & content
+A2,Der Post hat über tausend Likes bekommen.,The post received over a thousand likes.
+B1,Der Algorithmus zeigt mir nur noch Videos die ich schon mag.,The algorithm only shows me videos I already like.
+B1,Meine Reichweite ist nach dem viralen Post stark gestiegen.,My reach increased sharply after the viral post.
+B1,Influencer sollten klar kennzeichnen wenn ein Post bezahlt wurde.,Influencers should clearly label when a post has been paid for.
+B1,Desinformation ist eine ernste Bedrohung für die Demokratie.,Disinformation is a serious threat to democracy.
+B2,Personalisierte Werbung basiert auf algorithmisch ausgewerteten Nutzerdaten.,Personalised advertising is based on algorithmically evaluated user data.
+B2,Das Urheberrecht schützt kreative Inhalte vor unbefugter Nutzung.,Copyright protects creative content from unauthorised use.
+// cluster: technology & security
+B1,Alle Daten werden verschlüsselt übertragen um die Privatsphäre zu schützen.,All data is transmitted encrypted to protect privacy.
+B1,Das Betriebssystem sollte regelmäßig aktualisiert werden.,The operating system should be updated regularly.
+B1,Ein Backup verhindert dass wichtige Dateien bei einem Absturz verloren gehen.,A backup prevents important files from being lost in a crash.
+B2,Das Datenleck hat vertrauliche Nutzerdaten von Millionen Menschen offengelegt.,The data breach exposed confidential user data of millions of people.
+B2,Cybersicherheit muss in Unternehmen als strategische Priorität behandelt werden.,Cybersecurity must be treated as a strategic priority in companies.
+// cluster: journalism & media literacy
+A2,Guter Journalismus überprüft Fakten bevor er berichtet.,Good journalism checks facts before reporting.
+B1,Die Redaktion veröffentlichte eine offizielle Pressemitteilung.,The editorial team published an official press release.
+B1,Seriöse Nachrichtenagenturen arbeiten mit verifizierten Quellen.,Reputable news agencies work with verified sources.
+B2,Der Chefredakteur zog den Artikel zurück nachdem Fehler entdeckt wurden.,The editor-in-chief retracted the article after errors were discovered.
+B2,Nachrichtenagenturen spielen eine zentrale Rolle in der globalen Informationsversorgung.,News agencies play a central role in global information supply.
+// cluster: AI & future technology
+B1,Künstliche Intelligenz wird in immer mehr Bereichen des Alltags eingesetzt.,Artificial intelligence is being used in more and more areas of everyday life.
+B1,Die Automatisierung vieler Berufe verändert den Arbeitsmarkt grundlegend.,The automation of many professions is fundamentally changing the labour market.
+B2,Sprachmodelle werden mit riesigen Textmengen trainiert um Sprache zu verstehen.,Language models are trained with huge amounts of text to understand language.
+B2,Deepfakes gefährden das Vertrauen in audiovisuelle Medieninhalte.,Deepfakes threaten trust in audiovisual media content.
+B2,Die Digitalisierung erfordert neue Kompetenzen in nahezu allen Berufsfeldern.,Digitalisation requires new competencies in almost all professional fields.
+`.trim();
+
+// ============================================
+// CSV PARSER
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(l => l.split(',').map(c => c.trim()));
+}
+
+// ============================================
+// LEVEL FILTER STATE
+// ============================================
+let currentLevel = 'all';
+
+function filterByLevel(level) {
+    currentLevel = level;
+    document.querySelectorAll('.level-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.level === level);
+    });
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    updateFilterCount();
+}
+
+function updateFilterCount() {
+    const el = document.getElementById('filterCount');
+    if (!el) return;
+    if (currentLevel === 'all') { el.textContent = ''; return; }
+    let total = 0;
+    [nounsCSV, adjectivesCSV, verbsCSV, expressionsCSV, qaCSV, sentencesCSV].forEach(csv => {
+        parseCSV(csv).forEach(row => { if (row[0] === currentLevel) total++; });
+    });
+    conversationsCSV.split('\n').forEach(line => {
+        line = line.trim();
+        if (line && !line.startsWith('//') && line.startsWith(currentLevel + '|')) total++;
+    });
+    el.textContent = `${total} entries`;
+}
+
+function badge(level) {
+    return `<span class="lvl-badge ${level}">${level}</span>`;
+}
+
+// ============================================
+// RENDER NOUNS
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const grouped = { das: [], der: [], die: [] };
+    data.forEach(row => {
+        const [level, article, german, pluralNotation, pluralFull, english] = row;
+        if (grouped[article] !== undefined) {
+            grouped[article].push({ level, article, german, pluralNotation, pluralFull, english });
+        }
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    const articles = [
+        { key: 'der', label: 'Maskulinum (der)', rowClass: 'der-row', artClass: 'der-article' },
+        { key: 'das', label: 'Neutrum (das)',     rowClass: 'das-row', artClass: 'das-article' },
+        { key: 'die', label: 'Femininum (die)',   rowClass: 'die-row', artClass: 'die-article' },
+    ];
+
+    let anyContent = false;
+
+    articles.forEach(({ key, label, rowClass, artClass }, artIdx) => {
+        const words = grouped[key];
+        if (words.length === 0) return;
+        anyContent = true;
+
+        html += `<tr class="separator"><td colspan="8">${label}</td></tr>`;
+
+        const half = Math.ceil(words.length / 2);
+        for (let i = 0; i < half; i++) {
+            const w1 = words[i];
+            const w2 = words[i + half] || null;
+
+            html += `<tr class="${rowClass}">`;
+            html += `<td class="article-cell ${artClass}">${w1.article}</td>`;
+            html += `<td class="german-cell">${w1.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w1.article)}','${escAttr(w1.german)}','${escAttr(w1.pluralFull)}')">🔊</button></td>`;
+            html += `<td class="plural-cell">${w1.pluralNotation}</td>`;
+            html += `<td class="english-cell">${w1.english}</td>`;
+
+            if (w2) {
+                html += `<td class="article-cell ${artClass}">${w2.article}</td>`;
+                html += `<td class="german-cell">${w2.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w2.article)}','${escAttr(w2.german)}','${escAttr(w2.pluralFull)}')">🔊</button></td>`;
+                html += `<td class="plural-cell">${w2.pluralNotation}</td>`;
+                html += `<td class="english-cell">${w2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    });
+
+    if (!anyContent) {
+        html = `<tr><td colspan="8" style="text-align:center; color:#999; padding:12px;">No nouns at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const verbData = parseCSV(verbsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    if (adjData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Adjectives (- prefix = opposite pairs)</td></tr>`;
+        const half = Math.ceil(adjData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = adjData[i];
+            const r2 = adjData[i + half] || null;
+            html += `<tr class="adjective-row">`;
+            html += `<td class="german-col">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[3])}')">🔊</button></td><td class="english-col">${r1[2]}</td>`;
+            html += `<td class="german-col">${r1[3]}</td><td class="english-col">${r1[4]}</td>`;
+            if (r2) {
+                html += `<td class="german-col">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[3])}')">🔊</button></td><td class="english-col">${r2[2]}</td>`;
+                html += `<td class="german-col">${r2[3]}</td><td class="english-col">${r2[4]}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+
+    if (verbData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Verbs (* Weak | + Strong — opposite / related pairs)</td></tr>`;
+        const half = Math.ceil(verbData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = verbData[i];
+            const r2 = verbData[i + half] || null;
+            html += `<tr class="verb-row">`;
+            html += `<td class="german-col">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[3])}')">🔊</button></td><td class="english-col">${r1[2]}</td>`;
+            html += `<td class="german-col">${r1[3]}</td><td class="english-col">${r1[4]}</td>`;
+            if (r2) {
+                html += `<td class="german-col">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[3])}')">🔊</button></td><td class="english-col">${r2[2]}</td>`;
+                html += `<td class="german-col">${r2[3]}</td><td class="english-col">${r2[4]}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+
+    if (adjData.length === 0 && verbData.length === 0) {
+        html = `<tr><td colspan="8" style="text-align:center; color:#999; padding:12px;">No adjectives or verbs at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        const [lvl1, ger1, ...eng1parts] = data[i];
+        const eng1 = eng1parts.join(',');
+        html += `<tr>`;
+        html += `<td class="german-cell">${ger1} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(ger1)}')">🔊</button></td>`;
+        html += `<td class="english-cell">${eng1}</td>`;
+        if (i + 1 < data.length) {
+            const [lvl2, ger2, ...eng2parts] = data[i + 1];
+            const eng2 = eng2parts.join(',');
+            html += `<td class="german-cell">${ger2} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(ger2)}')">🔊</button></td>`;
+            html += `<td class="english-cell">${eng2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (data.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No expressions at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+
+    const conversations = {};
+    const convOrder = [];
+    const convLevels = {};
+
+    rawLines.forEach(line => {
+        const firstPipe  = line.indexOf('|');
+        const secondPipe = line.indexOf('|', firstPipe + 1);
+        const firstComma = line.indexOf(',', secondPipe + 1);
+        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+
+        const level   = line.substring(0, firstPipe).trim();
+        const title   = line.substring(firstPipe + 1, secondPipe).trim();
+        const speaker = line.substring(secondPipe + 1, firstComma).trim();
+
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+
+        const rest         = line.substring(firstComma + 1);
+        const secondComma  = rest.indexOf(',');
+        const german       = rest.substring(0, secondComma).trim();
+        const english      = rest.substring(secondComma + 1).trim();
+
+        const key = `${level}|${title}`;
+        if (!conversations[key]) {
+            conversations[key] = [];
+            convOrder.push(key);
+            convLevels[key] = level;
+        }
+        conversations[key].push({ speaker, german, english });
+    });
+
+    const container = document.getElementById('conversationsContainer');
+    let html = '';
+
+    if (convOrder.length === 0) {
+        html = `<p style="text-align:center; color:#999; padding:12px;">No conversations at ${currentLevel} level</p>`;
+        container.innerHTML = html;
+        return;
+    }
+
+    convOrder.forEach(key => {
+        const title = key.split('|').slice(1).join('|');
+        const lines = conversations[key];
+
+        const linesA = lines.filter(l => l.speaker === 'A');
+        const linesB = lines.filter(l => l.speaker === 'B');
+        const maxRows = Math.max(linesA.length, linesB.length);
+
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="4" class="conversation-title">💬 ${title}</td></tr>`;
+        html += `<tr>`;
+        html += `<td class="conv-subheader" style="width:27%;">Speaker A — Deutsch</td>`;
+        html += `<td class="conv-subheader" style="width:23%;">Speaker A — English</td>`;
+        html += `<td class="conv-subheader" style="width:27%;">Speaker B — Deutsch</td>`;
+        html += `<td class="conv-subheader" style="width:23%;">Speaker B — English</td>`;
+        html += `</tr>`;
+
+        for (let i = 0; i < maxRows; i++) {
+            const a = linesA[i] || null;
+            const b = linesB[i] || null;
+
+            html += `<tr>`;
+            html += `<td class="conv-ger-a">${a ? a.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(a.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-a">${a ? a.english : ''}</td>`;
+            html += `<td class="conv-ger-b">${b ? b.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(b.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-b">${b ? b.english : ''}</td>`;
+            html += `</tr>`;
+        }
+
+        html += `</table>`;
+    });
+
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A
+// ============================================
+function renderQATable() {
+    const qaRows = qaCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(line => {
+            const firstComma  = line.indexOf(',');
+            const secondComma = line.indexOf(',', firstComma + 1);
+            if (firstComma === -1 || secondComma === -1) return null;
+            return {
+                level:    line.substring(0, firstComma).trim(),
+                question: line.substring(firstComma + 1, secondComma).trim(),
+                answer:   line.substring(secondComma + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < qaRows.length; i += 2) {
+        const r1 = qaRows[i];
+        const r2 = qaRows[i + 1] || null;
+        html += `<tr>`;
+        html += `<td class="question-cell">${r1.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.question)}')">🔊</button></td>`;
+        html += `<td class="answer-cell">${r1.answer}</td>`;
+        if (r2) {
+            html += `<td class="question-cell">${r2.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.question)}')">🔊</button></td>`;
+            html += `<td class="answer-cell">${r2.answer}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (qaRows.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No Q&amp;A at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES
+// ============================================
+function renderSentencesTable() {
+    const sentRows = sentencesCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(line => {
+            const firstComma  = line.indexOf(',');
+            const secondComma = line.indexOf(',', firstComma + 1);
+            if (firstComma === -1 || secondComma === -1) return null;
+            return {
+                level:   line.substring(0, firstComma).trim(),
+                german:  line.substring(firstComma + 1, secondComma).trim(),
+                english: line.substring(secondComma + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < sentRows.length; i += 2) {
+        const r1 = sentRows[i];
+        const r2 = sentRows[i + 1] || null;
+        html += `<tr>`;
+        html += `<td class="german-cell">${r1.german} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.german)}')">🔊</button></td>`;
+        html += `<td class="english-cell">${r1.english}</td>`;
+        if (r2) {
+            html += `<td class="german-cell">${r2.german} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.german)}')">🔊</button></td>`;
+            html += `<td class="english-cell">${r2.english}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (sentRows.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No sentences at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// TOGGLE CONTROLS PANEL
+// ============================================
+function toggleControls() {
+    const panel = document.getElementById('controlsPanel');
+    const btn   = document.getElementById('controlsToggle');
+    const collapsed = panel.classList.toggle('collapsed');
+    btn.style.display = collapsed ? 'block' : 'none';
+}
+
+function toggleSecondary() {
+    const sec = document.getElementById('secondaryControls');
+    const btn = document.getElementById('secToggleBtn');
+    const open = sec.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.textContent = open ? '⚙ Zoom & Print ▲' : '⚙ Zoom & Print';
+}
+
+// ============================================
+// ZOOM
+// ============================================
+let vocabZoom = 100, phrasesZoom = 100;
+const zoomStep = 10, minZoom = 50, maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    document.getElementById('vocabSection').style.fontSize = `${baseFontSize * vocabZoom / 100}em`;
+    document.getElementById('zoomLevelVocab').textContent = `${vocabZoom}%`;
+}
+function updatePhrasesZoom() {
+    document.getElementById('phrasesSection').style.fontSize = `${baseFontSize * phrasesZoom / 100}em`;
+    document.getElementById('zoomLevelPhrases').textContent = `${phrasesZoom}%`;
+}
+function zoomInVocab()     { if (vocabZoom < maxZoom)   { vocabZoom   += zoomStep; updateVocabZoom(); } }
+function zoomOutVocab()    { if (vocabZoom > minZoom)   { vocabZoom   -= zoomStep; updateVocabZoom(); } }
+function resetZoomVocab()  { vocabZoom = 100;   updateVocabZoom(); }
+function zoomInPhrases()   { if (phrasesZoom < maxZoom) { phrasesZoom += zoomStep; updatePhrasesZoom(); } }
+function zoomOutPhrases()  { if (phrasesZoom > minZoom) { phrasesZoom -= zoomStep; updatePhrasesZoom(); } }
+function resetZoomPhrases(){ phrasesZoom = 100; updatePhrasesZoom(); }
+
+// ============================================
+// KEYBOARD SHORTCUTS
+// ============================================
+document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    const map = { '0': 'all', '1': 'A1', '2': 'A2', '3': 'B1', '4': 'B2' };
+    if (map[e.key]) filterByLevel(map[e.key]);
+    if (e.key === 'p' || e.key === 'P') window.print();
+});
+
+// ============================================
+// SPEECH SYNTHESIS (TTS)
+// ============================================
+let germanVoice = null;
+let currentUtterance = null;
+let isSpeaking = false;
+let isPlayingSequence = false;
+let ttsWarmedUp = false;
+
+function loadVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (!voiceSelect) return;
+    voiceSelect.innerHTML = '';
+    const germanVoices = voices.filter(v => v.lang.startsWith('de'));
+    if (germanVoices.length === 0) {
+        voiceSelect.innerHTML = '<option value="">No German voice – using default</option>';
+        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0] || null;
+    } else {
+        germanVoices.forEach((voice, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = `${voice.name} (${voice.lang})`;
+            voiceSelect.appendChild(option);
+            if (index === 0) germanVoice = voice;
+        });
+    }
+}
+
+if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+}
+setTimeout(loadVoices, 100);
+setTimeout(loadVoices, 600);
+
+document.addEventListener('DOMContentLoaded', function() {
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (voiceSelect) {
+        voiceSelect.addEventListener('change', function(e) {
+            stopAllSpeech();
+            const voices = window.speechSynthesis.getVoices();
+            const germanVoices = voices.filter(v => v.lang.startsWith('de'));
+            germanVoice = germanVoices[parseInt(e.target.value)] || voices[0] || null;
+        });
+    }
+    const speedControl = document.getElementById('speedControl');
+    if (speedControl) {
+        speedControl.addEventListener('input', function(e) {
+            const el = document.getElementById('speedValue');
+            if (el) el.textContent = e.target.value + '×';
+        });
+    }
+});
+
+function warmUpTTS(callback) {
+    if (ttsWarmedUp) { callback(); return; }
+    const primer = new SpeechSynthesisUtterance(' ');
+    primer.volume = 0;
+    primer.lang = 'de-DE';
+    if (germanVoice) primer.voice = germanVoice;
+    primer.onend  = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    primer.onerror = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(primer);
+}
+
+function speak(text, callback) {
+    if (!text || text.trim() === '') { if (callback) callback(); return; }
+    text = text.replace('🔊', '').trim();
+    if (!isPlayingSequence) stopAllSpeech();
+    if (!ttsWarmedUp) {
+        warmUpTTS(() => speakNow(text, callback));
+    } else {
+        window.speechSynthesis.resume();
+        setTimeout(() => speakNow(text, callback), 100);
+    }
+}
+
+function stopAllSpeech() {
+    isPlayingSequence = false;
+    if (typeof speechSynthesis !== 'undefined') window.speechSynthesis.cancel();
+    isSpeaking = false;
+    hideAudioStatus();
+}
+
+function speakNow(text, callback) {
+    if (!('speechSynthesis' in window)) {
+        alert('⚠️ Text-to-speech not supported in this browser.');
+        if (callback) callback();
+        return;
+    }
+    showAudioStatus(text);
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'de-DE';
+    if (germanVoice) utterance.voice = germanVoice;
+    const speedEl = document.getElementById('speedControl');
+    utterance.rate = speedEl ? parseFloat(speedEl.value) : 0.8;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    let hasEnded = false;
+    utterance.onstart = () => { isSpeaking = true; };
+    utterance.onend = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) setTimeout(callback, 100);
+    };
+    utterance.onerror = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) callback();
+    };
+    currentUtterance = utterance;
+    try { window.speechSynthesis.speak(utterance); }
+    catch(e) { isSpeaking = false; hideAudioStatus(); if (callback) callback(); }
+}
+
+function showAudioStatus(text) {
+    const status = document.getElementById('audioStatus');
+    const statusText = document.getElementById('audioStatusText');
+    if (!status || !statusText) return;
+    statusText.textContent = '🔊 ' + (text.length > 40 ? text.substring(0, 40) + '…' : text);
+    status.classList.add('show');
+}
+
+function hideAudioStatus() {
+    setTimeout(() => {
+        const el = document.getElementById('audioStatus');
+        if (el) el.classList.remove('show');
+    }, 300);
+}
+
+function speakNounRow(article, singular, pluralFull) {
+    isPlayingSequence = true;
+    speak(article + ' ' + singular, () => {
+        if (pluralFull && pluralFull !== '---' && pluralFull !== 'kein Plural' && pluralFull !== 'nur P') {
+            setTimeout(() => speak(pluralFull, () => { isPlayingSequence = false; }), 350);
+        } else { isPlayingSequence = false; }
+    });
+}
+
+function speakWord(word) {
+    speak(word.replace(/[*+\-]/g, '').trim());
+}
+
+function speakPair(word1, word2) {
+    isPlayingSequence = true;
+    const w1 = word1.replace(/[*+\-]/g, '').trim();
+    const w2 = word2.replace(/[*+\-]/g, '').trim();
+    speak(w1, () => setTimeout(() => speak(w2, () => { isPlayingSequence = false; }), 800));
+}
+
+function speakText(text) {
+    speak(text);
+}
+
+// ============================================
+// PLAY SECTION — data-driven, column-first order
+// ============================================
+let playAllActive = false;
+let playAllIndex = 0;
+let playAllTexts = [];
+let currentPlaySection = null;
+
+// Collect noun texts for one article group in column-first order:
+// left column (items 0..half-1) then right column (items half..end)
+function collectNounTexts(articleFilter) {
+    const data = parseCSV(nounsCSV).filter(row =>
+        (currentLevel === 'all' || row[0] === currentLevel) &&
+        row[1] === articleFilter
+    );
+    const texts = [];
+    const half = Math.ceil(data.length / 2);
+    function pushNoun(row) {
+        const [lvl, art, ger, pn, pf] = row;
+        texts.push(art + ' ' + ger);
+        if (pf && pf !== '---' && pf !== 'nur P' && pf !== '=' && pf !== 'kein Plural') {
+            texts.push(pf);
+        }
+    }
+    for (let i = 0; i < half; i++)              pushNoun(data[i]);
+    for (let i = half; i < data.length; i++)    pushNoun(data[i]);
+    return texts;
+}
+
+// Collect adjective or verb texts: left column (0..half-1) then right column
+function collectWordTexts(csv) {
+    const data = parseCSV(csv).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const texts = [];
+    const half = Math.ceil(data.length / 2);
+    function pushPair(row) {
+        texts.push(row[1].replace(/[*+\-]/g, '').trim());
+        texts.push(row[3].replace(/[*+\-]/g, '').trim());
+    }
+    for (let i = 0; i < half; i++)              pushPair(data[i]);
+    for (let i = half; i < data.length; i++)    pushPair(data[i]);
+    return texts;
+}
+
+// Collect expression texts: left column (even indices → 0,2,4…) then right column (odd → 1,3,5…)
+function collectExprTexts() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const texts = [];
+    const evens = data.filter((_, i) => i % 2 === 0);
+    const odds  = data.filter((_, i) => i % 2 === 1);
+    [...evens, ...odds].forEach(row => {
+        const [lvl, ger, ...engParts] = row;
+        texts.push(ger);
+    });
+    return texts;
+}
+
+// Collect conversation texts: left col (speaker A lines) then right col (speaker B lines), per conversation
+function collectConvTexts() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+    const convMap = {};
+    const convOrder = [];
+    rawLines.forEach(line => {
+        const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1), fc = line.indexOf(',', sp + 1);
+        if (fp < 0 || sp < 0 || fc < 0) return;
+        const level = line.substring(0, fp).trim();
+        const title = line.substring(fp + 1, sp).trim();
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+        const speaker = line.substring(sp + 1, fc).trim();
+        const rest = line.substring(fc + 1);
+        const sc = rest.indexOf(',');
+        const german = rest.substring(0, sc).trim();
+        const key = level + '|' + title;
+        if (!convMap[key]) { convMap[key] = { A: [], B: [] }; convOrder.push(key); }
+        if (speaker === 'A') convMap[key].A.push(german);
+        else                  convMap[key].B.push(german);
+    });
+    const texts = [];
+    convOrder.forEach(key => {
+        convMap[key].A.forEach(t => texts.push(t));
+        convMap[key].B.forEach(t => texts.push(t));
+    });
+    return texts;
+}
+
+// Collect Q&A texts: left col (questions 0..half-1) then right col (questions half..end)
+function collectQATexts() {
+    const rows = qaCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return { level: line.substring(0, fc).trim(), question: line.substring(fc + 1, sc).trim() };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+    const half = Math.ceil(rows.length / 2);
+    const texts = [];
+    for (let i = 0; i < half; i++)          texts.push(rows[i].question);
+    for (let i = half; i < rows.length; i++) texts.push(rows[i].question);
+    return texts;
+}
+
+// Collect sentence texts: left col (0..half-1) then right col (half..end)
+function collectSentTexts() {
+    const rows = sentencesCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return { level: line.substring(0, fc).trim(), german: line.substring(fc + 1, sc).trim() };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+    const half = Math.ceil(rows.length / 2);
+    const texts = [];
+    for (let i = 0; i < half; i++)          texts.push(rows[i].german);
+    for (let i = half; i < rows.length; i++) texts.push(rows[i].german);
+    return texts;
+}
+
+const sectionBtnIds = {
+    all: 'btnAll', der: 'btnDer', das: 'btnDas', die: 'btnDie',
+    adj: 'btnAdj', verb: 'btnVerb', expr: 'btnExpr',
+    conv: 'btnConv', qa: 'btnQa', sent: 'btnSent'
+};
+
+function setPlayingBtn(section) {
+    Object.entries(sectionBtnIds).forEach(([key, id]) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('playing', key === section);
+    });
+}
+
+function playSection(section) {
+    // Toggle off if already playing this section
+    if (playAllActive && currentPlaySection === section) {
+        stopAllSpeech();
+        playAllActive = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        return;
+    }
+    stopAllSpeech();
+    playAllTexts = [];
+
+    if (section === 'all') {
+        playAllTexts = [
+            ...collectNounTexts('der'),
+            ...collectNounTexts('das'),
+            ...collectNounTexts('die'),
+            ...collectWordTexts(adjectivesCSV),
+            ...collectWordTexts(verbsCSV),
+            ...collectExprTexts(),
+            ...collectConvTexts(),
+            ...collectQATexts(),
+            ...collectSentTexts()
+        ];
+    } else if (section === 'der')  { playAllTexts = collectNounTexts('der'); }
+    else if (section === 'das')  { playAllTexts = collectNounTexts('das'); }
+    else if (section === 'die')  { playAllTexts = collectNounTexts('die'); }
+    else if (section === 'adj')  { playAllTexts = collectWordTexts(adjectivesCSV); }
+    else if (section === 'verb') { playAllTexts = collectWordTexts(verbsCSV); }
+    else if (section === 'expr') { playAllTexts = collectExprTexts(); }
+    else if (section === 'conv') { playAllTexts = collectConvTexts(); }
+    else if (section === 'qa')   { playAllTexts = collectQATexts(); }
+    else if (section === 'sent') { playAllTexts = collectSentTexts(); }
+
+    playAllTexts = playAllTexts.filter(t => t && t.trim());
+    if (playAllTexts.length === 0) return;
+
+    playAllActive = true;
+    playAllIndex = 0;
+    currentPlaySection = section;
+    isPlayingSequence = true;
+    setPlayingBtn(section);
+    playNextInSequence();
+}
+
+function playNextInSequence() {
+    if (!playAllActive || playAllIndex >= playAllTexts.length) {
+        playAllActive = false;
+        isPlayingSequence = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        return;
+    }
+    const text = playAllTexts[playAllIndex++];
+    speak(text, () => setTimeout(playNextInSequence, 500));
+}
+
+// Helper: escape text for HTML attribute
+function escAttr(s) {
+    return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
+// ============================================
+// INITIALIZE
+// ============================================
+window.addEventListener('load', function() {
+    updateVocabZoom();
+    updatePhrasesZoom();
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ German Vocabulary Reference loaded!');
+    console.log('💡 Keys: 0=All | 1=A1 | 2=A2 | 3=B1 | 4=B2 | P=Print');
+});
+    </script>
+</body>
+</html>

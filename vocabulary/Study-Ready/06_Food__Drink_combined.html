@@ -1,0 +1,2231 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary - 06: Food & Drink</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           FIXED CONTROLS (screen only) — compact unified panel
+        ============================================ */
+        .controls {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1000;
+            max-width: 520px;
+        }
+
+        /* main dark pill wrapping level + audio */
+        .controls-main {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 7px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+        }
+
+        /* top bar: level filter + close btn */
+        .controls-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: nowrap;
+        }
+
+        .filter-label {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+
+        .level-btn {
+            border: 2px solid transparent;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.72em;
+            font-weight: 700;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.15s ease;
+        }
+        .level-btn:hover { opacity: 0.85; }
+        .level-btn.active { opacity: 1; border-color: white; }
+        .level-btn[data-level="all"] { background: #764ba2; color: white; }
+        .level-btn[data-level="A1"]  { background: #4CAF50; color: white; }
+        .level-btn[data-level="A2"]  { background: #2196F3; color: white; }
+        .level-btn[data-level="B1"]  { background: #FF9800; color: white; }
+        .level-btn[data-level="B2"]  { background: #F44336; color: white; }
+
+        .filter-count {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            margin-left: 2px;
+        }
+
+        /* close button — inline in top bar */
+        .controls-close {
+            margin-left: auto;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.55);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 4px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .controls-close:hover { background: rgba(255,255,255,0.18); color: white; }
+
+        /* ============================================
+           COLLAPSED TOGGLE BUTTON (when panel is hidden)
+        ============================================ */
+        .controls-toggle {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 1001;
+            background: #1a1a1a;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.78em;
+            cursor: pointer;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            display: none;
+        }
+        .controls-toggle:hover { background: #333; }
+        .controls.collapsed { display: none !important; }
+        .controls.collapsed + .controls-toggle,
+        body.controls-hidden .controls-toggle { display: block; }
+
+        /* ============================================
+           AUDIO PANEL (inside controls-main)
+        ============================================ */
+        .audio-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .audio-row-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .audio-panel-title {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+        .audio-panel label {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.68em;
+            white-space: nowrap;
+        }
+        .audio-panel select {
+            font-size: 0.68em;
+            padding: 2px 5px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #2a2a2a;
+            color: rgba(255,255,255,0.85);
+            cursor: pointer;
+            max-width: 130px;
+        }
+        .audio-panel input[type=range] {
+            width: 60px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+        .speed-val {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.68em;
+            min-width: 26px;
+        }
+        .play-all-btn {
+            background: linear-gradient(135deg, #DD0000, #FFCE00);
+            color: white;
+            border: none;
+            padding: 4px 11px;
+            border-radius: 10px;
+            font-size: 0.72em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .play-all-btn:hover { opacity: 0.85; }
+        .audio-row-sections {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .audio-section-label {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.35);
+            white-space: nowrap;
+        }
+        .audio-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.75em;
+        }
+        .section-play-btn {
+            background: #242424;
+            color: rgba(255,255,255,0.55);
+            border: 1px solid #3a3a3a;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.67em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        .section-play-btn:hover { background: #3a3a3a; color: white; }
+        .section-play-btn.playing { background: #667eea; color: white; border-color: #667eea; }
+        .section-play-btn[data-art="der"] { color: #90CAF9; }
+        .section-play-btn[data-art="das"] { color: #A5D6A7; }
+        .section-play-btn[data-art="die"] { color: #EF9A9A; }
+
+        .audio-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 0.78em;
+            padding: 0 2px;
+            opacity: 0.45;
+            transition: opacity 0.2s;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .audio-btn:hover { opacity: 1; }
+
+        /* ============================================
+           ZOOM + PRINT — collapsible (collapsed by default)
+        ============================================ */
+        .secondary-controls-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sec-toggle-btn {
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.45);
+            border: none;
+            padding: 2px 9px;
+            font-size: 0.67em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.15s;
+        }
+        .sec-toggle-btn:hover { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.8); }
+        .sec-toggle-btn.open { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.1); }
+
+        .secondary-controls {
+            display: none;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding-top: 4px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .secondary-controls.open { display: flex; }
+
+        /* compact zoom row */
+        .zoom-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .zoom-label {
+            font-size: 0.67em;
+            color: rgba(255,255,255,0.45);
+            white-space: nowrap;
+        }
+        .zoom-btn {
+            background: #333;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.8em;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .zoom-btn:hover { background: #555; }
+        .zoom-level {
+            font-weight: bold;
+            font-size: 0.68em;
+            color: rgba(255,255,255,0.65);
+            min-width: 30px;
+            text-align: center;
+        }
+        .zoom-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.8em;
+        }
+        .print-button {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: auto;
+        }
+        .print-button:hover { background: rgba(255,255,255,0.2); color: white; }
+
+        /* ============================================
+           AUDIO STATUS TOAST
+        ============================================ */
+        .audio-status {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            background: #667eea;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            gap: 8px;
+            z-index: 2000;
+            font-size: 0.82em;
+        }
+        .audio-status.show { display: flex; }
+        .audio-status .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            flex-shrink: 0;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+
+        /* ============================================
+           LEVEL BADGE (appears inside article cell)
+        ============================================ */
+        .lvl-badge {
+            display: inline-block;
+            font-size: 0.62em;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+            vertical-align: middle;
+            margin-left: 2px;
+            line-height: 1.4;
+        }
+        .lvl-badge.A1 { background: #C8E6C9; color: #1B5E20; }
+        .lvl-badge.A2 { background: #BBDEFB; color: #0D47A1; }
+        .lvl-badge.B1 { background: #FFE0B2; color: #E65100; }
+        .lvl-badge.B2 { background: #FFCDD2; color: #B71C1C; }
+
+        /* ============================================
+           PAGE HEADER
+        ============================================ */
+        .content-wrapper { max-width: 100%; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* ============================================
+           SECTION DIVIDER
+        ============================================ */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* ============================================
+           TABLE SECTION HEADERS
+        ============================================ */
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* ============================================
+           NOUN TABLE — 8 columns, article colors
+        ============================================ */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f0f0f0;
+            text-align: center;
+            font-weight: bold;
+            color: #555;
+            padding: 3px;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 6%;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 18%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 18%;
+        }
+
+        /* ARTICLE ROW COLORS */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ARTICLE TEXT COLORS */
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* NOUN TABLE COLGROUP widths */
+        .noun-col-art    { width: 6%; }
+        .noun-col-german { width: 18%; }
+        .noun-col-plural { width: 8%; }
+        .noun-col-eng    { width: 18%; }
+
+        /* ============================================
+           WORD TABLE (ADJ + VERB) — 8 columns
+        ============================================ */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col  { font-weight: 600; width: 15%; }
+        .word-table .english-col { color: #333; width: 10%; }
+
+        /* ADJECTIVE rows — warm yellow */
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* VERB rows — light blue */
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           EXPRESSIONS TABLE — 4 columns
+        ============================================ */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+            color: #000;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 22%;
+            font-style: italic;
+        }
+
+        /* ============================================
+           CONVERSATIONS TABLE — compact 4-col layout
+        ============================================ */
+        .conversations-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #667eea !important;
+            color: white !important;
+            font-weight: bold;
+            padding: 6px 8px;
+            font-size: 0.95em;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .conv-subheader {
+            background: #e8eaf6 !important;
+            font-weight: 700;
+            font-size: 0.78em;
+            color: #3949ab;
+            padding: 3px 6px;
+            border: 1px solid #c5cae9;
+            text-align: center;
+            letter-spacing: 0.3px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-a {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-a {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-b {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-b {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           Q&A TABLE — 4 columns
+        ============================================ */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            color: #1a237e;
+            width: 28%;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 22%;
+        }
+
+        /* ============================================
+           SENTENCES TABLE — 4 columns
+        ============================================ */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            font-style: italic;
+            width: 22%;
+        }
+
+        /* ============================================
+           FOOTER INFO
+        ============================================ */
+        .footer-info {
+            margin-top: 20px;
+            padding: 12px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.85em;
+            line-height: 1.8;
+        }
+
+        .footer-info h3 { margin-bottom: 6px; }
+
+        /* ============================================
+           PRINT STYLES
+        ============================================ */
+        @media print {
+            .controls          { display: none !important; }
+            .controls-toggle   { display: none !important; }
+            .level-filter-bar  { display: none !important; }
+            .audio-panel       { display: none !important; }
+            .audio-status      { display: none !important; }
+            .audio-btn         { display: none !important; }
+            .section-play-btn  { display: none !important; }
+            .footer-info       { display: none !important; }
+
+            body { padding: 0; font-size: 0.7em; }
+
+            .section-divider { page-break-before: always; }
+            .table-section { page-break-inside: auto; }
+            .noun-table, .word-table, .expressions-table,
+            .conversations-table, .qa-table, .sentences-table {
+                font-size: 1em;
+            }
+        }
+
+        @media screen {
+            body { padding-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         FIXED CONTROLS (screen only)
+    ============================================ -->
+    <button class="controls-toggle" id="controlsToggle" onclick="toggleControls()">⚙ Controls</button>
+    <div class="controls" id="controlsPanel">
+        <div class="controls-main">
+
+            <!-- Row 1: Level filter + close -->
+            <div class="controls-top">
+                <span class="filter-label">🎯</span>
+                <button class="level-btn active" data-level="all" onclick="filterByLevel('all')">All</button>
+                <button class="level-btn" data-level="A1"  onclick="filterByLevel('A1')">A1</button>
+                <button class="level-btn" data-level="A2"  onclick="filterByLevel('A2')">A2</button>
+                <button class="level-btn" data-level="B1"  onclick="filterByLevel('B1')">B1</button>
+                <button class="level-btn" data-level="B2"  onclick="filterByLevel('B2')">B2</button>
+                <span class="filter-count" id="filterCount"></span>
+                <button class="controls-close" onclick="toggleControls()">✕</button>
+            </div>
+
+            <!-- Row 2: Audio controls -->
+            <div class="audio-panel">
+                <div class="audio-row-top">
+                    <span class="audio-panel-title">🔊</span>
+                    <label for="voiceSelect">Voice:</label>
+                    <select id="voiceSelect"><option value="">Loading…</option></select>
+                    <label for="speedControl">Speed:</label>
+                    <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+                    <span class="speed-val" id="speedValue">0.8×</span>
+                    <button class="play-all-btn" id="btnAll" onclick="playSection('all')">▶ All</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnDer" data-art="der" onclick="playSection('der')">▶ der</button>
+                    <button class="section-play-btn" id="btnDas" data-art="das" onclick="playSection('das')">▶ das</button>
+                    <button class="section-play-btn" id="btnDie" data-art="die" onclick="playSection('die')">▶ die</button>
+                    <span class="audio-sep">|</span>
+                    <button class="section-play-btn" id="btnAdj" onclick="playSection('adj')">▶ Adj</button>
+                    <button class="section-play-btn" id="btnVerb" onclick="playSection('verb')">▶ Verbs</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnExpr" onclick="playSection('expr')">▶ Expr</button>
+                    <button class="section-play-btn" id="btnConv" onclick="playSection('conv')">▶ Conv</button>
+                    <button class="section-play-btn" id="btnQa" onclick="playSection('qa')">▶ Q&amp;A</button>
+                    <button class="section-play-btn" id="btnSent" onclick="playSection('sent')">▶ Sent</button>
+                </div>
+            </div>
+
+            <!-- Row 3: Zoom & Print toggle -->
+            <div class="secondary-controls-toggle">
+                <button class="sec-toggle-btn" id="secToggleBtn" onclick="toggleSecondary()">⚙ Zoom &amp; Print</button>
+            </div>
+            <div class="secondary-controls" id="secondaryControls">
+                <div class="zoom-row">
+                    <span class="zoom-label">📚 Vocab:</span>
+                    <button class="zoom-btn" onclick="zoomOutVocab()">−</button>
+                    <span class="zoom-level" id="zoomLevelVocab">100%</span>
+                    <button class="zoom-btn" onclick="zoomInVocab()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomVocab()">⟲</button>
+                </div>
+                <span class="zoom-sep">|</span>
+                <div class="zoom-row">
+                    <span class="zoom-label">💬 Phrases:</span>
+                    <button class="zoom-btn" onclick="zoomOutPhrases()">−</button>
+                    <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+                    <button class="zoom-btn" onclick="zoomInPhrases()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomPhrases()">⟲</button>
+                </div>
+                <button class="print-button" onclick="window.print()">🖨️ Print</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 06: Food & Drink</h1>
+            <p style="font-size:0.75em; color:#555;">Personal Information & Identity · A1–B2 Level-Tagged Reference · aliattia02</p>
+        </div>
+
+        <!-- ============================================
+             VOCABULARY SECTION
+        ============================================ -->
+        <div id="vocabSection">
+
+            <!-- TABLE 1: NOUNS -->
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col class="noun-col-art">
+                        <col class="noun-col-german">
+                        <col class="noun-col-plural">
+                        <col class="noun-col-eng">
+                        <col class="noun-col-art">
+                        <col class="noun-col-german">
+                        <col class="noun-col-plural">
+                        <col class="noun-col-eng">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural ±</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural ±</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives &amp; Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES &amp; SENTENCES</h2>
+        </div>
+
+        <!-- ============================================
+             PHRASES SECTION
+        ============================================ -->
+        <div id="phrasesSection">
+
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions &amp; Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Topic:</strong> Home &amp; Living / Personal Information &amp; Identity &nbsp;|&nbsp; <strong>Created:</strong> 2025 — aliattia02</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Full form shown = umlaut change | --- = no change | nur P = plural only | = = no change</p>
+            <p><strong>Color Coding:</strong>
+                <span style="color:#1565C0; font-weight:bold;">■ der (blue)</span> &nbsp;
+                <span style="color:#2E7D32; font-weight:bold;">■ das (green)</span> &nbsp;
+                <span style="color:#C62828; font-weight:bold;">■ die (red)</span> &nbsp;|&nbsp;
+                Adjective rows: <span style="background:#FFF8E1; padding:1px 6px; border:1px solid #ddd;">yellow</span> &nbsp;
+                Verb rows: <span style="background:#E1F5FE; padding:1px 6px; border:1px solid #ddd;">blue</span>
+            </p>
+            <p><strong>Prefix Guide:</strong> - = Adjective &nbsp;|&nbsp; * = Weak Verb (regular) &nbsp;|&nbsp; + = Strong Verb (irregular)</p>
+            <p><strong>Levels:</strong>
+                <span class="lvl-badge A1">A1</span> Beginner &nbsp;
+                <span class="lvl-badge A2">A2</span> Elementary &nbsp;
+                <span class="lvl-badge B1">B1</span> Intermediate &nbsp;
+                <span class="lvl-badge B2">B2</span> Upper Intermediate
+            </p>
+        </div>
+    </div>
+
+    <script>
+
+// ============================================
+// ⭐ VOCABULARY DATA
+// ============================================
+
+const nounsCSV = `
+// das — cluster: staple foods & bread
+A1,das,Brot,-e,die Brote,Bread
+A1,das,Brötchen,=,die Brötchen,Bread roll
+A2,das,Getreide,---,---,Grain
+A2,das,Mehl,---,---,Flour
+A2,das,Kochbuch,Kochbücher,die Kochbücher,Cookbook
+B1,das,Vollkornbrot,-e,die Vollkornbrote,Wholegrain bread
+B2,das,Sauerteigbrot,-e,die Sauerteigbrote,Sourdough bread
+// das — cluster: produce
+A1,das,Obst,---,---,Fruit
+A1,das,Gemüse,---,---,Vegetable
+A1,das,Fleisch,---,---,Meat
+A1,das,Ei,-er,die Eier,Egg
+A2,das,Geflügel,---,---,Poultry
+B1,das,Lammfleisch,---,---,Lamb
+B2,das,Wild,---,---,Game
+// das — cluster: dairy & fats
+A2,das,Öl,-e,die Öle,Oil
+B1,das,Fett,-e,die Fette,Fat
+B2,das,Frittierfett,-e,die Frittierfette,Frying fat
+// das — cluster: drinks
+A1,das,Wasser,---,---,Water
+A1,das,Getränk,-e,die Getränke,Drink
+A2,das,Bier,-e,die Biere,Beer
+// das — cluster: meals & courses
+A1,das,Frühstück,-e,die Frühstücke,Breakfast
+A2,das,Mittagessen,=,die Mittagessen,Lunch
+A2,das,Abendessen,=,die Abendessen,Dinner
+A2,das,Gericht,-e,die Gerichte,Dish
+B1,das,Hauptgericht,-e,die Hauptgerichte,Main course
+B2,das,Degustationsmenü,-s,die Degustationsmenüs,Tasting menu
+// das — cluster: condiments & flavoring
+A2,das,Salz,---,---,Salt
+B1,das,Gewürz,-e,die Gewürze,Spice
+B2,das,Aroma,-s,die Aromas,Aroma
+// das — cluster: nutrition & processed foods
+B1,das,Eiweiß,-e,die Eiweiße,Protein
+B1,das,Lebensmittel,=,die Lebensmittel,Food item
+B2,das,Nahrungsmittel,=,die Nahrungsmittel,Foodstuff
+B2,das,Fertiggericht,-e,die Fertiggerichte,Ready meal
+// der — cluster: taste & appetite
+A1,der,Hunger,---,---,Hunger
+A2,der,Geschmack,Geschmäcke,die Geschmäcke,Taste
+B1,der,Appetit,---,---,Appetite
+B2,der,Nährstoff,-e,die Nährstoffe,Nutrient
+// der — cluster: sweeteners & condiments
+A1,der,Zucker,---,---,Sugar
+A2,der,Pfeffer,---,---,Pepper
+B1,der,Essig,-e,die Essige,Vinegar
+B2,der,Geschmacksverstärker,=,die Geschmacksverstärker,Flavour enhancer
+// der — cluster: beverages
+A1,der,Kaffee,-s,die Kaffees,Coffee
+A1,der,Tee,-s,die Tees,Tea
+A1,der,Saft,Säfte,die Säfte,Juice
+A2,der,Wein,-e,die Weine,Wine
+A2,der,Alkohol,---,---,Alcohol
+B1,der,Cocktail,-s,die Cocktails,Cocktail
+B2,der,Digestif,-s,die Digestifs,Digestif
+// der — cluster: dairy & proteins
+A1,der,Käse,=,die Käse,Cheese
+A2,der,Joghurt,-s,die Joghurts,Yogurt
+B1,der,Quark,---,---,Quark
+// der — cluster: fish & seafood
+A1,der,Fisch,-e,die Fische,Fish
+A2,der,Lachs,-e,die Lachse,Salmon
+B1,der,Thunfisch,-e,die Thunfische,Tuna
+B2,der,Hering,-e,die Heringe,Herring
+// der — cluster: cooking tools
+A1,der,Topf,Töpfe,die Töpfe,Pot
+A1,der,Löffel,=,die Löffel,Spoon
+A1,der,Teller,=,die Teller,Plate
+A2,der,Mixer,=,die Mixer,Blender
+B1,der,Kochlöffel,=,die Kochlöffel,Wooden spoon
+B2,der,Schneebesen,=,die Schneebesen,Whisk
+// der — cluster: market & food shops
+A1,der,Supermarkt,Supermärkte,die Supermärkte,Supermarket
+A2,der,Markt,Märkte,die Märkte,Market
+B1,der,Bioladen,Bioläden,die Bioläden,Health food shop
+B1,der,Wochenmarkt,Wochenmärkte,die Wochenmärkte,Weekly market
+B2,der,Biobauernhof,Biobauernhöfe,die Biobauernhöfe,Organic farm
+// der — cluster: cook & profession
+A2,der,Koch,Köche,die Köche,Cook
+B1,der,Chefkoch,Chefköche,die Chefköche,Head chef
+B2,der,Ernährungsberater,=,die Ernährungsberater,Nutritionist
+// die — cluster: produce & staples
+A1,die,Milch,---,---,Milk
+A1,die,Butter,---,---,Butter
+A1,die,Kartoffel,-n,die Kartoffeln,Potato
+A1,die,Tomate,-n,die Tomaten,Tomato
+A1,die,Nudel,-n,die Nudeln,Pasta
+A2,die,Karotte,-n,die Karotten,Carrot
+A2,die,Zwiebel,-n,die Zwiebeln,Onion
+B1,die,Paprika,-s,die Paprikas,Bell pepper
+B2,die,Hülsenfrucht,Hülsenfrüchte,die Hülsenfrüchte,Legume
+// die — cluster: cooked dishes
+A1,die,Suppe,-n,die Suppen,Soup
+A2,die,Torte,-n,die Torten,Gateau
+A2,die,Pizza,-s,die Pizzas,Pizza
+B1,die,Vorspeise,-n,die Vorspeisen,Starter
+B2,die,Delikatesse,-n,die Delikatessen,Delicacy
+// die — cluster: condiments & sauces
+A2,die,Marmelade,-n,die Marmeladen,Jam
+A2,die,Soße,-n,die Soßen,Sauce
+A2,die,Zutat,-en,die Zutaten,Ingredient
+B1,die,Marinade,-n,die Marinaden,Marinade
+B2,die,Würzmischung,-en,die Würzmischungen,Spice blend
+// die — cluster: cooking tools & kitchen
+A1,die,Pfanne,-n,die Pfannen,Pan
+A2,die,Küchenwaage,-n,die Küchenwaagen,Kitchen scales
+B1,die,Reibe,-n,die Reiben,Grater
+B2,die,Küchenmaschine,-n,die Küchenmaschinen,Food processor
+// die — cluster: nutrition & diet
+B1,die,Ernährung,---,---,Nutrition
+B1,die,Diät,-en,die Diäten,Diet
+B2,die,Gastronomie,---,---,Gastronomy
+B2,die,Nahrungsergänzung,-en,die Nahrungsergänzungen,Food supplement
+// die — cluster: food stores & supply
+A1,die,Bäckerei,-en,die Bäckereien,Bakery
+A2,die,Metzgerei,-en,die Metzgereien,Butcher's shop
+B1,die,Lebensmittelabteilung,-en,die Lebensmittelabteilungen,Food department
+B2,die,Feinkosthandlung,-en,die Feinkosthandlungen,Delicatessen
+// die — cluster: culinary culture
+B1,die,Kochkunst,---,---,Culinary art
+B2,die,Kulinarik,---,---,Culinary culture
+`.trim();
+
+const adjectivesCSV = `
+// cluster: taste
+A1,-süß,sweet,-bitter,bitter
+A1,-salzig,salty,-sauer,sour
+A2,-lecker,tasty,-ungenießbar,inedible
+B1,-würzig,spicy,-fade,bland
+B2,-aromatisch,aromatic,-geschmacklos,tasteless
+// cluster: texture & consistency
+A2,-weich,soft,-hart,hard
+A2,-knusprig,crispy,-matschig,mushy
+B1,-cremig,creamy,-körnig,grainy
+B2,-zähflüssig,viscous,-flüssig,liquid
+// cluster: freshness & quality
+A1,-frisch,fresh,-verdorben,spoiled
+A2,-reif,ripe,-unreif,unripe
+B1,-haltbar,shelf-stable,-verderblich,perishable
+B2,-bekömmlich,digestible,-unbekömmlich,hard to digest
+// cluster: temperature & serving
+A2,-lauwarm,lukewarm,-eiskalt,ice-cold
+B1,-dampfend,steaming,-gefroren,frozen
+// cluster: appearance & treatment
+A2,-golden,golden,-verbrannt,burnt
+B1,-glasiert,glazed,-unbehandelt,untreated
+B1,-gewürzt,seasoned,-ungewürzt,unseasoned
+B2,-fermentiert,fermented,-frischgepresst,freshly pressed
+// cluster: diet & nutrition
+A2,-vegetarisch,vegetarian,-fleischhaltig,meat-based
+A2,-satt,full,-hungrig,hungry
+B1,-nahrhaft,nutritious,-nährstoffarm,low in nutrients
+B1,-kalorienreich,high-calorie,-kalorienarm,low-calorie
+B2,-biologisch,organic,-künstlich,artificial
+B2,-gesättigt,saturated,-ungesättigt,unsaturated
+`.trim();
+
+const verbsCSV = `
+// cluster: eating & drinking
+A1,+essen,eat,+trinken,drink
+A1,*schmecken,taste,*probieren,try
+A2,+genießen,enjoy,*naschen,snack
+B1,*schlürfen,slurp,*kauen,chew
+B2,*konsumieren,consume,*verzehren,devour
+// cluster: cooking methods
+A1,*kochen,cook,*backen,bake
+A2,+braten,fry,*grillen,grill
+B1,*dünsten,steam,*schmoren,braise
+B2,*fermentieren,ferment,*konservieren,preserve
+// cluster: preparation & seasoning
+A2,+schneiden,cut,*mischen,mix
+A2,*würzen,season,*abschmecken,adjust seasoning
+B1,*zerkleinern,chop,*anrühren,stir
+B2,*portionieren,portion,*anrichten,plate
+// cluster: preservation & storage
+A2,*kühlen,refrigerate,+einfrieren,freeze
+B1,*einkochen,preserve,*aufbewahren,store
+B2,*vakuumieren,vacuum-seal,*pasteurisieren,pasteurise
+// cluster: food shopping & supply
+A1,*einkaufen,shop,*bestellen,order
+A2,*verpacken,pack,*liefern,deliver
+// cluster: serving & presenting
+A2,*servieren,serve,*aufwärmen,heat up
+B1,*garnieren,garnish,*tranchieren,carve
+B2,*flambieren,flambé,*karamellisieren,caramelise
+// cluster: growing & harvesting
+B1,*anbauen,grow,*ernten,harvest
+B2,*züchten,cultivate,*veredeln,refine
+`.trim();
+
+const expressionsCSV = `
+// cluster: expressing hunger & appetite
+A1,Ich habe Hunger.,I am hungry.
+A1,Ich bin durstig.,I am thirsty.
+A2,Ich habe großen Appetit.,I have a big appetite.
+B1,Mir läuft das Wasser im Mund zusammen.,My mouth is watering.
+B2,Er ist ein echter Feinschmecker.,He is a true gourmet.
+// cluster: describing food quality
+A1,Das schmeckt gut.,That tastes good.
+A1,Das schmeckt nicht.,That does not taste good.
+A2,Das ist sehr lecker.,That is very tasty.
+A2,Das ist zu salzig für mich.,That is too salty for me.
+B1,Das Gericht ist etwas zu scharf.,The dish is a little too spicy.
+B2,Der Geschmack ist sehr komplex.,The flavour is very complex.
+// cluster: meal etiquette & sharing
+A1,Guten Appetit!,Enjoy your meal!
+A1,Darf ich bitte das Brot haben?,May I please have the bread?
+A2,Ich decke den Tisch.,I am setting the table.
+B1,Wir haben uns zum Abendessen verabredet.,We arranged to meet for dinner.
+B2,Das Essen wurde kunstvoll angerichtet.,The food was artfully plated.
+// cluster: cooking & preparation
+A1,Ich schneide das Gemüse klein.,I chop the vegetables small.
+A2,Ich koche gerne zu Hause.,I like to cook at home.
+B1,Das Gemüse muss zwanzig Minuten dünsten.,The vegetables need to steam for twenty minutes.
+B2,Dieses Gericht erfordert viel Vorbereitung.,This dish requires a lot of preparation.
+// cluster: dietary preferences
+B1,Ich esse kein Fleisch.,I do not eat meat.
+B1,Ich vertrage keine Laktose.,I am lactose intolerant.
+B2,Ich ernähre mich rein pflanzlich.,I follow a purely plant-based diet.
+B2,Das Produkt ist frei von Konservierungsstoffen.,The product is free from preservatives.
+// cluster: food shopping
+A1,Ich brauche Brot und Milch.,I need bread and milk.
+A2,Wo finde ich die Gemüseabteilung?,Where is the vegetable section?
+B1,Ich kaufe am liebsten auf dem Wochenmarkt ein.,I prefer to shop at the weekly market.
+B2,Dieses Produkt hat eine kurze Haltbarkeit.,This product has a short shelf life.
+`.trim();
+
+// ============================================
+// CONVERSATIONS DATA
+// format: level|Title|Speaker,german,english
+// ============================================
+const conversationsCSV = `
+A1|At the Grocery Store|A,Was kostet ein Kilo Äpfel?,How much does a kilo of apples cost?
+A1|At the Grocery Store|B,Das kostet zwei Euro achtzig.,That costs two euros eighty.
+A1|At the Grocery Store|A,Gut. Ich nehme zwei Kilo.,Good. I will take two kilos.
+A1|At the Grocery Store|B,Haben Sie noch einen Wunsch?,Is there anything else?
+A1|At the Grocery Store|A,Ja bitte. Haben Sie frisches Brot?,Yes please. Do you have fresh bread?
+A1|At the Grocery Store|B,Ja wir haben Brötchen und Brot.,Yes we have bread rolls and bread.
+A1|At the Grocery Store|A,Ich nehme fünf Brötchen.,I will take five bread rolls.
+A1|At the Grocery Store|B,Gern. Das macht vier Euro zwanzig.,Of course. That comes to four euros twenty.
+A2|Cooking Together|A,Was kochen wir heute Abend?,What are we cooking this evening?
+A2|Cooking Together|B,Ich dachte an eine Gemüsesuppe.,I was thinking of a vegetable soup.
+A2|Cooking Together|A,Gut. Was brauchen wir dafür?,Good. What do we need for that?
+A2|Cooking Together|B,Kartoffeln Karotten Zwiebeln und Gewürze.,Potatoes carrots onions and spices.
+A2|Cooking Together|A,Haben wir alle Zutaten zu Hause?,Do we have all the ingredients at home?
+A2|Cooking Together|B,Fast. Wir brauchen noch Karotten.,Almost. We still need carrots.
+A2|Cooking Together|A,Ich gehe kurz einkaufen.,I will quickly go shopping.
+A2|Cooking Together|B,Danke. Ich fange schon mal an.,Thank you. I will start already.
+B1|Discussing Eating Habits|A,Ernährst du dich gesund?,Do you eat healthily?
+B1|Discussing Eating Habits|B,Ich versuche es. Ich esse viel Gemüse und Obst.,I try to. I eat a lot of vegetables and fruit.
+B1|Discussing Eating Habits|A,Isst du auch Fleisch?,Do you also eat meat?
+B1|Discussing Eating Habits|B,Selten. Ich esse lieber Fisch oder Hülsenfrüchte.,Rarely. I prefer to eat fish or legumes.
+B1|Discussing Eating Habits|A,Und wie oft kochst du selbst?,And how often do you cook yourself?
+B1|Discussing Eating Habits|B,Fast jeden Tag. Ich finde es besser als Fertiggerichte.,Almost every day. I find it better than ready meals.
+B1|Discussing Eating Habits|A,Das stimmt. Aber manchmal hat man keine Zeit.,That is true. But sometimes there is no time.
+B1|Discussing Eating Habits|B,Dann bereite ich einfache Gerichte schnell zu.,Then I quickly prepare simple dishes.
+B2|Food Production and Sustainability|A,Wie wichtig ist dir die Herkunft deiner Lebensmittel?,How important is the origin of your food to you?
+B2|Food Production and Sustainability|B,Sehr wichtig. Ich kaufe wenn möglich biologisch angebaute Produkte.,Very important. I buy organically grown products when possible.
+B2|Food Production and Sustainability|A,Unterstützt du regionale Erzeuger?,Do you support regional producers?
+B2|Food Production and Sustainability|B,Ja ich kaufe oft auf dem Wochenmarkt direkt beim Erzeuger.,Yes I often buy at the weekly market directly from the producer.
+B2|Food Production and Sustainability|A,Wie stehst du zu Lebensmittelverschwendung?,What is your view on food waste?
+B2|Food Production and Sustainability|B,Das ist ein ernstes Problem. Ich versuche nichts wegzuwerfen.,That is a serious problem. I try not to throw anything away.
+B2|Food Production and Sustainability|A,Welche Maßnahmen ergreifst du konkret?,What measures do you take specifically?
+B2|Food Production and Sustainability|B,Ich plane meine Mahlzeiten im Voraus und friere Reste ein.,I plan my meals in advance and freeze leftovers.
+`.trim();
+
+const qaCSV = `
+// cluster: basic food & meals
+A1,Was isst du zum Frühstück?,Ich esse Brot mit Butter und trinke Kaffee. (I eat bread with butter and drink coffee.)
+A1,Was trinkst du gern?,Ich trinke gern Tee und Wasser. (I like to drink tea and water.)
+A1,Hast du Hunger?,Ja ich habe großen Hunger. (Yes I am very hungry.)
+A1,Schmeckt das gut?,Ja es schmeckt sehr lecker. (Yes it tastes very good.)
+A1,Isst du gern Obst?,Ja ich esse jeden Tag Obst. (Yes I eat fruit every day.)
+A1,Wo kaufst du Lebensmittel ein?,Ich kaufe meistens im Supermarkt ein. (I usually shop at the supermarket.)
+A1,Kannst du kochen?,Ja ich koche sehr gerne. (Yes I love to cook.)
+A2,Was ist dein Lieblingsessen?,Mein Lieblingsessen ist Gemüsesuppe. (My favourite food is vegetable soup.)
+A2,Was brauchst du für dieses Gericht?,Ich brauche Fleisch Kartoffeln und Gewürze. (I need meat potatoes and spices.)
+A2,Was sind typische deutsche Gerichte?,Typische Gerichte sind Suppen Braten und Kuchen. (Typical dishes are soups roasts and cakes.)
+A2,Welche Gewürze verwendest du oft?,Ich verwende Salz Pfeffer und Knoblauch. (I use salt pepper and garlic.)
+A2,Was bedeutet vegetarisch?,Man isst kein Fleisch und keinen Fisch. (One does not eat meat or fish.)
+A2,Was kaufst du auf dem Markt?,Ich kaufe frisches Gemüse und Obst. (I buy fresh vegetables and fruit.)
+A2,Wie machst du Gemüsesuppe?,Ich koche Kartoffeln und Karotten in Wasser mit Gewürzen. (I boil potatoes and carrots in water with spices.)
+A2,Wann isst du zu Mittag?,Ich esse meistens gegen zwölf Uhr. (I usually eat around twelve.)
+// cluster: cooking methods & habits
+B1,Wie oft kochst du selbst?,Ich koche fast jeden Tag. (I cook almost every day.)
+B1,Wie bereitest du Gemüse zu?,Ich dünste oder brate es meistens. (I usually steam or fry it.)
+B1,Was ist der Unterschied zwischen Dünsten und Braten?,Beim Dünsten wird weniger Fett verwendet. (Less fat is used when steaming.)
+B1,Was macht eine gute Soße aus?,Sie braucht die richtigen Gewürze und viel Zeit. (It needs the right spices and a lot of time.)
+// cluster: nutrition & diet
+B1,Was ist eine ausgewogene Ernährung?,Sie enthält Gemüse Obst Proteine und Kohlenhydrate. (It contains vegetables fruit proteins and carbohydrates.)
+B1,Was ist ein Bioprodukt?,Es wurde ohne Pestizide und künstliche Dünger angebaut. (It was grown without pesticides and artificial fertilisers.)
+B1,Was sind Fertiggerichte?,Industriell hergestellte Mahlzeiten die schnell zubereitet werden können. (Industrially prepared meals that can be prepared quickly.)
+B2,Was versteht man unter nachhaltiger Ernährung?,Sie schont Ressourcen und bevorzugt regionale Produkte. (It conserves resources and favours regional products.)
+B2,Welche Nährstoffe sind besonders wichtig?,Proteine Vitamine und Mineralien sind essenziell. (Proteins vitamins and minerals are essential.)
+B2,Was sind Ballaststoffe?,Unverdauliche Pflanzenstoffe die die Verdauung fördern. (Indigestible plant substances that promote digestion.)
+B2,Warum ist Fermentierung wichtig?,Sie verbessert die Haltbarkeit und den Nährwert von Lebensmitteln. (It improves the shelf life and nutritional value of food.)
+B2,Was versteht man unter Food Pairing?,Die Kombination von Zutaten die sich gegenseitig ergänzen. (The combination of ingredients that complement each other.)
+`.trim();
+
+const sentencesCSV = `
+// cluster: eating habits
+A1,Ich esse jeden Morgen ein Ei zum Frühstück.,I eat an egg for breakfast every morning.
+A1,Mein Vater trinkt jeden Tag Kaffee.,My father drinks coffee every day.
+A1,Wir essen abends zusammen.,We eat together in the evenings.
+A1,Das Brot riecht sehr gut.,The bread smells very good.
+A1,Der Apfel ist süß und frisch.,The apple is sweet and fresh.
+A1,Gemüse und Obst sind gesund.,Vegetables and fruit are healthy.
+A1,Milch enthält viel Kalzium.,Milk contains a lot of calcium.
+A2,Zum Mittagessen bestelle ich oft eine Suppe.,I often order a soup for lunch.
+A2,Zum Frühstück esse ich meistens Joghurt mit Obst.,I usually eat yogurt with fruit for breakfast.
+A2,Ich trinke keinen Alkohol.,I do not drink alcohol.
+B1,Ich achte darauf möglichst wenig Zucker zu essen.,I try to eat as little sugar as possible.
+B1,Wer sich vegan ernährt muss auf ausreichend Nährstoffe achten.,Anyone who eats vegan must ensure they get enough nutrients.
+B1,Zu viel Fett und Zucker ist ungesund.,Too much fat and sugar is unhealthy.
+B2,Eine ausgewogene Ernährung trägt wesentlich zur Gesundheit bei.,A balanced diet contributes significantly to good health.
+// cluster: cooking & preparation
+A1,Die Suppe kocht auf dem Herd.,The soup is cooking on the stove.
+A1,Ich schneide das Brot in Scheiben.,I cut the bread into slices.
+A2,Meine Mutter kocht jeden Abend frisch.,My mother cooks fresh food every evening.
+A2,Ich brauche Mehl Eier und Butter für den Kuchen.,I need flour eggs and butter for the cake.
+A2,Das Fleisch wird im Ofen gebraten.,The meat is being roasted in the oven.
+A2,Ich mische die Zutaten gut durch.,I mix the ingredients well.
+B1,Das Gemüse wird zwanzig Minuten in Salzwasser gekocht.,The vegetables are cooked in salted water for twenty minutes.
+B1,Die Soße wird mit frischen Gewürzen abgeschmeckt.,The sauce is seasoned with fresh spices.
+B1,Er hat sich ein neues Kochbuch gekauft.,He bought a new cookbook.
+B2,Das Gericht wird direkt vor dem Servieren frisch angerichtet.,The dish is plated fresh just before serving.
+B2,Der Geschmack des Käses hängt von der Fermentierungsdauer ab.,The flavour of the cheese depends on the fermentation time.
+// cluster: shopping for food
+A1,Ich kaufe Brot beim Bäcker.,I buy bread at the bakery.
+A2,Auf dem Markt gibt es frisches Gemüse und Obst.,The market has fresh vegetables and fruit.
+A2,Die Metzgerei hat frisches Fleisch und Wurstwaren.,The butcher's shop has fresh meat and cold cuts.
+A2,Ich nehme immer eine Einkaufsliste mit.,I always take a shopping list with me.
+B1,Im Bioladen sind die Produkte teurer aber qualitativ besser.,Products in the health food shop are more expensive but better quality.
+B2,Regionale Erzeuger bieten saisonale Waren zu fairen Preisen an.,Regional producers offer seasonal goods at fair prices.
+// cluster: food industry & production
+B1,Viele Lebensmittel enthalten künstliche Aromen und Farbstoffe.,Many foods contain artificial flavourings and colourings.
+B1,Der Chefkoch kreiert neue Gerichte aus regionalen Zutaten.,The head chef creates new dishes from regional ingredients.
+B2,Die Lebensmittelindustrie steht vor der Herausforderung der Nachhaltigkeit.,The food industry faces the challenge of sustainability.
+B2,Fermentierte Produkte wie Joghurt und Sauerkraut sind leichter verdaulich.,Fermented products like yogurt and sauerkraut are easier to digest.
+B2,Nahrungsergänzungsmittel können einen Nährstoffmangel ausgleichen.,Food supplements can compensate for a nutrient deficiency.
+`.trim();
+
+// ============================================
+// CSV PARSER
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(l => l.split(',').map(c => c.trim()));
+}
+
+// ============================================
+// LEVEL FILTER STATE
+// ============================================
+let currentLevel = 'all';
+
+function filterByLevel(level) {
+    currentLevel = level;
+    document.querySelectorAll('.level-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.level === level);
+    });
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    updateFilterCount();
+}
+
+function updateFilterCount() {
+    const el = document.getElementById('filterCount');
+    if (!el) return;
+    if (currentLevel === 'all') { el.textContent = ''; return; }
+    let total = 0;
+    [nounsCSV, adjectivesCSV, verbsCSV, expressionsCSV, qaCSV, sentencesCSV].forEach(csv => {
+        parseCSV(csv).forEach(row => { if (row[0] === currentLevel) total++; });
+    });
+    conversationsCSV.split('\n').forEach(line => {
+        line = line.trim();
+        if (line && !line.startsWith('//') && line.startsWith(currentLevel + '|')) total++;
+    });
+    el.textContent = `${total} entries`;
+}
+
+function badge(level) {
+    return `<span class="lvl-badge ${level}">${level}</span>`;
+}
+
+// ============================================
+// RENDER NOUNS
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const grouped = { das: [], der: [], die: [] };
+    data.forEach(row => {
+        const [level, article, german, pluralNotation, pluralFull, english] = row;
+        if (grouped[article] !== undefined) {
+            grouped[article].push({ level, article, german, pluralNotation, pluralFull, english });
+        }
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    const articles = [
+        { key: 'der', label: 'Maskulinum (der)', rowClass: 'der-row', artClass: 'der-article' },
+        { key: 'das', label: 'Neutrum (das)',     rowClass: 'das-row', artClass: 'das-article' },
+        { key: 'die', label: 'Femininum (die)',   rowClass: 'die-row', artClass: 'die-article' },
+    ];
+
+    let anyContent = false;
+
+    articles.forEach(({ key, label, rowClass, artClass }, artIdx) => {
+        const words = grouped[key];
+        if (words.length === 0) return;
+        anyContent = true;
+
+        html += `<tr class="separator"><td colspan="8">${label}</td></tr>`;
+
+        const half = Math.ceil(words.length / 2);
+        for (let i = 0; i < half; i++) {
+            const w1 = words[i];
+            const w2 = words[i + half] || null;
+
+            html += `<tr class="${rowClass}">`;
+            html += `<td class="article-cell ${artClass}">${w1.article}</td>`;
+            html += `<td class="german-cell">${w1.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w1.article)}','${escAttr(w1.german)}','${escAttr(w1.pluralFull)}')">🔊</button></td>`;
+            html += `<td class="plural-cell">${w1.pluralNotation}</td>`;
+            html += `<td class="english-cell">${w1.english}</td>`;
+
+            if (w2) {
+                html += `<td class="article-cell ${artClass}">${w2.article}</td>`;
+                html += `<td class="german-cell">${w2.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w2.article)}','${escAttr(w2.german)}','${escAttr(w2.pluralFull)}')">🔊</button></td>`;
+                html += `<td class="plural-cell">${w2.pluralNotation}</td>`;
+                html += `<td class="english-cell">${w2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    });
+
+    if (!anyContent) {
+        html = `<tr><td colspan="8" style="text-align:center; color:#999; padding:12px;">No nouns at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const verbData = parseCSV(verbsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    if (adjData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Adjectives (- prefix = opposite pairs)</td></tr>`;
+        const half = Math.ceil(adjData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = adjData[i];
+            const r2 = adjData[i + half] || null;
+            html += `<tr class="adjective-row">`;
+            html += `<td class="german-col">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[3])}')">🔊</button></td><td class="english-col">${r1[2]}</td>`;
+            html += `<td class="german-col">${r1[3]}</td><td class="english-col">${r1[4]}</td>`;
+            if (r2) {
+                html += `<td class="german-col">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[3])}')">🔊</button></td><td class="english-col">${r2[2]}</td>`;
+                html += `<td class="german-col">${r2[3]}</td><td class="english-col">${r2[4]}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+
+    if (verbData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Verbs (* Weak | + Strong — opposite / related pairs)</td></tr>`;
+        const half = Math.ceil(verbData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = verbData[i];
+            const r2 = verbData[i + half] || null;
+            html += `<tr class="verb-row">`;
+            html += `<td class="german-col">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[3])}')">🔊</button></td><td class="english-col">${r1[2]}</td>`;
+            html += `<td class="german-col">${r1[3]}</td><td class="english-col">${r1[4]}</td>`;
+            if (r2) {
+                html += `<td class="german-col">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[3])}')">🔊</button></td><td class="english-col">${r2[2]}</td>`;
+                html += `<td class="german-col">${r2[3]}</td><td class="english-col">${r2[4]}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+
+    if (adjData.length === 0 && verbData.length === 0) {
+        html = `<tr><td colspan="8" style="text-align:center; color:#999; padding:12px;">No adjectives or verbs at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        const [lvl1, ger1, ...eng1parts] = data[i];
+        const eng1 = eng1parts.join(',');
+        html += `<tr>`;
+        html += `<td class="german-cell">${ger1} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(ger1)}')">🔊</button></td>`;
+        html += `<td class="english-cell">${eng1}</td>`;
+        if (i + 1 < data.length) {
+            const [lvl2, ger2, ...eng2parts] = data[i + 1];
+            const eng2 = eng2parts.join(',');
+            html += `<td class="german-cell">${ger2} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(ger2)}')">🔊</button></td>`;
+            html += `<td class="english-cell">${eng2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (data.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No expressions at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+
+    const conversations = {};
+    const convOrder = [];
+    const convLevels = {};
+
+    rawLines.forEach(line => {
+        const firstPipe  = line.indexOf('|');
+        const secondPipe = line.indexOf('|', firstPipe + 1);
+        const firstComma = line.indexOf(',', secondPipe + 1);
+        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+
+        const level   = line.substring(0, firstPipe).trim();
+        const title   = line.substring(firstPipe + 1, secondPipe).trim();
+        const speaker = line.substring(secondPipe + 1, firstComma).trim();
+
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+
+        const rest         = line.substring(firstComma + 1);
+        const secondComma  = rest.indexOf(',');
+        const german       = rest.substring(0, secondComma).trim();
+        const english      = rest.substring(secondComma + 1).trim();
+
+        const key = `${level}|${title}`;
+        if (!conversations[key]) {
+            conversations[key] = [];
+            convOrder.push(key);
+            convLevels[key] = level;
+        }
+        conversations[key].push({ speaker, german, english });
+    });
+
+    const container = document.getElementById('conversationsContainer');
+    let html = '';
+
+    if (convOrder.length === 0) {
+        html = `<p style="text-align:center; color:#999; padding:12px;">No conversations at ${currentLevel} level</p>`;
+        container.innerHTML = html;
+        return;
+    }
+
+    convOrder.forEach(key => {
+        const title = key.split('|').slice(1).join('|');
+        const lines = conversations[key];
+
+        const linesA = lines.filter(l => l.speaker === 'A');
+        const linesB = lines.filter(l => l.speaker === 'B');
+        const maxRows = Math.max(linesA.length, linesB.length);
+
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="4" class="conversation-title">💬 ${title}</td></tr>`;
+        html += `<tr>`;
+        html += `<td class="conv-subheader" style="width:27%;">Speaker A — Deutsch</td>`;
+        html += `<td class="conv-subheader" style="width:23%;">Speaker A — English</td>`;
+        html += `<td class="conv-subheader" style="width:27%;">Speaker B — Deutsch</td>`;
+        html += `<td class="conv-subheader" style="width:23%;">Speaker B — English</td>`;
+        html += `</tr>`;
+
+        for (let i = 0; i < maxRows; i++) {
+            const a = linesA[i] || null;
+            const b = linesB[i] || null;
+
+            html += `<tr>`;
+            html += `<td class="conv-ger-a">${a ? a.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(a.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-a">${a ? a.english : ''}</td>`;
+            html += `<td class="conv-ger-b">${b ? b.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(b.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-b">${b ? b.english : ''}</td>`;
+            html += `</tr>`;
+        }
+
+        html += `</table>`;
+    });
+
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A
+// ============================================
+function renderQATable() {
+    const qaRows = qaCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(line => {
+            const firstComma  = line.indexOf(',');
+            const secondComma = line.indexOf(',', firstComma + 1);
+            if (firstComma === -1 || secondComma === -1) return null;
+            return {
+                level:    line.substring(0, firstComma).trim(),
+                question: line.substring(firstComma + 1, secondComma).trim(),
+                answer:   line.substring(secondComma + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < qaRows.length; i += 2) {
+        const r1 = qaRows[i];
+        const r2 = qaRows[i + 1] || null;
+        html += `<tr>`;
+        html += `<td class="question-cell">${r1.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.question)}')">🔊</button></td>`;
+        html += `<td class="answer-cell">${r1.answer}</td>`;
+        if (r2) {
+            html += `<td class="question-cell">${r2.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.question)}')">🔊</button></td>`;
+            html += `<td class="answer-cell">${r2.answer}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (qaRows.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No Q&amp;A at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES
+// ============================================
+function renderSentencesTable() {
+    const sentRows = sentencesCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(line => {
+            const firstComma  = line.indexOf(',');
+            const secondComma = line.indexOf(',', firstComma + 1);
+            if (firstComma === -1 || secondComma === -1) return null;
+            return {
+                level:   line.substring(0, firstComma).trim(),
+                german:  line.substring(firstComma + 1, secondComma).trim(),
+                english: line.substring(secondComma + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < sentRows.length; i += 2) {
+        const r1 = sentRows[i];
+        const r2 = sentRows[i + 1] || null;
+        html += `<tr>`;
+        html += `<td class="german-cell">${r1.german} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.german)}')">🔊</button></td>`;
+        html += `<td class="english-cell">${r1.english}</td>`;
+        if (r2) {
+            html += `<td class="german-cell">${r2.german} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.german)}')">🔊</button></td>`;
+            html += `<td class="english-cell">${r2.english}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (sentRows.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No sentences at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// ============================================
+// TOGGLE CONTROLS PANEL
+// ============================================
+function toggleControls() {
+    const panel = document.getElementById('controlsPanel');
+    const btn   = document.getElementById('controlsToggle');
+    const collapsed = panel.classList.toggle('collapsed');
+    btn.style.display = collapsed ? 'block' : 'none';
+}
+
+function toggleSecondary() {
+    const sec = document.getElementById('secondaryControls');
+    const btn = document.getElementById('secToggleBtn');
+    const open = sec.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.textContent = open ? '⚙ Zoom & Print ▲' : '⚙ Zoom & Print';
+}
+
+// ============================================
+// ZOOM
+// ============================================
+let vocabZoom = 100, phrasesZoom = 100;
+const zoomStep = 10, minZoom = 50, maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    document.getElementById('vocabSection').style.fontSize = `${baseFontSize * vocabZoom / 100}em`;
+    document.getElementById('zoomLevelVocab').textContent = `${vocabZoom}%`;
+}
+function updatePhrasesZoom() {
+    document.getElementById('phrasesSection').style.fontSize = `${baseFontSize * phrasesZoom / 100}em`;
+    document.getElementById('zoomLevelPhrases').textContent = `${phrasesZoom}%`;
+}
+function zoomInVocab()     { if (vocabZoom < maxZoom)   { vocabZoom   += zoomStep; updateVocabZoom(); } }
+function zoomOutVocab()    { if (vocabZoom > minZoom)   { vocabZoom   -= zoomStep; updateVocabZoom(); } }
+function resetZoomVocab()  { vocabZoom = 100;   updateVocabZoom(); }
+function zoomInPhrases()   { if (phrasesZoom < maxZoom) { phrasesZoom += zoomStep; updatePhrasesZoom(); } }
+function zoomOutPhrases()  { if (phrasesZoom > minZoom) { phrasesZoom -= zoomStep; updatePhrasesZoom(); } }
+function resetZoomPhrases(){ phrasesZoom = 100; updatePhrasesZoom(); }
+
+// ============================================
+// KEYBOARD SHORTCUTS
+// ============================================
+document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    const map = { '0': 'all', '1': 'A1', '2': 'A2', '3': 'B1', '4': 'B2' };
+    if (map[e.key]) filterByLevel(map[e.key]);
+    if (e.key === 'p' || e.key === 'P') window.print();
+});
+
+
+// ============================================
+// KEYBOARD SHORTCUTS
+// ============================================
+document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    const map = { '0': 'all', '1': 'A1', '2': 'A2', '3': 'B1', '4': 'B2' };
+    if (map[e.key]) filterByLevel(map[e.key]);
+    if (e.key === 'p' || e.key === 'P') window.print();
+});
+
+// ============================================
+// INITIALIZE
+// ============================================
+// ============================================
+// SPEECH SYNTHESIS (TTS)
+// ============================================
+let germanVoice = null;
+let currentUtterance = null;
+let isSpeaking = false;
+let isPlayingSequence = false;
+let ttsWarmedUp = false;
+
+function loadVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (!voiceSelect) return;
+    voiceSelect.innerHTML = '';
+    const germanVoices = voices.filter(v => v.lang.startsWith('de'));
+    if (germanVoices.length === 0) {
+        voiceSelect.innerHTML = '<option value="">No German voice – using default</option>';
+        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0] || null;
+    } else {
+        germanVoices.forEach((voice, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = `${voice.name} (${voice.lang})`;
+            voiceSelect.appendChild(option);
+            if (index === 0) germanVoice = voice;
+        });
+    }
+}
+
+if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+}
+setTimeout(loadVoices, 100);
+setTimeout(loadVoices, 600);
+
+document.addEventListener('DOMContentLoaded', function() {
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (voiceSelect) {
+        voiceSelect.addEventListener('change', function(e) {
+            stopAllSpeech();
+            const voices = window.speechSynthesis.getVoices();
+            const germanVoices = voices.filter(v => v.lang.startsWith('de'));
+            germanVoice = germanVoices[parseInt(e.target.value)] || voices[0] || null;
+        });
+    }
+    const speedControl = document.getElementById('speedControl');
+    if (speedControl) {
+        speedControl.addEventListener('input', function(e) {
+            const el = document.getElementById('speedValue');
+            if (el) el.textContent = e.target.value + '×';
+        });
+    }
+});
+
+function warmUpTTS(callback) {
+    if (ttsWarmedUp) { callback(); return; }
+    const primer = new SpeechSynthesisUtterance(' ');
+    primer.volume = 0;
+    primer.lang = 'de-DE';
+    if (germanVoice) primer.voice = germanVoice;
+    primer.onend  = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    primer.onerror = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(primer);
+}
+
+function speak(text, callback) {
+    if (!text || text.trim() === '') { if (callback) callback(); return; }
+    text = text.replace('🔊', '').trim();
+    if (!isPlayingSequence) stopAllSpeech();
+    if (!ttsWarmedUp) {
+        warmUpTTS(() => speakNow(text, callback));
+    } else {
+        window.speechSynthesis.resume();
+        setTimeout(() => speakNow(text, callback), 100);
+    }
+}
+
+function stopAllSpeech() {
+    isPlayingSequence = false;
+    if (typeof speechSynthesis !== 'undefined') window.speechSynthesis.cancel();
+    isSpeaking = false;
+    hideAudioStatus();
+}
+
+function speakNow(text, callback) {
+    if (!('speechSynthesis' in window)) {
+        alert('⚠️ Text-to-speech not supported in this browser.');
+        if (callback) callback();
+        return;
+    }
+    showAudioStatus(text);
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'de-DE';
+    if (germanVoice) utterance.voice = germanVoice;
+    const speedEl = document.getElementById('speedControl');
+    utterance.rate = speedEl ? parseFloat(speedEl.value) : 0.8;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    let hasEnded = false;
+    utterance.onstart = () => { isSpeaking = true; };
+    utterance.onend = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) setTimeout(callback, 100);
+    };
+    utterance.onerror = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) callback();
+    };
+    currentUtterance = utterance;
+    try { window.speechSynthesis.speak(utterance); }
+    catch(e) { isSpeaking = false; hideAudioStatus(); if (callback) callback(); }
+}
+
+function showAudioStatus(text) {
+    const status = document.getElementById('audioStatus');
+    const statusText = document.getElementById('audioStatusText');
+    if (!status || !statusText) return;
+    statusText.textContent = '🔊 ' + (text.length > 40 ? text.substring(0, 40) + '…' : text);
+    status.classList.add('show');
+}
+
+function hideAudioStatus() {
+    setTimeout(() => {
+        const el = document.getElementById('audioStatus');
+        if (el) el.classList.remove('show');
+    }, 300);
+}
+
+function speakNounRow(article, singular, pluralFull) {
+    isPlayingSequence = true;
+    speak(article + ' ' + singular, () => {
+        if (pluralFull && pluralFull !== '---' && pluralFull !== 'kein Plural' && pluralFull !== 'nur P') {
+            setTimeout(() => speak(pluralFull, () => { isPlayingSequence = false; }), 350);
+        } else { isPlayingSequence = false; }
+    });
+}
+
+function speakWord(word) {
+    speak(word.replace(/[*+\-]/g, '').trim());
+}
+
+function speakPair(word1, word2) {
+    isPlayingSequence = true;
+    const w1 = word1.replace(/[*+\-]/g, '').trim();
+    const w2 = word2.replace(/[*+\-]/g, '').trim();
+    speak(w1, () => setTimeout(() => speak(w2, () => { isPlayingSequence = false; }), 800));
+}
+
+function speakText(text) {
+    speak(text);
+}
+
+// ============================================
+// PLAY SECTION — data-driven, column-first order
+// ============================================
+let playAllActive = false;
+let playAllIndex = 0;
+let playAllTexts = [];
+let currentPlaySection = null;
+
+// Collect noun texts for one article group in column-first order:
+// left column (items 0..half-1) then right column (items half..end)
+function collectNounTexts(articleFilter) {
+    const data = parseCSV(nounsCSV).filter(row =>
+        (currentLevel === 'all' || row[0] === currentLevel) &&
+        row[1] === articleFilter
+    );
+    const texts = [];
+    const half = Math.ceil(data.length / 2);
+    function pushNoun(row) {
+        const [lvl, art, ger, pn, pf] = row;
+        texts.push(art + ' ' + ger);
+        if (pf && pf !== '---' && pf !== 'nur P' && pf !== '=' && pf !== 'kein Plural') {
+            texts.push(pf);
+        }
+    }
+    for (let i = 0; i < half; i++)              pushNoun(data[i]);
+    for (let i = half; i < data.length; i++)    pushNoun(data[i]);
+    return texts;
+}
+
+// Collect adjective or verb texts: left column (0..half-1) then right column
+function collectWordTexts(csv) {
+    const data = parseCSV(csv).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const texts = [];
+    const half = Math.ceil(data.length / 2);
+    function pushPair(row) {
+        texts.push(row[1].replace(/[*+\-]/g, '').trim());
+        texts.push(row[3].replace(/[*+\-]/g, '').trim());
+    }
+    for (let i = 0; i < half; i++)              pushPair(data[i]);
+    for (let i = half; i < data.length; i++)    pushPair(data[i]);
+    return texts;
+}
+
+// Collect expression texts: left column (even indices → 0,2,4…) then right column (odd → 1,3,5…)
+function collectExprTexts() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const texts = [];
+    const evens = data.filter((_, i) => i % 2 === 0);
+    const odds  = data.filter((_, i) => i % 2 === 1);
+    [...evens, ...odds].forEach(row => {
+        const [lvl, ger, ...engParts] = row;
+        texts.push(ger);
+    });
+    return texts;
+}
+
+// Collect conversation texts: left col (speaker A lines) then right col (speaker B lines), per conversation
+function collectConvTexts() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+    const convMap = {};
+    const convOrder = [];
+    rawLines.forEach(line => {
+        const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1), fc = line.indexOf(',', sp + 1);
+        if (fp < 0 || sp < 0 || fc < 0) return;
+        const level = line.substring(0, fp).trim();
+        const title = line.substring(fp + 1, sp).trim();
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+        const speaker = line.substring(sp + 1, fc).trim();
+        const rest = line.substring(fc + 1);
+        const sc = rest.indexOf(',');
+        const german = rest.substring(0, sc).trim();
+        const key = level + '|' + title;
+        if (!convMap[key]) { convMap[key] = { A: [], B: [] }; convOrder.push(key); }
+        if (speaker === 'A') convMap[key].A.push(german);
+        else                  convMap[key].B.push(german);
+    });
+    const texts = [];
+    convOrder.forEach(key => {
+        convMap[key].A.forEach(t => texts.push(t));
+        convMap[key].B.forEach(t => texts.push(t));
+    });
+    return texts;
+}
+
+// Collect Q&A texts: left col (questions 0..half-1) then right col (questions half..end)
+function collectQATexts() {
+    const rows = qaCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return { level: line.substring(0, fc).trim(), question: line.substring(fc + 1, sc).trim() };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+    const half = Math.ceil(rows.length / 2);
+    const texts = [];
+    for (let i = 0; i < half; i++)          texts.push(rows[i].question);
+    for (let i = half; i < rows.length; i++) texts.push(rows[i].question);
+    return texts;
+}
+
+// Collect sentence texts: left col (0..half-1) then right col (half..end)
+function collectSentTexts() {
+    const rows = sentencesCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return { level: line.substring(0, fc).trim(), german: line.substring(fc + 1, sc).trim() };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+    const half = Math.ceil(rows.length / 2);
+    const texts = [];
+    for (let i = 0; i < half; i++)          texts.push(rows[i].german);
+    for (let i = half; i < rows.length; i++) texts.push(rows[i].german);
+    return texts;
+}
+
+const sectionBtnIds = {
+    all: 'btnAll', der: 'btnDer', das: 'btnDas', die: 'btnDie',
+    adj: 'btnAdj', verb: 'btnVerb', expr: 'btnExpr',
+    conv: 'btnConv', qa: 'btnQa', sent: 'btnSent'
+};
+
+function setPlayingBtn(section) {
+    Object.entries(sectionBtnIds).forEach(([key, id]) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('playing', key === section);
+    });
+}
+
+function playSection(section) {
+    // Toggle off if already playing this section
+    if (playAllActive && currentPlaySection === section) {
+        stopAllSpeech();
+        playAllActive = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        return;
+    }
+    stopAllSpeech();
+    playAllTexts = [];
+
+    if (section === 'all') {
+        playAllTexts = [
+            ...collectNounTexts('der'),
+            ...collectNounTexts('das'),
+            ...collectNounTexts('die'),
+            ...collectWordTexts(adjectivesCSV),
+            ...collectWordTexts(verbsCSV),
+            ...collectExprTexts(),
+            ...collectConvTexts(),
+            ...collectQATexts(),
+            ...collectSentTexts()
+        ];
+    } else if (section === 'der')  { playAllTexts = collectNounTexts('der'); }
+    else if (section === 'das')  { playAllTexts = collectNounTexts('das'); }
+    else if (section === 'die')  { playAllTexts = collectNounTexts('die'); }
+    else if (section === 'adj')  { playAllTexts = collectWordTexts(adjectivesCSV); }
+    else if (section === 'verb') { playAllTexts = collectWordTexts(verbsCSV); }
+    else if (section === 'expr') { playAllTexts = collectExprTexts(); }
+    else if (section === 'conv') { playAllTexts = collectConvTexts(); }
+    else if (section === 'qa')   { playAllTexts = collectQATexts(); }
+    else if (section === 'sent') { playAllTexts = collectSentTexts(); }
+
+    playAllTexts = playAllTexts.filter(t => t && t.trim());
+    if (playAllTexts.length === 0) return;
+
+    playAllActive = true;
+    playAllIndex = 0;
+    currentPlaySection = section;
+    isPlayingSequence = true;
+    setPlayingBtn(section);
+    playNextInSequence();
+}
+
+function playNextInSequence() {
+    if (!playAllActive || playAllIndex >= playAllTexts.length) {
+        playAllActive = false;
+        isPlayingSequence = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        return;
+    }
+    const text = playAllTexts[playAllIndex++];
+    speak(text, () => setTimeout(playNextInSequence, 500));
+}
+
+// Helper: escape text for HTML attribute
+function escAttr(s) {
+    return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
+// ============================================
+// INITIALIZE
+// ============================================
+
+window.addEventListener('load', function() {
+    updateVocabZoom();
+    updatePhrasesZoom();
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ German Vocabulary Reference loaded!');
+    console.log('💡 Keys: 0=All | 1=A1 | 2=A2 | 3=B1 | 4=B2 | P=Print');
+});
+    </script>
+    <div class="audio-status" id="audioStatus">
+        <div class="spinner"></div>
+        <span id="audioStatusText">Speaking…</span>
+    </div>
+</body>
+</html>

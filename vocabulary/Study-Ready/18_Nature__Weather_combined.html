@@ -1,0 +1,2221 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary - 18: Nature & Weather</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           FIXED CONTROLS (screen only) — compact unified panel
+        ============================================ */
+        .controls {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1000;
+            max-width: 520px;
+        }
+
+        /* main dark pill wrapping level + audio */
+        .controls-main {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 7px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+        }
+
+        /* top bar: level filter + close btn */
+        .controls-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: nowrap;
+        }
+
+        .filter-label {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+
+        .level-btn {
+            border: 2px solid transparent;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.72em;
+            font-weight: 700;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.15s ease;
+        }
+        .level-btn:hover { opacity: 0.85; }
+        .level-btn.active { opacity: 1; border-color: white; }
+        .level-btn[data-level="all"] { background: #764ba2; color: white; }
+        .level-btn[data-level="A1"]  { background: #4CAF50; color: white; }
+        .level-btn[data-level="A2"]  { background: #2196F3; color: white; }
+        .level-btn[data-level="B1"]  { background: #FF9800; color: white; }
+        .level-btn[data-level="B2"]  { background: #F44336; color: white; }
+
+        .filter-count {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            margin-left: 2px;
+        }
+
+        /* close button — inline in top bar */
+        .controls-close {
+            margin-left: auto;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.55);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 4px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .controls-close:hover { background: rgba(255,255,255,0.18); color: white; }
+
+        /* ============================================
+           COLLAPSED TOGGLE BUTTON (when panel is hidden)
+        ============================================ */
+        .controls-toggle {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 1001;
+            background: #1a1a1a;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.78em;
+            cursor: pointer;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            display: none;
+        }
+        .controls-toggle:hover { background: #333; }
+        .controls.collapsed { display: none !important; }
+        .controls.collapsed + .controls-toggle,
+        body.controls-hidden .controls-toggle { display: block; }
+
+        /* ============================================
+           AUDIO PANEL (inside controls-main)
+        ============================================ */
+        .audio-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .audio-row-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .audio-panel-title {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+        .audio-panel label {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.68em;
+            white-space: nowrap;
+        }
+        .audio-panel select {
+            font-size: 0.68em;
+            padding: 2px 5px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #2a2a2a;
+            color: rgba(255,255,255,0.85);
+            cursor: pointer;
+            max-width: 130px;
+        }
+        .audio-panel input[type=range] {
+            width: 60px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+        .speed-val {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.68em;
+            min-width: 26px;
+        }
+        .play-all-btn {
+            background: linear-gradient(135deg, #DD0000, #FFCE00);
+            color: white;
+            border: none;
+            padding: 4px 11px;
+            border-radius: 10px;
+            font-size: 0.72em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .play-all-btn:hover { opacity: 0.85; }
+        .audio-row-sections {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .audio-section-label {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.35);
+            white-space: nowrap;
+        }
+        .audio-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.75em;
+        }
+        .section-play-btn {
+            background: #242424;
+            color: rgba(255,255,255,0.55);
+            border: 1px solid #3a3a3a;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.67em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        .section-play-btn:hover { background: #3a3a3a; color: white; }
+        .section-play-btn.playing { background: #667eea; color: white; border-color: #667eea; }
+        .section-play-btn[data-art="der"] { color: #90CAF9; }
+        .section-play-btn[data-art="das"] { color: #A5D6A7; }
+        .section-play-btn[data-art="die"] { color: #EF9A9A; }
+
+        .audio-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 0.78em;
+            padding: 0 2px;
+            opacity: 0.45;
+            transition: opacity 0.2s;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .audio-btn:hover { opacity: 1; }
+
+        /* ============================================
+           ZOOM + PRINT — collapsible (collapsed by default)
+        ============================================ */
+        .secondary-controls-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sec-toggle-btn {
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.45);
+            border: none;
+            padding: 2px 9px;
+            font-size: 0.67em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.15s;
+        }
+        .sec-toggle-btn:hover { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.8); }
+        .sec-toggle-btn.open { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.1); }
+
+        .secondary-controls {
+            display: none;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding-top: 4px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .secondary-controls.open { display: flex; }
+
+        /* compact zoom row */
+        .zoom-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .zoom-label {
+            font-size: 0.67em;
+            color: rgba(255,255,255,0.45);
+            white-space: nowrap;
+        }
+        .zoom-btn {
+            background: #333;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.8em;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .zoom-btn:hover { background: #555; }
+        .zoom-level {
+            font-weight: bold;
+            font-size: 0.68em;
+            color: rgba(255,255,255,0.65);
+            min-width: 30px;
+            text-align: center;
+        }
+        .zoom-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.8em;
+        }
+        .print-button {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: auto;
+        }
+        .print-button:hover { background: rgba(255,255,255,0.2); color: white; }
+
+        /* ============================================
+           AUDIO STATUS TOAST
+        ============================================ */
+        .audio-status {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            background: #667eea;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            gap: 8px;
+            z-index: 2000;
+            font-size: 0.82em;
+        }
+        .audio-status.show { display: flex; }
+        .audio-status .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            flex-shrink: 0;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+
+        /* ============================================
+           LEVEL BADGE (appears inside article cell)
+        ============================================ */
+        .lvl-badge {
+            display: inline-block;
+            font-size: 0.62em;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+            vertical-align: middle;
+            margin-left: 2px;
+            line-height: 1.4;
+        }
+        .lvl-badge.A1 { background: #C8E6C9; color: #1B5E20; }
+        .lvl-badge.A2 { background: #BBDEFB; color: #0D47A1; }
+        .lvl-badge.B1 { background: #FFE0B2; color: #E65100; }
+        .lvl-badge.B2 { background: #FFCDD2; color: #B71C1C; }
+
+        /* ============================================
+           PAGE HEADER
+        ============================================ */
+        .content-wrapper { max-width: 100%; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* ============================================
+           SECTION DIVIDER
+        ============================================ */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* ============================================
+           TABLE SECTION HEADERS
+        ============================================ */
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* ============================================
+           NOUN TABLE — 8 columns, article colors
+        ============================================ */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f0f0f0;
+            text-align: center;
+            font-weight: bold;
+            color: #555;
+            padding: 3px;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 6%;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 18%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 18%;
+        }
+
+        /* ARTICLE ROW COLORS */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ARTICLE TEXT COLORS */
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* NOUN TABLE COLGROUP widths */
+        .noun-col-art    { width: 6%; }
+        .noun-col-german { width: 18%; }
+        .noun-col-plural { width: 8%; }
+        .noun-col-eng    { width: 18%; }
+
+        /* ============================================
+           WORD TABLE (ADJ + VERB) — 8 columns
+        ============================================ */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col  { font-weight: 600; width: 15%; }
+        .word-table .english-col { color: #333; width: 10%; }
+
+        /* ADJECTIVE rows — warm yellow */
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* VERB rows — light blue */
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           EXPRESSIONS TABLE — 4 columns
+        ============================================ */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+            color: #000;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 22%;
+            font-style: italic;
+        }
+
+        /* ============================================
+           CONVERSATIONS TABLE — compact 4-col layout
+        ============================================ */
+        .conversations-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #667eea !important;
+            color: white !important;
+            font-weight: bold;
+            padding: 6px 8px;
+            font-size: 0.95em;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .conv-subheader {
+            background: #e8eaf6 !important;
+            font-weight: 700;
+            font-size: 0.78em;
+            color: #3949ab;
+            padding: 3px 6px;
+            border: 1px solid #c5cae9;
+            text-align: center;
+            letter-spacing: 0.3px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-a {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-a {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-b {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-b {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           Q&A TABLE — 4 columns
+        ============================================ */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            color: #1a237e;
+            width: 28%;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 22%;
+        }
+
+        /* ============================================
+           SENTENCES TABLE — 4 columns
+        ============================================ */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            font-style: italic;
+            width: 22%;
+        }
+
+        /* ============================================
+           FOOTER INFO
+        ============================================ */
+        .footer-info {
+            margin-top: 20px;
+            padding: 12px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.85em;
+            line-height: 1.8;
+        }
+
+        .footer-info h3 { margin-bottom: 6px; }
+
+        /* ============================================
+           PRINT STYLES
+        ============================================ */
+        @media print {
+            .controls          { display: none !important; }
+            .controls-toggle   { display: none !important; }
+            .level-filter-bar  { display: none !important; }
+            .audio-panel       { display: none !important; }
+            .audio-status      { display: none !important; }
+            .audio-btn         { display: none !important; }
+            .section-play-btn  { display: none !important; }
+            .footer-info       { display: none !important; }
+
+            body { padding: 0; font-size: 0.7em; }
+
+            .section-divider { page-break-before: always; }
+            .table-section { page-break-inside: auto; }
+            .noun-table, .word-table, .expressions-table,
+            .conversations-table, .qa-table, .sentences-table {
+                font-size: 1em;
+            }
+        }
+
+        @media screen {
+            body { padding-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         FIXED CONTROLS (screen only)
+    ============================================ -->
+    <button class="controls-toggle" id="controlsToggle" onclick="toggleControls()">⚙ Controls</button>
+    <div class="controls" id="controlsPanel">
+        <div class="controls-main">
+
+            <!-- Row 1: Level filter + close -->
+            <div class="controls-top">
+                <span class="filter-label">🎯</span>
+                <button class="level-btn active" data-level="all" onclick="filterByLevel('all')">All</button>
+                <button class="level-btn" data-level="A1"  onclick="filterByLevel('A1')">A1</button>
+                <button class="level-btn" data-level="A2"  onclick="filterByLevel('A2')">A2</button>
+                <button class="level-btn" data-level="B1"  onclick="filterByLevel('B1')">B1</button>
+                <button class="level-btn" data-level="B2"  onclick="filterByLevel('B2')">B2</button>
+                <span class="filter-count" id="filterCount"></span>
+                <button class="controls-close" onclick="toggleControls()">✕</button>
+            </div>
+
+            <!-- Row 2: Audio controls -->
+            <div class="audio-panel">
+                <div class="audio-row-top">
+                    <span class="audio-panel-title">🔊</span>
+                    <label for="voiceSelect">Voice:</label>
+                    <select id="voiceSelect"><option value="">Loading…</option></select>
+                    <label for="speedControl">Speed:</label>
+                    <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+                    <span class="speed-val" id="speedValue">0.8×</span>
+                    <button class="play-all-btn" id="btnAll" onclick="playSection('all')">▶ All</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnDer" data-art="der" onclick="playSection('der')">▶ der</button>
+                    <button class="section-play-btn" id="btnDas" data-art="das" onclick="playSection('das')">▶ das</button>
+                    <button class="section-play-btn" id="btnDie" data-art="die" onclick="playSection('die')">▶ die</button>
+                    <span class="audio-sep">|</span>
+                    <button class="section-play-btn" id="btnAdj" onclick="playSection('adj')">▶ Adj</button>
+                    <button class="section-play-btn" id="btnVerb" onclick="playSection('verb')">▶ Verbs</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnExpr" onclick="playSection('expr')">▶ Expr</button>
+                    <button class="section-play-btn" id="btnConv" onclick="playSection('conv')">▶ Conv</button>
+                    <button class="section-play-btn" id="btnQa" onclick="playSection('qa')">▶ Q&amp;A</button>
+                    <button class="section-play-btn" id="btnSent" onclick="playSection('sent')">▶ Sent</button>
+                </div>
+            </div>
+
+            <!-- Row 3: Zoom & Print toggle -->
+            <div class="secondary-controls-toggle">
+                <button class="sec-toggle-btn" id="secToggleBtn" onclick="toggleSecondary()">⚙ Zoom &amp; Print</button>
+            </div>
+            <div class="secondary-controls" id="secondaryControls">
+                <div class="zoom-row">
+                    <span class="zoom-label">📚 Vocab:</span>
+                    <button class="zoom-btn" onclick="zoomOutVocab()">−</button>
+                    <span class="zoom-level" id="zoomLevelVocab">100%</span>
+                    <button class="zoom-btn" onclick="zoomInVocab()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomVocab()">⟲</button>
+                </div>
+                <span class="zoom-sep">|</span>
+                <div class="zoom-row">
+                    <span class="zoom-label">💬 Phrases:</span>
+                    <button class="zoom-btn" onclick="zoomOutPhrases()">−</button>
+                    <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+                    <button class="zoom-btn" onclick="zoomInPhrases()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomPhrases()">⟲</button>
+                </div>
+                <button class="print-button" onclick="window.print()">🖨️ Print</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================
+         DOCUMENT HEADER
+    ============================================ -->
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 18: Nature & Weather</h1>
+            <p style="font-size:0.75em; color:#555;">Personal Information & Identity · A1–B2 Level-Tagged Reference · aliattia02</p>
+        </div>
+
+        <!-- ============================================
+             VOCABULARY SECTION
+        ============================================ -->
+        <div id="vocabSection">
+
+            <!-- TABLE 1: NOUNS -->
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col class="noun-col-art">
+                        <col class="noun-col-german">
+                        <col class="noun-col-plural">
+                        <col class="noun-col-eng">
+                        <col class="noun-col-art">
+                        <col class="noun-col-german">
+                        <col class="noun-col-plural">
+                        <col class="noun-col-eng">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural ±</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural ±</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives &amp; Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES &amp; SENTENCES</h2>
+        </div>
+
+        <!-- ============================================
+             PHRASES SECTION
+        ============================================ -->
+        <div id="phrasesSection">
+
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions &amp; Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Topic:</strong> Home &amp; Living / Personal Information &amp; Identity &nbsp;|&nbsp; <strong>Created:</strong> 2025 — aliattia02</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Full form shown = umlaut change | --- = no change | nur P = plural only | = = no change</p>
+            <p><strong>Color Coding:</strong>
+                <span style="color:#1565C0; font-weight:bold;">■ der (blue)</span> &nbsp;
+                <span style="color:#2E7D32; font-weight:bold;">■ das (green)</span> &nbsp;
+                <span style="color:#C62828; font-weight:bold;">■ die (red)</span> &nbsp;|&nbsp;
+                Adjective rows: <span style="background:#FFF8E1; padding:1px 6px; border:1px solid #ddd;">yellow</span> &nbsp;
+                Verb rows: <span style="background:#E1F5FE; padding:1px 6px; border:1px solid #ddd;">blue</span>
+            </p>
+            <p><strong>Prefix Guide:</strong> - = Adjective &nbsp;|&nbsp; * = Weak Verb (regular) &nbsp;|&nbsp; + = Strong Verb (irregular)</p>
+            <p><strong>Levels:</strong>
+                <span class="lvl-badge A1">A1</span> Beginner &nbsp;
+                <span class="lvl-badge A2">A2</span> Elementary &nbsp;
+                <span class="lvl-badge B1">B1</span> Intermediate &nbsp;
+                <span class="lvl-badge B2">B2</span> Upper Intermediate
+            </p>
+        </div>
+    </div>
+
+    <div class="audio-status" id="audioStatus">
+        <div class="spinner"></div>
+        <span id="audioStatusText">Speaking…</span>
+    </div>
+
+    <script>
+
+// ============================================
+// ⭐ VOCABULARY DATA
+// ============================================
+
+const nounsCSV = `
+// das — cluster: weather events & phenomena
+A1,das,Wetter,---,---,Weather
+A1,das,Gewitter,=,die Gewitter,Thunderstorm
+A2,das,Unwetter,=,die Unwetter,Severe storm
+A2,das,Eis,---,---,Ice
+B1,das,Klima,---,---,Climate
+B1,das,Thermometer,=,die Thermometer,Thermometer
+B2,das,Wettermuster,=,die Wettermuster,Weather pattern
+B2,das,Extremwetter,---,---,Extreme weather
+// das — cluster: terrain features
+A1,das,Tal,Täler,die Täler,Valley
+A1,das,Feld,-er,die Felder,Field
+A2,das,Moor,-e,die Moore,Moorland
+B1,das,Gebirge,=,die Gebirge,Mountain range
+B2,das,Plateau,-s,die Plateaus,Plateau
+// das — cluster: sky & light
+B1,das,Nordlicht,-er,die Nordlichter,Northern lights
+B2,das,Wetterleuchten,---,---,Heat lightning
+// das — cluster: flora
+A1,das,Gras,Gräser,die Gräser,Grass
+A2,das,Laub,---,---,Foliage
+B1,das,Moos,-e,die Moose,Moss
+B2,das,Unterholz,---,---,Undergrowth
+// der — cluster: weather phenomena
+A1,der,Regen,---,---,Rain
+A1,der,Wind,-e,die Winde,Wind
+A1,der,Schnee,---,---,Snow
+A2,der,Sturm,Stürme,die Stürme,Storm
+A2,der,Frost,---,---,Frost
+A2,der,Nebel,=,die Nebel,Fog
+A2,der,Regenbogen,Regenbögen,die Regenbögen,Rainbow
+B1,der,Blitz,-e,die Blitze,Lightning bolt
+B1,der,Donner,---,---,Thunder
+B1,der,Tau,---,---,Dew
+B2,der,Tornado,-s,die Tornados,Tornado
+B2,der,Orkan,-e,die Orkane,Gale
+B2,der,Luftdruck,---,---,Air pressure
+// der — cluster: sky & atmosphere
+A1,der,Himmel,=,die Himmel,Sky
+A1,der,Mond,-e,die Monde,Moon
+A2,der,Horizont,-e,die Horizonte,Horizon
+B1,der,Sonnenaufgang,Sonnenaufgänge,die Sonnenaufgänge,Sunrise
+B1,der,Sonnenuntergang,Sonnenuntergänge,die Sonnenuntergänge,Sunset
+// der — cluster: seasons
+A1,der,Frühling,-e,die Frühlinge,Spring
+A1,der,Sommer,=,die Sommer,Summer
+A1,der,Herbst,-e,die Herbste,Autumn
+A1,der,Winter,=,die Winter,Winter
+// der — cluster: terrain & landscape
+A1,der,Wald,Wälder,die Wälder,Forest
+A1,der,Fluss,Flüsse,die Flüsse,River
+A2,der,Bach,Bäche,die Bäche,Stream
+A2,der,Hügel,=,die Hügel,Hill
+A2,der,Felsen,=,die Felsen,Rock face
+B1,der,Vulkan,-e,die Vulkane,Volcano
+B1,der,Vulkanausbruch,Vulkanausbrüche,die Vulkanausbrüche,Volcanic eruption
+B1,der,Sumpf,Sümpfe,die Sümpfe,Swamp
+B2,der,Erdrutsch,-e,die Erdrutsche,Landslide
+B2,der,Dschungel,=,die Dschungel,Jungle
+B2,der,Canyon,-s,die Canyons,Canyon
+// der — cluster: trees
+A1,der,Baum,Bäume,die Bäume,Tree
+A2,der,Ast,Äste,die Äste,Branch
+B1,der,Stamm,Stämme,die Stämme,Tree trunk
+B2,der,Farn,-e,die Farne,Fern
+// der — cluster: fauna
+A1,der,Vogel,Vögel,die Vögel,Bird
+A2,der,Fuchs,Füchse,die Füchse,Fox
+A2,der,Wolf,Wölfe,die Wölfe,Wolf
+A2,der,Schmetterling,-e,die Schmetterlinge,Butterfly
+B1,der,Bär,-en,die Bären,Bear
+B1,der,Hirsch,-e,die Hirsche,Deer
+B2,der,Adler,=,die Adler,Eagle
+B2,der,Igel,=,die Igel,Hedgehog
+// die — cluster: sky & atmosphere
+A1,die,Sonne,-n,die Sonnen,Sun
+A1,die,Wolke,-n,die Wolken,Cloud
+A2,die,Luft,Lüfte,die Lüfte,Air
+A2,die,Brise,-n,die Brisen,Breeze
+B1,die,Bö,-en,die Böen,Gust of wind
+B2,die,Thermik,---,---,Thermal current
+// die — cluster: weather events
+A1,die,Jahreszeit,-en,die Jahreszeiten,Season
+A2,die,Wettervorhersage,-n,die Wettervorhersagen,Weather forecast
+A2,die,Hitzewelle,-n,die Hitzewellen,Heatwave
+B1,die,Kältewelle,-n,die Kältewellen,Cold snap
+B1,die,Überschwemmung,-en,die Überschwemmungen,Flood
+B1,die,Naturkatastrophe,-n,die Naturkatastrophen,Natural disaster
+B1,die,Lawine,-n,die Lawinen,Avalanche
+B2,die,Dürre,-n,die Dürren,Drought
+// die — cluster: terrain & landscape
+A1,die,Natur,---,---,Nature
+A1,die,Wiese,-n,die Wiesen,Meadow
+A2,die,Landschaft,-en,die Landschaften,Landscape
+A2,die,Ebene,-n,die Ebenen,Plain
+B1,die,Steppe,-n,die Steppen,Steppe
+B1,die,Heide,-n,die Heiden,Heath
+B2,die,Düne,-n,die Dünen,Dune
+B2,die,Klippe,-n,die Klippen,Cliff
+// die — cluster: water features
+A1,die,Quelle,-n,die Quellen,Spring
+A2,die,Bucht,-en,die Buchten,Bay
+B1,die,Flut,-en,die Fluten,Tide
+B1,die,Ebbe,-n,die Ebben,Ebb tide
+B2,die,Lagune,-n,die Lagunen,Lagoon
+// die — cluster: flora
+A2,die,Tanne,-n,die Tannen,Fir tree
+A2,die,Eiche,-n,die Eichen,Oak
+A2,die,Rose,-n,die Rosen,Rose
+B1,die,Birke,-n,die Birken,Birch
+B2,die,Orchidee,-n,die Orchideen,Orchid
+// die — cluster: fauna
+A2,die,Biene,-n,die Bienen,Bee
+A2,die,Schlange,-n,die Schlangen,Snake
+B1,die,Eule,-n,die Eulen,Owl
+B1,die,Fledermaus,Fledermäuse,die Fledermäuse,Bat
+B2,die,Libelle,-n,die Libellen,Dragonfly
+`.trim();
+
+const adjectivesCSV = `
+// cluster: sky & weather conditions
+A1,-bewölkt,cloudy,-heiter,bright
+A1,-nass,wet,-trocken,dry
+A2,-stürmisch,stormy,-windstill,calm
+A2,-neblig,foggy,-klar,clear
+B1,-schwül,muggy,-luftig,airy
+B1,-frostig,frosty,-mild,mild
+B2,-diesig,hazy,-strahlend,radiant
+B2,-nebelverhangen,shrouded in fog,-wolkenlos,cloudless
+// cluster: temperature
+A2,-eisig,icy,-lau,mild
+B1,-vereist,iced over,-eisfrei,ice-free
+B2,-arktisch,arctic,-tropisch,tropical
+// cluster: landscape character
+A1,-wild,wild,-zahm,tame
+A2,-flach,flat,-hügelig,hilly
+A2,-bewaldet,forested,-kahl,bare
+B1,-karg,barren,-üppig,lush
+B2,-vulkanisch,volcanic,-glazial,glacial
+// cluster: natural environment
+A2,-heimisch,native,-fremdländisch,foreign
+B1,-saisonal,seasonal,-winterhart,frost-hardy
+B1,-fruchtbar,fertile,-unfruchtbar,infertile
+B2,-endemisch,endemic,-invasiv,invasive
+B2,-subtropisch,subtropical,-gemäßigt,temperate
+// cluster: weather events
+A2,-schneebedeckt,snow-covered,-schneefrei,snow-free
+A2,-sonnendurchflutet,sun-drenched,-schattig,shady
+B1,-überschwemmt,flooded,-ausgetrocknet,dried out
+B1,-dicht,dense,-licht,sparse
+`.trim();
+
+const verbsCSV = `
+// cluster: precipitation & freezing
+A1,*regnen,rain,*schneien,snow
+A1,*hageln,hail,+frieren,freeze
+A2,+schmelzen,melt,*tauen,thaw
+A2,*stürmen,storm,*wehen,blow
+// cluster: sky changes
+A2,*aufklaren,clear up,*sich bewölken,cloud over
+B1,*blitzen,lightning,*donnern,thunder
+B1,+scheinen,shine,*dämmern,grow dark
+B2,*kondensieren,condense,*verdunsten,evaporate
+// cluster: sun & light
+A1,+aufgehen,rise,+untergehen,set
+B1,*leuchten,glow,*strahlen,radiate
+B2,+einbrechen,fall [night],*erhellen,illuminate
+// cluster: water & earth processes
+A2,+fließen,flow,*strömen,stream
+B1,*rauschen,rush,*plätschern,babble
+B1,*überfluten,flood,*austrocknen,dry out
+B2,+ausbrechen,erupt,*erodieren,erode
+// cluster: flora & fauna
+A2,*blühen,bloom,*jagen,hunt
+B1,*nisten,nest,*migrieren,migrate
+B1,*überwintern,overwinter,+gedeihen,thrive
+B2,+aussterben,become extinct,*welken,wilt
+// cluster: observation & forecasting
+A2,*vorhersagen,forecast,*aufzeichnen,record
+B1,*warnen,warn,*abschätzen,estimate
+B2,*prognostizieren,predict,*kartieren,chart
+`.trim();
+
+const expressionsCSV = `
+// cluster: talking about the weather
+A1,Wie ist das Wetter heute?,What is the weather like today?
+A1,Es regnet.,It is raining.
+A1,Es schneit!,It is snowing!
+A1,Heute ist es bewölkt.,Today it is cloudy.
+A1,Im Winter ist es kalt und im Sommer ist es warm.,In winter it is cold and in summer it is warm.
+A2,Der Wind ist heute sehr stark.,The wind is very strong today.
+A2,Wir bekommen ein Gewitter.,We are going to get a thunderstorm.
+B1,Die Wettervorhersage kündigt Sturm an.,The weather forecast is announcing a storm.
+B2,Der Luftdruck fällt rapide was auf schlechtes Wetter hindeutet.,Air pressure is dropping rapidly indicating bad weather.
+// cluster: seasons & nature
+A1,Ich mag den Frühling am liebsten.,I like spring the most.
+A1,Im Herbst fallen die Blätter von den Bäumen.,In autumn the leaves fall from the trees.
+A1,Die Sonne scheint heute hell.,The sun is shining brightly today.
+A2,Nach dem Regen erscheint oft ein Regenbogen.,After the rain a rainbow often appears.
+A2,Die Natur erwacht im Frühling.,Nature awakens in spring.
+B1,Tau liegt noch auf den Wiesen wenn die Sonne aufgeht.,Dew still lies on the meadows when the sun rises.
+B1,Der Sonnenuntergang über dem Tal ist atemberaubend.,The sunset over the valley is breathtaking.
+// cluster: landscape
+A1,Im Wald gibt es viele Tiere und Bäume.,There are many animals and trees in the forest.
+A2,Der Fluss fließt durch das Tal.,The river flows through the valley.
+A2,Die Landschaft hier ist sehr schön.,The landscape here is very beautiful.
+B1,Das Gebirge ist im Winter schneebedeckt.,The mountain range is snow-covered in winter.
+B2,Die Bucht ist von steilen Klippen umgeben.,The bay is surrounded by steep cliffs.
+// cluster: flora & fauna
+A1,Der Vogel singt in dem großen Baum.,The bird is singing in the big tree.
+A2,Im Frühling blühen Eichen und Birken aus.,In spring oaks and birches come into leaf.
+A2,Füchse und Wölfe leben in vielen Wäldern.,Foxes and wolves live in many forests.
+B1,Zugvögel migrieren im Herbst in wärmere Gebiete.,Migratory birds migrate to warmer regions in autumn.
+B2,Die Thermik ermöglicht Adlern stundenlang zu gleiten.,Thermals allow eagles to glide for hours.
+// cluster: weather events & extremes
+A2,Bei Gewitter soll man nicht unter Bäumen stehen.,During a thunderstorm you should not stand under trees.
+B1,Die Überschwemmung hat die Felder zerstört.,The flood destroyed the fields.
+B1,Eine Kältewelle hat das ganze Land erfasst.,A cold snap has gripped the entire country.
+B2,Tornados entstehen wenn warme und kalte Luftmassen aufeinandertreffen.,Tornadoes form when warm and cold air masses meet.
+B2,Der Klimawandel verändert die Jahreszeiten und Wettermuster weltweit.,Climate change is altering seasons and weather patterns worldwide.
+`.trim();
+
+// ============================================
+// CONVERSATIONS DATA
+// format: level|Title|Speaker,german,english
+// ============================================
+const conversationsCSV = `
+A1|Im Garten|A,Das Wetter ist heute wirklich schön.,The weather is really nice today.
+A1|Im Garten|B,Ja die Sonne scheint und der Himmel ist blau.,Yes the sun is shining and the sky is blue.
+A1|Im Garten|A,Schau dort ist ein Vogel im Baum!,Look there is a bird in the tree!
+A1|Im Garten|B,Welcher Vogel ist das?,Which bird is that?
+A1|Im Garten|A,Ich weiß es nicht. Er singt sehr schön.,I don't know. It sings very beautifully.
+A1|Im Garten|B,Und das Gras ist so grün nach dem Regen gestern.,And the grass is so green after the rain yesterday.
+A1|Im Garten|A,Im Frühling ist die Natur so lebendig.,In spring nature is so alive.
+A1|Im Garten|B,Ja ich mag den Frühling am liebsten.,Yes I like spring the most.
+A1|Im Garten|A,Morgen soll es wieder regnen.,Tomorrow it is supposed to rain again.
+A1|Im Garten|B,Dann genießen wir heute die Sonne.,Then let's enjoy the sun today.
+A2|Das Wetter heute|A,Hast du die Wettervorhersage gehört?,Did you hear the weather forecast?
+A2|Das Wetter heute|B,Nein was sagt sie?,No what does it say?
+A2|Das Wetter heute|A,Es kommt ein Sturm. Der Wind wird sehr stark.,A storm is coming. The wind will be very strong.
+A2|Das Wetter heute|B,Wann genau?,When exactly?
+A2|Das Wetter heute|A,Heute Nacht. Es soll auch hageln.,Tonight. It is also supposed to hail.
+A2|Das Wetter heute|B,Dann bleibe ich lieber zu Hause.,Then I'd rather stay at home.
+A2|Das Wetter heute|A,Ich auch. Das Unwetter klingt gefährlich.,Me too. The severe storm sounds dangerous.
+A2|Das Wetter heute|B,Ist das typisch für diese Jahreszeit?,Is that typical for this time of year?
+A2|Das Wetter heute|A,Ja im Herbst gibt es oft Stürme.,Yes in autumn there are often storms.
+A2|Das Wetter heute|B,Nach dem Sturm ist die Luft immer so frisch.,After the storm the air is always so fresh.
+B1|Naturausflug|A,Ich möchte am Wochenende in den Wald gehen.,I want to go to the forest at the weekend.
+B1|Naturausflug|B,Gute Idee. Der Wald im Herbst ist wunderschön.,Good idea. The forest in autumn is wonderful.
+B1|Naturausflug|A,Die Wettervorhersage kündigt Sonnenschein an.,The weather forecast is promising sunshine.
+B1|Naturausflug|B,Perfekt. Sollen wir auch den Fluss entlanglaufen?,Perfect. Shall we also walk along the river?
+B1|Naturausflug|A,Ja gerne. Vielleicht sehen wir Hirsche oder Füchse.,Yes gladly. Maybe we will see deer or foxes.
+B1|Naturausflug|B,Früh morgens ist die Chance am größten. Tau liegt noch auf der Wiese.,Early morning the chances are greatest. Dew still lies on the meadow.
+B1|Naturausflug|A,Im Herbst migrieren viele Zugvögel nach Süden.,In autumn many migratory birds migrate southward.
+B1|Naturausflug|B,Und die Birken und Eichen leuchten in tollen Farben.,And the birches and oaks glow in wonderful colors.
+B1|Naturausflug|A,Der Sonnenuntergang über dem Tal soll atemberaubend sein.,The sunset over the valley is supposed to be breathtaking.
+B1|Naturausflug|B,Dann brechen wir früh auf damit wir den Sonnenaufgang sehen.,Then we'll set off early so we can see the sunrise.
+B2|Klimadebatte|A,Die Dürren werden häufiger und die Überschwemmungen extremer.,Droughts are becoming more frequent and floods more extreme.
+B2|Klimadebatte|B,Das stimmt. Die Wettermuster haben sich in den letzten Jahrzehnten verändert.,That's true. Weather patterns have changed significantly in recent decades.
+B2|Klimadebatte|A,Wissenschaftler prognostizieren weitere Extremwetterereignisse.,Scientists predict further extreme weather events.
+B2|Klimadebatte|B,Und invasive Arten verdrängen heimische Pflanzen und Tiere.,And invasive species are displacing native plants and animals.
+B2|Klimadebatte|A,Subtropische Klimazonen verschieben sich nach Norden.,Subtropical climate zones are shifting northward.
+B2|Klimadebatte|B,Das gefährdet arktische Ökosysteme und ganze Tierarten.,This threatens arctic ecosystems and entire animal species.
+B2|Klimadebatte|A,Auch der Luftdruck und die Windmuster verändern sich zunehmend.,Air pressure and wind patterns are also changing increasingly.
+B2|Klimadebatte|B,Glaziale Landschaften erodieren schneller als je zuvor.,Glacial landscapes are eroding faster than ever before.
+B2|Klimadebatte|A,Was können wir als Einzelne dagegen tun?,What can we as individuals do about it?
+B2|Klimadebatte|B,Wir sollten zumindest natürliche Lebensräume schützen und bewahren.,We should at least protect and preserve natural habitats.
+`.trim();
+
+const qaCSV = `
+// cluster: basic weather & seasons
+A1,Wie ist das Wetter heute?,Es ist bewölkt und windig. (It is cloudy and windy.)
+A1,Was ist der Unterschied zwischen Regen und Schnee?,Regen ist flüssig Schnee ist fest und weiß. (Rain is liquid snow is solid and white.)
+A1,Wie viele Jahreszeiten gibt es?,Es gibt vier: Frühling Sommer Herbst und Winter. (There are four: spring summer autumn and winter.)
+A1,Was passiert im Frühling?,Die Natur erwacht Temperaturen steigen und Pflanzen blühen. (Nature awakens temperatures rise and plants bloom.)
+A1,Was ist ein Gewitter?,Ein Sturm mit Blitz Donner und starkem Regen. (A storm with lightning thunder and heavy rain.)
+A1,Was macht der Wind?,Der Wind bewegt Luft von einem Ort zum anderen. (Wind moves air from one place to another.)
+A1,Was ist ein Wald?,Ein Wald ist ein großes Gebiet mit vielen Bäumen. (A forest is a large area with many trees.)
+A1,Welche Tiere leben im Wald?,Vögel Füchse Hirsche und Bären leben im Wald. (Birds foxes deer and bears live in the forest.)
+// cluster: landscape & nature
+A2,Was ist ein Tal?,Ein Tal liegt zwischen zwei Hügeln oder Bergen. (A valley lies between two hills or mountains.)
+A2,Was ist der Unterschied zwischen einem Fluss und einem Bach?,Ein Fluss ist größer und tiefer als ein Bach. (A river is larger and deeper than a stream.)
+A2,Was ist der Horizont?,Die Linie wo Himmel und Erde zusammenzutreffen scheinen. (The line where sky and earth appear to meet.)
+A2,Was ist ein Regenbogen?,Er entsteht wenn Sonnenlicht durch Regentropfen bricht. (It forms when sunlight refracts through raindrops.)
+A2,Was ist der Unterschied zwischen Nebel und Wolke?,Nebel liegt am Boden eine Wolke schwebt in der Luft. (Fog lies on the ground a cloud floats in the air.)
+A2,Was sind Zugvögel?,Vögel die im Herbst in wärmere Gebiete fliegen und im Frühling zurückkommen. (Birds that fly to warmer regions in autumn and return in spring.)
+A2,Was ist eine Brise?,Eine Brise ist ein leichter angenehmer Wind. (A breeze is a light pleasant wind.)
+A2,Was ist der Tau?,Feuchtigkeit die sich nachts auf kühlen Oberflächen ablagert. (Moisture that deposits on cool surfaces at night.)
+// cluster: weather extremes & phenomena
+B1,Was ist eine Überschwemmung?,Sie tritt auf wenn Flüsse über ihre Ufer treten oder es zu viel regnet. (It occurs when rivers overflow their banks or there is too much rain.)
+B1,Was ist eine Hitzewelle?,Eine Hitzewelle ist eine längere Periode ungewöhnlich hoher Temperaturen. (A heatwave is a prolonged period of unusually high temperatures.)
+B1,Was ist eine Naturkatastrophe?,Ein plötzliches Naturereignis wie Erdbeben Vulkanausbruch oder Überschwemmung. (A sudden natural event such as an earthquake volcanic eruption or flood.)
+B1,Was ist eine Lawine?,Eine Lawine ist eine große Schnee- oder Steinmasse die einen Berghang hinunterstürzt. (An avalanche is a large mass of snow or rock that crashes down a mountainside.)
+B1,Was ist ein Sumpf?,Ein feuchtes Gebiet wo das Wasser dauerhaft steht und Pflanzen wachsen. (A wet area where water stands permanently and plants grow.)
+B1,Was versteht man unter dem Luftdruck?,Das Gewicht der Luft die auf die Erdoberfläche drückt. (The weight of the air pressing on the earth's surface.)
+// cluster: specialized & advanced
+B2,Was ist Thermik?,Warme aufsteigende Luftströmungen die von Vögeln und Segelfliegern genutzt werden. (Warm rising air currents used by birds and glider pilots.)
+B2,Was bedeutet endemisch?,Arten die ausschließlich in einem bestimmten geografischen Gebiet vorkommen. (Species that occur exclusively in a specific geographical area.)
+B2,Was ist ein Orkan?,Ein extrem starker Sturm mit Windgeschwindigkeiten über 118 km/h. (An extremely powerful storm with wind speeds above 118 km/h.)
+B2,Was ist glaziale Erosion?,Der Abtrag von Gestein und Boden durch die Bewegung von Gletschern. (The wearing away of rock and soil by the movement of glaciers.)
+B2,Was versteht man unter invasiven Arten?,Tier- oder Pflanzenarten die in ein neues Gebiet eingeschleppt werden und heimische Arten verdrängen. (Animal or plant species introduced into a new area that displace native species.)
+`.trim();
+
+const sentencesCSV = `
+// cluster: weather & daily life
+A1,Heute scheint die Sonne und der Himmel ist blau.,Today the sun is shining and the sky is blue.
+A1,Es regnet stark und ich brauche einen Regenschirm.,It is raining heavily and I need an umbrella.
+A1,Im Winter schneit es oft in Deutschland.,It often snows in Germany in winter.
+A1,Die Wolken sehen heute sehr dunkel aus.,The clouds look very dark today.
+A1,Ich mag das Wetter im Frühling am liebsten.,I like the weather in spring the most.
+A2,Nach dem Regen erscheint manchmal ein Regenbogen.,After the rain a rainbow sometimes appears.
+A2,Das Gewitter heute Nacht war sehr laut.,Last night's thunderstorm was very loud.
+A2,Die Wettervorhersage sagt Frost für morgen voraus.,The weather forecast predicts frost for tomorrow.
+A2,Bei Nebel muss man beim Autofahren besonders vorsichtig sein.,In fog you have to be especially careful when driving.
+A2,Im Herbst weht oft ein starker Wind.,In autumn a strong wind often blows.
+A2,Der Himmel ist heute strahlend blau und wolkenlos.,The sky is radiantly blue and cloudless today.
+// cluster: landscape & seasons
+A1,Im Wald gibt es viele Tiere und Bäume.,There are many animals and trees in the forest.
+A1,Der Fluss fließt durch das weite Tal.,The river flows through the wide valley.
+A1,Im Herbst werden die Blätter bunt und fallen zu Boden.,In autumn the leaves turn colorful and fall to the ground.
+A2,Die Wiesen und Felder sind im Frühling strahlend grün.,The meadows and fields are radiantly green in spring.
+A2,Von diesem Hügel hat man eine tolle Aussicht auf die Ebene.,From this hill you have a great view of the plain.
+A2,Im Frühling treiben Birken und Eichen frische grüne Blätter aus.,In spring birches and oaks sprout fresh green leaves.
+B1,Die Ebbe und Flut folgen dem Rhythmus des Mondes.,The ebb and flow follow the rhythm of the moon.
+B1,Das Gebirge ist im Winter vollständig schneebedeckt.,The mountain range is completely snow-covered in winter.
+// cluster: weather phenomena & natural events
+B1,Eine Lawine kann durch starken Schneefall ausgelöst werden.,An avalanche can be triggered by heavy snowfall.
+B1,Die Dürre hat die Ernte in diesem Jahr stark geschädigt.,The drought has severely damaged this year's harvest.
+B1,Nach dem Vulkanausbruch war die Luft voller Asche.,After the volcanic eruption the air was full of ash.
+B1,Der Luftdruck fällt was auf schlechtes Wetter hindeutet.,Air pressure is falling which indicates bad weather.
+B2,Extreme Wettermuster werden durch den Klimawandel häufiger.,Extreme weather patterns are becoming more frequent due to climate change.
+B2,Der Tornado zerstörte alles auf seinem Weg durch die Steppe.,The tornado destroyed everything in its path through the steppe.
+// cluster: flora & fauna
+A2,Füchse und Wölfe leben in vielen europäischen Wäldern.,Foxes and wolves live in many European forests.
+B1,Im Herbst migrieren Millionen von Zugvögeln in den Süden.,In autumn millions of migratory birds migrate south.
+B1,Schmetterlinge brauchen blühende Wiesen zum Überleben.,Butterflies need flowering meadows to survive.
+B1,Fledermäuse sind nachtaktiv und jagen Insekten in der Dämmerung.,Bats are nocturnal and hunt insects at dusk.
+B2,Endemische Tierarten sind durch den Verlust ihres Lebensraums besonders gefährdet.,Endemic animal species are particularly threatened by the loss of their habitat.
+B2,Invasive Pflanzenarten können heimische Ökosysteme dauerhaft destabilisieren.,Invasive plant species can permanently destabilize native ecosystems.
+// cluster: nature & climate
+B2,Glaziale Landschaften entstehen durch die Bewegung von Gletschern über Jahrtausende.,Glacial landscapes form through the movement of glaciers over millennia.
+B2,Thermik ermöglicht es Adlern ohne Flügelschlag große Höhen zu erreichen.,Thermals allow eagles to reach great heights without flapping their wings.
+B2,Die Steppe ist eine karge Landschaft mit extremen Temperaturschwankungen.,The steppe is a barren landscape with extreme temperature fluctuations.
+B2,Die Bucht ist von steilen Klippen umgeben und kaum zugänglich.,The bay is surrounded by steep cliffs and barely accessible.
+`.trim();
+
+// ============================================
+// CSV PARSER
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(l => l.split(',').map(c => c.trim()));
+}
+
+// ============================================
+// LEVEL FILTER STATE
+// ============================================
+let currentLevel = 'all';
+
+function filterByLevel(level) {
+    currentLevel = level;
+    document.querySelectorAll('.level-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.level === level);
+    });
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    updateFilterCount();
+}
+
+function updateFilterCount() {
+    const el = document.getElementById('filterCount');
+    if (!el) return;
+    if (currentLevel === 'all') { el.textContent = ''; return; }
+    let total = 0;
+    [nounsCSV, adjectivesCSV, verbsCSV, expressionsCSV, qaCSV, sentencesCSV].forEach(csv => {
+        parseCSV(csv).forEach(row => { if (row[0] === currentLevel) total++; });
+    });
+    conversationsCSV.split('\n').forEach(line => {
+        line = line.trim();
+        if (line && !line.startsWith('//') && line.startsWith(currentLevel + '|')) total++;
+    });
+    el.textContent = `${total} entries`;
+}
+
+function badge(level) {
+    return `<span class="lvl-badge ${level}">${level}</span>`;
+}
+
+// ============================================
+// RENDER NOUNS
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const grouped = { das: [], der: [], die: [] };
+    data.forEach(row => {
+        const [level, article, german, pluralNotation, pluralFull, english] = row;
+        if (grouped[article] !== undefined) {
+            grouped[article].push({ level, article, german, pluralNotation, pluralFull, english });
+        }
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    const articles = [
+        { key: 'der', label: 'Maskulinum (der)', rowClass: 'der-row', artClass: 'der-article' },
+        { key: 'das', label: 'Neutrum (das)',     rowClass: 'das-row', artClass: 'das-article' },
+        { key: 'die', label: 'Femininum (die)',   rowClass: 'die-row', artClass: 'die-article' },
+    ];
+
+    let anyContent = false;
+
+    articles.forEach(({ key, label, rowClass, artClass }, artIdx) => {
+        const words = grouped[key];
+        if (words.length === 0) return;
+        anyContent = true;
+
+        html += `<tr class="separator"><td colspan="8">${label}</td></tr>`;
+
+        const half = Math.ceil(words.length / 2);
+        for (let i = 0; i < half; i++) {
+            const w1 = words[i];
+            const w2 = words[i + half] || null;
+
+            html += `<tr class="${rowClass}">`;
+            html += `<td class="article-cell ${artClass}">${w1.article}</td>`;
+            html += `<td class="german-cell">${w1.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w1.article)}','${escAttr(w1.german)}','${escAttr(w1.pluralFull)}')">🔊</button></td>`;
+            html += `<td class="plural-cell">${w1.pluralNotation}</td>`;
+            html += `<td class="english-cell">${w1.english}</td>`;
+
+            if (w2) {
+                html += `<td class="article-cell ${artClass}">${w2.article}</td>`;
+                html += `<td class="german-cell">${w2.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w2.article)}','${escAttr(w2.german)}','${escAttr(w2.pluralFull)}')">🔊</button></td>`;
+                html += `<td class="plural-cell">${w2.pluralNotation}</td>`;
+                html += `<td class="english-cell">${w2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    });
+
+    if (!anyContent) {
+        html = `<tr><td colspan="8" style="text-align:center; color:#999; padding:12px;">No nouns at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const verbData = parseCSV(verbsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    if (adjData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Adjectives (- prefix = opposite pairs)</td></tr>`;
+        const half = Math.ceil(adjData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = adjData[i];
+            const r2 = adjData[i + half] || null;
+            html += `<tr class="adjective-row">`;
+            html += `<td class="german-col">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[3])}')">🔊</button></td><td class="english-col">${r1[2]}</td>`;
+            html += `<td class="german-col">${r1[3]}</td><td class="english-col">${r1[4]}</td>`;
+            if (r2) {
+                html += `<td class="german-col">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[3])}')">🔊</button></td><td class="english-col">${r2[2]}</td>`;
+                html += `<td class="german-col">${r2[3]}</td><td class="english-col">${r2[4]}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+
+    if (verbData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Verbs (* Weak | + Strong — opposite / related pairs)</td></tr>`;
+        const half = Math.ceil(verbData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = verbData[i];
+            const r2 = verbData[i + half] || null;
+            html += `<tr class="verb-row">`;
+            html += `<td class="german-col">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[3])}')">🔊</button></td><td class="english-col">${r1[2]}</td>`;
+            html += `<td class="german-col">${r1[3]}</td><td class="english-col">${r1[4]}</td>`;
+            if (r2) {
+                html += `<td class="german-col">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[3])}')">🔊</button></td><td class="english-col">${r2[2]}</td>`;
+                html += `<td class="german-col">${r2[3]}</td><td class="english-col">${r2[4]}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+
+    if (adjData.length === 0 && verbData.length === 0) {
+        html = `<tr><td colspan="8" style="text-align:center; color:#999; padding:12px;">No adjectives or verbs at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        const [lvl1, ger1, ...eng1parts] = data[i];
+        const eng1 = eng1parts.join(',');
+        html += `<tr>`;
+        html += `<td class="german-cell">${ger1} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(ger1)}')">🔊</button></td>`;
+        html += `<td class="english-cell">${eng1}</td>`;
+        if (i + 1 < data.length) {
+            const [lvl2, ger2, ...eng2parts] = data[i + 1];
+            const eng2 = eng2parts.join(',');
+            html += `<td class="german-cell">${ger2} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(ger2)}')">🔊</button></td>`;
+            html += `<td class="english-cell">${eng2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (data.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No expressions at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+
+    const conversations = {};
+    const convOrder = [];
+    const convLevels = {};
+
+    rawLines.forEach(line => {
+        const firstPipe  = line.indexOf('|');
+        const secondPipe = line.indexOf('|', firstPipe + 1);
+        const firstComma = line.indexOf(',', secondPipe + 1);
+        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+
+        const level   = line.substring(0, firstPipe).trim();
+        const title   = line.substring(firstPipe + 1, secondPipe).trim();
+        const speaker = line.substring(secondPipe + 1, firstComma).trim();
+
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+
+        const rest         = line.substring(firstComma + 1);
+        const secondComma  = rest.indexOf(',');
+        const german       = rest.substring(0, secondComma).trim();
+        const english      = rest.substring(secondComma + 1).trim();
+
+        const key = `${level}|${title}`;
+        if (!conversations[key]) {
+            conversations[key] = [];
+            convOrder.push(key);
+            convLevels[key] = level;
+        }
+        conversations[key].push({ speaker, german, english });
+    });
+
+    const container = document.getElementById('conversationsContainer');
+    let html = '';
+
+    if (convOrder.length === 0) {
+        html = `<p style="text-align:center; color:#999; padding:12px;">No conversations at ${currentLevel} level</p>`;
+        container.innerHTML = html;
+        return;
+    }
+
+    convOrder.forEach(key => {
+        const title = key.split('|').slice(1).join('|');
+        const lines = conversations[key];
+
+        const linesA = lines.filter(l => l.speaker === 'A');
+        const linesB = lines.filter(l => l.speaker === 'B');
+        const maxRows = Math.max(linesA.length, linesB.length);
+
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="4" class="conversation-title">💬 ${title}</td></tr>`;
+        html += `<tr>`;
+        html += `<td class="conv-subheader" style="width:27%;">Speaker A — Deutsch</td>`;
+        html += `<td class="conv-subheader" style="width:23%;">Speaker A — English</td>`;
+        html += `<td class="conv-subheader" style="width:27%;">Speaker B — Deutsch</td>`;
+        html += `<td class="conv-subheader" style="width:23%;">Speaker B — English</td>`;
+        html += `</tr>`;
+
+        for (let i = 0; i < maxRows; i++) {
+            const a = linesA[i] || null;
+            const b = linesB[i] || null;
+
+            html += `<tr>`;
+            html += `<td class="conv-ger-a">${a ? a.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(a.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-a">${a ? a.english : ''}</td>`;
+            html += `<td class="conv-ger-b">${b ? b.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(b.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-b">${b ? b.english : ''}</td>`;
+            html += `</tr>`;
+        }
+
+        html += `</table>`;
+    });
+
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A
+// ============================================
+function renderQATable() {
+    const qaRows = qaCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(line => {
+            const firstComma  = line.indexOf(',');
+            const secondComma = line.indexOf(',', firstComma + 1);
+            if (firstComma === -1 || secondComma === -1) return null;
+            return {
+                level:    line.substring(0, firstComma).trim(),
+                question: line.substring(firstComma + 1, secondComma).trim(),
+                answer:   line.substring(secondComma + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < qaRows.length; i += 2) {
+        const r1 = qaRows[i];
+        const r2 = qaRows[i + 1] || null;
+        html += `<tr>`;
+        html += `<td class="question-cell">${r1.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.question)}')">🔊</button></td>`;
+        html += `<td class="answer-cell">${r1.answer}</td>`;
+        if (r2) {
+            html += `<td class="question-cell">${r2.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.question)}')">🔊</button></td>`;
+            html += `<td class="answer-cell">${r2.answer}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (qaRows.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No Q&amp;A at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES
+// ============================================
+function renderSentencesTable() {
+    const sentRows = sentencesCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(line => {
+            const firstComma  = line.indexOf(',');
+            const secondComma = line.indexOf(',', firstComma + 1);
+            if (firstComma === -1 || secondComma === -1) return null;
+            return {
+                level:   line.substring(0, firstComma).trim(),
+                german:  line.substring(firstComma + 1, secondComma).trim(),
+                english: line.substring(secondComma + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < sentRows.length; i += 2) {
+        const r1 = sentRows[i];
+        const r2 = sentRows[i + 1] || null;
+        html += `<tr>`;
+        html += `<td class="german-cell">${r1.german} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.german)}')">🔊</button></td>`;
+        html += `<td class="english-cell">${r1.english}</td>`;
+        if (r2) {
+            html += `<td class="german-cell">${r2.german} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.german)}')">🔊</button></td>`;
+            html += `<td class="english-cell">${r2.english}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (sentRows.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No sentences at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// TOGGLE CONTROLS PANEL
+// ============================================
+function toggleControls() {
+    const panel = document.getElementById('controlsPanel');
+    const btn   = document.getElementById('controlsToggle');
+    const collapsed = panel.classList.toggle('collapsed');
+    btn.style.display = collapsed ? 'block' : 'none';
+}
+
+function toggleSecondary() {
+    const sec = document.getElementById('secondaryControls');
+    const btn = document.getElementById('secToggleBtn');
+    const open = sec.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.textContent = open ? '⚙ Zoom & Print ▲' : '⚙ Zoom & Print';
+}
+
+// ============================================
+// ZOOM
+// ============================================
+let vocabZoom = 100, phrasesZoom = 100;
+const zoomStep = 10, minZoom = 50, maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    document.getElementById('vocabSection').style.fontSize = `${baseFontSize * vocabZoom / 100}em`;
+    document.getElementById('zoomLevelVocab').textContent = `${vocabZoom}%`;
+}
+function updatePhrasesZoom() {
+    document.getElementById('phrasesSection').style.fontSize = `${baseFontSize * phrasesZoom / 100}em`;
+    document.getElementById('zoomLevelPhrases').textContent = `${phrasesZoom}%`;
+}
+function zoomInVocab()     { if (vocabZoom < maxZoom)   { vocabZoom   += zoomStep; updateVocabZoom(); } }
+function zoomOutVocab()    { if (vocabZoom > minZoom)   { vocabZoom   -= zoomStep; updateVocabZoom(); } }
+function resetZoomVocab()  { vocabZoom = 100;   updateVocabZoom(); }
+function zoomInPhrases()   { if (phrasesZoom < maxZoom) { phrasesZoom += zoomStep; updatePhrasesZoom(); } }
+function zoomOutPhrases()  { if (phrasesZoom > minZoom) { phrasesZoom -= zoomStep; updatePhrasesZoom(); } }
+function resetZoomPhrases(){ phrasesZoom = 100; updatePhrasesZoom(); }
+
+// ============================================
+// KEYBOARD SHORTCUTS
+// ============================================
+document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    const map = { '0': 'all', '1': 'A1', '2': 'A2', '3': 'B1', '4': 'B2' };
+    if (map[e.key]) filterByLevel(map[e.key]);
+    if (e.key === 'p' || e.key === 'P') window.print();
+});
+
+// ============================================
+// SPEECH SYNTHESIS (TTS)
+// ============================================
+let germanVoice = null;
+let currentUtterance = null;
+let isSpeaking = false;
+let isPlayingSequence = false;
+let ttsWarmedUp = false;
+
+function loadVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (!voiceSelect) return;
+    voiceSelect.innerHTML = '';
+    const germanVoices = voices.filter(v => v.lang.startsWith('de'));
+    if (germanVoices.length === 0) {
+        voiceSelect.innerHTML = '<option value="">No German voice – using default</option>';
+        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0] || null;
+    } else {
+        germanVoices.forEach((voice, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = `${voice.name} (${voice.lang})`;
+            voiceSelect.appendChild(option);
+            if (index === 0) germanVoice = voice;
+        });
+    }
+}
+
+if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+}
+setTimeout(loadVoices, 100);
+setTimeout(loadVoices, 600);
+
+document.addEventListener('DOMContentLoaded', function() {
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (voiceSelect) {
+        voiceSelect.addEventListener('change', function(e) {
+            stopAllSpeech();
+            const voices = window.speechSynthesis.getVoices();
+            const germanVoices = voices.filter(v => v.lang.startsWith('de'));
+            germanVoice = germanVoices[parseInt(e.target.value)] || voices[0] || null;
+        });
+    }
+    const speedControl = document.getElementById('speedControl');
+    if (speedControl) {
+        speedControl.addEventListener('input', function(e) {
+            const el = document.getElementById('speedValue');
+            if (el) el.textContent = e.target.value + '×';
+        });
+    }
+});
+
+function warmUpTTS(callback) {
+    if (ttsWarmedUp) { callback(); return; }
+    const primer = new SpeechSynthesisUtterance(' ');
+    primer.volume = 0;
+    primer.lang = 'de-DE';
+    if (germanVoice) primer.voice = germanVoice;
+    primer.onend  = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    primer.onerror = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(primer);
+}
+
+function speak(text, callback) {
+    if (!text || text.trim() === '') { if (callback) callback(); return; }
+    text = text.replace('🔊', '').trim();
+    if (!isPlayingSequence) stopAllSpeech();
+    if (!ttsWarmedUp) {
+        warmUpTTS(() => speakNow(text, callback));
+    } else {
+        window.speechSynthesis.resume();
+        setTimeout(() => speakNow(text, callback), 100);
+    }
+}
+
+function stopAllSpeech() {
+    isPlayingSequence = false;
+    if (typeof speechSynthesis !== 'undefined') window.speechSynthesis.cancel();
+    isSpeaking = false;
+    hideAudioStatus();
+}
+
+function speakNow(text, callback) {
+    if (!('speechSynthesis' in window)) {
+        alert('⚠️ Text-to-speech not supported in this browser.');
+        if (callback) callback();
+        return;
+    }
+    showAudioStatus(text);
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'de-DE';
+    if (germanVoice) utterance.voice = germanVoice;
+    const speedEl = document.getElementById('speedControl');
+    utterance.rate = speedEl ? parseFloat(speedEl.value) : 0.8;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    let hasEnded = false;
+    utterance.onstart = () => { isSpeaking = true; };
+    utterance.onend = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) setTimeout(callback, 100);
+    };
+    utterance.onerror = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) callback();
+    };
+    currentUtterance = utterance;
+    try { window.speechSynthesis.speak(utterance); }
+    catch(e) { isSpeaking = false; hideAudioStatus(); if (callback) callback(); }
+}
+
+function showAudioStatus(text) {
+    const status = document.getElementById('audioStatus');
+    const statusText = document.getElementById('audioStatusText');
+    if (!status || !statusText) return;
+    statusText.textContent = '🔊 ' + (text.length > 40 ? text.substring(0, 40) + '…' : text);
+    status.classList.add('show');
+}
+
+function hideAudioStatus() {
+    setTimeout(() => {
+        const el = document.getElementById('audioStatus');
+        if (el) el.classList.remove('show');
+    }, 300);
+}
+
+function speakNounRow(article, singular, pluralFull) {
+    isPlayingSequence = true;
+    speak(article + ' ' + singular, () => {
+        if (pluralFull && pluralFull !== '---' && pluralFull !== 'kein Plural' && pluralFull !== 'nur P') {
+            setTimeout(() => speak(pluralFull, () => { isPlayingSequence = false; }), 350);
+        } else { isPlayingSequence = false; }
+    });
+}
+
+function speakWord(word) {
+    speak(word.replace(/[*+\-]/g, '').trim());
+}
+
+function speakPair(word1, word2) {
+    isPlayingSequence = true;
+    const w1 = word1.replace(/[*+\-]/g, '').trim();
+    const w2 = word2.replace(/[*+\-]/g, '').trim();
+    speak(w1, () => setTimeout(() => speak(w2, () => { isPlayingSequence = false; }), 800));
+}
+
+function speakText(text) {
+    speak(text);
+}
+
+// ============================================
+// PLAY SECTION — data-driven, column-first order
+// ============================================
+let playAllActive = false;
+let playAllIndex = 0;
+let playAllTexts = [];
+let currentPlaySection = null;
+
+// Collect noun texts for one article group in column-first order:
+// left column (items 0..half-1) then right column (items half..end)
+function collectNounTexts(articleFilter) {
+    const data = parseCSV(nounsCSV).filter(row =>
+        (currentLevel === 'all' || row[0] === currentLevel) &&
+        row[1] === articleFilter
+    );
+    const texts = [];
+    const half = Math.ceil(data.length / 2);
+    function pushNoun(row) {
+        const [lvl, art, ger, pn, pf] = row;
+        texts.push(art + ' ' + ger);
+        if (pf && pf !== '---' && pf !== 'nur P' && pf !== '=' && pf !== 'kein Plural') {
+            texts.push(pf);
+        }
+    }
+    for (let i = 0; i < half; i++)              pushNoun(data[i]);
+    for (let i = half; i < data.length; i++)    pushNoun(data[i]);
+    return texts;
+}
+
+// Collect adjective or verb texts: left column (0..half-1) then right column
+function collectWordTexts(csv) {
+    const data = parseCSV(csv).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const texts = [];
+    const half = Math.ceil(data.length / 2);
+    function pushPair(row) {
+        texts.push(row[1].replace(/[*+\-]/g, '').trim());
+        texts.push(row[3].replace(/[*+\-]/g, '').trim());
+    }
+    for (let i = 0; i < half; i++)              pushPair(data[i]);
+    for (let i = half; i < data.length; i++)    pushPair(data[i]);
+    return texts;
+}
+
+// Collect expression texts: left column (even indices → 0,2,4…) then right column (odd → 1,3,5…)
+function collectExprTexts() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const texts = [];
+    const evens = data.filter((_, i) => i % 2 === 0);
+    const odds  = data.filter((_, i) => i % 2 === 1);
+    [...evens, ...odds].forEach(row => {
+        const [lvl, ger, ...engParts] = row;
+        texts.push(ger);
+    });
+    return texts;
+}
+
+// Collect conversation texts: left col (speaker A lines) then right col (speaker B lines), per conversation
+function collectConvTexts() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+    const convMap = {};
+    const convOrder = [];
+    rawLines.forEach(line => {
+        const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1), fc = line.indexOf(',', sp + 1);
+        if (fp < 0 || sp < 0 || fc < 0) return;
+        const level = line.substring(0, fp).trim();
+        const title = line.substring(fp + 1, sp).trim();
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+        const speaker = line.substring(sp + 1, fc).trim();
+        const rest = line.substring(fc + 1);
+        const sc = rest.indexOf(',');
+        const german = rest.substring(0, sc).trim();
+        const key = level + '|' + title;
+        if (!convMap[key]) { convMap[key] = { A: [], B: [] }; convOrder.push(key); }
+        if (speaker === 'A') convMap[key].A.push(german);
+        else                  convMap[key].B.push(german);
+    });
+    const texts = [];
+    convOrder.forEach(key => {
+        convMap[key].A.forEach(t => texts.push(t));
+        convMap[key].B.forEach(t => texts.push(t));
+    });
+    return texts;
+}
+
+// Collect Q&A texts: left col (questions 0..half-1) then right col (questions half..end)
+function collectQATexts() {
+    const rows = qaCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return { level: line.substring(0, fc).trim(), question: line.substring(fc + 1, sc).trim() };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+    const half = Math.ceil(rows.length / 2);
+    const texts = [];
+    for (let i = 0; i < half; i++)          texts.push(rows[i].question);
+    for (let i = half; i < rows.length; i++) texts.push(rows[i].question);
+    return texts;
+}
+
+// Collect sentence texts: left col (0..half-1) then right col (half..end)
+function collectSentTexts() {
+    const rows = sentencesCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return { level: line.substring(0, fc).trim(), german: line.substring(fc + 1, sc).trim() };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+    const half = Math.ceil(rows.length / 2);
+    const texts = [];
+    for (let i = 0; i < half; i++)          texts.push(rows[i].german);
+    for (let i = half; i < rows.length; i++) texts.push(rows[i].german);
+    return texts;
+}
+
+const sectionBtnIds = {
+    all: 'btnAll', der: 'btnDer', das: 'btnDas', die: 'btnDie',
+    adj: 'btnAdj', verb: 'btnVerb', expr: 'btnExpr',
+    conv: 'btnConv', qa: 'btnQa', sent: 'btnSent'
+};
+
+function setPlayingBtn(section) {
+    Object.entries(sectionBtnIds).forEach(([key, id]) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('playing', key === section);
+    });
+}
+
+function playSection(section) {
+    // Toggle off if already playing this section
+    if (playAllActive && currentPlaySection === section) {
+        stopAllSpeech();
+        playAllActive = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        return;
+    }
+    stopAllSpeech();
+    playAllTexts = [];
+
+    if (section === 'all') {
+        playAllTexts = [
+            ...collectNounTexts('der'),
+            ...collectNounTexts('das'),
+            ...collectNounTexts('die'),
+            ...collectWordTexts(adjectivesCSV),
+            ...collectWordTexts(verbsCSV),
+            ...collectExprTexts(),
+            ...collectConvTexts(),
+            ...collectQATexts(),
+            ...collectSentTexts()
+        ];
+    } else if (section === 'der')  { playAllTexts = collectNounTexts('der'); }
+    else if (section === 'das')  { playAllTexts = collectNounTexts('das'); }
+    else if (section === 'die')  { playAllTexts = collectNounTexts('die'); }
+    else if (section === 'adj')  { playAllTexts = collectWordTexts(adjectivesCSV); }
+    else if (section === 'verb') { playAllTexts = collectWordTexts(verbsCSV); }
+    else if (section === 'expr') { playAllTexts = collectExprTexts(); }
+    else if (section === 'conv') { playAllTexts = collectConvTexts(); }
+    else if (section === 'qa')   { playAllTexts = collectQATexts(); }
+    else if (section === 'sent') { playAllTexts = collectSentTexts(); }
+
+    playAllTexts = playAllTexts.filter(t => t && t.trim());
+    if (playAllTexts.length === 0) return;
+
+    playAllActive = true;
+    playAllIndex = 0;
+    currentPlaySection = section;
+    isPlayingSequence = true;
+    setPlayingBtn(section);
+    playNextInSequence();
+}
+
+function playNextInSequence() {
+    if (!playAllActive || playAllIndex >= playAllTexts.length) {
+        playAllActive = false;
+        isPlayingSequence = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        return;
+    }
+    const text = playAllTexts[playAllIndex++];
+    speak(text, () => setTimeout(playNextInSequence, 500));
+}
+
+// Helper: escape text for HTML attribute
+function escAttr(s) {
+    return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
+// ============================================
+// INITIALIZE
+// ============================================
+window.addEventListener('load', function() {
+    updateVocabZoom();
+    updatePhrasesZoom();
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ German Vocabulary Reference loaded!');
+    console.log('💡 Keys: 0=All | 1=A1 | 2=A2 | 3=B1 | 4=B2 | P=Print');
+});
+    </script>
+</body>
+</html>

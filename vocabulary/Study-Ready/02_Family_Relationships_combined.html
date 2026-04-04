@@ -1,0 +1,1894 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary - 02 Family_Relationships</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @page { size: A4; margin: 1cm; }
+        body { font-family: 'Arial', 'Helvetica', sans-serif; background: white; color: #000; padding: 15px; max-width: 100%; margin: 0 auto; }
+        /* ============================================
+           FIXED CONTROLS (screen only) — compact unified panel
+        ============================================ */
+        .controls {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1000;
+            max-width: 520px;
+        }
+
+        /* main dark pill wrapping level + audio */
+        .controls-main {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 7px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+        }
+
+        /* top bar: level filter + close btn */
+        .controls-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: nowrap;
+        }
+
+        .filter-label {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+
+        .level-btn {
+            border: 2px solid transparent;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.72em;
+            font-weight: 700;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.15s ease;
+        }
+        .level-btn:hover { opacity: 0.85; }
+        .level-btn.active { opacity: 1; border-color: white; }
+        .level-btn[data-level="all"] { background: #764ba2; color: white; }
+        .level-btn[data-level="A1"]  { background: #4CAF50; color: white; }
+        .level-btn[data-level="A2"]  { background: #2196F3; color: white; }
+        .level-btn[data-level="B1"]  { background: #FF9800; color: white; }
+        .level-btn[data-level="B2"]  { background: #F44336; color: white; }
+
+        .filter-count {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            margin-left: 2px;
+        }
+
+        /* close button — inline in top bar */
+        .controls-close {
+            margin-left: auto;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.55);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 4px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .controls-close:hover { background: rgba(255,255,255,0.18); color: white; }
+
+        /* ============================================
+           COLLAPSED TOGGLE BUTTON (when panel is hidden)
+        ============================================ */
+        .controls-toggle {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 1001;
+            background: #1a1a1a;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.78em;
+            cursor: pointer;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            display: none;
+        }
+        .controls-toggle:hover { background: #333; }
+        .controls.collapsed { display: none !important; }
+        .controls.collapsed + .controls-toggle,
+        body.controls-hidden .controls-toggle { display: block; }
+
+        /* ============================================
+           AUDIO PANEL (inside controls-main)
+        ============================================ */
+        .audio-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .audio-row-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .audio-panel-title {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+        .audio-panel label {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.68em;
+            white-space: nowrap;
+        }
+        .audio-panel select {
+            font-size: 0.68em;
+            padding: 2px 5px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #2a2a2a;
+            color: rgba(255,255,255,0.85);
+            cursor: pointer;
+            max-width: 130px;
+        }
+        .audio-panel input[type=range] {
+            width: 60px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+        .speed-val {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.68em;
+            min-width: 26px;
+        }
+        .play-all-btn {
+            background: linear-gradient(135deg, #DD0000, #FFCE00);
+            color: white;
+            border: none;
+            padding: 4px 11px;
+            border-radius: 10px;
+            font-size: 0.72em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .play-all-btn:hover { opacity: 0.85; }
+        .audio-row-sections {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .audio-section-label {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.35);
+            white-space: nowrap;
+        }
+        .audio-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.75em;
+        }
+        .section-play-btn {
+            background: #242424;
+            color: rgba(255,255,255,0.55);
+            border: 1px solid #3a3a3a;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.67em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        .section-play-btn:hover { background: #3a3a3a; color: white; }
+        .section-play-btn.playing { background: #667eea; color: white; border-color: #667eea; }
+        .section-play-btn[data-art="der"] { color: #90CAF9; }
+        .section-play-btn[data-art="das"] { color: #A5D6A7; }
+        .section-play-btn[data-art="die"] { color: #EF9A9A; }
+
+        .audio-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 0.78em;
+            padding: 0 2px;
+            opacity: 0.45;
+            transition: opacity 0.2s;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .audio-btn:hover { opacity: 1; }
+
+        /* ============================================
+           ZOOM + PRINT — collapsible (collapsed by default)
+        ============================================ */
+        .secondary-controls-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sec-toggle-btn {
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.45);
+            border: none;
+            padding: 2px 9px;
+            font-size: 0.67em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.15s;
+        }
+        .sec-toggle-btn:hover { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.8); }
+        .sec-toggle-btn.open { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.1); }
+
+        .secondary-controls {
+            display: none;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding-top: 4px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .secondary-controls.open { display: flex; }
+
+        /* compact zoom row */
+        .zoom-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .zoom-label {
+            font-size: 0.67em;
+            color: rgba(255,255,255,0.45);
+            white-space: nowrap;
+        }
+        .zoom-btn {
+            background: #333;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.8em;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .zoom-btn:hover { background: #555; }
+        .zoom-level {
+            font-weight: bold;
+            font-size: 0.68em;
+            color: rgba(255,255,255,0.65);
+            min-width: 30px;
+            text-align: center;
+        }
+        .zoom-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.8em;
+        }
+        .print-button {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: auto;
+        }
+        .print-button:hover { background: rgba(255,255,255,0.2); color: white; }
+
+        /* ============================================
+           AUDIO STATUS TOAST
+        ============================================ */
+        .audio-status {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            background: #667eea;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            gap: 8px;
+            z-index: 2000;
+            font-size: 0.82em;
+        }
+        .audio-status.show { display: flex; }
+        .audio-status .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            flex-shrink: 0;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+
+        /* ============================================
+           LEVEL BADGE (appears inside article cell)
+        ============================================ */
+        .lvl-badge {
+            display: inline-block;
+            font-size: 0.62em;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+            vertical-align: middle;
+            margin-left: 2px;
+            line-height: 1.4;
+        }
+        .lvl-badge.A1 { background: #C8E6C9; color: #1B5E20; }
+        .lvl-badge.A2 { background: #BBDEFB; color: #0D47A1; }
+        .lvl-badge.B1 { background: #FFE0B2; color: #E65100; }
+        .lvl-badge.B2 { background: #FFCDD2; color: #B71C1C; }
+
+        /* ============================================
+           PAGE HEADER
+        ============================================ */
+        .content-wrapper { max-width: 100%; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* ============================================
+           SECTION DIVIDER
+        ============================================ */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* ============================================
+           TABLE SECTION HEADERS
+        ============================================ */
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* ============================================
+           NOUN TABLE — 8 columns, article colors
+        ============================================ */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f0f0f0;
+            text-align: center;
+            font-weight: bold;
+            color: #555;
+            padding: 3px;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 6%;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 18%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 18%;
+        }
+
+        /* ARTICLE ROW COLORS */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ARTICLE TEXT COLORS */
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* NOUN TABLE COLGROUP widths */
+        .noun-col-art    { width: 6%; }
+        .noun-col-german { width: 18%; }
+        .noun-col-plural { width: 8%; }
+        .noun-col-eng    { width: 18%; }
+
+        /* ============================================
+           WORD TABLE (ADJ + VERB) — 8 columns
+        ============================================ */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col  { font-weight: 600; width: 15%; }
+        .word-table .english-col { color: #333; width: 10%; }
+
+        /* ADJECTIVE rows — warm yellow */
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* VERB rows — light blue */
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           EXPRESSIONS TABLE — 4 columns
+        ============================================ */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+            color: #000;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 22%;
+            font-style: italic;
+        }
+
+        /* ============================================
+           CONVERSATIONS TABLE — compact 4-col layout
+        ============================================ */
+        .conversations-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #667eea !important;
+            color: white !important;
+            font-weight: bold;
+            padding: 6px 8px;
+            font-size: 0.95em;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .conv-subheader {
+            background: #e8eaf6 !important;
+            font-weight: 700;
+            font-size: 0.78em;
+            color: #3949ab;
+            padding: 3px 6px;
+            border: 1px solid #c5cae9;
+            text-align: center;
+            letter-spacing: 0.3px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-a {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-a {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-b {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-b {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           Q&A TABLE — 4 columns
+        ============================================ */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            color: #1a237e;
+            width: 28%;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 22%;
+        }
+
+        /* ============================================
+           SENTENCES TABLE — 4 columns
+        ============================================ */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            font-style: italic;
+            width: 22%;
+        }
+
+        /* ============================================
+           FOOTER INFO
+        ============================================ */
+        .footer-info {
+            margin-top: 20px;
+            padding: 12px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.85em;
+            line-height: 1.8;
+        }
+
+        .footer-info h3 { margin-bottom: 6px; }
+
+        /* ============================================
+           PRINT STYLES
+        ============================================ */
+        @media print {
+            .controls          { display: none !important; }
+            .controls-toggle   { display: none !important; }
+            .level-filter-bar  { display: none !important; }
+            .audio-panel       { display: none !important; }
+            .audio-status      { display: none !important; }
+            .audio-btn         { display: none !important; }
+            .section-play-btn  { display: none !important; }
+            .footer-info       { display: none !important; }
+
+            body { padding: 0; font-size: 0.7em; }
+
+            .section-divider { page-break-before: always; }
+            .table-section { page-break-inside: auto; }
+            .noun-table, .word-table, .expressions-table,
+            .conversations-table, .qa-table, .sentences-table {
+                font-size: 1em;
+            }
+        }
+
+        @media screen {
+            body { padding-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <button class="controls-toggle" id="controlsToggle" onclick="toggleControls()">⚙ Controls</button>
+    <div class="controls" id="controlsPanel">
+        <div class="controls-main">
+
+            <!-- Row 1: Level filter + close -->
+            <div class="controls-top">
+                <span class="filter-label">🎯</span>
+                <button class="level-btn active" data-level="all" onclick="filterByLevel('all')">All</button>
+                <button class="level-btn" data-level="A1"  onclick="filterByLevel('A1')">A1</button>
+                <button class="level-btn" data-level="A2"  onclick="filterByLevel('A2')">A2</button>
+                <button class="level-btn" data-level="B1"  onclick="filterByLevel('B1')">B1</button>
+                <button class="level-btn" data-level="B2"  onclick="filterByLevel('B2')">B2</button>
+                <span class="filter-count" id="filterCount"></span>
+                <button class="controls-close" onclick="toggleControls()">✕</button>
+            </div>
+
+            <!-- Row 2: Audio controls -->
+            <div class="audio-panel">
+                <div class="audio-row-top">
+                    <span class="audio-panel-title">🔊</span>
+                    <label for="voiceSelect">Voice:</label>
+                    <select id="voiceSelect"><option value="">Loading…</option></select>
+                    <label for="speedControl">Speed:</label>
+                    <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+                    <span class="speed-val" id="speedValue">0.8×</span>
+                    <button class="play-all-btn" id="btnAll" onclick="playSection('all')">▶ All</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnDer" data-art="der" onclick="playSection('der')">▶ der</button>
+                    <button class="section-play-btn" id="btnDas" data-art="das" onclick="playSection('das')">▶ das</button>
+                    <button class="section-play-btn" id="btnDie" data-art="die" onclick="playSection('die')">▶ die</button>
+                    <span class="audio-sep">|</span>
+                    <button class="section-play-btn" id="btnAdj" onclick="playSection('adj')">▶ Adj</button>
+                    <button class="section-play-btn" id="btnVerb" onclick="playSection('verb')">▶ Verbs</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnExpr" onclick="playSection('expr')">▶ Expr</button>
+                    <button class="section-play-btn" id="btnConv" onclick="playSection('conv')">▶ Conv</button>
+                    <button class="section-play-btn" id="btnQa" onclick="playSection('qa')">▶ Q&amp;A</button>
+                    <button class="section-play-btn" id="btnSent" onclick="playSection('sent')">▶ Sent</button>
+                </div>
+            </div>
+
+            <!-- Row 3: Zoom & Print toggle -->
+            <div class="secondary-controls-toggle">
+                <button class="sec-toggle-btn" id="secToggleBtn" onclick="toggleSecondary()">⚙ Zoom &amp; Print</button>
+            </div>
+            <div class="secondary-controls" id="secondaryControls">
+                <div class="zoom-row">
+                    <span class="zoom-label">📚 Vocab:</span>
+                    <button class="zoom-btn" onclick="zoomOutVocab()">−</button>
+                    <span class="zoom-level" id="zoomLevelVocab">100%</span>
+                    <button class="zoom-btn" onclick="zoomInVocab()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomVocab()">⟲</button>
+                </div>
+                <span class="zoom-sep">|</span>
+                <div class="zoom-row">
+                    <span class="zoom-label">💬 Phrases:</span>
+                    <button class="zoom-btn" onclick="zoomOutPhrases()">−</button>
+                    <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+                    <button class="zoom-btn" onclick="zoomInPhrases()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomPhrases()">⟲</button>
+                </div>
+                <button class="print-button" onclick="window.print()">🖨️ Print</button>
+            </div>
+
+        </div>
+    </div>
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 02 Family_Relationships</h1>
+            <p style="font-size:0.75em; color:#555;">Family &amp; Relationships · A1–B2 Level-Tagged Reference · aliattia02</p>
+        </div>
+
+        <div id="vocabSection">
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col class="noun-col-art"><col class="noun-col-german"><col class="noun-col-plural"><col class="noun-col-eng">
+                        <col class="noun-col-art"><col class="noun-col-german"><col class="noun-col-plural"><col class="noun-col-eng">
+                    </colgroup>
+                    <thead><tr><th>Article</th><th>German</th><th>Plural ±</th><th>English</th><th>Article</th><th>German</th><th>Plural ±</th><th>English</th></tr></thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
+            <div class="table-section">
+                <h2>Table 2: Adjectives &amp; Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead><tr><th>German</th><th>English</th><th>German</th><th>English</th><th>German</th><th>English</th><th>German</th><th>English</th></tr></thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section-divider"><h2>💬 PHRASES &amp; SENTENCES</h2></div>
+
+        <div id="phrasesSection">
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead><tr><th>German</th><th>English</th><th>German</th><th>English</th></tr></thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+            <div class="table-section">
+                <h2>Table 5: Questions &amp; Answers</h2>
+                <table class="qa-table">
+                    <thead><tr><th>Question</th><th>Answer</th><th>Question</th><th>Answer</th></tr></thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead><tr><th>German</th><th>English</th><th>German</th><th>English</th></tr></thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Topic:</strong> Family &amp; Relationships &nbsp;|&nbsp; <strong>Created:</strong> 2025 — aliattia02</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Full form shown = umlaut change | --- = no change | nur P = plural only | = = no change</p>
+            <p><strong>Color Coding:</strong>
+                <span style="color:#1565C0; font-weight:bold;">■ der (blue)</span> &nbsp;
+                <span style="color:#2E7D32; font-weight:bold;">■ das (green)</span> &nbsp;
+                <span style="color:#C62828; font-weight:bold;">■ die (red)</span> &nbsp;|&nbsp;
+                Adjective rows: <span style="background:#FFF8E1; padding:1px 6px; border:1px solid #ddd;">yellow</span> &nbsp;
+                Verb rows: <span style="background:#E1F5FE; padding:1px 6px; border:1px solid #ddd;">blue</span>
+            </p>
+            <p><strong>Prefix Guide:</strong> - = Adjective &nbsp;|&nbsp; * = Weak Verb (regular) &nbsp;|&nbsp; + = Strong Verb (irregular)</p>
+            <p><strong>Levels:</strong>
+                <span class="lvl-badge A1">A1</span> Beginner &nbsp;
+                <span class="lvl-badge A2">A2</span> Elementary &nbsp;
+                <span class="lvl-badge B1">B1</span> Intermediate &nbsp;
+                <span class="lvl-badge B2">B2</span> Upper Intermediate
+            </p>
+        </div>
+    </div>
+
+    <script>
+const nounsCSV = `
+// das — cluster: children & infants
+A1,das,Kind,-er,die Kinder,Child
+A1,das,Baby,-s,die Babys,Baby
+A2,das,Kleinkind,-er,die Kleinkinder,Toddler
+A2,das,Neugeborene,-n,die Neugeborenen,Newborn
+B1,das,Einzelkind,-er,die Einzelkinder,Only child
+B1,das,Adoptivkind,-er,die Adoptivkinder,Adopted child
+B2,das,Pflegekind,-er,die Pflegekinder,Foster child
+// das — cluster: couple & family unit
+A1,das,Paar,-e,die Paare,Couple
+A1,das,Zuhause,---,---,Home
+A2,das,Ehepaar,-e,die Ehepaare,Married couple
+A2,das,Familienmitglied,-er,die Familienmitglieder,Family member
+B1,das,Familienleben,---,---,Family life
+B1,das,Familienoberhaupt,Familienoberhäupter,die Familienoberhäupter,Head of family
+B2,das,Erbe,---,---,Inheritance
+// das — cluster: life events & milestones
+A1,das,Fest,-e,die Feste,Celebration
+A2,das,Jubiläum,Jubiläen,die Jubiläen,Anniversary
+B1,das,Wiedersehen,=,die Wiedersehen,Reunion
+B2,das,Begräbnis,-se,die Begräbnisse,Funeral
+// das — cluster: legal & rights
+B1,das,Sorgerecht,---,---,Custody
+B1,das,Besuchsrecht,---,---,Visitation right
+B2,das,Erbrecht,---,---,Inheritance law
+B2,das,Testament,-e,die Testamente,Will
+// das — cluster: emotional bonds (abstract)
+B1,das,Vertrauen,---,---,Trust
+B1,das,Verhältnis,-se,die Verhältnisse,Relationship
+B2,das,Verständnis,---,---,Understanding
+// der — cluster: male family members
+A1,der,Vater,Väter,die Väter,Father
+A1,der,Bruder,Brüder,die Brüder,Brother
+A1,der,Sohn,Söhne,die Söhne,Son
+A1,der,Großvater,Großväter,die Großväter,Grandfather
+A1,der,Onkel,=,die Onkel,Uncle
+A1,der,Enkel,=,die Enkel,Grandson
+A2,der,Neffe,-n,die Neffen,Nephew
+A2,der,Cousin,-s,die Cousins,Male cousin
+A2,der,Schwiegervater,Schwiegerväter,die Schwiegerväter,Father-in-law
+A2,der,Schwager,Schwäger,die Schwäger,Brother-in-law
+A2,der,Schwiegersohn,Schwiegersöhne,die Schwiegersöhne,Son-in-law
+A2,der,Stiefsohn,Stiefsöhne,die Stiefsöhne,Stepson
+B1,der,Stiefvater,Stiefväter,die Stiefväter,Stepfather
+B1,der,Halbbruder,Halbbrüder,die Halbbrüder,Half-brother
+B1,der,Pate,-n,die Paten,Godfather
+B1,der,Jugendliche,-n,die Jugendlichen,Teenager
+B2,der,Vormund,Vormünder,die Vormünder,Guardian
+B2,der,Stammbaum,Stammbäume,die Stammbäume,Family tree
+// der — cluster: male partners & social bonds
+A1,der,Mann,Männer,die Männer,Husband
+A1,der,Freund,-e,die Freunde,Friend
+A2,der,Verlobte,-n,die Verlobten,Fiancé
+A2,der,Partner,=,die Partner,Partner
+B1,der,Lebenspartner,=,die Lebenspartner,Civil partner
+B1,der,Ex-Mann,Ex-Männer,die Ex-Männer,Ex-husband
+B2,der,Witwer,=,die Witwer,Widower
+// der — cluster: ancestry & lineage
+A2,der,Vorfahre,-n,die Vorfahren,Ancestor
+B1,der,Nachkomme,-n,die Nachkommen,Descendant
+// die — cluster: female family members
+A1,die,Mutter,Mütter,die Mütter,Mother
+A1,die,Schwester,-n,die Schwestern,Sister
+A1,die,Tochter,Töchter,die Töchter,Daughter
+A1,die,Großmutter,Großmütter,die Großmütter,Grandmother
+A1,die,Tante,-n,die Tanten,Aunt
+A1,die,Enkelin,-nen,die Enkelinnen,Granddaughter
+A2,die,Nichte,-n,die Nichten,Niece
+A2,die,Cousine,-n,die Cousinen,Female cousin
+A2,die,Schwiegermutter,Schwiegermütter,die Schwiegermütter,Mother-in-law
+A2,die,Schwägerin,-nen,die Schwägerinnen,Sister-in-law
+A2,die,Schwiegertochter,Schwiegertöchter,die Schwiegertöchter,Daughter-in-law
+A2,die,Stieftochter,Stieftöchter,die Stieftöchter,Stepdaughter
+B1,die,Stiefmutter,Stiefmütter,die Stiefmütter,Stepmother
+B1,die,Halbschwester,-n,die Halbschwestern,Half-sister
+B1,die,Patin,-nen,die Patinnen,Godmother
+B2,die,Witwe,-n,die Witwen,Widow
+// die — cluster: female partners & social bonds
+A1,die,Frau,-en,die Frauen,Wife
+A1,die,Freundin,-nen,die Freundinnen,Friend (f)
+A2,die,Verlobte,-n,die Verlobten,Fiancée
+A2,die,Partnerin,-nen,die Partnerinnen,Partner (f)
+B1,die,Lebenspartnerin,-nen,die Lebenspartnerinnen,Civil partner (f)
+B1,die,Ex-Frau,-en,die Ex-Frauen,Ex-wife
+// die — cluster: collective family terms
+A1,die,Familie,-n,die Familien,Family
+A1,die,Eltern,nur P,die Eltern,Parents
+A1,die,Großeltern,nur P,die Großeltern,Grandparents
+A2,die,Geschwister,nur P,die Geschwister,Siblings
+B1,die,Verwandten,nur P,die Verwandten,Relatives
+B2,die,Vorfahren,nur P,die Vorfahren,Ancestors
+// die — cluster: relationship concepts
+A1,die,Liebe,---,---,Love
+A1,die,Kindheit,---,---,Childhood
+A2,die,Freundschaft,-en,die Freundschaften,Friendship
+A2,die,Ehe,-n,die Ehen,Marriage
+A2,die,Hochzeit,-en,die Hochzeiten,Wedding
+A2,die,Erziehung,---,---,Upbringing
+B1,die,Beziehung,-en,die Beziehungen,Relationship
+B1,die,Verlobung,-en,die Verlobungen,Engagement
+B1,die,Scheidung,-en,die Scheidungen,Divorce
+B1,die,Trennung,-en,die Trennungen,Separation
+B1,die,Fürsorge,---,---,Care
+B1,die,Jugend,---,---,Youth
+B2,die,Zuneigung,---,---,Affection
+B2,die,Loyalität,---,---,Loyalty
+B2,die,Obhut,---,---,Custody / care
+// die — cluster: family types & structures
+A2,die,Kernfamilie,-n,die Kernfamilien,Nuclear family
+B1,die,Großfamilie,-n,die Großfamilien,Extended family
+B1,die,Patchworkfamilie,-n,die Patchworkfamilien,Blended family
+B2,die,Alleinerziehende,-n,die Alleinerziehenden,Single parent
+`.trim();
+
+const adjectivesCSV = `
+// cluster: emotional bonds
+A1,-liebevoll,loving,-kalt,cold
+A2,-fürsorglich,caring,-gleichgültig,indifferent
+B1,-treu,loyal,-untreu,unfaithful
+B2,-innig,intimate,-distanziert,distant
+// cluster: marital & relationship status
+A1,-verheiratet,married,-ledig,single
+A2,-geschieden,divorced,-verwitwet,widowed
+B1,-verlobt,engaged,-getrennt,separated
+B2,-alleinerziehend,single-parent,-zweielterlich,two-parent
+// cluster: closeness & personality in relationships
+A1,-nett,nice,-unfreundlich,unfriendly
+A2,-eng,close,-locker,loose
+B1,-eifersüchtig,jealous,-vertrauensvoll,trusting
+B2,-anhänglich,clingy,-unabhängig,independent
+// cluster: age & generation
+A1,-jung,young,-alt,old
+A2,-erwachsen,adult,-kindlich,childlike
+B1,-volljährig,of age,-minderjährig,underage
+B2,-generationsübergreifend,cross-generational,-gleichaltrig,same-age
+// cluster: family quality & dynamics
+A2,-verwandt,related,-unverwandt,unrelated
+A2,-geduldig,patient,-ungeduldig,impatient
+B1,-harmonisch,harmonious,-zerstritten,at odds
+B1,-adoptiert,adopted,-leiblich,biological
+B2,-dysfunktional,dysfunctional,-intakt,intact
+// cluster: care & support
+B1,-fürsorglich,caring,-vernachlässigend,neglectful
+B2,-pflegebedürftig,in need of care,-selbstversorgt,self-sufficient
+`.trim();
+
+const verbsCSV = `
+// cluster: forming & ending relationships
+A1,*lieben,love,*mögen,like
+A2,*heiraten,marry,+sich scheiden lassen,get divorced
+B1,+sich verloben,get engaged,+sich trennen,separate
+B2,*adoptieren,adopt,*enterben,disinherit
+// cluster: communication & visits
+A1,*anrufen,call,*besuchen,visit
+A2,*schreiben,write,*antworten,reply
+B1,+sich streiten,argue,+sich versöhnen,make up
+B2,*vermitteln,mediate,*schlichten,settle
+// cluster: care & upbringing
+A1,+sich kümmern,take care,*helfen,help
+A2,*unterstützen,support,*pflegen,care for
+B1,*erziehen,raise,*fördern,support
+B2,*versorgen,provide for,*vernachlässigen,neglect
+// cluster: social bonds
+A2,*kennenlernen,get to know,*befreunden,befriend
+B1,*vertrauen,trust,*enttäuschen,disappoint
+// cluster: living & growing
+A2,+aufwachsen,grow up,+ausziehen,move out
+B1,+einziehen,move in,+zusammenleben,live together
+B2,*beerben,inherit from,*bevormunden,patronize
+// cluster: emotional expression
+A1,*lachen,laugh,*weinen,cry
+A2,*vermissen,miss,+vergeben,forgive
+B1,*trösten,comfort,*ärgern,annoy
+B2,+sich entfremden,become estranged,+sich annähern,grow closer
+`.trim();
+
+const expressionsCSV = `
+// cluster: describing your family
+A1,Das ist meine Familie.,This is my family.
+A1,Ich habe einen Bruder und eine Schwester.,I have a brother and a sister.
+A1,Wie viele Geschwister hast du?,How many siblings do you have?
+A1,Ich bin Einzelkind.,I am an only child.
+A1,Meine Eltern wohnen in Berlin.,My parents live in Berlin.
+// cluster: talking about relationships
+A2,Wir verstehen uns sehr gut.,We get along very well.
+A2,Er ist wie ein Bruder für mich.,He is like a brother to me.
+A2,Meine Schwester und ich sind sehr eng.,My sister and I are very close.
+A2,Wie groß ist deine Familie?,How big is your family?
+A2,Wir kommen aus einer großen Familie.,We come from a large family.
+// cluster: partnership & life changes
+B1,Wir sind seit zehn Jahren verheiratet.,We have been married for ten years.
+B1,Wir haben uns vor zwei Jahren kennengelernt.,We met two years ago.
+B1,Die Hochzeit ist im Juni geplant.,The wedding is planned for June.
+B1,Meine Schwiegereltern sind sehr nett.,My in-laws are very nice.
+B1,Wir haben uns leider getrennt.,Unfortunately we have separated.
+B1,Ich vermisse meine Familie sehr.,I miss my family very much.
+// cluster: family structure & legal
+B2,Das Sorgerecht liegt bei der Mutter.,Custody lies with the mother.
+B2,Sie haben gemeinsames Sorgerecht beantragt.,They applied for joint custody.
+B2,Die Adoption wurde offiziell genehmigt.,The adoption was officially approved.
+B2,Das Erbe wird unter den Geschwistern aufgeteilt.,The inheritance is divided among the siblings.
+B2,Er hat sie in seinem Testament bedacht.,He mentioned her in his will.
+B2,Das Erbrecht ist in Deutschland klar geregelt.,Inheritance law is clearly regulated in Germany.
+`.trim();
+
+const conversationsCSV = `
+A1|Talking About Family|A,Hast du Geschwister?,Do you have siblings?
+A1|Talking About Family|B,Ja ich habe einen Bruder und eine Schwester. Und du?,Yes I have a brother and a sister. And you?
+A1|Talking About Family|A,Ich bin Einzelkind. Wo wohnen deine Eltern?,I am an only child. Where do your parents live?
+A1|Talking About Family|B,Meine Eltern wohnen in Hamburg.,My parents live in Hamburg.
+A1|Talking About Family|A,Hast du auch Großeltern?,Do you also have grandparents?
+A1|Talking About Family|B,Ja meine Großmutter wohnt bei uns zu Hause.,Yes my grandmother lives with us at home.
+A1|Talking About Family|A,Wie alt ist sie?,How old is she?
+A1|Talking About Family|B,Sie ist achtzig Jahre alt und sehr aktiv.,She is eighty years old and very active.
+A2|Describing Your Family|A,Erzähl mir von deiner Familie.,Tell me about your family.
+A2|Describing Your Family|B,Wir sind eine große Familie. Ich habe drei Geschwister und viele Cousins.,We are a large family. I have three siblings and many cousins.
+A2|Describing Your Family|A,Verstehst du dich gut mit deinen Geschwistern?,Do you get along well with your siblings?
+A2|Describing Your Family|B,Ja wir verstehen uns sehr gut. Mein Bruder ist mein bester Freund.,Yes we get along very well. My brother is my best friend.
+A2|Describing Your Family|A,Sind deine Eltern noch verheiratet?,Are your parents still married?
+A2|Describing Your Family|B,Ja seit dreißig Jahren. Sie feiern nächstes Jahr ihr Jubiläum.,Yes for thirty years. They are celebrating their anniversary next year.
+A2|Describing Your Family|A,Das ist wunderbar! Habt ihr viele Familienfeste?,That is wonderful! Do you have many family celebrations?
+A2|Describing Your Family|B,Ja wir treffen die ganze Familie immer zu Weihnachten und Ostern.,Yes we always meet the whole family at Christmas and Easter.
+B1|Wedding Plans|A,Herzlichen Glückwunsch zur Verlobung! Wann ist die Hochzeit?,Congratulations on the engagement! When is the wedding?
+B1|Wedding Plans|B,Danke! Wir heiraten im September in einem kleinen Schloss.,Thank you! We are getting married in September in a small castle.
+B1|Wedding Plans|A,Habt ihr schon viele Gäste eingeladen?,Have you already invited many guests?
+B1|Wedding Plans|B,Ja wir laden die ganze Familie und enge Freunde ein. Das sind fast achtzig Personen.,Yes we are inviting the whole family and close friends. That is almost eighty people.
+B1|Wedding Plans|A,Und wer ist Trauzeuge?,And who is the best man?
+B1|Wedding Plans|B,Mein Bruder. Er hält auch eine Rede.,My brother. He is also giving a speech.
+B1|Wedding Plans|A,Werden die Kinder auch dabei sein?,Will the children be there too?
+B1|Wedding Plans|B,Ja natürlich. Meine Nichten sind die Blumenmädchen.,Yes of course. My nieces are the flower girls.
+B1|Wedding Plans|A,Das wird sicher ein unvergessliches Fest.,That will certainly be an unforgettable celebration.
+B1|Wedding Plans|B,Wir freuen uns riesig darauf.,We are very much looking forward to it.
+B2|Family Law Matters|A,Ich brauche Ihren Rat in einer Familienangelegenheit.,I need your advice in a family matter.
+B2|Family Law Matters|B,Natürlich. Worum geht es?,Of course. What is it about?
+B2|Family Law Matters|A,Mein Partner und ich haben uns getrennt. Wir haben ein Kind und wissen nicht wie das Sorgerecht geregelt wird.,My partner and I have separated. We have a child and do not know how custody is regulated.
+B2|Family Law Matters|B,Das Gericht entscheidet nach dem Kindeswohl. Meist wird gemeinsames Sorgerecht vereinbart.,The court decides based on the child's best interest. Joint custody is usually agreed upon.
+B2|Family Law Matters|A,Was ist wenn wir uns nicht einigen können?,What if we cannot agree?
+B2|Family Law Matters|B,Dann kann ein Mediator helfen bevor man vor Gericht geht.,Then a mediator can help before going to court.
+B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about visitation rights?
+B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
+`.trim();
+
+const qaCSV = `
+// cluster: basic family
+A1,Hast du Geschwister?,Ja ich habe einen Bruder und eine Schwester. (Yes I have a brother and a sister.)
+A1,Wo wohnen deine Eltern?,Meine Eltern wohnen in München. (My parents live in Munich.)
+A1,Hast du Kinder?,Nein ich habe noch keine Kinder. (No I do not have children yet.)
+A1,Liebst du deine Familie?,Ja ich liebe meine Familie sehr. (Yes I love my family very much.)
+A1,Wie alt ist deine Mutter?,Meine Mutter ist fünfzig Jahre alt. (My mother is fifty years old.)
+A1,Was machst du mit deiner Familie am Wochenende?,Wir gehen zusammen spazieren oder besuchen Großeltern. (We go for a walk together or visit grandparents.)
+A1,Hast du Großeltern?,Ja meine Großeltern leben noch in Bayern. (Yes my grandparents still live in Bavaria.)
+// cluster: relationships & social
+A2,Bist du verheiratet?,Nein ich bin noch ledig. (No I am still single.)
+A2,Wie viele Personen sind in deiner Familie?,Wir sind fünf: Eltern und drei Kinder. (We are five: parents and three children.)
+A2,Verstehst du dich gut mit deinen Geschwistern?,Ja wir verstehen uns sehr gut. (Yes we get along very well.)
+A2,Ist deine Familie groß oder klein?,Meine Familie ist ziemlich groß mit vielen Cousins. (My family is quite large with many cousins.)
+A2,Wie oft siehst du deine Verwandten?,Wir treffen uns meistens bei Festen und Feiertagen. (We usually meet at celebrations and holidays.)
+A2,Hast du Onkel und Tanten?,Ja ich habe viele Onkel und Tanten. (Yes I have many uncles and aunts.)
+A2,Was ist deine Muttersprache zu Hause?,Zu Hause sprechen wir Deutsch und manchmal Englisch. (At home we speak German and sometimes English.)
+// cluster: family life & values
+B1,Was bedeutet Familie für dich?,Familie bedeutet Zusammenhalt Vertrauen und bedingungslose Liebe. (Family means solidarity trust and unconditional love.)
+B1,Wie war deine Kindheit?,Meine Kindheit war glücklich und behütet. (My childhood was happy and sheltered.)
+B1,Wie ist das Verhältnis zu deiner Familie?,Wir haben ein enges und vertrauensvolles Verhältnis. (We have a close and trusting relationship.)
+B1,Was ist eine Patchworkfamilie?,Eine Familie die durch neue Partnerschaften aus verschiedenen Familien entsteht. (A family that forms from different families through new partnerships.)
+B1,Was macht eine glückliche Ehe aus?,Respekt Kommunikation und gegenseitiges Vertrauen. (Respect communication and mutual trust.)
+B1,Was versteht man unter einer erweiterten Familie?,Die erweiterte Familie schließt Großeltern Tanten Onkel und Cousins ein. (The extended family includes grandparents aunts uncles and cousins.)
+// cluster: advanced family matters
+B2,Was bedeutet gemeinsames Sorgerecht?,Beide Elternteile teilen die Verantwortung für das Kind gleichberechtigt. (Both parents share responsibility for the child equally.)
+B2,Was regelt das Erbrecht?,Es bestimmt wer nach dem Tod einer Person deren Vermögen erbt. (It determines who inherits a person's assets after death.)
+B2,Was ist ein Vormund?,Eine Person die die rechtliche Verantwortung für ein Kind übernimmt. (A person who takes on legal responsibility for a child.)
+B2,Wie hat sich das Familienmodell in Deutschland verändert?,Patchwork- und Einelternfamilien werden gesellschaftlich immer akzeptierter. (Blended and single-parent families are becoming more socially accepted.)
+B2,Was ist eine Lebensgemeinschaft?,Eine dauerhafte Partnerschaft ohne formelle Ehe. (A permanent partnership without a formal marriage.)
+`.trim();
+
+const sentencesCSV = `
+// cluster: family members & description
+A1,Ich habe zwei Schwestern und einen Bruder.,I have two sisters and a brother.
+A1,Meine Eltern sind sehr nett.,My parents are very nice.
+A1,Mein Großvater ist siebzig Jahre alt.,My grandfather is seventy years old.
+A1,Ich bin das älteste Kind in meiner Familie.,I am the oldest child in my family.
+A1,Meine Schwester heißt Lisa.,My sister is called Lisa.
+A1,Ich liebe meine Familie sehr.,I love my family very much.
+A1,Mein Vater arbeitet als Ingenieur.,My father works as an engineer.
+A1,Meine Familie ist sehr wichtig für mich.,My family is very important to me.
+// cluster: family life & routines
+A2,Wir essen jeden Abend zusammen.,We eat together every evening.
+A2,Meine Eltern sind seit dreißig Jahren verheiratet.,My parents have been married for thirty years.
+A2,Mein Onkel hat drei Kinder.,My uncle has three children.
+A2,Ich verstehe mich gut mit meinen Geschwistern.,I get along well with my siblings.
+A2,Meine Großmutter erzählt immer alte Geschichten.,My grandmother always tells old stories.
+A2,Wir besuchen unsere Verwandten oft am Wochenende.,We often visit our relatives at the weekend.
+A2,Meine Cousine wohnt in Hamburg.,My female cousin lives in Hamburg.
+A2,Mein Neffe ist erst zwei Jahre alt.,My nephew is only two years old.
+A2,Wir feiern Weihnachten immer mit der ganzen Familie.,We always celebrate Christmas with the whole family.
+A2,Meine Tante ist die Schwester meines Vaters.,My aunt is my father's sister.
+// cluster: relationships & life changes
+B1,Meine Eltern haben sich vor fünf Jahren scheiden lassen.,My parents got divorced five years ago.
+B1,Ich vermisse meine Großeltern sehr.,I miss my grandparents very much.
+B1,Mein Bruder hat letztes Jahr geheiratet.,My brother got married last year.
+B1,Wir haben uns nach dem Streit wieder versöhnt.,We made up after the argument.
+B1,Meine Schwester erwartet ein Baby im Sommer.,My sister is expecting a baby in summer.
+B1,Die Hochzeit war ein wunderschönes Fest.,The wedding was a beautiful celebration.
+B1,Meine Stiefmutter ist sehr verständnisvoll.,My stepmother is very understanding.
+B1,Ich habe ein sehr gutes Verhältnis zu meinen Eltern.,I have a very good relationship with my parents.
+B1,Mein Schwiegervater ist streng aber fair.,My father-in-law is strict but fair.
+// cluster: family structure & society
+B2,Das Sorgerecht wurde nach der Scheidung geregelt.,Custody was settled after the divorce.
+B2,Die Patchworkfamilie ist ein modernes Familienmodell.,The blended family is a modern family model.
+B2,Das Erbe wurde gerecht unter den Geschwistern aufgeteilt.,The inheritance was fairly divided among the siblings.
+B2,Alleinerziehende Mütter haben oft weniger finanzielle Mittel.,Single mothers often have fewer financial resources.
+B2,Die Adoption wurde nach langer Wartezeit genehmigt.,The adoption was approved after a long wait.
+B2,Das Testament regelt die Verteilung des Vermögens.,The will regulates the distribution of assets.
+B2,Die rechtlichen Grundlagen des Familienrechts sind komplex.,The legal foundations of family law are complex.
+`.trim();
+
+function parseCSV(csv) {
+    return csv.split('\n').map(l=>l.trim()).filter(l=>l.length>0&&!l.startsWith('//')).map(l=>l.split(',').map(c=>c.trim()));
+}
+
+let currentLevel = 'all';
+
+function filterByLevel(level) {
+    currentLevel = level;
+    document.querySelectorAll('.level-btn').forEach(btn => btn.classList.toggle('active', btn.dataset.level === level));
+    renderNounsTable(); renderWordsTable(); renderExpressionsTable();
+    renderConversations(); renderQATable(); renderSentencesTable(); updateFilterCount();
+}
+
+function updateFilterCount() {
+    const el = document.getElementById('filterCount');
+    if (!el) return;
+    if (currentLevel === 'all') { el.textContent = ''; return; }
+    let total = 0;
+    [nounsCSV, adjectivesCSV, verbsCSV, expressionsCSV, qaCSV, sentencesCSV].forEach(csv => {
+        parseCSV(csv).forEach(row => { if (row[0] === currentLevel) total++; });
+    });
+    conversationsCSV.split('\n').forEach(line => {
+        line = line.trim();
+        if (line && !line.startsWith('//') && line.startsWith(currentLevel + '|')) total++;
+    });
+    el.textContent = `${total} entries`;
+}
+
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV).filter(row => currentLevel === 'all' || row[0] === currentLevel);
+    const grouped = { das: [], der: [], die: [] };
+    data.forEach(row => {
+        const [level, article, german, pluralNotation, pluralFull, english] = row;
+        if (grouped[article] !== undefined) grouped[article].push({ level, article, german, pluralNotation, pluralFull, english });
+    });
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+    const articles = [
+        { key: 'der', label: 'Maskulinum (der)', rowClass: 'der-row', artClass: 'der-article' },
+        { key: 'das', label: 'Neutrum (das)',     rowClass: 'das-row', artClass: 'das-article' },
+        { key: 'die', label: 'Femininum (die)',   rowClass: 'die-row', artClass: 'die-article' },
+    ];
+    let anyContent = false;
+    articles.forEach(({ key, label, rowClass, artClass }) => {
+        const words = grouped[key];
+        if (words.length === 0) return;
+        anyContent = true;
+        html += `<tr class="separator"><td colspan="8">${label}</td></tr>`;
+        const half = Math.ceil(words.length / 2);
+        for (let i = 0; i < half; i++) {
+            const w1 = words[i], w2 = words[i + half] || null;
+            html += `<tr class="${rowClass}">`;
+            html += `<td class="article-cell ${artClass}">${w1.article}</td><td class="german-cell">${w1.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w1.article)}','${escAttr(w1.german)}','${escAttr(w1.pluralFull)}')">🔊</button></td><td class="plural-cell">${w1.pluralNotation}</td><td class="english-cell">${w1.english}</td>`;
+            if (w2) html += `<td class="article-cell ${artClass}">${w2.article}</td><td class="german-cell">${w2.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w2.article)}','${escAttr(w2.german)}','${escAttr(w2.pluralFull)}')">🔊</button></td><td class="plural-cell">${w2.pluralNotation}</td><td class="english-cell">${w2.english}</td>`;
+            else html += `<td></td><td></td><td></td><td></td>`;
+            html += `</tr>`;
+        }
+    });
+    if (!anyContent) html = `<tr><td colspan="8" style="text-align:center;color:#999;padding:12px;">No nouns at ${currentLevel} level</td></tr>`;
+    tbody.innerHTML = html;
+}
+
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV).filter(row => currentLevel === 'all' || row[0] === currentLevel);
+    const verbData = parseCSV(verbsCSV).filter(row => currentLevel === 'all' || row[0] === currentLevel);
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+    if (adjData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Adjectives (- prefix = opposite pairs)</td></tr>`;
+        const half = Math.ceil(adjData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = adjData[i], r2 = adjData[i + half] || null;
+            html += `<tr class="adjective-row"><td class="german-col">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[3])}')">🔊</button></td><td class="english-col">${r1[2]}</td><td class="german-col">${r1[3]}</td><td class="english-col">${r1[4]}</td>`;
+            if (r2) html += `<td class="german-col">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[3])}')">🔊</button></td><td class="english-col">${r2[2]}</td><td class="german-col">${r2[3]}</td><td class="english-col">${r2[4]}</td>`;
+            else html += `<td></td><td></td><td></td><td></td>`;
+            html += `</tr>`;
+        }
+    }
+    if (verbData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Verbs (* Weak | + Strong — opposite / related pairs)</td></tr>`;
+        const half = Math.ceil(verbData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = verbData[i], r2 = verbData[i + half] || null;
+            html += `<tr class="verb-row"><td class="german-col">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[3])}')">🔊</button></td><td class="english-col">${r1[2]}</td><td class="german-col">${r1[3]}</td><td class="english-col">${r1[4]}</td>`;
+            if (r2) html += `<td class="german-col">${r2[1]}</td><td class="english-col">${r2[2]}</td><td class="german-col">${r2[3]}</td><td class="english-col">${r2[4]}</td>`;
+            else html += `<td></td><td></td><td></td><td></td>`;
+            html += `</tr>`;
+        }
+    }
+    if (adjData.length === 0 && verbData.length === 0) html = `<tr><td colspan="8" style="text-align:center;color:#999;padding:12px;">No adjectives or verbs at ${currentLevel} level</td></tr>`;
+    tbody.innerHTML = html;
+}
+
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV).filter(row => currentLevel === 'all' || row[0] === currentLevel);
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+    for (let i = 0; i < data.length; i += 2) {
+        const [,ger1,...eng1p] = data[i]; const eng1 = eng1p.join(',');
+        html += `<tr><td class="german-cell">${ger1} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(ger1)}')">🔊</button></td><td class="english-cell">${eng1}</td>`;
+        if (i + 1 < data.length) { const [,ger2,...eng2p] = data[i+1]; html += `<td class="german-cell">${ger2} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(ger2)}')">🔊</button></td><td class="english-cell">${eng2p.join(',')}</td>`; }
+        else html += `<td></td><td></td>`;
+        html += `</tr>`;
+    }
+    if (data.length === 0) html = `<tr><td colspan="4" style="text-align:center;color:#999;padding:12px;">No expressions at ${currentLevel} level</td></tr>`;
+    tbody.innerHTML = html;
+}
+
+function renderConversations() {
+    const rawLines = conversationsCSV.split('\n').map(l=>l.trim()).filter(l=>l.length>0&&!l.startsWith('//'));
+    const conversations = {}, convOrder = [], convLevels = {};
+    rawLines.forEach(line => {
+        const fp=line.indexOf('|'), sp=line.indexOf('|',fp+1), fc=line.indexOf(',',sp+1);
+        if (fp===-1||sp===-1||fc===-1) return;
+        const level=line.substring(0,fp).trim(), title=line.substring(fp+1,sp).trim(), speaker=line.substring(sp+1,fc).trim();
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+        const rest=line.substring(fc+1), sc=rest.indexOf(',');
+        const german=rest.substring(0,sc).trim(), english=rest.substring(sc+1).trim();
+        const key=`${level}|${title}`;
+        if (!conversations[key]) { conversations[key]=[]; convOrder.push(key); convLevels[key]=level; }
+        conversations[key].push({ speaker, german, english });
+    });
+    const container = document.getElementById('conversationsContainer');
+    let html = '';
+    if (convOrder.length === 0) { container.innerHTML = `<p style="text-align:center;color:#999;padding:12px;">No conversations at ${currentLevel} level</p>`; return; }
+    convOrder.forEach(key => {
+        const title=key.split('|').slice(1).join('|'), lines=conversations[key];
+        const linesA=lines.filter(l=>l.speaker==='A'), linesB=lines.filter(l=>l.speaker==='B');
+        const maxRows=Math.max(linesA.length,linesB.length);
+        html += `<table class="conversations-table"><tr><td colspan="4" class="conversation-title">💬 ${title}</td></tr>`;
+        html += `<tr><td class="conv-subheader" style="width:27%;">Speaker A — Deutsch</td><td class="conv-subheader" style="width:23%;">Speaker A — English</td><td class="conv-subheader" style="width:27%;">Speaker B — Deutsch</td><td class="conv-subheader" style="width:23%;">Speaker B — English</td></tr>`;
+        for (let i=0;i<maxRows;i++) {
+            const a=linesA[i]||null, b=linesB[i]||null;
+            html += `<tr><td class="conv-ger-a">${a ? a.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(a.german)}')">🔊</button>` : ''}</td><td class="conv-eng-a">${a?a.english:''}</td><td class="conv-ger-b">${b ? b.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(b.german)}')">🔊</button>` : ''}</td><td class="conv-eng-b">${b?b.english:''}</td></tr>`;
+        }
+        html += `</table>`;
+    });
+    container.innerHTML = html;
+}
+
+function renderQATable() {
+    const qaRows = qaCSV.split('\n').map(l=>l.trim()).filter(l=>l.length>0&&!l.startsWith('//')).map(line => {
+        const fc=line.indexOf(','), sc=line.indexOf(',',fc+1);
+        if (fc===-1||sc===-1) return null;
+        return { level:line.substring(0,fc).trim(), question:line.substring(fc+1,sc).trim(), answer:line.substring(sc+1).trim() };
+    }).filter(r=>r&&(currentLevel==='all'||r.level===currentLevel));
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+    for (let i=0;i<qaRows.length;i+=2) {
+        const r1=qaRows[i], r2=qaRows[i+1]||null;
+        html += `<tr><td class="question-cell">${r1.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.question)}')">🔊</button></td><td class="answer-cell">${r1.answer}</td>`;
+        if (r2) html += `<td class="question-cell">${r2.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.question)}')">🔊</button></td><td class="answer-cell">${r2.answer}</td>`;
+        else html += `<td></td><td></td>`;
+        html += `</tr>`;
+    }
+    if (qaRows.length===0) html=`<tr><td colspan="4" style="text-align:center;color:#999;padding:12px;">No Q&amp;A at ${currentLevel} level</td></tr>`;
+    tbody.innerHTML = html;
+}
+
+function renderSentencesTable() {
+    const sentRows = sentencesCSV.split('\n').map(l=>l.trim()).filter(l=>l.length>0&&!l.startsWith('//')).map(line => {
+        const fc=line.indexOf(','), sc=line.indexOf(',',fc+1);
+        if (fc===-1||sc===-1) return null;
+        return { level:line.substring(0,fc).trim(), german:line.substring(fc+1,sc).trim(), english:line.substring(sc+1).trim() };
+    }).filter(r=>r&&(currentLevel==='all'||r.level===currentLevel));
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+    for (let i=0;i<sentRows.length;i+=2) {
+        const r1=sentRows[i], r2=sentRows[i+1]||null;
+        html += `<tr><td class="german-cell">${r1.german} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.german)}')">🔊</button></td><td class="english-cell">${r1.english}</td>`;
+        if (r2) html += `<td class="german-cell">${r2.german} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.german)}')">🔊</button></td><td class="english-cell">${r2.english}</td>`;
+        else html += `<td></td><td></td>`;
+        html += `</tr>`;
+    }
+    if (sentRows.length===0) html=`<tr><td colspan="4" style="text-align:center;color:#999;padding:12px;">No sentences at ${currentLevel} level</td></tr>`;
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// ============================================
+// TOGGLE CONTROLS PANEL
+// ============================================
+function toggleControls() {
+    const panel = document.getElementById('controlsPanel');
+    const btn   = document.getElementById('controlsToggle');
+    const collapsed = panel.classList.toggle('collapsed');
+    btn.style.display = collapsed ? 'block' : 'none';
+}
+
+function toggleSecondary() {
+    const sec = document.getElementById('secondaryControls');
+    const btn = document.getElementById('secToggleBtn');
+    const open = sec.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.textContent = open ? '⚙ Zoom & Print ▲' : '⚙ Zoom & Print';
+}
+
+// ============================================
+// ZOOM
+// ============================================
+let vocabZoom = 100, phrasesZoom = 100;
+const zoomStep = 10, minZoom = 50, maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    document.getElementById('vocabSection').style.fontSize = `${baseFontSize * vocabZoom / 100}em`;
+    document.getElementById('zoomLevelVocab').textContent = `${vocabZoom}%`;
+}
+function updatePhrasesZoom() {
+    document.getElementById('phrasesSection').style.fontSize = `${baseFontSize * phrasesZoom / 100}em`;
+    document.getElementById('zoomLevelPhrases').textContent = `${phrasesZoom}%`;
+}
+function zoomInVocab()     { if (vocabZoom < maxZoom)   { vocabZoom   += zoomStep; updateVocabZoom(); } }
+function zoomOutVocab()    { if (vocabZoom > minZoom)   { vocabZoom   -= zoomStep; updateVocabZoom(); } }
+function resetZoomVocab()  { vocabZoom = 100;   updateVocabZoom(); }
+function zoomInPhrases()   { if (phrasesZoom < maxZoom) { phrasesZoom += zoomStep; updatePhrasesZoom(); } }
+function zoomOutPhrases()  { if (phrasesZoom > minZoom) { phrasesZoom -= zoomStep; updatePhrasesZoom(); } }
+function resetZoomPhrases(){ phrasesZoom = 100; updatePhrasesZoom(); }
+
+// ============================================
+// KEYBOARD SHORTCUTS
+// ============================================
+document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    const map = { '0': 'all', '1': 'A1', '2': 'A2', '3': 'B1', '4': 'B2' };
+    if (map[e.key]) filterByLevel(map[e.key]);
+    if (e.key === 'p' || e.key === 'P') window.print();
+});
+
+
+document.addEventListener('keydown', e => {
+    if (e.target.tagName==='INPUT'||e.target.tagName==='SELECT') return;
+    const map={'0':'all','1':'A1','2':'A2','3':'B1','4':'B2'};
+    if (map[e.key]) filterByLevel(map[e.key]);
+    if (e.key==='p'||e.key==='P') window.print();
+});
+
+// ============================================
+// SPEECH SYNTHESIS (TTS)
+// ============================================
+let germanVoice = null;
+let currentUtterance = null;
+let isSpeaking = false;
+let isPlayingSequence = false;
+let ttsWarmedUp = false;
+
+function loadVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (!voiceSelect) return;
+    voiceSelect.innerHTML = '';
+    const germanVoices = voices.filter(v => v.lang.startsWith('de'));
+    if (germanVoices.length === 0) {
+        voiceSelect.innerHTML = '<option value="">No German voice – using default</option>';
+        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0] || null;
+    } else {
+        germanVoices.forEach((voice, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = `${voice.name} (${voice.lang})`;
+            voiceSelect.appendChild(option);
+            if (index === 0) germanVoice = voice;
+        });
+    }
+}
+
+if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+}
+setTimeout(loadVoices, 100);
+setTimeout(loadVoices, 600);
+
+document.addEventListener('DOMContentLoaded', function() {
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (voiceSelect) {
+        voiceSelect.addEventListener('change', function(e) {
+            stopAllSpeech();
+            const voices = window.speechSynthesis.getVoices();
+            const germanVoices = voices.filter(v => v.lang.startsWith('de'));
+            germanVoice = germanVoices[parseInt(e.target.value)] || voices[0] || null;
+        });
+    }
+    const speedControl = document.getElementById('speedControl');
+    if (speedControl) {
+        speedControl.addEventListener('input', function(e) {
+            const el = document.getElementById('speedValue');
+            if (el) el.textContent = e.target.value + '×';
+        });
+    }
+});
+
+function warmUpTTS(callback) {
+    if (ttsWarmedUp) { callback(); return; }
+    const primer = new SpeechSynthesisUtterance(' ');
+    primer.volume = 0;
+    primer.lang = 'de-DE';
+    if (germanVoice) primer.voice = germanVoice;
+    primer.onend  = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    primer.onerror = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(primer);
+}
+
+function speak(text, callback) {
+    if (!text || text.trim() === '') { if (callback) callback(); return; }
+    text = text.replace('🔊', '').trim();
+    if (!isPlayingSequence) stopAllSpeech();
+    if (!ttsWarmedUp) {
+        warmUpTTS(() => speakNow(text, callback));
+    } else {
+        window.speechSynthesis.resume();
+        setTimeout(() => speakNow(text, callback), 100);
+    }
+}
+
+function stopAllSpeech() {
+    isPlayingSequence = false;
+    if (typeof speechSynthesis !== 'undefined') window.speechSynthesis.cancel();
+    isSpeaking = false;
+    hideAudioStatus();
+}
+
+function speakNow(text, callback) {
+    if (!('speechSynthesis' in window)) {
+        alert('⚠️ Text-to-speech not supported in this browser.');
+        if (callback) callback();
+        return;
+    }
+    showAudioStatus(text);
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'de-DE';
+    if (germanVoice) utterance.voice = germanVoice;
+    const speedEl = document.getElementById('speedControl');
+    utterance.rate = speedEl ? parseFloat(speedEl.value) : 0.8;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    let hasEnded = false;
+    utterance.onstart = () => { isSpeaking = true; };
+    utterance.onend = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) setTimeout(callback, 100);
+    };
+    utterance.onerror = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) callback();
+    };
+    currentUtterance = utterance;
+    try { window.speechSynthesis.speak(utterance); }
+    catch(e) { isSpeaking = false; hideAudioStatus(); if (callback) callback(); }
+}
+
+function showAudioStatus(text) {
+    const status = document.getElementById('audioStatus');
+    const statusText = document.getElementById('audioStatusText');
+    if (!status || !statusText) return;
+    statusText.textContent = '🔊 ' + (text.length > 40 ? text.substring(0, 40) + '…' : text);
+    status.classList.add('show');
+}
+
+function hideAudioStatus() {
+    setTimeout(() => {
+        const el = document.getElementById('audioStatus');
+        if (el) el.classList.remove('show');
+    }, 300);
+}
+
+function speakNounRow(article, singular, pluralFull) {
+    isPlayingSequence = true;
+    speak(article + ' ' + singular, () => {
+        if (pluralFull && pluralFull !== '---' && pluralFull !== 'kein Plural' && pluralFull !== 'nur P') {
+            setTimeout(() => speak(pluralFull, () => { isPlayingSequence = false; }), 350);
+        } else { isPlayingSequence = false; }
+    });
+}
+
+function speakWord(word) {
+    speak(word.replace(/[*+\-]/g, '').trim());
+}
+
+function speakPair(word1, word2) {
+    isPlayingSequence = true;
+    const w1 = word1.replace(/[*+\-]/g, '').trim();
+    const w2 = word2.replace(/[*+\-]/g, '').trim();
+    speak(w1, () => setTimeout(() => speak(w2, () => { isPlayingSequence = false; }), 800));
+}
+
+function speakText(text) {
+    speak(text);
+}
+
+// ============================================
+// PLAY SECTION — data-driven, column-first order
+// ============================================
+let playAllActive = false;
+let playAllIndex = 0;
+let playAllTexts = [];
+let currentPlaySection = null;
+
+// Collect noun texts for one article group in column-first order:
+// left column (items 0..half-1) then right column (items half..end)
+function collectNounTexts(articleFilter) {
+    const data = parseCSV(nounsCSV).filter(row =>
+        (currentLevel === 'all' || row[0] === currentLevel) &&
+        row[1] === articleFilter
+    );
+    const texts = [];
+    const half = Math.ceil(data.length / 2);
+    function pushNoun(row) {
+        const [lvl, art, ger, pn, pf] = row;
+        texts.push(art + ' ' + ger);
+        if (pf && pf !== '---' && pf !== 'nur P' && pf !== '=' && pf !== 'kein Plural') {
+            texts.push(pf);
+        }
+    }
+    for (let i = 0; i < half; i++)              pushNoun(data[i]);
+    for (let i = half; i < data.length; i++)    pushNoun(data[i]);
+    return texts;
+}
+
+// Collect adjective or verb texts: left column (0..half-1) then right column
+function collectWordTexts(csv) {
+    const data = parseCSV(csv).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const texts = [];
+    const half = Math.ceil(data.length / 2);
+    function pushPair(row) {
+        texts.push(row[1].replace(/[*+\-]/g, '').trim());
+        texts.push(row[3].replace(/[*+\-]/g, '').trim());
+    }
+    for (let i = 0; i < half; i++)              pushPair(data[i]);
+    for (let i = half; i < data.length; i++)    pushPair(data[i]);
+    return texts;
+}
+
+// Collect expression texts: left column (even indices → 0,2,4…) then right column (odd → 1,3,5…)
+function collectExprTexts() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const texts = [];
+    const evens = data.filter((_, i) => i % 2 === 0);
+    const odds  = data.filter((_, i) => i % 2 === 1);
+    [...evens, ...odds].forEach(row => {
+        const [lvl, ger, ...engParts] = row;
+        texts.push(ger);
+    });
+    return texts;
+}
+
+// Collect conversation texts: left col (speaker A lines) then right col (speaker B lines), per conversation
+function collectConvTexts() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+    const convMap = {};
+    const convOrder = [];
+    rawLines.forEach(line => {
+        const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1), fc = line.indexOf(',', sp + 1);
+        if (fp < 0 || sp < 0 || fc < 0) return;
+        const level = line.substring(0, fp).trim();
+        const title = line.substring(fp + 1, sp).trim();
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+        const speaker = line.substring(sp + 1, fc).trim();
+        const rest = line.substring(fc + 1);
+        const sc = rest.indexOf(',');
+        const german = rest.substring(0, sc).trim();
+        const key = level + '|' + title;
+        if (!convMap[key]) { convMap[key] = { A: [], B: [] }; convOrder.push(key); }
+        if (speaker === 'A') convMap[key].A.push(german);
+        else                  convMap[key].B.push(german);
+    });
+    const texts = [];
+    convOrder.forEach(key => {
+        convMap[key].A.forEach(t => texts.push(t));
+        convMap[key].B.forEach(t => texts.push(t));
+    });
+    return texts;
+}
+
+// Collect Q&A texts: left col (questions 0..half-1) then right col (questions half..end)
+function collectQATexts() {
+    const rows = qaCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return { level: line.substring(0, fc).trim(), question: line.substring(fc + 1, sc).trim() };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+    const half = Math.ceil(rows.length / 2);
+    const texts = [];
+    for (let i = 0; i < half; i++)          texts.push(rows[i].question);
+    for (let i = half; i < rows.length; i++) texts.push(rows[i].question);
+    return texts;
+}
+
+// Collect sentence texts: left col (0..half-1) then right col (half..end)
+function collectSentTexts() {
+    const rows = sentencesCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return { level: line.substring(0, fc).trim(), german: line.substring(fc + 1, sc).trim() };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+    const half = Math.ceil(rows.length / 2);
+    const texts = [];
+    for (let i = 0; i < half; i++)          texts.push(rows[i].german);
+    for (let i = half; i < rows.length; i++) texts.push(rows[i].german);
+    return texts;
+}
+
+const sectionBtnIds = {
+    all: 'btnAll', der: 'btnDer', das: 'btnDas', die: 'btnDie',
+    adj: 'btnAdj', verb: 'btnVerb', expr: 'btnExpr',
+    conv: 'btnConv', qa: 'btnQa', sent: 'btnSent'
+};
+
+function setPlayingBtn(section) {
+    Object.entries(sectionBtnIds).forEach(([key, id]) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('playing', key === section);
+    });
+}
+
+function playSection(section) {
+    // Toggle off if already playing this section
+    if (playAllActive && currentPlaySection === section) {
+        stopAllSpeech();
+        playAllActive = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        return;
+    }
+    stopAllSpeech();
+    playAllTexts = [];
+
+    if (section === 'all') {
+        playAllTexts = [
+            ...collectNounTexts('der'),
+            ...collectNounTexts('das'),
+            ...collectNounTexts('die'),
+            ...collectWordTexts(adjectivesCSV),
+            ...collectWordTexts(verbsCSV),
+            ...collectExprTexts(),
+            ...collectConvTexts(),
+            ...collectQATexts(),
+            ...collectSentTexts()
+        ];
+    } else if (section === 'der')  { playAllTexts = collectNounTexts('der'); }
+    else if (section === 'das')  { playAllTexts = collectNounTexts('das'); }
+    else if (section === 'die')  { playAllTexts = collectNounTexts('die'); }
+    else if (section === 'adj')  { playAllTexts = collectWordTexts(adjectivesCSV); }
+    else if (section === 'verb') { playAllTexts = collectWordTexts(verbsCSV); }
+    else if (section === 'expr') { playAllTexts = collectExprTexts(); }
+    else if (section === 'conv') { playAllTexts = collectConvTexts(); }
+    else if (section === 'qa')   { playAllTexts = collectQATexts(); }
+    else if (section === 'sent') { playAllTexts = collectSentTexts(); }
+
+    playAllTexts = playAllTexts.filter(t => t && t.trim());
+    if (playAllTexts.length === 0) return;
+
+    playAllActive = true;
+    playAllIndex = 0;
+    currentPlaySection = section;
+    isPlayingSequence = true;
+    setPlayingBtn(section);
+    playNextInSequence();
+}
+
+function playNextInSequence() {
+    if (!playAllActive || playAllIndex >= playAllTexts.length) {
+        playAllActive = false;
+        isPlayingSequence = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        return;
+    }
+    const text = playAllTexts[playAllIndex++];
+    speak(text, () => setTimeout(playNextInSequence, 500));
+}
+
+// Helper: escape text for HTML attribute
+function escAttr(s) {
+    return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
+// ============================================
+// INITIALIZE
+// ============================================
+
+window.addEventListener('load', function() {
+    updateVocabZoom(); updatePhrasesZoom();
+    renderNounsTable(); renderWordsTable(); renderExpressionsTable();
+    renderConversations(); renderQATable(); renderSentencesTable();
+});
+    </script>
+    <div class="audio-status" id="audioStatus">
+        <div class="spinner"></div>
+        <span id="audioStatusText">Speaking…</span>
+    </div>
+</body>
+</html>

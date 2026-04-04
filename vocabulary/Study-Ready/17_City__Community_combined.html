@@ -1,0 +1,2208 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary - 17: City & Community</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           FIXED CONTROLS (screen only) — compact unified panel
+        ============================================ */
+        .controls {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1000;
+            max-width: 520px;
+        }
+
+        /* main dark pill wrapping level + audio */
+        .controls-main {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 7px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+        }
+
+        /* top bar: level filter + close btn */
+        .controls-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: nowrap;
+        }
+
+        .filter-label {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+
+        .level-btn {
+            border: 2px solid transparent;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.72em;
+            font-weight: 700;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.15s ease;
+        }
+        .level-btn:hover { opacity: 0.85; }
+        .level-btn.active { opacity: 1; border-color: white; }
+        .level-btn[data-level="all"] { background: #764ba2; color: white; }
+        .level-btn[data-level="A1"]  { background: #4CAF50; color: white; }
+        .level-btn[data-level="A2"]  { background: #2196F3; color: white; }
+        .level-btn[data-level="B1"]  { background: #FF9800; color: white; }
+        .level-btn[data-level="B2"]  { background: #F44336; color: white; }
+
+        .filter-count {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            margin-left: 2px;
+        }
+
+        /* close button — inline in top bar */
+        .controls-close {
+            margin-left: auto;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.55);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 4px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .controls-close:hover { background: rgba(255,255,255,0.18); color: white; }
+
+        /* ============================================
+           COLLAPSED TOGGLE BUTTON (when panel is hidden)
+        ============================================ */
+        .controls-toggle {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 1001;
+            background: #1a1a1a;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.78em;
+            cursor: pointer;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            display: none;
+        }
+        .controls-toggle:hover { background: #333; }
+        .controls.collapsed { display: none !important; }
+        .controls.collapsed + .controls-toggle,
+        body.controls-hidden .controls-toggle { display: block; }
+
+        /* ============================================
+           AUDIO PANEL (inside controls-main)
+        ============================================ */
+        .audio-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .audio-row-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .audio-panel-title {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+        .audio-panel label {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.68em;
+            white-space: nowrap;
+        }
+        .audio-panel select {
+            font-size: 0.68em;
+            padding: 2px 5px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #2a2a2a;
+            color: rgba(255,255,255,0.85);
+            cursor: pointer;
+            max-width: 130px;
+        }
+        .audio-panel input[type=range] {
+            width: 60px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+        .speed-val {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.68em;
+            min-width: 26px;
+        }
+        .play-all-btn {
+            background: linear-gradient(135deg, #DD0000, #FFCE00);
+            color: white;
+            border: none;
+            padding: 4px 11px;
+            border-radius: 10px;
+            font-size: 0.72em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .play-all-btn:hover { opacity: 0.85; }
+        .audio-row-sections {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .audio-section-label {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.35);
+            white-space: nowrap;
+        }
+        .audio-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.75em;
+        }
+        .section-play-btn {
+            background: #242424;
+            color: rgba(255,255,255,0.55);
+            border: 1px solid #3a3a3a;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.67em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        .section-play-btn:hover { background: #3a3a3a; color: white; }
+        .section-play-btn.playing { background: #667eea; color: white; border-color: #667eea; }
+        .section-play-btn[data-art="der"] { color: #90CAF9; }
+        .section-play-btn[data-art="das"] { color: #A5D6A7; }
+        .section-play-btn[data-art="die"] { color: #EF9A9A; }
+
+        .audio-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 0.78em;
+            padding: 0 2px;
+            opacity: 0.45;
+            transition: opacity 0.2s;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .audio-btn:hover { opacity: 1; }
+
+        /* ============================================
+           ZOOM + PRINT — collapsible (collapsed by default)
+        ============================================ */
+        .secondary-controls-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sec-toggle-btn {
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.45);
+            border: none;
+            padding: 2px 9px;
+            font-size: 0.67em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.15s;
+        }
+        .sec-toggle-btn:hover { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.8); }
+        .sec-toggle-btn.open { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.1); }
+
+        .secondary-controls {
+            display: none;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding-top: 4px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .secondary-controls.open { display: flex; }
+
+        /* compact zoom row */
+        .zoom-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .zoom-label {
+            font-size: 0.67em;
+            color: rgba(255,255,255,0.45);
+            white-space: nowrap;
+        }
+        .zoom-btn {
+            background: #333;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.8em;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .zoom-btn:hover { background: #555; }
+        .zoom-level {
+            font-weight: bold;
+            font-size: 0.68em;
+            color: rgba(255,255,255,0.65);
+            min-width: 30px;
+            text-align: center;
+        }
+        .zoom-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.8em;
+        }
+        .print-button {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: auto;
+        }
+        .print-button:hover { background: rgba(255,255,255,0.2); color: white; }
+
+        /* ============================================
+           AUDIO STATUS TOAST
+        ============================================ */
+        .audio-status {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            background: #667eea;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            gap: 8px;
+            z-index: 2000;
+            font-size: 0.82em;
+        }
+        .audio-status.show { display: flex; }
+        .audio-status .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            flex-shrink: 0;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+
+        /* ============================================
+           LEVEL BADGE (appears inside article cell)
+        ============================================ */
+        .lvl-badge {
+            display: inline-block;
+            font-size: 0.62em;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+            vertical-align: middle;
+            margin-left: 2px;
+            line-height: 1.4;
+        }
+        .lvl-badge.A1 { background: #C8E6C9; color: #1B5E20; }
+        .lvl-badge.A2 { background: #BBDEFB; color: #0D47A1; }
+        .lvl-badge.B1 { background: #FFE0B2; color: #E65100; }
+        .lvl-badge.B2 { background: #FFCDD2; color: #B71C1C; }
+
+        /* ============================================
+           PAGE HEADER
+        ============================================ */
+        .content-wrapper { max-width: 100%; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* ============================================
+           SECTION DIVIDER
+        ============================================ */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* ============================================
+           TABLE SECTION HEADERS
+        ============================================ */
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* ============================================
+           NOUN TABLE — 8 columns, article colors
+        ============================================ */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f0f0f0;
+            text-align: center;
+            font-weight: bold;
+            color: #555;
+            padding: 3px;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 6%;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 18%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 18%;
+        }
+
+        /* ARTICLE ROW COLORS */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ARTICLE TEXT COLORS */
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* NOUN TABLE COLGROUP widths */
+        .noun-col-art    { width: 6%; }
+        .noun-col-german { width: 18%; }
+        .noun-col-plural { width: 8%; }
+        .noun-col-eng    { width: 18%; }
+
+        /* ============================================
+           WORD TABLE (ADJ + VERB) — 8 columns
+        ============================================ */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col  { font-weight: 600; width: 15%; }
+        .word-table .english-col { color: #333; width: 10%; }
+
+        /* ADJECTIVE rows — warm yellow */
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* VERB rows — light blue */
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           EXPRESSIONS TABLE — 4 columns
+        ============================================ */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+            color: #000;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 22%;
+            font-style: italic;
+        }
+
+        /* ============================================
+           CONVERSATIONS TABLE — compact 4-col layout
+        ============================================ */
+        .conversations-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #667eea !important;
+            color: white !important;
+            font-weight: bold;
+            padding: 6px 8px;
+            font-size: 0.95em;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .conv-subheader {
+            background: #e8eaf6 !important;
+            font-weight: 700;
+            font-size: 0.78em;
+            color: #3949ab;
+            padding: 3px 6px;
+            border: 1px solid #c5cae9;
+            text-align: center;
+            letter-spacing: 0.3px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-a {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-a {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-b {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-b {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           Q&A TABLE — 4 columns
+        ============================================ */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            color: #1a237e;
+            width: 28%;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 22%;
+        }
+
+        /* ============================================
+           SENTENCES TABLE — 4 columns
+        ============================================ */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            font-style: italic;
+            width: 22%;
+        }
+
+        /* ============================================
+           FOOTER INFO
+        ============================================ */
+        .footer-info {
+            margin-top: 20px;
+            padding: 12px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.85em;
+            line-height: 1.8;
+        }
+
+        .footer-info h3 { margin-bottom: 6px; }
+
+        /* ============================================
+           PRINT STYLES
+        ============================================ */
+        @media print {
+            .controls          { display: none !important; }
+            .controls-toggle   { display: none !important; }
+            .level-filter-bar  { display: none !important; }
+            .audio-panel       { display: none !important; }
+            .audio-status      { display: none !important; }
+            .audio-btn         { display: none !important; }
+            .section-play-btn  { display: none !important; }
+            .footer-info       { display: none !important; }
+
+            body { padding: 0; font-size: 0.7em; }
+
+            .section-divider { page-break-before: always; }
+            .table-section { page-break-inside: auto; }
+            .noun-table, .word-table, .expressions-table,
+            .conversations-table, .qa-table, .sentences-table {
+                font-size: 1em;
+            }
+        }
+
+        @media screen {
+            body { padding-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         FIXED CONTROLS (screen only)
+    ============================================ -->
+    <button class="controls-toggle" id="controlsToggle" onclick="toggleControls()">⚙ Controls</button>
+    <div class="controls" id="controlsPanel">
+        <div class="controls-main">
+
+            <!-- Row 1: Level filter + close -->
+            <div class="controls-top">
+                <span class="filter-label">🎯</span>
+                <button class="level-btn active" data-level="all" onclick="filterByLevel('all')">All</button>
+                <button class="level-btn" data-level="A1"  onclick="filterByLevel('A1')">A1</button>
+                <button class="level-btn" data-level="A2"  onclick="filterByLevel('A2')">A2</button>
+                <button class="level-btn" data-level="B1"  onclick="filterByLevel('B1')">B1</button>
+                <button class="level-btn" data-level="B2"  onclick="filterByLevel('B2')">B2</button>
+                <span class="filter-count" id="filterCount"></span>
+                <button class="controls-close" onclick="toggleControls()">✕</button>
+            </div>
+
+            <!-- Row 2: Audio controls -->
+            <div class="audio-panel">
+                <div class="audio-row-top">
+                    <span class="audio-panel-title">🔊</span>
+                    <label for="voiceSelect">Voice:</label>
+                    <select id="voiceSelect"><option value="">Loading…</option></select>
+                    <label for="speedControl">Speed:</label>
+                    <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+                    <span class="speed-val" id="speedValue">0.8×</span>
+                    <button class="play-all-btn" id="btnAll" onclick="playSection('all')">▶ All</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnDer" data-art="der" onclick="playSection('der')">▶ der</button>
+                    <button class="section-play-btn" id="btnDas" data-art="das" onclick="playSection('das')">▶ das</button>
+                    <button class="section-play-btn" id="btnDie" data-art="die" onclick="playSection('die')">▶ die</button>
+                    <span class="audio-sep">|</span>
+                    <button class="section-play-btn" id="btnAdj" onclick="playSection('adj')">▶ Adj</button>
+                    <button class="section-play-btn" id="btnVerb" onclick="playSection('verb')">▶ Verbs</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnExpr" onclick="playSection('expr')">▶ Expr</button>
+                    <button class="section-play-btn" id="btnConv" onclick="playSection('conv')">▶ Conv</button>
+                    <button class="section-play-btn" id="btnQa" onclick="playSection('qa')">▶ Q&amp;A</button>
+                    <button class="section-play-btn" id="btnSent" onclick="playSection('sent')">▶ Sent</button>
+                </div>
+            </div>
+
+            <!-- Row 3: Zoom & Print toggle -->
+            <div class="secondary-controls-toggle">
+                <button class="sec-toggle-btn" id="secToggleBtn" onclick="toggleSecondary()">⚙ Zoom &amp; Print</button>
+            </div>
+            <div class="secondary-controls" id="secondaryControls">
+                <div class="zoom-row">
+                    <span class="zoom-label">📚 Vocab:</span>
+                    <button class="zoom-btn" onclick="zoomOutVocab()">−</button>
+                    <span class="zoom-level" id="zoomLevelVocab">100%</span>
+                    <button class="zoom-btn" onclick="zoomInVocab()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomVocab()">⟲</button>
+                </div>
+                <span class="zoom-sep">|</span>
+                <div class="zoom-row">
+                    <span class="zoom-label">💬 Phrases:</span>
+                    <button class="zoom-btn" onclick="zoomOutPhrases()">−</button>
+                    <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+                    <button class="zoom-btn" onclick="zoomInPhrases()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomPhrases()">⟲</button>
+                </div>
+                <button class="print-button" onclick="window.print()">🖨️ Print</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================
+         DOCUMENT HEADER
+    ============================================ -->
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 17: City & Community</h1>
+            <p style="font-size:0.75em; color:#555;">Personal Information & Identity · A1–B2 Level-Tagged Reference · aliattia02</p>
+        </div>
+
+        <!-- ============================================
+             VOCABULARY SECTION
+        ============================================ -->
+        <div id="vocabSection">
+
+            <!-- TABLE 1: NOUNS -->
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col class="noun-col-art">
+                        <col class="noun-col-german">
+                        <col class="noun-col-plural">
+                        <col class="noun-col-eng">
+                        <col class="noun-col-art">
+                        <col class="noun-col-german">
+                        <col class="noun-col-plural">
+                        <col class="noun-col-eng">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural ±</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural ±</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives &amp; Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES &amp; SENTENCES</h2>
+        </div>
+
+        <!-- ============================================
+             PHRASES SECTION
+        ============================================ -->
+        <div id="phrasesSection">
+
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions &amp; Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Topic:</strong> Home &amp; Living / Personal Information &amp; Identity &nbsp;|&nbsp; <strong>Created:</strong> 2025 — aliattia02</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Full form shown = umlaut change | --- = no change | nur P = plural only | = = no change</p>
+            <p><strong>Color Coding:</strong>
+                <span style="color:#1565C0; font-weight:bold;">■ der (blue)</span> &nbsp;
+                <span style="color:#2E7D32; font-weight:bold;">■ das (green)</span> &nbsp;
+                <span style="color:#C62828; font-weight:bold;">■ die (red)</span> &nbsp;|&nbsp;
+                Adjective rows: <span style="background:#FFF8E1; padding:1px 6px; border:1px solid #ddd;">yellow</span> &nbsp;
+                Verb rows: <span style="background:#E1F5FE; padding:1px 6px; border:1px solid #ddd;">blue</span>
+            </p>
+            <p><strong>Prefix Guide:</strong> - = Adjective &nbsp;|&nbsp; * = Weak Verb (regular) &nbsp;|&nbsp; + = Strong Verb (irregular)</p>
+            <p><strong>Levels:</strong>
+                <span class="lvl-badge A1">A1</span> Beginner &nbsp;
+                <span class="lvl-badge A2">A2</span> Elementary &nbsp;
+                <span class="lvl-badge B1">B1</span> Intermediate &nbsp;
+                <span class="lvl-badge B2">B2</span> Upper Intermediate
+            </p>
+        </div>
+    </div>
+
+    <div class="audio-status" id="audioStatus">
+        <div class="spinner"></div>
+        <span id="audioStatusText">Speaking…</span>
+    </div>
+
+    <script>
+
+// ============================================
+// ⭐ VOCABULARY DATA
+// ============================================
+
+const nounsCSV = `
+// das — cluster: urban districts & zones
+A1,das,Dorf,Dörfer,die Dörfer,Village
+A2,das,Viertel,=,die Viertel,Quarter
+A2,das,Quartier,-e,die Quartiere,Neighbourhood
+A2,das,Stadtgebiet,-e,die Stadtgebiete,City area
+B1,das,Stadtviertel,=,die Stadtviertel,City district
+B1,das,Wohnviertel,=,die Wohnviertel,Residential quarter
+B2,das,Geschäftsviertel,=,die Geschäftsviertel,Business district
+B2,das,Gewerbegebiet,-e,die Gewerbegebiete,Commercial zone
+// das — cluster: buildings & structures
+A1,das,Gebäude,=,die Gebäude,Building
+A2,das,Hochhaus,Hochhäuser,die Hochhäuser,High-rise building
+A2,das,Wohnhaus,Wohnhäuser,die Wohnhäuser,Residential building
+B1,das,Wohngebiet,-e,die Wohngebiete,Residential zone
+B2,das,Gemeinschaftszentrum,-zentren,die Gemeinschaftszentren,Community centre
+// das — cluster: civic institutions
+A2,das,Rathaus,Rathäuser,die Rathäuser,Town hall
+B1,das,Ordnungsamt,-ämter,die Ordnungsämter,Public order office
+B1,das,Bürgerzentrum,-zentren,die Bürgerzentren,Civic centre
+// das — cluster: infrastructure & utilities
+B1,das,Wasserwerk,-e,die Wasserwerke,Waterworks
+B2,das,Kraftwerk,-e,die Kraftwerke,Power station
+B2,das,Klärwerk,-e,die Klärwerke,Sewage works
+// der — cluster: city areas & zones
+A2,der,Vorort,-e,die Vororte,Suburb
+A2,der,Bezirk,-e,die Bezirke,Borough
+B1,der,Stadtrand,-ränder,die Stadtränder,Outskirts
+B2,der,Ballungsraum,-räume,die Ballungsräume,Conurbation
+// der — cluster: public spaces & amenities
+A1,der,Park,-s,die Parks,Park
+A1,der,Marktplatz,Marktplätze,die Marktplätze,Market square
+A2,der,Spielplatz,Spielplätze,die Spielplätze,Playground
+A2,der,Brunnen,=,die Brunnen,Fountain
+A2,der,Flohmarkt,Flohmärkte,die Flohmärkte,Flea market
+B1,der,Gehweg,-e,die Gehwege,Pavement
+B2,der,Springbrunnen,=,die Springbrunnen,Ornamental fountain
+// der — cluster: residents & community roles
+A1,der,Nachbar,-n,die Nachbarn,Neighbour
+A2,der,Einwohner,=,die Einwohner,Resident
+A2,der,Jugendclub,-s,die Jugendclubs,Youth club
+B1,der,Stadtbewohner,=,die Stadtbewohner,City dweller
+B1,der,Obdachlose,-n,die Obdachlosen,Homeless person
+B2,der,Pendler,=,die Pendler,Commuter
+// der — cluster: governance roles
+A2,der,Bürgermeister,=,die Bürgermeister,Mayor
+B1,der,Stadtrat,-räte,die Stadträte,City councillor
+B1,der,Bezirksrat,-räte,die Bezirksräte,District councillor
+B2,der,Oberbürgermeister,=,die Oberbürgermeister,Lord mayor
+// der — cluster: emergency services & infrastructure
+A2,der,Krankenwagen,=,die Krankenwagen,Ambulance
+A2,der,Feuerwehrmann,Feuerwehrmänner,die Feuerwehrmänner,Firefighter
+A2,der,Kanal,Kanäle,die Kanäle,Canal
+B1,der,Rettungsdienst,-e,die Rettungsdienste,Emergency service
+// der — cluster: urban issues & environment
+A2,der,Lärm,---,---,Noise
+B1,der,Smog,---,---,Smog
+B2,der,Leerstand,---,---,Vacancy
+// die — cluster: city types
+A1,die,Großstadt,Großstädte,die Großstädte,City
+A1,die,Kleinstadt,Kleinstädte,die Kleinstädte,Small town
+A2,die,Innenstadt,Innenstädte,die Innenstädte,City centre
+B1,die,Neustadt,Neustädte,die Neustädte,New town
+B1,die,Siedlung,-en,die Siedlungen,Housing estate
+B2,die,Metropole,-n,die Metropolen,Metropolis
+// die — cluster: places of worship & memorials
+A1,die,Kirche,-n,die Kirchen,Church
+A2,die,Moschee,-n,die Moscheen,Mosque
+A2,die,Synagoge,-n,die Synagogen,Synagogue
+B1,die,Kathedrale,-n,die Kathedralen,Cathedral
+B2,die,Gedenkstätte,-n,die Gedenkstätten,Memorial site
+// die — cluster: public services & safety
+A2,die,Klinik,-en,die Kliniken,Clinic
+A2,die,Müllabfuhr,---,---,Rubbish collection
+B1,die,Feuerwache,-n,die Feuerwachen,Fire station
+B1,die,Polizeiwache,-n,die Polizeiwachen,Police station
+// die — cluster: cultural & educational institutions
+A2,die,Stadtbibliothek,-en,die Stadtbibliotheken,City library
+B1,die,Volkshochschule,-n,die Volkshochschulen,Adult education centre
+B2,die,Galerie,-n,die Galerien,Gallery
+// die — cluster: technical infrastructure
+B1,die,Kanalisation,---,---,Sewage system
+B1,die,Wasserversorgung,---,---,Water supply
+B2,die,Fernwärme,---,---,District heating
+B2,die,Infrastruktur,---,---,Infrastructure
+// die — cluster: urban planning
+A2,die,Stadtplanung,---,---,Urban planning
+B1,die,Baugenehmigung,-en,die Baugenehmigungen,Planning permission
+B1,die,Stadtentwicklung,---,---,Urban development
+B2,die,Flächennutzung,---,---,Land use
+// die — cluster: community & civic life
+A1,die,Gemeinschaft,-en,die Gemeinschaften,Community
+A2,die,Bevölkerung,---,---,Population
+A2,die,Nachbarschaftshilfe,---,---,Neighbourhood support
+B1,die,Bürgerschaft,-en,die Bürgerschaften,Citizenry
+B1,die,Bürgerinitiative,-n,die Bürgerinitiativen,Civic initiative
+B1,die,Versammlung,-en,die Versammlungen,Assembly
+B2,die,Bürgerpartizipation,---,---,Civic participation
+// die — cluster: social challenges
+B1,die,Obdachlosigkeit,---,---,Homelessness
+B1,die,Integration,---,---,Integration
+B2,die,Gentrifizierung,---,---,Gentrification
+B2,die,Stadtflucht,---,---,Urban exodus
+// die — cluster: public amenities & greenery
+A1,die,Mülltonne,-n,die Mülltonnen,Wheelie bin
+A2,die,Straßenlaterne,-n,die Straßenlaternen,Street lamp
+B1,die,Parkanlage,-n,die Parkanlagen,Public park
+B2,die,Grünfläche,-n,die Grünflächen,Green space
+`.trim();
+
+const adjectivesCSV = `
+// cluster: urban atmosphere & character
+A1,-lebhaft,lively,-still,quiet
+A1,-vielfältig,diverse,-einheitlich,uniform
+A2,-lebendig,vibrant,-trist,dreary
+A2,-anonym,anonymous,-familiär,familiar
+B1,-historisch,historic,-zeitgenössisch,contemporary
+B2,-kosmopolitisch,cosmopolitan,-kleinstädtisch,small-town
+// cluster: social & community life
+A1,-sozial,social,-asozial,antisocial
+A1,-nachbarschaftlich,neighbourly,-fremd,unfamiliar
+A2,-inklusiv,inclusive,-exklusiv,exclusive
+A2,-multikulturell,multicultural,-homogen,homogeneous
+B1,-solidarisch,community-minded,-individualistisch,individualistic
+B2,-gentrifiziert,gentrified,-segregiert,segregated
+// cluster: accessibility & connectivity
+A1,-zugänglich,accessible,-unzugänglich,inaccessible
+A2,-vernetzt,well-connected,-abgeschnitten,cut off
+B1,-fußgängerfreundlich,pedestrian-friendly,-autogerecht,car-centric
+B2,-dezentralisiert,decentralised,-zentralisiert,centralised
+// cluster: civic governance & ownership
+A2,-gewählt,elected,-ernannt,appointed
+A2,-wohlhabend,affluent,-ärmlich,impoverished
+B1,-demokratisch,democratic,-autoritär,authoritarian
+B1,-gemeinnützig,non-profit,-gewinnorientiert,profit-driven
+B2,-transparent,transparent,-undurchsichtig,opaque
+B2,-partizipativ,participatory,-repräsentativ,representative
+// cluster: urban development & economy
+A2,-aufstrebend,up-and-coming,-stagnierend,stagnating
+B1,-lebenswert,liveable,-unwirtlich,inhospitable
+B1,-bürgerfreundlich,citizen-friendly,-bürgerfern,out of touch with citizens
+B2,-strukturschwach,economically weak,-strukturstark,economically strong
+`.trim();
+
+const verbsCSV = `
+// cluster: everyday community life
+A1,*mitmachen,join in,*beitragen,contribute
+A1,*spazieren,stroll,*beobachten,observe
+A1,*feiern,celebrate,*einladen,invite
+// cluster: civic participation & voting
+A2,*wählen,vote,*abstimmen,ballot
+A2,*engagieren,get involved,*partizipieren,participate
+A2,*begegnen,encounter,*versammeln,gather
+A2,*ansiedeln,settle,*wegziehen,move away
+A2,*spenden,donate,*stiften,endow
+// cluster: urban development & construction
+A2,*bauen,build,*errichten,construct
+B1,*erschließen,develop land,*aufwerten,upgrade
+B1,*erneuern,renew,*bewahren,preserve
+B1,*subventionieren,subsidise,*privatisieren,privatise
+// cluster: public services & digital transformation
+A2,*reinigen,clean,*entsorgen,dispose of
+B1,*digitalisieren,digitalise,*ausbauen,expand
+B1,*aufklären,inform,*sensibilisieren,raise awareness
+// cluster: civic mobilisation & representation
+B1,*mobilisieren,mobilise,*einsetzen,advocate for
+B1,*ausschließen,exclude,*einbeziehen,include
+B1,*konsultieren,consult,*petitionieren,petition
+// cluster: protest & social change
+B2,*protestieren,protest,*demonstrieren,demonstrate
+B2,*segregieren,segregate,*assimilieren,assimilate
+B2,*verdrängen,displace,*umstrukturieren,restructure
+B2,*beschließen,resolve,*durchsetzen,enforce
+`.trim();
+
+const expressionsCSV = `
+// cluster: talking about the neighbourhood
+A1,Ich wohne in einer Großstadt.,I live in a city.
+A1,Unser Viertel ist sehr schön.,Our neighbourhood is very nice.
+A1,In der Nähe gibt es einen Park.,There is a park nearby.
+A1,Die Kirche ist gleich um die Ecke.,The church is just around the corner.
+A1,Mein Nachbar ist sehr nett.,My neighbour is very nice.
+A2,Hier gibt es viele Grünflächen.,There are many green spaces here.
+A2,Das Rathaus ist montags geschlossen.,The town hall is closed on Mondays.
+A2,Die Müllabfuhr kommt jeden Dienstag.,The rubbish collection comes every Tuesday.
+// cluster: civic services & participation
+A2,Wo ist die nächste Polizeiwache?,Where is the nearest police station?
+A2,Ich bin in der Bürgerinitiative aktiv.,I am active in the civic initiative.
+A2,Der Bürgermeister spricht auf dem Marktplatz.,The mayor is speaking at the market square.
+B1,Wir organisieren eine Bürgerversammlung.,We are organising a citizens' assembly.
+B1,Die Bürgerinitiative kämpft gegen den Neubau.,The civic initiative is fighting against the new development.
+B1,Im Viertel fehlt es an bezahlbarem Wohnraum.,The neighbourhood lacks affordable housing.
+B1,Die Stadtentwicklung vernachlässigt sozial schwache Viertel.,Urban development is neglecting disadvantaged areas.
+// cluster: urban issues
+A2,Der Lärm aus der Innenstadt ist oft zu laut.,The noise from the city centre is often too loud.
+A2,Viele Menschen ziehen vom Dorf in die Großstadt.,Many people move from the village to the city.
+B1,Das Viertel wird zunehmend gentrifiziert.,The neighbourhood is increasingly being gentrified.
+B1,Die Obdachlosigkeit in der Innenstadt nimmt zu.,Homelessness in the city centre is increasing.
+B2,Der Leerstand in der Innenstadt schadet dem Stadtbild.,Vacant properties in the city centre harm the urban image.
+B2,Die Stadtflucht gefährdet die Infrastruktur kleiner Gemeinden.,Urban exodus threatens the infrastructure of small municipalities.
+// cluster: community spirit
+A1,Wir helfen unseren Nachbarn gerne.,We are happy to help our neighbours.
+A2,Unser Stadtviertel ist sehr multikulturell.,Our city district is very multicultural.
+B1,Ein lebendiges Viertel lebt von seinen Bewohnern.,A lively neighbourhood lives through its residents.
+B2,Bürgerpartizipation ist ein Grundpfeiler der Demokratie.,Civic participation is a cornerstone of democracy.
+// cluster: urban planning
+B1,Die Baugenehmigung wurde vom Stadtrat abgelehnt.,The planning permission was rejected by the city council.
+B2,Die Stadt plant den Bau neuer Sozialwohnungen.,The city is planning to build new social housing.
+B2,Nachhaltige Stadtentwicklung berücksichtigt soziale und ökologische Aspekte.,Sustainable urban development considers social and ecological aspects.
+B2,Das Klärwerk muss dringend modernisiert werden.,The sewage works urgently need to be modernised.
+`.trim();
+
+// ============================================
+// CONVERSATIONS DATA
+// format: level|Title|Speaker,german,english
+// ============================================
+const conversationsCSV = `
+A1|Im Park|A,Guten Morgen! Wohnen Sie auch in diesem Viertel?,Good morning! Do you also live in this neighbourhood?
+A1|Im Park|B,Ja ich wohne seit drei Jahren hier. Und Sie?,Yes I have lived here for three years. And you?
+A1|Im Park|A,Ich bin neu hier. Wo ist der Supermarkt?,I am new here. Where is the supermarket?
+A1|Im Park|B,Geradeaus und dann links neben der Kirche.,Straight ahead and then left next to the church.
+A1|Im Park|A,Danke. Gibt es hier auch eine Bibliothek?,Thank you. Is there also a library here?
+A1|Im Park|B,Ja die Stadtbibliothek ist am Marktplatz.,Yes the city library is at the market square.
+A1|Im Park|A,Ist das Viertel hier ruhig?,Is the neighbourhood quiet here?
+A1|Im Park|B,Meistens ja. Nur freitags ist der Flohmarkt sehr laut.,Mostly yes. Only on Fridays the flea market is very loud.
+A1|Im Park|A,Das klingt gut. Ich freue mich auf die Nachbarschaft.,That sounds good. I look forward to the neighbourhood.
+A1|Im Park|B,Herzlich willkommen im Viertel!,Welcome to the neighbourhood!
+A2|Neues im Viertel|A,Hast du gehört? Sie bauen ein neues Hochhaus am Spielplatz.,Did you hear? They are building a new high-rise next to the playground.
+A2|Neues im Viertel|B,Das kann nicht wahr sein! Wo sollen die Kinder dann spielen?,That cannot be true! Where are the children supposed to play then?
+A2|Neues im Viertel|A,Genau das frage ich mich auch. Weißt du ob eine Baugenehmigung vorliegt?,That is exactly what I am wondering too. Do you know if there is planning permission?
+A2|Neues im Viertel|B,Laut Stadtzeitung hat das Ordnungsamt bereits zugestimmt.,According to the city newspaper the public order office has already agreed.
+A2|Neues im Viertel|A,Das ist unglaublich. Der Lärm wird enorm sein.,That is unbelievable. The noise will be enormous.
+A2|Neues im Viertel|B,Ich schlage vor wir schreiben einen Brief an den Bürgermeister.,I suggest we write a letter to the mayor.
+A2|Neues im Viertel|A,Gute Idee. Viele Einwohner werden sicher unterschreiben.,Good idea. Many residents will certainly sign it.
+A2|Neues im Viertel|B,Und wir könnten auch eine Bürgerversammlung organisieren.,And we could also organise a citizens' assembly.
+A2|Neues im Viertel|A,Super. Ich spreche morgen mit der Bürgerinitiative.,Great. I will speak with the civic initiative tomorrow.
+A2|Neues im Viertel|B,Gut. Zusammen können wir etwas bewegen.,Good. Together we can make a difference.
+B1|Bürgerinitiative|A,Wir müssen dringend über die Gentrifizierung in unserem Viertel reden.,We urgently need to talk about gentrification in our neighbourhood.
+B1|Bürgerinitiative|B,Ja viele alte Einwohner werden verdrängt weil die Mieten explodieren.,Yes many long-standing residents are being displaced because rents are skyrocketing.
+B1|Bürgerinitiative|A,Und gleichzeitig steigt die Obdachlosigkeit in der Innenstadt.,And at the same time homelessness is increasing in the city centre.
+B1|Bürgerinitiative|B,Wir sollten fordern dass der Stadtrat mehr Sozialwohnungen baut.,We should demand that the city council builds more social housing.
+B1|Bürgerinitiative|A,Außerdem müssen wir die Stadtentwicklung transparenter gestalten.,Furthermore we need to make urban development more transparent.
+B1|Bürgerinitiative|B,Stimmt. Bürger sollten bei Planungsentscheidungen mitbestimmen dürfen.,Agreed. Citizens should be allowed to have a say in planning decisions.
+B1|Bürgerinitiative|A,Ich schlage vor dass wir eine Petition beim Bezirksrat einreichen.,I suggest we submit a petition to the district council.
+B1|Bürgerinitiative|B,Gut. Und wir sollten alle Stadtbewohner zur Versammlung nächste Woche einladen.,Good. And we should invite all city residents to the assembly next week.
+B1|Bürgerinitiative|A,Ich übernehme die Koordination der Einladungen.,I will take on the coordination of the invitations.
+B1|Bürgerinitiative|B,Danke. Gemeinsam können wir die Stadtentwicklung mitgestalten.,Thank you. Together we can help shape urban development.
+B2|Stadtratsdebatte|A,Meine Damen und Herren wir diskutieren heute den Flächennutzungsplan für den Stadtrand.,Ladies and gentlemen today we are discussing the land use plan for the outskirts.
+B2|Stadtratsdebatte|B,Ich beantrage dass wir das Gewerbegebiet im Norden zugunsten von Grünflächen reduzieren.,I move that we reduce the commercial zone in the north in favour of green spaces.
+B2|Stadtratsdebatte|A,Das würde zwar dem Stadtbild zugutekommen aber Arbeitsplätze kosten.,That would benefit the urban landscape but would cost jobs.
+B2|Stadtratsdebatte|B,Eine lebenswerte Metropole braucht beides: wirtschaftliche Stärke und ökologische Qualität.,A liveable metropolis needs both: economic strength and ecological quality.
+B2|Stadtratsdebatte|A,Der Stadtrat muss auch die Bürgerpartizipation stärken.,The city council must also strengthen civic participation.
+B2|Stadtratsdebatte|B,Stimmt. Partizipative Prozesse erhöhen die Akzeptanz von Planungsentscheidungen.,Agreed. Participatory processes increase acceptance of planning decisions.
+B2|Stadtratsdebatte|A,Ich schlage vor wir dezentralisieren Entscheidungen stärker auf Bezirksebene.,I propose we decentralise decisions more to district level.
+B2|Stadtratsdebatte|B,Das halte ich für sinnvoll. Bürgernähe ist ein demokratischer Kernwert.,I consider that sensible. Proximity to citizens is a core democratic value.
+B2|Stadtratsdebatte|A,Dann beschließen wir heute Abend die Einrichtung eines Bürgerforums.,Then we will resolve this evening to establish a citizens' forum.
+B2|Stadtratsdebatte|B,Sehr gut. Transparenz und Dialog stärken die Demokratie auf kommunaler Ebene.,Very good. Transparency and dialogue strengthen democracy at local level.
+`.trim();
+
+const qaCSV = `
+// cluster: basic city & community vocab
+A1,Was ist eine Großstadt?,Eine Großstadt ist eine sehr große Stadt mit vielen Einwohnern. (A large city with many residents.)
+A1,Was ist ein Dorf?,Ein Dorf ist eine kleine Ortschaft auf dem Land. (A small settlement in the countryside.)
+A1,Was ist eine Gemeinschaft?,Eine Gemeinschaft ist eine Gruppe von Menschen die zusammenleben. (A group of people living together.)
+A1,Was macht ein Nachbar?,Ein Nachbar wohnt in der gleichen Straße oder im gleichen Haus. (A neighbour lives on the same street or in the same building.)
+A1,Was ist ein Park?,Ein Park ist eine Grünfläche in der Stadt zum Erholen. (A green space in the city for relaxation.)
+A1,Was ist eine Kirche?,Eine Kirche ist ein Gebäude für christliche Gottesdienste. (A building for Christian worship.)
+A1,Was ist eine Mülltonne?,Eine Mülltonne ist ein Behälter für Haushaltsabfall. (A container for household waste.)
+A1,Was ist der Marktplatz?,Der Marktplatz ist ein zentraler Platz in der Stadtmitte. (A central square in the town centre.)
+// cluster: civic services & governance
+A2,Was macht ein Bürgermeister?,Ein Bürgermeister leitet die Stadtregierung und vertritt die Bevölkerung. (A mayor leads the city government and represents the population.)
+A2,Was ist ein Bezirk?,Ein Bezirk ist ein Verwaltungsgebiet innerhalb einer Stadt oder Region. (An administrative area within a city or region.)
+A2,Was ist das Rathaus?,Das Rathaus ist das Gebäude der Stadtverwaltung. (The town hall is the building of the city administration.)
+A2,Was ist die Müllabfuhr?,Die Müllabfuhr ist ein kommunaler Dienst der regelmäßig Müll sammelt. (A municipal service that collects rubbish regularly.)
+A2,Was ist ein Vorort?,Ein Vorort ist ein Wohngebiet außerhalb des Stadtzentrums. (A residential area outside the city centre.)
+A2,Was ist eine Bürgerinitiative?,Eine Bürgerinitiative ist ein Zusammenschluss von Bürgern für ein gemeinsames Anliegen. (A group of citizens united around a common concern.)
+A2,Was ist die Stadtplanung?,Die Stadtplanung regelt wie eine Stadt gebaut und entwickelt wird. (Urban planning regulates how a city is built and developed.)
+A2,Was ist der Smog?,Smog ist eine Luftverschmutzung durch Abgase und Industrieemissionen. (Smog is air pollution from exhaust fumes and industrial emissions.)
+// cluster: urban challenges & social issues
+B1,Was versteht man unter Gentrifizierung?,Die Aufwertung eines Stadtviertels die zu steigenden Mieten und Verdrängung ärmerer Bewohner führt. (The upgrading of a city district leading to rising rents and displacement of poorer residents.)
+B1,Was ist Obdachlosigkeit?,Obdachlosigkeit bedeutet dass Menschen keine feste Unterkunft haben. (Homelessness means that people have no fixed accommodation.)
+B1,Was ist Integration im städtischen Kontext?,Die Einbeziehung von Menschen verschiedener Herkunft in das gesellschaftliche Leben. (The inclusion of people of different backgrounds in social life.)
+B1,Was ist eine Volksschule?,Eine Volkshochschule ist eine Einrichtung für die Erwachsenenbildung. (An adult education centre is an institution for adult learning.)
+B1,Was ist Stadtflucht?,Stadtflucht beschreibt den Wegzug der Bevölkerung aus der Stadt ins Umland. (Urban exodus describes the movement of the population from the city to the surrounding area.)
+B1,Was bedeutet Leerstand?,Leerstand bezeichnet ungenutzte Gebäude oder Wohnungen in der Stadt. (Vacancy refers to unused buildings or apartments in the city.)
+// cluster: urban planning & governance
+B2,Was regelt ein Flächennutzungsplan?,Er legt fest welche Flächen für Wohnen Gewerbe Grün oder Verkehr genutzt werden dürfen. (It determines which areas may be used for housing commerce green spaces or transport.)
+B2,Was ist ein Ballungsraum?,Ein dicht besiedeltes Gebiet mit mehreren Städten die zusammenwachsen. (A densely populated area with several cities merging together.)
+B2,Was bedeutet Bürgerpartizipation?,Die aktive Beteiligung der Bevölkerung an politischen und planerischen Entscheidungen. (The active involvement of the population in political and planning decisions.)
+B2,Was ist Fernwärme?,Ein System das Gebäude über ein Rohrleitungsnetz mit Wärme versorgt. (A system that supplies buildings with heat through a pipeline network.)
+B2,Was versteht man unter Strukturschwäche?,Eine Region mit wenig Wirtschaftskraft schlechter Infrastruktur und hoher Abwanderung. (A region with little economic power poor infrastructure and high outward migration.)
+`.trim();
+
+const sentencesCSV = `
+// cluster: everyday city life
+A1,Ich wohne in einer Kleinstadt in der Nähe von Köln.,I live in a small town near Cologne.
+A1,In unserem Viertel gibt es einen schönen Park.,There is a nice park in our neighbourhood.
+A1,Meine Nachbarin hilft mir oft beim Einkaufen.,My neighbour often helps me with the shopping.
+A1,Das Rathaus liegt direkt am Marktplatz.,The town hall is right on the market square.
+A1,Jeden Dienstag kommt die Müllabfuhr.,The rubbish collection comes every Tuesday.
+A2,Im Sommer gibt es auf dem Marktplatz viele Veranstaltungen.,In summer there are many events at the market square.
+A2,Die Innenstadt ist gut mit dem öffentlichen Nahverkehr erreichbar.,The city centre is easy to reach by public transport.
+A2,Viele junge Menschen ziehen vom Dorf in die Großstadt.,Many young people move from the village to the city.
+A2,Der Flohmarkt am Wochenende ist bei den Einwohnern sehr beliebt.,The weekend flea market is very popular with residents.
+// cluster: civic participation & services
+A2,Unser Jugendclub organisiert jedes Jahr ein Stadtfest.,Our youth club organises a city festival every year.
+A2,Im Bürgerzentrum gibt es Kurse für Kinder und Erwachsene.,The civic centre offers courses for children and adults.
+A2,Die Stadtbibliothek ist kostenlos zugänglich.,The city library is freely accessible.
+B1,Die Bürgerinitiative setzt sich für mehr Grünflächen im Viertel ein.,The civic initiative is advocating for more green spaces in the neighbourhood.
+B1,Der Stadtrat hat den Bau eines neuen Gemeinschaftszentrums beschlossen.,The city council has resolved to build a new community centre.
+B1,Wer wählen geht beteiligt sich aktiv an der Demokratie.,Anyone who votes is actively participating in democracy.
+B1,Die Volkshochschule bietet Sprachkurse für Neuzugezogene an.,The adult education centre offers language courses for newcomers.
+// cluster: urban challenges
+B1,In vielen Großstädten wächst die Obdachlosigkeit.,In many cities homelessness is growing.
+B1,Gentrifizierung verdrängt oft ärmere Stadtbewohner aus ihren Vierteln.,Gentrification often displaces poorer city residents from their neighbourhoods.
+B1,Smog ist ein ernstes Problem in dicht besiedelten Ballungsräumen.,Smog is a serious problem in densely populated conurbations.
+B1,Die Integration neuer Einwohner braucht Zeit und gegenseitiges Engagement.,The integration of new residents takes time and mutual commitment.
+B2,Der Leerstand von Gewerbeflächen gefährdet die Lebendigkeit der Innenstadt.,The vacancy of commercial spaces threatens the vibrancy of the city centre.
+B2,Eine dezentralisierte Stadtplanung stärkt die einzelnen Bezirke.,Decentralised urban planning strengthens the individual boroughs.
+// cluster: urban planning & future
+B1,Die Kanalisation muss dringend ausgebaut werden.,The sewage system urgently needs to be expanded.
+B1,Das Wasserwerk versorgt die gesamte Metropole mit Trinkwasser.,The waterworks supply the entire metropolis with drinking water.
+B2,Nachhaltige Stadtentwicklung verbindet wirtschaftliche und ökologische Ziele.,Sustainable urban development combines economic and ecological goals.
+B2,Das Klärwerk ist ein wichtiger Teil der städtischen Infrastruktur.,The sewage works are an important part of the urban infrastructure.
+B2,Partizipative Stadtplanung gibt den Bewohnern eine Stimme bei Bauentscheidungen.,Participatory urban planning gives residents a voice in construction decisions.
+B2,In strukturschwachen Regionen ist die Stadtflucht besonders stark ausgeprägt.,In economically weak regions urban exodus is particularly pronounced.
+// cluster: community & social cohesion
+A1,In unserer Gemeinschaft helfen alle zusammen.,In our community everyone helps each other.
+A2,Die Bevölkerung unserer Stadt wächst jedes Jahr.,The population of our city grows every year.
+A2,Unser Stadtviertel ist sehr multikulturell und lebhaft.,Our city district is very multicultural and lively.
+B1,Bürgerpartizipation ist entscheidend für eine funktionierende Demokratie.,Civic participation is crucial for a functioning democracy.
+B2,Die Bürgerschaft muss in alle wichtigen Stadtentwicklungsprojekte einbezogen werden.,The citizenry must be involved in all major urban development projects.
+`.trim();
+
+// ============================================
+// CSV PARSER
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(l => l.split(',').map(c => c.trim()));
+}
+
+// ============================================
+// LEVEL FILTER STATE
+// ============================================
+let currentLevel = 'all';
+
+function filterByLevel(level) {
+    currentLevel = level;
+    document.querySelectorAll('.level-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.level === level);
+    });
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    updateFilterCount();
+}
+
+function updateFilterCount() {
+    const el = document.getElementById('filterCount');
+    if (!el) return;
+    if (currentLevel === 'all') { el.textContent = ''; return; }
+    let total = 0;
+    [nounsCSV, adjectivesCSV, verbsCSV, expressionsCSV, qaCSV, sentencesCSV].forEach(csv => {
+        parseCSV(csv).forEach(row => { if (row[0] === currentLevel) total++; });
+    });
+    conversationsCSV.split('\n').forEach(line => {
+        line = line.trim();
+        if (line && !line.startsWith('//') && line.startsWith(currentLevel + '|')) total++;
+    });
+    el.textContent = `${total} entries`;
+}
+
+function badge(level) {
+    return `<span class="lvl-badge ${level}">${level}</span>`;
+}
+
+// ============================================
+// RENDER NOUNS
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const grouped = { das: [], der: [], die: [] };
+    data.forEach(row => {
+        const [level, article, german, pluralNotation, pluralFull, english] = row;
+        if (grouped[article] !== undefined) {
+            grouped[article].push({ level, article, german, pluralNotation, pluralFull, english });
+        }
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    const articles = [
+        { key: 'der', label: 'Maskulinum (der)', rowClass: 'der-row', artClass: 'der-article' },
+        { key: 'das', label: 'Neutrum (das)',     rowClass: 'das-row', artClass: 'das-article' },
+        { key: 'die', label: 'Femininum (die)',   rowClass: 'die-row', artClass: 'die-article' },
+    ];
+
+    let anyContent = false;
+
+    articles.forEach(({ key, label, rowClass, artClass }, artIdx) => {
+        const words = grouped[key];
+        if (words.length === 0) return;
+        anyContent = true;
+
+        html += `<tr class="separator"><td colspan="8">${label}</td></tr>`;
+
+        const half = Math.ceil(words.length / 2);
+        for (let i = 0; i < half; i++) {
+            const w1 = words[i];
+            const w2 = words[i + half] || null;
+
+            html += `<tr class="${rowClass}">`;
+            html += `<td class="article-cell ${artClass}">${w1.article}</td>`;
+            html += `<td class="german-cell">${w1.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w1.article)}','${escAttr(w1.german)}','${escAttr(w1.pluralFull)}')">🔊</button></td>`;
+            html += `<td class="plural-cell">${w1.pluralNotation}</td>`;
+            html += `<td class="english-cell">${w1.english}</td>`;
+
+            if (w2) {
+                html += `<td class="article-cell ${artClass}">${w2.article}</td>`;
+                html += `<td class="german-cell">${w2.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w2.article)}','${escAttr(w2.german)}','${escAttr(w2.pluralFull)}')">🔊</button></td>`;
+                html += `<td class="plural-cell">${w2.pluralNotation}</td>`;
+                html += `<td class="english-cell">${w2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    });
+
+    if (!anyContent) {
+        html = `<tr><td colspan="8" style="text-align:center; color:#999; padding:12px;">No nouns at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const verbData = parseCSV(verbsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    if (adjData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Adjectives (- prefix = opposite pairs)</td></tr>`;
+        const half = Math.ceil(adjData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = adjData[i];
+            const r2 = adjData[i + half] || null;
+            html += `<tr class="adjective-row">`;
+            html += `<td class="german-col">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[3])}')">🔊</button></td><td class="english-col">${r1[2]}</td>`;
+            html += `<td class="german-col">${r1[3]}</td><td class="english-col">${r1[4]}</td>`;
+            if (r2) {
+                html += `<td class="german-col">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[3])}')">🔊</button></td><td class="english-col">${r2[2]}</td>`;
+                html += `<td class="german-col">${r2[3]}</td><td class="english-col">${r2[4]}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+
+    if (verbData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Verbs (* Weak | + Strong — opposite / related pairs)</td></tr>`;
+        const half = Math.ceil(verbData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = verbData[i];
+            const r2 = verbData[i + half] || null;
+            html += `<tr class="verb-row">`;
+            html += `<td class="german-col">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[3])}')">🔊</button></td><td class="english-col">${r1[2]}</td>`;
+            html += `<td class="german-col">${r1[3]}</td><td class="english-col">${r1[4]}</td>`;
+            if (r2) {
+                html += `<td class="german-col">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[3])}')">🔊</button></td><td class="english-col">${r2[2]}</td>`;
+                html += `<td class="german-col">${r2[3]}</td><td class="english-col">${r2[4]}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+
+    if (adjData.length === 0 && verbData.length === 0) {
+        html = `<tr><td colspan="8" style="text-align:center; color:#999; padding:12px;">No adjectives or verbs at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        const [lvl1, ger1, ...eng1parts] = data[i];
+        const eng1 = eng1parts.join(',');
+        html += `<tr>`;
+        html += `<td class="german-cell">${ger1} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(ger1)}')">🔊</button></td>`;
+        html += `<td class="english-cell">${eng1}</td>`;
+        if (i + 1 < data.length) {
+            const [lvl2, ger2, ...eng2parts] = data[i + 1];
+            const eng2 = eng2parts.join(',');
+            html += `<td class="german-cell">${ger2} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(ger2)}')">🔊</button></td>`;
+            html += `<td class="english-cell">${eng2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (data.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No expressions at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+
+    const conversations = {};
+    const convOrder = [];
+    const convLevels = {};
+
+    rawLines.forEach(line => {
+        const firstPipe  = line.indexOf('|');
+        const secondPipe = line.indexOf('|', firstPipe + 1);
+        const firstComma = line.indexOf(',', secondPipe + 1);
+        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+
+        const level   = line.substring(0, firstPipe).trim();
+        const title   = line.substring(firstPipe + 1, secondPipe).trim();
+        const speaker = line.substring(secondPipe + 1, firstComma).trim();
+
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+
+        const rest         = line.substring(firstComma + 1);
+        const secondComma  = rest.indexOf(',');
+        const german       = rest.substring(0, secondComma).trim();
+        const english      = rest.substring(secondComma + 1).trim();
+
+        const key = `${level}|${title}`;
+        if (!conversations[key]) {
+            conversations[key] = [];
+            convOrder.push(key);
+            convLevels[key] = level;
+        }
+        conversations[key].push({ speaker, german, english });
+    });
+
+    const container = document.getElementById('conversationsContainer');
+    let html = '';
+
+    if (convOrder.length === 0) {
+        html = `<p style="text-align:center; color:#999; padding:12px;">No conversations at ${currentLevel} level</p>`;
+        container.innerHTML = html;
+        return;
+    }
+
+    convOrder.forEach(key => {
+        const title = key.split('|').slice(1).join('|');
+        const lines = conversations[key];
+
+        const linesA = lines.filter(l => l.speaker === 'A');
+        const linesB = lines.filter(l => l.speaker === 'B');
+        const maxRows = Math.max(linesA.length, linesB.length);
+
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="4" class="conversation-title">💬 ${title}</td></tr>`;
+        html += `<tr>`;
+        html += `<td class="conv-subheader" style="width:27%;">Speaker A — Deutsch</td>`;
+        html += `<td class="conv-subheader" style="width:23%;">Speaker A — English</td>`;
+        html += `<td class="conv-subheader" style="width:27%;">Speaker B — Deutsch</td>`;
+        html += `<td class="conv-subheader" style="width:23%;">Speaker B — English</td>`;
+        html += `</tr>`;
+
+        for (let i = 0; i < maxRows; i++) {
+            const a = linesA[i] || null;
+            const b = linesB[i] || null;
+
+            html += `<tr>`;
+            html += `<td class="conv-ger-a">${a ? a.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(a.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-a">${a ? a.english : ''}</td>`;
+            html += `<td class="conv-ger-b">${b ? b.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(b.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-b">${b ? b.english : ''}</td>`;
+            html += `</tr>`;
+        }
+
+        html += `</table>`;
+    });
+
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A
+// ============================================
+function renderQATable() {
+    const qaRows = qaCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(line => {
+            const firstComma  = line.indexOf(',');
+            const secondComma = line.indexOf(',', firstComma + 1);
+            if (firstComma === -1 || secondComma === -1) return null;
+            return {
+                level:    line.substring(0, firstComma).trim(),
+                question: line.substring(firstComma + 1, secondComma).trim(),
+                answer:   line.substring(secondComma + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < qaRows.length; i += 2) {
+        const r1 = qaRows[i];
+        const r2 = qaRows[i + 1] || null;
+        html += `<tr>`;
+        html += `<td class="question-cell">${r1.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.question)}')">🔊</button></td>`;
+        html += `<td class="answer-cell">${r1.answer}</td>`;
+        if (r2) {
+            html += `<td class="question-cell">${r2.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.question)}')">🔊</button></td>`;
+            html += `<td class="answer-cell">${r2.answer}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (qaRows.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No Q&amp;A at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES
+// ============================================
+function renderSentencesTable() {
+    const sentRows = sentencesCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(line => {
+            const firstComma  = line.indexOf(',');
+            const secondComma = line.indexOf(',', firstComma + 1);
+            if (firstComma === -1 || secondComma === -1) return null;
+            return {
+                level:   line.substring(0, firstComma).trim(),
+                german:  line.substring(firstComma + 1, secondComma).trim(),
+                english: line.substring(secondComma + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < sentRows.length; i += 2) {
+        const r1 = sentRows[i];
+        const r2 = sentRows[i + 1] || null;
+        html += `<tr>`;
+        html += `<td class="german-cell">${r1.german} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.german)}')">🔊</button></td>`;
+        html += `<td class="english-cell">${r1.english}</td>`;
+        if (r2) {
+            html += `<td class="german-cell">${r2.german} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.german)}')">🔊</button></td>`;
+            html += `<td class="english-cell">${r2.english}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (sentRows.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No sentences at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// TOGGLE CONTROLS PANEL
+// ============================================
+function toggleControls() {
+    const panel = document.getElementById('controlsPanel');
+    const btn   = document.getElementById('controlsToggle');
+    const collapsed = panel.classList.toggle('collapsed');
+    btn.style.display = collapsed ? 'block' : 'none';
+}
+
+function toggleSecondary() {
+    const sec = document.getElementById('secondaryControls');
+    const btn = document.getElementById('secToggleBtn');
+    const open = sec.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.textContent = open ? '⚙ Zoom & Print ▲' : '⚙ Zoom & Print';
+}
+
+// ============================================
+// ZOOM
+// ============================================
+let vocabZoom = 100, phrasesZoom = 100;
+const zoomStep = 10, minZoom = 50, maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    document.getElementById('vocabSection').style.fontSize = `${baseFontSize * vocabZoom / 100}em`;
+    document.getElementById('zoomLevelVocab').textContent = `${vocabZoom}%`;
+}
+function updatePhrasesZoom() {
+    document.getElementById('phrasesSection').style.fontSize = `${baseFontSize * phrasesZoom / 100}em`;
+    document.getElementById('zoomLevelPhrases').textContent = `${phrasesZoom}%`;
+}
+function zoomInVocab()     { if (vocabZoom < maxZoom)   { vocabZoom   += zoomStep; updateVocabZoom(); } }
+function zoomOutVocab()    { if (vocabZoom > minZoom)   { vocabZoom   -= zoomStep; updateVocabZoom(); } }
+function resetZoomVocab()  { vocabZoom = 100;   updateVocabZoom(); }
+function zoomInPhrases()   { if (phrasesZoom < maxZoom) { phrasesZoom += zoomStep; updatePhrasesZoom(); } }
+function zoomOutPhrases()  { if (phrasesZoom > minZoom) { phrasesZoom -= zoomStep; updatePhrasesZoom(); } }
+function resetZoomPhrases(){ phrasesZoom = 100; updatePhrasesZoom(); }
+
+// ============================================
+// KEYBOARD SHORTCUTS
+// ============================================
+document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    const map = { '0': 'all', '1': 'A1', '2': 'A2', '3': 'B1', '4': 'B2' };
+    if (map[e.key]) filterByLevel(map[e.key]);
+    if (e.key === 'p' || e.key === 'P') window.print();
+});
+
+// ============================================
+// SPEECH SYNTHESIS (TTS)
+// ============================================
+let germanVoice = null;
+let currentUtterance = null;
+let isSpeaking = false;
+let isPlayingSequence = false;
+let ttsWarmedUp = false;
+
+function loadVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (!voiceSelect) return;
+    voiceSelect.innerHTML = '';
+    const germanVoices = voices.filter(v => v.lang.startsWith('de'));
+    if (germanVoices.length === 0) {
+        voiceSelect.innerHTML = '<option value="">No German voice – using default</option>';
+        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0] || null;
+    } else {
+        germanVoices.forEach((voice, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = `${voice.name} (${voice.lang})`;
+            voiceSelect.appendChild(option);
+            if (index === 0) germanVoice = voice;
+        });
+    }
+}
+
+if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+}
+setTimeout(loadVoices, 100);
+setTimeout(loadVoices, 600);
+
+document.addEventListener('DOMContentLoaded', function() {
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (voiceSelect) {
+        voiceSelect.addEventListener('change', function(e) {
+            stopAllSpeech();
+            const voices = window.speechSynthesis.getVoices();
+            const germanVoices = voices.filter(v => v.lang.startsWith('de'));
+            germanVoice = germanVoices[parseInt(e.target.value)] || voices[0] || null;
+        });
+    }
+    const speedControl = document.getElementById('speedControl');
+    if (speedControl) {
+        speedControl.addEventListener('input', function(e) {
+            const el = document.getElementById('speedValue');
+            if (el) el.textContent = e.target.value + '×';
+        });
+    }
+});
+
+function warmUpTTS(callback) {
+    if (ttsWarmedUp) { callback(); return; }
+    const primer = new SpeechSynthesisUtterance(' ');
+    primer.volume = 0;
+    primer.lang = 'de-DE';
+    if (germanVoice) primer.voice = germanVoice;
+    primer.onend  = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    primer.onerror = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(primer);
+}
+
+function speak(text, callback) {
+    if (!text || text.trim() === '') { if (callback) callback(); return; }
+    text = text.replace('🔊', '').trim();
+    if (!isPlayingSequence) stopAllSpeech();
+    if (!ttsWarmedUp) {
+        warmUpTTS(() => speakNow(text, callback));
+    } else {
+        window.speechSynthesis.resume();
+        setTimeout(() => speakNow(text, callback), 100);
+    }
+}
+
+function stopAllSpeech() {
+    isPlayingSequence = false;
+    if (typeof speechSynthesis !== 'undefined') window.speechSynthesis.cancel();
+    isSpeaking = false;
+    hideAudioStatus();
+}
+
+function speakNow(text, callback) {
+    if (!('speechSynthesis' in window)) {
+        alert('⚠️ Text-to-speech not supported in this browser.');
+        if (callback) callback();
+        return;
+    }
+    showAudioStatus(text);
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'de-DE';
+    if (germanVoice) utterance.voice = germanVoice;
+    const speedEl = document.getElementById('speedControl');
+    utterance.rate = speedEl ? parseFloat(speedEl.value) : 0.8;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    let hasEnded = false;
+    utterance.onstart = () => { isSpeaking = true; };
+    utterance.onend = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) setTimeout(callback, 100);
+    };
+    utterance.onerror = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) callback();
+    };
+    currentUtterance = utterance;
+    try { window.speechSynthesis.speak(utterance); }
+    catch(e) { isSpeaking = false; hideAudioStatus(); if (callback) callback(); }
+}
+
+function showAudioStatus(text) {
+    const status = document.getElementById('audioStatus');
+    const statusText = document.getElementById('audioStatusText');
+    if (!status || !statusText) return;
+    statusText.textContent = '🔊 ' + (text.length > 40 ? text.substring(0, 40) + '…' : text);
+    status.classList.add('show');
+}
+
+function hideAudioStatus() {
+    setTimeout(() => {
+        const el = document.getElementById('audioStatus');
+        if (el) el.classList.remove('show');
+    }, 300);
+}
+
+function speakNounRow(article, singular, pluralFull) {
+    isPlayingSequence = true;
+    speak(article + ' ' + singular, () => {
+        if (pluralFull && pluralFull !== '---' && pluralFull !== 'kein Plural' && pluralFull !== 'nur P') {
+            setTimeout(() => speak(pluralFull, () => { isPlayingSequence = false; }), 350);
+        } else { isPlayingSequence = false; }
+    });
+}
+
+function speakWord(word) {
+    speak(word.replace(/[*+\-]/g, '').trim());
+}
+
+function speakPair(word1, word2) {
+    isPlayingSequence = true;
+    const w1 = word1.replace(/[*+\-]/g, '').trim();
+    const w2 = word2.replace(/[*+\-]/g, '').trim();
+    speak(w1, () => setTimeout(() => speak(w2, () => { isPlayingSequence = false; }), 800));
+}
+
+function speakText(text) {
+    speak(text);
+}
+
+// ============================================
+// PLAY SECTION — data-driven, column-first order
+// ============================================
+let playAllActive = false;
+let playAllIndex = 0;
+let playAllTexts = [];
+let currentPlaySection = null;
+
+// Collect noun texts for one article group in column-first order:
+// left column (items 0..half-1) then right column (items half..end)
+function collectNounTexts(articleFilter) {
+    const data = parseCSV(nounsCSV).filter(row =>
+        (currentLevel === 'all' || row[0] === currentLevel) &&
+        row[1] === articleFilter
+    );
+    const texts = [];
+    const half = Math.ceil(data.length / 2);
+    function pushNoun(row) {
+        const [lvl, art, ger, pn, pf] = row;
+        texts.push(art + ' ' + ger);
+        if (pf && pf !== '---' && pf !== 'nur P' && pf !== '=' && pf !== 'kein Plural') {
+            texts.push(pf);
+        }
+    }
+    for (let i = 0; i < half; i++)              pushNoun(data[i]);
+    for (let i = half; i < data.length; i++)    pushNoun(data[i]);
+    return texts;
+}
+
+// Collect adjective or verb texts: left column (0..half-1) then right column
+function collectWordTexts(csv) {
+    const data = parseCSV(csv).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const texts = [];
+    const half = Math.ceil(data.length / 2);
+    function pushPair(row) {
+        texts.push(row[1].replace(/[*+\-]/g, '').trim());
+        texts.push(row[3].replace(/[*+\-]/g, '').trim());
+    }
+    for (let i = 0; i < half; i++)              pushPair(data[i]);
+    for (let i = half; i < data.length; i++)    pushPair(data[i]);
+    return texts;
+}
+
+// Collect expression texts: left column (even indices → 0,2,4…) then right column (odd → 1,3,5…)
+function collectExprTexts() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const texts = [];
+    const evens = data.filter((_, i) => i % 2 === 0);
+    const odds  = data.filter((_, i) => i % 2 === 1);
+    [...evens, ...odds].forEach(row => {
+        const [lvl, ger, ...engParts] = row;
+        texts.push(ger);
+    });
+    return texts;
+}
+
+// Collect conversation texts: left col (speaker A lines) then right col (speaker B lines), per conversation
+function collectConvTexts() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+    const convMap = {};
+    const convOrder = [];
+    rawLines.forEach(line => {
+        const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1), fc = line.indexOf(',', sp + 1);
+        if (fp < 0 || sp < 0 || fc < 0) return;
+        const level = line.substring(0, fp).trim();
+        const title = line.substring(fp + 1, sp).trim();
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+        const speaker = line.substring(sp + 1, fc).trim();
+        const rest = line.substring(fc + 1);
+        const sc = rest.indexOf(',');
+        const german = rest.substring(0, sc).trim();
+        const key = level + '|' + title;
+        if (!convMap[key]) { convMap[key] = { A: [], B: [] }; convOrder.push(key); }
+        if (speaker === 'A') convMap[key].A.push(german);
+        else                  convMap[key].B.push(german);
+    });
+    const texts = [];
+    convOrder.forEach(key => {
+        convMap[key].A.forEach(t => texts.push(t));
+        convMap[key].B.forEach(t => texts.push(t));
+    });
+    return texts;
+}
+
+// Collect Q&A texts: left col (questions 0..half-1) then right col (questions half..end)
+function collectQATexts() {
+    const rows = qaCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return { level: line.substring(0, fc).trim(), question: line.substring(fc + 1, sc).trim() };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+    const half = Math.ceil(rows.length / 2);
+    const texts = [];
+    for (let i = 0; i < half; i++)          texts.push(rows[i].question);
+    for (let i = half; i < rows.length; i++) texts.push(rows[i].question);
+    return texts;
+}
+
+// Collect sentence texts: left col (0..half-1) then right col (half..end)
+function collectSentTexts() {
+    const rows = sentencesCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return { level: line.substring(0, fc).trim(), german: line.substring(fc + 1, sc).trim() };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+    const half = Math.ceil(rows.length / 2);
+    const texts = [];
+    for (let i = 0; i < half; i++)          texts.push(rows[i].german);
+    for (let i = half; i < rows.length; i++) texts.push(rows[i].german);
+    return texts;
+}
+
+const sectionBtnIds = {
+    all: 'btnAll', der: 'btnDer', das: 'btnDas', die: 'btnDie',
+    adj: 'btnAdj', verb: 'btnVerb', expr: 'btnExpr',
+    conv: 'btnConv', qa: 'btnQa', sent: 'btnSent'
+};
+
+function setPlayingBtn(section) {
+    Object.entries(sectionBtnIds).forEach(([key, id]) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('playing', key === section);
+    });
+}
+
+function playSection(section) {
+    // Toggle off if already playing this section
+    if (playAllActive && currentPlaySection === section) {
+        stopAllSpeech();
+        playAllActive = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        return;
+    }
+    stopAllSpeech();
+    playAllTexts = [];
+
+    if (section === 'all') {
+        playAllTexts = [
+            ...collectNounTexts('der'),
+            ...collectNounTexts('das'),
+            ...collectNounTexts('die'),
+            ...collectWordTexts(adjectivesCSV),
+            ...collectWordTexts(verbsCSV),
+            ...collectExprTexts(),
+            ...collectConvTexts(),
+            ...collectQATexts(),
+            ...collectSentTexts()
+        ];
+    } else if (section === 'der')  { playAllTexts = collectNounTexts('der'); }
+    else if (section === 'das')  { playAllTexts = collectNounTexts('das'); }
+    else if (section === 'die')  { playAllTexts = collectNounTexts('die'); }
+    else if (section === 'adj')  { playAllTexts = collectWordTexts(adjectivesCSV); }
+    else if (section === 'verb') { playAllTexts = collectWordTexts(verbsCSV); }
+    else if (section === 'expr') { playAllTexts = collectExprTexts(); }
+    else if (section === 'conv') { playAllTexts = collectConvTexts(); }
+    else if (section === 'qa')   { playAllTexts = collectQATexts(); }
+    else if (section === 'sent') { playAllTexts = collectSentTexts(); }
+
+    playAllTexts = playAllTexts.filter(t => t && t.trim());
+    if (playAllTexts.length === 0) return;
+
+    playAllActive = true;
+    playAllIndex = 0;
+    currentPlaySection = section;
+    isPlayingSequence = true;
+    setPlayingBtn(section);
+    playNextInSequence();
+}
+
+function playNextInSequence() {
+    if (!playAllActive || playAllIndex >= playAllTexts.length) {
+        playAllActive = false;
+        isPlayingSequence = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        return;
+    }
+    const text = playAllTexts[playAllIndex++];
+    speak(text, () => setTimeout(playNextInSequence, 500));
+}
+
+// Helper: escape text for HTML attribute
+function escAttr(s) {
+    return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
+// ============================================
+// INITIALIZE
+// ============================================
+window.addEventListener('load', function() {
+    updateVocabZoom();
+    updatePhrasesZoom();
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ German Vocabulary Reference loaded!');
+    console.log('💡 Keys: 0=All | 1=A1 | 2=A2 | 3=B1 | 4=B2 | P=Print');
+});
+    </script>
+</body>
+</html>

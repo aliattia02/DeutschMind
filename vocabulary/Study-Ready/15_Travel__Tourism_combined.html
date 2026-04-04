@@ -1,0 +1,2224 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German Vocabulary - 15: Travel & Tourism</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           FIXED CONTROLS (screen only) — compact unified panel
+        ============================================ */
+        .controls {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1000;
+            max-width: 520px;
+        }
+
+        /* main dark pill wrapping level + audio */
+        .controls-main {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 7px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+        }
+
+        /* top bar: level filter + close btn */
+        .controls-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: nowrap;
+        }
+
+        .filter-label {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+
+        .level-btn {
+            border: 2px solid transparent;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.72em;
+            font-weight: 700;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.15s ease;
+        }
+        .level-btn:hover { opacity: 0.85; }
+        .level-btn.active { opacity: 1; border-color: white; }
+        .level-btn[data-level="all"] { background: #764ba2; color: white; }
+        .level-btn[data-level="A1"]  { background: #4CAF50; color: white; }
+        .level-btn[data-level="A2"]  { background: #2196F3; color: white; }
+        .level-btn[data-level="B1"]  { background: #FF9800; color: white; }
+        .level-btn[data-level="B2"]  { background: #F44336; color: white; }
+
+        .filter-count {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            margin-left: 2px;
+        }
+
+        /* close button — inline in top bar */
+        .controls-close {
+            margin-left: auto;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.55);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 4px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .controls-close:hover { background: rgba(255,255,255,0.18); color: white; }
+
+        /* ============================================
+           COLLAPSED TOGGLE BUTTON (when panel is hidden)
+        ============================================ */
+        .controls-toggle {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 1001;
+            background: #1a1a1a;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.78em;
+            cursor: pointer;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            display: none;
+        }
+        .controls-toggle:hover { background: #333; }
+        .controls.collapsed { display: none !important; }
+        .controls.collapsed + .controls-toggle,
+        body.controls-hidden .controls-toggle { display: block; }
+
+        /* ============================================
+           AUDIO PANEL (inside controls-main)
+        ============================================ */
+        .audio-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .audio-row-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .audio-panel-title {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+        .audio-panel label {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.68em;
+            white-space: nowrap;
+        }
+        .audio-panel select {
+            font-size: 0.68em;
+            padding: 2px 5px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #2a2a2a;
+            color: rgba(255,255,255,0.85);
+            cursor: pointer;
+            max-width: 130px;
+        }
+        .audio-panel input[type=range] {
+            width: 60px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+        .speed-val {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.68em;
+            min-width: 26px;
+        }
+        .play-all-btn {
+            background: linear-gradient(135deg, #DD0000, #FFCE00);
+            color: white;
+            border: none;
+            padding: 4px 11px;
+            border-radius: 10px;
+            font-size: 0.72em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .play-all-btn:hover { opacity: 0.85; }
+        .audio-row-sections {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .audio-section-label {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.35);
+            white-space: nowrap;
+        }
+        .audio-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.75em;
+        }
+        .section-play-btn {
+            background: #242424;
+            color: rgba(255,255,255,0.55);
+            border: 1px solid #3a3a3a;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.67em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        .section-play-btn:hover { background: #3a3a3a; color: white; }
+        .section-play-btn.playing { background: #667eea; color: white; border-color: #667eea; }
+        .section-play-btn[data-art="der"] { color: #90CAF9; }
+        .section-play-btn[data-art="das"] { color: #A5D6A7; }
+        .section-play-btn[data-art="die"] { color: #EF9A9A; }
+
+        .audio-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 0.78em;
+            padding: 0 2px;
+            opacity: 0.45;
+            transition: opacity 0.2s;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .audio-btn:hover { opacity: 1; }
+
+        /* ============================================
+           ZOOM + PRINT — collapsible (collapsed by default)
+        ============================================ */
+        .secondary-controls-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sec-toggle-btn {
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.45);
+            border: none;
+            padding: 2px 9px;
+            font-size: 0.67em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.15s;
+        }
+        .sec-toggle-btn:hover { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.8); }
+        .sec-toggle-btn.open { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.1); }
+
+        .secondary-controls {
+            display: none;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding-top: 4px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .secondary-controls.open { display: flex; }
+
+        /* compact zoom row */
+        .zoom-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .zoom-label {
+            font-size: 0.67em;
+            color: rgba(255,255,255,0.45);
+            white-space: nowrap;
+        }
+        .zoom-btn {
+            background: #333;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.8em;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .zoom-btn:hover { background: #555; }
+        .zoom-level {
+            font-weight: bold;
+            font-size: 0.68em;
+            color: rgba(255,255,255,0.65);
+            min-width: 30px;
+            text-align: center;
+        }
+        .zoom-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.8em;
+        }
+        .print-button {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: auto;
+        }
+        .print-button:hover { background: rgba(255,255,255,0.2); color: white; }
+
+        /* ============================================
+           AUDIO STATUS TOAST
+        ============================================ */
+        .audio-status {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            background: #667eea;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            gap: 8px;
+            z-index: 2000;
+            font-size: 0.82em;
+        }
+        .audio-status.show { display: flex; }
+        .audio-status .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            flex-shrink: 0;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+
+        /* ============================================
+           LEVEL BADGE (appears inside article cell)
+        ============================================ */
+        .lvl-badge {
+            display: inline-block;
+            font-size: 0.62em;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+            vertical-align: middle;
+            margin-left: 2px;
+            line-height: 1.4;
+        }
+        .lvl-badge.A1 { background: #C8E6C9; color: #1B5E20; }
+        .lvl-badge.A2 { background: #BBDEFB; color: #0D47A1; }
+        .lvl-badge.B1 { background: #FFE0B2; color: #E65100; }
+        .lvl-badge.B2 { background: #FFCDD2; color: #B71C1C; }
+
+        /* ============================================
+           PAGE HEADER
+        ============================================ */
+        .content-wrapper { max-width: 100%; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* ============================================
+           SECTION DIVIDER
+        ============================================ */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* ============================================
+           TABLE SECTION HEADERS
+        ============================================ */
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* ============================================
+           NOUN TABLE — 8 columns, article colors
+        ============================================ */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f0f0f0;
+            text-align: center;
+            font-weight: bold;
+            color: #555;
+            padding: 3px;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 6%;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 18%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 18%;
+        }
+
+        /* ARTICLE ROW COLORS */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ARTICLE TEXT COLORS */
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* NOUN TABLE COLGROUP widths */
+        .noun-col-art    { width: 6%; }
+        .noun-col-german { width: 18%; }
+        .noun-col-plural { width: 8%; }
+        .noun-col-eng    { width: 18%; }
+
+        /* ============================================
+           WORD TABLE (ADJ + VERB) — 8 columns
+        ============================================ */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col  { font-weight: 600; width: 15%; }
+        .word-table .english-col { color: #333; width: 10%; }
+
+        /* ADJECTIVE rows — warm yellow */
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* VERB rows — light blue */
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           EXPRESSIONS TABLE — 4 columns
+        ============================================ */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+            color: #000;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 22%;
+            font-style: italic;
+        }
+
+        /* ============================================
+           CONVERSATIONS TABLE — compact 4-col layout
+        ============================================ */
+        .conversations-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #667eea !important;
+            color: white !important;
+            font-weight: bold;
+            padding: 6px 8px;
+            font-size: 0.95em;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .conv-subheader {
+            background: #e8eaf6 !important;
+            font-weight: 700;
+            font-size: 0.78em;
+            color: #3949ab;
+            padding: 3px 6px;
+            border: 1px solid #c5cae9;
+            text-align: center;
+            letter-spacing: 0.3px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-a {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-a {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-b {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-b {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           Q&A TABLE — 4 columns
+        ============================================ */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            color: #1a237e;
+            width: 28%;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 22%;
+        }
+
+        /* ============================================
+           SENTENCES TABLE — 4 columns
+        ============================================ */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            font-style: italic;
+            width: 22%;
+        }
+
+        /* ============================================
+           FOOTER INFO
+        ============================================ */
+        .footer-info {
+            margin-top: 20px;
+            padding: 12px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.85em;
+            line-height: 1.8;
+        }
+
+        .footer-info h3 { margin-bottom: 6px; }
+
+        /* ============================================
+           PRINT STYLES
+        ============================================ */
+        @media print {
+            .controls          { display: none !important; }
+            .controls-toggle   { display: none !important; }
+            .level-filter-bar  { display: none !important; }
+            .audio-panel       { display: none !important; }
+            .audio-status      { display: none !important; }
+            .audio-btn         { display: none !important; }
+            .section-play-btn  { display: none !important; }
+            .footer-info       { display: none !important; }
+
+            body { padding: 0; font-size: 0.7em; }
+
+            .section-divider { page-break-before: always; }
+            .table-section { page-break-inside: auto; }
+            .noun-table, .word-table, .expressions-table,
+            .conversations-table, .qa-table, .sentences-table {
+                font-size: 1em;
+            }
+        }
+
+        @media screen {
+            body { padding-top: 10px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         FIXED CONTROLS (screen only)
+    ============================================ -->
+    <button class="controls-toggle" id="controlsToggle" onclick="toggleControls()">⚙ Controls</button>
+    <div class="controls" id="controlsPanel">
+        <div class="controls-main">
+
+            <!-- Row 1: Level filter + close -->
+            <div class="controls-top">
+                <span class="filter-label">🎯</span>
+                <button class="level-btn active" data-level="all" onclick="filterByLevel('all')">All</button>
+                <button class="level-btn" data-level="A1"  onclick="filterByLevel('A1')">A1</button>
+                <button class="level-btn" data-level="A2"  onclick="filterByLevel('A2')">A2</button>
+                <button class="level-btn" data-level="B1"  onclick="filterByLevel('B1')">B1</button>
+                <button class="level-btn" data-level="B2"  onclick="filterByLevel('B2')">B2</button>
+                <span class="filter-count" id="filterCount"></span>
+                <button class="controls-close" onclick="toggleControls()">✕</button>
+            </div>
+
+            <!-- Row 2: Audio controls -->
+            <div class="audio-panel">
+                <div class="audio-row-top">
+                    <span class="audio-panel-title">🔊</span>
+                    <label for="voiceSelect">Voice:</label>
+                    <select id="voiceSelect"><option value="">Loading…</option></select>
+                    <label for="speedControl">Speed:</label>
+                    <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+                    <span class="speed-val" id="speedValue">0.8×</span>
+                    <button class="play-all-btn" id="btnAll" onclick="playSection('all')">▶ All</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnDer" data-art="der" onclick="playSection('der')">▶ der</button>
+                    <button class="section-play-btn" id="btnDas" data-art="das" onclick="playSection('das')">▶ das</button>
+                    <button class="section-play-btn" id="btnDie" data-art="die" onclick="playSection('die')">▶ die</button>
+                    <span class="audio-sep">|</span>
+                    <button class="section-play-btn" id="btnAdj" onclick="playSection('adj')">▶ Adj</button>
+                    <button class="section-play-btn" id="btnVerb" onclick="playSection('verb')">▶ Verbs</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnExpr" onclick="playSection('expr')">▶ Expr</button>
+                    <button class="section-play-btn" id="btnConv" onclick="playSection('conv')">▶ Conv</button>
+                    <button class="section-play-btn" id="btnQa" onclick="playSection('qa')">▶ Q&amp;A</button>
+                    <button class="section-play-btn" id="btnSent" onclick="playSection('sent')">▶ Sent</button>
+                </div>
+            </div>
+
+            <!-- Row 3: Zoom & Print toggle -->
+            <div class="secondary-controls-toggle">
+                <button class="sec-toggle-btn" id="secToggleBtn" onclick="toggleSecondary()">⚙ Zoom &amp; Print</button>
+            </div>
+            <div class="secondary-controls" id="secondaryControls">
+                <div class="zoom-row">
+                    <span class="zoom-label">📚 Vocab:</span>
+                    <button class="zoom-btn" onclick="zoomOutVocab()">−</button>
+                    <span class="zoom-level" id="zoomLevelVocab">100%</span>
+                    <button class="zoom-btn" onclick="zoomInVocab()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomVocab()">⟲</button>
+                </div>
+                <span class="zoom-sep">|</span>
+                <div class="zoom-row">
+                    <span class="zoom-label">💬 Phrases:</span>
+                    <button class="zoom-btn" onclick="zoomOutPhrases()">−</button>
+                    <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+                    <button class="zoom-btn" onclick="zoomInPhrases()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomPhrases()">⟲</button>
+                </div>
+                <button class="print-button" onclick="window.print()">🖨️ Print</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================
+         DOCUMENT HEADER
+    ============================================ -->
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 15: Travel & Tourism</h1>
+            <p style="font-size:0.75em; color:#555;">Personal Information & Identity · A1–B2 Level-Tagged Reference · aliattia02</p>
+        </div>
+
+        <!-- ============================================
+             VOCABULARY SECTION
+        ============================================ -->
+        <div id="vocabSection">
+
+            <!-- TABLE 1: NOUNS -->
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col class="noun-col-art">
+                        <col class="noun-col-german">
+                        <col class="noun-col-plural">
+                        <col class="noun-col-eng">
+                        <col class="noun-col-art">
+                        <col class="noun-col-german">
+                        <col class="noun-col-plural">
+                        <col class="noun-col-eng">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural ±</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural ±</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives &amp; Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES &amp; SENTENCES</h2>
+        </div>
+
+        <!-- ============================================
+             PHRASES SECTION
+        ============================================ -->
+        <div id="phrasesSection">
+
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions &amp; Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Topic:</strong> Home &amp; Living / Personal Information &amp; Identity &nbsp;|&nbsp; <strong>Created:</strong> 2025 — aliattia02</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Full form shown = umlaut change | --- = no change | nur P = plural only | = = no change</p>
+            <p><strong>Color Coding:</strong>
+                <span style="color:#1565C0; font-weight:bold;">■ der (blue)</span> &nbsp;
+                <span style="color:#2E7D32; font-weight:bold;">■ das (green)</span> &nbsp;
+                <span style="color:#C62828; font-weight:bold;">■ die (red)</span> &nbsp;|&nbsp;
+                Adjective rows: <span style="background:#FFF8E1; padding:1px 6px; border:1px solid #ddd;">yellow</span> &nbsp;
+                Verb rows: <span style="background:#E1F5FE; padding:1px 6px; border:1px solid #ddd;">blue</span>
+            </p>
+            <p><strong>Prefix Guide:</strong> - = Adjective &nbsp;|&nbsp; * = Weak Verb (regular) &nbsp;|&nbsp; + = Strong Verb (irregular)</p>
+            <p><strong>Levels:</strong>
+                <span class="lvl-badge A1">A1</span> Beginner &nbsp;
+                <span class="lvl-badge A2">A2</span> Elementary &nbsp;
+                <span class="lvl-badge B1">B1</span> Intermediate &nbsp;
+                <span class="lvl-badge B2">B2</span> Upper Intermediate
+            </p>
+        </div>
+    </div>
+
+    <div class="audio-status" id="audioStatus">
+        <div class="spinner"></div>
+        <span id="audioStatusText">Speaking…</span>
+    </div>
+
+    <script>
+
+// ============================================
+// ⭐ VOCABULARY DATA
+// ============================================
+
+const nounsCSV = `
+// das — cluster: holiday types & experiences
+A1,das,Hotel,-s,die Hotels,Hotel
+A1,das,Museum,Museen,die Museen,Museum
+A1,das,Ziel,-e,die Ziele,Destination
+A1,das,Ausland,---,---,Abroad
+A2,das,Hostel,-s,die Hostels,Hostel
+A2,das,Resort,-s,die Resorts,Resort
+A2,das,Abenteuer,=,die Abenteuer,Adventure
+B1,das,Reiseziel,-e,die Reiseziele,Travel destination
+B1,das,Highlight,-s,die Highlights,Highlight
+B1,das,Erlebnis,-se,die Erlebnisse,Experience
+B2,das,Fernweh,---,---,Wanderlust
+B2,das,Heimweh,---,---,Homesickness
+// das — cluster: accommodation rooms
+A1,das,Einzelzimmer,=,die Einzelzimmer,Single room
+A2,das,Doppelzimmer,=,die Doppelzimmer,Double room
+B1,das,Mehrbettzimmer,=,die Mehrbettzimmer,Dormitory room
+B1,das,Ferienhaus,Ferienhäuser,die Ferienhäuser,Holiday house
+// das — cluster: luggage & travel items
+A1,das,Gepäck,---,---,Luggage
+A1,das,Ticket,-s,die Tickets,Ticket
+A2,das,Handgepäck,---,---,Hand luggage
+A2,das,Souvenir,-s,die Souvenirs,Souvenir
+B1,das,Reisegepäck,---,---,Travel luggage
+B1,das,Andenken,=,die Andenken,Keepsake
+B2,das,Übergepäck,---,---,Excess luggage
+B2,das,Reisetagebuch,Reisetagebücher,die Reisetagebücher,Travel journal
+// das — cluster: travel services & planning
+A2,das,Reisebüro,-s,die Reisebüros,Travel agency office
+B1,das,Pauschalangebot,-e,die Pauschalangebote,Package deal
+B1,das,Sightseeing,---,---,Sightseeing
+B2,das,Reiseprogramm,-e,die Reiseprogramme,Travel itinerary
+// das — cluster: outdoor & heritage
+A2,das,Denkmal,Denkmäler,die Denkmäler,Monument
+B1,das,Naturschutzgebiet,-e,die Naturschutzgebiete,Nature reserve
+B1,das,Campingzelt,-e,die Campingzelte,Camping tent
+B2,das,Weltkulturerbe,Weltkulturerbestätten,die Weltkulturerbestätten,World heritage site
+B2,das,Schlafsack,Schlafsäcke,die Schlafsäcke,Sleeping bag
+// der — cluster: traveller types
+A1,der,Tourist,-en,die Touristen,Tourist
+A1,der,Reisende,-n,die Reisenden,Traveller
+A2,der,Fremdenführer,=,die Fremdenführer,Tour guide
+A2,der,Reiseveranstalter,=,die Reiseveranstalter,Tour operator
+B1,der,Rucksackreisende,-n,die Rucksackreisenden,Backpacker
+B2,der,Weltenbummler,=,die Weltenbummler,Globe-trotter
+B2,der,Reisebegleiter,=,die Reisebegleiter,Travel companion
+// der — cluster: luggage & travel items
+A1,der,Koffer,=,die Koffer,Suitcase
+A2,der,Reiseführer,=,die Reiseführer,Travel guidebook
+B1,der,Reiseplan,Reisepläne,die Reisepläne,Travel plan
+// der — cluster: natural landmarks
+A1,der,Strand,Strände,die Strände,Beach
+A1,der,Hafen,Häfen,die Häfen,Harbour
+A1,der,Berg,-e,die Berge,Mountain
+A1,der,See,-n,die Seen,Lake
+A2,der,Gipfel,=,die Gipfel,Summit
+A2,der,Wasserfall,Wasserfälle,die Wasserfälle,Waterfall
+B1,der,Aussichtspunkt,-e,die Aussichtspunkte,Viewpoint
+B2,der,Gletscher,=,die Gletscher,Glacier
+// der — cluster: historic & cultural sites
+A2,der,Palast,Paläste,die Paläste,Palace
+B1,der,Dom,-e,die Dome,Cathedral
+B1,der,Tempel,=,die Tempel,Temple
+B2,der,Archäologiepark,-s,die Archäologieparks,Archaeological park
+// der — cluster: accommodation & outdoor
+A1,der,Campingplatz,Campingplätze,die Campingplätze,Campsite
+// der — cluster: travel logistics
+A2,der,Ausflug,Ausflüge,die Ausflüge,Day trip
+A2,der,Aufenthalt,-e,die Aufenthalte,Stay
+B1,der,Grenzübergang,Grenzübergänge,die Grenzübergänge,Border crossing
+B2,der,Zoll,---,---,Customs
+// die — cluster: trip types
+A1,die,Reise,-n,die Reisen,Journey
+A1,die,Ferien,nur P,---,Holidays
+A2,die,Rundreise,-n,die Rundreisen,Round trip
+A2,die,Kreuzfahrt,-en,die Kreuzfahrten,Cruise
+B1,die,Pauschalreise,-n,die Pauschalreisen,Package holiday
+B1,die,Abenteuerreise,-n,die Abenteuerreisen,Adventure trip
+B2,die,Bildungsreise,-n,die Bildungsreisen,Educational trip
+// die — cluster: accommodation types
+A1,die,Pension,-en,die Pensionen,Guesthouse
+A2,die,Herberge,-n,die Herbergen,Inn
+A2,die,Jugendherberge,-n,die Jugendherbergen,Youth hostel
+B1,die,Ferienwohnung,-en,die Ferienwohnungen,Holiday flat
+B2,die,Luxusunterkunft,Luxusunterkünfte,die Luxusunterkünfte,Luxury accommodation
+// die — cluster: sightseeing & culture
+A1,die,Sehenswürdigkeit,-en,die Sehenswürdigkeiten,Tourist sight
+A1,die,Stadt,Städte,die Städte,City
+A2,die,Besichtigung,-en,die Besichtigungen,Guided visit
+A2,die,Führung,-en,die Führungen,Guided tour
+A2,die,Stadtführung,-en,die Stadtführungen,City tour
+B1,die,Attraktion,-en,die Attraktionen,Attraction
+B1,die,Altstadt,Altstädte,die Altstädte,Old town
+B1,die,Kultur,-en,die Kulturen,Culture
+B2,die,Touristenattraktion,-en,die Touristenattraktionen,Tourist attraction
+B2,die,Tourismuswirtschaft,---,---,Tourism industry
+// die — cluster: booking & planning
+A1,die,Nacht,Nächte,die Nächte,Night
+A1,die,Karte,-n,die Karten,Map
+A2,die,Buchung,-en,die Buchungen,Booking
+A2,die,Abreise,-n,die Abreisen,Departure
+A2,die,Ankunft,Ankünfte,die Ankünfte,Arrival
+B1,die,Reiseversicherung,-en,die Reiseversicherungen,Travel insurance
+B1,die,Reisegruppe,-n,die Reisegruppen,Travel group
+B1,die,Hochsaison,-s,die Hochsaisons,Peak season
+B2,die,Reiseroute,-n,die Reiserouten,Travel route
+B2,die,Reisewarnung,-en,die Reisewarnungen,Travel warning
+B2,die,Nebensaison,-s,die Nebensaisons,Off-season
+// die — cluster: activities & adventure
+A2,die,Wanderung,-en,die Wanderungen,Hike
+A2,die,Safari,-s,die Safaris,Safari
+B1,die,Tagestour,-en,die Tagestouren,Day tour
+B2,die,Schifffahrt,-en,die Schifffahrten,Boat journey
+// die — cluster: geography & destinations
+A1,die,Küste,-n,die Küsten,Coast
+A1,die,Insel,-n,die Inseln,Island
+A1,die,Stadtkarte,-n,die Stadtkarten,City map
+A2,die,Hauptstadt,Hauptstädte,die Hauptstädte,Capital city
+A2,die,Grenze,-n,die Grenzen,Border
+B1,die,Küstenstadt,Küstenstädte,die Küstenstädte,Coastal town
+B1,die,Strandpromenade,-n,die Strandpromenaden,Seafront promenade
+B2,die,Grenzregion,-en,die Grenzregionen,Border region
+// die — cluster: travel services & memory
+A2,die,Erinnerung,-en,die Erinnerungen,Memory
+B1,die,Broschüre,-n,die Broschüren,Brochure
+B1,die,Reiseagentur,-en,die Reiseagenturen,Travel agency
+B2,die,Reiseleitung,-en,die Reiseleitungen,Tour management
+B2,die,Reisemesse,-n,die Reisemessen,Travel fair
+`.trim();
+
+const adjectivesCSV = `
+// cluster: distance & climate
+A1,-sonnig,sunny,-regnerisch,rainy
+A1,-weit,far away,-nah,nearby
+A1,-heiß,hot,-kühl,cool
+// cluster: comfort & convenience
+A1,-bequem,comfortable,-unbequem,uncomfortable
+A1,-direkt,direct,-umständlich,complicated
+A1,-international,international,-lokal,local
+// cluster: character of destination
+A2,-touristisch,touristy,-abgelegen,remote
+A2,-aufregend,exciting,-enttäuschend,disappointing
+A2,-belebt,lively,-verlassen,deserted
+// cluster: value & scope
+A2,-erschwinglich,affordable,-kostspielig,expensive
+A2,-typisch,typical,-untypisch,atypical
+A2,-ruhig,quiet,-geschäftig,bustling
+A2,-umfangreich,extensive,-begrenzt,limited
+// cluster: visual & atmosphere
+B1,-malerisch,picturesque,-trostlos,dreary
+B1,-exotisch,exotic,-vertraut,familiar
+B1,-kulturell,cultural,-kulturlos,uncultured
+// cluster: quality & recommendation
+B1,-sehenswert,worth seeing,-unspektakulär,unspectacular
+B1,-empfehlenswert,recommended,-überschätzt,overrated
+B1,-authentisch,authentic,-kitschig,kitchy
+B1,-erholsam,relaxing,-strapaziös,exhausting
+// cluster: advanced travel concepts
+B2,-unvergesslich,unforgettable,-alltäglich,ordinary
+B2,-nachhaltig,sustainable,-rücksichtslos,irresponsible
+B2,-mehrtägig,multi-day,-eintägig,day-trip only
+B2,-interkulturell,intercultural,-provinziell,provincial
+B2,-weitgereist,well-travelled,-sesshaft,settled
+`.trim();
+
+const verbsCSV = `
+// cluster: basic travel movements
+A1,*reisen,travel,*verreisen,travel away
+A1,*buchen,book,*anfragen,enquire
+A1,+ankommen,arrive,*abreisen,depart
+A1,*packen,pack,*auspacken,unpack
+A1,*übernachten,stay overnight,*campen,camp
+// cluster: exploring & activities
+A2,*besichtigen,visit (sights),*erkunden,explore
+A2,*wandern,hike,*schlendern,stroll
+A2,*einchecken,check in,*auschecken,check out
+A2,*tauchen,dive,*schnorcheln,snorkel
+A2,*verbringen,spend (time),*auskundschaften,scout out
+A2,*eintreffen,arrive,*aufbrechen,set off
+// cluster: guided & leisure travel
+B1,*führen,guide,*betreuen,look after
+B1,*abschalten,switch off,*bummeln,browse around
+B1,*sichern,secure (booking),*umplanen,rearrange
+B1,+skifahren,ski,*surfen,surf
+B1,*segeln,sail,*rudern,row
+B1,+mitbringen,bring back,*tauschen,exchange
+// cluster: advanced & cultural travel
+B2,*sich anpassen,adapt,*integrieren,integrate
+B2,*durchqueren,traverse,*bereisen,travel through
+B2,*budgetieren,budget,*kalkulieren,calculate
+B2,*staunen,marvel at,*inspizieren,inspect
+B2,*auswandern,emigrate,*einwandern,immigrate
+`.trim();
+
+const expressionsCSV = `
+// cluster: basic travel talk
+A1,Ich fahre nächste Woche auf Reisen.,I am travelling next week.
+A1,Wohin fährst du in den Ferien?,Where are you going on holiday?
+A1,Ich habe das Ticket schon gebucht.,I have already booked the ticket.
+A1,Unser Hotel ist direkt am Strand.,Our hotel is right on the beach.
+A1,Die Ferien beginnen in zwei Wochen.,The holidays start in two weeks.
+A1,Ich packe meinen Koffer.,I am packing my suitcase.
+A1,Wir übernachten drei Nächte im Hotel.,We are staying three nights in the hotel.
+A1,Die Reise dauert eine Woche.,The trip lasts one week.
+// cluster: planning & booking
+A2,Ich möchte einen Ausflug zur Altstadt machen.,I would like to take a trip to the old town.
+A2,Wir haben die Stadtführung für morgen gebucht.,We have booked the city tour for tomorrow.
+A2,Die Sehenswürdigkeiten in dieser Stadt sind beeindruckend.,The sights in this city are impressive.
+A2,Mein Koffer war zu schwer für das Handgepäck.,My suitcase was too heavy for hand luggage.
+A2,Ich habe ein Souvenir für meine Familie gekauft.,I bought a souvenir for my family.
+A2,Die Ankunft ist um halb sechs am Morgen.,The arrival is at half past five in the morning.
+A2,Können wir ein Doppelzimmer buchen?,Can we book a double room?
+A2,Ich erkunde gern neue Städte zu Fuß.,I like exploring new cities on foot.
+// cluster: accommodation & seasons
+B1,Ein Reisebüro kann uns bei der Planung unserer Pauschalreise helfen.,A travel agency can help us plan our package holiday.
+B1,Die Reiseversicherung deckt Stornierungen und Krankheiten ab.,Travel insurance covers cancellations and illnesses.
+B1,In der Hochsaison sind die Preise viel höher als in der Nebensaison.,In peak season prices are much higher than in the off-season.
+B1,Ich bevorzuge Ferienwohnungen gegenüber Hotels weil sie mehr Privatsphäre bieten.,I prefer holiday flats to hotels because they offer more privacy.
+B1,Wir haben eine Tagestour zu einem beeindruckenden Naturschutzgebiet gemacht.,We went on a day tour to an impressive nature reserve.
+B1,Die Altstadt mit ihrer historischen Architektur ist besonders sehenswert.,The old town with its historic architecture is particularly worth seeing.
+B1,Auf Reisen lernt man andere Kulturen und Lebensweisen besser kennen.,When travelling you get to know other cultures and ways of life better.
+// cluster: sustainable & advanced tourism
+B2,Weltkulturerbestätten sollten durch nachhaltigen Tourismus geschützt werden.,World heritage sites should be protected through sustainable tourism.
+B2,Das Reiseprogramm wurde sorgfältig auf die Bedürfnisse der Reisegruppe abgestimmt.,The travel itinerary was carefully tailored to the needs of the travel group.
+B2,Weitgereiste Touristen schätzen authentische Erlebnisse abseits touristischer Pfade.,Well-travelled tourists appreciate authentic experiences off the tourist path.
+B2,Die Tourismuswirtschaft hat erheblichen Einfluss auf die lokale Infrastruktur.,The tourism industry has a considerable influence on local infrastructure.
+B2,Durch interkulturelles Reisen erweitert man den eigenen Horizont erheblich.,Intercultural travel considerably broadens one's horizons.
+`.trim();
+
+// ============================================
+// CONVERSATIONS DATA
+// format: level|Title|Speaker,german,english
+// ============================================
+const conversationsCSV = `
+A1|At the Hotel|A,Guten Tag. Ich habe ein Einzelzimmer gebucht.,Good afternoon. I have booked a single room.
+A1|At the Hotel|B,Guten Tag. Wie ist Ihr Name bitte?,Good afternoon. What is your name please?
+A1|At the Hotel|A,Mein Name ist Schmidt.,My name is Schmidt.
+A1|At the Hotel|B,Ja wir haben Ihre Buchung. Das Zimmer ist im zweiten Stock.,Yes we have your booking. The room is on the second floor.
+A1|At the Hotel|A,Wie lange ist das Frühstück?,How long is breakfast served?
+A1|At the Hotel|B,Das Frühstück ist von sieben bis zehn Uhr.,Breakfast is from seven to ten o'clock.
+A1|At the Hotel|A,Gibt es einen Pool im Hotel?,Is there a pool in the hotel?
+A1|At the Hotel|B,Nein aber wir haben einen Fitnessraum.,No but we have a fitness room.
+A1|At the Hotel|A,Danke. Wo ist der Aufzug?,Thank you. Where is the lift?
+A2|Planning a Day Trip|A,Was sollen wir morgen machen?,What should we do tomorrow?
+A2|Planning a Day Trip|B,Ich würde gern eine Stadtführung machen.,I would like to do a city tour.
+A2|Planning a Day Trip|A,Gute Idee. Wie lange dauert die Führung?,Good idea. How long does the tour last?
+A2|Planning a Day Trip|B,Etwa zwei Stunden. Danach können wir die Altstadt besichtigen.,About two hours. Afterwards we can visit the old town.
+A2|Planning a Day Trip|A,Müssen wir die Führung vorher buchen?,Do we need to book the tour in advance?
+A2|Planning a Day Trip|B,Ja es ist besser eine Buchung zu machen.,Yes it is better to make a booking.
+A2|Planning a Day Trip|A,Und was machen wir am Nachmittag?,And what do we do in the afternoon?
+A2|Planning a Day Trip|B,Ich möchte zum Strand und dann ein Restaurant suchen.,I would like to go to the beach and then find a restaurant.
+A2|Planning a Day Trip|A,Toll! Wollen wir heute noch die Broschüren lesen?,Great! Shall we read the brochures today?
+A2|Planning a Day Trip|B,Ja gute Idee. Dann können wir besser planen.,Yes good idea. Then we can plan better.
+B1|At the Travel Agency|A,Guten Tag. Ich möchte eine Pauschalreise buchen.,Good day. I would like to book a package holiday.
+B1|At the Travel Agency|B,Sehr gern. Wohin möchten Sie reisen?,With pleasure. Where would you like to travel?
+B1|At the Travel Agency|A,Wir denken an eine Rundreise durch Südeuropa.,We are thinking of a round trip through southern Europe.
+B1|At the Travel Agency|B,Für wie viele Personen und wie lange?,For how many people and for how long?
+B1|At the Travel Agency|A,Für zwei Personen für zwei Wochen.,For two people for two weeks.
+B1|At the Travel Agency|B,Wir empfehlen unser Angebot mit Halbpension und Reiseversicherung.,We recommend our offer with half-board and travel insurance.
+B1|At the Travel Agency|A,Was ist im Pauschalangebot enthalten?,What is included in the package deal?
+B1|At the Travel Agency|B,Flug Hotel und eine tägliche Tagestour mit Fremdenführer.,Flight hotel and a daily day tour with a tour guide.
+B1|At the Travel Agency|A,Das klingt sehr gut. Wann wäre die Abreise möglich?,That sounds very good. When would departure be possible?
+B2|Sustainable Tourism|A,Der Tourismus in vielen Ländern hat negative Auswirkungen auf die Umwelt.,Tourism in many countries has negative effects on the environment.
+B2|Sustainable Tourism|B,Das stimmt. Die Tourismuswirtschaft muss nachhaltiger werden.,That is true. The tourism industry must become more sustainable.
+B2|Sustainable Tourism|A,Wie kann man als Reisender rücksichtslosen Massentourismus vermeiden?,How can one as a traveller avoid irresponsible mass tourism?
+B2|Sustainable Tourism|B,Indem man abgelegene Reiseziele wählt und die lokale Wirtschaft unterstützt.,By choosing remote destinations and supporting the local economy.
+B2|Sustainable Tourism|A,Weltkulturerbestätten werden durch zu viele Touristen beschädigt.,World heritage sites are being damaged by too many tourists.
+B2|Sustainable Tourism|B,Deshalb sollten interkulturelle Bildungsreisen stärker gefördert werden.,Therefore intercultural educational trips should be promoted more strongly.
+B2|Sustainable Tourism|A,Stimmst du zu dass weitgereiste Reisende umweltbewusster sind?,Do you agree that well-travelled tourists are more environmentally aware?
+B2|Sustainable Tourism|B,Oft ja. Durch das Bereisen verschiedener Länder verändert sich die Perspektive.,Often yes. Travelling through different countries changes one's perspective.
+B2|Sustainable Tourism|A,Nachhaltiger Tourismus ist die Zukunft.,Sustainable tourism is the future.
+`.trim();
+
+const qaCSV = `
+// cluster: basic travel
+A1,Machst du gern Reisen?,Ja ich reise sehr gern. (Yes I love travelling.)
+A1,Wohin fährst du in den Ferien?,Ich fahre ans Meer. (I am going to the sea.)
+A1,Was nimmst du auf Reisen mit?,Ich packe Kleider Schuhe und mein Ticket. (I pack clothes shoes and my ticket.)
+A1,Wie lange dauert deine Reise?,Meine Reise dauert zehn Tage. (My trip lasts ten days.)
+A1,Wo übernachtest du?,Ich übernachte in einem Hotel. (I am staying in a hotel.)
+A1,Was ist dein Lieblingsziel?,Mein Lieblingsziel ist der Strand. (My favourite destination is the beach.)
+A1,Hast du schon ein Ticket?,Ja ich habe das Ticket schon gebucht. (Yes I have already booked the ticket.)
+A1,Fährst du allein oder mit der Familie?,Ich reise mit meiner Familie. (I am travelling with my family.)
+// cluster: accommodation & sightseeing
+A2,Welche Sehenswürdigkeiten willst du besuchen?,Ich möchte das Museum und die Altstadt besichtigen. (I want to visit the museum and the old town.)
+A2,Wie war deine letzte Reise?,Sie war sehr aufregend und unvergesslich. (It was very exciting and unforgettable.)
+A2,Was machst du am liebsten auf Reisen?,Ich mache gern Stadtführungen und Ausflüge. (I like doing city tours and day trips.)
+A2,Hast du schon ein Hotel gebucht?,Ja ich habe eine Pension direkt am Strand gebucht. (Yes I have booked a guesthouse right on the beach.)
+A2,Was kaufst du als Souvenir?,Ich kaufe kleine Andenken für meine Familie. (I buy small keepsakes for my family.)
+A2,Wann ist deine Ankunft?,Meine Ankunft ist am Dienstag um drei Uhr nachmittags. (My arrival is on Tuesday at three in the afternoon.)
+A2,Was kostet die Stadtführung?,Die Führung kostet fünfzehn Euro pro Person. (The tour costs fifteen euros per person.)
+A2,Bevorzugst du Strand- oder Städtereisen?,Ich mag beides aber Städtereisen finde ich besonders interessant. (I like both but I find city trips particularly interesting.)
+// cluster: planning & tourism
+B1,Was sind die Vorteile einer Pauschalreise?,Man hat weniger Stress und alles ist bereits organisiert. (You have less stress and everything is already organised.)
+B1,Was bedeutet Hochsaison im Tourismus?,Die Zeit mit den meisten Reisenden und den höchsten Preisen. (The time with the most travellers and the highest prices.)
+B1,Wie bereite ich mich gut auf eine Reise vor?,Ich schließe eine Reiseversicherung ab und erstelle einen Reiseplan. (I take out travel insurance and create a travel plan.)
+B1,Was unterscheidet eine Jugendherberge von einem Hotel?,Jugendherbergen sind günstiger haben aber weniger Privatsphäre. (Youth hostels are cheaper but have less privacy.)
+B1,Warum reisen Rucksackreisende oft in der Nebensaison?,Weil die Preise günstiger sind und weniger Touristen unterwegs sind. (Because prices are lower and there are fewer tourists.)
+B1,Was macht einen Aussichtspunkt besonders sehenswert?,Eine einzigartige Aussicht auf die Landschaft und die Stadt. (A unique view of the landscape and the city.)
+B1,Was bedeutet Fernweh?,Das starke Verlangen in fremde Länder zu reisen. (The strong desire to travel to foreign countries.)
+// cluster: advanced tourism concepts
+B2,Was versteht man unter nachhaltigem Tourismus?,Reisen das die Umwelt schont und lokale Gemeinschaften unterstützt. (Travel that respects the environment and supports local communities.)
+B2,Welche Auswirkungen hat Massentourismus auf Weltkulturerbestätten?,Überfüllung Abnutzung und Schäden an historischen Stätten. (Overcrowding wear and damage to historic sites.)
+B2,Was ist eine Bildungsreise?,Eine Reise die auf kulturelles und historisches Lernen ausgerichtet ist. (A trip focused on cultural and historical learning.)
+B2,Wie unterscheidet sich ein Weltenbummler von einem normalen Touristen?,Weltenbummler reisen langfristig und tauchen tief in lokale Kulturen ein. (Globe-trotters travel long-term and immerse themselves deeply in local cultures.)
+B2,Welche Rolle spielt Interkulturalität beim Reisen?,Sie fördert das Verständnis und den Respekt für andere Kulturen. (It promotes understanding and respect for other cultures.)
+`.trim();
+
+const sentencesCSV = `
+// cluster: basic travel plans
+A1,Ich fahre nächste Woche in die Ferien.,I am going on holiday next week.
+A1,Meine Familie reist ans Meer.,My family is travelling to the sea.
+A1,Ich packe meinen Koffer für die Reise.,I am packing my suitcase for the trip.
+A1,Unser Hotel liegt direkt am Strand.,Our hotel is right on the beach.
+A1,Die Reise dauert sieben Tage und sieben Nächte.,The trip lasts seven days and seven nights.
+A1,Ich nehme mein Ticket und meinen Koffer mit.,I am taking my ticket and my suitcase.
+A1,Das Gepäck ist sehr schwer.,The luggage is very heavy.
+A1,Ich kaufe eine Karte von der Stadt.,I am buying a map of the city.
+A1,Unsere Pension liegt nah am Strand.,Our guesthouse is close to the beach.
+A1,Der See und die Berge sind weit vom Strand.,The lake and the mountains are far from the beach.
+// cluster: activities & sightseeing
+A2,Wir besichtigen morgen das Museum und den alten Dom.,We are visiting the museum and the old cathedral tomorrow.
+A2,Die Stadtführung dauert zwei Stunden und ist sehr interessant.,The city tour lasts two hours and is very interesting.
+A2,Ich habe eine Buchung für eine Ferienwohnung gemacht.,I have made a booking for a holiday flat.
+A2,Er hat ein tolles Souvenir auf dem Markt gekauft.,He bought a lovely souvenir at the market.
+A2,Der Wasserfall am Gipfel des Berges war ein tolles Erlebnis.,The waterfall at the summit of the mountain was a great experience.
+A2,Die Hauptstadt hat viele aufregende Sehenswürdigkeiten zu bieten.,The capital city has many exciting sights to offer.
+A2,Wir machen einen Ausflug in die Altstadt und erkunden sie zu Fuß.,We are going on a day trip to the old town and exploring it on foot.
+A2,Die Safari war eine unvergessliche Abenteuerreise durch die Savanne.,The safari was an unforgettable adventure trip through the savanna.
+A2,Beim Einchecken fragte die Rezeption nach unserer Buchung.,At check-in the reception desk asked for our booking.
+A2,Nach der langen Abreise war die Ankunft im Hotel sehr willkommen.,After the long departure the arrival at the hotel was very welcome.
+// cluster: planning & logistics
+B1,Die Pauschalreise beinhaltet Flug Hotel und tägliche Tagestour.,The package holiday includes flight hotel and a daily day tour.
+B1,Mit einer Reiseversicherung ist man auf unerwartete Situationen vorbereitet.,With travel insurance you are prepared for unexpected situations.
+B1,In der Hochsaison empfehlen viele Reiseveranstalter eine frühzeitige Buchung.,In peak season many tour operators recommend an early booking.
+B1,Der Rucksackreisende bevorzugt Jugendherbergen und erschwingliche Herbergen.,The backpacker prefers youth hostels and affordable inns.
+B1,Der Aussichtspunkt auf dem Gletscher bot eine malerische Aussicht auf die Küstenstadt.,The viewpoint on the glacier offered a picturesque view of the coastal town.
+B1,Die Wanderung durch das Naturschutzgebiet war strapaziös aber erholsam.,The hike through the nature reserve was exhausting but relaxing.
+B1,Mit dem Reiseplan konnte die Gruppe alle wichtigen Attraktionen besichtigen.,With the travel plan the group was able to visit all the important attractions.
+B1,Die Altstadt mit ihrem authentischen Charme zog viele Touristen an.,The old town with its authentic charm attracted many tourists.
+// cluster: advanced tourism
+B2,Das Reiseprogramm umfasste Besichtigungen mehrerer Weltkulturerbestätten.,The travel itinerary included visits to several world heritage sites.
+B2,Nachhaltige Reisende versuchen die lokale Bevölkerung durch ihre Ausgaben zu unterstützen.,Sustainable travellers try to support the local population through their spending.
+B2,Die Reiseleitung koordinierte die weitgereiste Reisegruppe sehr professionell.,The tour management coordinated the well-travelled tour group very professionally.
+B2,Durch das Bereisen fremder Länder wird das interkulturelle Verständnis gestärkt.,Travelling through foreign countries strengthens intercultural understanding.
+B2,Die Bildungsreise gab den Teilnehmern einen tiefen Einblick in fremde Kulturen.,The educational trip gave participants a deep insight into foreign cultures.
+B2,Weltkulturerbestätten leiden unter dem Druck des globalen Massentourismus.,World heritage sites suffer under the pressure of global mass tourism.
+`.trim();
+
+// ============================================
+// CSV PARSER
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(l => l.split(',').map(c => c.trim()));
+}
+
+// ============================================
+// LEVEL FILTER STATE
+// ============================================
+let currentLevel = 'all';
+
+function filterByLevel(level) {
+    currentLevel = level;
+    document.querySelectorAll('.level-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.level === level);
+    });
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    updateFilterCount();
+}
+
+function updateFilterCount() {
+    const el = document.getElementById('filterCount');
+    if (!el) return;
+    if (currentLevel === 'all') { el.textContent = ''; return; }
+    let total = 0;
+    [nounsCSV, adjectivesCSV, verbsCSV, expressionsCSV, qaCSV, sentencesCSV].forEach(csv => {
+        parseCSV(csv).forEach(row => { if (row[0] === currentLevel) total++; });
+    });
+    conversationsCSV.split('\n').forEach(line => {
+        line = line.trim();
+        if (line && !line.startsWith('//') && line.startsWith(currentLevel + '|')) total++;
+    });
+    el.textContent = `${total} entries`;
+}
+
+function badge(level) {
+    return `<span class="lvl-badge ${level}">${level}</span>`;
+}
+
+// ============================================
+// RENDER NOUNS
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const grouped = { das: [], der: [], die: [] };
+    data.forEach(row => {
+        const [level, article, german, pluralNotation, pluralFull, english] = row;
+        if (grouped[article] !== undefined) {
+            grouped[article].push({ level, article, german, pluralNotation, pluralFull, english });
+        }
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    const articles = [
+        { key: 'der', label: 'Maskulinum (der)', rowClass: 'der-row', artClass: 'der-article' },
+        { key: 'das', label: 'Neutrum (das)',     rowClass: 'das-row', artClass: 'das-article' },
+        { key: 'die', label: 'Femininum (die)',   rowClass: 'die-row', artClass: 'die-article' },
+    ];
+
+    let anyContent = false;
+
+    articles.forEach(({ key, label, rowClass, artClass }, artIdx) => {
+        const words = grouped[key];
+        if (words.length === 0) return;
+        anyContent = true;
+
+        html += `<tr class="separator"><td colspan="8">${label}</td></tr>`;
+
+        const half = Math.ceil(words.length / 2);
+        for (let i = 0; i < half; i++) {
+            const w1 = words[i];
+            const w2 = words[i + half] || null;
+
+            html += `<tr class="${rowClass}">`;
+            html += `<td class="article-cell ${artClass}">${w1.article}</td>`;
+            html += `<td class="german-cell">${w1.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w1.article)}','${escAttr(w1.german)}','${escAttr(w1.pluralFull)}')">🔊</button></td>`;
+            html += `<td class="plural-cell">${w1.pluralNotation}</td>`;
+            html += `<td class="english-cell">${w1.english}</td>`;
+
+            if (w2) {
+                html += `<td class="article-cell ${artClass}">${w2.article}</td>`;
+                html += `<td class="german-cell">${w2.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w2.article)}','${escAttr(w2.german)}','${escAttr(w2.pluralFull)}')">🔊</button></td>`;
+                html += `<td class="plural-cell">${w2.pluralNotation}</td>`;
+                html += `<td class="english-cell">${w2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    });
+
+    if (!anyContent) {
+        html = `<tr><td colspan="8" style="text-align:center; color:#999; padding:12px;">No nouns at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const verbData = parseCSV(verbsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    if (adjData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Adjectives (- prefix = opposite pairs)</td></tr>`;
+        const half = Math.ceil(adjData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = adjData[i];
+            const r2 = adjData[i + half] || null;
+            html += `<tr class="adjective-row">`;
+            html += `<td class="german-col">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[3])}')">🔊</button></td><td class="english-col">${r1[2]}</td>`;
+            html += `<td class="german-col">${r1[3]}</td><td class="english-col">${r1[4]}</td>`;
+            if (r2) {
+                html += `<td class="german-col">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[3])}')">🔊</button></td><td class="english-col">${r2[2]}</td>`;
+                html += `<td class="german-col">${r2[3]}</td><td class="english-col">${r2[4]}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+
+    if (verbData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Verbs (* Weak | + Strong — opposite / related pairs)</td></tr>`;
+        const half = Math.ceil(verbData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = verbData[i];
+            const r2 = verbData[i + half] || null;
+            html += `<tr class="verb-row">`;
+            html += `<td class="german-col">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[3])}')">🔊</button></td><td class="english-col">${r1[2]}</td>`;
+            html += `<td class="german-col">${r1[3]}</td><td class="english-col">${r1[4]}</td>`;
+            if (r2) {
+                html += `<td class="german-col">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[3])}')">🔊</button></td><td class="english-col">${r2[2]}</td>`;
+                html += `<td class="german-col">${r2[3]}</td><td class="english-col">${r2[4]}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+
+    if (adjData.length === 0 && verbData.length === 0) {
+        html = `<tr><td colspan="8" style="text-align:center; color:#999; padding:12px;">No adjectives or verbs at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        const [lvl1, ger1, ...eng1parts] = data[i];
+        const eng1 = eng1parts.join(',');
+        html += `<tr>`;
+        html += `<td class="german-cell">${ger1} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(ger1)}')">🔊</button></td>`;
+        html += `<td class="english-cell">${eng1}</td>`;
+        if (i + 1 < data.length) {
+            const [lvl2, ger2, ...eng2parts] = data[i + 1];
+            const eng2 = eng2parts.join(',');
+            html += `<td class="german-cell">${ger2} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(ger2)}')">🔊</button></td>`;
+            html += `<td class="english-cell">${eng2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (data.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No expressions at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+
+    const conversations = {};
+    const convOrder = [];
+    const convLevels = {};
+
+    rawLines.forEach(line => {
+        const firstPipe  = line.indexOf('|');
+        const secondPipe = line.indexOf('|', firstPipe + 1);
+        const firstComma = line.indexOf(',', secondPipe + 1);
+        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+
+        const level   = line.substring(0, firstPipe).trim();
+        const title   = line.substring(firstPipe + 1, secondPipe).trim();
+        const speaker = line.substring(secondPipe + 1, firstComma).trim();
+
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+
+        const rest         = line.substring(firstComma + 1);
+        const secondComma  = rest.indexOf(',');
+        const german       = rest.substring(0, secondComma).trim();
+        const english      = rest.substring(secondComma + 1).trim();
+
+        const key = `${level}|${title}`;
+        if (!conversations[key]) {
+            conversations[key] = [];
+            convOrder.push(key);
+            convLevels[key] = level;
+        }
+        conversations[key].push({ speaker, german, english });
+    });
+
+    const container = document.getElementById('conversationsContainer');
+    let html = '';
+
+    if (convOrder.length === 0) {
+        html = `<p style="text-align:center; color:#999; padding:12px;">No conversations at ${currentLevel} level</p>`;
+        container.innerHTML = html;
+        return;
+    }
+
+    convOrder.forEach(key => {
+        const title = key.split('|').slice(1).join('|');
+        const lines = conversations[key];
+
+        const linesA = lines.filter(l => l.speaker === 'A');
+        const linesB = lines.filter(l => l.speaker === 'B');
+        const maxRows = Math.max(linesA.length, linesB.length);
+
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="4" class="conversation-title">💬 ${title}</td></tr>`;
+        html += `<tr>`;
+        html += `<td class="conv-subheader" style="width:27%;">Speaker A — Deutsch</td>`;
+        html += `<td class="conv-subheader" style="width:23%;">Speaker A — English</td>`;
+        html += `<td class="conv-subheader" style="width:27%;">Speaker B — Deutsch</td>`;
+        html += `<td class="conv-subheader" style="width:23%;">Speaker B — English</td>`;
+        html += `</tr>`;
+
+        for (let i = 0; i < maxRows; i++) {
+            const a = linesA[i] || null;
+            const b = linesB[i] || null;
+
+            html += `<tr>`;
+            html += `<td class="conv-ger-a">${a ? a.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(a.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-a">${a ? a.english : ''}</td>`;
+            html += `<td class="conv-ger-b">${b ? b.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(b.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-b">${b ? b.english : ''}</td>`;
+            html += `</tr>`;
+        }
+
+        html += `</table>`;
+    });
+
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A
+// ============================================
+function renderQATable() {
+    const qaRows = qaCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(line => {
+            const firstComma  = line.indexOf(',');
+            const secondComma = line.indexOf(',', firstComma + 1);
+            if (firstComma === -1 || secondComma === -1) return null;
+            return {
+                level:    line.substring(0, firstComma).trim(),
+                question: line.substring(firstComma + 1, secondComma).trim(),
+                answer:   line.substring(secondComma + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < qaRows.length; i += 2) {
+        const r1 = qaRows[i];
+        const r2 = qaRows[i + 1] || null;
+        html += `<tr>`;
+        html += `<td class="question-cell">${r1.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.question)}')">🔊</button></td>`;
+        html += `<td class="answer-cell">${r1.answer}</td>`;
+        if (r2) {
+            html += `<td class="question-cell">${r2.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.question)}')">🔊</button></td>`;
+            html += `<td class="answer-cell">${r2.answer}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (qaRows.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No Q&amp;A at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES
+// ============================================
+function renderSentencesTable() {
+    const sentRows = sentencesCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(line => {
+            const firstComma  = line.indexOf(',');
+            const secondComma = line.indexOf(',', firstComma + 1);
+            if (firstComma === -1 || secondComma === -1) return null;
+            return {
+                level:   line.substring(0, firstComma).trim(),
+                german:  line.substring(firstComma + 1, secondComma).trim(),
+                english: line.substring(secondComma + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < sentRows.length; i += 2) {
+        const r1 = sentRows[i];
+        const r2 = sentRows[i + 1] || null;
+        html += `<tr>`;
+        html += `<td class="german-cell">${r1.german} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.german)}')">🔊</button></td>`;
+        html += `<td class="english-cell">${r1.english}</td>`;
+        if (r2) {
+            html += `<td class="german-cell">${r2.german} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.german)}')">🔊</button></td>`;
+            html += `<td class="english-cell">${r2.english}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (sentRows.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No sentences at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// TOGGLE CONTROLS PANEL
+// ============================================
+function toggleControls() {
+    const panel = document.getElementById('controlsPanel');
+    const btn   = document.getElementById('controlsToggle');
+    const collapsed = panel.classList.toggle('collapsed');
+    btn.style.display = collapsed ? 'block' : 'none';
+}
+
+function toggleSecondary() {
+    const sec = document.getElementById('secondaryControls');
+    const btn = document.getElementById('secToggleBtn');
+    const open = sec.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.textContent = open ? '⚙ Zoom & Print ▲' : '⚙ Zoom & Print';
+}
+
+// ============================================
+// ZOOM
+// ============================================
+let vocabZoom = 100, phrasesZoom = 100;
+const zoomStep = 10, minZoom = 50, maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    document.getElementById('vocabSection').style.fontSize = `${baseFontSize * vocabZoom / 100}em`;
+    document.getElementById('zoomLevelVocab').textContent = `${vocabZoom}%`;
+}
+function updatePhrasesZoom() {
+    document.getElementById('phrasesSection').style.fontSize = `${baseFontSize * phrasesZoom / 100}em`;
+    document.getElementById('zoomLevelPhrases').textContent = `${phrasesZoom}%`;
+}
+function zoomInVocab()     { if (vocabZoom < maxZoom)   { vocabZoom   += zoomStep; updateVocabZoom(); } }
+function zoomOutVocab()    { if (vocabZoom > minZoom)   { vocabZoom   -= zoomStep; updateVocabZoom(); } }
+function resetZoomVocab()  { vocabZoom = 100;   updateVocabZoom(); }
+function zoomInPhrases()   { if (phrasesZoom < maxZoom) { phrasesZoom += zoomStep; updatePhrasesZoom(); } }
+function zoomOutPhrases()  { if (phrasesZoom > minZoom) { phrasesZoom -= zoomStep; updatePhrasesZoom(); } }
+function resetZoomPhrases(){ phrasesZoom = 100; updatePhrasesZoom(); }
+
+// ============================================
+// KEYBOARD SHORTCUTS
+// ============================================
+document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    const map = { '0': 'all', '1': 'A1', '2': 'A2', '3': 'B1', '4': 'B2' };
+    if (map[e.key]) filterByLevel(map[e.key]);
+    if (e.key === 'p' || e.key === 'P') window.print();
+});
+
+// ============================================
+// SPEECH SYNTHESIS (TTS)
+// ============================================
+let germanVoice = null;
+let currentUtterance = null;
+let isSpeaking = false;
+let isPlayingSequence = false;
+let ttsWarmedUp = false;
+
+function loadVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (!voiceSelect) return;
+    voiceSelect.innerHTML = '';
+    const germanVoices = voices.filter(v => v.lang.startsWith('de'));
+    if (germanVoices.length === 0) {
+        voiceSelect.innerHTML = '<option value="">No German voice – using default</option>';
+        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0] || null;
+    } else {
+        germanVoices.forEach((voice, index) => {
+            const option = document.createElement('option');
+            option.value = index;
+            option.textContent = `${voice.name} (${voice.lang})`;
+            voiceSelect.appendChild(option);
+            if (index === 0) germanVoice = voice;
+        });
+    }
+}
+
+if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+}
+setTimeout(loadVoices, 100);
+setTimeout(loadVoices, 600);
+
+document.addEventListener('DOMContentLoaded', function() {
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (voiceSelect) {
+        voiceSelect.addEventListener('change', function(e) {
+            stopAllSpeech();
+            const voices = window.speechSynthesis.getVoices();
+            const germanVoices = voices.filter(v => v.lang.startsWith('de'));
+            germanVoice = germanVoices[parseInt(e.target.value)] || voices[0] || null;
+        });
+    }
+    const speedControl = document.getElementById('speedControl');
+    if (speedControl) {
+        speedControl.addEventListener('input', function(e) {
+            const el = document.getElementById('speedValue');
+            if (el) el.textContent = e.target.value + '×';
+        });
+    }
+});
+
+function warmUpTTS(callback) {
+    if (ttsWarmedUp) { callback(); return; }
+    const primer = new SpeechSynthesisUtterance(' ');
+    primer.volume = 0;
+    primer.lang = 'de-DE';
+    if (germanVoice) primer.voice = germanVoice;
+    primer.onend  = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    primer.onerror = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(primer);
+}
+
+function speak(text, callback) {
+    if (!text || text.trim() === '') { if (callback) callback(); return; }
+    text = text.replace('🔊', '').trim();
+    if (!isPlayingSequence) stopAllSpeech();
+    if (!ttsWarmedUp) {
+        warmUpTTS(() => speakNow(text, callback));
+    } else {
+        window.speechSynthesis.resume();
+        setTimeout(() => speakNow(text, callback), 100);
+    }
+}
+
+function stopAllSpeech() {
+    isPlayingSequence = false;
+    if (typeof speechSynthesis !== 'undefined') window.speechSynthesis.cancel();
+    isSpeaking = false;
+    hideAudioStatus();
+}
+
+function speakNow(text, callback) {
+    if (!('speechSynthesis' in window)) {
+        alert('⚠️ Text-to-speech not supported in this browser.');
+        if (callback) callback();
+        return;
+    }
+    showAudioStatus(text);
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'de-DE';
+    if (germanVoice) utterance.voice = germanVoice;
+    const speedEl = document.getElementById('speedControl');
+    utterance.rate = speedEl ? parseFloat(speedEl.value) : 0.8;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    let hasEnded = false;
+    utterance.onstart = () => { isSpeaking = true; };
+    utterance.onend = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) setTimeout(callback, 100);
+    };
+    utterance.onerror = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) callback();
+    };
+    currentUtterance = utterance;
+    try { window.speechSynthesis.speak(utterance); }
+    catch(e) { isSpeaking = false; hideAudioStatus(); if (callback) callback(); }
+}
+
+function showAudioStatus(text) {
+    const status = document.getElementById('audioStatus');
+    const statusText = document.getElementById('audioStatusText');
+    if (!status || !statusText) return;
+    statusText.textContent = '🔊 ' + (text.length > 40 ? text.substring(0, 40) + '…' : text);
+    status.classList.add('show');
+}
+
+function hideAudioStatus() {
+    setTimeout(() => {
+        const el = document.getElementById('audioStatus');
+        if (el) el.classList.remove('show');
+    }, 300);
+}
+
+function speakNounRow(article, singular, pluralFull) {
+    isPlayingSequence = true;
+    speak(article + ' ' + singular, () => {
+        if (pluralFull && pluralFull !== '---' && pluralFull !== 'kein Plural' && pluralFull !== 'nur P') {
+            setTimeout(() => speak(pluralFull, () => { isPlayingSequence = false; }), 350);
+        } else { isPlayingSequence = false; }
+    });
+}
+
+function speakWord(word) {
+    speak(word.replace(/[*+\-]/g, '').trim());
+}
+
+function speakPair(word1, word2) {
+    isPlayingSequence = true;
+    const w1 = word1.replace(/[*+\-]/g, '').trim();
+    const w2 = word2.replace(/[*+\-]/g, '').trim();
+    speak(w1, () => setTimeout(() => speak(w2, () => { isPlayingSequence = false; }), 800));
+}
+
+function speakText(text) {
+    speak(text);
+}
+
+// ============================================
+// PLAY SECTION — data-driven, column-first order
+// ============================================
+let playAllActive = false;
+let playAllIndex = 0;
+let playAllTexts = [];
+let currentPlaySection = null;
+
+// Collect noun texts for one article group in column-first order:
+// left column (items 0..half-1) then right column (items half..end)
+function collectNounTexts(articleFilter) {
+    const data = parseCSV(nounsCSV).filter(row =>
+        (currentLevel === 'all' || row[0] === currentLevel) &&
+        row[1] === articleFilter
+    );
+    const texts = [];
+    const half = Math.ceil(data.length / 2);
+    function pushNoun(row) {
+        const [lvl, art, ger, pn, pf] = row;
+        texts.push(art + ' ' + ger);
+        if (pf && pf !== '---' && pf !== 'nur P' && pf !== '=' && pf !== 'kein Plural') {
+            texts.push(pf);
+        }
+    }
+    for (let i = 0; i < half; i++)              pushNoun(data[i]);
+    for (let i = half; i < data.length; i++)    pushNoun(data[i]);
+    return texts;
+}
+
+// Collect adjective or verb texts: left column (0..half-1) then right column
+function collectWordTexts(csv) {
+    const data = parseCSV(csv).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const texts = [];
+    const half = Math.ceil(data.length / 2);
+    function pushPair(row) {
+        texts.push(row[1].replace(/[*+\-]/g, '').trim());
+        texts.push(row[3].replace(/[*+\-]/g, '').trim());
+    }
+    for (let i = 0; i < half; i++)              pushPair(data[i]);
+    for (let i = half; i < data.length; i++)    pushPair(data[i]);
+    return texts;
+}
+
+// Collect expression texts: left column (even indices → 0,2,4…) then right column (odd → 1,3,5…)
+function collectExprTexts() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const texts = [];
+    const evens = data.filter((_, i) => i % 2 === 0);
+    const odds  = data.filter((_, i) => i % 2 === 1);
+    [...evens, ...odds].forEach(row => {
+        const [lvl, ger, ...engParts] = row;
+        texts.push(ger);
+    });
+    return texts;
+}
+
+// Collect conversation texts: left col (speaker A lines) then right col (speaker B lines), per conversation
+function collectConvTexts() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+    const convMap = {};
+    const convOrder = [];
+    rawLines.forEach(line => {
+        const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1), fc = line.indexOf(',', sp + 1);
+        if (fp < 0 || sp < 0 || fc < 0) return;
+        const level = line.substring(0, fp).trim();
+        const title = line.substring(fp + 1, sp).trim();
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+        const speaker = line.substring(sp + 1, fc).trim();
+        const rest = line.substring(fc + 1);
+        const sc = rest.indexOf(',');
+        const german = rest.substring(0, sc).trim();
+        const key = level + '|' + title;
+        if (!convMap[key]) { convMap[key] = { A: [], B: [] }; convOrder.push(key); }
+        if (speaker === 'A') convMap[key].A.push(german);
+        else                  convMap[key].B.push(german);
+    });
+    const texts = [];
+    convOrder.forEach(key => {
+        convMap[key].A.forEach(t => texts.push(t));
+        convMap[key].B.forEach(t => texts.push(t));
+    });
+    return texts;
+}
+
+// Collect Q&A texts: left col (questions 0..half-1) then right col (questions half..end)
+function collectQATexts() {
+    const rows = qaCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return { level: line.substring(0, fc).trim(), question: line.substring(fc + 1, sc).trim() };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+    const half = Math.ceil(rows.length / 2);
+    const texts = [];
+    for (let i = 0; i < half; i++)          texts.push(rows[i].question);
+    for (let i = half; i < rows.length; i++) texts.push(rows[i].question);
+    return texts;
+}
+
+// Collect sentence texts: left col (0..half-1) then right col (half..end)
+function collectSentTexts() {
+    const rows = sentencesCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return { level: line.substring(0, fc).trim(), german: line.substring(fc + 1, sc).trim() };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+    const half = Math.ceil(rows.length / 2);
+    const texts = [];
+    for (let i = 0; i < half; i++)          texts.push(rows[i].german);
+    for (let i = half; i < rows.length; i++) texts.push(rows[i].german);
+    return texts;
+}
+
+const sectionBtnIds = {
+    all: 'btnAll', der: 'btnDer', das: 'btnDas', die: 'btnDie',
+    adj: 'btnAdj', verb: 'btnVerb', expr: 'btnExpr',
+    conv: 'btnConv', qa: 'btnQa', sent: 'btnSent'
+};
+
+function setPlayingBtn(section) {
+    Object.entries(sectionBtnIds).forEach(([key, id]) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('playing', key === section);
+    });
+}
+
+function playSection(section) {
+    // Toggle off if already playing this section
+    if (playAllActive && currentPlaySection === section) {
+        stopAllSpeech();
+        playAllActive = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        return;
+    }
+    stopAllSpeech();
+    playAllTexts = [];
+
+    if (section === 'all') {
+        playAllTexts = [
+            ...collectNounTexts('der'),
+            ...collectNounTexts('das'),
+            ...collectNounTexts('die'),
+            ...collectWordTexts(adjectivesCSV),
+            ...collectWordTexts(verbsCSV),
+            ...collectExprTexts(),
+            ...collectConvTexts(),
+            ...collectQATexts(),
+            ...collectSentTexts()
+        ];
+    } else if (section === 'der')  { playAllTexts = collectNounTexts('der'); }
+    else if (section === 'das')  { playAllTexts = collectNounTexts('das'); }
+    else if (section === 'die')  { playAllTexts = collectNounTexts('die'); }
+    else if (section === 'adj')  { playAllTexts = collectWordTexts(adjectivesCSV); }
+    else if (section === 'verb') { playAllTexts = collectWordTexts(verbsCSV); }
+    else if (section === 'expr') { playAllTexts = collectExprTexts(); }
+    else if (section === 'conv') { playAllTexts = collectConvTexts(); }
+    else if (section === 'qa')   { playAllTexts = collectQATexts(); }
+    else if (section === 'sent') { playAllTexts = collectSentTexts(); }
+
+    playAllTexts = playAllTexts.filter(t => t && t.trim());
+    if (playAllTexts.length === 0) return;
+
+    playAllActive = true;
+    playAllIndex = 0;
+    currentPlaySection = section;
+    isPlayingSequence = true;
+    setPlayingBtn(section);
+    playNextInSequence();
+}
+
+function playNextInSequence() {
+    if (!playAllActive || playAllIndex >= playAllTexts.length) {
+        playAllActive = false;
+        isPlayingSequence = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        return;
+    }
+    const text = playAllTexts[playAllIndex++];
+    speak(text, () => setTimeout(playNextInSequence, 500));
+}
+
+// Helper: escape text for HTML attribute
+function escAttr(s) {
+    return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
+// ============================================
+// INITIALIZE
+// ============================================
+window.addEventListener('load', function() {
+    updateVocabZoom();
+    updatePhrasesZoom();
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ German Vocabulary Reference loaded!');
+    console.log('💡 Keys: 0=All | 1=A1 | 2=A2 | 3=B1 | 4=B2 | P=Print');
+});
+    </script>
+</body>
+</html>
