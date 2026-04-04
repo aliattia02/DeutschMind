@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,651 +11,1088 @@
             box-sizing: border-box;
         }
 
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            overflow-x: hidden;
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-
-        header {
-            background: linear-gradient(90deg, #000000, #DD0000, #FFCE00);
-            color: white;
-            text-align: center;
-            padding: 40px 20px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
-            margin-bottom: 30px;
-        }
-
-        header h1 {
-            font-size: 3em;
-            margin-bottom: 10px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-
-        header p {
-            font-size: 1.3em;
-            opacity: 0.95;
-        }
-
-        .audio-controls {
+            font-family: 'Arial', 'Helvetica', sans-serif;
             background: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .audio-controls h3 {
-            color: #667eea;
-            margin-bottom: 10px;
-            width: 100%;
-        }
-
-        .control-group {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .control-group label {
-            font-weight: 600;
-            color: #333;
-        }
-
-        .control-group select,
-        .control-group input {
-            padding: 8px 15px;
-            border: 2px solid #667eea;
-            border-radius: 8px;
-            font-size: 1em;
-            cursor: pointer;
-        }
-
-        .play-all-btn {
-            background: linear-gradient(135deg, #DD0000, #FFCE00);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            font-size: 1.1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .play-all-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-        }
-
-        .tabs {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
-            padding: 0 20px;
-        }
-
-        .tab-button {
-            background: white;
-            border: none;
-            padding: 15px 30px;
-            border-radius: 25px;
-            font-size: 1.1em;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-
-        .tab-button:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0,0,0,0.3);
-            background: #DD0000;
-            color: white;
-        }
-
-        .tab-button.active {
-            background: #DD0000;
-            color: white;
-        }
-
-        .tab-content {
-            display: none;
-            animation: fadeIn 0.5s ease;
-        }
-
-        .tab-content.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .card {
-            background: white;
-            border-radius: 15px;
-            padding: 30px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .card h2 {
-            color: #DD0000;
-            font-size: 2em;
-            margin-bottom: 20px;
-            border-bottom: 3px solid #FFCE00;
-            padding-bottom: 10px;
-        }
-
-        .vocab-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        .vocab-table th {
-            color: white;
+            color: #000;
             padding: 15px;
-            text-align: left;
-            font-size: 1.1em;
+            max-width: 100%;
+            margin: 0 auto;
         }
 
-        .vocab-table.der th { background: linear-gradient(135deg, #2196F3, #1976D2); }
-        .vocab-table.das th { background: linear-gradient(135deg, #4CAF50, #388E3C); }
-        .vocab-table.die th { background: linear-gradient(135deg, #F44336, #D32F2F); }
-
-        .vocab-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid #ddd;
+        /* ============================================
+           FIXED CONTROLS (screen only) — compact unified panel
+        ============================================ */
+        .controls {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1000;
+            max-width: 520px;
         }
 
-        .vocab-table tr {
-            cursor: pointer;
-            transition: all 0.3s ease;
+        /* main dark pill wrapping level + audio */
+        .controls-main {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 7px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.45);
         }
 
-        .vocab-table.der tbody tr { background: #E3F2FD; }
-        .vocab-table.das tbody tr { background: #E8F5E9; }
-        .vocab-table.die tbody tr { background: #FFEBEE; }
-
-        .vocab-table.der tbody tr:hover { background: #BBDEFB; box-shadow: 0 2px 8px rgba(33,150,243,0.3); }
-        .vocab-table.das tbody tr:hover { background: #C8E6C9; box-shadow: 0 2px 8px rgba(76,175,80,0.3); }
-        .vocab-table.die tbody tr:hover { background: #FFCDD2; box-shadow: 0 2px 8px rgba(244,67,54,0.3); }
-
-        .article { font-weight: bold; font-size: 1.1em; }
-
-        .vocab-table.der .article, .vocab-table.der .german-word { color: #1565C0; font-weight: 700; }
-        .vocab-table.das .article, .vocab-table.das .german-word { color: #2E7D32; font-weight: 700; }
-        .vocab-table.die .article, .vocab-table.die .german-word { color: #C62828; font-weight: 700; }
-
-        @media (max-width: 768px) {
-            .vocab-table { display: none; }
-            .mobile-noun-card {
-                display: block;
-                background: white;
-                border-left: 5px solid;
-                border-radius: 8px;
-                padding: 15px;
-                margin: 10px 0;
-                box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-                cursor: pointer;
-                transition: all 0.3s ease;
-            }
-            .mobile-noun-card.der { border-color: #2196F3; background: #E3F2FD; }
-            .mobile-noun-card.das { border-color: #4CAF50; background: #E8F5E9; }
-            .mobile-noun-card.die { border-color: #F44336; background: #FFEBEE; }
-            .mobile-noun-card:active { transform: scale(0.98); }
-            .mobile-noun-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; }
-            .mobile-article-word { font-size: 1.3em; font-weight: 700; display: flex; align-items: center; gap: 8px; }
-            .mobile-article-word.der { color: #1565C0; }
-            .mobile-article-word.das { color: #2E7D32; }
-            .mobile-article-word.die { color: #C62828; }
-            .mobile-audio-btn { background: #FFCE00; border: none; padding: 8px 12px; border-radius: 15px; font-size: 1.1em; cursor: pointer; box-shadow: 0 2px 5px rgba(0,0,0,0.2); }
-            .mobile-audio-btn:active { transform: scale(0.95); }
-            .mobile-noun-details { display: grid; grid-template-columns: auto 1fr; gap: 8px 12px; font-size: 0.95em; margin-top: 10px; padding-top: 10px; border-top: 1px solid rgba(0,0,0,0.1); }
-            .mobile-label { font-weight: 600; color: #666; }
-            .mobile-plural { color: #764ba2; font-style: italic; font-weight: 600; }
-            .mobile-english { color: #444; }
-            .mobile-noun-cards { display: none; }
-            @media (max-width: 768px) { .mobile-noun-cards { display: block; } }
-        }
-
-        @media (min-width: 769px) { .mobile-noun-cards { display: none; } }
-
-        .german-word { font-size: 1.2em; }
-        .english-word { color: #666; }
-        .plural { color: #764ba2; font-style: italic; font-weight: 600; }
-
-        .word-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .word-pair {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            position: relative;
-            cursor: pointer;
-        }
-
-        .word-pair:hover { transform: scale(1.05); }
-        .word-pair .german { font-size: 1.3em; font-weight: bold; margin-bottom: 5px; }
-        .word-pair .english { font-size: 1em; opacity: 0.9; }
-        .opposite-arrow { font-size: 1.5em; margin: 10px 0; }
-
-        .word-pair .card-audio-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255,255,255,0.3);
-            border: 2px solid white;
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
+        /* top bar: level filter + close btn */
+        .controls-top {
             display: flex;
             align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
+            gap: 6px;
+            flex-wrap: nowrap;
         }
 
-        .word-pair .card-audio-btn:hover { background: white; transform: scale(1.1); }
-
-        .expression-list { list-style: none; padding: 0; }
-
-        .expression-item {
-            background: #f8f9fa;
-            margin: 10px 0;
-            padding: 20px;
-            border-left: 5px solid #DD0000;
-            border-radius: 5px;
-            transition: all 0.3s ease;
-            cursor: pointer;
+        .filter-label {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
         }
-
-        .expression-item:hover { transform: translateX(10px); box-shadow: 0 4px 15px rgba(0,0,0,0.1); background: #fff; }
-        .expression-german { font-size: 1.4em; font-weight: bold; color: #000; margin-bottom: 5px; }
-        .expression-english { font-size: 1.1em; color: #666; }
-
-        .conversation { margin: 20px 0; }
-
-        .message {
-            margin: 15px 0;
-            padding: 15px 20px;
-            border-radius: 20px;
-            max-width: 80%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .message:hover { box-shadow: 0 5px 20px rgba(0,0,0,0.2); transform: translateX(5px); }
-        .message-a { background: #667eea; color: white; margin-left: 0; border-bottom-left-radius: 5px; }
-        .message-b { background: #f093fb; color: white; margin-left: auto; border-bottom-right-radius: 5px; }
-        .message-german { font-size: 1.2em; font-weight: 600; margin-bottom: 5px; }
-        .message-english { font-size: 0.95em; opacity: 0.9; font-style: italic; }
-
-        .qa-container { display: grid; gap: 20px; }
-
-        .qa-card {
-            background: white;
-            border: 2px solid #667eea;
-            border-radius: 10px;
-            padding: 20px;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .qa-card:hover { border-color: #DD0000; box-shadow: 0 5px 20px rgba(0,0,0,0.15); }
-        .question { font-size: 1.3em; font-weight: bold; color: #667eea; margin-bottom: 10px; }
-        .answer { font-size: 1.1em; color: #333; display: none; margin-top: 10px; padding-top: 10px; border-top: 1px solid #ddd; }
-        .qa-card:hover .answer { display: block; }
-
-        .sentence-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .sentence-card {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .sentence-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
-        .sentence-german { font-size: 1.2em; font-weight: bold; margin-bottom: 10px; }
-        .sentence-english { font-size: 1em; opacity: 0.9; }
-
-        .audio-btn {
-            background: #FFCE00;
-            border: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.9em;
-            margin-left: 10px;
-            transition: all 0.3s ease;
-            font-weight: 600;
-        }
-
-        .audio-btn:hover { background: #DD0000; color: white; transform: scale(1.1); }
-
-        /* LEVEL FILTER BAR */
-        .level-filter-bar {
-            background: white;
-            padding: 15px 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-            display: flex;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        .level-filter-label { font-weight: 700; color: #555; font-size: 0.95em; margin-right: 5px; white-space: nowrap; }
 
         .level-btn {
-            border: none;
-            padding: 9px 22px;
-            border-radius: 20px;
-            font-size: 1em;
+            border: 2px solid transparent;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.72em;
             font-weight: 700;
             cursor: pointer;
-            transition: all 0.2s ease;
-            opacity: 0.45;
-            letter-spacing: 0.5px;
+            opacity: 0.5;
+            transition: all 0.15s ease;
         }
-
-        .level-btn:hover { opacity: 1; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.25); }
-        .level-btn.active { opacity: 1; box-shadow: 0 4px 14px rgba(0,0,0,0.3); transform: translateY(-1px); }
-
+        .level-btn:hover { opacity: 0.85; }
+        .level-btn.active { opacity: 1; border-color: white; }
         .level-btn[data-level="all"] { background: #764ba2; color: white; }
         .level-btn[data-level="A1"]  { background: #4CAF50; color: white; }
         .level-btn[data-level="A2"]  { background: #2196F3; color: white; }
         .level-btn[data-level="B1"]  { background: #FF9800; color: white; }
         .level-btn[data-level="B2"]  { background: #F44336; color: white; }
 
-        .level-badge {
-            display: inline-block;
-            font-size: 0.68em;
-            font-weight: 700;
-            padding: 2px 7px;
-            border-radius: 10px;
-            margin-left: 7px;
-            vertical-align: middle;
-            letter-spacing: 0.5px;
+        .filter-count {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            margin-left: 2px;
         }
 
-        .level-badge.A1 { background: #C8E6C9; color: #1B5E20; }
-        .level-badge.A2 { background: #BBDEFB; color: #0D47A1; }
-        .level-badge.B1 { background: #FFE0B2; color: #E65100; }
-        .level-badge.B2 { background: #FFCDD2; color: #B71C1C; }
-
-        .noun-article-section { }
-        .noun-article-section.hidden-group { display: none !important; }
-        .conversation-block { }
-        .conversation-block.hidden-group { display: none !important; }
-
-        .filter-count-msg { width: 100%; margin-top: 4px; font-size: 0.82em; color: #888; font-style: italic; }
-
-        .clear-filter-btn {
-            display: none;
-            position: fixed;
-            top: 22px;
-            right: 22px;
-            z-index: 2000;
-            background: white;
-            color: #333;
-            border: 2.5px solid #764ba2;
-            border-radius: 30px;
-            padding: 9px 20px 9px 14px;
-            font-size: 0.95em;
-            font-weight: 700;
+        /* close button — inline in top bar */
+        .controls-close {
+            margin-left: auto;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.55);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.7em;
             cursor: pointer;
-            box-shadow: 0 4px 18px rgba(118,75,162,0.25);
-            transition: all 0.2s ease;
-            align-items: center;
-            gap: 8px;
+            border-radius: 4px;
             white-space: nowrap;
+            flex-shrink: 0;
         }
+        .controls-close:hover { background: rgba(255,255,255,0.18); color: white; }
 
-        .clear-filter-btn:hover { background: #764ba2; color: white; transform: translateY(-2px); box-shadow: 0 6px 22px rgba(118,75,162,0.4); }
-        .clear-filter-btn.visible { display: flex; }
+        /* ============================================
+           COLLAPSED TOGGLE BUTTON (when panel is hidden)
+        ============================================ */
+        .controls-toggle {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 1001;
+            background: #1a1a1a;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.78em;
+            cursor: pointer;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            display: none;
+        }
+        .controls-toggle:hover { background: #333; }
+        .controls.collapsed { display: none !important; }
+        .controls.collapsed + .controls-toggle,
+        body.controls-hidden .controls-toggle { display: block; }
 
-        .clear-filter-btn .clear-x {
-            width: 20px;
-            height: 20px;
-            background: #764ba2;
-            color: white;
-            border-radius: 50%;
+        /* ============================================
+           AUDIO PANEL (inside controls-main)
+        ============================================ */
+        .audio-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .audio-row-top {
             display: flex;
             align-items: center;
-            justify-content: center;
-            font-size: 0.85em;
-            font-weight: 900;
-            flex-shrink: 0;
-            transition: background 0.2s;
+            gap: 6px;
+            flex-wrap: wrap;
         }
+        .audio-panel-title {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+        .audio-panel label {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.68em;
+            white-space: nowrap;
+        }
+        .audio-panel select {
+            font-size: 0.68em;
+            padding: 2px 5px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #2a2a2a;
+            color: rgba(255,255,255,0.85);
+            cursor: pointer;
+            max-width: 130px;
+        }
+        .audio-panel input[type=range] {
+            width: 60px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+        .speed-val {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.68em;
+            min-width: 26px;
+        }
+        .play-all-btn {
+            background: linear-gradient(135deg, #DD0000, #FFCE00);
+            color: white;
+            border: none;
+            padding: 4px 11px;
+            border-radius: 10px;
+            font-size: 0.72em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .play-all-btn:hover { opacity: 0.85; }
+        .pause-btn {
+            background: #3a3a3a;
+            color: rgba(255,255,255,0.75);
+            border: 1px solid #555;
+            padding: 4px 11px;
+            border-radius: 10px;
+            font-size: 0.72em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: none;
+        }
+        .pause-btn:hover { background: #555; color: white; }
+        .pause-btn.paused { background: #667eea; color: white; border-color: #667eea; }
+        .audio-row-sections {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .audio-section-label {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.35);
+            white-space: nowrap;
+        }
+        .audio-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.75em;
+        }
+        .section-play-btn {
+            background: #242424;
+            color: rgba(255,255,255,0.55);
+            border: 1px solid #3a3a3a;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.67em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        .section-play-btn:hover { background: #3a3a3a; color: white; }
+        .section-play-btn.playing { background: #667eea; color: white; border-color: #667eea; }
+        .section-play-btn[data-art="der"] { color: #90CAF9; }
+        .section-play-btn[data-art="das"] { color: #A5D6A7; }
+        .section-play-btn[data-art="die"] { color: #EF9A9A; }
 
-        .clear-filter-btn:hover .clear-x { background: white; color: #764ba2; }
+        .audio-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 0.78em;
+            padding: 0 2px;
+            opacity: 0.45;
+            transition: opacity 0.2s;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .audio-btn:hover { opacity: 1; }
 
+        /* ============================================
+           ZOOM + PRINT — collapsible (collapsed by default)
+        ============================================ */
+        .secondary-controls-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sec-toggle-btn {
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.45);
+            border: none;
+            padding: 2px 9px;
+            font-size: 0.67em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.15s;
+        }
+        .sec-toggle-btn:hover { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.8); }
+        .sec-toggle-btn.open { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.1); }
+
+        .secondary-controls {
+            display: none;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding-top: 4px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .secondary-controls.open { display: flex; }
+
+        /* compact zoom row */
+        .zoom-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .zoom-label {
+            font-size: 0.67em;
+            color: rgba(255,255,255,0.45);
+            white-space: nowrap;
+        }
+        .zoom-btn {
+            background: #333;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.8em;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .zoom-btn:hover { background: #555; }
+        .zoom-level {
+            font-weight: bold;
+            font-size: 0.68em;
+            color: rgba(255,255,255,0.65);
+            min-width: 30px;
+            text-align: center;
+        }
+        .zoom-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.8em;
+        }
+        .print-button {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: auto;
+        }
+        .print-button:hover { background: rgba(255,255,255,0.2); color: white; }
+
+        /* ============================================
+           AUDIO STATUS TOAST
+        ============================================ */
         .audio-status {
             position: fixed;
-            bottom: 20px;
-            right: 20px;
+            bottom: 16px;
+            right: 16px;
             background: #667eea;
             color: white;
-            padding: 15px 25px;
+            padding: 8px 18px;
             border-radius: 50px;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             display: none;
             align-items: center;
-            gap: 10px;
-            z-index: 1000;
+            gap: 8px;
+            z-index: 2000;
+            font-size: 0.82em;
         }
-
         .audio-status.show { display: flex; }
-
         .audio-status .spinner {
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,0.3);
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
             border-top-color: white;
             border-radius: 50%;
             animation: spin 1s linear infinite;
+            flex-shrink: 0;
         }
-
         @keyframes spin { to { transform: rotate(360deg); } }
 
-        footer {
-            background: #333;
-            color: white;
-            text-align: center;
-            padding: 30px;
-            margin-top: 50px;
+        /* ── Active row highlight during Play All ── */
+        tr[data-playing="left"] td.left-pair,
+        tr[data-playing="right"] td.right-pair,
+        tr[data-playing="all"] td {
+            background: rgba(255, 206, 0, 0.45) !important;
+            box-shadow: inset 0 0 0 2px #FFCE00;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
         }
 
-        footer p { margin: 10px 0; }
-        .section-icon { font-size: 2em; margin-right: 10px; vertical-align: middle; }
 
-        @media (max-width: 768px) {
-            header h1 { font-size: 2em; }
-            .tabs { flex-direction: column; }
-            .tab-button { width: 100%; }
-            .word-grid { grid-template-columns: 1fr; }
-            .sentence-grid { grid-template-columns: 1fr; }
-            .message { max-width: 90%; }
-            .audio-controls { flex-direction: column; }
+        /* ============================================
+           LEVEL BADGE (appears inside article cell)
+        ============================================ */
+        .lvl-badge {
+            display: inline-block;
+            font-size: 0.62em;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+            vertical-align: middle;
+            margin-left: 2px;
+            line-height: 1.4;
+        }
+        .lvl-badge.A1 { background: #C8E6C9; color: #1B5E20; }
+        .lvl-badge.A2 { background: #BBDEFB; color: #0D47A1; }
+        .lvl-badge.B1 { background: #FFE0B2; color: #E65100; }
+        .lvl-badge.B2 { background: #FFCDD2; color: #B71C1C; }
+
+        /* ============================================
+           PAGE HEADER
+        ============================================ */
+        .content-wrapper { max-width: 100%; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* ============================================
+           SECTION DIVIDER
+        ============================================ */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* ============================================
+           TABLE SECTION HEADERS
+        ============================================ */
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* ============================================
+           NOUN TABLE — 8 columns, article colors
+        ============================================ */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f0f0f0;
+            text-align: center;
+            font-weight: bold;
+            color: #555;
+            padding: 3px;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 6%;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 18%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 18%;
+        }
+
+        /* ARTICLE ROW COLORS */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ARTICLE TEXT COLORS */
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* NOUN TABLE COLGROUP widths */
+        .noun-col-art    { width: 6%; }
+        .noun-col-german { width: 18%; }
+        .noun-col-plural { width: 8%; }
+        .noun-col-eng    { width: 18%; }
+
+        /* ============================================
+           WORD TABLE (ADJ + VERB) — 8 columns
+        ============================================ */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col  { font-weight: 600; width: 15%; }
+        .word-table .english-col { color: #333; width: 10%; }
+
+        /* ADJECTIVE rows — warm yellow */
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* VERB rows — light blue */
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           EXPRESSIONS TABLE — 4 columns
+        ============================================ */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+            color: #000;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 22%;
+            font-style: italic;
+        }
+
+        /* ============================================
+           CONVERSATIONS TABLE — compact 4-col layout
+        ============================================ */
+        .conversations-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #667eea !important;
+            color: white !important;
+            font-weight: bold;
+            padding: 6px 8px;
+            font-size: 0.95em;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .conv-subheader {
+            background: #e8eaf6 !important;
+            font-weight: 700;
+            font-size: 0.78em;
+            color: #3949ab;
+            padding: 3px 6px;
+            border: 1px solid #c5cae9;
+            text-align: center;
+            letter-spacing: 0.3px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-a {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-a {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-b {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-b {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           Q&A TABLE — 4 columns
+        ============================================ */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            color: #1a237e;
+            width: 28%;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 22%;
+        }
+
+        /* ============================================
+           SENTENCES TABLE — 4 columns
+        ============================================ */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            font-style: italic;
+            width: 22%;
+        }
+
+        /* ============================================
+           FOOTER INFO
+        ============================================ */
+        .footer-info {
+            margin-top: 20px;
+            padding: 12px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.85em;
+            line-height: 1.8;
+        }
+
+        .footer-info h3 { margin-bottom: 6px; }
+
+        /* ============================================
+           PRINT STYLES
+        ============================================ */
+        @media print {
+            .controls          { display: none !important; }
+            .controls-toggle   { display: none !important; }
+            .level-filter-bar  { display: none !important; }
+            .audio-panel       { display: none !important; }
+            .audio-status      { display: none !important; }
+            .audio-btn         { display: none !important; }
+            .section-play-btn  { display: none !important; }
+            .footer-info       { display: none !important; }
+
+            body { padding: 0; font-size: 0.7em; }
+
+            .section-divider { page-break-before: always; }
+            .table-section { page-break-inside: auto; }
+            .noun-table, .word-table, .expressions-table,
+            .conversations-table, .qa-table, .sentences-table {
+                font-size: 1em;
+            }
+        }
+
+        @media screen {
+            body { padding-top: 10px; }
         }
     </style>
 </head>
 <body>
-<!-- NAVIGATION -->
-<div style="background: #000; padding: 15px; text-align: center;">
-    <a href="../../index.html" style="color: #FFCE00; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🏠 Home</a>
-    <a href="../../index.html#levels" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📚 Levels</a>
-    <a href="../../index.html#categories" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🎯 Categories</a>
-    <a href="../../tools/progress.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📊 Progress</a>
-    <a href="../../about.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">ℹ️ About</a>
-</div>
 
-    <header>
-        <h1>08: Clothing & Fashion</h1>
-        <p id="headerTopic">08: Clothing & Fashion | Interactive Audio Learning</p>
-        <p style="font-size: 0.9em; margin-top: 10px;">Created by: aliattia02 | Date: 2025-11-16</p>
-    </header>
+    <!-- ============================================
+         FIXED CONTROLS (screen only)
+    ============================================ -->
+    <button class="controls-toggle" id="controlsToggle" onclick="toggleControls()">⚙ Controls</button>
+    <div class="controls" id="controlsPanel">
+        <div class="controls-main">
 
-    <div class="container">
-        <div class="audio-controls">
-            <h3>🔊 Audio Settings</h3>
-            <div class="control-group">
-                <label for="voiceSelect">Voice:</label>
-                <select id="voiceSelect">
-                    <option value="">Loading voices...</option>
-                </select>
+            <!-- Row 1: Level filter + close -->
+            <div class="controls-top">
+                <span class="filter-label">🎯</span>
+                <button class="level-btn active" data-level="all" onclick="filterByLevel('all')">All</button>
+                <button class="level-btn" data-level="A1"  onclick="filterByLevel('A1')">A1</button>
+                <button class="level-btn" data-level="A2"  onclick="filterByLevel('A2')">A2</button>
+                <button class="level-btn" data-level="B1"  onclick="filterByLevel('B1')">B1</button>
+                <button class="level-btn" data-level="B2"  onclick="filterByLevel('B2')">B2</button>
+                <span class="filter-count" id="filterCount"></span>
+                <button class="controls-close" onclick="toggleControls()">✕</button>
             </div>
-            <div class="control-group">
-                <label for="speedControl">Speed:</label>
-                <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
-                <span id="speedValue">0.8x</span>
+
+            <!-- Row 2: Audio controls -->
+            <div class="audio-panel">
+                <div class="audio-row-top">
+                    <span class="audio-panel-title">🔊</span>
+                    <label for="voiceSelect">Voice:</label>
+                    <select id="voiceSelect"><option value="">Loading…</option></select>
+                    <label for="speedControl">Speed:</label>
+                    <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+                    <span class="speed-val" id="speedValue">0.8×</span>
+                    <button class="play-all-btn" id="btnAll" onclick="playSection('all')">▶ All</button>
+                    <button class="pause-btn" id="pauseBtn" onclick="togglePause()">⏸ Pause</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnDer" data-art="der" onclick="playSection('der')">▶ der</button>
+                    <button class="section-play-btn" id="btnDas" data-art="das" onclick="playSection('das')">▶ das</button>
+                    <button class="section-play-btn" id="btnDie" data-art="die" onclick="playSection('die')">▶ die</button>
+                    <span class="audio-sep">|</span>
+                    <button class="section-play-btn" id="btnAdj" onclick="playSection('adj')">▶ Adj</button>
+                    <button class="section-play-btn" id="btnVerb" onclick="playSection('verb')">▶ Verbs</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnExpr" onclick="playSection('expr')">▶ Expr</button>
+                    <button class="section-play-btn" id="btnConv" onclick="playSection('conv')">▶ Conv</button>
+                    <button class="section-play-btn" id="btnQa" onclick="playSection('qa')">▶ Q&amp;A</button>
+                    <button class="section-play-btn" id="btnSent" onclick="playSection('sent')">▶ Sent</button>
+                </div>
             </div>
-            <div class="control-group">
-                <label for="pitchControl">Pitch:</label>
-                <input type="range" id="pitchControl" min="0.5" max="2" step="0.1" value="1">
-                <span id="pitchValue">1.0</span>
+
+            <!-- Row 3: Zoom & Print toggle -->
+            <div class="secondary-controls-toggle">
+                <button class="sec-toggle-btn" id="secToggleBtn" onclick="toggleSecondary()">⚙ Zoom &amp; Print</button>
             </div>
-            <button class="play-all-btn" onclick="playAllInSection()">▶ Play All in Section</button>
+            <div class="secondary-controls" id="secondaryControls">
+                <div class="zoom-row">
+                    <span class="zoom-label">📚 Vocab:</span>
+                    <button class="zoom-btn" onclick="zoomOutVocab()">−</button>
+                    <span class="zoom-level" id="zoomLevelVocab">100%</span>
+                    <button class="zoom-btn" onclick="zoomInVocab()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomVocab()">⟲</button>
+                </div>
+                <span class="zoom-sep">|</span>
+                <div class="zoom-row">
+                    <span class="zoom-label">💬 Phrases:</span>
+                    <button class="zoom-btn" onclick="zoomOutPhrases()">−</button>
+                    <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+                    <button class="zoom-btn" onclick="zoomInPhrases()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomPhrases()">⟲</button>
+                </div>
+                <button class="print-button" onclick="window.print()">🖨️ Print</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================
+         DOCUMENT HEADER
+    ============================================ -->
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 08: Clothing & Fashion</h1>
+            <p style="font-size:0.75em; color:#555;">Clothing & Fashion · A1–B2 Level-Tagged Reference · aliattia02</p>
         </div>
 
-        <button class="clear-filter-btn" id="clearFilterBtn" onclick="filterByLevel('all')">
-            <span class="clear-x">✕</span>
-            <span id="clearFilterLabel">Show All Levels</span>
-        </button>
+        <!-- ============================================
+             VOCABULARY SECTION
+        ============================================ -->
+        <div id="vocabSection">
 
-        <div class="level-filter-bar">
-            <span class="level-filter-label">🎯 Filter by Level:</span>
-            <button class="level-btn active" data-level="all" onclick="filterByLevel('all')">All Levels</button>
-            <button class="level-btn" data-level="A1" onclick="filterByLevel('A1')">A1 — Beginner</button>
-            <button class="level-btn" data-level="A2" onclick="filterByLevel('A2')">A2 — Elementary</button>
-            <button class="level-btn" data-level="B1" onclick="filterByLevel('B1')">B1 — Intermediate</button>
-            <button class="level-btn" data-level="B2" onclick="filterByLevel('B2')">B2 — Upper Intermediate</button>
-            <span class="filter-count-msg" id="filterCountMsg"></span>
-        </div>
+            <!-- TABLE 1: NOUNS -->
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col class="noun-col-art">
+                        <col class="noun-col-german">
+                        <col class="noun-col-plural">
+                        <col class="noun-col-eng">
+                        <col class="noun-col-art">
+                        <col class="noun-col-german">
+                        <col class="noun-col-plural">
+                        <col class="noun-col-eng">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural ±</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural ±</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
 
-        <div class="tabs">
-            <button class="tab-button active" onclick="showTab('nouns', event)">📚 Nouns</button>
-            <button class="tab-button" onclick="showTab('adjectives', event)">✨ Adjectives</button>
-            <button class="tab-button" onclick="showTab('verbs', event)">⚡ Verbs</button>
-            <button class="tab-button" onclick="showTab('expressions', event)">💬 Key Expressions</button>
-            <button class="tab-button" onclick="showTab('conversations', event)">🗣️ Conversations</button>
-            <button class="tab-button" onclick="showTab('qa', event)">❓ Q&amp;A Practice</button>
-            <button class="tab-button" onclick="showTab('sentences', event)">📝 Quick Sentences</button>
-        </div>
-
-        <div id="nouns" class="tab-content active">
-            <div class="card">
-                <h2><span class="section-icon">📚</span>Nouns - Die Nomen</h2>
-                <div id="nounsContainer"></div>
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives &amp; Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
             </div>
         </div>
 
-        <div id="adjectives" class="tab-content">
-            <div class="card">
-                <h2><span class="section-icon">✨</span>Adjectives - Die Adjektive</h2>
-                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any card to hear the pronunciation!</p>
-                <div id="adjectivesContainer" class="word-grid"></div>
-            </div>
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES &amp; SENTENCES</h2>
         </div>
 
-        <div id="verbs" class="tab-content">
-            <div class="card">
-                <h2><span class="section-icon">⚡</span>Verbs - Die Verben</h2>
-                <p style="margin-bottom: 20px;"><strong>*</strong> = Weak Verb | <strong>+</strong> = Strong Verb</p>
-                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any card to hear the pronunciation!</p>
-                <div id="verbsContainer" class="word-grid"></div>
-            </div>
-        </div>
+        <!-- ============================================
+             PHRASES SECTION
+        ============================================ -->
+        <div id="phrasesSection">
 
-        <div id="expressions" class="tab-content">
-            <div class="card">
-                <h2><span class="section-icon">💬</span>Key Expressions - Wichtige Ausdrücke</h2>
-                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any expression to hear the pronunciation!</p>
-                <ul id="expressionsContainer" class="expression-list"></ul>
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
             </div>
-        </div>
 
-        <div id="conversations" class="tab-content">
-            <div class="card">
-                <h2><span class="section-icon">🗣️</span>Mini Conversations - Kurze Gespräche</h2>
-                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any message to hear it!</p>
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
                 <div id="conversationsContainer"></div>
             </div>
-        </div>
 
-        <div id="qa" class="tab-content">
-            <div class="card">
-                <h2><span class="section-icon">❓</span>Q&amp;A Practice - Fragen und Antworten</h2>
-                <p style="margin-bottom: 20px; font-style: italic; color: #666;">💡 Hover over each card to see the answer, or click to hear it!</p>
-                <div id="qaContainer" class="qa-container"></div>
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions &amp; Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
             </div>
         </div>
 
-        <div id="sentences" class="tab-content">
-            <div class="card">
-                <h2><span class="section-icon">📝</span>Quick Sentences - Schnelle Sätze</h2>
-                <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any sentence to hear it!</p>
-                <div id="sentencesContainer" class="sentence-grid"></div>
-            </div>
+        <!-- FOOTER -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Topic:</strong> Clothing &amp; Fashion &nbsp;|&nbsp; <strong>Created:</strong> 2025 — aliattia02</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Full form shown = umlaut change | --- = no change | nur P = plural only | = = no change</p>
+            <p><strong>Color Coding:</strong>
+                <span style="color:#1565C0; font-weight:bold;">■ der (blue)</span> &nbsp;
+                <span style="color:#2E7D32; font-weight:bold;">■ das (green)</span> &nbsp;
+                <span style="color:#C62828; font-weight:bold;">■ die (red)</span> &nbsp;|&nbsp;
+                Adjective rows: <span style="background:#FFF8E1; padding:1px 6px; border:1px solid #ddd;">yellow</span> &nbsp;
+                Verb rows: <span style="background:#E1F5FE; padding:1px 6px; border:1px solid #ddd;">blue</span>
+            </p>
+            <p><strong>Prefix Guide:</strong> - = Adjective &nbsp;|&nbsp; * = Weak Verb (regular) &nbsp;|&nbsp; + = Strong Verb (irregular)</p>
+            <p><strong>Levels:</strong>
+                <span class="lvl-badge A1">A1</span> Beginner &nbsp;
+                <span class="lvl-badge A2">A2</span> Elementary &nbsp;
+                <span class="lvl-badge B1">B1</span> Intermediate &nbsp;
+                <span class="lvl-badge B2">B2</span> Upper Intermediate
+            </p>
         </div>
     </div>
 
     <div class="audio-status" id="audioStatus">
         <div class="spinner"></div>
-        <span id="audioStatusText">Speaking...</span>
+        <span id="audioStatusText">Speaking…</span>
     </div>
-
-    <footer>
-        <p><strong>German Vocabulary - Interactive Audio Learning</strong></p>
-        <p>Created for German Learners | © 2025 aliattia02</p>
-        <p>🔧 Interactive Audio Learning Platform</p>
-        <p style="margin-top: 20px; font-size: 0.9em;">🎯 Click anywhere to hear pronunciation | 💪 Practice makes perfect!</p>
-        <p style="margin-top: 10px; font-size: 0.8em; opacity: 0.8;">Last Updated: 2025-11-16</p>
-    </footer>
 
     <script>
 
 // ============================================
-// VOCABULARY DATA
+// ⭐ VOCABULARY DATA
 // ============================================
 
 const nounsCSV = `
@@ -943,6 +1380,10 @@ B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about vis
 B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
 `.trim();
 
+
+const conversationsCSV = `
+`.trim();
+
 const qaCSV = `
 // cluster: basic clothing & dressing
 A1,Was ziehst du heute an?,Ich ziehe eine Hose und ein T-Shirt an. (I am putting on trousers and a T-shirt.)
@@ -1019,20 +1460,438 @@ B2,Modetrends entstehen oft in Metropolen wie Paris Mailand und New York.,Fashio
 B2,Das Upcycling von Alttextilien gewinnt in der Modewelt zunehmend an Bedeutung.,The upcycling of second-hand textiles is gaining increasing importance in the fashion world.
 `.trim();
 
+
 // ============================================
-// CSV PARSER — strips blank lines AND comment lines
+// CSV PARSER
 // ============================================
 function parseCSV(csv) {
     return csv.split('\n')
-        .map(line => line.trim())
-        .filter(line => line.length > 0 && !line.startsWith('//'))
-        .map(line => line.split(',').map(cell => cell.trim()));
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(l => l.split(',').map(c => c.trim()));
 }
 
 // ============================================
-// SPEECH SYNTHESIS
+// LEVEL FILTER STATE
+// ============================================
+let currentLevel = 'all';
+
+function filterByLevel(level) {
+    currentLevel = level;
+    document.querySelectorAll('.level-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.level === level);
+    });
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    updateFilterCount();
+}
+
+function updateFilterCount() {
+    const el = document.getElementById('filterCount');
+    if (!el) return;
+    if (currentLevel === 'all') { el.textContent = ''; return; }
+    let total = 0;
+    [nounsCSV, adjectivesCSV, verbsCSV, expressionsCSV, qaCSV, sentencesCSV].forEach(csv => {
+        parseCSV(csv).forEach(row => { if (row[0] === currentLevel) total++; });
+    });
+    conversationsCSV.split('\n').forEach(line => {
+        line = line.trim();
+        if (line && !line.startsWith('//') && line.startsWith(currentLevel + '|')) total++;
+    });
+    el.textContent = `${total} entries`;
+}
+
+function badge(level) {
+    return `<span class="lvl-badge ${level}">${level}</span>`;
+}
+
+// ============================================
+// RENDER NOUNS
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const grouped = { das: [], der: [], die: [] };
+    data.forEach(row => {
+        const [level, article, german, pluralNotation, pluralFull, english] = row;
+        if (grouped[article] !== undefined) {
+            grouped[article].push({ level, article, german, pluralNotation, pluralFull, english });
+        }
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    const articles = [
+        { key: 'der', label: 'Maskulinum (der)', rowClass: 'der-row', artClass: 'der-article' },
+        { key: 'das', label: 'Neutrum (das)',     rowClass: 'das-row', artClass: 'das-article' },
+        { key: 'die', label: 'Femininum (die)',   rowClass: 'die-row', artClass: 'die-article' },
+    ];
+
+    let anyContent = false;
+
+    articles.forEach(({ key, label, rowClass, artClass }, artIdx) => {
+        const words = grouped[key];
+        if (words.length === 0) return;
+        anyContent = true;
+
+        html += `<tr class="separator"><td colspan="8">${label}</td></tr>`;
+
+        const half = Math.ceil(words.length / 2);
+        for (let i = 0; i < half; i++) {
+            const w1 = words[i];
+            const w2 = words[i + half] || null;
+
+            html += `<tr class="${rowClass}">`;
+            html += `<td class="article-cell ${artClass} left-pair">${w1.article}</td>`;
+            html += `<td class="german-cell left-pair">${w1.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w1.article)}','${escAttr(w1.german)}','${escAttr(w1.pluralFull)}','${escAttr(w1.english)}')">🔊</button></td>`;
+            html += `<td class="plural-cell left-pair">${w1.pluralNotation}</td>`;
+            html += `<td class="english-cell left-pair">${w1.english}</td>`;
+
+            if (w2) {
+                html += `<td class="article-cell ${artClass} right-pair">${w2.article}</td>`;
+                html += `<td class="german-cell right-pair">${w2.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w2.article)}','${escAttr(w2.german)}','${escAttr(w2.pluralFull)}','${escAttr(w2.english)}')">🔊</button></td>`;
+                html += `<td class="plural-cell right-pair">${w2.pluralNotation}</td>`;
+                html += `<td class="english-cell right-pair">${w2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    });
+
+    if (!anyContent) {
+        html = `<tr><td colspan="8" style="text-align:center; color:#999; padding:12px;">No nouns at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const verbData = parseCSV(verbsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    if (adjData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Adjectives (- prefix = opposite pairs)</td></tr>`;
+        const half = Math.ceil(adjData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = adjData[i];
+            const r2 = adjData[i + half] || null;
+            html += `<tr class="adjective-row">`;
+            html += `<td class="german-col left-pair">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[2])}','${escAttr(r1[3])}','${escAttr(r1[4])}')">🔊</button></td><td class="english-col left-pair">${r1[2]}</td>`;
+            html += `<td class="german-col left-pair">${r1[3]}</td><td class="english-col left-pair">${r1[4]}</td>`;
+            if (r2) {
+                html += `<td class="german-col right-pair">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[2])}','${escAttr(r2[3])}','${escAttr(r2[4])}')">🔊</button></td><td class="english-col right-pair">${r2[2]}</td>`;
+                html += `<td class="german-col right-pair">${r2[3]}</td><td class="english-col right-pair">${r2[4]}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+
+    if (verbData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Verbs (* Weak | + Strong — opposite / related pairs)</td></tr>`;
+        const half = Math.ceil(verbData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = verbData[i];
+            const r2 = verbData[i + half] || null;
+            html += `<tr class="verb-row">`;
+            html += `<td class="german-col left-pair">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[2])}','${escAttr(r1[3])}','${escAttr(r1[4])}')">🔊</button></td><td class="english-col left-pair">${r1[2]}</td>`;
+            html += `<td class="german-col left-pair">${r1[3]}</td><td class="english-col left-pair">${r1[4]}</td>`;
+            if (r2) {
+                html += `<td class="german-col right-pair">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[2])}','${escAttr(r2[3])}','${escAttr(r2[4])}')">🔊</button></td><td class="english-col right-pair">${r2[2]}</td>`;
+                html += `<td class="german-col right-pair">${r2[3]}</td><td class="english-col right-pair">${r2[4]}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+
+    if (adjData.length === 0 && verbData.length === 0) {
+        html = `<tr><td colspan="8" style="text-align:center; color:#999; padding:12px;">No adjectives or verbs at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        const [lvl1, ger1, ...eng1parts] = data[i];
+        const eng1 = eng1parts.join(',');
+        html += `<tr>`;
+        html += `<td class="german-cell left-pair">${ger1} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(eng1)}','${escAttr(ger1)}')">🔊</button></td>`;
+        html += `<td class="english-cell left-pair">${eng1}</td>`;
+        if (i + 1 < data.length) {
+            const [lvl2, ger2, ...eng2parts] = data[i + 1];
+            const eng2 = eng2parts.join(',');
+            html += `<td class="german-cell right-pair">${ger2} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(eng2)}','${escAttr(ger2)}')">🔊</button></td>`;
+            html += `<td class="english-cell right-pair">${eng2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (data.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No expressions at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+
+    const conversations = {};
+    const convOrder = [];
+    const convLevels = {};
+
+    rawLines.forEach(line => {
+        const firstPipe  = line.indexOf('|');
+        const secondPipe = line.indexOf('|', firstPipe + 1);
+        const firstComma = line.indexOf(',', secondPipe + 1);
+        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+
+        const level   = line.substring(0, firstPipe).trim();
+        const title   = line.substring(firstPipe + 1, secondPipe).trim();
+        const speaker = line.substring(secondPipe + 1, firstComma).trim();
+
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+
+        const rest         = line.substring(firstComma + 1);
+        const secondComma  = rest.indexOf(',');
+        const german       = rest.substring(0, secondComma).trim();
+        const english      = rest.substring(secondComma + 1).trim();
+
+        const key = `${level}|${title}`;
+        if (!conversations[key]) {
+            conversations[key] = [];
+            convOrder.push(key);
+            convLevels[key] = level;
+        }
+        conversations[key].push({ speaker, german, english });
+    });
+
+    const container = document.getElementById('conversationsContainer');
+    let html = '';
+
+    if (convOrder.length === 0) {
+        html = `<p style="text-align:center; color:#999; padding:12px;">No conversations at ${currentLevel} level</p>`;
+        container.innerHTML = html;
+        return;
+    }
+
+    convOrder.forEach(key => {
+        const title = key.split('|').slice(1).join('|');
+        const lines = conversations[key];
+
+        const linesA = lines.filter(l => l.speaker === 'A');
+        const linesB = lines.filter(l => l.speaker === 'B');
+        const maxRows = Math.max(linesA.length, linesB.length);
+
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="4" class="conversation-title">💬 ${title}</td></tr>`;
+        html += `<tr>`;
+        html += `<td class="conv-subheader" style="width:27%;">Speaker A — Deutsch</td>`;
+        html += `<td class="conv-subheader" style="width:23%;">Speaker A — English</td>`;
+        html += `<td class="conv-subheader" style="width:27%;">Speaker B — Deutsch</td>`;
+        html += `<td class="conv-subheader" style="width:23%;">Speaker B — English</td>`;
+        html += `</tr>`;
+
+        for (let i = 0; i < maxRows; i++) {
+            const a = linesA[i] || null;
+            const b = linesB[i] || null;
+
+            html += `<tr>`;
+            html += `<td class="conv-ger-a">${a ? a.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(a.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-a">${a ? a.english : ''}</td>`;
+            html += `<td class="conv-ger-b">${b ? b.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(b.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-b">${b ? b.english : ''}</td>`;
+            html += `</tr>`;
+        }
+
+        html += `</table>`;
+    });
+
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A
+// ============================================
+function renderQATable() {
+    const qaRows = qaCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(line => {
+            const firstComma  = line.indexOf(',');
+            const secondComma = line.indexOf(',', firstComma + 1);
+            if (firstComma === -1 || secondComma === -1) return null;
+            return {
+                level:    line.substring(0, firstComma).trim(),
+                question: line.substring(firstComma + 1, secondComma).trim(),
+                answer:   line.substring(secondComma + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < qaRows.length; i += 2) {
+        const r1 = qaRows[i];
+        const r2 = qaRows[i + 1] || null;
+        html += `<tr>`;
+        html += `<td class="question-cell left-pair">${r1.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.question)}')">🔊</button></td>`;
+        html += `<td class="answer-cell left-pair">${r1.answer}</td>`;
+        if (r2) {
+            html += `<td class="question-cell right-pair">${r2.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.question)}')">🔊</button></td>`;
+            html += `<td class="answer-cell right-pair">${r2.answer}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (qaRows.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No Q&amp;A at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES
+// ============================================
+function renderSentencesTable() {
+    const sentRows = sentencesCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(line => {
+            const firstComma  = line.indexOf(',');
+            const secondComma = line.indexOf(',', firstComma + 1);
+            if (firstComma === -1 || secondComma === -1) return null;
+            return {
+                level:   line.substring(0, firstComma).trim(),
+                german:  line.substring(firstComma + 1, secondComma).trim(),
+                english: line.substring(secondComma + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < sentRows.length; i += 2) {
+        const r1 = sentRows[i];
+        const r2 = sentRows[i + 1] || null;
+        html += `<tr>`;
+        html += `<td class="german-cell left-pair">${r1.german} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(r1.english)}','${escAttr(r1.german)}')">🔊</button></td>`;
+        html += `<td class="english-cell left-pair">${r1.english}</td>`;
+        if (r2) {
+            html += `<td class="german-cell right-pair">${r2.german} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(r2.english)}','${escAttr(r2.german)}')">🔊</button></td>`;
+            html += `<td class="english-cell right-pair">${r2.english}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (sentRows.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No sentences at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// TOGGLE CONTROLS PANEL
+// ============================================
+function toggleControls() {
+    const panel = document.getElementById('controlsPanel');
+    const btn   = document.getElementById('controlsToggle');
+    const collapsed = panel.classList.toggle('collapsed');
+    btn.style.display = collapsed ? 'block' : 'none';
+}
+
+function toggleSecondary() {
+    const sec = document.getElementById('secondaryControls');
+    const btn = document.getElementById('secToggleBtn');
+    const open = sec.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.textContent = open ? '⚙ Zoom & Print ▲' : '⚙ Zoom & Print';
+}
+
+// ============================================
+// ZOOM
+// ============================================
+let vocabZoom = 100, phrasesZoom = 100;
+const zoomStep = 10, minZoom = 50, maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    document.getElementById('vocabSection').style.fontSize = `${baseFontSize * vocabZoom / 100}em`;
+    document.getElementById('zoomLevelVocab').textContent = `${vocabZoom}%`;
+}
+function updatePhrasesZoom() {
+    document.getElementById('phrasesSection').style.fontSize = `${baseFontSize * phrasesZoom / 100}em`;
+    document.getElementById('zoomLevelPhrases').textContent = `${phrasesZoom}%`;
+}
+function zoomInVocab()     { if (vocabZoom < maxZoom)   { vocabZoom   += zoomStep; updateVocabZoom(); } }
+function zoomOutVocab()    { if (vocabZoom > minZoom)   { vocabZoom   -= zoomStep; updateVocabZoom(); } }
+function resetZoomVocab()  { vocabZoom = 100;   updateVocabZoom(); }
+function zoomInPhrases()   { if (phrasesZoom < maxZoom) { phrasesZoom += zoomStep; updatePhrasesZoom(); } }
+function zoomOutPhrases()  { if (phrasesZoom > minZoom) { phrasesZoom -= zoomStep; updatePhrasesZoom(); } }
+function resetZoomPhrases(){ phrasesZoom = 100; updatePhrasesZoom(); }
+
+// ============================================
+// KEYBOARD SHORTCUTS
+// ============================================
+document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    const map = { '0': 'all', '1': 'A1', '2': 'A2', '3': 'B1', '4': 'B2' };
+    if (map[e.key]) filterByLevel(map[e.key]);
+    if (e.key === 'p' || e.key === 'P') window.print();
+});
+
+// ============================================
+// SPEECH SYNTHESIS (TTS)
 // ============================================
 let germanVoice = null;
+let englishVoice = null;
 let currentUtterance = null;
 let isSpeaking = false;
 let isPlayingSequence = false;
@@ -1041,44 +1900,50 @@ let ttsWarmedUp = false;
 function loadVoices() {
     const voices = window.speechSynthesis.getVoices();
     const voiceSelect = document.getElementById('voiceSelect');
+    if (!voiceSelect) return;
     voiceSelect.innerHTML = '';
-    const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
 
+    const germanVoices = voices.filter(v => v.lang.startsWith('de'));
     if (germanVoices.length === 0) {
-        voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
-        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+        voiceSelect.innerHTML = '<option value="">No German voice – using default</option>';
+        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0] || null;
     } else {
-        germanVoices.forEach((voice, index) => {
-            const option = document.createElement('option');
-            option.value = index;
-            option.textContent = `${voice.name} (${voice.lang})`;
-            voiceSelect.appendChild(option);
-            if (index === 0) germanVoice = voice;
+        germanVoices.forEach(voice => {
+            const opt = document.createElement('option');
+            opt.value = voice.name;
+            opt.textContent = `${voice.name} (${voice.lang})`;
+            voiceSelect.appendChild(opt);
         });
+        germanVoice = germanVoices[0];
     }
-    console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
+
+    // Pick best English voice for bilingual playback
+    const enVoices = voices.filter(v => v.lang.startsWith('en'));
+    englishVoice = enVoices.find(v => v.lang === 'en-US') || enVoices[0] || null;
 }
 
-if (speechSynthesis.onvoiceschanged !== undefined) {
+if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
     speechSynthesis.onvoiceschanged = loadVoices;
 }
-loadVoices();
 setTimeout(loadVoices, 100);
-setTimeout(loadVoices, 500);
+setTimeout(loadVoices, 600);
 
-document.getElementById('voiceSelect').addEventListener('change', function(e) {
-    stopAllSpeech();
-    const voices = window.speechSynthesis.getVoices();
-    const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
-    germanVoice = germanVoices[e.target.value] || voices[0];
-});
-
-document.getElementById('speedControl').addEventListener('input', function(e) {
-    document.getElementById('speedValue').textContent = e.target.value + 'x';
-});
-
-document.getElementById('pitchControl').addEventListener('input', function(e) {
-    document.getElementById('pitchValue').textContent = e.target.value;
+document.addEventListener('DOMContentLoaded', function() {
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (voiceSelect) {
+        voiceSelect.addEventListener('change', function(e) {
+            stopAllSpeech();
+            const voices = window.speechSynthesis.getVoices();
+            germanVoice = voices.find(v => v.name === e.target.value) || voices[0] || null;
+        });
+    }
+    const speedControl = document.getElementById('speedControl');
+    if (speedControl) {
+        speedControl.addEventListener('input', function(e) {
+            const el = document.getElementById('speedValue');
+            if (el) el.textContent = e.target.value + '×';
+        });
+    }
 });
 
 function warmUpTTS(callback) {
@@ -1093,43 +1958,49 @@ function warmUpTTS(callback) {
     window.speechSynthesis.speak(primer);
 }
 
-function speak(text, callback) {
-    if (!text || text.trim() === '') {
-        if (callback) callback();
-        return;
-    }
+function speak(text, callback, lang) {
+    if (!text || text.trim() === '') { if (callback) callback(); return; }
+    lang = lang || 'de-DE';
     text = text.replace('🔊', '').trim();
     if (!isPlayingSequence) stopAllSpeech();
     if (!ttsWarmedUp) {
-        warmUpTTS(() => speakNow(text, callback));
+        warmUpTTS(() => speakNow(text, callback, lang));
     } else {
         window.speechSynthesis.resume();
-        setTimeout(() => speakNow(text, callback), 100);
+        setTimeout(() => speakNow(text, callback, lang), 100);
     }
 }
 
 function stopAllSpeech() {
     isPlayingSequence = false;
-    window.speechSynthesis.cancel();
+    playAllActive = false;
+    isPaused = false;
+    if (typeof speechSynthesis !== 'undefined') window.speechSynthesis.cancel();
     isSpeaking = false;
     hideAudioStatus();
+    hidePauseBtn();
 }
 
-function speakNow(text, callback) {
+function speakNow(text, callback, lang) {
     if (!('speechSynthesis' in window)) {
-        alert('⚠️ Text-to-speech not supported.');
+        alert('⚠️ Text-to-speech not supported in this browser.');
         if (callback) callback();
         return;
     }
+    lang = lang || 'de-DE';
     showAudioStatus(text);
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'de-DE';
-    if (germanVoice) utterance.voice = germanVoice;
-    utterance.rate = parseFloat(document.getElementById('speedControl').value);
-    utterance.pitch = parseFloat(document.getElementById('pitchControl').value);
+    utterance.lang = lang;
+    if (lang.startsWith('en')) {
+        if (englishVoice) utterance.voice = englishVoice;
+    } else {
+        if (germanVoice) utterance.voice = germanVoice;
+    }
+    const speedEl = document.getElementById('speedControl');
+    utterance.rate = speedEl ? parseFloat(speedEl.value) : 0.8;
+    utterance.pitch = 1.0;
     utterance.volume = 1.0;
     let hasEnded = false;
-
     utterance.onstart = () => { isSpeaking = true; };
     utterance.onend = () => {
         if (hasEnded) return;
@@ -1138,586 +2009,364 @@ function speakNow(text, callback) {
         hideAudioStatus();
         if (callback) setTimeout(callback, 100);
     };
-    utterance.onerror = (event) => {
+    utterance.onerror = () => {
         if (hasEnded) return;
         hasEnded = true;
         isSpeaking = false;
         hideAudioStatus();
         if (callback) callback();
     };
-
     currentUtterance = utterance;
     try { window.speechSynthesis.speak(utterance); }
-    catch (error) {
-        isSpeaking = false;
-        hideAudioStatus();
-        if (callback) callback();
-    }
+    catch(e) { isSpeaking = false; hideAudioStatus(); if (callback) callback(); }
 }
 
 function showAudioStatus(text) {
     const status = document.getElementById('audioStatus');
     const statusText = document.getElementById('audioStatusText');
-    statusText.textContent = `🔊 ${text.length > 40 ? text.substring(0, 40) + '...' : text}`;
+    if (!status || !statusText) return;
+    statusText.textContent = '🔊 ' + (text.length > 40 ? text.substring(0, 40) + '…' : text);
     status.classList.add('show');
 }
 
 function hideAudioStatus() {
-    setTimeout(() => { document.getElementById('audioStatus').classList.remove('show'); }, 300);
+    setTimeout(() => {
+        const el = document.getElementById('audioStatus');
+        if (el) el.classList.remove('show');
+    }, 300);
 }
 
-function speakAdjective(word1, word2) {
+// English TTS shortcut
+function speakEnglish(text, callback) {
+    speak(text, callback, 'en-US');
+}
+
+// English → article+singular → plural
+function speakNounRow(article, singular, pluralFull, english) {
     isPlayingSequence = true;
-    speak(word1, () => setTimeout(() => speak(word2, () => { isPlayingSequence = false; }), 800));
+    const startGerman = () => {
+        speak(article + ' ' + singular, () => {
+            if (pluralFull && pluralFull !== '---' && pluralFull !== 'kein Plural' && pluralFull !== 'nur P') {
+                setTimeout(() => speak(pluralFull, () => { isPlayingSequence = false; }), 350);
+            } else { isPlayingSequence = false; }
+        });
+    };
+    if (english) {
+        speakEnglish(english, () => setTimeout(startGerman, 500));
+    } else {
+        startGerman();
+    }
 }
 
-function speakVerb(verb1, verb2) {
-    const clean1 = verb1.replace(/[*+]/g, '').trim();
-    const clean2 = verb2.replace(/[*+]/g, '').trim();
+// English₁ → German₁ → English₂ → German₂
+function speakPair(word1, english1, word2, english2) {
+    const w1 = word1.replace(/[*+\-]/g, '').trim();
+    const w2 = word2.replace(/[*+\-]/g, '').trim();
     isPlayingSequence = true;
-    speak(clean1, () => setTimeout(() => speak(clean2, () => { isPlayingSequence = false; }), 800));
+    speakEnglish(english1, () =>
+        setTimeout(() => speak(w1, () =>
+            setTimeout(() => speakEnglish(english2, () =>
+                setTimeout(() => speak(w2, () => { isPlayingSequence = false; }), 500)
+            ), 800)
+        ), 500)
+    );
 }
 
-function speakQA(question, answer) {
+// English → German (expressions & sentences)
+function speakBilingual(english, german) {
     isPlayingSequence = true;
-    speak(question, () => setTimeout(() => speak(answer, () => { isPlayingSequence = false; }), 1200));
+    speakEnglish(english, () => setTimeout(() => speak(german, () => { isPlayingSequence = false; }), 500));
 }
 
-function speakNounRow(article, singular, pluralFull) {
-    speakNounWithPlural(article, singular, pluralFull);
-}
-
-function speakNounWithPlural(article, singular, pluralFull) {
-    isPlayingSequence = true;
-    speak(`${article} ${singular}`, () => {
-        if (pluralFull !== '---' && pluralFull !== 'kein Plural') {
-            setTimeout(() => speak(pluralFull, () => { isPlayingSequence = false; }), 300);
-        } else {
-            isPlayingSequence = false;
-        }
-    });
+// German-only (conversations & Q&A)
+function speakText(text) {
+    speak(text);
 }
 
 // ============================================
-// PLAY ALL IN SECTION
+// PLAY SECTION — data-driven, column-first order
 // ============================================
 let playAllActive = false;
 let playAllIndex = 0;
 let playAllTexts = [];
+let currentPlaySection = null;
+let isPaused = false;
 
-function playAllInSection() {
-    const playBtn = document.querySelector('.play-all-btn');
-    if (playAllActive) {
-        playAllActive = false;
-        stopAllSpeech();
-        playBtn.textContent = '▶ Play All in Section';
-        return;
-    }
-
-    const activeTab = document.querySelector('.tab-content.active');
-    const tabId = activeTab.id;
-    playAllTexts = [];
-
-    switch(tabId) {
-        case 'nouns':
-            parseCSV(nounsCSV).forEach(row => {
-                const [level, article, german, , pluralFull] = row;
-                if (currentLevel !== 'all' && level !== currentLevel) return;
-                playAllTexts.push(`${article} ${german}`);
-                if (pluralFull !== '---' && pluralFull !== 'kein Plural') playAllTexts.push(pluralFull);
-            });
-            break;
-        case 'adjectives':
-            activeTab.querySelectorAll('.word-pair').forEach(card => {
-                if (card.style.display === 'none') return;
-                card.querySelectorAll('.german').forEach(g => playAllTexts.push(g.textContent.replace(/[-*+]/g,'').trim()));
-            });
-            break;
-        case 'verbs':
-            activeTab.querySelectorAll('.word-pair').forEach(card => {
-                if (card.style.display === 'none') return;
-                card.querySelectorAll('.german').forEach(g => playAllTexts.push(g.textContent.replace(/[*+]/g,'').trim()));
-            });
-            break;
-        case 'expressions':
-            activeTab.querySelectorAll('.expression-item').forEach(item => {
-                if (item.style.display === 'none') return;
-                const g = item.querySelector('.expression-german');
-                if (g) playAllTexts.push(g.textContent.replace('🔊','').replace(/[AB][12]/g,'').trim());
-            });
-            break;
-        case 'conversations':
-            activeTab.querySelectorAll('.conversation-block').forEach(block => {
-                if (block.classList.contains('hidden-group')) return;
-                block.querySelectorAll('.message-german').forEach(msg => {
-                    playAllTexts.push(msg.textContent.replace('🔊','').trim());
-                });
-            });
-            break;
-        case 'qa':
-            activeTab.querySelectorAll('.qa-card').forEach(card => {
-                if (card.style.display === 'none') return;
-                const q = card.querySelector('.question');
-                if (q) playAllTexts.push(q.textContent.replace('🔊','').replace(/[AB][12]/g,'').trim());
-            });
-            break;
-        case 'sentences':
-            activeTab.querySelectorAll('.sentence-card').forEach(card => {
-                if (card.style.display === 'none') return;
-                const g = card.querySelector('.sentence-german');
-                if (g) playAllTexts.push(g.textContent.replace('🔊','').replace(/[AB][12]/g,'').trim());
-            });
-            break;
-    }
-
-    if (playAllTexts.length === 0) { alert('No items to play in this section.'); return; }
-
-    playAllActive = true;
-    isPlayingSequence = true;
-    playAllIndex = 0;
-    playBtn.textContent = '⏹️ Stop Playing';
-    playNextInSequence(playBtn);
+// ============================================
+// PLAY HIGHLIGHT HELPERS
+// ============================================
+function clearPlayHighlight() {
+    document.querySelectorAll('tr[data-playing]').forEach(el => el.removeAttribute('data-playing'));
 }
 
-function playNextInSequence(playBtn) {
+function highlightAndScroll(el, side) {
+    clearPlayHighlight();
+    if (!el) return;
+    el.setAttribute('data-playing', side || 'all');
+    // auto-scroll disabled
+}
+
+// Nouns: English → article+singular → plural, with row highlight
+function collectNounItems(articleFilter) {
+    const data = parseCSV(nounsCSV).filter(row =>
+        (currentLevel === 'all' || row[0] === currentLevel) && row[1] === articleFilter
+    );
+    const tbody = document.getElementById('nounTableBody');
+    const domRows = Array.from(tbody.querySelectorAll('tr.' + articleFilter + '-row'));
+    const items = [];
+    const half = Math.ceil(data.length / 2);
+
+    function pushNoun(row, domRow, side) {
+        const [lvl, art, ger, pn, pf, eng] = row;
+        if (eng) items.push({ text: eng, lang: 'en-US', el: domRow, side });
+        items.push({ text: art + ' ' + ger, el: domRow, side });
+        if (pf && pf !== '---' && pf !== 'nur P' && pf !== '=' && pf !== 'kein Plural') {
+            items.push({ text: pf, el: domRow, side });
+        }
+    }
+    for (let i = 0; i < half; i++)           pushNoun(data[i],        domRows[i]      || null, 'left');
+    for (let i = half; i < data.length; i++) pushNoun(data[i],        domRows[i-half] || null, 'right');
+    return items;
+}
+
+// Adjectives/Verbs: English₁ → German₁ → English₂ → German₂, with row highlight
+function collectWordItems(csv, rowClass) {
+    const data = parseCSV(csv).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const tbody = document.getElementById('wordTableBody');
+    const domRows = Array.from(tbody.querySelectorAll('tr.' + rowClass));
+    const items = [];
+    const half = Math.ceil(data.length / 2);
+
+    function pushPair(row, domRow, side) {
+        const [lvl, w1, eng1, w2, eng2] = row;
+        if (eng1) items.push({ text: eng1, lang: 'en-US', el: domRow, side });
+        items.push({ text: w1.replace(/[*+\-]/g, '').trim(), el: domRow, side });
+        if (eng2) items.push({ text: eng2, lang: 'en-US', el: domRow, side });
+        items.push({ text: w2.replace(/[*+\-]/g, '').trim(), el: domRow, side });
+    }
+    for (let i = 0; i < half; i++)           pushPair(data[i],        domRows[i]      || null, 'left');
+    for (let i = half; i < data.length; i++) pushPair(data[i],        domRows[i-half] || null, 'right');
+    return items;
+}
+
+// Expressions: English → German, with row highlight
+function collectExprItems() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const tbody = document.getElementById('expressionsTableBody');
+    const domRows = Array.from(tbody.querySelectorAll('tr'));
+    const evens = data.filter((_, i) => i % 2 === 0);
+    const odds  = data.filter((_, i) => i % 2 === 1);
+    const items = [];
+    [...evens, ...odds].forEach((row, idx) => {
+        const [lvl, ger, ...engParts] = row;
+        const eng = engParts.join(',');
+        const side = idx < evens.length ? 'left' : 'right';
+        const domRow = domRows[idx < evens.length ? idx : idx - evens.length] || null;
+        if (eng) items.push({ text: eng, lang: 'en-US', el: domRow, side });
+        items.push({ text: ger, el: domRow, side });
+    });
+    return items;
+}
+
+// Conversations: German-only, no highlight needed
+function collectConvItems() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+    const convMap = {};
+    const convOrder = [];
+    rawLines.forEach(line => {
+        const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1), fc = line.indexOf(',', sp + 1);
+        if (fp < 0 || sp < 0 || fc < 0) return;
+        const level = line.substring(0, fp).trim();
+        const title = line.substring(fp + 1, sp).trim();
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+        const speaker = line.substring(sp + 1, fc).trim();
+        const rest = line.substring(fc + 1);
+        const sc = rest.indexOf(',');
+        const german = rest.substring(0, sc).trim();
+        const key = level + '|' + title;
+        if (!convMap[key]) { convMap[key] = { A: [], B: [] }; convOrder.push(key); }
+        if (speaker === 'A') convMap[key].A.push(german);
+        else                  convMap[key].B.push(german);
+    });
+    const items = [];
+    convOrder.forEach(key => {
+        convMap[key].A.forEach(t => items.push({ text: t }));
+        convMap[key].B.forEach(t => items.push({ text: t }));
+    });
+    return items;
+}
+
+// Q&A: German-only, no highlight needed
+function collectQAItems() {
+    const rows = qaCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return { level: line.substring(0, fc).trim(), question: line.substring(fc + 1, sc).trim() };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+    const half = Math.ceil(rows.length / 2);
+    const items = [];
+    for (let i = 0; i < half; i++)          items.push({ text: rows[i].question });
+    for (let i = half; i < rows.length; i++) items.push({ text: rows[i].question });
+    return items;
+}
+
+// Sentences: English → German, with row highlight
+function collectSentItems() {
+    const rows = sentencesCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return {
+                level:   line.substring(0, fc).trim(),
+                german:  line.substring(fc + 1, sc).trim(),
+                english: line.substring(sc + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+    const tbody = document.getElementById('sentencesTableBody');
+    const domRows = Array.from(tbody.querySelectorAll('tr'));
+    const half = Math.ceil(rows.length / 2);
+    const items = [];
+    // left col: rows[0..half-1], right col: rows[half..end] — share domRows
+    function pushSent(row, domRow, side) {
+        if (row.english) items.push({ text: row.english, lang: 'en-US', el: domRow, side });
+        items.push({ text: row.german, el: domRow, side });
+    }
+    for (let i = 0; i < half; i++)           pushSent(rows[i],      domRows[i]      || null, 'left');
+    for (let i = half; i < rows.length; i++) pushSent(rows[i],      domRows[i-half] || null, 'right');
+    return items;
+}
+
+const sectionBtnIds = {
+    all: 'btnAll', der: 'btnDer', das: 'btnDas', die: 'btnDie',
+    adj: 'btnAdj', verb: 'btnVerb', expr: 'btnExpr',
+    conv: 'btnConv', qa: 'btnQa', sent: 'btnSent'
+};
+
+function showPauseBtn() {
+    const btn = document.getElementById('pauseBtn');
+    if (btn) { btn.style.display = 'inline-block'; btn.classList.remove('paused'); btn.textContent = '⏸ Pause'; }
+}
+function hidePauseBtn() {
+    const btn = document.getElementById('pauseBtn');
+    if (btn) { btn.style.display = 'none'; btn.classList.remove('paused'); isPaused = false; }
+}
+function togglePause() {
+    const btn = document.getElementById('pauseBtn');
+    if (!playAllActive) return;
+    if (isPaused) {
+        isPaused = false;
+        if (btn) { btn.classList.remove('paused'); btn.textContent = '⏸ Pause'; }
+        window.speechSynthesis.resume();
+        // If synth already finished the utterance while paused, advance manually
+        if (!isSpeaking) setTimeout(playNextInSequence, 100);
+    } else {
+        isPaused = true;
+        if (btn) { btn.classList.add('paused'); btn.textContent = '▶ Resume'; }
+        window.speechSynthesis.pause();
+    }
+}
+
+function setPlayingBtn(section) {
+    Object.entries(sectionBtnIds).forEach(([key, id]) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('playing', key === section);
+    });
+}
+
+function playSection(section) {
+    if (playAllActive && currentPlaySection === section) {
+        stopAllSpeech();
+        playAllActive = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        clearPlayHighlight();
+        return;
+    }
+    stopAllSpeech();
+    clearPlayHighlight();
+    playAllTexts = [];
+
+    if (section === 'all') {
+        playAllTexts = [
+            ...collectNounItems('der'),
+            ...collectNounItems('das'),
+            ...collectNounItems('die'),
+            ...collectWordItems(adjectivesCSV, 'adjective-row'),
+            ...collectWordItems(verbsCSV, 'verb-row'),
+            ...collectExprItems(),
+            ...collectConvItems(),
+            ...collectQAItems(),
+            ...collectSentItems()
+        ];
+    } else if (section === 'der')  { playAllTexts = collectNounItems('der'); }
+    else if (section === 'das')    { playAllTexts = collectNounItems('das'); }
+    else if (section === 'die')    { playAllTexts = collectNounItems('die'); }
+    else if (section === 'adj')    { playAllTexts = collectWordItems(adjectivesCSV, 'adjective-row'); }
+    else if (section === 'verb')   { playAllTexts = collectWordItems(verbsCSV, 'verb-row'); }
+    else if (section === 'expr')   { playAllTexts = collectExprItems(); }
+    else if (section === 'conv')   { playAllTexts = collectConvItems(); }
+    else if (section === 'qa')     { playAllTexts = collectQAItems(); }
+    else if (section === 'sent')   { playAllTexts = collectSentItems(); }
+
+    playAllTexts = playAllTexts.filter(item => item && item.text && item.text.trim());
+    if (playAllTexts.length === 0) return;
+
+    playAllActive = true;
+    playAllIndex = 0;
+    currentPlaySection = section;
+    isPlayingSequence = true;
+    isPaused = false;
+    setPlayingBtn(section);
+    showPauseBtn();
+    playNextInSequence();
+}
+
+function playNextInSequence() {
     if (!playAllActive || playAllIndex >= playAllTexts.length) {
         playAllActive = false;
         isPlayingSequence = false;
-        playBtn.textContent = '▶ Play All in Section';
-        hideAudioStatus();
-        if (playAllIndex >= playAllTexts.length) {
-            setTimeout(() => alert('✅ Finished playing all ' + playAllTexts.length + ' items!'), 500);
-        }
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        clearPlayHighlight();
+        hidePauseBtn();
         return;
     }
-    const currentText = playAllTexts[playAllIndex++];
-    speak(currentText, () => setTimeout(() => playNextInSequence(playBtn), 1000));
+    if (isPaused) return;  // wait for resume
+    const item = playAllTexts[playAllIndex++];
+    highlightAndScroll(item.el || null, item.side || 'all');
+    speak(item.text, () => setTimeout(playNextInSequence, 500), item.lang || 'de-DE');
 }
 
-// ============================================
-// TAB SWITCHING
-// ============================================
-function showTab(tabName, evt) {
-    stopAllSpeech();
-    playAllActive = false;
-    const playBtn = document.querySelector('.play-all-btn');
-    if (playBtn) playBtn.textContent = '▶ Play All in Section';
-
-    document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
-    document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
-
-    document.getElementById(tabName).classList.add('active');
-    if (evt && evt.target) evt.target.classList.add('active');
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+// Helper: escape text for HTML attribute
+function escAttr(s) {
+    return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
 }
-
-// ============================================
-// RENDER: NOUNS
-// ============================================
-function renderNouns() {
-    const data = parseCSV(nounsCSV);
-    const grouped = { das: [], der: [], die: [] };
-
-    data.forEach(row => {
-        const [level, article, german, pluralNotation, pluralFull, english] = row;
-        if (grouped[article] !== undefined) {
-            grouped[article].push({ level, article, german, pluralNotation, pluralFull, english });
-        }
-    });
-
-    const articles = [
-        { key: 'der', label: 'Maskulinum (der)', color: '#2196F3' },
-        { key: 'das', label: 'Neutrum (das)',    color: '#4CAF50' },
-        { key: 'die', label: 'Femininum (die)',  color: '#F44336' }
-    ];
-
-    let tableHtml = '';
-    articles.forEach(({ key, label, color }) => {
-        if (grouped[key].length === 0) return;
-        tableHtml += `<div class="noun-article-section" id="noun-section-table-${key}">`;
-        tableHtml += `<h3 style="color:${color};margin-top:40px;">${label}</h3>`;
-        tableHtml += `<table class="vocab-table ${key}"><thead><tr>
-            <th>Article</th><th>German</th><th>Plural</th><th>English</th><th>Level</th><th>Audio</th>
-        </tr></thead><tbody>`;
-
-        grouped[key].forEach(word => {
-            const es = word.german.replace(/'/g, "\\'");
-            const ep = word.pluralFull.replace(/'/g, "\\'");
-            tableHtml += `<tr data-level="${word.level}" onclick="speakNounRow('${word.article}','${es}','${ep}')">
-                <td class="article ${word.article}">${word.article}</td>
-                <td class="german-word">${word.german}</td>
-                <td class="plural">${word.pluralNotation}</td>
-                <td class="english-word">${word.english}</td>
-                <td><span class="level-badge ${word.level}">${word.level}</span></td>
-                <td><button class="audio-btn" onclick="event.stopPropagation();speakNounWithPlural('${word.article}','${es}','${ep}')">🔊</button></td>
-            </tr>`;
-        });
-
-        tableHtml += `</tbody></table></div>`;
-    });
-
-    let mobileHtml = '<div class="mobile-noun-cards">';
-    articles.forEach(({ key, label, color }) => {
-        if (grouped[key].length === 0) return;
-        mobileHtml += `<div class="noun-article-section" id="noun-section-mobile-${key}">`;
-        mobileHtml += `<h3 style="color:${color};margin-top:30px;margin-bottom:15px;">${label}</h3>`;
-        grouped[key].forEach(word => {
-            const es = word.german.replace(/'/g, "\\'");
-            const ep = word.pluralFull.replace(/'/g, "\\'");
-            mobileHtml += `<div class="mobile-noun-card ${word.article}" data-level="${word.level}" onclick="speakNounRow('${word.article}','${es}','${ep}')">
-                <div class="mobile-noun-header">
-                    <div class="mobile-article-word ${word.article}">
-                        <span>${word.article}</span><span>${word.german}</span>
-                        <span class="level-badge ${word.level}">${word.level}</span>
-                    </div>
-                    <button class="mobile-audio-btn" onclick="event.stopPropagation();speakNounWithPlural('${word.article}','${es}','${ep}')">🔊</button>
-                </div>
-                <div class="mobile-noun-details">
-                    <span class="mobile-label">Plural:</span><span class="mobile-plural">${word.pluralNotation}</span>
-                    <span class="mobile-label">English:</span><span class="mobile-english">${word.english}</span>
-                </div>
-            </div>`;
-        });
-        mobileHtml += `</div>`;
-    });
-    mobileHtml += '</div>';
-
-    document.getElementById('nounsContainer').innerHTML = tableHtml + mobileHtml;
-}
-
-// ============================================
-// RENDER: ADJECTIVES
-// ============================================
-function renderAdjectives() {
-    const data = parseCSV(adjectivesCSV);
-    let html = '';
-
-    data.forEach(row => {
-        if (row.length < 5) return; // guard against malformed rows
-        const [level, word1, english1, word2, english2] = row;
-        const e1 = word1.replace(/'/g, "\\'");
-        const e2 = word2.replace(/'/g, "\\'");
-        html += `<div class="word-pair" data-level="${level}" onclick="speakAdjective('${e1}','${e2}')">
-            <div class="card-audio-btn">🔊</div>
-            <span class="level-badge ${level}" style="position:absolute;top:10px;left:10px;">${level}</span>
-            <div class="german">${word1}</div>
-            <div class="english">${english1}</div>
-            <div class="opposite-arrow">⟷</div>
-            <div class="german">${word2}</div>
-            <div class="english">${english2}</div>
-        </div>`;
-    });
-
-    document.getElementById('adjectivesContainer').innerHTML = html;
-}
-
-// ============================================
-// RENDER: VERBS
-// ============================================
-function renderVerbs() {
-    const data = parseCSV(verbsCSV);
-    let html = '';
-
-    data.forEach(row => {
-        if (row.length < 5) return; // ← KEY FIX: skip comment-remnants or short rows
-        const [level, verb1raw, english1, verb2raw, english2] = row;
-        if (!verb1raw || !verb2raw) return; // extra safety guard
-
-        const isWeak = verb1raw.startsWith('*');
-        const gradient = isWeak
-            ? 'linear-gradient(135deg, #4facfe 0%, #00f2fe 100%)'
-            : 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
-        const e1 = verb1raw.replace(/'/g, "\\'");
-        const e2 = verb2raw.replace(/'/g, "\\'");
-
-        html += `<div class="word-pair" style="background:${gradient};" data-level="${level}" onclick="speakVerb('${e1}','${e2}')">
-            <div class="card-audio-btn">🔊</div>
-            <span class="level-badge ${level}" style="position:absolute;top:10px;left:10px;">${level}</span>
-            <div class="german">${verb1raw}</div>
-            <div class="english">${english1}</div>
-            <div class="opposite-arrow">⟷</div>
-            <div class="german">${verb2raw}</div>
-            <div class="english">${english2}</div>
-        </div>`;
-    });
-
-    document.getElementById('verbsContainer').innerHTML = html;
-}
-
-// ============================================
-// RENDER: EXPRESSIONS
-// ============================================
-function renderExpressions() {
-    const data = parseCSV(expressionsCSV);
-    let html = '';
-
-    data.forEach(row => {
-        if (row.length < 3) return;
-        const level = row[0];
-        // German may contain commas — rejoin everything after first element
-        const german  = row[1];
-        const english = row.slice(2).join(',');
-        const eg = german.replace(/'/g, "\\'");
-
-        html += `<li class="expression-item" data-level="${level}" onclick="speak('${eg}')">
-            <div class="expression-german">${german} 🔊 <span class="level-badge ${level}">${level}</span></div>
-            <div class="expression-english">${english}</div>
-        </li>`;
-    });
-
-    document.getElementById('expressionsContainer').innerHTML = html;
-}
-
-// ============================================
-// RENDER: CONVERSATIONS
-// Parses the pipe-delimited raw string directly
-// (does NOT use parseCSV — uses its own parser)
-// ============================================
-function renderConversations() {
-    const lines = conversationsRaw.split('\n')
-        .map(l => l.trim())
-        .filter(l => l.length > 0 && !l.startsWith('//'));
-
-    const conversations = {};  // key → [{speaker, german, english}]
-    const convOrder     = [];
-    const convLevels    = {};
-
-    lines.forEach(line => {
-        // Format: LEVEL|Title|Speaker,german text,english text
-        const firstPipe  = line.indexOf('|');
-        const secondPipe = line.indexOf('|', firstPipe + 1);
-        const firstComma = line.indexOf(',', secondPipe + 1);
-        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
-
-        const level   = line.substring(0, firstPipe).trim();
-        const title   = line.substring(firstPipe + 1, secondPipe).trim();
-        const speaker = line.substring(secondPipe + 1, firstComma).trim();
-        const rest    = line.substring(firstComma + 1);
-
-        const secondComma = rest.indexOf(',');
-        if (secondComma === -1) return;
-
-        const german  = rest.substring(0, secondComma).trim();
-        const english = rest.substring(secondComma + 1).trim();
-
-        const key = `${level}|${title}`;
-        if (!conversations[key]) {
-            conversations[key] = [];
-            convOrder.push(key);
-            convLevels[key] = level;
-        }
-        conversations[key].push({ speaker, german, english });
-    });
-
-    let html = '';
-    convOrder.forEach((key, index) => {
-        const level = convLevels[key];
-        const title = key.split('|').slice(1).join('|');
-        const msgs  = conversations[key];
-
-        html += `<div class="conversation-block" data-level="${level}">`;
-        html += `<h3 style="color:#667eea;margin-top:${index > 0 ? '40px' : '30px'};">
-            Conversation ${index + 1}: ${title}
-            <span class="level-badge ${level}" style="font-size:0.6em;vertical-align:middle;">${level}</span>
-        </h3>`;
-        html += `<div class="conversation">`;
-
-        msgs.forEach(msg => {
-            const cls = msg.speaker === 'A' ? 'message-a' : 'message-b';
-            const eg  = msg.german.replace(/'/g, "\\'");
-            html += `<div class="message ${cls}" onclick="speak('${eg}')">
-                <div class="message-german">${msg.german} 🔊</div>
-                <div class="message-english">${msg.english}</div>
-            </div>`;
-        });
-
-        html += `</div></div>`;
-    });
-
-    document.getElementById('conversationsContainer').innerHTML = html;
-}
-
-// ============================================
-// RENDER: Q&A
-// ============================================
-function renderQA() {
-    const lines = qaCSV.split('\n')
-        .map(l => l.trim())
-        .filter(l => l.length > 0 && !l.startsWith('//'));
-
-    let html = '';
-    lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
-
-        const level    = line.substring(0, firstComma).trim();
-        const question = line.substring(firstComma + 1, secondComma).trim();
-        const answer   = line.substring(secondComma + 1).trim();
-        const eq = question.replace(/'/g, "\\'");
-        const ea = answer.replace(/'/g, "\\'");
-
-        html += `<div class="qa-card" data-level="${level}" onclick="speakQA('${eq}','${ea}')">
-            <div class="question">${question} 🔊 <span class="level-badge ${level}">${level}</span></div>
-            <div class="answer">${answer}</div>
-        </div>`;
-    });
-
-    document.getElementById('qaContainer').innerHTML = html;
-}
-
-// ============================================
-// RENDER: SENTENCES
-// ============================================
-function renderSentences() {
-    const lines = sentencesCSV.split('\n')
-        .map(l => l.trim())
-        .filter(l => l.length > 0 && !l.startsWith('//'));
-
-    let html = '';
-    lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
-
-        const level   = line.substring(0, firstComma).trim();
-        const german  = line.substring(firstComma + 1, secondComma).trim();
-        const english = line.substring(secondComma + 1).trim();
-        const eg = german.replace(/'/g, "\\'");
-
-        html += `<div class="sentence-card" data-level="${level}" onclick="speak('${eg}')">
-            <div class="sentence-german">${german} 🔊 <span class="level-badge ${level}" style="background:rgba(255,255,255,0.25);color:white;">${level}</span></div>
-            <div class="sentence-english">${english}</div>
-        </div>`;
-    });
-
-    document.getElementById('sentencesContainer').innerHTML = html;
-}
-
-// ============================================
-// LEVEL FILTER
-// ============================================
-let currentLevel = 'all';
-
-function filterByLevel(level) {
-    currentLevel = level;
-    stopAllSpeech();
-    playAllActive = false;
-    const playBtn = document.querySelector('.play-all-btn');
-    if (playBtn) playBtn.textContent = '▶ Play All in Section';
-
-    document.querySelectorAll('.level-btn').forEach(btn => {
-        btn.classList.toggle('active', btn.dataset.level === level);
-    });
-
-    let visibleCount = 0;
-    document.querySelectorAll('[data-level]').forEach(el => {
-        const show = level === 'all' || el.dataset.level === level;
-        el.style.display = show ? '' : 'none';
-        if (show) visibleCount++;
-    });
-
-    updateEmptyNounSections(level);
-
-    document.querySelectorAll('.conversation-block').forEach(block => {
-        const show = level === 'all' || block.dataset.level === level;
-        block.classList.toggle('hidden-group', !show);
-    });
-
-    const msg = document.getElementById('filterCountMsg');
-    if (msg) msg.textContent = level === 'all' ? '' : `Showing ${visibleCount} items tagged ${level}`;
-
-    const clearBtn = document.getElementById('clearFilterBtn');
-    const clearLabel = document.getElementById('clearFilterLabel');
-    if (clearBtn) {
-        if (level === 'all') {
-            clearBtn.classList.remove('visible');
-        } else {
-            const names = { A1: 'A1 — Beginner', A2: 'A2 — Elementary', B1: 'B1 — Intermediate', B2: 'B2 — Upper Intermediate' };
-            clearLabel.textContent = `Showing ${names[level] || level} — Show All`;
-            clearBtn.classList.add('visible');
-        }
-    }
-
-    if (level === 'all') {
-        history.replaceState(null, '', window.location.pathname + window.location.search);
-    } else {
-        history.replaceState(null, '', '#' + level);
-    }
-}
-
-function updateEmptyNounSections(level) {
-    ['der', 'das', 'die'].forEach(article => {
-        ['table', 'mobile'].forEach(type => {
-            const section = document.getElementById(`noun-section-${type}-${article}`);
-            if (!section) return;
-            const items = section.querySelectorAll('[data-level]');
-            const hasVisible = Array.from(items).some(c => level === 'all' || c.dataset.level === level);
-            section.classList.toggle('hidden-group', !hasVisible);
-        });
-    });
-}
-
-// ============================================
-// KEYBOARD SHORTCUTS
-// ============================================
-document.addEventListener('keydown', function(e) {
-    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
-
-    if (e.key === 's' || e.key === 'S' || e.key === 'Escape') {
-        stopAllSpeech();
-        playAllActive = false;
-        const playBtn = document.querySelector('.play-all-btn');
-        if (playBtn) playBtn.textContent = '▶ Play All in Section';
-    }
-
-    if (e.key === 'p' || e.key === 'P') playAllInSection();
-
-    const tabMap = { '1':'nouns','2':'adjectives','3':'verbs','4':'expressions','5':'conversations','6':'qa','7':'sentences' };
-    if (tabMap[e.key]) {
-        const tabBtns = document.querySelectorAll('.tab-button');
-        const tabKeys = Object.values(tabMap);
-        tabBtns.forEach((btn, idx) => {
-            if (tabKeys[idx] === tabMap[e.key]) btn.click();
-        });
-    }
-});
-
-// ============================================
-// CLEANUP
-// ============================================
-window.addEventListener('beforeunload', stopAllSpeech);
-document.addEventListener('visibilitychange', function() {
-    if (document.hidden) { stopAllSpeech(); playAllActive = false; }
-});
 
 // ============================================
 // INITIALIZE
 // ============================================
 window.addEventListener('load', function() {
-    console.log('🇩🇪 German Vocabulary Loaded!');
-    console.log('💡 Shortcuts: S/Esc=Stop | P=Play All | 1-7=Tabs');
-
-    renderNouns();
-    renderAdjectives();
-    renderVerbs();
-    renderExpressions();
+    updateVocabZoom();
+    updatePhrasesZoom();
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
     renderConversations();
-    renderQA();
-    renderSentences();
-
-    loadVoices();
-    setTimeout(loadVoices, 100);
-    setTimeout(loadVoices, 500);
-    setTimeout(loadVoices, 1000);
-
-    const validLevels = ['A1', 'A2', 'B1', 'B2'];
-    const hash = window.location.hash.replace('#', '').toUpperCase();
-    if (validLevels.includes(hash)) filterByLevel(hash);
-
-    if (!('speechSynthesis' in window)) {
-        alert('⚠️ Text-to-speech not supported.\n\nPlease use Chrome, Firefox, Edge, or Safari.');
-    }
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ German Vocabulary Reference loaded!');
+    console.log('💡 Keys: 0=All | 1=A1 | 2=A2 | 3=B1 | 4=B2 | P=Print');
 });
     </script>
 </body>
