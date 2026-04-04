@@ -46,41 +46,83 @@
 
         .audio-controls {
             background: white;
-            padding: 20px;
+            padding: 14px 16px;
             border-radius: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             display: flex;
             justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
-            gap: 15px;
+            gap: 10px;
+        }
+
+        .audio-controls-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 100%;
+            gap: 10px;
         }
 
         .audio-controls h3 {
             color: #667eea;
-            margin-bottom: 10px;
+            margin: 0;
+            font-size: 1em;
+        }
+
+        .audio-toggle-btn {
+            display: none; /* hidden on desktop */
+            background: none;
+            border: 2px solid #667eea;
+            color: #667eea;
+            border-radius: 20px;
+            padding: 4px 12px;
+            font-size: 0.85em;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .audio-body {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
             width: 100%;
         }
 
         .control-group {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .control-group label {
             font-weight: 600;
             color: #333;
+            font-size: 0.9em;
+            white-space: nowrap;
         }
 
         .control-group select,
-        .control-group input {
-            padding: 8px 15px;
+        .control-group input[type="range"] {
+            padding: 6px 10px;
             border: 2px solid #667eea;
             border-radius: 8px;
-            font-size: 1em;
+            font-size: 0.9em;
             cursor: pointer;
+        }
+
+        .control-group input[type="range"] {
+            padding: 0;
+            width: 80px;
+        }
+
+        .control-group span {
+            font-size: 0.85em;
+            font-weight: 600;
+            color: #555;
+            min-width: 28px;
         }
 
         .play-all-btn {
@@ -105,21 +147,22 @@
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 10px;
-            margin-bottom: 30px;
-            padding: 0 20px;
+            gap: 8px;
+            margin-bottom: 20px;
+            padding: 0 10px;
         }
 
         .tab-button {
             background: white;
             border: none;
-            padding: 15px 30px;
+            padding: 12px 22px;
             border-radius: 25px;
-            font-size: 1.1em;
+            font-size: 1em;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            white-space: nowrap;
         }
 
         .tab-button:hover {
@@ -159,9 +202,9 @@
         .card h2 {
             color: #DD0000;
             font-size: 2em;
-            margin-bottom: 20px;
-            border-bottom: 3px solid #FFCE00;
-            padding-bottom: 10px;
+            margin-bottom: 0;
+            border-bottom: none;
+            padding-bottom: 0;
         }
 
         .vocab-table {
@@ -372,14 +415,14 @@
         /* LEVEL FILTER BAR */
         .level-filter-bar {
             background: white;
-            padding: 15px 20px;
+            padding: 12px 14px;
             border-radius: 15px;
-            margin-bottom: 20px;
+            margin-bottom: 14px;
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             display: flex;
             align-items: center;
             flex-wrap: wrap;
-            gap: 10px;
+            gap: 8px;
         }
 
         .level-filter-label { font-weight: 700; color: #555; font-size: 0.95em; margin-right: 5px; white-space: nowrap; }
@@ -486,6 +529,95 @@
 
         .audio-status.show { display: flex; }
 
+        /* ── Active-word highlight during Play All ── */
+        .playing-item {
+            outline: 3px solid #FFCE00 !important;
+            box-shadow: 0 0 18px rgba(255,206,0,0.55) !important;
+            position: relative;
+            z-index: 5;
+        }
+        tr.playing-item td { background: rgba(255,206,0,0.25) !important; }
+        .word-pair.playing-item   { transform: scale(1.04); }
+        .expression-item.playing-item { background: #fffde7 !important; }
+        .sentence-card.playing-item   { filter: brightness(1.15); }
+        .message.playing-item         { opacity: 1 !important; filter: brightness(1.12); }
+        .qa-card.playing-item         { background: #fffde7 !important; }
+        .mobile-noun-card.playing-item { background: rgba(255,206,0,0.3) !important; }
+
+        /* ── Section-level play controls ── */
+        .section-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 10px;
+            border-bottom: 3px solid #FFCE00;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .section-header h2 {
+            color: #DD0000;
+            font-size: 2em;
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+        .section-play-controls {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            flex-shrink: 0;
+        }
+        .sec-btn {
+            border: none;
+            border-radius: 20px;
+            padding: 8px 16px;
+            font-size: 0.85em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+        }
+        .sec-btn.play  { background: linear-gradient(135deg,#DD0000,#FFCE00); color: white; }
+        .sec-btn.pause { background: #667eea; color: white; }
+        .sec-btn.stop  { background: #444; color: white; }
+        .sec-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 14px rgba(0,0,0,0.28); }
+        .sec-btn:active { transform: scale(0.96); }
+        .sec-btn:disabled { opacity: 0.35; cursor: not-allowed; transform: none; }
+
+        /* ── Global pause/stop buttons ── */
+        .global-play-group {
+            display: flex;
+            gap: 8px;
+            align-items: center;
+        }
+        .pause-all-btn {
+            background: #667eea;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .pause-all-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+        .stop-all-btn {
+            background: #444;
+            color: white;
+            border: none;
+            padding: 12px 22px;
+            border-radius: 25px;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+        .stop-all-btn:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.3); }
+
         .audio-status .spinner {
             width: 20px;
             height: 20px;
@@ -509,24 +641,64 @@
         .section-icon { font-size: 2em; margin-right: 10px; vertical-align: middle; }
 
         @media (max-width: 768px) {
-            header h1 { font-size: 2em; }
-            .tabs { flex-direction: column; }
-            .tab-button { width: 100%; }
+            header h1 { font-size: 1.8em; }
+            header { padding: 25px 15px; }
+
+            /* Audio settings: show toggle button, collapse body by default */
+            .audio-toggle-btn { display: block; }
+            .audio-body { display: none; }
+            .audio-body.open { display: flex; }
+            .audio-controls { padding: 10px 14px; gap: 8px; }
+            .audio-controls h3 { font-size: 0.95em; }
+
+            /* Level filter: horizontal scrollable single row */
+            .level-filter-bar {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                padding: 10px 12px;
+                gap: 7px;
+                scrollbar-width: none;
+            }
+            .level-filter-bar::-webkit-scrollbar { display: none; }
+            .level-filter-label { font-size: 0.82em; flex-shrink: 0; }
+            .level-btn { padding: 7px 14px; font-size: 0.85em; flex-shrink: 0; white-space: nowrap; }
+
+            /* Tabs: horizontal scrollable */
+            .tabs {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                justify-content: flex-start;
+                -webkit-overflow-scrolling: touch;
+                padding: 0 10px 6px;
+                scrollbar-width: none;
+                gap: 7px;
+            }
+            .tabs::-webkit-scrollbar { display: none; }
+            .tab-button { padding: 10px 16px; font-size: 0.9em; flex-shrink: 0; }
+
+            /* Section controls */
+            .section-header { flex-direction: column; align-items: flex-start; }
+            .section-play-controls { width: 100%; justify-content: flex-start; }
+
+            /* Global play buttons */
+            .global-play-group { flex-wrap: wrap; }
+            .play-all-btn, .pause-all-btn, .stop-all-btn { padding: 9px 14px; font-size: 0.9em; }
+
             .word-grid { grid-template-columns: 1fr; }
             .sentence-grid { grid-template-columns: 1fr; }
             .message { max-width: 90%; }
-            .audio-controls { flex-direction: column; }
         }
     </style>
 </head>
 <body>
 <!-- NAVIGATION -->
 <div style="background: #000; padding: 15px; text-align: center;">
-    <a href="../../index.html" style="color: #FFCE00; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🏠 Home</a>
-    <a href="../../index.html#levels" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📚 Levels</a>
-    <a href="../../index.html#categories" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🎯 Categories</a>
-    <a href="../../tools/progress.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📊 Progress</a>
-    <a href="../../about.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">ℹ️ About</a>
+    <a href="../index.html" style="color: #FFCE00; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🏠 Home</a>
+    <a href="../index.html#levels" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📚 Levels</a>
+    <a href="../index.html#categories" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🎯 Categories</a>
+    <a href="../tools/progress.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📊 Progress</a>
+    <a href="../about.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">ℹ️ About</a>
 </div>
 
     <header>
@@ -537,24 +709,33 @@
 
     <div class="container">
         <div class="audio-controls">
-            <h3>🔊 Audio Settings</h3>
-            <div class="control-group">
-                <label for="voiceSelect">Voice:</label>
-                <select id="voiceSelect">
-                    <option value="">Loading voices...</option>
-                </select>
+            <div class="audio-controls-header">
+                <h3>🔊 Audio Settings</h3>
+                <button class="audio-toggle-btn" id="audioToggleBtn" onclick="toggleAudioSettings()">▼ Show</button>
             </div>
-            <div class="control-group">
-                <label for="speedControl">Speed:</label>
-                <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
-                <span id="speedValue">0.8x</span>
+            <div class="audio-body" id="audioBody">
+                <div class="control-group">
+                    <label for="voiceSelect">Voice:</label>
+                    <select id="voiceSelect">
+                        <option value="">Loading voices...</option>
+                    </select>
+                </div>
+                <div class="control-group">
+                    <label for="speedControl">Speed:</label>
+                    <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+                    <span id="speedValue">0.8x</span>
+                </div>
+                <div class="control-group">
+                    <label for="pitchControl">Pitch:</label>
+                    <input type="range" id="pitchControl" min="0.5" max="2" step="0.1" value="1">
+                    <span id="pitchValue">1.0</span>
+                </div>
+                <div class="global-play-group">
+                    <button class="play-all-btn" id="globalPlayBtn" onclick="playAllInSection()">▶ Play All</button>
+                    <button class="pause-all-btn" id="globalPauseBtn" onclick="pausePlayback()" disabled>⏸ Pause</button>
+                    <button class="stop-all-btn"  id="globalStopBtn"  onclick="stopPlayback()"  disabled>⏹ Stop</button>
+                </div>
             </div>
-            <div class="control-group">
-                <label for="pitchControl">Pitch:</label>
-                <input type="range" id="pitchControl" min="0.5" max="2" step="0.1" value="1">
-                <span id="pitchValue">1.0</span>
-            </div>
-            <button class="play-all-btn" onclick="playAllInSection()">▶ Play All in Section</button>
         </div>
 
         <button class="clear-filter-btn" id="clearFilterBtn" onclick="filterByLevel('all')">
@@ -584,14 +765,28 @@
 
         <div id="nouns" class="tab-content active">
             <div class="card">
-                <h2><span class="section-icon">📚</span>Nouns - Die Nomen</h2>
+                <div class="section-header">
+                    <h2><span class="section-icon">📚</span>Nouns - Die Nomen</h2>
+                    <div class="section-play-controls">
+                        <button class="sec-btn play"  onclick="playAllInSection()">▶ Play</button>
+                        <button class="sec-btn pause" onclick="pausePlayback()">⏸ Pause</button>
+                        <button class="sec-btn stop"  onclick="stopPlayback()">⏹ Stop</button>
+                    </div>
+                </div>
                 <div id="nounsContainer"></div>
             </div>
         </div>
 
         <div id="adjectives" class="tab-content">
             <div class="card">
-                <h2><span class="section-icon">✨</span>Adjectives - Die Adjektive</h2>
+                <div class="section-header">
+                    <h2><span class="section-icon">✨</span>Adjectives - Die Adjektive</h2>
+                    <div class="section-play-controls">
+                        <button class="sec-btn play"  onclick="playAllInSection()">▶ Play</button>
+                        <button class="sec-btn pause" onclick="pausePlayback()">⏸ Pause</button>
+                        <button class="sec-btn stop"  onclick="stopPlayback()">⏹ Stop</button>
+                    </div>
+                </div>
                 <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any card to hear the pronunciation!</p>
                 <div id="adjectivesContainer" class="word-grid"></div>
             </div>
@@ -599,7 +794,14 @@
 
         <div id="verbs" class="tab-content">
             <div class="card">
-                <h2><span class="section-icon">⚡</span>Verbs - Die Verben</h2>
+                <div class="section-header">
+                    <h2><span class="section-icon">⚡</span>Verbs - Die Verben</h2>
+                    <div class="section-play-controls">
+                        <button class="sec-btn play"  onclick="playAllInSection()">▶ Play</button>
+                        <button class="sec-btn pause" onclick="pausePlayback()">⏸ Pause</button>
+                        <button class="sec-btn stop"  onclick="stopPlayback()">⏹ Stop</button>
+                    </div>
+                </div>
                 <p style="margin-bottom: 20px;"><strong>*</strong> = Weak Verb | <strong>+</strong> = Strong Verb</p>
                 <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any card to hear the pronunciation!</p>
                 <div id="verbsContainer" class="word-grid"></div>
@@ -608,7 +810,14 @@
 
         <div id="expressions" class="tab-content">
             <div class="card">
-                <h2><span class="section-icon">💬</span>Key Expressions - Wichtige Ausdrücke</h2>
+                <div class="section-header">
+                    <h2><span class="section-icon">💬</span>Key Expressions - Wichtige Ausdrücke</h2>
+                    <div class="section-play-controls">
+                        <button class="sec-btn play"  onclick="playAllInSection()">▶ Play</button>
+                        <button class="sec-btn pause" onclick="pausePlayback()">⏸ Pause</button>
+                        <button class="sec-btn stop"  onclick="stopPlayback()">⏹ Stop</button>
+                    </div>
+                </div>
                 <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any expression to hear the pronunciation!</p>
                 <ul id="expressionsContainer" class="expression-list"></ul>
             </div>
@@ -616,7 +825,14 @@
 
         <div id="conversations" class="tab-content">
             <div class="card">
-                <h2><span class="section-icon">🗣️</span>Mini Conversations - Kurze Gespräche</h2>
+                <div class="section-header">
+                    <h2><span class="section-icon">🗣️</span>Mini Conversations - Kurze Gespräche</h2>
+                    <div class="section-play-controls">
+                        <button class="sec-btn play"  onclick="playAllInSection()">▶ Play</button>
+                        <button class="sec-btn pause" onclick="pausePlayback()">⏸ Pause</button>
+                        <button class="sec-btn stop"  onclick="stopPlayback()">⏹ Stop</button>
+                    </div>
+                </div>
                 <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any message to hear it!</p>
                 <div id="conversationsContainer"></div>
             </div>
@@ -624,7 +840,14 @@
 
         <div id="qa" class="tab-content">
             <div class="card">
-                <h2><span class="section-icon">❓</span>Q&amp;A Practice - Fragen und Antworten</h2>
+                <div class="section-header">
+                    <h2><span class="section-icon">❓</span>Q&amp;A Practice - Fragen und Antworten</h2>
+                    <div class="section-play-controls">
+                        <button class="sec-btn play"  onclick="playAllInSection()">▶ Play</button>
+                        <button class="sec-btn pause" onclick="pausePlayback()">⏸ Pause</button>
+                        <button class="sec-btn stop"  onclick="stopPlayback()">⏹ Stop</button>
+                    </div>
+                </div>
                 <p style="margin-bottom: 20px; font-style: italic; color: #666;">💡 Hover over each card to see the answer, or click to hear it!</p>
                 <div id="qaContainer" class="qa-container"></div>
             </div>
@@ -632,7 +855,14 @@
 
         <div id="sentences" class="tab-content">
             <div class="card">
-                <h2><span class="section-icon">📝</span>Quick Sentences - Schnelle Sätze</h2>
+                <div class="section-header">
+                    <h2><span class="section-icon">📝</span>Quick Sentences - Schnelle Sätze</h2>
+                    <div class="section-play-controls">
+                        <button class="sec-btn play"  onclick="playAllInSection()">▶ Play</button>
+                        <button class="sec-btn pause" onclick="pausePlayback()">⏸ Pause</button>
+                        <button class="sec-btn stop"  onclick="stopPlayback()">⏹ Stop</button>
+                    </div>
+                </div>
                 <p style="margin-bottom: 20px; color: #666; font-style: italic;">💡 Click on any sentence to hear it!</p>
                 <div id="sentencesContainer" class="sentence-grid"></div>
             </div>
@@ -970,13 +1200,25 @@ function parseCSV(csv) {
 }
 
 // ============================================
+// MOBILE: TOGGLE AUDIO SETTINGS PANEL
+// ============================================
+function toggleAudioSettings() {
+    const body = document.getElementById('audioBody');
+    const btn  = document.getElementById('audioToggleBtn');
+    const open = body.classList.toggle('open');
+    btn.textContent = open ? '▲ Hide' : '▼ Show';
+}
+
+// ============================================
 // SPEECH SYNTHESIS
 // ============================================
 let germanVoice = null;
+let englishVoice = null;
 let currentUtterance = null;
 let isSpeaking = false;
 let isPlayingSequence = false;
 let ttsWarmedUp = false;
+let _keepAliveTimer = null;  // Chrome TTS keepalive
 
 function loadVoices() {
     const voices = window.speechSynthesis.getVoices();
@@ -996,6 +1238,9 @@ function loadVoices() {
             if (index === 0) germanVoice = voice;
         });
     }
+    // Also pick an English voice for bilingual playback
+    const enVoices = voices.filter(v => v.lang.startsWith('en'));
+    englishVoice = enVoices.find(v => v.lang === 'en-US') || enVoices[0] || null;
     console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
 }
 
@@ -1021,30 +1266,43 @@ document.getElementById('pitchControl').addEventListener('input', function(e) {
     document.getElementById('pitchValue').textContent = e.target.value;
 });
 
+// Chrome stops TTS silently after ~15 s — keep it alive by calling resume() every 10 s
+function startKeepAlive() {
+    stopKeepAlive();
+    _keepAliveTimer = setInterval(() => {
+        if (window.speechSynthesis.speaking && !isPaused) {
+            window.speechSynthesis.resume();
+        }
+    }, 10000);
+}
+function stopKeepAlive() {
+    if (_keepAliveTimer) { clearInterval(_keepAliveTimer); _keepAliveTimer = null; }
+}
+
 function warmUpTTS(callback) {
     if (ttsWarmedUp) { callback(); return; }
     const primer = new SpeechSynthesisUtterance(' ');
     primer.volume = 0;
     primer.lang = 'de-DE';
     if (germanVoice) primer.voice = germanVoice;
-    primer.onend  = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
-    primer.onerror = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    primer.onend  = () => { ttsWarmedUp = true; setTimeout(callback, 80); };
+    primer.onerror = () => { ttsWarmedUp = true; setTimeout(callback, 80); };
     window.speechSynthesis.cancel();
     window.speechSynthesis.speak(primer);
 }
 
-function speak(text, callback) {
-    if (!text || text.trim() === '') {
-        if (callback) callback();
-        return;
-    }
+function speak(text, callback, lang) {
+    if (!text || text.trim() === '') { if (callback) callback(); return; }
+    lang = lang || 'de-DE';
     text = text.replace('🔊', '').trim();
+    // When called for a one-off click (not in sequence), stop any ongoing speech
     if (!isPlayingSequence) stopAllSpeech();
     if (!ttsWarmedUp) {
-        warmUpTTS(() => speakNow(text, callback));
+        warmUpTTS(() => speakNow(text, callback, lang));
     } else {
-        window.speechSynthesis.resume();
-        setTimeout(() => speakNow(text, callback), 100);
+        // Always cancel before starting new utterance to avoid Chrome queue bugs
+        if (!isPlayingSequence) window.speechSynthesis.cancel();
+        setTimeout(() => speakNow(text, callback, lang), 50);
     }
 }
 
@@ -1052,47 +1310,69 @@ function stopAllSpeech() {
     isPlayingSequence = false;
     window.speechSynthesis.cancel();
     isSpeaking = false;
+    stopKeepAlive();
     hideAudioStatus();
 }
 
-function speakNow(text, callback) {
+function speakNow(text, callback, lang) {
     if (!('speechSynthesis' in window)) {
         alert('⚠️ Text-to-speech not supported.');
         if (callback) callback();
         return;
     }
+    lang = lang || 'de-DE';
     showAudioStatus(text);
     const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'de-DE';
-    if (germanVoice) utterance.voice = germanVoice;
-    utterance.rate = parseFloat(document.getElementById('speedControl').value);
+    utterance.lang = lang;
+    if (lang === 'en-US' || lang.startsWith('en')) {
+        if (englishVoice) utterance.voice = englishVoice;
+    } else {
+        if (germanVoice) utterance.voice = germanVoice;
+    }
+    utterance.rate  = parseFloat(document.getElementById('speedControl').value);
     utterance.pitch = parseFloat(document.getElementById('pitchControl').value);
     utterance.volume = 1.0;
-    let hasEnded = false;
+
+    let finished = false;
+
+    // Safety timeout: estimate max speaking time + generous buffer
+    // Avg German TTS: ~12 chars/sec; add 5 s headroom
+    const timeoutMs = Math.max(4000, text.length * 120 + 5000);
+    const safetyTimer = setTimeout(() => {
+        if (!finished) {
+            finished = true;
+            isSpeaking = false;
+            hideAudioStatus();
+            console.warn('TTS safety timeout fired for:', text.substring(0, 30));
+            if (callback) callback();
+        }
+    }, timeoutMs);
+
+    const done = (fromError) => {
+        if (finished) return;
+        finished = true;
+        clearTimeout(safetyTimer);
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) setTimeout(callback, fromError ? 0 : 120);
+    };
 
     utterance.onstart = () => { isSpeaking = true; };
-    utterance.onend = () => {
-        if (hasEnded) return;
-        hasEnded = true;
-        isSpeaking = false;
-        hideAudioStatus();
-        if (callback) setTimeout(callback, 100);
-    };
-    utterance.onerror = (event) => {
-        if (hasEnded) return;
-        hasEnded = true;
-        isSpeaking = false;
-        hideAudioStatus();
-        if (callback) callback();
+    utterance.onend   = () => done(false);
+    utterance.onerror = (ev) => {
+        // 'interrupted' fires when we cancel intentionally — don't chain callback
+        if (ev.error === 'interrupted' || ev.error === 'canceled') {
+            clearTimeout(safetyTimer);
+            finished = true;
+            isSpeaking = false;
+            return;
+        }
+        done(true);
     };
 
     currentUtterance = utterance;
     try { window.speechSynthesis.speak(utterance); }
-    catch (error) {
-        isSpeaking = false;
-        hideAudioStatus();
-        if (callback) callback();
-    }
+    catch (err) { done(true); }
 }
 
 function showAudioStatus(text) {
@@ -1106,16 +1386,35 @@ function hideAudioStatus() {
     setTimeout(() => { document.getElementById('audioStatus').classList.remove('show'); }, 300);
 }
 
-function speakAdjective(word1, word2) {
-    isPlayingSequence = true;
-    speak(word1, () => setTimeout(() => speak(word2, () => { isPlayingSequence = false; }), 800));
+// Shortcut for English TTS
+function speakEnglish(text, callback) {
+    speak(text, callback, 'en-US');
 }
 
-function speakVerb(verb1, verb2) {
+// English → German → English → German
+function speakAdjective(word1, english1, word2, english2) {
+    isPlayingSequence = true;
+    speakEnglish(english1, () =>
+        setTimeout(() => speak(word1, () =>
+            setTimeout(() => speakEnglish(english2, () =>
+                setTimeout(() => speak(word2, () => { isPlayingSequence = false; }), 500)
+            ), 800)
+        ), 500)
+    );
+}
+
+// English → German → English → German
+function speakVerb(verb1, english1, verb2, english2) {
     const clean1 = verb1.replace(/[*+]/g, '').trim();
     const clean2 = verb2.replace(/[*+]/g, '').trim();
     isPlayingSequence = true;
-    speak(clean1, () => setTimeout(() => speak(clean2, () => { isPlayingSequence = false; }), 800));
+    speakEnglish(english1, () =>
+        setTimeout(() => speak(clean1, () =>
+            setTimeout(() => speakEnglish(english2, () =>
+                setTimeout(() => speak(clean2, () => { isPlayingSequence = false; }), 500)
+            ), 800)
+        ), 500)
+    );
 }
 
 function speakQA(question, answer) {
@@ -1123,74 +1422,201 @@ function speakQA(question, answer) {
     speak(question, () => setTimeout(() => speak(answer, () => { isPlayingSequence = false; }), 1200));
 }
 
-function speakNounRow(article, singular, pluralFull) {
-    speakNounWithPlural(article, singular, pluralFull);
+function speakNounRow(article, singular, pluralFull, english) {
+    speakNounWithPlural(article, singular, pluralFull, english);
 }
 
-function speakNounWithPlural(article, singular, pluralFull) {
+// English → article+singular → plural
+function speakNounWithPlural(article, singular, pluralFull, english) {
     isPlayingSequence = true;
-    speak(`${article} ${singular}`, () => {
-        if (pluralFull !== '---' && pluralFull !== 'kein Plural') {
-            setTimeout(() => speak(pluralFull, () => { isPlayingSequence = false; }), 300);
-        } else {
-            isPlayingSequence = false;
-        }
-    });
+    const startGerman = () => {
+        speak(`${article} ${singular}`, () => {
+            if (pluralFull !== '---' && pluralFull !== 'kein Plural') {
+                setTimeout(() => speak(pluralFull, () => { isPlayingSequence = false; }), 300);
+            } else {
+                isPlayingSequence = false;
+            }
+        });
+    };
+    if (english) {
+        speakEnglish(english, () => setTimeout(startGerman, 500));
+    } else {
+        startGerman();
+    }
+}
+
+// English → German (for expressions & sentences)
+function speakBilingual(english, german) {
+    isPlayingSequence = true;
+    speakEnglish(english, () => setTimeout(() => speak(german, () => { isPlayingSequence = false; }), 500));
 }
 
 // ============================================
 // PLAY ALL IN SECTION
 // ============================================
 let playAllActive = false;
+let isPaused = false;
 let playAllIndex = 0;
-let playAllTexts = [];
+let playAllTexts = []; // each item: { text: string, el: Element|null }
+
+function clearPlayHighlight() {
+    document.querySelectorAll('.playing-item').forEach(el => el.classList.remove('playing-item'));
+}
+
+function highlightAndScroll(el) {
+    clearPlayHighlight();
+    if (!el) return;
+    el.classList.add('playing-item');
+    // Reliable cross-platform scroll (works on iOS/Android)
+    try {
+        const rect = el.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const targetY = rect.top + scrollTop - (window.innerHeight / 2) + (rect.height / 2);
+        window.scrollTo({ top: Math.max(0, targetY), behavior: 'smooth' });
+    } catch(e) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+}
+
+function updatePlaybackUI(state) {
+    // state: 'playing' | 'paused' | 'stopped'
+    const gPlay  = document.getElementById('globalPlayBtn');
+    const gPause = document.getElementById('globalPauseBtn');
+    const gStop  = document.getElementById('globalStopBtn');
+
+    if (state === 'playing') {
+        if (gPlay)  { gPlay.textContent  = '▶ Playing…'; gPlay.disabled = true; }
+        if (gPause) { gPause.textContent = '⏸ Pause'; gPause.disabled = false; }
+        if (gStop)  { gStop.disabled  = false; }
+    } else if (state === 'paused') {
+        if (gPlay)  { gPlay.textContent  = '▶ Play All'; gPlay.disabled = true; }
+        if (gPause) { gPause.textContent = '▶ Resume'; gPause.disabled = false; }
+        if (gStop)  { gStop.disabled  = false; }
+    } else { // stopped
+        if (gPlay)  { gPlay.textContent  = '▶ Play All'; gPlay.disabled = false; }
+        if (gPause) { gPause.textContent = '⏸ Pause'; gPause.disabled = true; }
+        if (gStop)  { gStop.disabled  = true; }
+    }
+}
+
+function pausePlayback() {
+    if (!playAllActive) return;
+    if (isPaused) {
+        // RESUME: software resume — just clear the flag and advance to next item
+        isPaused = false;
+        updatePlaybackUI('playing');
+        startKeepAlive();
+        playNextInSequence(); // continue from where we left off
+    } else {
+        // PAUSE: software pause — stop current speech, set flag; sequence won't advance
+        isPaused = true;
+        window.speechSynthesis.cancel(); // stop current word
+        isSpeaking = false;
+        hideAudioStatus();
+        stopKeepAlive();
+        updatePlaybackUI('paused');
+    }
+}
+
+function stopPlayback() {
+    stopAllSpeech();
+    playAllActive = false;
+    isPaused = false;
+    clearPlayHighlight();
+    stopKeepAlive();
+    updatePlaybackUI('stopped');
+}
 
 function playAllInSection() {
-    const playBtn = document.querySelector('.play-all-btn');
-    if (playAllActive) {
-        playAllActive = false;
-        stopAllSpeech();
-        playBtn.textContent = '▶ Play All in Section';
-        return;
-    }
+    // If paused, resume instead of restarting
+    if (isPaused && playAllActive) { pausePlayback(); return; }
+
+    // If already playing, stop
+    if (playAllActive) { stopPlayback(); return; }
 
     const activeTab = document.querySelector('.tab-content.active');
     const tabId = activeTab.id;
     playAllTexts = [];
 
+    const isMobile = window.innerWidth <= 768;
+
     switch(tabId) {
         case 'nouns':
-            parseCSV(nounsCSV).forEach(row => {
-                const [level, article, german, , pluralFull] = row;
-                if (currentLevel !== 'all' && level !== currentLevel) return;
-                playAllTexts.push(`${article} ${german}`);
-                if (pluralFull !== '---' && pluralFull !== 'kein Plural') playAllTexts.push(pluralFull);
+            ['der', 'das', 'die'].forEach(art => {
+                if (isMobile) {
+                    // Use mobile cards on small screens
+                    const mSection = document.getElementById(`noun-section-mobile-${art}`);
+                    if (!mSection) return;
+                    mSection.querySelectorAll('.mobile-noun-card').forEach(card => {
+                        if (card.style.display === 'none') return;
+                        if (currentLevel !== 'all' && card.dataset.level !== currentLevel) return;
+                        const article    = card.dataset.article;
+                        const singular   = card.dataset.singular;
+                        const pluralFull = card.dataset.pluralFull;
+                        const english    = card.dataset.english;
+                        if (article && singular) {
+                            if (english) playAllTexts.push({ text: english, lang: 'en-US', el: card });
+                            playAllTexts.push({ text: `${article} ${singular}`, el: card });
+                            if (pluralFull && pluralFull !== '---' && pluralFull !== 'kein Plural') {
+                                playAllTexts.push({ text: pluralFull, el: card });
+                            }
+                        }
+                    });
+                } else {
+                    const section = document.getElementById(`noun-section-table-${art}`);
+                    if (!section) return;
+                    section.querySelectorAll('tbody tr').forEach(tr => {
+                        if (currentLevel !== 'all' && tr.dataset.level !== currentLevel) return;
+                        const article    = tr.dataset.article;
+                        const singular   = tr.dataset.singular;
+                        const pluralFull = tr.dataset.pluralFull;
+                        const english    = tr.dataset.english;
+                        if (english) playAllTexts.push({ text: english, lang: 'en-US', el: tr });
+                        playAllTexts.push({ text: `${article} ${singular}`, el: tr });
+                        if (pluralFull && pluralFull !== '---' && pluralFull !== 'kein Plural') {
+                            playAllTexts.push({ text: pluralFull, el: tr });
+                        }
+                    });
+                }
             });
             break;
         case 'adjectives':
             activeTab.querySelectorAll('.word-pair').forEach(card => {
                 if (card.style.display === 'none') return;
-                card.querySelectorAll('.german').forEach(g => playAllTexts.push(g.textContent.replace(/[-*+]/g,'').trim()));
+                const words    = card.querySelectorAll('.german');
+                const englishes = card.querySelectorAll('.english');
+                words.forEach((g, i) => {
+                    if (englishes[i]) playAllTexts.push({ text: englishes[i].textContent.trim(), lang: 'en-US', el: card });
+                    playAllTexts.push({ text: g.textContent.replace(/[-*+]/g,'').trim(), el: card });
+                });
             });
             break;
         case 'verbs':
             activeTab.querySelectorAll('.word-pair').forEach(card => {
                 if (card.style.display === 'none') return;
-                card.querySelectorAll('.german').forEach(g => playAllTexts.push(g.textContent.replace(/[*+]/g,'').trim()));
+                const words    = card.querySelectorAll('.german');
+                const englishes = card.querySelectorAll('.english');
+                words.forEach((g, i) => {
+                    if (englishes[i]) playAllTexts.push({ text: englishes[i].textContent.trim(), lang: 'en-US', el: card });
+                    playAllTexts.push({ text: g.textContent.replace(/[*+]/g,'').trim(), el: card });
+                });
             });
             break;
         case 'expressions':
             activeTab.querySelectorAll('.expression-item').forEach(item => {
                 if (item.style.display === 'none') return;
-                const g = item.querySelector('.expression-german');
-                if (g) playAllTexts.push(g.textContent.replace('🔊','').replace(/[AB][12]/g,'').trim());
+                const eng = item.querySelector('.expression-english');
+                const g   = item.querySelector('.expression-german');
+                if (eng) playAllTexts.push({ text: eng.textContent.trim(), lang: 'en-US', el: item });
+                if (g)   playAllTexts.push({ text: g.textContent.replace('🔊','').replace(/[AB][12]/g,'').trim(), el: item });
             });
             break;
         case 'conversations':
             activeTab.querySelectorAll('.conversation-block').forEach(block => {
                 if (block.classList.contains('hidden-group')) return;
-                block.querySelectorAll('.message-german').forEach(msg => {
-                    playAllTexts.push(msg.textContent.replace('🔊','').trim());
+                block.querySelectorAll('.message').forEach(msg => {
+                    const g = msg.querySelector('.message-german');
+                    if (g) playAllTexts.push({ text: g.textContent.replace('🔊','').trim(), el: msg });
                 });
             });
             break;
@@ -1198,14 +1624,16 @@ function playAllInSection() {
             activeTab.querySelectorAll('.qa-card').forEach(card => {
                 if (card.style.display === 'none') return;
                 const q = card.querySelector('.question');
-                if (q) playAllTexts.push(q.textContent.replace('🔊','').replace(/[AB][12]/g,'').trim());
+                if (q) playAllTexts.push({ text: q.textContent.replace('🔊','').replace(/[AB][12]/g,'').trim(), el: card });
             });
             break;
         case 'sentences':
             activeTab.querySelectorAll('.sentence-card').forEach(card => {
                 if (card.style.display === 'none') return;
-                const g = card.querySelector('.sentence-german');
-                if (g) playAllTexts.push(g.textContent.replace('🔊','').replace(/[AB][12]/g,'').trim());
+                const eng = card.querySelector('.sentence-english');
+                const g   = card.querySelector('.sentence-german');
+                if (eng) playAllTexts.push({ text: eng.textContent.trim(), lang: 'en-US', el: card });
+                if (g)   playAllTexts.push({ text: g.textContent.replace('🔊','').replace(/[AB][12]/g,'').trim(), el: card });
             });
             break;
     }
@@ -1213,35 +1641,51 @@ function playAllInSection() {
     if (playAllTexts.length === 0) { alert('No items to play in this section.'); return; }
 
     playAllActive = true;
+    isPaused = false;
     isPlayingSequence = true;
     playAllIndex = 0;
-    playBtn.textContent = '⏹️ Stop Playing';
-    playNextInSequence(playBtn);
+    updatePlaybackUI('playing');
+    startKeepAlive();
+    playNextInSequence();
 }
 
-function playNextInSequence(playBtn) {
+function playNextInSequence() {
+    clearPlayHighlight();
+
+    // Sequence ended or stopped
     if (!playAllActive || playAllIndex >= playAllTexts.length) {
+        const finished = playAllActive && playAllIndex >= playAllTexts.length;
         playAllActive = false;
         isPlayingSequence = false;
-        playBtn.textContent = '▶ Play All in Section';
+        isPaused = false;
+        stopKeepAlive();
+        updatePlaybackUI('stopped');
         hideAudioStatus();
-        if (playAllIndex >= playAllTexts.length) {
+        if (finished) {
             setTimeout(() => alert('✅ Finished playing all ' + playAllTexts.length + ' items!'), 500);
         }
         return;
     }
-    const currentText = playAllTexts[playAllIndex++];
-    speak(currentText, () => setTimeout(() => playNextInSequence(playBtn), 1000));
+
+    // Paused — don't advance, wait for resume
+    if (isPaused) return;
+
+    const item = playAllTexts[playAllIndex++];
+    highlightAndScroll(item.el);
+
+    speak(item.text, () => {
+        if (!playAllActive) return;        // stopped while speaking
+        if (isPaused) return;              // paused while speaking — wait for resume
+        setTimeout(() => playNextInSequence(), 900);
+    }, item.lang || 'de-DE');
 }
 
 // ============================================
 // TAB SWITCHING
 // ============================================
 function showTab(tabName, evt) {
-    stopAllSpeech();
-    playAllActive = false;
-    const playBtn = document.querySelector('.play-all-btn');
-    if (playBtn) playBtn.textContent = '▶ Play All in Section';
+    stopPlayback();
+    clearPlayHighlight();
 
     document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
     document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
@@ -1249,6 +1693,10 @@ function showTab(tabName, evt) {
     document.getElementById(tabName).classList.add('active');
     if (evt && evt.target) evt.target.classList.add('active');
     window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Update URL hash — preserve level if active
+    const levelPart = (currentLevel && currentLevel !== 'all') ? '-' + currentLevel : '';
+    history.replaceState(null, '', '#' + tabName + levelPart);
 }
 
 // ============================================
@@ -1283,13 +1731,16 @@ function renderNouns() {
         grouped[key].forEach(word => {
             const es = word.german.replace(/'/g, "\\'");
             const ep = word.pluralFull.replace(/'/g, "\\'");
-            tableHtml += `<tr data-level="${word.level}" onclick="speakNounRow('${word.article}','${es}','${ep}')">
+            const ee = word.english.replace(/'/g, "\\'");
+            const dataEp = word.pluralFull.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+            const dataEe = word.english.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+            tableHtml += `<tr data-level="${word.level}" data-article="${word.article}" data-singular="${word.german.replace(/"/g,'&quot;')}" data-plural-full="${dataEp}" data-english="${dataEe}" onclick="speakNounRow('${word.article}','${es}','${ep}','${ee}')">
                 <td class="article ${word.article}">${word.article}</td>
                 <td class="german-word">${word.german}</td>
                 <td class="plural">${word.pluralNotation}</td>
                 <td class="english-word">${word.english}</td>
                 <td><span class="level-badge ${word.level}">${word.level}</span></td>
-                <td><button class="audio-btn" onclick="event.stopPropagation();speakNounWithPlural('${word.article}','${es}','${ep}')">🔊</button></td>
+                <td><button class="audio-btn" onclick="event.stopPropagation();speakNounWithPlural('${word.article}','${es}','${ep}','${ee}')">🔊</button></td>
             </tr>`;
         });
 
@@ -1304,13 +1755,17 @@ function renderNouns() {
         grouped[key].forEach(word => {
             const es = word.german.replace(/'/g, "\\'");
             const ep = word.pluralFull.replace(/'/g, "\\'");
-            mobileHtml += `<div class="mobile-noun-card ${word.article}" data-level="${word.level}" onclick="speakNounRow('${word.article}','${es}','${ep}')">
+            const ee = word.english.replace(/'/g, "\\'");
+            const dataEpM = word.pluralFull.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+            const dataSnM = word.german.replace(/"/g,'&quot;');
+            const dataEeM = word.english.replace(/&/g,'&amp;').replace(/"/g,'&quot;');
+            mobileHtml += `<div class="mobile-noun-card ${word.article}" data-level="${word.level}" data-article="${word.article}" data-singular="${dataSnM}" data-plural-full="${dataEpM}" data-english="${dataEeM}" onclick="speakNounRow('${word.article}','${es}','${ep}','${ee}')">
                 <div class="mobile-noun-header">
                     <div class="mobile-article-word ${word.article}">
                         <span>${word.article}</span><span>${word.german}</span>
                         <span class="level-badge ${word.level}">${word.level}</span>
                     </div>
-                    <button class="mobile-audio-btn" onclick="event.stopPropagation();speakNounWithPlural('${word.article}','${es}','${ep}')">🔊</button>
+                    <button class="mobile-audio-btn" onclick="event.stopPropagation();speakNounWithPlural('${word.article}','${es}','${ep}','${ee}')">🔊</button>
                 </div>
                 <div class="mobile-noun-details">
                     <span class="mobile-label">Plural:</span><span class="mobile-plural">${word.pluralNotation}</span>
@@ -1337,7 +1792,9 @@ function renderAdjectives() {
         const [level, word1, english1, word2, english2] = row;
         const e1 = word1.replace(/'/g, "\\'");
         const e2 = word2.replace(/'/g, "\\'");
-        html += `<div class="word-pair" data-level="${level}" onclick="speakAdjective('${e1}','${e2}')">
+        const ee1 = english1.replace(/'/g, "\\'");
+        const ee2 = english2.replace(/'/g, "\\'");
+        html += `<div class="word-pair" data-level="${level}" onclick="speakAdjective('${e1}','${ee1}','${e2}','${ee2}')">
             <div class="card-audio-btn">🔊</div>
             <span class="level-badge ${level}" style="position:absolute;top:10px;left:10px;">${level}</span>
             <div class="german">${word1}</div>
@@ -1369,8 +1826,10 @@ function renderVerbs() {
             : 'linear-gradient(135deg, #fa709a 0%, #fee140 100%)';
         const e1 = verb1raw.replace(/'/g, "\\'");
         const e2 = verb2raw.replace(/'/g, "\\'");
+        const ee1 = english1.replace(/'/g, "\\'");
+        const ee2 = english2.replace(/'/g, "\\'");
 
-        html += `<div class="word-pair" style="background:${gradient};" data-level="${level}" onclick="speakVerb('${e1}','${e2}')">
+        html += `<div class="word-pair" style="background:${gradient};" data-level="${level}" onclick="speakVerb('${e1}','${ee1}','${e2}','${ee2}')">
             <div class="card-audio-btn">🔊</div>
             <span class="level-badge ${level}" style="position:absolute;top:10px;left:10px;">${level}</span>
             <div class="german">${verb1raw}</div>
@@ -1398,8 +1857,9 @@ function renderExpressions() {
         const german  = row[1];
         const english = row.slice(2).join(',');
         const eg = german.replace(/'/g, "\\'");
+        const eEng = english.replace(/'/g, "\\'");
 
-        html += `<li class="expression-item" data-level="${level}" onclick="speak('${eg}')">
+        html += `<li class="expression-item" data-level="${level}" onclick="speakBilingual('${eEng}','${eg}')">
             <div class="expression-german">${german} 🔊 <span class="level-badge ${level}">${level}</span></div>
             <div class="expression-english">${english}</div>
         </li>`;
@@ -1524,8 +1984,9 @@ function renderSentences() {
         const german  = line.substring(firstComma + 1, secondComma).trim();
         const english = line.substring(secondComma + 1).trim();
         const eg = german.replace(/'/g, "\\'");
+        const eEng = english.replace(/'/g, "\\'");
 
-        html += `<div class="sentence-card" data-level="${level}" onclick="speak('${eg}')">
+        html += `<div class="sentence-card" data-level="${level}" onclick="speakBilingual('${eEng}','${eg}')">
             <div class="sentence-german">${german} 🔊 <span class="level-badge ${level}" style="background:rgba(255,255,255,0.25);color:white;">${level}</span></div>
             <div class="sentence-english">${english}</div>
         </div>`;
@@ -1541,10 +2002,8 @@ let currentLevel = 'all';
 
 function filterByLevel(level) {
     currentLevel = level;
-    stopAllSpeech();
-    playAllActive = false;
-    const playBtn = document.querySelector('.play-all-btn');
-    if (playBtn) playBtn.textContent = '▶ Play All in Section';
+    stopPlayback();
+    clearPlayHighlight();
 
     document.querySelectorAll('.level-btn').forEach(btn => {
         btn.classList.toggle('active', btn.dataset.level === level);
@@ -1579,10 +2038,13 @@ function filterByLevel(level) {
         }
     }
 
+    // Update URL: preserve active tab in hash
+    const activeTab = document.querySelector('.tab-content.active');
+    const tabName = activeTab ? activeTab.id : 'nouns';
     if (level === 'all') {
-        history.replaceState(null, '', window.location.pathname + window.location.search);
+        history.replaceState(null, '', '#' + tabName);
     } else {
-        history.replaceState(null, '', '#' + level);
+        history.replaceState(null, '', '#' + tabName + '-' + level);
     }
 }
 
@@ -1604,13 +2066,8 @@ function updateEmptyNounSections(level) {
 document.addEventListener('keydown', function(e) {
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
 
-    if (e.key === 's' || e.key === 'S' || e.key === 'Escape') {
-        stopAllSpeech();
-        playAllActive = false;
-        const playBtn = document.querySelector('.play-all-btn');
-        if (playBtn) playBtn.textContent = '▶ Play All in Section';
-    }
-
+    if (e.key === 's' || e.key === 'S' || e.key === 'Escape') { stopPlayback(); }
+    if (e.key === ' ') { e.preventDefault(); pausePlayback(); }
     if (e.key === 'p' || e.key === 'P') playAllInSection();
 
     const tabMap = { '1':'nouns','2':'adjectives','3':'verbs','4':'expressions','5':'conversations','6':'qa','7':'sentences' };
@@ -1626,9 +2083,9 @@ document.addEventListener('keydown', function(e) {
 // ============================================
 // CLEANUP
 // ============================================
-window.addEventListener('beforeunload', stopAllSpeech);
+window.addEventListener('beforeunload', stopPlayback);
 document.addEventListener('visibilitychange', function() {
-    if (document.hidden) { stopAllSpeech(); playAllActive = false; }
+    if (document.hidden) { stopPlayback(); }
 });
 
 // ============================================
@@ -1636,7 +2093,7 @@ document.addEventListener('visibilitychange', function() {
 // ============================================
 window.addEventListener('load', function() {
     console.log('🇩🇪 German Vocabulary Loaded!');
-    console.log('💡 Shortcuts: S/Esc=Stop | P=Play All | 1-7=Tabs');
+    console.log('💡 Shortcuts: S/Esc=Stop | Space=Pause | P=Play All | 1-7=Tabs');
 
     renderNouns();
     renderAdjectives();
@@ -1651,9 +2108,45 @@ window.addEventListener('load', function() {
     setTimeout(loadVoices, 500);
     setTimeout(loadVoices, 1000);
 
+    updatePlaybackUI('stopped');
+
+    // On desktop always show audio body; on mobile it starts collapsed
+    if (window.innerWidth > 768) {
+        document.getElementById('audioBody').classList.add('open');
+    }
+
+    // Parse hash: supports #tabname, #LEVEL, or #tabname-LEVEL
     const validLevels = ['A1', 'A2', 'B1', 'B2'];
-    const hash = window.location.hash.replace('#', '').toUpperCase();
-    if (validLevels.includes(hash)) filterByLevel(hash);
+    const validTabs   = ['nouns', 'adjectives', 'verbs', 'expressions', 'conversations', 'qa', 'sentences'];
+    const hash = window.location.hash.replace('#', '');
+
+    if (hash) {
+        const parts     = hash.split('-');
+        const tabPart   = parts[0].toLowerCase();
+        const levelPart = (parts[1] || '').toUpperCase();
+
+        // Legacy: hash is just a level e.g. #A1
+        if (validLevels.includes(hash.toUpperCase()) && parts.length === 1) {
+            filterByLevel(hash.toUpperCase());
+        } else {
+            // Restore tab
+            if (validTabs.includes(tabPart)) {
+                document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-button').forEach(b => b.classList.remove('active'));
+                const tabEl = document.getElementById(tabPart);
+                if (tabEl) tabEl.classList.add('active');
+                document.querySelectorAll('.tab-button').forEach(b => {
+                    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes(`'${tabPart}'`)) {
+                        b.classList.add('active');
+                    }
+                });
+            }
+            // Restore level
+            if (validLevels.includes(levelPart)) {
+                filterByLevel(levelPart);
+            }
+        }
+    }
 
     if (!('speechSynthesis' in window)) {
         alert('⚠️ Text-to-speech not supported.\n\nPlease use Chrome, Firefox, Edge, or Safari.');
