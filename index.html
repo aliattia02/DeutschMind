@@ -3,1030 +3,824 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🇩🇪 German Learning Hub - A1 to C2 Journey</title>
+    <title>🇩🇪 German Learning Hub - A1 to C2</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        :root {
+            --ff: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --black:   #0d0d0d;
+            --white:   #ffffff;
+            --yellow:  #FFCE00;
+            --red:     #DD0000;
+            --bg:      #f0f2f7;
+            --surface: #ffffff;
+            --border:  #e2e5ed;
+            --muted:   #8891a4;
+            --text:    #1a1d27;
+            --sub:     #4a5068;
+
+            --a1: #16a34a; --a1-light: #dcfce7;
+            --a2: #65a30d; --a2-light: #ecfccb;
+            --b1: #d97706; --b1-light: #fef3c7;
+            --b2: #ea580c; --b2-light: #ffedd5;
+            --c1: #dc2626; --c1-light: #fee2e2;
+            --c2: #7c3aed; --c2-light: #ede9fe;
+
+            --r: 12px;
+            --r-sm: 8px;
+            --sh: 0 2px 8px rgba(0,0,0,.07), 0 1px 3px rgba(0,0,0,.05);
+            --sh-md: 0 6px 20px rgba(0,0,0,.1), 0 2px 6px rgba(0,0,0,.06);
         }
+
+        *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: #333;
-            overflow-x: hidden;
+            font-family: var(--ff);
+            background: var(--bg);
+            color: var(--text);
+            font-size: 14px;
+            line-height: 1.5;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* NAVIGATION BAR */
-        .navbar {
-            background: rgba(0,0,0,0.9);
-            backdrop-filter: blur(10px);
-            padding: 15px 0;
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        /* ── NAV ── */
+        nav {
+            background: var(--black);
+            position: sticky; top: 0; z-index: 200;
+            box-shadow: 0 2px 0 var(--yellow);
         }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 0 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
+        .nav-inner {
+            max-width: 1200px; margin: 0 auto;
+            padding: 0 18px; height: 50px;
+            display: flex; align-items: center; justify-content: space-between; gap: 12px;
         }
-
         .nav-logo {
-            font-size: 1.8em;
-            font-weight: bold;
-            color: #FFCE00;
-            text-decoration: none;
+            font-size: .95rem; font-weight: 800; color: var(--yellow);
+            text-decoration: none; white-space: nowrap;
+            display: flex; align-items: center; gap: 8px;
         }
-
-        .nav-links {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-
+        .nav-logo-flag { display: inline-flex; flex-direction: column; gap: 1.5px; width: 18px; }
+        .nav-logo-flag span { display: block; height: 3.5px; border-radius: 1px; }
+        .nav-logo-flag .f1 { background: #fff; }
+        .nav-logo-flag .f2 { background: var(--red); }
+        .nav-logo-flag .f3 { background: var(--yellow); }
+        .nav-links { display: flex; gap: 2px; overflow-x: auto; scrollbar-width: none; }
+        .nav-links::-webkit-scrollbar { display: none; }
         .nav-link {
-            color: white;
-            text-decoration: none;
-            padding: 8px 15px;
-            border-radius: 20px;
-            transition: all 0.3s ease;
-            font-weight: 600;
+            color: rgba(255,255,255,.65); text-decoration: none;
+            padding: 6px 11px; border-radius: 6px;
+            font-size: .78rem; font-weight: 600; white-space: nowrap;
+            transition: background .18s, color .18s;
         }
-
-        .nav-link:hover {
-            background: rgba(255,255,255,0.1);
-            transform: translateY(-2px);
+        .nav-link:hover { color: #fff; background: rgba(255,255,255,.1); }
+        .nav-toggle {
+            display: none; background: none;
+            border: 1.5px solid rgba(255,255,255,.25); color: var(--white);
+            cursor: pointer; padding: 5px 8px; border-radius: 6px;
+            flex-direction: column; gap: 3.5px; flex-shrink: 0;
         }
+        .nav-toggle span { display: block; width: 16px; height: 1.5px; background: currentColor; border-radius: 2px; }
 
-        /* HERO */
+        /* ── HERO ── */
         .hero {
-            background: linear-gradient(135deg, #000000 0%, #DD0000 50%, #FFCE00 100%);
-            color: white;
+            background: var(--black);
+            color: var(--white);
+            padding: 44px 18px 38px;
             text-align: center;
-            padding: 100px 20px;
-            position: relative;
-            overflow: hidden;
+            position: relative; overflow: hidden;
         }
-
         .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y="50" font-size="80" opacity="0.05">🇩🇪</text></svg>');
-            background-size: 200px;
+            content: ''; position: absolute; top: -80px; left: -100px;
+            width: 420px; height: 420px;
+            background: radial-gradient(circle, rgba(221,0,0,.32) 0%, transparent 68%);
+            pointer-events: none;
         }
+        .hero::after {
+            content: ''; position: absolute; bottom: -80px; right: -60px;
+            width: 380px; height: 380px;
+            background: radial-gradient(circle, rgba(255,206,0,.2) 0%, transparent 68%);
+            pointer-events: none;
+        }
+        .hero-grid {
+            position: absolute; inset: 0;
+            background-image:
+                linear-gradient(rgba(255,255,255,.028) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,.028) 1px, transparent 1px);
+            background-size: 40px 40px;
+            pointer-events: none;
+        }
+        .hero-content { position: relative; z-index: 1; max-width: 620px; margin: 0 auto; }
 
-        .hero-content {
-            position: relative;
-            z-index: 1;
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.14);
+            color: rgba(255,255,255,.75); font-size: .68rem; font-weight: 700;
+            padding: 4px 13px; border-radius: 20px; margin-bottom: 18px;
+            letter-spacing: .6px; text-transform: uppercase;
         }
+        .hero-dot {
+            width: 6px; height: 6px; border-radius: 50%; background: var(--yellow);
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:.4;transform:scale(.65)} }
 
         .hero h1 {
-            font-size: 4.5em;
-            margin-bottom: 20px;
-            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
-            animation: fadeInDown 1s ease;
+            font-size: clamp(1.9rem, 5.5vw, 2.8rem);
+            font-weight: 800; letter-spacing: -1.3px; line-height: 1.07; margin-bottom: 12px;
+        }
+        .hero h1 .yl { color: var(--yellow); }
+        .hero h1 .rd { color: #ff5050; }
+
+        .hero-sub {
+            font-size: .86rem; color: rgba(255,255,255,.5);
+            margin-bottom: 26px; line-height: 1.65;
+        }
+        .hero-sub strong { color: rgba(255,255,255,.82); font-weight: 600; }
+
+        .hero-btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+
+        .btn-primary {
+            background: var(--yellow); color: var(--black);
+            border: none; padding: 10px 22px;
+            font-size: .82rem; font-weight: 800; border-radius: var(--r-sm);
+            cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 6px;
+            transition: transform .2s, box-shadow .2s, background .2s;
+            box-shadow: 0 4px 16px rgba(255,206,0,.38);
+        }
+        .btn-primary:hover { background: #ffe029; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(255,206,0,.48); }
+
+        .btn-ghost {
+            background: rgba(255,255,255,.07); color: rgba(255,255,255,.82);
+            border: 1.5px solid rgba(255,255,255,.18);
+            padding: 10px 22px; font-size: .82rem; font-weight: 700;
+            border-radius: var(--r-sm); cursor: pointer; text-decoration: none;
+            display: inline-flex; align-items: center; gap: 6px; transition: all .2s;
+        }
+        .btn-ghost:hover { background: rgba(255,255,255,.13); border-color: rgba(255,255,255,.42); transform: translateY(-2px); }
+
+        /* ── STATS BAR ── */
+        .stats-bar {
+            background: linear-gradient(135deg, #111827 0%, #1e3a5f 100%);
+            border-bottom: 1px solid rgba(255,255,255,.07);
+        }
+        .stats-inner {
+            max-width: 1200px; margin: 0 auto; padding: 0 18px;
+            display: grid; grid-template-columns: repeat(4,1fr);
+        }
+        .stat-item {
+            padding: 14px 10px; text-align: center;
+            border-right: 1px solid rgba(255,255,255,.06);
+        }
+        .stat-item:last-child { border-right: none; }
+        .stat-num { font-size: 1.25rem; font-weight: 800; color: var(--yellow); line-height: 1; letter-spacing: -.5px; }
+        .stat-lbl { font-size: .62rem; color: rgba(255,255,255,.38); margin-top: 3px; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; }
+
+        /* ── CONTAINER ── */
+        .container { max-width: 1200px; margin: 0 auto; padding: 22px 18px 56px; }
+
+        /* ── FEATURE PILLS ── */
+        .feature-pills { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 26px; }
+        .feature-pill {
+            background: var(--surface); border: 1px solid var(--border);
+            border-radius: 20px; padding: 5px 12px;
+            font-size: .71rem; font-weight: 700; color: var(--sub);
+            display: flex; align-items: center; gap: 5px;
+            box-shadow: var(--sh); letter-spacing: .1px;
         }
 
-        .hero-subtitle {
-            font-size: 1.8em;
-            margin-bottom: 15px;
-            opacity: 0.95;
-            animation: fadeInUp 1s ease 0.2s backwards;
+        /* ── SECTION LABEL ── */
+        .section-label { display: flex; align-items: center; gap: 10px; margin: 28px 0 14px; }
+        .section-label h2 { font-size: .94rem; font-weight: 800; color: var(--text); white-space: nowrap; letter-spacing: -.2px; }
+        .section-label .pill {
+            background: var(--text); color: var(--white);
+            font-size: .57rem; font-weight: 800; padding: 2px 8px;
+            border-radius: 20px; text-transform: uppercase; letter-spacing: .6px;
         }
+        .divider { flex: 1; height: 1px; background: linear-gradient(90deg, var(--border), transparent); }
 
-        .hero-description {
-            font-size: 1.3em;
-            margin-bottom: 40px;
-            opacity: 0.9;
-            animation: fadeInUp 1s ease 0.4s backwards;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 20px;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 1s ease 0.6s backwards;
-        }
-
-        .hero-btn {
-            background: white;
-            color: #DD0000;
-            border: none;
-            padding: 18px 45px;
-            font-size: 1.3em;
-            font-weight: bold;
-            border-radius: 30px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            text-decoration: none;
-            display: inline-block;
-        }
-
-        .hero-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-            background: #FFCE00;
-            color: #000;
-        }
-
-        .hero-btn.secondary {
-            background: transparent;
-            color: white;
-            border: 3px solid white;
-        }
-
-        .hero-btn.secondary:hover {
-            background: white;
-            color: #DD0000;
-        }
-
-        /* CONTAINER */
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 60px 20px;
-        }
-
-        /* SECTION HEADERS */
-        .section-header {
-            text-align: center;
-            margin: 80px 0 50px;
-        }
-
-        .section-header h2 {
-            font-size: 3.5em;
-            color: white;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-            margin-bottom: 15px;
-        }
-
-        .section-header p {
-            font-size: 1.4em;
-            color: rgba(255,255,255,0.95);
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        /* LEARNING PATH - LEVEL CARDS */
-        .level-path {
-            display: flex;
-            flex-direction: column;
-            gap: 40px;
-            margin-top: 60px;
-        }
+        /* ── LEVEL GRID ── */
+        .level-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 10px; }
 
         .level-card {
-            background: white;
-            border-radius: 25px;
-            padding: 40px;
-            box-shadow: 0 15px 50px rgba(0,0,0,0.3);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            display: grid;
-            grid-template-columns: 200px 1fr auto;
-            gap: 30px;
-            align-items: center;
+            background: var(--surface); border-radius: var(--r);
+            padding: 15px; box-shadow: var(--sh); border: 1px solid var(--border);
+            text-decoration: none; color: inherit;
+            display: flex; flex-direction: column; gap: 9px;
+            transition: transform .22s, box-shadow .22s;
+            position: relative; overflow: hidden;
         }
-
+        /* tinted corner */
         .level-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 8px;
-            height: 100%;
+            content: ''; position: absolute; top: 0; left: 0;
+            width: 90px; height: 90px; border-radius: 0 0 90px 0; opacity: .055;
+            transition: opacity .22s;
         }
+        .lv-a1::before { background: var(--a1); }
+        .lv-a2::before { background: var(--a2); }
+        .lv-b1::before { background: var(--b1); }
+        .lv-b2::before { background: var(--b2); }
+        .lv-c1::before { background: var(--c1); }
+        .lv-c2::before { background: var(--c2); }
 
-        .level-card:hover {
-            transform: translateX(10px);
-            box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+        .level-card:hover { transform: translateY(-3px); box-shadow: var(--sh-md); }
+        .level-card:hover::before { opacity: .1; }
+
+        /* bottom bar */
+        .level-card::after {
+            content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+            height: 3px; border-radius: 0 0 var(--r) var(--r);
+            transition: height .22s;
         }
+        .lv-a1::after { background: linear-gradient(90deg,#16a34a,#4ade80); }
+        .lv-a2::after { background: linear-gradient(90deg,#65a30d,#a3e635); }
+        .lv-b1::after { background: linear-gradient(90deg,#d97706,#fcd34d); }
+        .lv-b2::after { background: linear-gradient(90deg,#ea580c,#fb923c); }
+        .lv-c1::after { background: linear-gradient(90deg,#dc2626,#f87171); }
+        .lv-c2::after { background: linear-gradient(90deg,#7c3aed,#a78bfa); }
+        .level-card:hover::after { height: 5px; }
 
-        /* Level Colors */
-        .level-a1::before { background: linear-gradient(180deg, #4CAF50, #388E3C); }
-        .level-a2::before { background: linear-gradient(180deg, #8BC34A, #689F38); }
-        .level-b1::before { background: linear-gradient(180deg, #FFC107, #FFA000); }
-        .level-b2::before { background: linear-gradient(180deg, #FF9800, #F57C00); }
-        .level-c1::before { background: linear-gradient(180deg, #FF5722, #E64A19); }
-        .level-c2::before { background: linear-gradient(180deg, #F44336, #D32F2F); }
-
-        .level-icon {
-            text-align: center;
-        }
-
+        .level-top { display: flex; align-items: center; gap: 9px; }
         .level-badge {
-            display: inline-block;
-            width: 120px;
-            height: 120px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 2.5em;
-            font-weight: bold;
-            color: white;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            width: 38px; height: 38px; border-radius: 9px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: .78rem; font-weight: 900; color: #fff;
+            flex-shrink: 0; letter-spacing: -.5px;
+            box-shadow: 0 3px 8px rgba(0,0,0,.2);
         }
+        .lv-a1 .level-badge { background: linear-gradient(135deg,#16a34a,#4ade80); }
+        .lv-a2 .level-badge { background: linear-gradient(135deg,#65a30d,#a3e635); }
+        .lv-b1 .level-badge { background: linear-gradient(135deg,#d97706,#fcd34d); }
+        .lv-b2 .level-badge { background: linear-gradient(135deg,#ea580c,#fb923c); }
+        .lv-c1 .level-badge { background: linear-gradient(135deg,#dc2626,#f87171); }
+        .lv-c2 .level-badge { background: linear-gradient(135deg,#7c3aed,#a78bfa); }
 
-        .level-a1 .level-badge { background: linear-gradient(135deg, #4CAF50, #388E3C); }
-        .level-a2 .level-badge { background: linear-gradient(135deg, #8BC34A, #689F38); }
-        .level-b1 .level-badge { background: linear-gradient(135deg, #FFC107, #FFA000); }
-        .level-b2 .level-badge { background: linear-gradient(135deg, #FF9800, #F57C00); }
-        .level-c1 .level-badge { background: linear-gradient(135deg, #FF5722, #E64A19); }
-        .level-c2 .level-badge { background: linear-gradient(135deg, #F44336, #D32F2F); }
+        .level-meta { flex: 1; min-width: 0; }
+        .level-label { font-size: .62rem; font-weight: 700; text-transform: uppercase; letter-spacing: .5px; color: var(--muted); margin-bottom: 1px; }
+        .level-title { font-size: .9rem; font-weight: 800; color: var(--text); line-height: 1.2; }
+        .level-desc { font-size: .7rem; color: var(--sub); line-height: 1.5; }
 
-        .level-content h3 {
-            font-size: 2.2em;
-            margin-bottom: 10px;
-            color: #333;
+        .level-progress { height: 4px; background: var(--bg); border-radius: 4px; overflow: hidden; }
+        .level-progress-fill { height: 100%; border-radius: 4px; }
+        .lv-a1 .level-progress-fill { background: var(--a1); width: 16%; }
+        .lv-a2 .level-progress-fill { background: var(--a2); width: 30%; }
+        .lv-b1 .level-progress-fill { background: var(--b1); width: 48%; }
+        .lv-b2 .level-progress-fill { background: var(--b2); width: 64%; }
+        .lv-c1 .level-progress-fill { background: var(--c1); width: 82%; }
+        .lv-c2 .level-progress-fill { background: var(--c2); width: 100%; }
+
+        .level-tags { display: flex; gap: 4px; flex-wrap: wrap; }
+        .level-tag { font-size: .59rem; font-weight: 700; padding: 2px 7px; border-radius: 4px; }
+        .lv-a1 .level-tag { background: var(--a1-light); color: var(--a1); }
+        .lv-a2 .level-tag { background: var(--a2-light); color: var(--a2); }
+        .lv-b1 .level-tag { background: var(--b1-light); color: var(--b1); }
+        .lv-b2 .level-tag { background: var(--b2-light); color: var(--b2); }
+        .lv-c1 .level-tag { background: var(--c1-light); color: var(--c1); }
+        .lv-c2 .level-tag { background: var(--c2-light); color: var(--c2); }
+
+        .level-cta {
+            font-size: .69rem; font-weight: 800;
+            display: flex; align-items: center; justify-content: space-between;
+            padding-top: 5px; border-top: 1px solid var(--border); color: var(--sub);
         }
-
-        .level-description {
-            font-size: 1.2em;
-            color: #666;
-            margin-bottom: 20px;
-            line-height: 1.6;
+        .level-cta-arrow {
+            width: 22px; height: 22px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: .72rem; transition: transform .2s;
         }
+        .lv-a1 .level-cta-arrow { background: var(--a1-light); color: var(--a1); }
+        .lv-a2 .level-cta-arrow { background: var(--a2-light); color: var(--a2); }
+        .lv-b1 .level-cta-arrow { background: var(--b1-light); color: var(--b1); }
+        .lv-b2 .level-cta-arrow { background: var(--b2-light); color: var(--b2); }
+        .lv-c1 .level-cta-arrow { background: var(--c1-light); color: var(--c1); }
+        .lv-c2 .level-cta-arrow { background: var(--c2-light); color: var(--c2); }
+        .level-card:hover .level-cta-arrow { transform: translateX(3px); }
 
-        .level-topics {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            margin-top: 15px;
+        /* ── CATEGORY GRID ── */
+        .cat-grid { display: grid; grid-template-columns: repeat(auto-fill,minmax(285px,1fr)); gap: 10px; }
+
+        .cat-card {
+            background: var(--surface); border-radius: var(--r);
+            border: 1px solid var(--border); overflow: hidden;
+            box-shadow: var(--sh); transition: transform .22s, box-shadow .22s;
+            display: flex; flex-direction: column;
         }
+        .cat-card:hover { transform: translateY(-3px); box-shadow: var(--sh-md); }
 
-        .topic-tag {
-            background: rgba(102, 126, 234, 0.1);
-            color: #667eea;
-            padding: 6px 15px;
-            border-radius: 15px;
-            font-size: 0.95em;
-            font-weight: 600;
+        .cat-head {
+            padding: 14px 14px 12px; display: flex; align-items: flex-start; gap: 11px;
+            border-bottom: 1px solid var(--border);
         }
+        .cat-vocab   .cat-head { background: linear-gradient(135deg,#dbeafe 0%,#fff 80%); }
+        .cat-grammar .cat-head { background: linear-gradient(135deg,#dcfce7 0%,#fff 80%); }
+        .cat-fsp     .cat-head { background: linear-gradient(135deg,#ede9fe 0%,#fff 80%); }
+        .cat-study   .cat-head { background: linear-gradient(135deg,#cffafe 0%,#fff 80%); }
+        .cat-tools   .cat-head { background: linear-gradient(135deg,#fef3c7 0%,#fff 80%); }
+        .cat-practice .cat-head { background: linear-gradient(135deg,#f3e8ff 0%,#fff 80%); }
+        .cat-resources .cat-head { background: linear-gradient(135deg,#fee2e2 0%,#fff 80%); }
 
-        .level-action {
-            text-align: center;
+        .cat-icon-wrap {
+            width: 38px; height: 38px; border-radius: 9px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,.14);
         }
+        .cat-vocab   .cat-icon-wrap { background: linear-gradient(135deg,#3b82f6,#2563eb); }
+        .cat-grammar .cat-icon-wrap { background: linear-gradient(135deg,#22c55e,#16a34a); }
+        .cat-fsp     .cat-icon-wrap { background: linear-gradient(135deg,#8b5cf6,#7c3aed); }
+        .cat-study   .cat-icon-wrap { background: linear-gradient(135deg,#06b6d4,#0891b2); }
+        .cat-tools   .cat-icon-wrap { background: linear-gradient(135deg,#f59e0b,#d97706); }
+        .cat-practice .cat-icon-wrap { background: linear-gradient(135deg,#a855f7,#9333ea); }
+        .cat-resources .cat-icon-wrap { background: linear-gradient(135deg,#ef4444,#dc2626); }
 
-        .level-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            border: none;
-            padding: 15px 35px;
-            font-size: 1.2em;
-            font-weight: bold;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            display: inline-block;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        .cat-info { flex: 1; min-width: 0; }
+        .cat-info h3 { font-size: .87rem; font-weight: 800; color: var(--text); margin-bottom: 3px; letter-spacing: -.2px; }
+        .cat-info p { font-size: .69rem; color: var(--sub); line-height: 1.45; }
+
+        .cat-body { padding: 10px 12px; flex: 1; display: flex; flex-direction: column; gap: 8px; }
+
+        .cat-main-btn {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 9px 13px; border-radius: var(--r-sm);
+            text-decoration: none; font-size: .73rem; font-weight: 800;
+            color: #fff; transition: filter .2s, transform .2s;
+            box-shadow: 0 3px 10px rgba(0,0,0,.18);
         }
+        .cat-main-btn:hover { filter: brightness(1.1); transform: translateY(-1px); }
 
-        .level-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        .cat-vocab   .cat-main-btn { background: linear-gradient(90deg,#2563eb,#1d4ed8); }
+        .cat-grammar .cat-main-btn { background: linear-gradient(90deg,#16a34a,#15803d); }
+        .cat-fsp     .cat-main-btn { background: linear-gradient(90deg,#7c3aed,#6d28d9); }
+        .cat-study   .cat-main-btn { background: linear-gradient(90deg,#0891b2,#0e7490); }
+        .cat-tools   .cat-main-btn { background: linear-gradient(90deg,#d97706,#b45309); }
+        .cat-practice .cat-main-btn { background: linear-gradient(90deg,#9333ea,#7e22ce); }
+        .cat-resources .cat-main-btn { background: linear-gradient(90deg,#dc2626,#b91c1c); }
+
+        .cat-arrow-circle {
+            width: 20px; height: 20px; border-radius: 50%;
+            background: rgba(255,255,255,.2);
+            display: flex; align-items: center; justify-content: center;
+            font-size: .62rem; transition: transform .2s;
         }
+        .cat-main-btn:hover .cat-arrow-circle { transform: translateX(3px); }
 
-        /* CATEGORY CARDS (SECONDARY NAVIGATION) */
-        .category-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 35px;
-            margin-top: 50px;
+        .cat-links { display: flex; flex-direction: column; gap: 1px; }
+        .cat-link {
+            color: var(--sub); text-decoration: none;
+            font-size: .69rem; font-weight: 600;
+            padding: 5px 8px; border-radius: 6px;
+            display: flex; align-items: center; justify-content: space-between;
+            transition: background .15s, color .15s;
         }
+        .cat-link:hover { background: var(--bg); color: var(--text); }
+        .cat-link-arr { font-size: .58rem; opacity: 0; transition: opacity .15s, transform .15s; }
+        .cat-link:hover .cat-link-arr { opacity: 1; transform: translateX(2px); }
 
-        .category-card {
-            background: white;
-            border-radius: 25px;
-            padding: 40px;
-            box-shadow: 0 12px 35px rgba(0,0,0,0.25);
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .category-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 6px;
-        }
-
-        .category-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.35);
-        }
-
-        /* Category Colors */
-        .cat-vocabulary::before { background: linear-gradient(90deg, #2196F3, #1976D2); }
-        .cat-grammar::before { background: linear-gradient(90deg, #4CAF50, #388E3C); }
-        .cat-fsp::before { background: linear-gradient(90deg, #667eea, #764ba2); }
-        .cat-study-ready::before { background: linear-gradient(90deg, #00BCD4, #0097A7); }
-        .cat-tools::before { background: linear-gradient(90deg, #FF9800, #F57C00); }
-        .cat-practice::before { background: linear-gradient(90deg, #9C27B0, #7B1FA2); }
-        .cat-resources::before { background: linear-gradient(90deg, #F44336, #D32F2F); }
-
-        .category-icon {
-            font-size: 4em;
-            margin-bottom: 20px;
-            display: block;
-        }
-
-        .category-card h3 {
-            font-size: 2.2em;
-            margin-bottom: 15px;
-            color: #333;
-        }
-
-        .category-card p {
-            font-size: 1.2em;
-            color: #666;
-            line-height: 1.7;
-            margin-bottom: 25px;
-        }
-
-        .category-btn-main {
-            display: block;
-            text-align: center;
-            margin: 25px 0 20px;
-            padding: 15px 40px;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            font-size: 1.2em;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-        }
-
-        .category-btn-main:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .category-links {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .category-link {
-            color: #667eea;
-            text-decoration: none;
-            font-size: 1.1em;
-            font-weight: 600;
-            padding: 10px 15px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .category-link:hover {
-            background: rgba(102, 126, 234, 0.1);
-            transform: translateX(5px);
-        }
-
-        .category-link::before {
-            content: '→';
-            font-size: 1.3em;
-            transition: all 0.3s ease;
-        }
-
-        .category-link:hover::before {
-            transform: translateX(5px);
-        }
-
-        /* STATS */
-        .stats {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            margin: 60px 0;
-        }
-
-        .stat-box {
-            background: white;
-            padding: 35px;
-            border-radius: 20px;
-            text-align: center;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-            transition: all 0.3s ease;
-        }
-
-        .stat-box:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 12px 35px rgba(0,0,0,0.3);
-        }
-
-        .stat-icon {
-            font-size: 3em;
-            margin-bottom: 15px;
-        }
-
-        .stat-number {
-            font-size: 3.5em;
-            font-weight: bold;
-            color: #DD0000;
-            margin-bottom: 10px;
-        }
-
-        .stat-label {
-            font-size: 1.3em;
-            color: #666;
-        }
-
-        /* FEATURES */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 60px 0;
-        }
-
-        .feature-box {
-            background: rgba(255,255,255,0.15);
-            backdrop-filter: blur(10px);
-            border: 2px solid rgba(255,255,255,0.3);
-            border-radius: 20px;
-            padding: 35px;
-            text-align: center;
-            color: white;
-            transition: all 0.3s ease;
-        }
-
-        .feature-box:hover {
-            background: rgba(255,255,255,0.25);
-            transform: translateY(-5px);
-            border-color: rgba(255,255,255,0.5);
-        }
-
-        .feature-icon {
-            font-size: 3.5em;
-            margin-bottom: 20px;
-        }
-
-        .feature-box h3 {
-            font-size: 1.6em;
-            margin-bottom: 15px;
-        }
-
-        .feature-box p {
-            font-size: 1.1em;
-            opacity: 0.95;
-            line-height: 1.6;
-        }
-
-        /* FOOTER */
+        /* ── FOOTER ── */
         footer {
-            background: #1a1a1a;
-            color: white;
-            padding: 50px 20px 30px;
-            margin-top: 80px;
+            background: linear-gradient(135deg,#0d0d0d 0%,#111827 100%);
+            color: rgba(255,255,255,.45);
+            padding: 26px 18px 18px;
         }
-
-        .footer-content {
-            max-width: 1400px;
-            margin: 0 auto;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
+        .footer-inner { max-width: 1200px; margin: 0 auto; }
+        .footer-brand {
+            font-size: .88rem; font-weight: 800; color: var(--yellow);
+            display: flex; align-items: center; gap: 7px;
+            margin-bottom: 18px; padding-bottom: 14px;
+            border-bottom: 1px solid rgba(255,255,255,.07);
         }
-
-        .footer-section h4 {
-            font-size: 1.6em;
-            margin-bottom: 20px;
-            color: #FFCE00;
+        .footer-grid {
+            display: grid; grid-template-columns: repeat(auto-fit,minmax(130px,1fr));
+            gap: 18px; margin-bottom: 18px;
         }
-
-        .footer-section a {
-            display: block;
-            color: rgba(255,255,255,0.8);
-            text-decoration: none;
-            margin: 10px 0;
-            transition: all 0.3s ease;
-            font-size: 1.1em;
+        .footer-col h4 {
+            font-size: .67rem; font-weight: 800; color: rgba(255,255,255,.88);
+            margin-bottom: 8px; text-transform: uppercase; letter-spacing: .6px;
         }
-
-        .footer-section a:hover {
-            color: #FFCE00;
-            transform: translateX(5px);
-        }
-
+        .footer-col a { display: block; color: rgba(255,255,255,.4); text-decoration: none; font-size: .67rem; padding: 2.5px 0; transition: color .15s; }
+        .footer-col a:hover { color: var(--yellow); }
         .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 30px;
-            text-align: center;
+            padding-top: 14px; border-top: 1px solid rgba(255,255,255,.05);
+            text-align: center; font-size: .65rem; color: rgba(255,255,255,.25);
         }
+        .footer-bottom strong { color: rgba(255,255,255,.5); }
 
-        .footer-bottom p {
-            margin: 10px 0;
-            font-size: 1.1em;
+        /* ── RESPONSIVE ── */
+        @media (max-width: 720px) {
+            .level-grid { grid-template-columns: repeat(2,1fr); }
+            .cat-grid { grid-template-columns: 1fr; }
         }
-
-        /* ANIMATIONS */
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* RESPONSIVE */
-        @media (max-width: 968px) {
-            .level-card {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .level-badge {
-                margin: 0 auto;
-            }
-
-            .hero h1 {
-                font-size: 3em;
-            }
-
-            .section-header h2 {
-                font-size: 2.5em;
-            }
-
-            .nav-container {
-                flex-direction: column;
-                gap: 15px;
-            }
-
+        @media (max-width: 520px) {
+            .nav-toggle { display: flex; }
             .nav-links {
-                justify-content: center;
+                display: none; position: absolute; top: 50px; left: 0; right: 0;
+                background: #141414; border-bottom: 2px solid var(--yellow);
+                padding: 8px 12px 12px; flex-direction: column; gap: 2px;
+                z-index: 199; box-shadow: 0 8px 24px rgba(0,0,0,.4);
             }
-
-            .category-grid {
-                grid-template-columns: 1fr;
-            }
+            .nav-links.open { display: flex; }
+            .nav-link { font-size: .82rem; padding: 8px 10px; }
+            .stats-inner { grid-template-columns: repeat(2,1fr); }
+            .stat-item:nth-child(2) { border-right: none; }
+            .stat-item:nth-child(3),
+            .stat-item:nth-child(4) { border-top: 1px solid rgba(255,255,255,.06); }
+            .stat-item:nth-child(4) { border-right: none; }
+            .hero { padding: 28px 16px 24px; }
+        }
+        @media (max-width: 380px) {
+            .level-grid { grid-template-columns: 1fr 1fr; gap: 8px; }
         }
 
-        @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 2.2em;
-            }
-
-            .hero-subtitle {
-                font-size: 1.3em;
-            }
-
-            .hero-description {
-                font-size: 1.1em;
-            }
-
-            .hero-btn {
-                padding: 12px 30px;
-                font-size: 1.1em;
-            }
-
-            .section-header h2 {
-                font-size: 2em;
-            }
-
-            .level-content h3 {
-                font-size: 1.6em;
-            }
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from { opacity:0; transform: translateY(14px); }
+            to   { opacity:1; transform: translateY(0); }
         }
+        .hero-content > * { animation: fadeUp .48s ease backwards; }
+        .hero-content > :nth-child(1) { animation-delay: .05s; }
+        .hero-content > :nth-child(2) { animation-delay: .14s; }
+        .hero-content > :nth-child(3) { animation-delay: .23s; }
+        .hero-content > :nth-child(4) { animation-delay: .32s; }
     </style>
 </head>
 <body>
 
-    <!-- NAVIGATION -->
-    <nav class="navbar">
-        <div class="nav-container">
-            <a href="index.html" class="nav-logo">🇩🇪 German Hub</a>
-            <div class="nav-links">
-                <a href="#levels" class="nav-link">📚 Levels</a>
-                <a href="#categories" class="nav-link">🎯 Categories</a>
-                <a href="tools/progress.html" class="nav-link">📊 Progress</a>
-                <a href="about.html" class="nav-link">ℹ️ About</a>
-            </div>
-        </div>
-    </nav>
-
-    <!-- HERO -->
-    <div class="hero">
-        <div class="hero-content">
-            <h1>🇩🇪 German Learning Hub</h1>
-            <p class="hero-subtitle">Your Complete Journey from A1 to C2</p>
-            <p class="hero-description">Interactive Audio Learning • Structured Path • Progress Tracking</p>
-            <div class="hero-buttons">
-                <a href="#levels" class="hero-btn">Start Your Journey</a>
-                <a href="tools/progress.html" class="hero-btn secondary">Track Progress</a>
-            </div>
+<!-- NAV -->
+<nav>
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <span class="nav-logo-flag">
+                <span class="f1"></span><span class="f2"></span><span class="f3"></span>
+            </span>
+            German Hub
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Menu">
+            <span></span><span></span><span></span>
+        </button>
+        <div class="nav-links" id="navLinks">
+            <a href="#levels"     class="nav-link">📚 Levels</a>
+            <a href="#categories" class="nav-link">🎯 Categories</a>
+            <a href="tools/progress.html" class="nav-link">📊 Progress</a>
+            <a href="about.html"  class="nav-link">ℹ️ About</a>
         </div>
     </div>
+</nav>
 
-    <div class="container">
-
-        <!-- FEATURES -->
-        <div class="section-header">
-            <h2>✨ Why Learn Here?</h2>
-            <p>Everything you need to master German, all in one place</p>
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span class="hero-dot"></span>
+            A1 · A2 · B1 · B2 · C1 · C2
         </div>
-
-        <div class="features">
-            <div class="feature-box">
-                <div class="feature-icon">🎯</div>
-                <h3>Structured Path</h3>
-                <p>Follow the proven CEFR framework from A1 beginner to C2 mastery</p>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon">🔊</div>
-                <h3>Audio Learning</h3>
-                <p>Click any word to hear native German pronunciation with adjustable speed</p>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon">🎨</div>
-                <h3>Visual Memory</h3>
-                <p>Color-coded articles: Der (Blue) • Das (Green) • Die (Red)</p>
-            </div>
-            <div class="feature-box">
-                <div class="feature-icon">📊</div>
-                <h3>Track Progress</h3>
-                <p>Monitor your journey with detailed statistics and achievements</p>
-            </div>
+        <h1>Master <span class="yl">German</span><br>from <span class="rd">Zero</span> to Hero</h1>
+        <p class="hero-sub">
+            <strong>Interactive audio</strong> · Color-coded articles · CEFR structured path<br>
+            Progress tracking · 3,000+ words · 200+ exercises
+        </p>
+        <div class="hero-btns">
+            <a href="#levels" class="btn-primary">🚀 Start Learning</a>
+            <a href="tools/progress.html" class="btn-ghost">📊 My Progress</a>
         </div>
-
-        <!-- STATS -->
-        <div class="stats">
-            <div class="stat-box">
-                <div class="stat-icon">📚</div>
-                <div class="stat-number">3000+</div>
-                <div class="stat-label">Vocabulary Words</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-icon">📖</div>
-                <div class="stat-number">60+</div>
-                <div class="stat-label">Grammar Lessons</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-icon">💬</div>
-                <div class="stat-number">150+</div>
-                <div class="stat-label">Conversations</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-icon">🎮</div>
-                <div class="stat-number">200+</div>
-                <div class="stat-label">Practice Exercises</div>
-            </div>
-        </div>
-
-        <!-- PRIMARY: LEARNING PATH BY LEVEL -->
-        <div class="section-header" id="levels">
-            <h2>🎓 Choose Your Level</h2>
-            <p>Start where you are and progress at your own pace</p>
-        </div>
-
-        <div class="level-path">
-
-            <!-- A1 LEVEL -->
-            <div class="level-card level-a1">
-                <div class="level-icon">
-                    <div class="level-badge">A1</div>
-                </div>
-                <div class="level-content">
-                    <h3>Beginner</h3>
-                    <p class="level-description">Start your German journey with essential vocabulary, basic grammar, and simple conversations. Perfect for absolute beginners!</p>
-                    <div class="level-topics">
-                        <span class="topic-tag">200+ Words</span>
-                        <span class="topic-tag">5 Topics</span>
-                        <span class="topic-tag">Basic Grammar</span>
-                        <span class="topic-tag">20+ Conversations</span>
-                    </div>
-                </div>
-                <div class="level-action">
-                    <a href="Pages/level-a1.html" class="level-btn">Explore A1 →</a>
-                </div>
-            </div>
-
-            <!-- A2 LEVEL -->
-            <div class="level-card level-a2">
-                <div class="level-icon">
-                    <div class="level-badge">A2</div>
-                </div>
-                <div class="level-content">
-                    <h3>Elementary</h3>
-                    <p class="level-description">Build on your foundation with expanded vocabulary, more complex grammar, and practical everyday situations.</p>
-                    <div class="level-topics">
-                        <span class="topic-tag">400+ Words</span>
-                        <span class="topic-tag">5 Topics</span>
-                        <span class="topic-tag">Cases & Tenses</span>
-                        <span class="topic-tag">30+ Conversations</span>
-                    </div>
-                </div>
-                <div class="level-action">
-                    <a href="Pages/level-a2.html" class="level-btn">Explore A2 →</a>
-                </div>
-            </div>
-
-            <!-- B1 LEVEL -->
-            <div class="level-card level-b1">
-                <div class="level-icon">
-                    <div class="level-badge">B1</div>
-                </div>
-                <div class="level-content">
-                    <h3>Intermediate</h3>
-                    <p class="level-description">Develop fluency in everyday situations, express opinions, and understand main points of standard texts.</p>
-                    <div class="level-topics">
-                        <span class="topic-tag">800+ Words</span>
-                        <span class="topic-tag">8 Topics</span>
-                        <span class="topic-tag">Complex Grammar</span>
-                        <span class="topic-tag">40+ Conversations</span>
-                    </div>
-                </div>
-                <div class="level-action">
-                    <a href="Pages/level-b1.html" class="level-btn">Explore B1 →</a>
-                </div>
-            </div>
-
-            <!-- B2 LEVEL -->
-            <div class="level-card level-b2">
-                <div class="level-icon">
-                    <div class="level-badge">B2</div>
-                </div>
-                <div class="level-content">
-                    <h3>Upper Intermediate</h3>
-                    <p class="level-description">Master complex texts, spontaneous conversations, and detailed discussions on abstract topics.</p>
-                    <div class="level-topics">
-                        <span class="topic-tag">1000+ Words</span>
-                        <span class="topic-tag">10 Topics</span>
-                        <span class="topic-tag">Advanced Grammar</span>
-                        <span class="topic-tag">50+ Conversations</span>
-                    </div>
-                </div>
-                <div class="level-action">
-                    <a href="Pages/level-b2.html" class="level-btn">Explore B2 →</a>
-                </div>
-            </div>
-
-            <!-- C1 LEVEL -->
-            <div class="level-card level-c1">
-                <div class="level-icon">
-                    <div class="level-badge">C1</div>
-                </div>
-                <div class="level-content">
-                    <h3>Advanced</h3>
-                    <p class="level-description">Express yourself fluently and spontaneously, use language flexibly for social, academic, and professional purposes.</p>
-                    <div class="level-topics">
-                        <span class="topic-tag">1500+ Words</span>
-                        <span class="topic-tag">12 Topics</span>
-                        <span class="topic-tag">Mastery Grammar</span>
-                        <span class="topic-tag">60+ Conversations</span>
-                    </div>
-                </div>
-                <div class="level-action">
-                    <a href="Pages/level-c1.html" class="level-btn">Explore C1 →</a>
-                </div>
-            </div>
-
-            <!-- C2 LEVEL -->
-            <div class="level-card level-c2">
-                <div class="level-icon">
-                    <div class="level-badge">C2</div>
-                </div>
-                <div class="level-content">
-                    <h3>Mastery</h3>
-                    <p class="level-description">Understand virtually everything, express yourself with precision and nuance at a native-like level.</p>
-                    <div class="level-topics">
-                        <span class="topic-tag">2000+ Words</span>
-                        <span class="topic-tag">All Topics</span>
-                        <span class="topic-tag">Native-level</span>
-                        <span class="topic-tag">80+ Conversations</span>
-                    </div>
-                </div>
-                <div class="level-action">
-                    <a href="Pages/level-c2.html" class="level-btn">Explore C2 →</a>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- SECONDARY: BROWSE BY CATEGORY -->
-        <div class="section-header" id="categories">
-            <h2>🎯 Or Browse by Category</h2>
-            <p>Access all content organized by learning type</p>
-        </div>
-
-        <div class="category-grid">
-
-<!-- VOCABULARY CATEGORY -->
-<div class="category-card cat-vocabulary">
-    <span class="category-icon">📚</span>
-    <h3>Vocabulary</h3>
-    <p>Learn essential German words organized into 25 thematic groups (A1–B2) with built-in level filters and interactive audio pronunciation.</p>
-
-    <a href="Pages/vocabulary.html" class="category-btn-main">
-        Browse All 25 Topics →
-    </a>
-
-    <div class="category-links">
-        <a href="Pages/vocabulary.html#A1" class="category-link">🟢 A1 — Beginner Topics</a>
-        <a href="Pages/vocabulary.html#A2" class="category-link">🟩 A2 — Elementary Topics</a>
-        <a href="Pages/vocabulary.html#B1" class="category-link">🟡 B1 — Intermediate Topics</a>
-        <a href="Pages/vocabulary.html#B2" class="category-link">🟠 B2 — Upper-Intermediate Topics</a>
     </div>
 </div>
-            <!-- FSP CATEGORY -->
-            <div class="category-card cat-fsp">
-                <span class="category-icon">🎓</span>
-                <h3>FSP — Fachsprachenprüfung</h3>
-                <p>Specialized legal &amp; professional German vocabulary for pharmacy, law, and health insurance topics.</p>
 
-                <a href="vocabulary/FSP/main.html" class="category-btn-main">
-                    Explore FSP Resources →
-                </a>
+<!-- STATS -->
+<div class="stats-bar">
+    <div class="stats-inner">
+        <div class="stat-item"><div class="stat-num">3K+</div><div class="stat-lbl">Vocabulary</div></div>
+        <div class="stat-item"><div class="stat-num">60+</div><div class="stat-lbl">Grammar</div></div>
+        <div class="stat-item"><div class="stat-num">150+</div><div class="stat-lbl">Conversations</div></div>
+        <div class="stat-item"><div class="stat-num">200+</div><div class="stat-lbl">Exercises</div></div>
+    </div>
+</div>
 
-                <div class="category-links">
-                    <a href="vocabulary/FSP/Recht_1_Arznimittel_interactive.html" class="category-link">Arzneimittelrecht (Drug Law)</a>
-                    <a href="vocabulary/FSP/Recht_7_ARBEITSRECHT_Labor_Law_interactive.html" class="category-link">Arbeitsrecht (Labor Law)</a>
-                    <a href="vocabulary/FSP/FSP-mult-nouns_vocab_phrases.html" class="category-link">FSP Multi-Nouns & Phrases</a>
-                    <a href="vocabulary/FSP/main.html" class="category-link">All FSP Topics →</a>
+<!-- MAIN -->
+<div class="container">
+
+    <div class="feature-pills">
+        <span class="feature-pill">🎯 CEFR Framework</span>
+        <span class="feature-pill">🔊 Native Audio</span>
+        <span class="feature-pill">🎨 der · die · das Colors</span>
+        <span class="feature-pill">📊 Progress Tracker</span>
+        <span class="feature-pill">🎓 FSP Preparation</span>
+    </div>
+
+    <!-- LEVELS -->
+    <div class="section-label" id="levels">
+        <h2>🎓 Choose Your Level</h2>
+        <div class="divider"></div>
+        <span class="pill">CEFR</span>
+    </div>
+
+    <div class="level-grid">
+        <a href="Pages/level-a1.html" class="level-card lv-a1">
+            <div class="level-top">
+                <div class="level-badge">A1</div>
+                <div class="level-meta">
+                    <div class="level-label">Beginner</div>
+                    <div class="level-title">Getting Started</div>
                 </div>
             </div>
+            <div class="level-desc">Essential vocabulary, basic grammar, and simple everyday conversations.</div>
+            <div class="level-progress"><div class="level-progress-fill"></div></div>
+            <div class="level-tags">
+                <span class="level-tag">200+ words</span>
+                <span class="level-tag">5 topics</span>
+                <span class="level-tag">20+ chats</span>
+            </div>
+            <div class="level-cta">Explore A1 <span class="level-cta-arrow">→</span></div>
+        </a>
 
-            <!-- STUDY-READY CATEGORY -->
-            <div class="category-card cat-study-ready">
-                <span class="category-icon">📖</span>
-                <h3>Study-Ready</h3>
-                <p>All 25 thematic vocabulary groups in a clean combined format — perfect for focused study sessions covering A1 to B2.</p>
-
-                <a href="vocabulary/Study-Ready/main.html" class="category-btn-main">
-                    Explore Study-Ready Topics →
-                </a>
-
-                <div class="category-links">
-                    <a href="vocabulary/Study-Ready/01_PersonalInformation_Identity_combined.html" class="category-link">👤 Personal Information &amp; Identity</a>
-                    <a href="vocabulary/Study-Ready/04_Body__Health_combined.html" class="category-link">🏥 Body &amp; Health</a>
-                    <a href="vocabulary/Study-Ready/11_Work__Career_combined.html" class="category-link">💼 Work &amp; Career</a>
-                    <a href="vocabulary/Study-Ready/main.html" class="category-link">All 25 Study-Ready Topics →</a>
+        <a href="Pages/level-a2.html" class="level-card lv-a2">
+            <div class="level-top">
+                <div class="level-badge">A2</div>
+                <div class="level-meta">
+                    <div class="level-label">Elementary</div>
+                    <div class="level-title">Building Up</div>
                 </div>
             </div>
+            <div class="level-desc">Expanded vocab, cases &amp; tenses, and practical daily situations.</div>
+            <div class="level-progress"><div class="level-progress-fill"></div></div>
+            <div class="level-tags">
+                <span class="level-tag">400+ words</span>
+                <span class="level-tag">5 topics</span>
+                <span class="level-tag">30+ chats</span>
+            </div>
+            <div class="level-cta">Explore A2 <span class="level-cta-arrow">→</span></div>
+        </a>
 
-            <!-- GRAMMAR CATEGORY -->
-            <div class="category-card cat-grammar">
-                <span class="category-icon">📖</span>
-                <h3>Grammar</h3>
-                <p>Master German grammar rules with clear explanations, examples, and interactive exercises.</p>
-
-                <a href="Pages/grammar.html" class="category-btn-main">
-                    Browse All Grammar →
-                </a>
-
-                <div class="category-links">
-                    <a href="grammar/grammar-articles.html" class="category-link">Articles (der/die/das)</a>
-                    <a href="grammar/grammar-plurals.html" class="category-link">Plural Forms</a>
-                    <a href="grammar/grammar-cases.html" class="category-link">Case System</a>
-                    <a href="grammar/grammar-verbs.html" class="category-link">Verb Conjugation</a>
+        <a href="Pages/level-b1.html" class="level-card lv-b1">
+            <div class="level-top">
+                <div class="level-badge">B1</div>
+                <div class="level-meta">
+                    <div class="level-label">Intermediate</div>
+                    <div class="level-title">Getting Fluent</div>
                 </div>
             </div>
+            <div class="level-desc">Express opinions, understand main points of standard texts and speech.</div>
+            <div class="level-progress"><div class="level-progress-fill"></div></div>
+            <div class="level-tags">
+                <span class="level-tag">800+ words</span>
+                <span class="level-tag">8 topics</span>
+                <span class="level-tag">40+ chats</span>
+            </div>
+            <div class="level-cta">Explore B1 <span class="level-cta-arrow">→</span></div>
+        </a>
 
-            <!-- TOOLS CATEGORY -->
-            <div class="category-card cat-tools">
-                <span class="category-icon">🎓</span>
-                <h3>Learning Tools</h3>
-                <p>Interactive tools to accelerate your learning with flashcards, quizzes, and progress tracking.</p>
-
-                <a href="Pages/tools.html" class="category-btn-main">
-                    Browse All Tools →
-                </a>
-
-                <div class="category-links">
-                    <a href="tools/flashcards.html" class="category-link">Flashcards</a>
-                    <a href="tools/quiz.html" class="category-link">Quiz & Games</a>
-                    <a href="tools/progress.html" class="category-link">Progress Tracker</a>
-                    <a href="tools/daily-practice.html" class="category-link">Daily Practice</a>
+        <a href="Pages/level-b2.html" class="level-card lv-b2">
+            <div class="level-top">
+                <div class="level-badge">B2</div>
+                <div class="level-meta">
+                    <div class="level-label">Upper Intermediate</div>
+                    <div class="level-title">Almost There</div>
                 </div>
             </div>
+            <div class="level-desc">Complex texts, spontaneous conversations, and abstract discussions.</div>
+            <div class="level-progress"><div class="level-progress-fill"></div></div>
+            <div class="level-tags">
+                <span class="level-tag">1K+ words</span>
+                <span class="level-tag">10 topics</span>
+                <span class="level-tag">50+ chats</span>
+            </div>
+            <div class="level-cta">Explore B2 <span class="level-cta-arrow">→</span></div>
+        </a>
 
-            <!-- PRACTICE CATEGORY -->
-            <div class="category-card cat-practice">
-                <span class="category-icon">🗣️</span>
-                <h3>Practice</h3>
-                <p>Develop all four language skills with conversations, listening, writing, and pronunciation exercises.</p>
-
-                <a href="Pages/practice.html" class="category-btn-main">
-                    Browse All Practice →
-                </a>
-
-                <div class="category-links">
-                    <a href="practice/conversations.html" class="category-link">Conversations</a>
-                    <a href="practice/listening.html" class="category-link">Listening Practice</a>
-                    <a href="practice/writing.html" class="category-link">Writing Exercises</a>
-                    <a href="practice/pronunciation.html" class="category-link">Pronunciation Guide</a>
+        <a href="Pages/level-c1.html" class="level-card lv-c1">
+            <div class="level-top">
+                <div class="level-badge">C1</div>
+                <div class="level-meta">
+                    <div class="level-label">Advanced</div>
+                    <div class="level-title">Near Native</div>
                 </div>
             </div>
+            <div class="level-desc">Flexible use for social, academic, and professional contexts.</div>
+            <div class="level-progress"><div class="level-progress-fill"></div></div>
+            <div class="level-tags">
+                <span class="level-tag">1.5K+ words</span>
+                <span class="level-tag">12 topics</span>
+                <span class="level-tag">60+ chats</span>
+            </div>
+            <div class="level-cta">Explore C1 <span class="level-cta-arrow">→</span></div>
+        </a>
 
-            <!-- RESOURCES CATEGORY -->
-            <div class="category-card cat-resources">
-                <span class="category-icon">📚</span>
-                <h3>Resources</h3>
-                <p>Curated materials, media recommendations, and useful links to complement your learning journey.</p>
-
-                <a href="Pages/resources.html" class="category-btn-main">
-                    Browse All Resources →
-                </a>
-
-                <div class="category-links">
-                    <a href="resources/resources-beginner.html" class="category-link">Beginner Resources (A1-A2)</a>
-                    <a href="resources/resources-intermediate.html" class="category-link">Intermediate Resources (B1-B2)</a>
-                    <a href="resources/resources-advanced.html" class="category-link">Advanced Resources (C1-C2)</a>
-                    <a href="resources/media.html" class="category-link">German Media</a>
+        <a href="Pages/level-c2.html" class="level-card lv-c2">
+            <div class="level-top">
+                <div class="level-badge">C2</div>
+                <div class="level-meta">
+                    <div class="level-label">Mastery</div>
+                    <div class="level-title">Native Level</div>
                 </div>
             </div>
+            <div class="level-desc">Precision and nuance at near-native level across all domains.</div>
+            <div class="level-progress"><div class="level-progress-fill"></div></div>
+            <div class="level-tags">
+                <span class="level-tag">2K+ words</span>
+                <span class="level-tag">All topics</span>
+                <span class="level-tag">80+ chats</span>
+            </div>
+            <div class="level-cta">Explore C2 <span class="level-cta-arrow">→</span></div>
+        </a>
+    </div>
 
+    <!-- CATEGORIES -->
+    <div class="section-label" id="categories">
+        <h2>🎯 Browse by Category</h2>
+        <div class="divider"></div>
+        <span class="pill">7 SECTIONS</span>
+    </div>
+
+    <div class="cat-grid">
+
+        <div class="cat-card cat-vocab">
+            <div class="cat-head">
+                <div class="cat-icon-wrap">📚</div>
+                <div class="cat-info">
+                    <h3>Vocabulary</h3>
+                    <p>25 thematic groups (A1–B2) with audio pronunciation and level filters.</p>
+                </div>
+            </div>
+            <div class="cat-body">
+                <a href="Pages/vocabulary.html" class="cat-main-btn">Browse All 25 Topics <span class="cat-arrow-circle">→</span></a>
+                <div class="cat-links">
+                    <a href="Pages/vocabulary.html#A1" class="cat-link">🟢 A1 — Beginner Topics <span class="cat-link-arr">→</span></a>
+                    <a href="Pages/vocabulary.html#A2" class="cat-link">🟩 A2 — Elementary Topics <span class="cat-link-arr">→</span></a>
+                    <a href="Pages/vocabulary.html#B1" class="cat-link">🟡 B1 — Intermediate Topics <span class="cat-link-arr">→</span></a>
+                    <a href="Pages/vocabulary.html#B2" class="cat-link">🟠 B2 — Upper-Intermediate <span class="cat-link-arr">→</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="cat-card cat-grammar">
+            <div class="cat-head">
+                <div class="cat-icon-wrap">📖</div>
+                <div class="cat-info">
+                    <h3>Grammar</h3>
+                    <p>Clear explanations, examples, and interactive exercises for every rule.</p>
+                </div>
+            </div>
+            <div class="cat-body">
+                <a href="Pages/grammar.html" class="cat-main-btn">Browse All Grammar <span class="cat-arrow-circle">→</span></a>
+                <div class="cat-links">
+                    <a href="grammar/grammar-articles.html" class="cat-link">Articles (der/die/das) <span class="cat-link-arr">→</span></a>
+                    <a href="grammar/grammar-plurals.html"  class="cat-link">Plural Forms <span class="cat-link-arr">→</span></a>
+                    <a href="grammar/grammar-cases.html"    class="cat-link">Case System <span class="cat-link-arr">→</span></a>
+                    <a href="grammar/grammar-verbs.html"    class="cat-link">Verb Conjugation <span class="cat-link-arr">→</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="cat-card cat-fsp">
+            <div class="cat-head">
+                <div class="cat-icon-wrap">🎓</div>
+                <div class="cat-info">
+                    <h3>FSP — Fachsprachenprüfung</h3>
+                    <p>Legal &amp; professional German for pharmacy, law, and health topics.</p>
+                </div>
+            </div>
+            <div class="cat-body">
+                <a href="vocabulary/FSP/main.html" class="cat-main-btn">Explore FSP Resources <span class="cat-arrow-circle">→</span></a>
+                <div class="cat-links">
+                    <a href="vocabulary/FSP/Recht_1_Arznimittel_interactive.html" class="cat-link">Arzneimittelrecht (Drug Law) <span class="cat-link-arr">→</span></a>
+                    <a href="vocabulary/FSP/Recht_7_ARBEITSRECHT_Labor_Law_interactive.html" class="cat-link">Arbeitsrecht (Labor Law) <span class="cat-link-arr">→</span></a>
+                    <a href="vocabulary/FSP/FSP-mult-nouns_vocab_phrases.html" class="cat-link">FSP Multi-Nouns &amp; Phrases <span class="cat-link-arr">→</span></a>
+                    <a href="vocabulary/FSP/main.html" class="cat-link">All FSP Topics <span class="cat-link-arr">→</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="cat-card cat-study">
+            <div class="cat-head">
+                <div class="cat-icon-wrap">📋</div>
+                <div class="cat-info">
+                    <h3>Study-Ready</h3>
+                    <p>All 25 thematic groups in a clean combined format for focused study.</p>
+                </div>
+            </div>
+            <div class="cat-body">
+                <a href="vocabulary/Study-Ready/main.html" class="cat-main-btn">Explore Study-Ready <span class="cat-arrow-circle">→</span></a>
+                <div class="cat-links">
+                    <a href="vocabulary/Study-Ready/01_PersonalInformation_Identity_combined.html" class="cat-link">👤 Personal Information <span class="cat-link-arr">→</span></a>
+                    <a href="vocabulary/Study-Ready/04_Body__Health_combined.html" class="cat-link">🏥 Body &amp; Health <span class="cat-link-arr">→</span></a>
+                    <a href="vocabulary/Study-Ready/11_Work__Career_combined.html" class="cat-link">💼 Work &amp; Career <span class="cat-link-arr">→</span></a>
+                    <a href="vocabulary/Study-Ready/main.html" class="cat-link">All 25 Topics <span class="cat-link-arr">→</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="cat-card cat-tools">
+            <div class="cat-head">
+                <div class="cat-icon-wrap">🎮</div>
+                <div class="cat-info">
+                    <h3>Learning Tools</h3>
+                    <p>Flashcards, quizzes, and trackers to accelerate your progress.</p>
+                </div>
+            </div>
+            <div class="cat-body">
+                <a href="Pages/tools.html" class="cat-main-btn">Browse All Tools <span class="cat-arrow-circle">→</span></a>
+                <div class="cat-links">
+                    <a href="tools/flashcards.html"    class="cat-link">Flashcards <span class="cat-link-arr">→</span></a>
+                    <a href="tools/quiz.html"           class="cat-link">Quiz &amp; Games <span class="cat-link-arr">→</span></a>
+                    <a href="tools/progress.html"       class="cat-link">Progress Tracker <span class="cat-link-arr">→</span></a>
+                    <a href="tools/daily-practice.html" class="cat-link">Daily Practice <span class="cat-link-arr">→</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="cat-card cat-practice">
+            <div class="cat-head">
+                <div class="cat-icon-wrap">🗣️</div>
+                <div class="cat-info">
+                    <h3>Practice</h3>
+                    <p>Conversations, listening, writing, and pronunciation exercises.</p>
+                </div>
+            </div>
+            <div class="cat-body">
+                <a href="Pages/practice.html" class="cat-main-btn">Browse All Practice <span class="cat-arrow-circle">→</span></a>
+                <div class="cat-links">
+                    <a href="practice/conversations.html" class="cat-link">Conversations <span class="cat-link-arr">→</span></a>
+                    <a href="practice/listening.html"     class="cat-link">Listening Practice <span class="cat-link-arr">→</span></a>
+                    <a href="practice/writing.html"       class="cat-link">Writing Exercises <span class="cat-link-arr">→</span></a>
+                    <a href="practice/pronunciation.html" class="cat-link">Pronunciation Guide <span class="cat-link-arr">→</span></a>
+                </div>
+            </div>
+        </div>
+
+        <div class="cat-card cat-resources">
+            <div class="cat-head">
+                <div class="cat-icon-wrap">🔗</div>
+                <div class="cat-info">
+                    <h3>Resources</h3>
+                    <p>Curated media, links, and materials to complement your learning.</p>
+                </div>
+            </div>
+            <div class="cat-body">
+                <a href="Pages/resources.html" class="cat-main-btn">Browse All Resources <span class="cat-arrow-circle">→</span></a>
+                <div class="cat-links">
+                    <a href="resources/resources-beginner.html"     class="cat-link">Beginner Resources (A1-A2) <span class="cat-link-arr">→</span></a>
+                    <a href="resources/resources-intermediate.html" class="cat-link">Intermediate (B1-B2) <span class="cat-link-arr">→</span></a>
+                    <a href="resources/resources-advanced.html"     class="cat-link">Advanced (C1-C2) <span class="cat-link-arr">→</span></a>
+                    <a href="resources/media.html"                  class="cat-link">German Media <span class="cat-link-arr">→</span></a>
+                </div>
+            </div>
         </div>
 
     </div>
+</div>
 
-    <!-- FOOTER -->
-    <footer>
-        <div class="footer-content">
-            <div class="footer-section">
+<!-- FOOTER -->
+<footer>
+    <div class="footer-inner">
+        <div class="footer-brand">🇩🇪 German Learning Hub</div>
+        <div class="footer-grid">
+            <div class="footer-col">
                 <h4>By Level</h4>
-                <a href="Pages/level-a1.html">🟢 A1 - Beginner</a>
-                <a href="Pages/level-a2.html">🔵 A2 - Elementary</a>
-                <a href="Pages/level-b1.html">🟡 B1 - Intermediate</a>
-                <a href="Pages/level-b2.html">🟠 B2 - Upper Intermediate</a>
-                <a href="Pages/level-c1.html">🔴 C1 - Advanced</a>
-                <a href="Pages/level-c2.html">🟣 C2 - Mastery</a>
+                <a href="Pages/level-a1.html">🟢 A1 — Beginner</a>
+                <a href="Pages/level-a2.html">🔵 A2 — Elementary</a>
+                <a href="Pages/level-b1.html">🟡 B1 — Intermediate</a>
+                <a href="Pages/level-b2.html">🟠 B2 — Upper Int.</a>
+                <a href="Pages/level-c1.html">🔴 C1 — Advanced</a>
+                <a href="Pages/level-c2.html">🟣 C2 — Mastery</a>
             </div>
-
-            <div class="footer-section">
-                <h4>By Category</h4>
+            <div class="footer-col">
+                <h4>Categories</h4>
                 <a href="Pages/vocabulary.html">📚 Vocabulary</a>
-                <a href="vocabulary/FSP/main.html">🎓 FSP Resources</a>
+                <a href="vocabulary/FSP/main.html">🎓 FSP</a>
                 <a href="Pages/grammar.html">📖 Grammar</a>
-                <a href="Pages/tools.html">🎓 Learning Tools</a>
+                <a href="Pages/tools.html">🎮 Tools</a>
                 <a href="Pages/practice.html">🗣️ Practice</a>
-                <a href="Pages/resources.html">📚 Resources</a>
+                <a href="Pages/resources.html">🔗 Resources</a>
             </div>
-
-            <div class="footer-section">
+            <div class="footer-col">
                 <h4>Quick Access</h4>
-                <a href="vocabulary/basic-vocabulary-essential.html">⭐ Essential Basics (A1)</a>
+                <a href="vocabulary/basic-vocabulary-essential.html">⭐ Essential Basics</a>
                 <a href="vocabulary/FSP/main.html">🎓 FSP Resources</a>
+                <a href="tools/progress.html">📊 My Progress</a>
             </div>
-
-            <div class="footer-section">
+            <div class="footer-col">
                 <h4>About</h4>
                 <a href="about.html">ℹ️ How to Use</a>
                 <a href="contact.html">📧 Contact</a>
                 <a href="settings.html">⚙️ Settings</a>
             </div>
         </div>
-
         <div class="footer-bottom">
-            <p><strong>🇩🇪 German Learning Hub</strong></p>
-            <p>Your Complete A1 to C2 Journey</p>
-            <p style="margin-top: 20px;">Created by: <strong>aliattia02</strong> | © 2025</p>
-            <p style="margin-top: 10px; font-size: 0.95em; opacity: 0.8;">
-                Last Updated: 2025-11-17 20:37:35 UTC
-            </p>
+            <strong>🇩🇪 German Learning Hub</strong> &nbsp;·&nbsp; A1 to C2 &nbsp;·&nbsp; by aliattia02 &nbsp;·&nbsp; © 2025
         </div>
-    </footer>
+    </div>
+</footer>
 
+<script>
+    const toggle = document.getElementById('navToggle');
+    const links  = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => links.classList.toggle('open'));
+    links.querySelectorAll('a').forEach(a => a.addEventListener('click', () => links.classList.remove('open')));
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+            const t = document.querySelector(a.getAttribute('href'));
+            if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }
+        });
+    });
+</script>
 </body>
-
 </html>
