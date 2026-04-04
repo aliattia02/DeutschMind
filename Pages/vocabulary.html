@@ -450,6 +450,62 @@
             color: #2196F3;
         }
 
+        /* LEVEL FILTER BAR */
+        .level-filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin: 0 0 50px;
+            padding: 25px 20px;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+
+        .level-filter-bar p {
+            width: 100%;
+            text-align: center;
+            font-size: 1.1em;
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .filter-btn {
+            padding: 10px 28px;
+            border: 2px solid #ddd;
+            border-radius: 25px;
+            background: white;
+            font-size: 1.05em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            color: #555;
+        }
+
+        .filter-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .filter-btn.active {
+            color: white;
+            border-color: transparent;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .filter-btn[data-level="all"].active  { background: linear-gradient(135deg, #2196F3, #1976D2); }
+        .filter-btn[data-level="A1"].active   { background: linear-gradient(135deg, #4CAF50, #388E3C); }
+        .filter-btn[data-level="A2"].active   { background: linear-gradient(135deg, #8BC34A, #689F38); }
+        .filter-btn[data-level="B1"].active   { background: linear-gradient(135deg, #FFC107, #FFA000); }
+        .filter-btn[data-level="B2"].active   { background: linear-gradient(135deg, #FF9800, #F57C00); }
+        .filter-btn[data-level="C1"].active   { background: linear-gradient(135deg, #FF5722, #E64A19); }
+        .filter-btn[data-level="C2"].active   { background: linear-gradient(135deg, #F44336, #D32F2F); }
+
+        .level-section.hidden {
+            display: none;
+        }
+
         /* ANIMATIONS */
         @keyframes fadeInDown {
             from {
@@ -575,8 +631,20 @@
             </div>
         </div>
 
+        <!-- LEVEL FILTER BAR -->
+        <div class="level-filter-bar">
+            <p>🔍 Filter by level — or add <strong>#A1</strong>, <strong>#A2</strong>, <strong>#B1</strong>… to the URL</p>
+            <button class="filter-btn active" data-level="all">All Levels</button>
+            <button class="filter-btn" data-level="A1">🟢 A1</button>
+            <button class="filter-btn" data-level="A2">🟩 A2</button>
+            <button class="filter-btn" data-level="B1">🟡 B1</button>
+            <button class="filter-btn" data-level="B2">🟠 B2</button>
+            <button class="filter-btn" data-level="C1">🔴 C1</button>
+            <button class="filter-btn" data-level="C2">🔴 C2</button>
+        </div>
+
        <!-- A1 LEVEL -->
-        <div class="level-section">
+        <div class="level-section" id="A1">
             <div class="level-header">
                 <div class="level-badge level-a1">A1</div>
                 <div class="level-info">
@@ -673,7 +741,7 @@
         </div>
 
         <!-- A2 LEVEL -->
-        <div class="level-section">
+        <div class="level-section" id="A2">
             <div class="level-header">
                 <div class="level-badge level-a2">A2</div>
                 <div class="level-info">
@@ -734,7 +802,7 @@
         </div>
 
         <!-- B1 LEVEL -->
-        <div class="level-section">
+        <div class="level-section" id="B1">
             <div class="level-header">
                 <div class="level-badge level-b1">B1</div>
                 <div class="level-info">
@@ -790,6 +858,62 @@
             </p>
         </div>
     </footer>
+    <script>
+        (function () {
+            var LEVELS = ['A1', 'A2', 'B1', 'B2', 'C1', 'C2'];
+
+            function applyFilter(level) {
+                // Update button states
+                document.querySelectorAll('.filter-btn').forEach(function (btn) {
+                    btn.classList.toggle('active', btn.dataset.level === level);
+                });
+
+                // Show / hide level sections
+                LEVELS.forEach(function (lvl) {
+                    var section = document.getElementById(lvl);
+                    if (!section) return;
+                    if (level === 'all' || level === lvl) {
+                        section.classList.remove('hidden');
+                    } else {
+                        section.classList.add('hidden');
+                    }
+                });
+
+                // Update URL hash without triggering a jump
+                var newHash = level === 'all' ? '' : '#' + level;
+                history.replaceState(null, '', window.location.pathname + newHash);
+
+                // Scroll to the targeted section (only when a specific level is chosen)
+                if (level !== 'all') {
+                    var target = document.getElementById(level);
+                    if (target) {
+                        setTimeout(function () {
+                            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 50);
+                    }
+                }
+            }
+
+            // Wire up filter buttons
+            document.querySelectorAll('.filter-btn').forEach(function (btn) {
+                btn.addEventListener('click', function () {
+                    applyFilter(btn.dataset.level);
+                });
+            });
+
+            // Handle hash on page load (e.g. vocabulary.html#A1)
+            var hash = window.location.hash.replace('#', '').toUpperCase();
+            if (hash && LEVELS.indexOf(hash) !== -1) {
+                applyFilter(hash);
+            }
+
+            // Also respond to hash changes via browser back/forward
+            window.addEventListener('hashchange', function () {
+                var h = window.location.hash.replace('#', '').toUpperCase();
+                applyFilter(LEVELS.indexOf(h) !== -1 ? h : 'all');
+            });
+        })();
+    </script>
 
 </body>
 </html>
