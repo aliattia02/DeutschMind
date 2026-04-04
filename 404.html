@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🚧 Coming Soon - DeutschMind</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #000000 0%, #DD0000 50%, #FFCE00 100%);
+            color: #333;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+        }
+
+        /* NAVIGATION BAR */
+        .navbar {
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .nav-logo {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #FFCE00;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-weight: 600;
+        }
+
+        .nav-link:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-2px);
+        }
+
+        /* MAIN CONTENT */
+        .coming-soon-container {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .coming-soon-card {
+            background: white;
+            border-radius: 30px;
+            padding: 60px 50px;
+            max-width: 680px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.3);
+            animation: fadeInUp 0.7s ease;
+        }
+
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        .construction-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+            display: block;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50%       { transform: translateY(-12px); }
+        }
+
+        .coming-soon-badge {
+            display: inline-block;
+            background: #FFF3E0;
+            color: #FF9800;
+            font-weight: bold;
+            font-size: 0.95em;
+            padding: 6px 20px;
+            border-radius: 20px;
+            margin-bottom: 25px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .coming-soon-title {
+            font-size: 2.8em;
+            font-weight: 900;
+            color: #222;
+            margin-bottom: 15px;
+            line-height: 1.2;
+        }
+
+        .coming-soon-subtitle {
+            font-size: 1.15em;
+            color: #666;
+            line-height: 1.7;
+            margin-bottom: 35px;
+        }
+
+        .divider {
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #000000, #DD0000, #FFCE00);
+            border-radius: 2px;
+            margin: 0 auto 35px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 40px;
+            text-align: left;
+        }
+
+        .feature-item {
+            background: #F8F9FA;
+            border-radius: 15px;
+            padding: 18px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            color: #444;
+            font-size: 0.95em;
+        }
+
+        .feature-item span:first-child {
+            font-size: 1.4em;
+            flex-shrink: 0;
+        }
+
+        .btn-home {
+            display: inline-block;
+            background: linear-gradient(135deg, #000000 0%, #DD0000 50%, #FFCE00 100%);
+            color: white;
+            text-decoration: none;
+            padding: 16px 45px;
+            border-radius: 30px;
+            font-size: 1.1em;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.25);
+        }
+
+        .btn-home:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.35);
+        }
+
+        .flag-strip {
+            display: flex;
+            margin-top: 40px;
+            border-radius: 8px;
+            overflow: hidden;
+            height: 8px;
+        }
+
+        .flag-strip div {
+            flex: 1;
+        }
+
+        .flag-black  { background: #000000; }
+        .flag-red    { background: #DD0000; }
+        .flag-gold   { background: #FFCE00; }
+
+        /* FOOTER */
+        footer {
+            background: rgba(0,0,0,0.85);
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 580px) {
+            .coming-soon-card {
+                padding: 40px 25px;
+            }
+
+            .coming-soon-title {
+                font-size: 2em;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 6px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <a href="index.html" class="nav-logo">🇩🇪 DeutschMind</a>
+            <div class="nav-links">
+                <a href="index.html#levels" class="nav-link">📚 Levels</a>
+                <a href="index.html#categories" class="nav-link">🎯 Categories</a>
+                <a href="tools/progress.html" class="nav-link">📊 Progress</a>
+                <a href="about.html" class="nav-link">ℹ️ About</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- COMING SOON CONTENT -->
+    <div class="coming-soon-container">
+        <div class="coming-soon-card">
+
+            <span class="construction-icon">🚧</span>
+
+            <div class="coming-soon-badge">📅 Coming Soon</div>
+
+            <h1 class="coming-soon-title">This page is under construction</h1>
+
+            <div class="divider"></div>
+
+            <p class="coming-soon-subtitle">
+                We're working hard to bring you this content.<br>
+                Check back soon — great things are on the way!
+            </p>
+
+            <div class="features-grid">
+                <div class="feature-item">
+                    <span>📖</span><span>Grammar lessons</span>
+                </div>
+                <div class="feature-item">
+                    <span>🗣️</span><span>Vocabulary practice</span>
+                </div>
+                <div class="feature-item">
+                    <span>🎧</span><span>Listening exercises</span>
+                </div>
+                <div class="feature-item">
+                    <span>✍️</span><span>Writing challenges</span>
+                </div>
+            </div>
+
+            <a href="index.html" class="btn-home">← Back to Home</a>
+
+            <div class="flag-strip">
+                <div class="flag-black"></div>
+                <div class="flag-red"></div>
+                <div class="flag-gold"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>🇩🇪 DeutschMind — Your German Learning Journey &nbsp;|&nbsp; A1 to C2</p>
+    </footer>
+
+</body>
+</html>
