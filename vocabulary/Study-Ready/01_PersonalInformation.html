@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German – 01 Personal Information & Identity</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vocab-engine.css">
+</head>
+<body>
+<script src="vocab-engine.js"></script>
+<script>
+VocabEngine.init({
+
+    // ── Page identity ──────────────────────────────────────
+    unit:       '01',
+    topic:      'Personal Information & Identity',
+    heading:    '📚 01 PersonalInformation_Identity',
+    subtitle:   'Personal Information &amp; Identity · A1–B2 Level-Tagged Reference · aliattia02',
+    footerTopic:'Personal Information &amp; Identity',
+
+    // ── Unit nav bar (list all units here in every file) ──
+    units: [
+        { unit: '01', label: 'Personal Info',   file: '01_PersonalInformation.html' },
+        { unit: '02', label: 'Family',           file: '02_FamilyRelationships.html' },
+    ],
+
+    // ── Recording mode sequence label ─────────────────────
+    recSeqLabel: '🎬 Intro — Personal Information & Identity',
+
+    // ══════════════════════════════════════════════════════
+    // NOUNS CSV
+    // format: level, article, german, pluralNotation, pluralFull, english
+    // ══════════════════════════════════════════════════════
+    nounsCSV: `
+// das — cluster: name & title
+A1,das,Wort,-e,die Wörter,Word
+A1,das,Zeichen,=,die Zeichen,Character
+A2,das,Pseudonym,-e,die Pseudonyme,Pseudonym
+B1,das,Kürzel,=,die Kürzel,Abbreviation
+B2,das,Alias,-se,die Aliasse,Alias
+// das — cluster: age & time
+A1,das,Alter,---,---,Age
+A2,das,Geburtsdatum,-daten,die Geburtsdaten,Date of birth
+B1,das,Geburtsjahr,-e,die Geburtsjahre,Year of birth
+B2,das,Lebensalter,---,---,Age in life
+// das — cluster: documents & forms
+A1,das,Formular,-e,die Formulare,Form
+A1,das,Foto,-s,die Fotos,Photo
+A2,das,Dokument,-e,die Dokumente,Document
+A2,das,Passbild,-er,die Passbilder,Passport photo
+B1,das,Ausweisdokument,-e,die Ausweisdokumente,Identity document
+B1,das,Lichtbild,-er,die Lichtbilder,Official photo
+B2,das,Beglaubigungsdokument,-e,die Beglaubigungsdokumente,Certified document
+// das — cluster: country & territory
+A1,das,Land,Länder,die Länder,Country
+A2,das,Herkunftsland,Herkunftsländer,die Herkunftsländer,Country of origin
+B1,das,Geburtsland,Geburtsländer,die Geburtsländer,Country of birth
+B2,das,Staatsgebiet,-e,die Staatsgebiete,State territory
+// das — cluster: personal characteristics
+A1,das,Geschlecht,-er,die Geschlechter,Gender
+B1,das,Merkmal,-e,die Merkmale,Characteristic
+B2,das,Personenmerkmal,-e,die Personenmerkmale,Personal characteristic
+// der — cluster: names
+A1,der,Name,-n,die Namen,Name
+A1,der,Vorname,-n,die Vornamen,First name
+A1,der,Nachname,-n,die Nachnamen,Last name
+A2,der,Familienname,-n,die Familiennamen,Family name
+B1,der,Geburtsname,-n,die Geburtsnamen,Birth name
+B2,der,Doppelname,-n,die Doppelnamen,Double-barrelled name
+// der — cluster: places
+A1,der,Geburtsort,-e,die Geburtsorte,Place of birth
+A2,der,Wohnort,-e,die Wohnorte,Place of residence
+B1,der,Heimatort,-e,die Heimatorte,Home town
+B2,der,Aufenthaltsort,-e,die Aufenthaltsorte,Place of stay
+// der — cluster: identity documents
+A1,der,Ausweis,-e,die Ausweise,ID card
+A2,der,Reisepass,Reisepässe,die Reisepässe,Passport
+B1,der,Personalausweis,-e,die Personalausweise,National ID card
+B1,der,Führerschein,-e,die Führerscheine,Driving licence
+B2,der,Aufenthaltstitel,=,die Aufenthaltstitel,Residence permit
+B2,der,Visumantrag,Visumanträge,die Visumanträge,Visa application
+// der — cluster: profession & status
+A1,der,Beruf,-e,die Berufe,Profession
+A2,der,Arbeitgeber,=,die Arbeitgeber,Employer
+B1,der,Berufsstand,Berufsstände,die Berufsstände,Occupational status
+B2,der,Erwerbsstatus,---,---,Employment status
+// der — cluster: family & relationships
+A1,der,Familienstand,---,---,Marital status
+A2,der,Ehemann,Ehemänner,die Ehemänner,Husband
+A2,der,Partner,=,die Partner,Partner
+B1,der,Lebenspartner,=,die Lebenspartner,Civil partner
+B2,der,Erziehungsberechtigte,-n,die Erziehungsberechtigten,Legal guardian
+// der — cluster: titles
+A1,der,Titel,=,die Titel,Title
+A2,der,Doktortitel,=,die Doktortitel,Doctoral title
+B2,der,Adelstitel,=,die Adelstitel,Noble title
+// die — cluster: address & contact
+A1,die,Adresse,-n,die Adressen,Address
+A1,die,Straße,-n,die Straßen,Street
+A1,die,Telefonnummer,-n,die Telefonnummern,Phone number
+A2,die,Postleitzahl,-en,die Postleitzahlen,Postal code
+A2,die,Handynummer,-n,die Handynummern,Mobile number
+B1,die,E-Mail-Adresse,-n,die E-Mail-Adressen,Email address
+B1,die,Meldeadresse,-n,die Meldeadressen,Registered address
+B2,die,Zustelladresse,-n,die Zustelladressen,Delivery address
+B2,die,Kontaktdaten,nur P,die Kontaktdaten,Contact details
+// die — cluster: nationality & citizenship
+A1,die,Nationalität,-en,die Nationalitäten,Nationality
+A1,die,Staatsangehörigkeit,-en,die Staatsangehörigkeiten,Citizenship
+B1,die,Doppelstaatsbürgerschaft,-en,die Doppelstaatsbürgerschaften,Dual citizenship
+B2,die,Einbürgerung,-en,die Einbürgerungen,Naturalization
+// die — cluster: language
+A1,die,Sprache,-n,die Sprachen,Language
+A2,die,Muttersprache,-n,die Muttersprachen,Mother tongue
+B1,die,Fremdsprache,-n,die Fremdsprachen,Foreign language
+B2,die,Amtssprache,-n,die Amtssprachen,Official language
+// die — cluster: civil records
+A1,die,Geburt,-en,die Geburten,Birth
+A1,die,Unterschrift,-en,die Unterschriften,Signature
+A2,die,Geburtsurkunde,-n,die Geburtsurkunden,Birth certificate
+B1,die,Heiratsurkunde,-n,die Heiratsurkunden,Marriage certificate
+B1,die,Beglaubigung,-en,die Beglaubigungen,Authentication
+B2,die,Sterbeurkunde,-n,die Sterbeurkunden,Death certificate
+B2,die,Vollmacht,Vollmächte,die Vollmachten,Power of attorney
+// die — cluster: registration
+A2,die,Anmeldung,-en,die Anmeldungen,Registration
+B1,die,Ummeldung,-en,die Ummeldungen,Change of registration
+B2,die,Abmeldung,-en,die Abmeldungen,Deregistration
+// die — cluster: religion & affiliation
+B1,die,Religionszugehörigkeit,-en,die Religionszugehörigkeiten,Religious affiliation
+B2,die,Konfession,-en,die Konfessionen,Denomination
+`.trim(),
+
+    // ══════════════════════════════════════════════════════
+    // ADJECTIVES CSV
+    // format: level, -german, english, -german, english
+    // ══════════════════════════════════════════════════════
+    adjectivesCSV: `
+// cluster: gender & marital status
+A1,-männlich,male,-weiblich,female
+A1,-verheiratet,married,-ledig,single
+A2,-geschieden,divorced,-verwitwet,widowed
+B1,-divers,non-binary,-binär,binary
+B1,-getrennt,separated,-zusammenlebend,cohabiting
+B2,-eingetragen,registered,-unverehelicht,unmarried
+// cluster: nationality & origin
+A1,-deutsch,German,-ausländisch,foreign
+A2,-europäisch,European,-außereuropäisch,non-European
+B1,-einheimisch,native,-zugezogen,newcomer
+B2,-eingebürgert,naturalized,-staatenlos,stateless
+// cluster: age & legal standing
+A1,-jung,young,-alt,old
+A2,-minderjährig,underage,-volljährig,of age
+B1,-gebürtig,native-born,-adoptiert,adopted
+B2,-mündig,of legal age,-unmündig,under legal age
+// cluster: documentation validity
+A2,-bekannt,known,-unbekannt,unknown
+B1,-gültig,valid,-ungültig,invalid
+B1,-offiziell,official,-inoffiziell,unofficial
+B2,-beglaubigt,certified,-unbeglaubigt,uncertified
+// cluster: residence & employment
+A2,-wohnhaft,resident,-obdachlos,homeless
+A2,-berufstätig,employed,-arbeitslos,unemployed
+B1,-gemeldet,registered,-abgemeldet,deregistered
+B1,-selbstständig,self-employed,-angestellt,employed
+B2,-ansässig,domiciled,-ortsfremd,non-local
+B2,-verbeamtet,civil-servant,-freiberuflich,freelance
+`.trim(),
+
+    // ══════════════════════════════════════════════════════
+    // VERBS CSV
+    // format: level, *verb, english, *verb, english
+    // ══════════════════════════════════════════════════════
+    verbsCSV: `
+// cluster: naming & identifying
+A1,*heißen,be named,*buchstabieren,spell
+A2,*nennen,call,*bezeichnen,designate
+B1,*umbenennen,rename,*eintragen,register
+B2,*amtlich bestätigen,officially confirm,*notariell beglaubigen,notarize
+// cluster: residence & moving
+A1,*wohnen,live,*umziehen,move
+A2,*anmelden,register,*abmelden,deregister
+B1,*ummelden,update registration,*melden,report
+B2,*ansässig sein,be domiciled,*domizilieren,domicile
+// cluster: form-filling & documents
+A1,*ausfüllen,fill out,*unterschreiben,sign
+A2,*angeben,state,*eintragen,enter
+B1,*beantragen,apply for,*einreichen,submit
+B2,*beglaubigen,certify,*notarieren,notarize
+// cluster: family & life events
+A1,+gebären,give birth,*adoptieren,adopt
+A2,*heiraten,marry,+sich scheiden lassen,get divorced
+B1,*verloben,get engaged,*trennen,separate
+B2,*einbürgern,naturalize,*ausbürgern,denaturalize
+// cluster: verification & identification
+A2,*vorlegen,present,*vorzeigen,show
+B1,*ausweisen,identify,*identifizieren,identify
+B1,*nachweisen,prove,*bestätigen,confirm
+B2,*verifizieren,verify,*authentifizieren,authenticate
+// cluster: language & communication
+A1,*sprechen,speak,*verstehen,understand
+A2,*lernen,learn,*üben,practise
+B1,*beherrschen,master,*erwerben,acquire
+B2,*muttersprachlich verwenden,use natively,*akkreditieren,accredit
+`.trim(),
+
+    // ══════════════════════════════════════════════════════
+    // EXPRESSIONS CSV
+    // format: level, german, english
+    // ══════════════════════════════════════════════════════
+    expressionsCSV: `
+// cluster: introducing yourself
+A1,Wie heißen Sie?,What is your name?
+A1,Ich heiße...,My name is...
+A1,Woher kommen Sie?,Where are you from?
+A1,Ich komme aus...,I come from...
+A1,Wie alt sind Sie?,How old are you?
+A1,Ich bin ... Jahre alt.,I am ... years old.
+// cluster: giving personal details
+A2,Was ist Ihre Adresse?,What is your address?
+A2,Können Sie das bitte buchstabieren?,Can you spell that please?
+A2,Ich bin verheiratet.,I am married.
+A2,Ich bin ledig.,I am single.
+A2,Meine Muttersprache ist Deutsch.,My mother tongue is German.
+A2,Haben Sie einen Ausweis dabei?,Do you have an ID with you?
+// cluster: official & administrative
+B1,Ich bin deutscher Staatsangehöriger.,I am a German national.
+B1,Ich habe die doppelte Staatsbürgerschaft.,I have dual citizenship.
+B1,Ich möchte mich ummelden.,I would like to update my registration.
+B1,Wo muss ich mich anmelden?,Where do I need to register?
+B1,Ich bin berufstätig als...,I am employed as...
+B1,Mein Geburtsname ist...,My birth name is...
+// cluster: legal & formal
+B2,Ich bin seit zwei Jahren in Deutschland ansässig.,I have been resident in Germany for two years.
+B2,Der Ausweis ist nicht mehr gültig.,The ID is no longer valid.
+B2,Ich beantrage die Einbürgerung.,I am applying for naturalization.
+B2,Meine Aufenthaltserlaubnis läuft ab.,My residence permit is expiring.
+B2,Das Dokument muss notariell beglaubigt werden.,The document must be notarially certified.
+B2,Ich benötige eine amtliche Bescheinigung.,I need an official certificate.
+`.trim(),
+
+    // ══════════════════════════════════════════════════════
+    // CONVERSATIONS CSV
+    // format: level|Title|Speaker,german,english
+    // ══════════════════════════════════════════════════════
+    conversationsCSV: `
+A1|Meeting Someone New|A,Hallo! Wie heißt du?,Hello! What is your name?
+A1|Meeting Someone New|B,Ich heiße Maria. Und du?,My name is Maria. And you?
+A1|Meeting Someone New|A,Ich bin Tom. Woher kommst du?,I am Tom. Where are you from?
+A1|Meeting Someone New|B,Ich komme aus Spanien. Und du?,I come from Spain. And you?
+A1|Meeting Someone New|A,Ich komme aus Deutschland. Wie alt bist du?,I come from Germany. How old are you?
+A1|Meeting Someone New|B,Ich bin zwanzig Jahre alt.,I am twenty years old.
+A1|Meeting Someone New|A,Sprichst du Deutsch?,Do you speak German?
+A1|Meeting Someone New|B,Ja ein bisschen. Ich lerne noch.,Yes a little. I am still learning.
+A2|Filling Out a Form|A,Guten Tag. Ich brauche Ihre persönlichen Daten.,Good day. I need your personal details.
+A2|Filling Out a Form|B,Natürlich. Was möchten Sie wissen?,Of course. What would you like to know?
+A2|Filling Out a Form|A,Ihr vollständiger Name bitte.,Your full name please.
+A2|Filling Out a Form|B,Maria García López.,Maria García López.
+A2|Filling Out a Form|A,Wie schreibt man das? Bitte buchstabieren Sie.,How do you spell that? Please spell it out.
+A2|Filling Out a Form|B,G-A-R-C-I-A.,G-A-R-C-I-A.
+A2|Filling Out a Form|A,Ihr Geburtsdatum und Ihr Geburtsort?,Your date of birth and place of birth?
+A2|Filling Out a Form|B,Der fünfte März neunzehnhundertneunundneunzig in Madrid.,The fifth of March nineteen ninety-nine in Madrid.
+A2|Filling Out a Form|A,Und Ihre aktuelle Adresse mit Postleitzahl?,And your current address with postal code?
+A2|Filling Out a Form|B,Berliner Straße zwölf achtzig dreiunddreißig München.,Berliner Straße twelve eighty thirty-three Munich.
+B1|Registering at the Residents Office|A,Guten Morgen. Ich möchte mich anmelden.,Good morning. I would like to register.
+B1|Registering at the Residents Office|B,Haben Sie alle Unterlagen dabei?,Do you have all the documents with you?
+B1|Registering at the Residents Office|A,Ja ich habe Reisepass und Mietvertrag.,Yes I have passport and rental contract.
+B1|Registering at the Residents Office|B,Sind Sie schon früher in Deutschland gemeldet gewesen?,Have you been registered in Germany before?
+B1|Registering at the Residents Office|A,Nein das ist meine erste Meldung hier.,No this is my first registration here.
+B1|Registering at the Residents Office|B,Welche Staatsangehörigkeit haben Sie?,What nationality do you have?
+B1|Registering at the Residents Office|A,Ich bin spanische Staatsbürgerin und beantrage gerade die Einbürgerung.,I am a Spanish citizen and am currently applying for naturalization.
+B1|Registering at the Residents Office|B,Das können Sie hier separat beantragen. Wann möchten Sie einziehen?,You can apply for that separately here. When do you want to move in?
+B1|Registering at the Residents Office|A,Ich bin bereits eingezogen. Wann bekomme ich die Meldebestätigung?,I have already moved in. When will I get the registration confirmation?
+B1|Registering at the Residents Office|B,Sie bekommen sie direkt heute.,You will receive it directly today.
+B2|Applying for Naturalization|A,Ich möchte die deutsche Staatsbürgerschaft beantragen.,I would like to apply for German citizenship.
+B2|Applying for Naturalization|B,Wie lange sind Sie bereits in Deutschland ansässig?,How long have you been resident in Germany?
+B2|Applying for Naturalization|A,Seit acht Jahren mit durchgehendem rechtmäßigem Aufenthalt.,For eight years with continuous legal residence.
+B2|Applying for Naturalization|B,Beabsichtigen Sie Ihre bisherige Staatsangehörigkeit aufzugeben?,Do you intend to give up your previous citizenship?
+B2|Applying for Naturalization|A,Nein ich möchte die doppelte Staatsbürgerschaft beantragen.,No I would like to apply for dual citizenship.
+B2|Applying for Naturalization|B,Das ist möglich sofern Ihr Heimatland das erlaubt.,That is possible provided your home country permits it.
+B2|Applying for Naturalization|A,Welche Dokumente müssen notariell beglaubigt werden?,Which documents must be notarially certified?
+B2|Applying for Naturalization|B,Geburtsurkunde und alle ausländischen Dokumente müssen beglaubigt und übersetzt sein.,Birth certificate and all foreign documents must be certified and translated.
+`.trim(),
+
+    // ══════════════════════════════════════════════════════
+    // Q&A CSV
+    // format: level, question, answer
+    // ══════════════════════════════════════════════════════
+    qaCSV: `
+// cluster: basic personal info
+A1,Wie heißen Sie?,Ich heiße Anna Müller. (My name is Anna Müller.)
+A1,Woher kommen Sie?,Ich komme aus Österreich. (I come from Austria.)
+A1,Wie alt sind Sie?,Ich bin fünfundzwanzig Jahre alt. (I am twenty-five years old.)
+A1,Wo wohnen Sie?,Ich wohne in Hamburg in der Hauptstraße. (I live in Hamburg on Hauptstraße.)
+A1,Was ist Ihre Telefonnummer?,Meine Nummer ist null-eins-sieben-drei. (My number is zero-one-seven-three.)
+A1,Welche Sprache sprechen Sie?,Ich spreche Deutsch und Englisch. (I speak German and English.)
+// cluster: family & marital status
+A2,Was ist Ihr Familienstand?,Ich bin verheiratet und habe zwei Kinder. (I am married and have two children.)
+A2,Haben Sie einen Ausweis?,Ja ich habe meinen Personalausweis dabei. (Yes I have my national ID with me.)
+A2,Was ist Ihr Geburtsort?,Ich bin in München geboren. (I was born in Munich.)
+A2,Was ist Ihre Postleitzahl?,Meine Postleitzahl ist achtzig dreiunddreißig sieben. (My postal code is eighty-three thirty-seven.)
+A2,Wie buchstabiert man Ihren Namen?,M-Ü-L-L-E-R. (M-Ü-L-L-E-R.)
+A2,Was ist Ihre Nationalität?,Ich bin deutsche Staatsbürgerin. (I am a German citizen.)
+// cluster: citizenship & registration
+B1,Haben Sie die deutsche Staatsbürgerschaft?,Ja ich bin eingebürgert worden. (Yes I have been naturalized.)
+B1,Was ist Ihre Muttersprache?,Meine Muttersprache ist Türkisch aber ich spreche Deutsch fließend. (My mother tongue is Turkish but I speak German fluently.)
+B1,Sind Sie in Deutschland gemeldet?,Ja ich bin seit drei Jahren in Berlin gemeldet. (Yes I have been registered in Berlin for three years.)
+B1,Haben Sie einen gültigen Reisepass?,Mein Reisepass läuft noch bis nächstes Jahr. (My passport is still valid until next year.)
+B1,Welchen Beruf üben Sie aus?,Ich bin als Ingenieurin bei einer deutschen Firma angestellt. (I am employed as an engineer at a German company.)
+B1,Was ist Ihr Geburtsname?,Mein Geburtsname ist Schmidt aber ich heiße jetzt Müller. (My birth name is Schmidt but I am now called Müller.)
+// cluster: advanced legal & identity
+B2,Was bedeutet doppelte Staatsbürgerschaft?,Man besitzt gleichzeitig die Staatsangehörigkeit zweier Länder. (One holds the citizenship of two countries simultaneously.)
+B2,Was brauche ich für die Einbürgerung?,Langen Aufenthalt Sprachkenntnisse und Aufgabe der bisherigen Staatsangehörigkeit. (Long residence language skills and giving up previous citizenship.)
+B2,Was ist ein Aufenthaltstitel?,Ein offizielles Dokument das das Recht auf Aufenthalt in Deutschland bestätigt. (An official document that confirms the right to stay in Germany.)
+B2,Was ist der Unterschied zwischen Ausweis und Reisepass?,Der Ausweis gilt nur in Europa während der Reisepass weltweit gültig ist. (The ID is valid only in Europe while the passport is valid worldwide.)
+`.trim(),
+
+    // ══════════════════════════════════════════════════════
+    // SENTENCES CSV
+    // format: level, german, english
+    // ══════════════════════════════════════════════════════
+    sentencesCSV: `
+// cluster: introducing yourself
+A1,Ich heiße Thomas Schmidt.,My name is Thomas Schmidt.
+A1,Ich bin dreißig Jahre alt.,I am thirty years old.
+A1,Ich komme aus der Schweiz.,I come from Switzerland.
+A1,Ich wohne in Wien.,I live in Vienna.
+A1,Meine Telefonnummer ist null-eins-sieben-zwei.,My phone number is zero-one-seven-two.
+A1,Ich spreche Deutsch und Französisch.,I speak German and French.
+A1,Mein Vorname ist Klaus und mein Nachname ist Braun.,My first name is Klaus and my last name is Braun.
+// cluster: filling in forms & documents
+A2,Mein Geburtsdatum ist der zehnte April neunzehnhundertneunzig.,My date of birth is the tenth of April nineteen ninety.
+A2,Ich bin in Berlin geboren und aufgewachsen.,I was born and raised in Berlin.
+A2,Ich bin verheiratet und habe eine Tochter.,I am married and have a daughter.
+A2,Bitte füllen Sie das Formular vollständig aus.,Please fill out the form completely.
+A2,Ich brauche ein Passbild für den Ausweis.,I need a passport photo for the ID.
+A2,Meine Postleitzahl lautet null-eins-null-sieben-null.,My postal code is zero-one-zero-seven-zero.
+A2,Haben Sie Ihren Reisepass dabei?,Do you have your passport with you?
+A2,Meine Muttersprache ist Deutsch.,My mother tongue is German.
+// cluster: registration & citizenship
+B1,Ich habe die deutsche und österreichische Staatsbürgerschaft.,I have German and Austrian citizenship.
+B1,Mein Geburtsname unterscheidet sich von meinem jetzigen Namen.,My birth name differs from my current name.
+B1,Ich habe mich beim Einwohnermeldeamt angemeldet.,I have registered at the residents registration office.
+B1,Meine Aufenthaltserlaubnis gilt noch zwei Jahre.,My residence permit is still valid for two years.
+B1,Ich spreche Deutsch als Fremdsprache auf B2-Niveau.,I speak German as a foreign language at B2 level.
+B1,Der Personalausweis muss alle zehn Jahre erneuert werden.,The national ID card must be renewed every ten years.
+B1,Ich bin seit fünf Jahren in Deutschland gemeldet.,I have been registered in Germany for five years.
+// cluster: legal & formal identity
+B2,Die Beglaubigung des Dokuments kostet dreißig Euro.,The certification of the document costs thirty euros.
+B2,Ich beantrage die Einbürgerung nach acht Jahren rechtmäßigem Aufenthalt.,I am applying for naturalization after eight years of legal residence.
+B2,Der Aufenthaltstitel berechtigt mich zur Arbeit in Deutschland.,The residence permit entitles me to work in Germany.
+B2,Die Doppelstaatsbürgerschaft wird nur unter bestimmten Voraussetzungen genehmigt.,Dual citizenship is only approved under certain conditions.
+B2,Alle ausländischen Dokumente müssen offiziell übersetzt und beglaubigt werden.,All foreign documents must be officially translated and certified.
+B2,Der Antrag auf Einbürgerung wird von der zuständigen Behörde geprüft.,The naturalization application is reviewed by the responsible authority.
+`.trim(),
+
+    // ══════════════════════════════════════════════════════
+    // RECORDING MODE CARDS
+    // ══════════════════════════════════════════════════════
+    recCards: {
+        cover:        { type:'cover',        tag:'Unit 01', titleLines:['Personal','Information','& Identity'], badges:[{label:'der',color:'#1E88E5'},{label:'das',color:'#2E7D32'},{label:'die',color:'#C62828'}], overlay:`radial-gradient(ellipse at 72% 40%, rgba(30,136,229,0.28) 0%, transparent 50%), radial-gradient(ellipse at 28% 65%, rgba(198,40,40,0.22) 0%, transparent 45%)`, bottomL:'⬡ 284 words total', bottomR:'A1 – B2' },
+        nouns_all:    { type:'table-header', tag:'TABLE 1', titleLines:['Nouns','(Die Nomen)'],                badges:[{label:'der',color:'#1E88E5'},{label:'das',color:'#2E7D32'},{label:'die',color:'#C62828'}], overlay:`radial-gradient(ellipse at 25% 45%, rgba(30,136,229,0.22) 0%, transparent 45%), radial-gradient(ellipse at 55% 60%, rgba(46,125,50,0.2) 0%, transparent 40%), radial-gradient(ellipse at 80% 35%, rgba(198,40,40,0.2) 0%, transparent 40%)`, bottomL:'⬡ 80 nouns · der 28 · das 23 · die 29', bottomR:'A1 – B2' },
+        der:          { type:'section',      tag:'TABLE 1 · NOUNS', titleLines:['Masculine','Words'], badge:{label:'der',color:'#1E88E5',bg:'rgba(30,136,229,0.18)',border:'rgba(30,136,229,0.55)'}, overlay:`radial-gradient(ellipse at 78% 45%, rgba(30,136,229,0.25) 0%, transparent 58%)`, cornerTxt:'DER', cornerColor:'rgba(30,136,229,0.07)', bottomL:'⬡ 28 words',    bottomR:'A1 – B2' },
+        das:          { type:'section',      tag:'TABLE 1 · NOUNS', titleLines:['Neuter','Words'],    badge:{label:'das',color:'#2E7D32',bg:'rgba(46,125,50,0.18)',border:'rgba(46,125,50,0.55)'},   overlay:`radial-gradient(ellipse at 78% 45%, rgba(46,125,50,0.25) 0%, transparent 58%)`,  cornerTxt:'DAS', cornerColor:'rgba(46,125,50,0.07)',  bottomL:'⬡ 23 words',    bottomR:'A1 – B2' },
+        die:          { type:'section',      tag:'TABLE 1 · NOUNS', titleLines:['Feminine','Words'],  badge:{label:'die',color:'#C62828',bg:'rgba(198,40,40,0.18)',border:'rgba(198,40,40,0.55)'},   overlay:`radial-gradient(ellipse at 78% 45%, rgba(198,40,40,0.25) 0%, transparent 58%)`,  cornerTxt:'DIE', cornerColor:'rgba(198,40,40,0.07)',  bottomL:'⬡ 29 words',    bottomR:'A1 – B2' },
+        adj_verb_all: { type:'table-header', tag:'TABLE 2', titleLines:['Adjectives','& Verbs'],      badges:[{label:'adj',color:'#F57F17'},{label:'verb',color:'#00838F'}],                        overlay:`radial-gradient(ellipse at 75% 40%, rgba(245,127,23,0.28) 0%, transparent 50%), radial-gradient(ellipse at 28% 65%, rgba(0,131,143,0.22) 0%, transparent 45%)`, bottomL:'⬡ 96 words · adj 48 · verb 48', bottomR:'A1 – B2' },
+        adj:          { type:'section',      tag:'TABLE 2 · ADJ & VERBS', titleLines:['Adjectives','with Opposites'], badge:{label:'adj',color:'#F57F17',bg:'rgba(245,127,23,0.18)',border:'rgba(245,127,23,0.55)'},   overlay:`radial-gradient(ellipse at 78% 45%, rgba(245,127,23,0.22) 0%, transparent 58%)`, cornerTxt:'ADJ',  cornerColor:'rgba(245,127,23,0.07)', bottomL:'⬡ 48 adjectives', bottomR:'A1 – B2' },
+        verb:         { type:'section',      tag:'TABLE 2 · ADJ & VERBS', titleLines:['Verbs','with Opposites'],       badge:{label:'verb',color:'#00838F',bg:'rgba(0,131,143,0.18)',border:'rgba(0,131,143,0.55)'},   overlay:`radial-gradient(ellipse at 78% 45%, rgba(0,131,143,0.22) 0%, transparent 58%)`,  cornerTxt:'VERB', cornerColor:'rgba(0,131,143,0.07)',  bottomL:'⬡ 48 verbs',      bottomR:'A1 – B2' },
+        phrases_divider: { type:'divider', tag:'SECTION DIVIDER', titleLines:['Phrases','&','Sentences'], overlay:`radial-gradient(ellipse at 50% 50%, rgba(106,27,154,0.55) 0%, transparent 62%)`, cornerTxt:'💬', cornerColor:'rgba(106,27,154,0.12)', isEmoji:true, bottomL:'⬡ 108 phrases & sentences', bottomR:'A1 – B2' },
+        expr:         { type:'section', tag:'TABLE 3', titleLines:['Common','Expressions'], badge:{label:'expr',color:'#6A1B9A',bg:'rgba(106,27,154,0.18)',border:'rgba(106,27,154,0.55)'}, overlay:`radial-gradient(ellipse at 78% 45%, rgba(106,27,154,0.25) 0%, transparent 58%)`, cornerTxt:'EXPR', cornerColor:'rgba(106,27,154,0.07)', bottomL:'⬡ 24 expressions',      bottomR:'A1 – B2' },
+        conv:         { type:'section', tag:'TABLE 4', titleLines:['Conversations'],         badge:{label:'conv',color:'#5C6BC0',bg:'rgba(40,53,147,0.2)',border:'rgba(57,73,171,0.6)'},   overlay:`radial-gradient(ellipse at 78% 45%, rgba(40,53,147,0.28) 0%, transparent 58%)`,  cornerTxt:'CONV', cornerColor:'rgba(40,53,147,0.07)', bottomL:'⬡ 4 dialogues · 34 lines', bottomR:'A1 – B2' },
+        qa:           { type:'section', tag:'TABLE 5', titleLines:['Questions','& Answers'], badge:{label:'Q&A',color:'#A1887F',bg:'rgba(78,52,46,0.22)',border:'rgba(109,76,65,0.6)'},   overlay:`radial-gradient(ellipse at 78% 45%, rgba(78,52,46,0.33) 0%, transparent 58%)`,   cornerTxt:'Q&A',  cornerColor:'rgba(78,52,46,0.07)',  bottomL:'⬡ 22 Q&A pairs',        bottomR:'A1 – B2' },
+        sent:         { type:'section', tag:'TABLE 6', titleLines:['Complete','Sentences'],  badge:{label:'sent',color:'#5C7AEA',bg:'rgba(26,35,126,0.22)',border:'rgba(40,53,147,0.6)'}, overlay:`radial-gradient(ellipse at 78% 45%, rgba(26,35,126,0.30) 0%, transparent 58%)`,  cornerTxt:'SENT', cornerColor:'rgba(26,35,126,0.07)', bottomL:'⬡ 28 sentences',         bottomR:'A1 – B2' },
+    },
+
+});
+</script>
+</body>
+</html>

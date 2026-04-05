@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>German – 02 Family & Relationships</title>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="vocab-engine.css">
+</head>
+<body>
+<script src="vocab-engine.js"></script>
+<script>
+VocabEngine.init({
+
+    // ── Page identity ──────────────────────────────────────
+    unit:       '02',
+    topic:      'Family & Relationships',
+    heading:    '📚 02 Family_Relationships',
+    subtitle:   'Family &amp; Relationships · A1–B2 Level-Tagged Reference · aliattia02',
+    footerTopic:'Family &amp; Relationships',
+
+    // ── Unit nav bar (list all units here in every file) ──
+    units: [
+        { unit: '01', label: 'Personal Info',   file: '01_PersonalInformation.html' },
+        { unit: '02', label: 'Family',           file: '02_FamilyRelationships.html' },
+    ],
+
+    // ── Recording mode sequence label ─────────────────────
+    recSeqLabel: '🎬 Intro — Family & Relationships',
+
+    // ══════════════════════════════════════════════════════
+    // NOUNS CSV
+    // format: level, article, german, pluralNotation, pluralFull, english
+    // ══════════════════════════════════════════════════════
+    nounsCSV: `
+// das — cluster: children & infants
+A1,das,Kind,-er,die Kinder,Child
+A1,das,Baby,-s,die Babys,Baby
+A2,das,Kleinkind,-er,die Kleinkinder,Toddler
+A2,das,Neugeborene,-n,die Neugeborenen,Newborn
+B1,das,Einzelkind,-er,die Einzelkinder,Only child
+B1,das,Adoptivkind,-er,die Adoptivkinder,Adopted child
+B2,das,Pflegekind,-er,die Pflegekinder,Foster child
+// das — cluster: couple & family unit
+A1,das,Paar,-e,die Paare,Couple
+A1,das,Zuhause,---,---,Home
+A2,das,Ehepaar,-e,die Ehepaare,Married couple
+A2,das,Familienmitglied,-er,die Familienmitglieder,Family member
+B1,das,Familienleben,---,---,Family life
+B1,das,Familienoberhaupt,Familienoberhäupter,die Familienoberhäupter,Head of family
+B2,das,Erbe,---,---,Inheritance
+// das — cluster: life events & milestones
+A1,das,Fest,-e,die Feste,Celebration
+A2,das,Jubiläum,Jubiläen,die Jubiläen,Anniversary
+B1,das,Wiedersehen,=,die Wiedersehen,Reunion
+B2,das,Begräbnis,-se,die Begräbnisse,Funeral
+// das — cluster: legal & rights
+B1,das,Sorgerecht,---,---,Custody
+B1,das,Besuchsrecht,---,---,Visitation right
+B2,das,Erbrecht,---,---,Inheritance law
+B2,das,Testament,-e,die Testamente,Will
+// das — cluster: emotional bonds (abstract)
+B1,das,Vertrauen,---,---,Trust
+B1,das,Verhältnis,-se,die Verhältnisse,Relationship
+B2,das,Verständnis,---,---,Understanding
+// der — cluster: male family members
+A1,der,Vater,Väter,die Väter,Father
+A1,der,Bruder,Brüder,die Brüder,Brother
+A1,der,Sohn,Söhne,die Söhne,Son
+A1,der,Großvater,Großväter,die Großväter,Grandfather
+A1,der,Onkel,=,die Onkel,Uncle
+A1,der,Enkel,=,die Enkel,Grandson
+A2,der,Neffe,-n,die Neffen,Nephew
+A2,der,Cousin,-s,die Cousins,Male cousin
+A2,der,Schwiegervater,Schwiegerväter,die Schwiegerväter,Father-in-law
+A2,der,Schwager,Schwäger,die Schwäger,Brother-in-law
+A2,der,Schwiegersohn,Schwiegersöhne,die Schwiegersöhne,Son-in-law
+A2,der,Stiefsohn,Stiefsöhne,die Stiefsöhne,Stepson
+B1,der,Stiefvater,Stiefväter,die Stiefväter,Stepfather
+B1,der,Halbbruder,Halbbrüder,die Halbbrüder,Half-brother
+B1,der,Pate,-n,die Paten,Godfather
+B1,der,Jugendliche,-n,die Jugendlichen,Teenager
+B2,der,Vormund,Vormünder,die Vormünder,Guardian
+B2,der,Stammbaum,Stammbäume,die Stammbäume,Family tree
+// der — cluster: male partners & social bonds
+A1,der,Mann,Männer,die Männer,Husband
+A1,der,Freund,-e,die Freunde,Friend
+A2,der,Verlobte,-n,die Verlobten,Fiancé
+A2,der,Partner,=,die Partner,Partner
+B1,der,Lebenspartner,=,die Lebenspartner,Civil partner
+B1,der,Ex-Mann,Ex-Männer,die Ex-Männer,Ex-husband
+B2,der,Witwer,=,die Witwer,Widower
+// der — cluster: ancestry & lineage
+A2,der,Vorfahre,-n,die Vorfahren,Ancestor
+B1,der,Nachkomme,-n,die Nachkommen,Descendant
+// die — cluster: female family members
+A1,die,Mutter,Mütter,die Mütter,Mother
+A1,die,Schwester,-n,die Schwestern,Sister
+A1,die,Tochter,Töchter,die Töchter,Daughter
+A1,die,Großmutter,Großmütter,die Großmütter,Grandmother
+A1,die,Tante,-n,die Tanten,Aunt
+A1,die,Enkelin,-nen,die Enkelinnen,Granddaughter
+A2,die,Nichte,-n,die Nichten,Niece
+A2,die,Cousine,-n,die Cousinen,Female cousin
+A2,die,Schwiegermutter,Schwiegermütter,die Schwiegermütter,Mother-in-law
+A2,die,Schwägerin,-nen,die Schwägerinnen,Sister-in-law
+A2,die,Schwiegertochter,Schwiegertöchter,die Schwiegertöchter,Daughter-in-law
+A2,die,Stieftochter,Stieftöchter,die Stieftöchter,Stepdaughter
+B1,die,Stiefmutter,Stiefmütter,die Stiefmütter,Stepmother
+B1,die,Halbschwester,-n,die Halbschwestern,Half-sister
+B1,die,Patin,-nen,die Patinnen,Godmother
+B2,die,Witwe,-n,die Witwen,Widow
+// die — cluster: female partners & social bonds
+A1,die,Frau,-en,die Frauen,Wife
+A1,die,Freundin,-nen,die Freundinnen,Friend (f)
+A2,die,Verlobte,-n,die Verlobten,Fiancée
+A2,die,Partnerin,-nen,die Partnerinnen,Partner (f)
+B1,die,Lebenspartnerin,-nen,die Lebenspartnerinnen,Civil partner (f)
+B1,die,Ex-Frau,-en,die Ex-Frauen,Ex-wife
+// die — cluster: collective family terms
+A1,die,Familie,-n,die Familien,Family
+A1,die,Eltern,nur P,die Eltern,Parents
+A1,die,Großeltern,nur P,die Großeltern,Grandparents
+A2,die,Geschwister,nur P,die Geschwister,Siblings
+B1,die,Verwandten,nur P,die Verwandten,Relatives
+B2,die,Vorfahren,nur P,die Vorfahren,Ancestors
+// die — cluster: relationship concepts
+A1,die,Liebe,---,---,Love
+A1,die,Kindheit,---,---,Childhood
+A2,die,Freundschaft,-en,die Freundschaften,Friendship
+A2,die,Ehe,-n,die Ehen,Marriage
+A2,die,Hochzeit,-en,die Hochzeiten,Wedding
+A2,die,Erziehung,---,---,Upbringing
+B1,die,Beziehung,-en,die Beziehungen,Relationship
+B1,die,Verlobung,-en,die Verlobungen,Engagement
+B1,die,Scheidung,-en,die Scheidungen,Divorce
+B1,die,Trennung,-en,die Trennungen,Separation
+B1,die,Fürsorge,---,---,Care
+B1,die,Jugend,---,---,Youth
+B2,die,Zuneigung,---,---,Affection
+B2,die,Loyalität,---,---,Loyalty
+B2,die,Obhut,---,---,Custody / care
+// die — cluster: family types & structures
+A2,die,Kernfamilie,-n,die Kernfamilien,Nuclear family
+B1,die,Großfamilie,-n,die Großfamilien,Extended family
+B1,die,Patchworkfamilie,-n,die Patchworkfamilien,Blended family
+B2,die,Alleinerziehende,-n,die Alleinerziehenden,Single parent
+`.trim(),
+
+    // ══════════════════════════════════════════════════════
+    // ADJECTIVES CSV
+    // ══════════════════════════════════════════════════════
+    adjectivesCSV: `
+// cluster: emotional bonds
+A1,-liebevoll,loving,-kalt,cold
+A2,-fürsorglich,caring,-gleichgültig,indifferent
+B1,-treu,loyal,-untreu,unfaithful
+B2,-innig,intimate,-distanziert,distant
+// cluster: marital & relationship status
+A1,-verheiratet,married,-ledig,single
+A2,-geschieden,divorced,-verwitwet,widowed
+B1,-verlobt,engaged,-getrennt,separated
+B2,-alleinerziehend,single-parent,-zweielterlich,two-parent
+// cluster: closeness & personality
+A1,-nett,nice,-unfreundlich,unfriendly
+A2,-eng,close,-locker,loose
+B1,-eifersüchtig,jealous,-vertrauensvoll,trusting
+B2,-anhänglich,clingy,-unabhängig,independent
+// cluster: age & generation
+A1,-jung,young,-alt,old
+A2,-erwachsen,adult,-kindlich,childlike
+B1,-volljährig,of age,-minderjährig,underage
+B2,-generationsübergreifend,cross-generational,-gleichaltrig,same-age
+// cluster: family quality & dynamics
+A2,-verwandt,related,-unverwandt,unrelated
+A2,-geduldig,patient,-ungeduldig,impatient
+B1,-harmonisch,harmonious,-zerstritten,at odds
+B1,-adoptiert,adopted,-leiblich,biological
+B2,-dysfunktional,dysfunctional,-intakt,intact
+// cluster: care & support
+B1,-fürsorglich,caring,-vernachlässigend,neglectful
+B2,-pflegebedürftig,in need of care,-selbstversorgt,self-sufficient
+`.trim(),
+
+    // ══════════════════════════════════════════════════════
+    // VERBS CSV
+    // ══════════════════════════════════════════════════════
+    verbsCSV: `
+// cluster: forming & ending relationships
+A1,*lieben,love,*mögen,like
+A2,*heiraten,marry,+sich scheiden lassen,get divorced
+B1,+sich verloben,get engaged,+sich trennen,separate
+B2,*adoptieren,adopt,*enterben,disinherit
+// cluster: communication & visits
+A1,*anrufen,call,*besuchen,visit
+A2,*schreiben,write,*antworten,reply
+B1,+sich streiten,argue,+sich versöhnen,make up
+B2,*vermitteln,mediate,*schlichten,settle
+// cluster: care & upbringing
+A1,+sich kümmern,take care,*helfen,help
+A2,*unterstützen,support,*pflegen,care for
+B1,*erziehen,raise,*fördern,support
+B2,*versorgen,provide for,*vernachlässigen,neglect
+// cluster: social bonds
+A2,*kennenlernen,get to know,*befreunden,befriend
+B1,*vertrauen,trust,*enttäuschen,disappoint
+// cluster: living & growing
+A2,+aufwachsen,grow up,+ausziehen,move out
+B1,+einziehen,move in,+zusammenleben,live together
+B2,*beerben,inherit from,*bevormunden,patronize
+// cluster: emotional expression
+A1,*lachen,laugh,*weinen,cry
+A2,*vermissen,miss,+vergeben,forgive
+B1,*trösten,comfort,*ärgern,annoy
+B2,+sich entfremden,become estranged,+sich annähern,grow closer
+`.trim(),
+
+    // ══════════════════════════════════════════════════════
+    // EXPRESSIONS CSV
+    // ══════════════════════════════════════════════════════
+    expressionsCSV: `
+// cluster: describing your family
+A1,Das ist meine Familie.,This is my family.
+A1,Ich habe einen Bruder und eine Schwester.,I have a brother and a sister.
+A1,Wie viele Geschwister hast du?,How many siblings do you have?
+A1,Ich bin Einzelkind.,I am an only child.
+A1,Meine Eltern wohnen in Berlin.,My parents live in Berlin.
+// cluster: talking about relationships
+A2,Wir verstehen uns sehr gut.,We get along very well.
+A2,Er ist wie ein Bruder für mich.,He is like a brother to me.
+A2,Meine Schwester und ich sind sehr eng.,My sister and I are very close.
+A2,Wie groß ist deine Familie?,How big is your family?
+A2,Wir kommen aus einer großen Familie.,We come from a large family.
+// cluster: partnership & life changes
+B1,Wir sind seit zehn Jahren verheiratet.,We have been married for ten years.
+B1,Wir haben uns vor zwei Jahren kennengelernt.,We met two years ago.
+B1,Die Hochzeit ist im Juni geplant.,The wedding is planned for June.
+B1,Meine Schwiegereltern sind sehr nett.,My in-laws are very nice.
+B1,Wir haben uns leider getrennt.,Unfortunately we have separated.
+B1,Ich vermisse meine Familie sehr.,I miss my family very much.
+// cluster: family structure & legal
+B2,Das Sorgerecht liegt bei der Mutter.,Custody lies with the mother.
+B2,Sie haben gemeinsames Sorgerecht beantragt.,They applied for joint custody.
+B2,Die Adoption wurde offiziell genehmigt.,The adoption was officially approved.
+B2,Das Erbe wird unter den Geschwistern aufgeteilt.,The inheritance is divided among the siblings.
+B2,Er hat sie in seinem Testament bedacht.,He mentioned her in his will.
+B2,Das Erbrecht ist in Deutschland klar geregelt.,Inheritance law is clearly regulated in Germany.
+`.trim(),
+
+    // ══════════════════════════════════════════════════════
+    // CONVERSATIONS CSV
+    // ══════════════════════════════════════════════════════
+    conversationsCSV: `
+A1|Talking About Family|A,Hast du Geschwister?,Do you have siblings?
+A1|Talking About Family|B,Ja ich habe einen Bruder und eine Schwester. Und du?,Yes I have a brother and a sister. And you?
+A1|Talking About Family|A,Ich bin Einzelkind. Wo wohnen deine Eltern?,I am an only child. Where do your parents live?
+A1|Talking About Family|B,Meine Eltern wohnen in Hamburg.,My parents live in Hamburg.
+A1|Talking About Family|A,Hast du auch Großeltern?,Do you also have grandparents?
+A1|Talking About Family|B,Ja meine Großmutter wohnt bei uns zu Hause.,Yes my grandmother lives with us at home.
+A1|Talking About Family|A,Wie alt ist sie?,How old is she?
+A1|Talking About Family|B,Sie ist achtzig Jahre alt und sehr aktiv.,She is eighty years old and very active.
+A2|Describing Your Family|A,Erzähl mir von deiner Familie.,Tell me about your family.
+A2|Describing Your Family|B,Wir sind eine große Familie. Ich habe drei Geschwister und viele Cousins.,We are a large family. I have three siblings and many cousins.
+A2|Describing Your Family|A,Verstehst du dich gut mit deinen Geschwistern?,Do you get along well with your siblings?
+A2|Describing Your Family|B,Ja wir verstehen uns sehr gut. Mein Bruder ist mein bester Freund.,Yes we get along very well. My brother is my best friend.
+A2|Describing Your Family|A,Sind deine Eltern noch verheiratet?,Are your parents still married?
+A2|Describing Your Family|B,Ja seit dreißig Jahren. Sie feiern nächstes Jahr ihr Jubiläum.,Yes for thirty years. They are celebrating their anniversary next year.
+A2|Describing Your Family|A,Das ist wunderbar! Habt ihr viele Familienfeste?,That is wonderful! Do you have many family celebrations?
+A2|Describing Your Family|B,Ja wir treffen die ganze Familie immer zu Weihnachten und Ostern.,Yes we always meet the whole family at Christmas and Easter.
+B1|Wedding Plans|A,Herzlichen Glückwunsch zur Verlobung! Wann ist die Hochzeit?,Congratulations on the engagement! When is the wedding?
+B1|Wedding Plans|B,Danke! Wir heiraten im September in einem kleinen Schloss.,Thank you! We are getting married in September in a small castle.
+B1|Wedding Plans|A,Habt ihr schon viele Gäste eingeladen?,Have you already invited many guests?
+B1|Wedding Plans|B,Ja wir laden die ganze Familie und enge Freunde ein. Das sind fast achtzig Personen.,Yes we are inviting the whole family and close friends. That is almost eighty people.
+B1|Wedding Plans|A,Und wer ist Trauzeuge?,And who is the best man?
+B1|Wedding Plans|B,Mein Bruder. Er hält auch eine Rede.,My brother. He is also giving a speech.
+B1|Wedding Plans|A,Werden die Kinder auch dabei sein?,Will the children be there too?
+B1|Wedding Plans|B,Ja natürlich. Meine Nichten sind die Blumenmädchen.,Yes of course. My nieces are the flower girls.
+B1|Wedding Plans|A,Das wird sicher ein unvergessliches Fest.,That will certainly be an unforgettable celebration.
+B1|Wedding Plans|B,Wir freuen uns riesig darauf.,We are very much looking forward to it.
+B2|Family Law Matters|A,Ich brauche Ihren Rat in einer Familienangelegenheit.,I need your advice in a family matter.
+B2|Family Law Matters|B,Natürlich. Worum geht es?,Of course. What is it about?
+B2|Family Law Matters|A,Mein Partner und ich haben uns getrennt. Wir haben ein Kind und wissen nicht wie das Sorgerecht geregelt wird.,My partner and I have separated. We have a child and do not know how custody is regulated.
+B2|Family Law Matters|B,Das Gericht entscheidet nach dem Kindeswohl. Meist wird gemeinsames Sorgerecht vereinbart.,The court decides based on the child's best interest. Joint custody is usually agreed upon.
+B2|Family Law Matters|A,Was ist wenn wir uns nicht einigen können?,What if we cannot agree?
+B2|Family Law Matters|B,Dann kann ein Mediator helfen bevor man vor Gericht geht.,Then a mediator can help before going to court.
+B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about visitation rights?
+B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
+`.trim(),
+
+    // ══════════════════════════════════════════════════════
+    // Q&A CSV
+    // ══════════════════════════════════════════════════════
+    qaCSV: `
+// cluster: basic family
+A1,Hast du Geschwister?,Ja ich habe einen Bruder und eine Schwester. (Yes I have a brother and a sister.)
+A1,Wo wohnen deine Eltern?,Meine Eltern wohnen in München. (My parents live in Munich.)
+A1,Hast du Kinder?,Nein ich habe noch keine Kinder. (No I do not have children yet.)
+A1,Liebst du deine Familie?,Ja ich liebe meine Familie sehr. (Yes I love my family very much.)
+A1,Wie alt ist deine Mutter?,Meine Mutter ist fünfzig Jahre alt. (My mother is fifty years old.)
+A1,Was machst du mit deiner Familie am Wochenende?,Wir gehen zusammen spazieren oder besuchen Großeltern. (We go for a walk together or visit grandparents.)
+A1,Hast du Großeltern?,Ja meine Großeltern leben noch in Bayern. (Yes my grandparents still live in Bavaria.)
+// cluster: relationships & social
+A2,Bist du verheiratet?,Nein ich bin noch ledig. (No I am still single.)
+A2,Wie viele Personen sind in deiner Familie?,Wir sind fünf: Eltern und drei Kinder. (We are five: parents and three children.)
+A2,Verstehst du dich gut mit deinen Geschwistern?,Ja wir verstehen uns sehr gut. (Yes we get along very well.)
+A2,Ist deine Familie groß oder klein?,Meine Familie ist ziemlich groß mit vielen Cousins. (My family is quite large with many cousins.)
+A2,Wie oft siehst du deine Verwandten?,Wir treffen uns meistens bei Festen und Feiertagen. (We usually meet at celebrations and holidays.)
+A2,Hast du Onkel und Tanten?,Ja ich habe viele Onkel und Tanten. (Yes I have many uncles and aunts.)
+A2,Was ist deine Muttersprache zu Hause?,Zu Hause sprechen wir Deutsch und manchmal Englisch. (At home we speak German and sometimes English.)
+// cluster: family life & values
+B1,Was bedeutet Familie für dich?,Familie bedeutet Zusammenhalt Vertrauen und bedingungslose Liebe. (Family means solidarity trust and unconditional love.)
+B1,Wie war deine Kindheit?,Meine Kindheit war glücklich und behütet. (My childhood was happy and sheltered.)
+B1,Wie ist das Verhältnis zu deiner Familie?,Wir haben ein enges und vertrauensvolles Verhältnis. (We have a close and trusting relationship.)
+B1,Was ist eine Patchworkfamilie?,Eine Familie die durch neue Partnerschaften aus verschiedenen Familien entsteht. (A family that forms from different families through new partnerships.)
+B1,Was macht eine glückliche Ehe aus?,Respekt Kommunikation und gegenseitiges Vertrauen. (Respect communication and mutual trust.)
+B1,Was versteht man unter einer erweiterten Familie?,Die erweiterte Familie schließt Großeltern Tanten Onkel und Cousins ein. (The extended family includes grandparents aunts uncles and cousins.)
+// cluster: advanced family matters
+B2,Was bedeutet gemeinsames Sorgerecht?,Beide Elternteile teilen die Verantwortung für das Kind gleichberechtigt. (Both parents share responsibility for the child equally.)
+B2,Was regelt das Erbrecht?,Es bestimmt wer nach dem Tod einer Person deren Vermögen erbt. (It determines who inherits a person's assets after death.)
+B2,Was ist ein Vormund?,Eine Person die die rechtliche Verantwortung für ein Kind übernimmt. (A person who takes on legal responsibility for a child.)
+B2,Wie hat sich das Familienmodell in Deutschland verändert?,Patchwork- und Einelternfamilien werden gesellschaftlich immer akzeptierter. (Blended and single-parent families are becoming more socially accepted.)
+B2,Was ist eine Lebensgemeinschaft?,Eine dauerhafte Partnerschaft ohne formelle Ehe. (A permanent partnership without a formal marriage.)
+`.trim(),
+
+    // ══════════════════════════════════════════════════════
+    // SENTENCES CSV
+    // ══════════════════════════════════════════════════════
+    sentencesCSV: `
+// cluster: family members & description
+A1,Ich habe zwei Schwestern und einen Bruder.,I have two sisters and a brother.
+A1,Meine Eltern sind sehr nett.,My parents are very nice.
+A1,Mein Großvater ist siebzig Jahre alt.,My grandfather is seventy years old.
+A1,Ich bin das älteste Kind in meiner Familie.,I am the oldest child in my family.
+A1,Meine Schwester heißt Lisa.,My sister is called Lisa.
+A1,Ich liebe meine Familie sehr.,I love my family very much.
+A1,Mein Vater arbeitet als Ingenieur.,My father works as an engineer.
+A1,Meine Familie ist sehr wichtig für mich.,My family is very important to me.
+// cluster: family life & routines
+A2,Wir essen jeden Abend zusammen.,We eat together every evening.
+A2,Meine Eltern sind seit dreißig Jahren verheiratet.,My parents have been married for thirty years.
+A2,Mein Onkel hat drei Kinder.,My uncle has three children.
+A2,Ich verstehe mich gut mit meinen Geschwistern.,I get along well with my siblings.
+A2,Meine Großmutter erzählt immer alte Geschichten.,My grandmother always tells old stories.
+A2,Wir besuchen unsere Verwandten oft am Wochenende.,We often visit our relatives at the weekend.
+A2,Meine Cousine wohnt in Hamburg.,My female cousin lives in Hamburg.
+A2,Mein Neffe ist erst zwei Jahre alt.,My nephew is only two years old.
+A2,Wir feiern Weihnachten immer mit der ganzen Familie.,We always celebrate Christmas with the whole family.
+A2,Meine Tante ist die Schwester meines Vaters.,My aunt is my father's sister.
+// cluster: relationships & life changes
+B1,Meine Eltern haben sich vor fünf Jahren scheiden lassen.,My parents got divorced five years ago.
+B1,Ich vermisse meine Großeltern sehr.,I miss my grandparents very much.
+B1,Mein Bruder hat letztes Jahr geheiratet.,My brother got married last year.
+B1,Wir haben uns nach dem Streit wieder versöhnt.,We made up after the argument.
+B1,Meine Schwester erwartet ein Baby im Sommer.,My sister is expecting a baby in summer.
+B1,Die Hochzeit war ein wunderschönes Fest.,The wedding was a beautiful celebration.
+B1,Meine Stiefmutter ist sehr verständnisvoll.,My stepmother is very understanding.
+B1,Ich habe ein sehr gutes Verhältnis zu meinen Eltern.,I have a very good relationship with my parents.
+B1,Mein Schwiegervater ist streng aber fair.,My father-in-law is strict but fair.
+// cluster: family structure & society
+B2,Das Sorgerecht wurde nach der Scheidung geregelt.,Custody was settled after the divorce.
+B2,Die Patchworkfamilie ist ein modernes Familienmodell.,The blended family is a modern family model.
+B2,Das Erbe wurde gerecht unter den Geschwistern aufgeteilt.,The inheritance was fairly divided among the siblings.
+B2,Alleinerziehende Mütter haben oft weniger finanzielle Mittel.,Single mothers often have fewer financial resources.
+B2,Die Adoption wurde nach langer Wartezeit genehmigt.,The adoption was approved after a long wait.
+B2,Das Testament regelt die Verteilung des Vermögens.,The will regulates the distribution of assets.
+B2,Die rechtlichen Grundlagen des Familienrechts sind komplex.,The legal foundations of family law are complex.
+`.trim(),
+
+    // ══════════════════════════════════════════════════════
+    // RECORDING MODE CARDS
+    // ══════════════════════════════════════════════════════
+    recCards: {
+        cover:        { type:'cover',        tag:'Unit 02', titleLines:['Family','&','Relationships'], badges:[{label:'der',color:'#1E88E5'},{label:'das',color:'#2E7D32'},{label:'die',color:'#C62828'}], overlay:`radial-gradient(ellipse at 72% 40%, rgba(30,136,229,0.28) 0%, transparent 50%), radial-gradient(ellipse at 28% 65%, rgba(198,40,40,0.22) 0%, transparent 45%)`, bottomL:'⬡ 300+ words total', bottomR:'A1 – B2' },
+        nouns_all:    { type:'table-header', tag:'TABLE 1', titleLines:['Nouns','(Die Nomen)'],        badges:[{label:'der',color:'#1E88E5'},{label:'das',color:'#2E7D32'},{label:'die',color:'#C62828'}], overlay:`radial-gradient(ellipse at 25% 45%, rgba(30,136,229,0.22) 0%, transparent 45%), radial-gradient(ellipse at 55% 60%, rgba(46,125,50,0.2) 0%, transparent 40%), radial-gradient(ellipse at 80% 35%, rgba(198,40,40,0.2) 0%, transparent 40%)`, bottomL:'⬡ 99 nouns · der 27 · das 25 · die 47', bottomR:'A1 – B2' },
+        der:          { type:'section', tag:'TABLE 1 · NOUNS', titleLines:['Masculine','Words'], badge:{label:'der',color:'#1E88E5',bg:'rgba(30,136,229,0.18)',border:'rgba(30,136,229,0.55)'}, overlay:`radial-gradient(ellipse at 78% 45%, rgba(30,136,229,0.25) 0%, transparent 58%)`, cornerTxt:'DER', cornerColor:'rgba(30,136,229,0.07)', bottomL:'⬡ 27 words',    bottomR:'A1 – B2' },
+        das:          { type:'section', tag:'TABLE 1 · NOUNS', titleLines:['Neuter','Words'],    badge:{label:'das',color:'#2E7D32',bg:'rgba(46,125,50,0.18)',border:'rgba(46,125,50,0.55)'},   overlay:`radial-gradient(ellipse at 78% 45%, rgba(46,125,50,0.25) 0%, transparent 58%)`,  cornerTxt:'DAS', cornerColor:'rgba(46,125,50,0.07)',  bottomL:'⬡ 25 words',    bottomR:'A1 – B2' },
+        die:          { type:'section', tag:'TABLE 1 · NOUNS', titleLines:['Feminine','Words'],  badge:{label:'die',color:'#C62828',bg:'rgba(198,40,40,0.18)',border:'rgba(198,40,40,0.55)'},   overlay:`radial-gradient(ellipse at 78% 45%, rgba(198,40,40,0.25) 0%, transparent 58%)`,  cornerTxt:'DIE', cornerColor:'rgba(198,40,40,0.07)',  bottomL:'⬡ 47 words',    bottomR:'A1 – B2' },
+        adj_verb_all: { type:'table-header', tag:'TABLE 2', titleLines:['Adjectives','& Verbs'], badges:[{label:'adj',color:'#F57F17'},{label:'verb',color:'#00838F'}],                        overlay:`radial-gradient(ellipse at 75% 40%, rgba(245,127,23,0.28) 0%, transparent 50%), radial-gradient(ellipse at 28% 65%, rgba(0,131,143,0.22) 0%, transparent 45%)`, bottomL:'⬡ 96 words · adj 48 · verb 48', bottomR:'A1 – B2' },
+        adj:          { type:'section', tag:'TABLE 2 · ADJ & VERBS', titleLines:['Adjectives','with Opposites'], badge:{label:'adj',color:'#F57F17',bg:'rgba(245,127,23,0.18)',border:'rgba(245,127,23,0.55)'},   overlay:`radial-gradient(ellipse at 78% 45%, rgba(245,127,23,0.22) 0%, transparent 58%)`, cornerTxt:'ADJ',  cornerColor:'rgba(245,127,23,0.07)', bottomL:'⬡ 48 adjectives', bottomR:'A1 – B2' },
+        verb:         { type:'section', tag:'TABLE 2 · ADJ & VERBS', titleLines:['Verbs','with Opposites'],       badge:{label:'verb',color:'#00838F',bg:'rgba(0,131,143,0.18)',border:'rgba(0,131,143,0.55)'},   overlay:`radial-gradient(ellipse at 78% 45%, rgba(0,131,143,0.22) 0%, transparent 58%)`,  cornerTxt:'VERB', cornerColor:'rgba(0,131,143,0.07)',  bottomL:'⬡ 48 verbs',      bottomR:'A1 – B2' },
+        phrases_divider: { type:'divider', tag:'SECTION DIVIDER', titleLines:['Phrases','&','Sentences'], overlay:`radial-gradient(ellipse at 50% 50%, rgba(106,27,154,0.55) 0%, transparent 62%)`, cornerTxt:'💬', cornerColor:'rgba(106,27,154,0.12)', isEmoji:true, bottomL:'⬡ 100+ phrases & sentences', bottomR:'A1 – B2' },
+        expr:         { type:'section', tag:'TABLE 3', titleLines:['Common','Expressions'], badge:{label:'expr',color:'#6A1B9A',bg:'rgba(106,27,154,0.18)',border:'rgba(106,27,154,0.55)'}, overlay:`radial-gradient(ellipse at 78% 45%, rgba(106,27,154,0.25) 0%, transparent 58%)`, cornerTxt:'EXPR', cornerColor:'rgba(106,27,154,0.07)', bottomL:'⬡ 22 expressions',       bottomR:'A1 – B2' },
+        conv:         { type:'section', tag:'TABLE 4', titleLines:['Conversations'],         badge:{label:'conv',color:'#5C6BC0',bg:'rgba(40,53,147,0.2)',border:'rgba(57,73,171,0.6)'},   overlay:`radial-gradient(ellipse at 78% 45%, rgba(40,53,147,0.28) 0%, transparent 58%)`,  cornerTxt:'CONV', cornerColor:'rgba(40,53,147,0.07)', bottomL:'⬡ 4 dialogues · 36 lines', bottomR:'A1 – B2' },
+        qa:           { type:'section', tag:'TABLE 5', titleLines:['Questions','& Answers'], badge:{label:'Q&A',color:'#A1887F',bg:'rgba(78,52,46,0.22)',border:'rgba(109,76,65,0.6)'},   overlay:`radial-gradient(ellipse at 78% 45%, rgba(78,52,46,0.33) 0%, transparent 58%)`,   cornerTxt:'Q&A',  cornerColor:'rgba(78,52,46,0.07)',  bottomL:'⬡ 26 Q&A pairs',         bottomR:'A1 – B2' },
+        sent:         { type:'section', tag:'TABLE 6', titleLines:['Complete','Sentences'],  badge:{label:'sent',color:'#5C7AEA',bg:'rgba(26,35,126,0.22)',border:'rgba(40,53,147,0.6)'}, overlay:`radial-gradient(ellipse at 78% 45%, rgba(26,35,126,0.30) 0%, transparent 58%)`,  cornerTxt:'SENT', cornerColor:'rgba(26,35,126,0.07)', bottomL:'⬡ 34 sentences',          bottomR:'A1 – B2' },
+    },
+
+});
+</script>
+</body>
+</html>
