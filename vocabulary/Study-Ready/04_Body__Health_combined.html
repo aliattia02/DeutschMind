@@ -1366,325 +1366,362 @@
     <script>
 
 // ============================================
-// TOPIC 04: Body & Health
+// VOCABULARY DATA
 // ============================================
 
-// ─── NOUNS (level, article, german, plural_marker, plural_full, english) ───
 const nounsCSV = `
-// das — cluster: body & sensory organs
-A1,das,Ohr,-en,die Ohren,ear
-A1,das,Knie,=,die Knie,knee
-A1,das,Blut,---,---,blood
-A2,das,Gehirn,-e,die Gehirne,brain
-A2,das,Gelenk,-e,die Gelenke,joint
-A2,das,Handgelenk,-e,die Handgelenke,wrist
-B1,das,Organ,-e,die Organe,organ
-B1,das,Gewebe,=,die Gewebe,tissue
-B2,das,Nervensystem,-e,die Nervensysteme,nervous system
-B2,das,Immunsystem,-e,die Immunsysteme,immune system
-// das — cluster: symptoms & conditions
-A2,das,Fieber,---,---,fever
-A2,das,Symptom,-e,die Symptome,symptom
-B1,das,Syndrom,-e,die Syndrome,syndrome
-// das — cluster: medical items & documents
-A1,das,Pflaster,=,die Pflaster,plaster
-A2,das,Medikament,-e,die Medikamente,medication
-B1,das,Rezept,-e,die Rezepte,prescription
-B1,das,Röntgenbild,-er,die Röntgenbilder,X-ray image
-B2,das,Attest,-e,die Atteste,medical certificate
-B2,das,Präparat,-e,die Präparate,pharmaceutical preparation
-// das — cluster: medical facilities
-A1,das,Krankenhaus,Krankenhäuser,die Krankenhäuser,hospital
-A2,das,Wartezimmer,=,die Wartezimmer,waiting room
-
-// der — cluster: head & neck
-A1,der,Kopf,Köpfe,die Köpfe,head
-A1,der,Hals,Hälse,die Hälse,throat
-A2,der,Zahn,Zähne,die Zähne,tooth
-A2,der,Nacken,=,die Nacken,nape of neck
-// der — cluster: arms & hands
-A1,der,Arm,-e,die Arme,arm
-A1,der,Finger,=,die Finger,finger
-A2,der,Daumen,=,die Daumen,thumb
-A2,der,Muskel,-n,die Muskeln,muscle
-B1,der,Knochen,=,die Knochen,bone
-// der — cluster: torso & legs
-A1,der,Bauch,Bäuche,die Bäuche,stomach
-A1,der,Rücken,=,die Rücken,back
-A1,der,Fuß,Füße,die Füße,foot
-A2,der,Knöchel,=,die Knöchel,ankle
-B1,der,Oberschenkel,=,die Oberschenkel,thigh
-B2,der,Kreislauf,Kreisläufe,die Kreisläufe,circulation
-// der — cluster: symptoms & pain
-A1,der,Schmerz,-en,die Schmerzen,pain
-A1,der,Husten,---,---,cough
-A2,der,Schnupfen,---,---,runny nose
-A2,der,Ausschlag,Ausschläge,die Ausschläge,rash
-B1,der,Herzschlag,Herzschläge,die Herzschläge,heartbeat
-B1,der,Blutdruck,---,---,blood pressure
-B2,der,Erreger,=,die Erreger,pathogen
-B2,der,Befund,-e,die Befunde,medical finding
-// der — cluster: medical professionals (m)
-A1,der,Arzt,Ärzte,die Ärzte,doctor
-A2,der,Zahnarzt,Zahnärzte,die Zahnärzte,dentist
-B1,der,Facharzt,Fachärzte,die Fachärzte,specialist
-// der — cluster: medical aids
-A2,der,Verband,Verbände,die Verbände,bandage
-B1,der,Rollstuhl,Rollstühle,die Rollstühle,wheelchair
-B2,der,Katheter,=,die Katheter,catheter
-
-// die — cluster: upper body
-A1,die,Schulter,-n,die Schultern,shoulder
-A1,die,Brust,Brüste,die Brüste,chest
-A1,die,Hand,Hände,die Hände,hand
-A1,die,Nase,-n,die Nasen,nose
-A2,die,Stirn,-en,die Stirnen,forehead
-A2,die,Lunge,-n,die Lungen,lung
-A2,die,Leber,-n,die Lebern,liver
-A2,die,Niere,-n,die Nieren,kidney
-B1,die,Wirbelsäule,-n,die Wirbelsäulen,spine
-B1,die,Sehne,-n,die Sehnen,tendon
-B1,die,Vene,-n,die Venen,vein
-B2,die,Arterie,-n,die Arterien,artery
-B2,die,Schleimhaut,Schleimhäute,die Schleimhäute,mucous membrane
-// die — cluster: illness & conditions
-A1,die,Erkältung,-en,die Erkältungen,cold
-A2,die,Grippe,-n,die Grippen,flu
-A2,die,Allergie,-n,die Allergien,allergy
-A2,die,Verletzung,-en,die Verletzungen,injury
-B1,die,Entzündung,-en,die Entzündungen,inflammation
-B1,die,Infektion,-en,die Infektionen,infection
-B2,die,Autoimmunerkrankung,-en,die Autoimmunerkrankungen,autoimmune disease
-// die — cluster: medical care & professionals
-A1,die,Gesundheit,---,---,health
-A1,die,Apotheke,-n,die Apotheken,pharmacy
-A1,die,Ärztin,-nen,die Ärztinnen,doctor (f)
-A2,die,Tablette,-n,die Tabletten,tablet
-A2,die,Praxis,-en,die Praxen,doctor's surgery
-B1,die,Diagnose,-n,die Diagnosen,diagnosis
-B1,die,Behandlung,-en,die Behandlungen,treatment
-B1,die,Operation,-en,die Operationen,operation
-B1,die,Impfung,-en,die Impfungen,vaccination
-B1,die,Vorsorge,---,---,preventive care
-B2,die,Rehabilitation,-en,die Rehabilitationen,rehabilitation
-B2,die,Überweisung,-en,die Überweisungen,referral
-// die — cluster: recovery & outcomes
-B2,die,Genesung,-en,die Genesungen,recovery
-B2,die,Lebenserwartung,-en,die Lebenserwartungen,life expectancy
-B2,die,Prognose,-n,die Prognosen,prognosis
+// das — cluster: body parts
+A1,das,Bein,-e,die Beine,Leg
+A1,das,Ohr,-en,die Ohren,Ear
+// das — cluster: vital substance
+A1,das,Blut,---,---,Blood
+// das — cluster: symptoms & vital signs
+A1,das,Fieber,---,---,Fever
+A2,das,Symptom,-e,die Symptome,Symptom
+// das — cluster: prescriptions & medication
+A2,das,Rezept,-e,die Rezepte,Prescription
+A2,das,Medikament,-e,die Medikamente,Medication
+// das — cluster: diagnostic records
+B1,das,Ergebnis,-se,die Ergebnisse,Result
+B1,das,Labor,-e,die Labore,Laboratory
+B2,das,Röntgenbild,-er,die Röntgenbilder,X-ray image
+B2,das,Blutbild,-er,die Blutbilder,Blood count
+B2,das,Attest,-e,die Atteste,Medical certificate
+// das — cluster: body composition & systems
+A2,das,Gewicht,-e,die Gewichte,Weight
+A2,das,Organ,-e,die Organe,Organ
+B2,das,Gewebe,-,die Gewebe,Tissue
+B2,das,Immunsystem,-e,die Immunsysteme,Immune system
+B2,das,Gehirn,-e,die Gehirne,Brain
+// das — cluster: medical facility & supplies
+A1,das,Krankenhaus,Krankenhäuser,die Krankenhäuser,Hospital
+A1,das,Pflaster,-,die Pflaster,Plaster
+// der — cluster: head & face
+A1,der,Kopf,Köpfe,die Köpfe,Head
+A1,der,Mund,Münder,die Münder,Mouth
+A1,der,Zahn,Zähne,die Zähne,Tooth
+// der — cluster: torso
+A1,der,Hals,Hälse,die Hälse,Throat
+A1,der,Bauch,Bäuche,die Bäuche,Belly
+A1,der,Rücken,-,die Rücken,Back
+// der — cluster: limbs
+A1,der,Körper,-,die Körper,Body
+A1,der,Arm,-e,die Arme,Arm
+A1,der,Finger,-,die Finger,Finger
+A1,der,Fuß,Füße,die Füße,Foot
+A2,der,Muskel,-n,die Muskeln,Muscle
+A2,der,Knochen,-,die Knochen,Bone
+A2,der,Nacken,-,die Nacken,Nape of neck
+B1,der,Nerv,-en,die Nerven,Nerve
+// der — cluster: internal organs
+A2,der,Magen,Mägen,die Mägen,Stomach
+B1,der,Darm,Därme,die Därme,Intestine
+// der — cluster: vital measurements
+B1,der,Blutdruck,---,---,Blood pressure
+// der — cluster: illness & symptoms
+A1,der,Schmerz,-en,die Schmerzen,Pain
+A1,der,Husten,---,---,Cough
+A1,der,Schnupfen,---,---,Runny nose
+A2,der,Ausschlag,Ausschläge,die Ausschläge,Rash
+A2,der,Schwindel,---,---,Dizziness
+// der — cluster: serious conditions
+B1,der,Krebs,---,---,Cancer
+B2,der,Herzinfarkt,-e,die Herzinfarkte,Heart attack
+B2,der,Schlaganfall,Schlaganfälle,die Schlaganfälle,Stroke
+B2,der,Tumor,-en,die Tumoren,Tumor
+B2,der,Diabetes,---,---,Diabetes
+// der — cluster: medical professionals & care
+A1,der,Arzt,Ärzte,die Ärzte,Doctor
+A2,der,Arzttermin,-e,die Arzttermine,Doctor's appointment
+A2,der,Patient,-en,die Patienten,Patient
+B1,der,Chirurg,-en,die Chirurgen,Surgeon
+B1,der,Eingriff,-e,die Eingriffe,Surgical procedure
+B1,der,Verband,Verbände,die Verbände,Dressing
+B2,der,Impfstoff,-e,die Impfstoffe,Vaccine
+B2,der,Wirkstoff,-e,die Wirkstoffe,Active ingredient
+// die — cluster: head & face
+A1,die,Nase,-n,die Nasen,Nose
+A1,die,Lippe,-n,die Lippen,Lip
+B1,die,Rippe,-n,die Rippen,Rib
+// die — cluster: torso & trunk
+A1,die,Schulter,-n,die Schultern,Shoulder
+A2,die,Brust,Brüste,die Brüste,Chest
+A2,die,Hüfte,-n,die Hüften,Hip
+// die — cluster: limbs & extremities
+A1,die,Hand,Hände,die Hände,Hand
+A2,die,Zehe,-n,die Zehen,Toe
+B1,die,Wade,-n,die Waden,Calf
+// die — cluster: skin & surface
+A2,die,Haut,Häute,die Häute,Skin
+B2,die,Verbrennung,-en,die Verbrennungen,Burn
+// die — cluster: internal organs
+A2,die,Lunge,-n,die Lungen,Lung
+A2,die,Leber,-n,die Lebern,Liver
+B1,die,Niere,-n,die Nieren,Kidney
+// die — cluster: general health
+A1,die,Gesundheit,---,---,Health
+A1,die,Krankheit,-en,die Krankheiten,Illness
+A1,die,Erkältung,-en,die Erkältungen,Cold
+A2,die,Grippe,---,---,Flu
+// die — cluster: injuries & wounds
+A2,die,Wunde,-n,die Wunden,Wound
+A2,die,Verletzung,-en,die Verletzungen,Injury
+B1,die,Schwellung,-en,die Schwellungen,Swelling
+B1,die,Blutung,-en,die Blutungen,Bleeding
+// die — cluster: allergies & reactions
+A2,die,Allergie,-n,die Allergien,Allergy
+B1,die,Entzündung,-en,die Entzündungen,Inflammation
+B1,die,Infektion,-en,die Infektionen,Infection
+// die — cluster: physical states
+B1,die,Erschöpfung,---,---,Exhaustion
+B1,die,Übelkeit,---,---,Nausea
+// die — cluster: doctor's office & care
+A1,die,Praxis,Praxen,die Praxen,Doctor's practice
+A2,die,Behandlung,-en,die Behandlungen,Treatment
+A2,die,Untersuchung,-en,die Untersuchungen,Examination
+A2,die,Tablette,-n,die Tabletten,Tablet
+A2,die,Spritze,-n,die Spritzen,Injection
+A2,die,Impfung,-en,die Impfungen,Vaccination
+A2,die,Operation,-en,die Operationen,Operation
+B1,die,Diagnose,-n,die Diagnosen,Diagnosis
+B1,die,Überweisung,-en,die Überweisungen,Referral
+B1,die,Krankenkasse,-n,die Krankenkassen,Health insurance fund
+B2,die,Therapie,-n,die Therapien,Therapy
+B2,die,Nebenwirkung,-en,die Nebenwirkungen,Side effect
+B2,die,Notaufnahme,-n,die Notaufnahmen,Emergency room
+B2,die,Rehabilitation,---,---,Rehabilitation
+B2,die,Vorsorgeuntersuchung,-en,die Vorsorgeuntersuchungen,Preventive checkup
+// die — cluster: mental health
+B1,die,Depression,-en,die Depressionen,Depression
+B1,die,Schlafstörung,-en,die Schlafstörungen,Sleep disorder
 `.trim();
 
-// ─── ADJECTIVES (level, -german1, english1, -german2, english2) ───
 const adjectivesCSV = `
-// cluster: general health status
+// cluster: general health state
 A1,-gesund,healthy,-krank,ill
-A1,-fit,fit,-erschöpft,exhausted
-A1,-schmerzhaft,painful,-schmerzlos,painless
-// cluster: injury & severity
+A1,-wohl,well,-unwohl,unwell
+A1,-müde,tired,-wach,awake
+A2,-fit,fit,-schwach,weak
+B1,-erholt,recovered,-erschöpft,exhausted
+B2,-beschwerdefrei,symptom-free,-leidend,suffering
+// cluster: physical symptoms
+A1,-leicht,mild,-schwer,severe
+A2,-schmerzhaft,painful,-schmerzlos,painless
 A2,-verletzt,injured,-unverletzt,uninjured
-A2,-fiebrig,feverish,-fieberfrei,fever-free
-A2,-leicht,mild,-schwer,severe
-// cluster: tolerance & body weight
-A2,-allergisch,allergic,-verträglich,well-tolerated
+B1,-entzündet,inflamed,-verheilt,healed
+B2,-geschwollen,swollen,-abgeklungen,subsided
+// cluster: temperature & sensation
+A1,-warm,warm,-kalt,cold
+A2,-blass,pale,-rosig,rosy
+B1,-fiebrig,feverish,-fieberfrei,fever-free
+// cluster: body weight & condition
 A2,-übergewichtig,overweight,-untergewichtig,underweight
-// cluster: inflammation & healing
-B1,-entzündet,inflamed,-entzündungsfrei,inflammation-free
-B1,-geschwollen,swollen,-verheilt,healed
-// cluster: treatability & vulnerability
-B1,-heilbar,curable,-unheilbar,incurable
-B1,-ansteckend,contagious,-ungefährlich,harmless
-B1,-immun,immune,-anfällig,susceptible
-// cluster: clinical classification
+B1,-nüchtern,fasting,-betäubt,anesthetized
+B2,-vital,vital,-gebrechlich,frail
+// cluster: severity & danger
+A2,-ernst,serious,-harmlos,harmless
 B1,-chronisch,chronic,-akut,acute
-B2,-symptomatisch,symptomatic,-asymptomatisch,asymptomatic
-B2,-degenerativ,degenerative,-regenerativ,regenerative
-B2,-rezidivierend,recurrent,-remittierend,in remission
-B2,-bettlägerig,bedridden,-mobil,mobile
+B2,-lebensbedrohlich,life-threatening,-heilbar,curable
+// cluster: contagion & treatment
+B1,-ansteckend,contagious,-ungefährlich,safe
+B2,-rezeptpflichtig,prescription-only,-rezeptfrei,over-the-counter
+B2,-verträglich,well-tolerated,-unverträglich,intolerable
+// cluster: immune response
+A2,-allergisch,allergic,-immun,immune
+B1,-behindert,disabled,-arbeitsfähig,fit for work
+// cluster: mental health
+B2,-depressiv,depressed,-stabil,stable
 `.trim();
 
-// ─── VERBS (level, *verb1, english1, *verb2, english2   * weak  + strong) ───
 const verbsCSV = `
-// cluster: body functions & symptoms
-A1,*atmen,breathe,*husten,cough
-A1,*schmerzen,hurt,*bluten,bleed
-A2,*schwitzen,sweat,*niesen,sneeze
-B1,*zittern,tremble,+schwellen,swell
-B2,*regenerieren,regenerate,*degenerieren,degenerate
+// cluster: basic body functions
+A1,+atmen,breathe,+schlafen,sleep
+A1,*husten,cough,*niesen,sneeze
+A2,*schwitzen,sweat,*zittern,tremble
+// cluster: getting sick & injury
+A1,*sich erkälten,catch a cold,*sich verletzen,injure oneself
+A1,*bluten,bleed,+erbrechen,vomit
 // cluster: medical examination & treatment
 A1,*untersuchen,examine,*behandeln,treat
-A2,*impfen,vaccinate,+messen,measure
-B1,*diagnostizieren,diagnose,+überweisen,refer
-B2,*operieren,operate,*rehabilitieren,rehabilitate
-// cluster: medication & care
-A2,+einnehmen,take (medication),*pflegen,care for
-A2,+verbinden,bandage,+auftragen,apply
-B1,+verschreiben,prescribe,*dosieren,dose
-B2,*verabreichen,administer,*anästhesieren,anaesthetize
+A2,*operieren,operate,+verbinden,bandage
+B1,+verschreiben,prescribe,*impfen,vaccinate
+B2,*diagnostizieren,diagnose,*rehabilitieren,rehabilitate
+// cluster: taking medication & measurement
+A2,+einnehmen,take (medicine),*schlucken,swallow
+A2,+messen,measure,+wiegen,weigh
+B1,*verabreichen,administer,*dosieren,dose
+B2,*absetzen,discontinue,*überdosieren,overdose
+// cluster: health deterioration
+A2,*erkranken,fall ill,*sich anstecken,get infected
+B1,+leiden,suffer,*sich verschlechtern,worsen
+B2,*kollabieren,collapse,*chronifizieren,become chronic
+// cluster: bodily reactions
+A2,*röntgen,X-ray,*nähen,stitch
+B1,*schmerzen,ache,*entzünden,become inflamed
+B2,*amputieren,amputate,*transplantieren,transplant
 // cluster: recovery & prevention
-A2,*sich erholen,recover,*sich schonen,take it easy
-B1,*lindern,relieve,*vorbeugen,prevent
-B1,*heilen,heal,+genesen,recover
-B2,*ausheilen,recover fully,*vorsorgen,take preventive care
+A2,*sich ausruhen,rest,*stöhnen,groan
+B1,*sich erholen,recover,*sich schonen,take it easy
+B2,*auskurieren,fully recover,*vorbeugen,prevent
+// cluster: hygiene & sterility
+B2,*sterilisieren,sterilize,*desinfizieren,disinfect
 `.trim();
 
-// ─── EXPRESSIONS (level, german, english) ───
 const expressionsCSV = `
-// cluster: common health complaints
-A1,Ich fühle mich nicht gut.,I do not feel well.
-A1,Mir tut der Kopf weh.,My head hurts.
-A1,Ich bin krank.,I am ill.
-A1,Ich habe Schmerzen.,I am in pain.
+// cluster: symptoms & feeling unwell
+A1,Ich fühle mich nicht wohl.,I don't feel well.
+A1,Ich habe Schmerzen.,I have pain.
+A1,Mir ist schlecht.,I feel sick.
 A1,Ich habe Fieber.,I have a fever.
-A1,Ich habe Halsschmerzen.,I have a sore throat.
+A2,Mein Hals tut weh.,My throat hurts.
+A2,Ich bin erkältet.,I have a cold.
+B1,Ich leide unter starken Kopfschmerzen.,I suffer from severe headaches.
+B2,Die Symptome haben sich verschlimmert.,The symptoms have gotten worse.
+// cluster: at the doctor
 A1,Ich brauche einen Arzt.,I need a doctor.
-A1,Ruf den Arzt!,Call the doctor!
-// cluster: at the doctor's
-A2,Ich habe seit drei Tagen Husten.,I have had a cough for three days.
-A2,Wo tut es weh?,Where does it hurt?
-A2,Ich bin allergisch gegen Penicillin.,I am allergic to penicillin.
-A2,Können Sie mir etwas verschreiben?,Can you prescribe me something?
-A2,Ich muss einen Termin beim Arzt machen.,I need to make an appointment with the doctor.
-A2,Nehmen Sie das Medikament dreimal täglich.,Take the medication three times a day.
-A2,Haben Sie etwas gegen Erkältung?,Do you have something for a cold?
-A2,Wie oft muss ich die Tablette einnehmen?,How often must I take the tablet?
-// cluster: describing symptoms & diagnosis
-B1,Der Schmerz strahlt in den Rücken aus.,The pain radiates into my back.
-B1,Die Entzündung ist noch nicht vollständig abgeklungen.,The inflammation has not fully subsided yet.
-B1,Mein Blutdruck ist zu hoch.,My blood pressure is too high.
-B1,Ich benötige ein Rezept für dieses Medikament.,I need a prescription for this medication.
-B1,Die Operation war erfolgreich.,The operation was successful.
-B1,Ich habe schon seit Wochen Rückenschmerzen.,I have had back pain for weeks.
-B1,Ich muss zur Nachsorge beim Facharzt.,I have to go to the specialist for follow-up care.
-// cluster: advanced medical & outcomes
-B2,Das Immunsystem ist nach einer schweren Infektion geschwächt.,The immune system is weakened after a serious infection.
-B2,Die Diagnose hat mich wirklich überrascht.,The diagnosis really surprised me.
-B2,Die Prognose ist gut aber ich brauche Rehabilitation.,The prognosis is good but I need rehabilitation.
-B2,Chronische Erkrankungen erfordern langfristige Behandlung.,Chronic conditions require long-term treatment.
-B2,Der Erreger ist hochansteckend und breitet sich schnell aus.,The pathogen is highly contagious and spreads quickly.
-B2,Nach der Rehabilitation konnte sie wieder vollständig genesen.,After rehabilitation she was able to recover fully.
+A1,Wo ist die nächste Praxis?,Where is the nearest doctor's practice?
+A2,Ich möchte einen Termin vereinbaren.,I would like to make an appointment.
+A2,Der Arzt hat mir ein Rezept ausgestellt.,The doctor wrote me a prescription.
+B1,Bitte schicken Sie mich zum Spezialisten.,Please refer me to a specialist.
+B2,Ich benötige eine Überweisung zum Facharzt.,I need a referral to a specialist.
+// cluster: medication & treatment
+A1,Haben Sie ein Schmerzmittel?,Do you have a painkiller?
+A2,Nehmen Sie die Tabletten dreimal täglich.,Take the tablets three times a day.
+B1,Das Medikament hat Nebenwirkungen.,The medication has side effects.
+B2,Die Dosierung muss individuell angepasst werden.,The dosage must be adjusted individually.
+// cluster: health & prevention
+A2,Ich passe gut auf meine Gesundheit auf.,I take good care of my health.
+A2,Ich habe eine Allergie gegen Penicillin.,I have an allergy to penicillin.
+B1,Vorsorgeuntersuchungen sind sehr wichtig.,Preventive checkups are very important.
+B1,Ich muss mich krankmelden.,I need to call in sick.
+B2,Eine chronische Erkrankung erfordert langfristige Behandlung.,A chronic illness requires long-term treatment.
+// cluster: emergency
+A1,Rufen Sie den Notarzt!,Call an ambulance!
+A2,Er hat das Bewusstsein verloren.,He has lost consciousness.
+B1,Der Patient muss sofort operiert werden.,The patient needs to be operated on immediately.
+B2,Mein Immunsystem ist geschwächt.,My immune system is weakened.
+B2,Die Erstversorgung war entscheidend für seine Genesung.,The initial care was crucial for his recovery.
 `.trim();
 
-// ─── CONVERSATIONS (level|Scenario|Speaker, german, english) ───
-const conversationsCSV = `
-A1|At the Doctor's|A,Guten Morgen. Ich fühle mich nicht gut.,Good morning. I do not feel well.
-A1|At the Doctor's|B,Was fehlt Ihnen?,What is wrong with you?
-A1|At the Doctor's|A,Ich habe Halsschmerzen und Fieber.,I have a sore throat and fever.
-A1|At the Doctor's|B,Seit wann haben Sie diese Beschwerden?,Since when have you had these complaints?
-A1|At the Doctor's|A,Seit gestern Abend.,Since yesterday evening.
-A1|At the Doctor's|B,Öffnen Sie bitte den Mund. Ich schaue nach.,Please open your mouth. I will take a look.
-A1|At the Doctor's|A,Ist es schlimm?,Is it serious?
-A1|At the Doctor's|B,Nein. Sie haben eine einfache Erkältung. Trinken Sie viel und ruhen Sie sich aus.,No. You have a simple cold. Drink plenty and rest.
-A2|At the Pharmacy|A,Guten Tag. Ich suche etwas gegen Erkältung.,Good day. I am looking for something for a cold.
-A2|At the Pharmacy|B,Haben Sie Husten Schnupfen oder beides?,Do you have a cough a runny nose or both?
-A2|At the Pharmacy|A,Beides. Und ich habe auch leichtes Fieber.,Both. And I also have a mild fever.
-A2|At the Pharmacy|B,Dann empfehle ich Ihnen diesen Sirup. Er hilft gut gegen Husten.,Then I recommend this syrup. It works well against coughs.
-A2|At the Pharmacy|A,Wie oft muss ich ihn einnehmen?,How often must I take it?
-A2|At the Pharmacy|B,Dreimal täglich nach dem Essen. Er ist rezeptfrei.,Three times a day after meals. It is available without a prescription.
-A2|At the Pharmacy|A,Gut dann nehme ich ihn. Was kostet das?,Good then I will take it. How much is it?
-A2|At the Pharmacy|B,Das macht sechs Euro neunzig.,That comes to six euros ninety.
-A2|At the Pharmacy|A,Danke. Und wann sollte ich zum Arzt gehen?,Thank you. And when should I go to the doctor?
-A2|At the Pharmacy|B,Wenn das Fieber nach drei Tagen nicht sinkt dann gehen Sie bitte zum Arzt.,If the fever does not drop after three days please go to the doctor.
-B1|Sports Injury|A,Ich habe mir beim Laufen den Knöchel verstaucht.,I sprained my ankle while running.
-B1|Sports Injury|B,Wann ist das passiert und wie stark sind die Schmerzen?,When did it happen and how strong is the pain?
-B1|Sports Injury|A,Gestern Nachmittag. Der Knöchel ist stark geschwollen.,Yesterday afternoon. The ankle is severely swollen.
-B1|Sports Injury|B,Ich muss es untersuchen. Können Sie auftreten?,I need to examine it. Can you stand on it?
-B1|Sports Injury|A,Nur mit Schmerzen. Ist es gebrochen?,Only with pain. Is it broken?
-B1|Sports Injury|B,Wir machen ein Röntgenbild um das auszuschließen.,We will take an X-ray to rule that out.
-B1|Sports Injury|A,Was mache ich in der Zwischenzeit?,What do I do in the meantime?
-B1|Sports Injury|B,Legen Sie es hoch und schonen Sie sich. Ich verschreibe Ihnen auch ein Schmerzmittel.,Keep it elevated and take it easy. I will also prescribe you a painkiller.
-B1|Sports Injury|A,Wie lange dauert die Genesung?,How long does recovery take?
-B1|Sports Injury|B,Das hängt vom Befund ab. Meist sind es zwei bis vier Wochen.,That depends on the findings. Usually it is two to four weeks.
-B2|Living with Chronic Illness|A,Ich lebe seit Jahren mit einer chronischen Entzündungserkrankung.,I have been living with a chronic inflammatory disease for years.
-B2|Living with Chronic Illness|B,Das klingt sehr belastend. Welche Behandlung erhalten Sie?,That sounds very stressful. What treatment are you receiving?
-B2|Living with Chronic Illness|A,Ich nehme immunsupprimierende Präparate und gehe regelmäßig zur Vorsorge.,I take immunosuppressive preparations and go regularly for preventive care.
-B2|Living with Chronic Illness|B,Wie wirkt sich das auf Ihren Alltag aus?,How does that affect your everyday life?
-B2|Living with Chronic Illness|A,Ich muss viel auf meinen Körper hören und Überanstrengung vermeiden.,I have to listen to my body a lot and avoid overexertion.
-B2|Living with Chronic Illness|B,Hat man Ihnen eine Prognose gestellt?,Have they given you a prognosis?
-B2|Living with Chronic Illness|A,Ja. Die Erkrankung ist nicht heilbar aber gut behandelbar.,Yes. The illness is not curable but can be treated well.
-B2|Living with Chronic Illness|B,Haben Sie auch psychologische Unterstützung?,Do you also have psychological support?
-B2|Living with Chronic Illness|A,Ja. Das hat mir sehr geholfen mit der Diagnose umzugehen.,Yes. It has helped me a lot to cope with the diagnosis.
+// ============================================
+// CONVERSATIONS — format: level|Title|Speaker,german,english
+// ============================================
+const conversationsRaw = `
+A1|Talking About Family|A,Hast du Geschwister?,Do you have siblings?
+A1|Talking About Family|B,Ja ich habe einen Bruder und eine Schwester. Und du?,Yes I have a brother and a sister. And you?
+A1|Talking About Family|A,Ich bin Einzelkind. Wo wohnen deine Eltern?,I am an only child. Where do your parents live?
+A1|Talking About Family|B,Meine Eltern wohnen in Hamburg.,My parents live in Hamburg.
+A1|Talking About Family|A,Hast du auch Großeltern?,Do you also have grandparents?
+A1|Talking About Family|B,Ja meine Großmutter wohnt bei uns zu Hause.,Yes my grandmother lives with us at home.
+A1|Talking About Family|A,Wie alt ist sie?,How old is she?
+A1|Talking About Family|B,Sie ist achtzig Jahre alt und sehr aktiv.,She is eighty years old and very active.
+A2|Describing Your Family|A,Erzähl mir von deiner Familie.,Tell me about your family.
+A2|Describing Your Family|B,Wir sind eine große Familie. Ich habe drei Geschwister und viele Cousins.,We are a large family. I have three siblings and many cousins.
+A2|Describing Your Family|A,Verstehst du dich gut mit deinen Geschwistern?,Do you get along well with your siblings?
+A2|Describing Your Family|B,Ja wir verstehen uns sehr gut. Mein Bruder ist mein bester Freund.,Yes we get along very well. My brother is my best friend.
+A2|Describing Your Family|A,Sind deine Eltern noch verheiratet?,Are your parents still married?
+A2|Describing Your Family|B,Ja seit dreißig Jahren. Sie feiern nächstes Jahr ihr Jubiläum.,Yes for thirty years. They are celebrating their anniversary next year.
+A2|Describing Your Family|A,Das ist wunderbar! Habt ihr viele Familienfeste?,That is wonderful! Do you have many family celebrations?
+A2|Describing Your Family|B,Ja wir treffen die ganze Familie immer zu Weihnachten und Ostern.,Yes we always meet the whole family at Christmas and Easter.
+B1|Wedding Plans|A,Herzlichen Glückwunsch zur Verlobung! Wann ist die Hochzeit?,Congratulations on the engagement! When is the wedding?
+B1|Wedding Plans|B,Danke! Wir heiraten im September in einem kleinen Schloss.,Thank you! We are getting married in September in a small castle.
+B1|Wedding Plans|A,Habt ihr schon viele Gäste eingeladen?,Have you already invited many guests?
+B1|Wedding Plans|B,Ja wir laden die ganze Familie und enge Freunde ein. Das sind fast achtzig Personen.,Yes we are inviting the whole family and close friends. That is almost eighty people.
+B1|Wedding Plans|A,Und wer ist Trauzeuge?,And who is the best man?
+B1|Wedding Plans|B,Mein Bruder. Er hält auch eine Rede.,My brother. He is also giving a speech.
+B1|Wedding Plans|A,Werden die Kinder auch dabei sein?,Will the children be there too?
+B1|Wedding Plans|B,Ja natürlich. Meine Nichten sind die Blumenmädchen.,Yes of course. My nieces are the flower girls.
+B1|Wedding Plans|A,Das wird sicher ein unvergessliches Fest.,That will certainly be an unforgettable celebration.
+B1|Wedding Plans|B,Wir freuen uns riesig darauf.,We are very much looking forward to it.
+B2|Family Law Matters|A,Ich brauche Ihren Rat in einer Familienangelegenheit.,I need your advice in a family matter.
+B2|Family Law Matters|B,Natürlich. Worum geht es?,Of course. What is it about?
+B2|Family Law Matters|A,Mein Partner und ich haben uns getrennt. Wir haben ein Kind und wissen nicht wie das Sorgerecht geregelt wird.,My partner and I have separated. We have a child and do not know how custody is regulated.
+B2|Family Law Matters|B,Das Gericht entscheidet nach dem Kindeswohl. Meist wird gemeinsames Sorgerecht vereinbart.,The court decides based on the child's best interest. Joint custody is usually agreed upon.
+B2|Family Law Matters|A,Was ist wenn wir uns nicht einigen können?,What if we cannot agree?
+B2|Family Law Matters|B,Dann kann ein Mediator helfen bevor man vor Gericht geht.,Then a mediator can help before going to court.
+B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about visitation rights?
+B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
 `.trim();
 
-// ─── Q&A (level, question, answer) ───
 const qaCSV = `
-// cluster: basic health & body
-A1,Wie fühlst du dich?,Ich fühle mich nicht gut. Ich habe Kopfschmerzen. (I do not feel well. I have a headache.)
-A1,Was tut weh?,Mein Hals tut weh und ich habe Fieber. (My throat hurts and I have a fever.)
-A1,Wo ist die nächste Apotheke?,Die Apotheke ist gleich um die Ecke. (The pharmacy is just around the corner.)
-A1,Bist du oft krank?,Nein. Ich bin meistens gesund. (No. I am usually healthy.)
-A1,Was machst du wenn du krank bist?,Ich bleibe im Bett und trinke viel Tee. (I stay in bed and drink plenty of tea.)
-A1,Hast du Schmerzen?,Ja ich habe starke Rückenschmerzen. (Yes I have strong back pain.)
-A1,Wann gehst du zum Arzt?,Ich gehe zum Arzt wenn ich mich sehr krank fühle. (I go to the doctor when I feel very ill.)
-A1,Was nimmst du gegen Kopfschmerzen?,Ich nehme eine Tablette und lege mich hin. (I take a tablet and lie down.)
-// cluster: common illnesses & treatment
-A2,Was sind typische Symptome einer Erkältung?,Husten Schnupfen Halsschmerzen und manchmal leichtes Fieber. (Cough runny nose sore throat and sometimes a mild fever.)
-A2,Wie lange dauert eine normale Grippe?,In der Regel fünf bis sieben Tage wenn man sich gut ausruht. (Usually five to seven days if you rest well.)
-A2,Was machst du wenn du eine Verletzung hast?,Ich gehe zum Arzt damit er die Verletzung untersucht. (I go to the doctor so that he can examine the injury.)
-A2,Bist du gegen Grippe geimpft?,Ja ich lasse mich jedes Jahr impfen. (Yes I get vaccinated every year.)
-A2,Was machst du wenn du allergisch auf etwas reagierst?,Ich nehme ein Antihistaminikum und vermeide den Auslöser. (I take an antihistamine and avoid the trigger.)
-A2,Wie oft gehst du zum Zahnarzt?,Ich gehe zweimal im Jahr zur Kontrolle. (I go twice a year for a check-up.)
-A2,Was trägst du bei einer Verletzung auf die Wunde auf?,Ein Pflaster oder einen Verband je nach Größe der Wunde. (A plaster or bandage depending on the size of the wound.)
-A2,Was ist wichtig für eine gute Gesundheit?,Regelmäßige Bewegung gute Ernährung und ausreichend Schlaf. (Regular exercise a good diet and enough sleep.)
-// cluster: medical care & body systems
-B1,Was ist der Unterschied zwischen einer Erkältung und einer Grippe?,Die Grippe beginnt plötzlich mit hohem Fieber während eine Erkältung langsamer beginnt. (Flu starts suddenly with high fever while a cold starts more gradually.)
-B1,Was bedeutet chronisch im medizinischen Sinne?,Chronisch bedeutet dass eine Erkrankung langanhaltend oder dauerhaft ist. (Chronic means that an illness is long-lasting or permanent.)
-B1,Warum ist Vorsorge wichtig?,Regelmäßige Vorsorgeuntersuchungen ermöglichen die Früherkennung von Erkrankungen. (Regular preventive check-ups enable early detection of illnesses.)
-B1,Was macht ein Facharzt?,Ein Facharzt ist speziell ausgebildet für einen bestimmten Bereich der Medizin. (A specialist is specially trained for a specific area of medicine.)
-B1,Wie funktioniert das Immunsystem bei einer Infektion?,Es erkennt Erreger und bekämpft sie mit Antikörpern und Immunzellen. (It recognises pathogens and fights them with antibodies and immune cells.)
-B1,Wann wird eine Überweisung ausgestellt?,Wenn der Allgemeinarzt eine Erkrankung feststellt die spezielle Behandlung erfordert. (When the general practitioner identifies an illness requiring specialist treatment.)
-// cluster: advanced health concepts
-B2,Was versteht man unter dem Immunsystem?,Ein Netzwerk aus Zellen Gewebe und Organen das den Körper vor Krankheitserregern schützt. (A network of cells tissue and organs that protects the body against pathogens.)
-B2,Was ist eine Autoimmunerkrankung?,Eine Erkrankung bei der das Immunsystem fälschlicherweise gesundes Körpergewebe angreift. (A disease in which the immune system mistakenly attacks healthy body tissue.)
-B2,Was bedeutet Rehabilitation nach einer Operation?,Die schrittweise Wiederherstellung der körperlichen Funktion durch Therapie und Übungen. (The gradual restoration of physical function through therapy and exercises.)
-B2,Wie unterscheiden sich degenerative und entzündliche Erkrankungen?,Degenerative Erkrankungen gehen mit Gewebeverfall einher entzündliche mit einer überschießenden Immunreaktion. (Degenerative diseases involve tissue breakdown while inflammatory ones involve an excessive immune response.)
-B2,Wie beeinflusst der Lebensstil die Lebenserwartung?,Faktoren wie Ernährung Bewegung Rauchen und Stress wirken sich erheblich auf die Lebenserwartung aus. (Factors such as diet exercise smoking and stress significantly affect life expectancy.)
+// cluster: basic health state
+A1,Wie geht es dir?,Mir geht es gut danke. (I am fine thank you.)
+A1,Bist du krank?,Ja ich fühle mich nicht wohl. (Yes I don't feel well.)
+A1,Was tut dir weh?,Mir tut der Bauch weh. (My stomach hurts.)
+A1,Hast du Fieber?,Ja meine Temperatur ist erhöht. (Yes my temperature is elevated.)
+A1,Was macht man wenn man Schmerzen hat?,Man geht zum Arzt oder nimmt ein Schmerzmittel. (You go to the doctor or take a painkiller.)
+A2,Welchen Arzt besuchst du?,Ich gehe zum Hausarzt. (I go to my GP.)
+A2,Wie oft gehst du zum Arzt?,Ich gehe einmal im Jahr zur Vorsorge. (I go once a year for a checkup.)
+A2,Was machst du wenn du krank bist?,Ich bleibe im Bett und trinke viel. (I stay in bed and drink a lot.)
+// cluster: body parts & organs
+A1,Welche Organe kennst du?,Die Lunge die Leber und die Niere. (The lungs the liver and the kidney.)
+A1,Wo ist die Schulter?,Die Schulter ist zwischen Hals und Arm. (The shoulder is between the throat and arm.)
+A1,Was ist eine Erkältung?,Eine Infektion der Atemwege mit Husten und Schnupfen. (An infection of the respiratory tract with coughing and a runny nose.)
+A2,Was macht die Lunge?,Sie ist für das Atmen zuständig. (It is responsible for breathing.)
+A2,Wozu dient die Leber?,Sie reinigt das Blut und produziert wichtige Proteine. (It cleanses the blood and produces important proteins.)
+A2,Wie behandelt man Fieber?,Man trinkt viel und nimmt Schmerzmittel. (You drink a lot and take painkillers.)
+A2,Wie lange dauert eine Erkältung?,Meistens sieben bis zehn Tage. (Usually seven to ten days.)
+A2,Wann sollte man einen Arzt aufsuchen?,Bei starken Schmerzen oder hohem Fieber. (With severe pain or high fever.)
+// cluster: illness & treatment
+B1,Was sind Anzeichen einer Grippe?,Hohes Fieber Gliederschmerzen und starker Husten. (High fever body aches and severe coughing.)
+B1,Was ist eine Allergie?,Eine überempfindliche Reaktion des Immunsystems auf bestimmte Stoffe. (An oversensitive reaction of the immune system to certain substances.)
+B1,Was macht ein Chirurg?,Er führt Operationen am Körper durch. (He performs operations on the body.)
+B1,Was ist eine Krankenkasse?,Eine Versicherung die die Kosten für medizinische Behandlungen übernimmt. (An insurance that covers the costs of medical treatments.)
+B1,Warum sind Impfungen wichtig?,Sie schützen vor gefährlichen Infektionskrankheiten. (They protect against dangerous infectious diseases.)
+B1,Was ist der Unterschied zwischen einer Entzündung und einer Infektion?,Eine Infektion wird durch Erreger ausgelöst - eine Entzündung ist die Reaktion des Körpers darauf. (An infection is triggered by pathogens — an inflammation is the body's response to it.)
+// cluster: advanced medical topics
+B2,Was ist eine chronische Krankheit?,Eine Erkrankung die langfristig anhält und oft nicht vollständig heilbar ist. (An illness that persists long-term and is often not fully curable.)
+B2,Was versteht man unter Prävention?,Maßnahmen zur Vorbeugung von Krankheiten. (Measures to prevent illnesses.)
+B2,Was sind Nebenwirkungen?,Unerwünschte Effekte die Medikamente verursachen können. (Undesired effects that medications can cause.)
+B2,Was ist der Unterschied zwischen einem Allgemeinmediziner und einem Facharzt?,Ein Allgemeinmediziner behandelt alle Beschwerden. Ein Facharzt ist auf ein Gebiet spezialisiert. (A GP treats all complaints. A specialist is specialized in one area.)
+B2,Was ist eine Autoimmunerkrankung?,Eine Erkrankung bei der das Immunsystem körpereigene Zellen angreift. (An illness in which the immune system attacks the body's own cells.)
 `.trim();
 
-// ─── SENTENCES (level, german, english) ───
 const sentencesCSV = `
-// cluster: body parts & basic health
-A1,Mir tut der Kopf weh.,My head hurts.
-A1,Ich habe Fieber und Halsschmerzen.,I have a fever and a sore throat.
-A1,Ich bin seit zwei Tagen krank.,I have been ill for two days.
+// cluster: feeling unwell & symptoms
+A1,Ich habe Kopfschmerzen.,I have a headache.
+A1,Mir ist schlecht.,I feel sick.
+A1,Ich habe Fieber.,I have a fever.
+A1,Mein Bauch tut weh.,My stomach hurts.
+A1,Ich habe Halsschmerzen.,I have a sore throat.
+A2,Ich bin seit drei Tagen erkältet.,I have had a cold for three days.
+A2,Sie hat eine Allergie gegen Pollen.,She has an allergy to pollen.
+B1,Der Patient leidet unter starken Rückenschmerzen.,The patient suffers from severe back pain.
+B2,Die chronische Entzündung hat das Gelenk dauerhaft geschädigt.,The chronic inflammation has permanently damaged the joint.
+// cluster: going to the doctor
+A1,Ich gehe zum Arzt.,I go to the doctor.
 A1,Der Arzt untersucht mich.,The doctor examines me.
-A1,Ich kaufe Tabletten in der Apotheke.,I buy tablets at the pharmacy.
-A1,Das Krankenhaus ist nicht weit von hier.,The hospital is not far from here.
-A1,Ich brauche ein Pflaster für die Wunde.,I need a plaster for the wound.
-A1,Mein Arm tut weh wenn ich ihn hebe.,My arm hurts when I lift it.
-A1,Ich habe keine Schmerzen mehr.,I have no more pain.
-A1,Sie ist sehr gesund und fit.,She is very healthy and fit.
-A1,Er hustet schon seit einer Woche.,He has been coughing for a week.
-A1,Das Blut kommt aus dem Finger.,The blood is coming from the finger.
-// cluster: everyday illness & medical visits
-A2,Der Zahnarzt empfiehlt mir zweimal täglich Zähne zu putzen.,The dentist recommends brushing my teeth twice a day.
-A2,Ich bin allergisch gegen Katzen und muss Antihistaminika nehmen.,I am allergic to cats and have to take antihistamines.
-A2,Die Ärztin hat mir ein Medikament gegen den Husten verschrieben.,The doctor prescribed me a medication for the cough.
-A2,Im Wartezimmer warten schon viele Patienten.,Many patients are already waiting in the waiting room.
-A2,Ich messe jeden Morgen meinen Blutdruck.,I measure my blood pressure every morning.
-A2,Sie hat sich beim Sport eine Verletzung am Knie zugezogen.,She sustained a knee injury during sport.
-A2,Ich lasse mich jedes Jahr gegen Grippe impfen.,I get vaccinated against flu every year.
-A2,Der Muskel ist nach dem Training sehr schmerzhaft.,The muscle is very painful after training.
-A2,Man soll das Medikament dreimal täglich nach dem Essen einnehmen.,One should take the medication three times a day after meals.
-A2,Die Verletzung am Handgelenk verheilt langsam aber sicher.,The injury to the wrist is healing slowly but surely.
-A2,Er hat starken Schnupfen und kann kaum durch die Nase atmen.,He has a heavy cold and can barely breathe through his nose.
-// cluster: medical care & treatment
-B1,Der Facharzt hat eine Entzündung im Knie diagnostiziert.,The specialist has diagnosed an inflammation in the knee.
-B1,Nach der Operation brauchte sie mehrere Wochen zur Genesung.,After the operation she needed several weeks to recover.
-B1,Regelmäßige Vorsorgeuntersuchungen können Erkrankungen früh erkennen.,Regular preventive check-ups can detect illnesses early.
-B1,Der hohe Blutdruck muss dauerhaft behandelt werden.,The high blood pressure must be treated permanently.
-B1,Die Impfung schützt zuverlässig vor bestimmten Infektionen.,The vaccination reliably protects against certain infections.
-B1,Das Röntgenbild zeigt keinen Knochenbruch.,The X-ray image shows no fracture.
-B1,Der Arzt überwies mich zum Facharzt für eine genauere Diagnose.,The doctor referred me to a specialist for a more accurate diagnosis.
-B1,Bei chronischen Erkrankungen ist eine langfristige Behandlung notwendig.,Long-term treatment is necessary for chronic illnesses.
-B1,Die Sehne im Oberschenkel ist gerissen und muss operiert werden.,The tendon in the thigh is torn and must be operated on.
-// cluster: advanced health & body systems
-B2,Autoimmunerkrankungen entstehen wenn das Immunsystem körpereigenes Gewebe angreift.,Autoimmune diseases occur when the immune system attacks the body's own tissue.
-B2,Die Prognose hängt von der Schnelligkeit der Diagnose und dem Allgemeinzustand ab.,The prognosis depends on the speed of diagnosis and the patient's general condition.
-B2,Erreger wie Viren und Bakterien lösen Infektionen aus die das Immunsystem bekämpfen muss.,Pathogens such as viruses and bacteria trigger infections that the immune system must fight.
-B2,Degenerative Gelenkerkrankungen lassen sich durch frühzeitige Physiotherapie verlangsamen.,Degenerative joint diseases can be slowed down by early physiotherapy.
-B2,Die Lebenserwartung ist in den letzten Jahrzehnten durch medizinische Fortschritte stark gestiegen.,Life expectancy has risen greatly in recent decades due to medical advances.
-B2,Nach der Rehabilitation konnte er seinen Beruf wieder vollständig ausüben.,After rehabilitation he was able to fully return to his profession.
-B2,Eine detaillierte Anamnese hilft dem Arzt eine präzise Diagnose zu stellen.,A detailed medical history helps the doctor to make a precise diagnosis.
+A1,Das Krankenhaus ist in der Stadtmitte.,The hospital is in the city center.
+A2,Ich habe einen Termin beim Hausarzt.,I have an appointment with my GP.
+A2,Der Arzt hat mir ein Rezept ausgestellt.,The doctor wrote me a prescription.
+A2,Ich bin zum Arzt gegangen weil ich Fieber hatte.,I went to the doctor because I had a fever.
+B1,Die Ärztin überweist ihn an einen Spezialisten.,The doctor refers him to a specialist.
+B2,Der Chirurg führt morgen eine schwierige Operation durch.,The surgeon performs a difficult operation tomorrow.
+// cluster: medication & treatment
+A1,Ich nehme ein Schmerzmittel.,I take a painkiller.
+A2,Die Tabletten nehme ich nach dem Essen.,I take the tablets after meals.
+A2,Die Salbe hilft gegen den Ausschlag.,The cream helps with the rash.
+A2,Mein Arm ist gebrochen und ich trage einen Verband.,My arm is broken and I am wearing a dressing.
+B1,Das Medikament muss täglich eingenommen werden.,The medication must be taken daily.
+B1,Der Arzt hat eine Antibiotikatherapie verschrieben.,The doctor prescribed a course of antibiotics.
+B2,Bei einer Überdosierung können schwere Nebenwirkungen auftreten.,With an overdose severe side effects can occur.
+B2,Die Dosierung wird schrittweise angepasst.,The dosage is gradually adjusted.
+// cluster: health & prevention
+A1,Ich ruhe mich aus.,I rest.
+A2,Man sollte viel Wasser trinken wenn man krank ist.,One should drink a lot of water when ill.
+A2,Der Arzt hat mir gesagt dass ich mich ausruhen soll.,The doctor told me I should rest.
+B1,Regelmäßige Vorsorgeuntersuchungen sind wichtig für die Gesundheit.,Regular checkups are important for health.
+B1,Eine gesunde Lebensweise kann viele Krankheiten verhindern.,A healthy lifestyle can prevent many illnesses.
+B2,Das Immunsystem schützt den Körper vor Infektionen und Krankheitserregern.,The immune system protects the body from infections and pathogens.
+B2,Eine frühzeitige Diagnose erhöht die Heilungschancen erheblich.,An early diagnosis considerably increases the chances of recovery.
+// cluster: injuries & emergencies
+A1,Er hat sich das Bein gebrochen.,He has broken his leg.
+A2,Sie hat eine Wunde am Arm.,She has a wound on her arm.
+B1,Der Verletzte wurde sofort in die Notaufnahme gebracht.,The injured person was immediately taken to the emergency room.
+B2,Nach der Operation benötigt er eine lange Rehabilitationsphase.,After the operation he needs a long rehabilitation period.
+// cluster: mental health
+B1,Stress kann zu Schlafstörungen führen.,Stress can lead to sleep disorders.
+B2,Psychische Erkrankungen werden in der modernen Medizin ernst genommen.,Mental illnesses are taken seriously in modern medicine.
 `.trim();
 
 
