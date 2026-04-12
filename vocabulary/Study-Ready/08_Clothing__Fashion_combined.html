@@ -200,6 +200,20 @@
         }
         .pause-btn:hover { background: #555; color: white; }
         .pause-btn.paused { background: #667eea; color: white; border-color: #667eea; }
+        .de-only-btn {
+            background: #2a2a2a;
+            color: rgba(255,255,255,0.55);
+            border: 1px solid #444;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 0.72em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .de-only-btn:hover { background: #3a3a3a; color: white; }
+        .de-only-btn.active { background: #1a6b3c; color: #90EE90; border-color: #2ea55a; }
         .audio-row-sections {
             display: flex;
             align-items: center;
@@ -1143,6 +1157,7 @@
                     <span class="speed-val" id="speedValue">0.8×</span>
                     <button class="play-all-btn" id="btnAll" onclick="playSection('all')">▶ All</button>
                     <button class="pause-btn" id="pauseBtn" onclick="togglePause()">⏸ Pause</button>
+                    <button class="de-only-btn" id="deOnlyBtn" onclick="toggleGermanOnly()" title="Speak German only — skip English translations">🇩🇪 DE Only</button>
                     <button class="record-btn" id="recModeBtn" onclick="startRecordingMode()">🔴 Record</button>
                     <button class="stop-rec-btn" id="stopRecBtn" onclick="stopRecordingMode()">⏹ Stop</button>
                     <span class="rec-start-label">from:</span>
@@ -2010,10 +2025,10 @@ function renderConversations() {
             const b = linesB[i] || null;
 
             html += `<tr>`;
-            html += `<td class="conv-ger-a">${a ? a.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(a.german)}')">🔊</button>` : ''}</td>`;
-            html += `<td class="conv-eng-a">${a ? a.english : ''}</td>`;
-            html += `<td class="conv-ger-b">${b ? b.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(b.german)}')">🔊</button>` : ''}</td>`;
-            html += `<td class="conv-eng-b">${b ? b.english : ''}</td>`;
+            html += `<td class="conv-ger-a left-pair">${a ? a.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(a.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-a left-pair">${a ? a.english : ''}</td>`;
+            html += `<td class="conv-ger-b right-pair">${b ? b.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(b.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-b right-pair">${b ? b.english : ''}</td>`;
             html += `</tr>`;
         }
 
@@ -2432,26 +2447,35 @@ function collectExprItems() {
     );
     const tbody = document.getElementById('expressionsTableBody');
     const domRows = Array.from(tbody.querySelectorAll('tr'));
-    const evens = data.filter((_, i) => i % 2 === 0);
-    const odds  = data.filter((_, i) => i % 2 === 1);
     const items = [];
-    [...evens, ...odds].forEach((row, idx) => {
-        const [lvl, ger, ...engParts] = row;
-        const eng = engParts.join(',');
-        const side = idx < evens.length ? 'left' : 'right';
-        const domRow = domRows[idx < evens.length ? idx : idx - evens.length] || null;
-        if (eng) items.push({ text: eng, lang: 'en-US', el: domRow, side });
-        items.push({ text: ger, el: domRow, side });
-    });
+
+    for (let i = 0; i < domRows.length; i++) {
+        const leftIdx  = i * 2;
+        const rightIdx = i * 2 + 1;
+
+        if (leftIdx < data.length) {
+            const [lvl, ger, ...engParts] = data[leftIdx];
+            const eng = engParts.join(',');
+            if (eng) items.push({ text: eng, lang: 'en-US', el: domRows[i], side: 'left' });
+            items.push({ text: ger, el: domRows[i], side: 'left' });
+        }
+        if (rightIdx < data.length) {
+            const [lvl, ger, ...engParts] = data[rightIdx];
+            const eng = engParts.join(',');
+            if (eng) items.push({ text: eng, lang: 'en-US', el: domRows[i], side: 'right' });
+            items.push({ text: ger, el: domRows[i], side: 'right' });
+        }
+    }
     return items;
 }
 
-// Conversations: German-only, no highlight needed
+// Conversations: Speaker A → Speaker B per row (horizontal order, matching table layout)
 function collectConvItems() {
-    const rawLines = conversationsCSV.split('\n')
+    const rawLines = conversationsCSV.split('
+')
         .map(l => l.trim())
         .filter(l => l.length > 0 && !l.startsWith('//'));
-    const convMap = {};
+    const conversations = {};
     const convOrder = [];
     rawLines.forEach(line => {
         const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1), fc = line.indexOf(',', sp + 1);
@@ -2464,38 +2488,77 @@ function collectConvItems() {
         const sc = rest.indexOf(',');
         const german = rest.substring(0, sc).trim();
         const key = level + '|' + title;
-        if (!convMap[key]) { convMap[key] = { A: [], B: [] }; convOrder.push(key); }
-        if (speaker === 'A') convMap[key].A.push(german);
-        else                  convMap[key].B.push(german);
+        if (!conversations[key]) { conversations[key] = { A: [], B: [] }; convOrder.push(key); }
+        if (speaker === 'A') conversations[key].A.push(german);
+        else                  conversations[key].B.push(german);
     });
+
+    // Only data rows (those containing a .conv-ger-a cell)
+    const domRows = Array.from(document.querySelectorAll('.conversations-table tr'))
+        .filter(tr => tr.querySelector('.conv-ger-a'));
+
     const items = [];
+    let rowIdx = 0;
     convOrder.forEach(key => {
-        convMap[key].A.forEach(t => items.push({ text: t }));
-        convMap[key].B.forEach(t => items.push({ text: t }));
+        const { A, B } = conversations[key];
+        const maxRows = Math.max(A.length, B.length);
+        for (let i = 0; i < maxRows; i++) {
+            const domRow = domRows[rowIdx++] || null;
+            if (A[i]) items.push({ text: A[i], el: domRow, side: 'left' });
+            if (B[i]) items.push({ text: B[i], el: domRow, side: 'right' });
+        }
     });
     return items;
 }
 
-// Q&A: German-only, no highlight needed
+// Q&A: question → answer left-to-right per row (horizontal order, matching table layout)
+// Only the German portion is spoken — English translation in parentheses is stripped.
+function germanOnlyQA(text) {
+    // Answers are formatted: "German sentence. (English translation.)"
+    // Strip everything from the first ' (' onward to keep only German.
+    const idx = text.indexOf(' (');
+    return idx >= 0 ? text.substring(0, idx).trim() : text.trim();
+}
+
 function collectQAItems() {
-    const rows = qaCSV.split('\n').map(l => l.trim())
+    const rows = qaCSV.split('
+').map(l => l.trim())
         .filter(l => l && !l.startsWith('//'))
         .map(line => {
             const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
             if (fc < 0 || sc < 0) return null;
-            return { level: line.substring(0, fc).trim(), question: line.substring(fc + 1, sc).trim() };
+            return {
+                level:    line.substring(0, fc).trim(),
+                question: line.substring(fc + 1, sc).trim(),
+                answer:   germanOnlyQA(line.substring(sc + 1).trim())
+            };
         })
         .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
-    const half = Math.ceil(rows.length / 2);
+
+    const tbody = document.getElementById('qaTableBody');
+    const domRows = Array.from(tbody.querySelectorAll('tr'));
     const items = [];
-    for (let i = 0; i < half; i++)          items.push({ text: rows[i].question });
-    for (let i = half; i < rows.length; i++) items.push({ text: rows[i].question });
+
+    for (let i = 0; i < domRows.length; i++) {
+        const leftIdx  = i * 2;
+        const rightIdx = i * 2 + 1;
+
+        if (leftIdx < rows.length) {
+            items.push({ text: rows[leftIdx].question, el: domRows[i], side: 'left' });
+            if (rows[leftIdx].answer) items.push({ text: rows[leftIdx].answer, el: domRows[i], side: 'left' });
+        }
+        if (rightIdx < rows.length) {
+            items.push({ text: rows[rightIdx].question, el: domRows[i], side: 'right' });
+            if (rows[rightIdx].answer) items.push({ text: rows[rightIdx].answer, el: domRows[i], side: 'right' });
+        }
+    }
     return items;
 }
 
-// Sentences: English → German, with row highlight
+// Sentences: English → German, left-to-right per row (horizontal order, matching table layout)
 function collectSentItems() {
-    const rows = sentencesCSV.split('\n').map(l => l.trim())
+    const rows = sentencesCSV.split('
+').map(l => l.trim())
         .filter(l => l && !l.startsWith('//'))
         .map(line => {
             const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
@@ -2507,18 +2570,36 @@ function collectSentItems() {
             };
         })
         .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
     const tbody = document.getElementById('sentencesTableBody');
     const domRows = Array.from(tbody.querySelectorAll('tr'));
-    const half = Math.ceil(rows.length / 2);
     const items = [];
-    // left col: rows[0..half-1], right col: rows[half..end] — share domRows
-    function pushSent(row, domRow, side) {
-        if (row.english) items.push({ text: row.english, lang: 'en-US', el: domRow, side });
-        items.push({ text: row.german, el: domRow, side });
+
+    for (let i = 0; i < domRows.length; i++) {
+        const leftIdx  = i * 2;
+        const rightIdx = i * 2 + 1;
+
+        if (leftIdx < rows.length) {
+            if (rows[leftIdx].english) items.push({ text: rows[leftIdx].english, lang: 'en-US', el: domRows[i], side: 'left' });
+            items.push({ text: rows[leftIdx].german, el: domRows[i], side: 'left' });
+        }
+        if (rightIdx < rows.length) {
+            if (rows[rightIdx].english) items.push({ text: rows[rightIdx].english, lang: 'en-US', el: domRows[i], side: 'right' });
+            items.push({ text: rows[rightIdx].german, el: domRows[i], side: 'right' });
+        }
     }
-    for (let i = 0; i < half; i++)           pushSent(rows[i],      domRows[i]      || null, 'left');
-    for (let i = half; i < rows.length; i++) pushSent(rows[i],      domRows[i-half] || null, 'right');
     return items;
+}
+
+// ── German-only mode: skip all English translation items during playback ──
+let germanOnlyMode = false;
+function toggleGermanOnly() {
+    germanOnlyMode = !germanOnlyMode;
+    const btn = document.getElementById('deOnlyBtn');
+    if (btn) btn.classList.toggle('active', germanOnlyMode);
+}
+function applyGermanOnlyFilter(items) {
+    return germanOnlyMode ? items.filter(i => i.lang !== 'en-US') : items;
 }
 
 const sectionBtnIds = {
@@ -2594,6 +2675,7 @@ function playSection(section) {
     else if (section === 'sent')   { playAllTexts = collectSentItems(); }
 
     playAllTexts = playAllTexts.filter(item => item && item.text && item.text.trim());
+    playAllTexts = applyGermanOnlyFilter(playAllTexts);
     if (playAllTexts.length === 0) return;
 
     playAllActive = true;
@@ -2890,6 +2972,7 @@ function playAudioSectionAsync(section) {
         else if (section === 'sent') items = collectSentItems();
 
         items = items.filter(i => i && i.text && i.text.trim());
+        items = applyGermanOnlyFilter(items);
         if (!items.length) { resolve(); return; }
 
         playAllActive    = true;
