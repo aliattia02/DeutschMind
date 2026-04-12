@@ -1,0 +1,3244 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,400;0,500;0,700;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <title>German Vocabulary - 25: Time & Daily Routine</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @page {
+            size: A4;
+            margin: 1cm;
+        }
+
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background: white;
+            color: #000;
+            padding: 15px;
+            max-width: 100%;
+            margin: 0 auto;
+        }
+
+        /* ============================================
+           FIXED CONTROLS (screen only) — compact unified panel
+        ============================================ */
+        .controls {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            z-index: 1000;
+            max-width: 520px;
+        }
+
+        /* main dark pill wrapping level + audio */
+        .controls-main {
+            background: #1a1a1a;
+            border-radius: 8px;
+            padding: 7px 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 4px 14px rgba(0,0,0,0.45);
+        }
+
+        /* top bar: level filter + close btn */
+        .controls-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: nowrap;
+        }
+
+        .filter-label {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+
+        .level-btn {
+            border: 2px solid transparent;
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.72em;
+            font-weight: 700;
+            cursor: pointer;
+            opacity: 0.5;
+            transition: all 0.15s ease;
+        }
+        .level-btn:hover { opacity: 0.85; }
+        .level-btn.active { opacity: 1; border-color: white; }
+        .level-btn[data-level="all"] { background: #764ba2; color: white; }
+        .level-btn[data-level="A1"]  { background: #4CAF50; color: white; }
+        .level-btn[data-level="A2"]  { background: #2196F3; color: white; }
+        .level-btn[data-level="B1"]  { background: #FF9800; color: white; }
+        .level-btn[data-level="B2"]  { background: #F44336; color: white; }
+
+        .filter-count {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.4);
+            font-style: italic;
+            margin-left: 2px;
+        }
+
+        /* close button — inline in top bar */
+        .controls-close {
+            margin-left: auto;
+            background: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.55);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 4px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+        .controls-close:hover { background: rgba(255,255,255,0.18); color: white; }
+
+        /* ============================================
+           COLLAPSED TOGGLE BUTTON (when panel is hidden)
+        ============================================ */
+        .controls-toggle {
+            position: fixed;
+            top: 12px;
+            right: 12px;
+            z-index: 1001;
+            background: #1a1a1a;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 6px 12px;
+            font-size: 0.78em;
+            cursor: pointer;
+            border-radius: 6px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+            display: none;
+        }
+        .controls-toggle:hover { background: #333; }
+        .controls.collapsed { display: none !important; }
+        .controls.collapsed + .controls-toggle,
+        body.controls-hidden .controls-toggle { display: block; }
+
+        /* ============================================
+           AUDIO PANEL (inside controls-main)
+        ============================================ */
+        .audio-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .audio-row-top {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            flex-wrap: wrap;
+        }
+        .audio-panel-title {
+            font-size: 0.72em;
+            font-weight: bold;
+            color: rgba(255,255,255,0.5);
+            white-space: nowrap;
+        }
+        .audio-panel label {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.68em;
+            white-space: nowrap;
+        }
+        .audio-panel select {
+            font-size: 0.68em;
+            padding: 2px 5px;
+            border: 1px solid #444;
+            border-radius: 4px;
+            background: #2a2a2a;
+            color: rgba(255,255,255,0.85);
+            cursor: pointer;
+            max-width: 130px;
+        }
+        .audio-panel input[type=range] {
+            width: 60px;
+            cursor: pointer;
+            accent-color: #667eea;
+        }
+        .speed-val {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.68em;
+            min-width: 26px;
+        }
+        .play-all-btn {
+            background: linear-gradient(135deg, #DD0000, #FFCE00);
+            color: white;
+            border: none;
+            padding: 4px 11px;
+            border-radius: 10px;
+            font-size: 0.72em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: opacity 0.2s;
+        }
+        .play-all-btn:hover { opacity: 0.85; }
+        .pause-btn {
+            background: #3a3a3a;
+            color: rgba(255,255,255,0.75);
+            border: 1px solid #555;
+            padding: 4px 11px;
+            border-radius: 10px;
+            font-size: 0.72em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: none;
+        }
+        .pause-btn:hover { background: #555; color: white; }
+        .pause-btn.paused { background: #667eea; color: white; border-color: #667eea; }
+        .de-only-btn {
+            background: #2a2a2a;
+            color: rgba(255,255,255,0.55);
+            border: 1px solid #444;
+            padding: 4px 10px;
+            border-radius: 10px;
+            font-size: 0.72em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+        .de-only-btn:hover { background: #3a3a3a; color: white; }
+        .de-only-btn.active { background: #1a6b3c; color: #90EE90; border-color: #2ea55a; }
+        .audio-row-sections {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            flex-wrap: wrap;
+        }
+        .audio-section-label {
+            font-size: 0.65em;
+            color: rgba(255,255,255,0.35);
+            white-space: nowrap;
+        }
+        .audio-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.75em;
+        }
+        .section-play-btn {
+            background: #242424;
+            color: rgba(255,255,255,0.55);
+            border: 1px solid #3a3a3a;
+            padding: 2px 8px;
+            border-radius: 8px;
+            font-size: 0.67em;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.15s;
+            white-space: nowrap;
+        }
+        .section-play-btn:hover { background: #3a3a3a; color: white; }
+        .section-play-btn.playing { background: #667eea; color: white; border-color: #667eea; }
+        .section-play-btn[data-art="der"] { color: #90CAF9; }
+        .section-play-btn[data-art="das"] { color: #A5D6A7; }
+        .section-play-btn[data-art="die"] { color: #EF9A9A; }
+
+        .audio-btn {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            font-size: 0.78em;
+            padding: 0 2px;
+            opacity: 0.45;
+            transition: opacity 0.2s;
+            line-height: 1;
+            vertical-align: middle;
+        }
+        .audio-btn:hover { opacity: 1; }
+
+        /* ============================================
+           ZOOM + PRINT — collapsible (collapsed by default)
+        ============================================ */
+        .secondary-controls-toggle {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .sec-toggle-btn {
+            background: rgba(255,255,255,0.06);
+            color: rgba(255,255,255,0.45);
+            border: none;
+            padding: 2px 9px;
+            font-size: 0.67em;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.15s;
+        }
+        .sec-toggle-btn:hover { background: rgba(255,255,255,0.14); color: rgba(255,255,255,0.8); }
+        .sec-toggle-btn.open { color: rgba(255,255,255,0.75); background: rgba(255,255,255,0.1); }
+
+        .secondary-controls {
+            display: none;
+            flex-direction: row;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            padding-top: 4px;
+            border-top: 1px solid rgba(255,255,255,0.07);
+        }
+        .secondary-controls.open { display: flex; }
+
+        /* compact zoom row */
+        .zoom-row {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+        .zoom-label {
+            font-size: 0.67em;
+            color: rgba(255,255,255,0.45);
+            white-space: nowrap;
+        }
+        .zoom-btn {
+            background: #333;
+            color: rgba(255,255,255,0.8);
+            border: none;
+            padding: 3px 8px;
+            font-size: 0.8em;
+            cursor: pointer;
+            border-radius: 3px;
+        }
+        .zoom-btn:hover { background: #555; }
+        .zoom-level {
+            font-weight: bold;
+            font-size: 0.68em;
+            color: rgba(255,255,255,0.65);
+            min-width: 30px;
+            text-align: center;
+        }
+        .zoom-sep {
+            color: rgba(255,255,255,0.15);
+            font-size: 0.8em;
+        }
+        .print-button {
+            background: rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            font-size: 0.7em;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-left: auto;
+        }
+        .print-button:hover { background: rgba(255,255,255,0.2); color: white; }
+
+        /* ============================================
+           AUDIO STATUS TOAST
+        ============================================ */
+        .audio-status {
+            position: fixed;
+            bottom: 16px;
+            right: 16px;
+            background: #667eea;
+            color: white;
+            padding: 8px 18px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            display: none;
+            align-items: center;
+            gap: 8px;
+            z-index: 2000;
+            font-size: 0.82em;
+        }
+        .audio-status.show { display: flex; }
+        .audio-status .spinner {
+            width: 14px;
+            height: 14px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            flex-shrink: 0;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* ── Active row highlight during Play All ── */
+        tr[data-playing="left"] td.left-pair,
+        tr[data-playing="right"] td.right-pair,
+        tr[data-playing="all"] td {
+            background: rgba(255, 206, 0, 0.45) !important;
+            box-shadow: inset 0 0 0 2px #FFCE00;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+
+        /* ============================================
+           LEVEL BADGE (appears inside article cell)
+        ============================================ */
+        .lvl-badge {
+            display: inline-block;
+            font-size: 0.62em;
+            font-weight: 700;
+            padding: 1px 4px;
+            border-radius: 6px;
+            letter-spacing: 0.3px;
+            vertical-align: middle;
+            margin-left: 2px;
+            line-height: 1.4;
+        }
+        .lvl-badge.A1 { background: #C8E6C9; color: #1B5E20; }
+        .lvl-badge.A2 { background: #BBDEFB; color: #0D47A1; }
+        .lvl-badge.B1 { background: #FFE0B2; color: #E65100; }
+        .lvl-badge.B2 { background: #FFCDD2; color: #B71C1C; }
+
+        /* ============================================
+           PAGE HEADER
+        ============================================ */
+        .content-wrapper { max-width: 100%; }
+
+        .header {
+            text-align: center;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #000;
+            padding-bottom: 8px;
+        }
+
+        .header h1 {
+            font-size: 2.14em;
+            margin-bottom: 5px;
+            color: #000;
+        }
+
+        /* ============================================
+           SECTION DIVIDER
+        ============================================ */
+        .section-divider {
+            margin: 30px 0;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 10px;
+            text-align: center;
+            page-break-before: always;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .section-divider h2 {
+            color: white;
+            font-size: 2em;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        /* ============================================
+           TABLE SECTION HEADERS
+        ============================================ */
+        .table-section {
+            margin-bottom: 5px;
+            max-width: 100%;
+            overflow-x: auto;
+        }
+
+        .table-section h2 {
+            font-size: 1.71em;
+            margin-bottom: 8px;
+            margin-top: 5px;
+            color: #000;
+            border-bottom: 2px solid #666;
+            padding-bottom: 5px;
+            page-break-after: avoid;
+        }
+
+        /* ============================================
+           NOUN TABLE — 8 columns, article colors
+        ============================================ */
+        .noun-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .noun-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            word-wrap: break-word;
+            hyphens: auto;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .noun-table tr.separator td {
+            background: #f0f0f0;
+            text-align: center;
+            font-weight: bold;
+            color: #555;
+            padding: 3px;
+            font-size: 0.85em;
+            letter-spacing: 0.5px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .noun-table .article-cell {
+            font-weight: bold;
+            width: 6%;
+        }
+
+        .noun-table .german-cell {
+            font-weight: 600;
+            width: 18%;
+        }
+
+        .noun-table .plural-cell {
+            font-style: italic;
+            color: #666;
+            width: 8%;
+        }
+
+        .noun-table .english-cell {
+            color: #333;
+            width: 18%;
+        }
+
+        /* ARTICLE ROW COLORS */
+        .noun-table .der-row {
+            background: #E3F2FD !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-row {
+            background: #E8F5E9 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-row {
+            background: #FFEBEE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ARTICLE TEXT COLORS */
+        .noun-table .der-article {
+            color: #1565C0 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .das-article {
+            color: #2E7D32 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+        .noun-table .die-article {
+            color: #C62828 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* NOUN TABLE COLGROUP widths */
+        .noun-col-art    { width: 6%; }
+        .noun-col-german { width: 18%; }
+        .noun-col-plural { width: 8%; }
+        .noun-col-eng    { width: 18%; }
+
+        /* ============================================
+           WORD TABLE (ADJ + VERB) — 8 columns
+        ============================================ */
+        .word-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .word-table th {
+            background: #333 !important;
+            color: white !important;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+            word-wrap: break-word;
+            hyphens: auto;
+        }
+
+        .word-table td {
+            padding: 5px 4px;
+            border: 1px solid #999;
+            vertical-align: middle;
+            word-wrap: break-word;
+            word-break: break-word;
+            hyphens: auto;
+            overflow-wrap: break-word;
+        }
+
+        .word-table tr.separator td {
+            background: #f5f5f5 !important;
+            text-align: center;
+            font-weight: bold;
+            color: #666;
+            padding: 2px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .word-table .german-col  { font-weight: 600; width: 15%; }
+        .word-table .english-col { color: #333; width: 10%; }
+
+        /* ADJECTIVE rows — warm yellow */
+        .word-table tr.adjective-row {
+            background: #FFF8E1 !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* VERB rows — light blue */
+        .word-table tr.verb-row {
+            background: #E1F5FE !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           EXPRESSIONS TABLE — 4 columns
+        ============================================ */
+        .expressions-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .expressions-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .expressions-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .expressions-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+            color: #000;
+        }
+
+        .expressions-table .english-cell {
+            color: #333;
+            width: 22%;
+            font-style: italic;
+        }
+
+        /* ============================================
+           CONVERSATIONS TABLE — compact 4-col layout
+        ============================================ */
+        .conversations-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 12px;
+            font-size: 1em;
+        }
+
+        .conversation-title {
+            background: #667eea !important;
+            color: white !important;
+            font-weight: bold;
+            padding: 6px 8px;
+            font-size: 0.95em;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table .conv-subheader {
+            background: #e8eaf6 !important;
+            font-weight: 700;
+            font-size: 0.78em;
+            color: #3949ab;
+            padding: 3px 6px;
+            border: 1px solid #c5cae9;
+            text-align: center;
+            letter-spacing: 0.3px;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-a {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-a {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #c5cae9;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #f3f0ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-ger-b {
+            font-weight: 600;
+            width: 27%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .conversations-table td.conv-eng-b {
+            color: #444;
+            font-style: italic;
+            width: 23%;
+            padding: 4px 6px;
+            border: 1px solid #b3d4f0;
+            vertical-align: top;
+            word-wrap: break-word;
+            background: #eaf4ff !important;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        /* ============================================
+           Q&A TABLE — 4 columns
+        ============================================ */
+        .qa-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .qa-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .qa-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .qa-table .question-cell {
+            font-weight: 600;
+            color: #1a237e;
+            width: 28%;
+        }
+
+        .qa-table .answer-cell {
+            color: #333;
+            width: 22%;
+        }
+
+        /* ============================================
+           SENTENCES TABLE — 4 columns
+        ============================================ */
+        .sentences-table {
+            width: 100%;
+            table-layout: fixed;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+
+        .sentences-table th {
+            background: #333;
+            color: white;
+            padding: 5px 4px;
+            text-align: left;
+            font-weight: bold;
+            border: 1px solid #000;
+            -webkit-print-color-adjust: exact;
+            print-color-adjust: exact;
+        }
+
+        .sentences-table td {
+            padding: 5px 6px;
+            border: 1px solid #999;
+            vertical-align: top;
+            word-wrap: break-word;
+        }
+
+        .sentences-table .german-cell {
+            font-weight: 600;
+            width: 28%;
+        }
+
+        .sentences-table .english-cell {
+            color: #333;
+            font-style: italic;
+            width: 22%;
+        }
+
+        /* ============================================
+           FOOTER INFO
+        ============================================ */
+        .footer-info {
+            margin-top: 20px;
+            padding: 12px;
+            background: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 0.85em;
+            line-height: 1.8;
+        }
+
+        .footer-info h3 { margin-bottom: 6px; }
+
+        /* ============================================
+           PRINT STYLES
+        ============================================ */
+        @media print {
+            .controls          { display: none !important; }
+            .controls-toggle   { display: none !important; }
+            .level-filter-bar  { display: none !important; }
+            .audio-panel       { display: none !important; }
+            .audio-status      { display: none !important; }
+            .audio-btn         { display: none !important; }
+            .section-play-btn  { display: none !important; }
+            .footer-info       { display: none !important; }
+
+            body { padding: 0; font-size: 0.7em; }
+
+            .section-divider { page-break-before: always; }
+            .table-section { page-break-inside: auto; }
+            .noun-table, .word-table, .expressions-table,
+            .conversations-table, .qa-table, .sentences-table {
+                font-size: 1em;
+            }
+        }
+
+        @media screen {
+            body { padding-top: 10px; }
+        }
+
+        /* ============================================
+           RECORD MODE — OVERLAY CARD (oc- prefix)
+        ============================================ */
+        #cardOverlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 9000;
+            background: #f0f2f5;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+        #overlayCardWrap {
+            width: 1280px;
+            height: 720px;
+            transform-origin: center center;
+            flex-shrink: 0;
+            position: relative;
+        }
+        #overlayCard {
+            width: 100%; height: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 14px;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.18), 0 4px 16px rgba(0,0,0,0.10);
+            background: #f5f7fa;
+            font-family: 'DM Sans', 'Arial', sans-serif;
+        }
+        .oc-card-bg-overlay { position:absolute; inset:0; z-index:0; }
+        .oc-card-noise {
+            position:absolute; inset:0; z-index:1;
+            background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 300 300' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E");
+            opacity:0.45;
+        }
+        .oc-accent-line {
+            position:absolute; left:0; top:0; bottom:0; width:6px;
+            background:linear-gradient(180deg,#1E88E5 0%,#C62828 50%,#2E7D32 100%);
+            z-index:10;
+        }
+        .oc-corner-wm {
+            position:absolute; right:-20px; top:50%;
+            transform:translateY(-50%);
+            font-family:'Bebas Neue','Arial Black',sans-serif;
+            letter-spacing:-4px; line-height:1;
+            pointer-events:none; z-index:1;
+        }
+        .oc-card-inner {
+            position:relative; z-index:5; height:100%;
+            display:flex; flex-direction:column;
+        }
+        .oc-card-top {
+            display:flex; align-items:center; justify-content:space-between;
+            padding:16px 32px 14px; flex-shrink:0;
+            background:rgba(255,255,255,0.72);
+            border-bottom:1px solid rgba(0,0,0,0.07);
+            backdrop-filter:blur(8px); gap:12px;
+        }
+        .oc-logo-mark {
+            font-family:'Bebas Neue','Arial Black',sans-serif;
+            font-size:1.1em; letter-spacing:3px; color:rgba(0,0,0,0.6);
+            flex-shrink:0; display:flex; flex-direction:column; line-height:1;
+        }
+        .oc-lm-der, .oc-lc-der { color:#1565C0; }
+        .oc-lm-die, .oc-lc-die { color:#B71C1C; }
+        .oc-lm-das, .oc-lc-das { color:#1B5E20; }
+        .oc-thematic-sub {
+            font-family:'DM Sans','Arial',sans-serif;
+            font-size:0.42em; letter-spacing:2.5px; color:rgba(0,0,0,0.35);
+            font-weight:700; text-transform:uppercase; margin-top:1px;
+        }
+        .oc-unit-info {
+            font-size:0.7em; color:rgba(0,0,0,0.4); letter-spacing:1.5px;
+            font-weight:700; text-transform:uppercase; flex:1; text-align:center;
+        }
+        .oc-level-pill {
+            font-family:'Space Mono','Courier New',monospace;
+            font-size:0.65em; font-weight:700; padding:4px 14px;
+            border-radius:20px; border:1.5px solid rgba(0,0,0,0.15);
+            color:rgba(0,0,0,0.4); letter-spacing:1px; flex-shrink:0;
+        }
+        .oc-card-main {
+            flex:1; display:flex; flex-direction:column;
+            align-items:center; justify-content:center;
+            padding:16px 80px 8px; gap:0;
+        }
+        .oc-section-tag {
+            font-family:'Space Mono','Courier New',monospace;
+            font-size:0.78em; letter-spacing:4px; color:rgba(0,0,0,0.35);
+            text-transform:uppercase; margin-bottom:12px;
+        }
+        .oc-card-title {
+            font-family:'Bebas Neue','Arial Black',sans-serif;
+            letter-spacing:3px; color:#111; text-align:center; line-height:0.88;
+        }
+        .oc-badges-row { display:flex; gap:12px; margin-top:22px; align-items:center; }
+        .oc-art-badge {
+            font-family:'Space Mono','Courier New',monospace;
+            font-weight:700; letter-spacing:2px; border-radius:8px;
+            color:white; text-transform:lowercase; border:2px solid;
+        }
+        .oc-art-badge.oc-big { font-size:2.2em; padding:10px 40px; letter-spacing:4px; }
+        .oc-art-badge.oc-med { font-size:1.4em; padding:7px 22px; }
+        .oc-card-foot {
+            padding:12px 32px; border-top:1px solid rgba(0,0,0,0.07);
+            background:rgba(255,255,255,0.6);
+            display:flex; align-items:center; justify-content:space-between; flex-shrink:0;
+        }
+        .oc-word-count {
+            font-family:'Space Mono','Courier New',monospace;
+            font-size:0.75em; color:rgba(0,0,0,0.45); letter-spacing:1px;
+        }
+        .oc-foot-sub { font-size:0.72em; color:rgba(0,0,0,0.3); font-style:italic; }
+        .oc-cover-logo {
+            font-family:'Bebas Neue','Arial Black',sans-serif;
+            font-size:2.2em; letter-spacing:5px; color:rgba(0,0,0,0.55); margin-bottom:20px;
+        }
+
+        /* Record mode button */
+        .record-btn {
+            background: linear-gradient(135deg, #c0392b, #e74c3c);
+            color: white; border: none; padding: 4px 11px; border-radius: 10px;
+            font-size: 0.72em; font-weight: bold; cursor: pointer;
+            transition: opacity 0.2s; letter-spacing: 0.5px;
+        }
+        .record-btn:hover { opacity: 0.85; }
+        .stop-rec-btn {
+            background: #555; color: rgba(255,255,255,0.85);
+            border: 1px solid #777; padding: 4px 11px; border-radius: 10px;
+            font-size: 0.72em; font-weight: bold; cursor: pointer; display: none;
+        }
+        .stop-rec-btn:hover { background: #777; }
+
+        /* Countdown overlay */
+        #countdownOverlay {
+            display: none; position: fixed; inset: 0; z-index: 9100;
+            background: rgba(0,0,0,0.88);
+            align-items: center; justify-content: center; flex-direction: column;
+        }
+        #countdownNumber {
+            font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+            font-size: 22vw; color: white; line-height: 1;
+            text-shadow: 0 0 80px rgba(255,200,100,0.6);
+            animation: cdPulse 1s ease-in-out;
+        }
+        @keyframes cdPulse {
+            from { transform: scale(1.3); opacity: 0.4; }
+            to   { transform: scale(1);   opacity: 1; }
+        }
+        .countdown-sub {
+            font-size: 1.1em; color: rgba(255,255,255,0.45);
+            letter-spacing: 5px; text-transform: uppercase;
+            margin-top: -8px; font-family: Arial, sans-serif;
+        }
+
+        /* Recording mini-bar (floating, top-center) */
+        #recMiniBar {
+            display: none; position: fixed; top: 12px; left: 50%;
+            transform: translateX(-50%); z-index: 9500;
+            background: rgba(10,10,10,0.82); border-radius: 30px;
+            padding: 6px 18px; align-items: center; gap: 12px;
+            border: 1px solid rgba(255,255,255,0.1);
+            backdrop-filter: blur(8px);
+        }
+        #recMiniBar .rec-indicator {
+            width: 8px; height: 8px; border-radius: 50%;
+            background: #e74c3c; animation: recBlink 1.2s ease-in-out infinite;
+        }
+        @keyframes recBlink { 0%,100%{opacity:1} 50%{opacity:0.2} }
+        #recMiniBar .rec-label {
+            color: rgba(255,255,255,0.45); font-size: 0.7em; letter-spacing: 2px;
+        }
+        #recMiniBar .rec-ts {
+            font-family: 'Space Mono', 'Courier New', monospace;
+            color: rgba(255,255,255,0.7); font-size: 0.72em; letter-spacing: 1px;
+            min-width: 44px;
+        }
+        #recMiniBar button {
+            background: rgba(255,255,255,0.1); color: rgba(255,255,255,0.8);
+            border: 1px solid rgba(255,255,255,0.18); padding: 3px 12px;
+            border-radius: 20px; font-size: 0.72em; cursor: pointer;
+            transition: background 0.15s;
+        }
+        #recMiniBar button:hover { background: rgba(255,255,255,0.22); }
+
+        /* zoom controls inside mini bar (shown when paused) */
+        #recZoomControls {
+            display: none;
+            align-items: center;
+            gap: 5px;
+            border-left: 1px solid rgba(255,255,255,0.12);
+            padding-left: 10px;
+            margin-left: 2px;
+        }
+        #recZoomControls.visible { display: flex; }
+        #recZoomControls .rz-label {
+            font-size: 0.65em; color: rgba(255,255,255,0.35);
+            letter-spacing: 1px; white-space: nowrap;
+        }
+        #recZoomControls .rz-btn {
+            background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.75);
+            border: 1px solid rgba(255,255,255,0.14); padding: 2px 7px;
+            border-radius: 4px; font-size: 0.78em; cursor: pointer;
+        }
+        #recZoomControls .rz-btn:hover { background: rgba(255,255,255,0.2); }
+        #recZoomControls .rz-sep { color: rgba(255,255,255,0.15); font-size: 0.9em; }
+
+        /* start-from select */
+        .rec-start-select {
+            font-size: 0.68em; padding: 3px 6px;
+            border: 1px solid #444; border-radius: 5px;
+            background: #2a2a2a; color: rgba(255,255,255,0.8);
+            cursor: pointer; max-width: 140px;
+        }
+        .rec-start-label {
+            font-size: 0.68em; color: rgba(255,255,255,0.45);
+            white-space: nowrap;
+        }
+
+        /* Chapter summary modal */
+        #chapterModal {
+            display: none; position: fixed; inset: 0; z-index: 9200;
+            background: rgba(0,0,0,0.82);
+            align-items: center; justify-content: center;
+        }
+        .chapter-modal-box {
+            background: #1a1a2e; border-radius: 14px; padding: 32px;
+            max-width: 580px; width: 90%; color: white;
+            box-shadow: 0 24px 80px rgba(0,0,0,0.5);
+        }
+        .chapter-modal-title {
+            font-family: 'Bebas Neue', 'Arial Black', sans-serif;
+            font-size: 1.9em; letter-spacing: 3px; color: #667eea; margin-bottom: 6px;
+        }
+        .chapter-modal-sub {
+            font-size: 0.75em; color: rgba(255,255,255,0.4);
+            margin-bottom: 20px; letter-spacing: 0.5px; line-height: 1.5;
+        }
+        #chapterText {
+            background: #111; border-radius: 8px; padding: 16px;
+            font-family: 'Space Mono', 'Courier New', monospace;
+            font-size: 0.73em; color: #98d89e; line-height: 1.8;
+            white-space: pre-wrap; max-height: 300px; overflow-y: auto;
+            border: 1px solid rgba(255,255,255,0.06);
+        }
+        .chapter-modal-actions {
+            display: flex; gap: 10px; margin-top: 20px; justify-content: flex-end;
+        }
+        .chapter-modal-actions button {
+            padding: 9px 20px; border-radius: 8px; cursor: pointer;
+            font-weight: 700; font-size: 0.78em; border: none;
+            transition: opacity 0.15s;
+        }
+        .chapter-modal-actions button:hover { opacity: 0.85; }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         FIXED CONTROLS (screen only)
+    ============================================ -->
+    <button class="controls-toggle" id="controlsToggle" onclick="toggleControls()">⚙ Controls</button>
+    <div class="controls" id="controlsPanel">
+        <div class="controls-main">
+
+            <!-- Row 1: Level filter + close -->
+            <div class="controls-top">
+                <span class="filter-label">🎯</span>
+                <button class="level-btn active" data-level="all" onclick="filterByLevel('all')">All</button>
+                <button class="level-btn" data-level="A1"  onclick="filterByLevel('A1')">A1</button>
+                <button class="level-btn" data-level="A2"  onclick="filterByLevel('A2')">A2</button>
+                <button class="level-btn" data-level="B1"  onclick="filterByLevel('B1')">B1</button>
+                <button class="level-btn" data-level="B2"  onclick="filterByLevel('B2')">B2</button>
+                <span class="filter-count" id="filterCount"></span>
+                <button class="controls-close" onclick="toggleControls()">✕</button>
+            </div>
+
+            <!-- Row 2: Audio controls -->
+            <div class="audio-panel">
+                <div class="audio-row-top">
+                    <span class="audio-panel-title">🔊</span>
+                    <label for="voiceSelect">Voice:</label>
+                    <select id="voiceSelect"><option value="">Loading…</option></select>
+                    <label for="speedControl">Speed:</label>
+                    <input type="range" id="speedControl" min="0.5" max="1.5" step="0.1" value="0.8">
+                    <span class="speed-val" id="speedValue">0.8×</span>
+                    <button class="play-all-btn" id="btnAll" onclick="playSection('all')">▶ All</button>
+                    <button class="pause-btn" id="pauseBtn" onclick="togglePause()">⏸ Pause</button>
+                    <button class="de-only-btn" id="deOnlyBtn" onclick="toggleGermanOnly()" title="Speak German only — skip English translations">🇩🇪 DE Only</button>
+                    <button class="record-btn" id="recModeBtn" onclick="startRecordingMode()">🔴 Record</button>
+                    <button class="stop-rec-btn" id="stopRecBtn" onclick="stopRecordingMode()">⏹ Stop</button>
+                    <span class="rec-start-label">from:</span>
+                    <select class="rec-start-select" id="recStartFrom">
+                        <option value="0">🎬 Cover</option>
+                        <option value="1">📖 Nouns</option>
+                        <option value="2">🔵 der</option>
+                        <option value="3">🟢 das</option>
+                        <option value="4">🔴 die</option>
+                        <option value="5">📖 Adj &amp; Verbs</option>
+                        <option value="6">🟠 Adjectives</option>
+                        <option value="7">🩵 Verbs</option>
+                        <option value="8">💬 Phrases Divider</option>
+                        <option value="9">🟣 Expressions</option>
+                        <option value="10">💙 Conversations</option>
+                        <option value="11">🤎 Q&amp;A</option>
+                        <option value="12">🔷 Sentences</option>
+                    </select>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnDer" data-art="der" onclick="playSection('der')">▶ der</button>
+                    <button class="section-play-btn" id="btnDas" data-art="das" onclick="playSection('das')">▶ das</button>
+                    <button class="section-play-btn" id="btnDie" data-art="die" onclick="playSection('die')">▶ die</button>
+                    <span class="audio-sep">|</span>
+                    <button class="section-play-btn" id="btnAdj" onclick="playSection('adj')">▶ Adj</button>
+                    <button class="section-play-btn" id="btnVerb" onclick="playSection('verb')">▶ Verbs</button>
+                </div>
+                <div class="audio-row-sections">
+                    <span class="audio-section-label">from:</span>
+                    <button class="section-play-btn" id="btnExpr" onclick="playSection('expr')">▶ Expr</button>
+                    <button class="section-play-btn" id="btnConv" onclick="playSection('conv')">▶ Conv</button>
+                    <button class="section-play-btn" id="btnQa" onclick="playSection('qa')">▶ Q&amp;A</button>
+                    <button class="section-play-btn" id="btnSent" onclick="playSection('sent')">▶ Sent</button>
+                </div>
+            </div>
+
+            <!-- Row 3: Zoom & Print toggle -->
+            <div class="secondary-controls-toggle">
+                <button class="sec-toggle-btn" id="secToggleBtn" onclick="toggleSecondary()">⚙ Zoom &amp; Print</button>
+            </div>
+            <div class="secondary-controls" id="secondaryControls">
+                <div class="zoom-row">
+                    <span class="zoom-label">📚 Vocab:</span>
+                    <button class="zoom-btn" onclick="zoomOutVocab()">−</button>
+                    <span class="zoom-level" id="zoomLevelVocab">100%</span>
+                    <button class="zoom-btn" onclick="zoomInVocab()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomVocab()">⟲</button>
+                </div>
+                <span class="zoom-sep">|</span>
+                <div class="zoom-row">
+                    <span class="zoom-label">💬 Phrases:</span>
+                    <button class="zoom-btn" onclick="zoomOutPhrases()">−</button>
+                    <span class="zoom-level" id="zoomLevelPhrases">100%</span>
+                    <button class="zoom-btn" onclick="zoomInPhrases()">+</button>
+                    <button class="zoom-btn" onclick="resetZoomPhrases()">⟲</button>
+                </div>
+                <button class="print-button" onclick="window.print()">🖨️ Print</button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ============================================
+         DOCUMENT HEADER
+    ============================================ -->
+    <div class="content-wrapper">
+        <div class="header">
+            <h1>📚 25: Time & Daily Routine</h1>
+            <p style="font-size:0.75em; color:#555;">Time & Daily Routine · A1–B2 Level-Tagged Reference · aliattia02</p>
+        </div>
+
+        <!-- ============================================
+             VOCABULARY SECTION
+        ============================================ -->
+        <div id="vocabSection">
+
+            <!-- TABLE 1: NOUNS -->
+            <div class="table-section">
+                <h2>Table 1: Nouns (Die Nomen)</h2>
+                <table class="noun-table">
+                    <colgroup>
+                        <col class="noun-col-art">
+                        <col class="noun-col-german">
+                        <col class="noun-col-plural">
+                        <col class="noun-col-eng">
+                        <col class="noun-col-art">
+                        <col class="noun-col-german">
+                        <col class="noun-col-plural">
+                        <col class="noun-col-eng">
+                    </colgroup>
+                    <thead>
+                        <tr>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural ±</th>
+                            <th>English</th>
+                            <th>Article</th>
+                            <th>German</th>
+                            <th>Plural ±</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="nounTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 2: ADJECTIVES & VERBS -->
+            <div class="table-section">
+                <h2>Table 2: Adjectives &amp; Verbs with Opposites</h2>
+                <table class="word-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="wordTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- SECTION DIVIDER -->
+        <div class="section-divider">
+            <h2>💬 PHRASES &amp; SENTENCES</h2>
+        </div>
+
+        <!-- ============================================
+             PHRASES SECTION
+        ============================================ -->
+        <div id="phrasesSection">
+
+            <!-- TABLE 3: EXPRESSIONS -->
+            <div class="table-section">
+                <h2>Table 3: Common Expressions</h2>
+                <table class="expressions-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="expressionsTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 4: CONVERSATIONS -->
+            <div class="table-section">
+                <h2>Table 4: Conversations</h2>
+                <div id="conversationsContainer"></div>
+            </div>
+
+            <!-- TABLE 5: Q&A -->
+            <div class="table-section">
+                <h2>Table 5: Questions &amp; Answers</h2>
+                <table class="qa-table">
+                    <thead>
+                        <tr>
+                            <th>Question</th>
+                            <th>Answer</th>
+                            <th>Question</th>
+                            <th>Answer</th>
+                        </tr>
+                    </thead>
+                    <tbody id="qaTableBody"></tbody>
+                </table>
+            </div>
+
+            <!-- TABLE 6: SENTENCES -->
+            <div class="table-section">
+                <h2>Table 6: Complete Sentences</h2>
+                <table class="sentences-table">
+                    <thead>
+                        <tr>
+                            <th>German</th>
+                            <th>English</th>
+                            <th>German</th>
+                            <th>English</th>
+                        </tr>
+                    </thead>
+                    <tbody id="sentencesTableBody"></tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <div class="footer-info">
+            <h3>📖 Reference Guide</h3>
+            <p><strong>Topic:</strong> Time &amp; Daily Routine &nbsp;|&nbsp; <strong>Created:</strong> 2025 — aliattia02</p>
+            <p><strong>Plural Notation:</strong> -e, -er, -n, -en = add ending | Full form shown = umlaut change | --- = no change | nur P = plural only | = = no change</p>
+            <p><strong>Color Coding:</strong>
+                <span style="color:#1565C0; font-weight:bold;">■ der (blue)</span> &nbsp;
+                <span style="color:#2E7D32; font-weight:bold;">■ das (green)</span> &nbsp;
+                <span style="color:#C62828; font-weight:bold;">■ die (red)</span> &nbsp;|&nbsp;
+                Adjective rows: <span style="background:#FFF8E1; padding:1px 6px; border:1px solid #ddd;">yellow</span> &nbsp;
+                Verb rows: <span style="background:#E1F5FE; padding:1px 6px; border:1px solid #ddd;">blue</span>
+            </p>
+            <p><strong>Prefix Guide:</strong> - = Adjective &nbsp;|&nbsp; * = Weak Verb (regular) &nbsp;|&nbsp; + = Strong Verb (irregular)</p>
+            <p><strong>Levels:</strong>
+                <span class="lvl-badge A1">A1</span> Beginner &nbsp;
+                <span class="lvl-badge A2">A2</span> Elementary &nbsp;
+                <span class="lvl-badge B1">B1</span> Intermediate &nbsp;
+                <span class="lvl-badge B2">B2</span> Upper Intermediate
+            </p>
+        </div>
+    </div>
+
+    <div class="audio-status" id="audioStatus">
+        <div class="spinner"></div>
+        <span id="audioStatusText">Speaking…</span>
+    </div>
+
+    <script>
+
+// ============================================
+// TOPIC 15: Job Application & Interview
+// ENRICHED — Medical IT / FHIR / German Digital Health Edition
+// ============================================
+
+// ─── NOUNS ───
+const nounsCSV = `
+// das — cluster: application documents
+A1,das,Foto,-s,die Fotos,Photo
+A1,das,Schreiben,=,die Schreiben,Letter
+A2,das,Anschreiben,=,die Anschreiben,Cover letter
+A2,das,Zeugnis,-se,die Zeugnisse,Certificate
+B1,das,Empfehlungsschreiben,=,die Empfehlungsschreiben,Letter of recommendation
+B1,das,Motivationsschreiben,=,die Motivationsschreiben,Motivation letter
+B2,das,Kompetenzprofil,-e,die Kompetenzprofile,Competency profile
+B2,das,Referenzschreiben,=,die Referenzschreiben,Reference letter
+// das — cluster: CV & portfolio
+A2,das,Profil,-e,die Profile,Profile
+B1,das,Portfolio,-s,die Portfolios,Portfolio
+B1,das,Arbeitszeugnis,-se,die Arbeitszeugnisse,Employment reference
+B2,das,Qualifikationsprofil,-e,die Qualifikationsprofile,Qualification profile
+// das — cluster: job & position
+A1,das,Praktikum,Praktika,die Praktika,Internship
+A1,das,Gehalt,Gehälter,die Gehälter,Salary
+A2,das,Angebot,-e,die Angebote,Offer
+A2,das,Vorstellungsgespräch,-e,die Vorstellungsgespräche,Job interview
+B1,das,Tätigkeitsfeld,-er,die Tätigkeitsfelder,Field of activity
+B1,das,Aufgabengebiet,-e,die Aufgabengebiete,Area of responsibility
+B2,das,Anforderungsprofil,-e,die Anforderungsprofile,Job requirements profile
+B2,das,Beschäftigungsverhältnis,-se,die Beschäftigungsverhältnisse,Employment relationship
+// das — cluster: contract & conditions
+A2,das,Gehaltsgespräch,-e,die Gehaltsgespräche,Salary negotiation
+B1,das,Arbeitsvertrag,Arbeitsverträge,die Arbeitsverträge,Employment contract
+B1,das,Probezeit,-en,die Probezeiten,Probationary period
+B2,das,Entgelt,-e,die Entgelte,Remuneration
+B2,das,Gehaltspaket,-e,die Gehaltspakete,Salary package
+// das — cluster: training & qualification
+A2,das,Studium,Studien,die Studien,University studies
+B1,das,Zertifikat,-e,die Zertifikate,Certificate
+B1,das,Fortbildung,-en,die Fortbildungen,Further training
+B2,das,Kompetenzfeld,-er,die Kompetenzfelder,Competency area
+// das — cluster: the interview itself
+A1,der,Termin,-e,die Termine,Appointment
+A2,der,Ablauf,Abläufe,die Abläufe,Process
+B1,der,Gesprächsleitfaden,Gesprächsleitfäden,die Gesprächsleitfäden,Interview guide
+B2,der,Auswahlprozess,-e,die Auswahlprozesse,Selection process
+B2,der,Eignungstest,-s,die Eignungstests,Aptitude test
+// der — cluster: employer & team
+A1,der,Chef,-s,die Chefs,Boss
+A1,der,Kollege,-n,die Kollegen,Colleague
+A2,der,Vorgesetzte,-n,die Vorgesetzten,Supervisor
+A2,der,Personalverantwortliche,-n,die Personalverantwortlichen,HR manager
+B1,der,Recruiter,=,die Recruiter,Recruiter
+B1,der,Personalleiter,=,die Personalleiter,Head of HR
+B2,der,Headhunter,=,die Headhunter,Headhunter
+// der — cluster: career path
+A1,der,Beruf,-e,die Berufe,Profession
+A2,der,Werdegang,Werdegänge,die Werdegänge,Career path
+A2,der,Abschluss,Abschlüsse,die Abschlüsse,Degree
+B1,der,Karriereschritt,-e,die Karriereschritte,Career step
+B1,der,Schwerpunkt,-e,die Schwerpunkte,Area of focus
+B2,der,Karriereknick,-e,die Karriereknicke,Career setback
+// der — cluster: strengths & weaknesses
+A2,der,Vorteil,-e,die Vorteile,Advantage
+B1,der,Mehrwert,-e,die Mehrwerte,Added value
+B1,der,Entwicklungsbedarf,---,---,Development need
+B2,der,Wettbewerbsvorteil,-e,die Wettbewerbsvorteile,Competitive advantage
+// die — cluster: application process
+A1,die,Stelle,-n,die Stellen,Position
+A1,die,Bewerbung,-en,die Bewerbungen,Application
+A2,die,Ausschreibung,-en,die Ausschreibungen,Job posting
+A2,die,Einladung,-en,die Einladungen,Invitation
+B1,die,Absage,-n,die Absagen,Rejection
+B1,die,Zusage,-n,die Zusagen,Job offer acceptance
+B2,die,Onlinebewerbung,-en,die Onlinebewerbungen,Online application
+// die — cluster: skills & experience
+A1,die,Erfahrung,-en,die Erfahrungen,Experience
+A2,die,Fähigkeit,-en,die Fähigkeiten,Ability
+A2,die,Kenntnisse,nur P,die Kenntnisse,Knowledge
+B1,die,Kompetenz,-en,die Kompetenzen,Competency
+B1,die,Qualifikation,-en,die Qualifikationen,Qualification
+B2,die,Kernkompetenz,-en,die Kernkompetenzen,Core competency
+B2,die,Transferkompetenz,-en,die Transferkompetenzen,Transferable skill
+// die — cluster: personality & soft skills
+A2,die,Teamfähigkeit,---,---,Teamwork ability
+A2,die,Kommunikation,-en,die Kommunikationen,Communication
+B1,die,Belastbarkeit,---,---,Resilience
+B1,die,Eigeninitiative,---,---,Self-initiative
+B2,die,Sozialkompetenz,-en,die Sozialkompetenzen,Social competency
+B2,die,Frustrationstoleranz,---,---,Frustration tolerance
+// die — cluster: workplace & conditions
+A2,die,Arbeitszeit,-en,die Arbeitszeiten,Working hours
+B1,die,Unternehmenskultur,-en,die Unternehmenskulturen,Company culture
+B1,die,Weiterentwicklung,-en,die Weiterentwicklungen,Professional development
+B2,die,Vergütungsstruktur,-en,die Vergütungsstrukturen,Compensation structure
+// ── NEW: das — cluster: FHIR & HL7 standards ──
+B1,das,FHIR-Profil,-e,die FHIR-Profile,FHIR profile
+B2,das,Implementierungsleitfaden,=,die Implementierungsleitfäden,Implementation guide
+B2,das,REST-API,-s,die REST-APIs,REST API
+B2,das,Terminologiesystem,-e,die Terminologiesysteme,Terminology system
+C1,das,Capability-Statement,-s,die Capability-Statements,FHIR capability statement
+C1,das,Interoperabilitätsframework,-s,die Interoperabilitätsframeworks,Interoperability framework
+C1,das,Value-Set,-s,die Value-Sets,FHIR value set
+// ── NEW: das — cluster: German health IT systems ──
+B1,das,Primärsystem,-e,die Primärsysteme,Primary system (KIS/PVS)
+B1,das,E-Rezept,-e,die E-Rezepte,Electronic prescription
+B2,das,Medizinprodukt,-e,die Medizinprodukte,Medical device
+B2,das,DiGA,-s,die DiGAs,Digital health application (DiGA)
+B2,das,Datenschutzkonzept,-e,die Datenschutzkonzepte,Data protection concept
+C1,das,Interoperabilitätsverzeichnis,-se,die Interoperabilitätsverzeichnisse,Interoperability registry (ISiK/ISiP)
+C1,das,Krankenhauszukunftsgesetz,---,---,Hospital Future Act (KHZG)
+// ── NEW: das — cluster: clinical data & AI ──
+B1,das,Datenobjekt,-e,die Datenobjekte,Data object
+B2,das,Maschinelles-Lernen-Modell,-e,die Maschinelles-Lernen-Modelle,Machine learning model
+B2,das,Nutzerprofil,-e,die Nutzerprofile,User profile
+C1,das,Reinforcement-Learning-Modell,-e,die Reinforcement-Learning-Modelle,Reinforcement learning model
+C1,das,Audit-Log,-s,die Audit-Logs,Audit log
+// ── NEW: der — cluster: systems & endpoints ──
+B1,der,Endpunkt,-e,die Endpunkte,Endpoint
+B1,der,Konnektor,-en,die Konnektoren,TI connector
+B2,der,Fachdienst,-e,die Fachdienste,Specialized TI service
+B2,der,Datenaustausch,---,---,Data exchange
+B2,der,Anwendungsfall,Anwendungsfälle,die Anwendungsfälle,Use case
+C1,der,Referenzserver,=,die Referenzserver,Reference FHIR server
+C1,der,Validierungsbericht,-e,die Validierungsberichte,Validation report
+// ── NEW: der — cluster: regulatory & certification ──
+B2,der,Fast-Track-Pfad,-e,die Fast-Track-Pfade,DiGA fast-track pathway
+B2,der,Zulassungsprozess,-e,die Zulassungsprozesse,Approval process
+C1,der,Konformitätsbewertungsprozess,-e,die Konformitätsbewertungsprozesse,Conformity assessment process
+C1,der,Inverkehrbringer,=,die Inverkehrbringer,Market placer (MDR term)
+// ── NEW: die — cluster: infrastructure & interoperability ──
+B1,die,Schnittstelle,-n,die Schnittstellen,Interface
+B1,die,Telematikinfrastruktur,---,---,Telematics infrastructure (TI)
+B1,die,Patientenakte,-n,die Patientenakten,Patient record
+B2,die,Softwarearchitektur,-en,die Softwarearchitekturen,Software architecture
+B2,die,Nutzenbewertung,-en,die Nutzenbewertungen,Benefit assessment (DiGA)
+B2,die,Middleware,---,---,Middleware
+B2,die,Risikoklassifizierung,-en,die Risikoklassifizierungen,Risk classification (MDR)
+C1,die,Interoperabilitätsstrategie,-n,die Interoperabilitätsstrategien,Interoperability strategy
+C1,die,Datenhoheit,---,---,Data sovereignty
+C1,die,Konformitätserklärung,-en,die Konformitätserklärungen,Declaration of conformity (CE)
+// ── NEW: die — cluster: coding & terminology ──
+B1,die,Stammdaten,nur P,die Stammdaten,Master data
+B2,die,Codierung,-en,die Codierungen,Coding
+B2,die,Ontologie,-n,die Ontologien,Ontology
+C1,die,Semantische-Interoperabilität,---,---,Semantic interoperability
+// ── NEW: die — cluster: Pflege 4.0 / care sector ──
+B2,die,Pflegediagnose,-n,die Pflegediagnosen,Nursing diagnosis
+B2,die,Pflegeinformatik,---,---,Nursing informatics
+B2,die,Versorgungskontinuität,---,---,Continuity of care
+C1,die,Sektorenübergreifende-Versorgung,---,---,Cross-sector care
+C1,die,Pflegeprozessdokumentation,-en,die Pflegeprozessdokumentationen,Care process documentation
+`.trim();
+
+// ─── ADJECTIVES ───
+const adjectivesCSV = `
+// cluster: candidacy & suitability
+A1,-geeignet,suitable,-ungeeignet,unsuitable
+A2,-qualifiziert,qualified,-unqualifiziert,unqualified
+B1,-kompetent,competent,-inkompetent,incompetent
+B2,-hochqualifiziert,highly qualified,-unterqualifiziert,underqualified
+// cluster: personality traits
+A1,-freundlich,friendly,-unfreundlich,unfriendly
+A2,-zuverlässig,reliable,-unzuverlässig,unreliable
+A2,-motiviert,motivated,-unmotiviert,unmotivated
+B1,-belastbar,resilient,-sensibel,sensitive
+B1,-eigeninitiativ,self-starting,-passiv,passive
+B2,-lösungsorientiert,solution-oriented,-problemfokussiert,problem-focused
+// cluster: work style
+A2,-selbstständig,independent,-abhängig,dependent
+A2,-teamfähig,team-oriented,-einzelgängerisch,solitary
+B1,-strukturiert,structured,-unstrukturiert,unstructured
+B1,-analytisch,analytical,-intuitiv,intuitive
+B2,-ergebnisorientiert,results-driven,-prozessorientiert,process-oriented
+// cluster: professional standing
+A2,-erfahren,experienced,-unerfahren,inexperienced
+B1,-spezialisiert,specialised,-generalistisch,generalist
+B1,-führungserfahren,experienced in leadership,-führungsunerfahren,inexperienced in leadership
+B2,-branchenkundig,industry-knowledgeable,-branchenfremd,unfamiliar with industry
+// cluster: application quality
+A2,-vollständig,complete,-unvollständig,incomplete
+B1,-aussagekräftig,meaningful,-nichtssagend,meaningless
+B2,-präzise,precise,-vage,vague
+// ── NEW: cluster: technical & IT proficiency ──
+B1,-technisch versiert,technically proficient,-technisch unerfahren,technically inexperienced
+B2,-interoperabel,interoperable,-proprietär,proprietary
+B2,-standardkonform,standards-compliant,-nicht standardkonform,non-compliant
+C1,-skalierbar,scalable,-monolithisch,monolithic
+C1,-FHIR-konform,FHIR-compliant,-nicht FHIR-konform,non-FHIR-compliant
+// ── NEW: cluster: regulatory & clinical ──
+B2,-zertifiziert,certified,-nicht zertifiziert,uncertified
+B2,-datenschutzkonform,GDPR-compliant,-datenschutzkritisch,privacy-critical
+B2,-klinisch validiert,clinically validated,-klinisch ungeprüft,clinically unvalidated
+C1,-MDR-konform,MDR-compliant,-zulassungspflichtig,subject to approval
+C1,-evidenzbasiert,evidence-based,-anekdotisch,anecdotal
+// ── NEW: cluster: system & architecture quality ──
+B2,-modular,modular,-monolithisch,monolithic
+B2,-cloud-fähig,cloud-capable,-on-premise,on-premise
+C1,-mandantenfähig,multi-tenant capable,-einzelinstanzfähig,single-tenant
+C1,-revisionssicher,audit-proof,-manipulierbar,manipulable
+// ── NEW: cluster: Pflege 4.0 & digital health ──
+B2,-patientenzentriert,patient-centred,-systemzentriert,system-centred
+B2,-vernetzt,networked,-isoliert,isolated
+C1,-sektorenübergreifend,cross-sector,-sektorengebunden,sector-specific
+C1,-nutzerzentriert,user-centred,-technikgetrieben,technology-driven
+`.trim();
+
+// ─── VERBS ───
+const verbsCSV = `
+// cluster: applying & submitting
+A1,*bewerben,apply,*einreichen,submit
+A2,*absenden,send off,*hochladen,upload
+B1,*nachfassen,follow up,*einreichen,file
+B2,*kandidieren,stand as candidate,*akkreditieren,accredit
+// cluster: the interview conversation
+A1,*vorstellen,introduce,*beantworten,answer
+A2,*erzählen,tell,*beschreiben,describe
+B1,*überzeugend darlegen,present convincingly,*argumentieren,argue
+B2,*positionieren,position,*differenzieren,differentiate
+// cluster: preparation & research
+A2,*vorbereiten,prepare,*recherchieren,research
+B1,*analysieren,analyse,*reflektieren,reflect
+B1,*üben,practise,*simulieren,simulate
+B2,*antizipieren,anticipate,*optimieren,optimise
+// cluster: negotiation & decision
+A2,*verhandeln,negotiate,*entscheiden,decide
+B1,*ablehnen,decline,*zusagen,accept
+B1,*aushandeln,negotiate out,*vereinbaren,agree
+B2,*ausschlagen,turn down,*konditionen verhandeln,negotiate terms
+// cluster: performance & feedback
+A2,*leisten,perform,*verbessern,improve
+B1,*präsentieren,present,*überzeugen,convince
+B2,*evaluieren,evaluate,*benchmarken,benchmark
+// ── NEW: cluster: technical implementation ──
+B1,*implementieren,implement,*konfigurieren,configure
+B1,*integrieren,integrate,*testen,test
+B2,*deployen,deploy,*migrieren,migrate
+B2,*modellieren,model,*validieren,validate
+C1,*orchestrieren,orchestrate,*refaktorisieren,refactor
+C1,*zertifizieren,certify,*auditieren,audit
+// ── NEW: cluster: interoperability & standards ──
+B1,*mappen,map (data),*transformieren,transform
+B2,*standardisieren,standardise,*harmonisieren,harmonise
+B2,*profilieren,profile (FHIR),*erweitern,extend
+C1,*spezifizieren,specify,*operationalisieren,operationalise
+C1,*konsolidieren,consolidate,*föderieren,federate
+// ── NEW: cluster: regulatory & clinical processes ──
+B2,*zulassen,approve / certify,*klassifizieren,classify
+B2,*dokumentieren,document,*nachweisen,demonstrate / prove
+C1,*konformitätsbewerten,assess conformity,*re-zertifizieren,re-certify
+C1,*pseudonymisieren,pseudonymise,*anonymisieren,anonymise
+// ── NEW: cluster: project leadership & stakeholders ──
+B1,*koordinieren,coordinate,*abstimmen,align / coordinate
+B2,*skalieren,scale,*priorisieren,prioritise
+B2,*schulen,train,*befähigen,empower
+C1,*überführen,transition / migrate,*verantworten,take ownership of
+`.trim();
+
+// ─── EXPRESSIONS ───
+const expressionsCSV = `
+// cluster: opening & greeting
+A1,Guten Morgen. Ich freue mich auf das Gespräch.,Good morning. I look forward to our conversation.
+A1,Mein Name ist... Ich habe einen Termin mit...,My name is... I have an appointment with...
+A2,Vielen Dank für die Einladung zum Vorstellungsgespräch.,Thank you very much for the invitation to the interview.
+B1,Es ist mir eine Freude Sie persönlich kennenzulernen.,It is a pleasure to meet you in person.
+// cluster: self-introduction
+A1,Ich bin... und ich bewerbe mich auf die Stelle als...,I am... and I am applying for the position as...
+A2,Ich habe einen Abschluss in... und mehrere Jahre Berufserfahrung.,I have a degree in... and several years of professional experience.
+B1,Mein fachlicher Hintergrund liegt an der Schnittstelle von... und...,My professional background lies at the intersection of... and...
+B2,Ich bringe eine Kombination aus klinischer Expertise und IT-Kompetenz mit.,I bring a combination of clinical expertise and IT competency.
+// cluster: talking about strengths
+A2,Meine größte Stärke ist meine Teamfähigkeit.,My greatest strength is my ability to work in a team.
+B1,Ich zeichne mich besonders durch meine analytische Denkweise aus.,I particularly distinguish myself through my analytical thinking.
+B2,Was mich von anderen Kandidaten unterscheidet ist meine praktische Erfahrung mit...,What sets me apart from other candidates is my practical experience with...
+// cluster: talking about experience
+A2,In meiner letzten Stelle war ich verantwortlich für...,In my last position I was responsible for...
+B1,Ich habe erfolgreich ein Projekt geleitet bei dem ich... implementiert habe.,I successfully led a project in which I implemented...
+B2,Auf nationaler Ebene habe ich... koordiniert und ausgerollt.,At national level I coordinated and rolled out...
+// cluster: asking about the role
+B1,Welche Erwartungen haben Sie an die Person in dieser Rolle?,What expectations do you have of the person in this role?
+B1,Wie sieht ein typischer Arbeitstag in dieser Position aus?,What does a typical working day in this position look like?
+B2,Wie würden Sie die Unternehmenskultur und das Teamgefüge beschreiben?,How would you describe the company culture and team structure?
+// cluster: salary & conditions
+B1,Könnten Sie mir mehr über das Gehaltspaket erzählen?,Could you tell me more about the salary package?
+B2,Welche Möglichkeiten zur fachlichen Weiterentwicklung bietet das Unternehmen?,What opportunities for professional development does the company offer?
+// cluster: closing
+A2,Vielen Dank für das Gespräch. Ich freue mich auf Ihre Rückmeldung.,Thank you for the conversation. I look forward to your feedback.
+B1,Wann kann ich mit einer Entscheidung rechnen?,When can I expect a decision?
+B2,Ich bin überzeugt dass ich einen wesentlichen Beitrag leisten kann.,I am convinced that I can make a significant contribution.
+// ── NEW: cluster: FHIR & interoperability ──
+B1,Ich habe FHIR R4 auf Produktionsebene implementiert – nicht nur konfiguriert.,I implemented FHIR R4 at production level – not just configured it.
+B2,Für den Datenaustausch zwischen Systemen setze ich auf FHIR-Ressourcen und RESTful-APIs.,For data exchange between systems I rely on FHIR resources and RESTful APIs.
+B2,Die semantische Interoperabilität ist für mich die größte Herausforderung bei HIS-Integrationen.,Semantic interoperability is for me the greatest challenge in HIS integrations.
+C1,Ich habe FHIR-Profile nach dem deutschen Basisprofilstandard erstellt und gegen einen Referenzserver validiert.,I created FHIR profiles according to the German base profile standard and validated them against a reference server.
+C1,Der Unterschied zwischen struktureller und semantischer Interoperabilität ist entscheidend für den Projekterfolg.,The difference between structural and semantic interoperability is decisive for project success.
+// ── NEW: cluster: German health IT landscape ──
+B1,Ich bin mit der Telematikinfrastruktur und den Fachdiensten der gematik vertraut.,I am familiar with the telematics infrastructure and the gematik specialised services.
+B2,Die ePA der zweiten Generation stellt neue Anforderungen an FHIR-basierte Primärsysteme.,The second-generation ePA places new demands on FHIR-based primary systems.
+B2,Das KHZG hat die Digitalisierung im Krankenhaus erheblich beschleunigt.,The KHZG has significantly accelerated digitalisation in hospitals.
+C1,DiGA-Hersteller müssen den Nachweis eines positiven Versorgungseffekts im Fast-Track-Verfahren erbringen.,DiGA manufacturers must demonstrate a positive care effect in the fast-track process.
+C1,Die Anforderungen der ISiK-Stufe 3 gehen deutlich über eine einfache FHIR-Anbindung hinaus.,The ISiK stage 3 requirements go significantly beyond a simple FHIR connection.
+// ── NEW: cluster: regulatory & compliance ──
+B2,Datenschutz und DSGVO sind für mich keine Nachgedanken sondern Grundprinzipien des Systemdesigns.,Data protection and GDPR are not afterthoughts for me but foundational principles of system design.
+B2,Ich habe Erfahrung mit der MDR-Risikoklassifizierung von Software als Medizinprodukt (SaMD).,I have experience with MDR risk classification of software as a medical device (SaMD).
+C1,Die CE-Kennzeichnung nach MDR Klasse IIa erfordert ein vollständiges technisches Dossier und klinische Evaluation.,CE marking under MDR Class IIa requires a complete technical dossier and clinical evaluation.
+// ── NEW: cluster: Pflege 4.0 & cross-sector care ──
+B2,Pflege 4.0 bedeutet für mich die strukturierte Digitalisierung pflegerischer Prozesse mit standardisierten Schnittstellen.,For me Pflege 4.0 means the structured digitalisation of care processes with standardised interfaces.
+C1,Sektorenübergreifende Versorgung erfordert eine gemeinsame Datenbasis auf Basis offener Standards wie FHIR und SNOMED CT.,Cross-sector care requires a shared data basis built on open standards such as FHIR and SNOMED CT.
+// ── NEW: cluster: positioning & closing impact ──
+B2,Diese Rolle verbindet genau die Bereiche in denen ich nachweislich Ergebnisse erzielt habe.,This role connects precisely the areas in which I have demonstrably achieved results.
+C1,Ich sehe mich nicht als reinen Techniker sondern als Brückenbauer zwischen klinischen Anforderungen und IT-Lösungen.,I see myself not as a pure technician but as a bridge-builder between clinical requirements and IT solutions.
+`.trim();
+
+// ─── CONVERSATIONS ───
+const conversationsCSV = `
+A1|At Reception Before the Interview|A,Guten Morgen. Ich habe einen Termin mit Herrn Blaschke um zehn Uhr.,Good morning. I have an appointment with Mr Blaschke at ten o'clock.
+A1|At Reception Before the Interview|B,Guten Morgen. Wie heißen Sie bitte?,Good morning. What is your name please?
+A1|At Reception Before the Interview|A,Ich bin Ali Attia. Ich bewerbe mich auf die Stelle als Medical IT Spezialist.,I am Ali Attia. I am applying for the position of Medical IT Specialist.
+A1|At Reception Before the Interview|B,Einen Moment bitte. Ich informiere Herrn Blaschke.,One moment please. I will inform Mr Blaschke.
+A1|At Reception Before the Interview|A,Danke. Soll ich hier warten?,Thank you. Shall I wait here?
+A1|At Reception Before the Interview|B,Ja bitte. Er kommt gleich.,Yes please. He will be right with you.
+A2|Introducing Yourself in the Interview|A,Erzählen Sie mir bitte etwas über sich.,Please tell me something about yourself.
+A2|Introducing Yourself in the Interview|B,Gerne. Ich habe einen Master in Digital Health an der Technischen Hochschule Deggendorf gemacht. Danach habe ich bei der ägyptischen Gesundheitsbehörde gearbeitet.,Of course. I completed a Master's in Digital Health at the Deggendorf Institute of Technology. After that I worked at the Egyptian Healthcare Authority.
+A2|Introducing Yourself in the Interview|A,Was war Ihre Hauptaufgabe dort?,What was your main task there?
+A2|Introducing Yourself in the Interview|B,Ich habe die nationale Einführung des elektronischen Patientenaktensystems geleitet.,I led the national rollout of the electronic health records system.
+A2|Introducing Yourself in the Interview|A,Das klingt beeindruckend. Wie viele Krankenhäuser waren beteiligt?,That sounds impressive. How many hospitals were involved?
+A2|Introducing Yourself in the Interview|B,Es war ein landesweites Projekt. Wir haben über 500 medizinische Fachkräfte geschult.,It was a nationwide project. We trained over 500 medical professionals.
+B1|Discussing Technical Experience|A,Welche Erfahrungen haben Sie mit HL7 FHIR?,What experience do you have with HL7 FHIR?
+B1|Discussing Technical Experience|B,Ich habe HL7-FHIR R4 auf nationaler Produktionsebene implementiert. Zusätzlich habe ich FHIR-Ressourcen manuell in meinem eigenen EHR-System aufgebaut.,I implemented HL7-FHIR R4 at national production level. Additionally I built FHIR resources manually in my own EHR system.
+B1|Discussing Technical Experience|A,Haben Sie auch mit Dedalus oder ähnlichen Systemen gearbeitet?,Have you also worked with Dedalus or similar systems?
+B1|Discussing Technical Experience|B,Ja. Ich war Power User der Dedalus HIS Enterprise Management Suite Version 12 und habe das Apotheken- und Bestandsmodul konfiguriert.,Yes. I was a power user of the Dedalus HIS Enterprise Management Suite version 12 and configured the pharmacy and inventory module.
+B1|Discussing Technical Experience|A,Wie stehen Sie zu Datenschutz und DSGVO in medizinischen IT-Systemen?,What is your view on data protection and GDPR in medical IT systems?
+B1|Discussing Technical Experience|B,Datenschutz ist für mich kein nachträglicher Gedanke sondern ein Grundprinzip beim Systemdesign. Bei DiaTwin habe ich DSGVO-Prinzipien von Anfang an integriert.,Data protection is not an afterthought for me but a foundational principle in system design. In DiaTwin I integrated GDPR principles from the start.
+B2|Salary and Role Negotiation|A,Welche Gehaltsvorstellungen haben Sie für diese Position?,What are your salary expectations for this position?
+B2|Salary and Role Negotiation|B,Angesichts meiner Qualifikationen und meiner praktischen Erfahrung auf nationaler Ebene stelle ich mir ein Gehalt im Bereich von X bis Y Euro brutto vor.,Given my qualifications and my practical experience at national level I am thinking of a salary in the range of X to Y euros gross.
+B2|Salary and Role Negotiation|A,Wir werden das intern prüfen. Haben Sie noch Fragen an uns?,We will review that internally. Do you have any further questions for us?
+B2|Salary and Role Negotiation|B,Ja. Welche KIS- oder HIS-Systeme setzt Albatross aktuell ein und welche Integrationen sind in Planung?,Yes. Which KIS or HIS systems does Albatross currently use and which integrations are planned?
+B2|Salary and Role Negotiation|A,Wir nutzen derzeit ein proprietäres System und planen die Migration zu einer FHIR-kompatiblen Lösung.,We currently use a proprietary system and are planning migration to a FHIR-compatible solution.
+B2|Salary and Role Negotiation|B,Das ist genau der Bereich in dem ich nachweislich Erfahrung auf Produktionsebene mitbringe.,That is precisely the area where I demonstrably bring production-level experience.
+// ── NEW CONVERSATION ──
+B2|Discussing DiaTwin and the DiGA Pathway|A,Sie erwähnen in Ihrem Lebenslauf eine eigene App namens DiaTwin. Was genau ist das?,You mention an app called DiaTwin in your CV. What exactly is it?
+B2|Discussing DiaTwin and the DiGA Pathway|B,DiaTwin ist eine klinisch betreute Diabetes-Management-Plattform für Insulinpen-Nutzer. Sie kombiniert ein pharmakodynamisches Modell mit CGM-Daten und schlägt Insulindosen vor.,DiaTwin is a clinically supervised diabetes management platform for insulin pen users. It combines a pharmacodynamic model with CGM data and suggests insulin doses.
+B2|Discussing DiaTwin and the DiGA Pathway|A,Ist das bereits zugelassen?,Has it been approved yet?
+B2|Discussing DiaTwin and the DiGA Pathway|B,Ich entwickle es gezielt für den DiGA Fast-Track-Pfad nach dem DVG und plane die CE-Kennzeichnung nach MDR Klasse IIa. Prof. Dr. Parhofer von der LMU München betreut das Projekt klinisch.,I am developing it specifically for the DiGA fast-track pathway under the DVG and planning CE marking under MDR Class IIa. Prof. Dr. Parhofer from LMU Munich supervises the project clinically.
+B2|Discussing DiaTwin and the DiGA Pathway|A,Welche technischen Standards setzen Sie dabei ein?,Which technical standards are you using?
+B2|Discussing DiaTwin and the DiGA Pathway|B,FHIR R4 für den Datenaustausch ICD-10 und ATC für die Codierung sowie SNOMED CT für klinische Terminologie. Die Architektur ist modular und für spätere TI-Integration vorbereitet.,FHIR R4 for data exchange ICD-10 and ATC for coding and SNOMED CT for clinical terminology. The architecture is modular and prepared for future TI integration.
+// ── NEW CONVERSATION ──
+C1|Interoperability Strategy and ISiK|A,Wie beurteilen Sie den aktuellen Stand der Interoperabilität im deutschen Gesundheitswesen?,How do you assess the current state of interoperability in the German healthcare system?
+C1|Interoperability Strategy and ISiK|B,Es gibt echte Fortschritte durch ISiK und die ePA der zweiten Generation – aber die semantische Ebene hinkt der strukturellen noch deutlich hinterher. Viele Systeme tauschen FHIR-Ressourcen aus ohne sicherzustellen dass die Terminologien übereinstimmen.,There is genuine progress through ISiK and the second-generation ePA – but the semantic layer still lags significantly behind the structural one. Many systems exchange FHIR resources without ensuring that the terminologies match.
+C1|Interoperability Strategy and ISiK|A,Was wäre Ihr Ansatz um das zu lösen?,What would be your approach to addressing that?
+C1|Interoperability Strategy and ISiK|B,Eine zentrale Terminologie-Governance auf Basis von SNOMED CT und dem BfArM-Mapping – kombiniert mit verpflichtenden FHIR-Profilen die gegen den deutschen Basisprofilstandard validiert werden.,A central terminology governance based on SNOMED CT and BfArM mapping – combined with mandatory FHIR profiles validated against the German base profile standard.
+C1|Interoperability Strategy and ISiK|A,Das ist ein ambitionierter Ansatz. Haben Sie das bereits praktisch umgesetzt?,That is an ambitious approach. Have you already put that into practice?
+C1|Interoperability Strategy and ISiK|B,Ja – in DiaTwin habe ich genau diesen Ansatz auf kleinerer Skala implementiert und dabei gelernt wo die größten Reibungspunkte in der Praxis liegen.,Yes – in DiaTwin I implemented precisely this approach on a smaller scale and learned in the process where the greatest friction points lie in practice.
+`.trim();
+
+// ─── Q&A ───
+const qaCSV = `
+// cluster: basics of the interview
+A1,Warum bewerben Sie sich bei uns?,Weil meine Qualifikationen und Ihre Anforderungen sehr gut passen. (Because my qualifications and your requirements are a very good match.)
+A1,Was sind Ihre Stärken?,Ich bin zuverlässig teamfähig und lösungsorientiert. (I am reliable team-oriented and solution-focused.)
+A1,Wo wohnen Sie?,Ich wohne in Oberursel in der Nähe von Frankfurt. (I live in Oberursel near Frankfurt.)
+A1,Sprechen Sie Deutsch?,Ja ich spreche Deutsch auf B2-Niveau und habe die Fachsprachenprüfung abgelegt. (Yes I speak German at B2 level and have passed the specialist language exam.)
+// cluster: professional background
+A2,Was haben Sie studiert?,Ich habe einen Master in Digital Health an der Technischen Hochschule Deggendorf abgeschlossen. (I completed a Master's in Digital Health at the Deggendorf Institute of Technology.)
+A2,Wie viele Jahre Berufserfahrung haben Sie?,Ich habe über vier Jahre Berufserfahrung an der Schnittstelle von Klinik und IT. (I have over four years of professional experience at the intersection of clinical practice and IT.)
+A2,Was war Ihre letzte Stelle?,Ich war leitender klinischer Datenspezialist und Beauftragter für digitale Transformation bei der ägyptischen Gesundheitsbehörde. (I was Senior Clinical Data Specialist and Digital Transformation Officer at the Egyptian Healthcare Authority.)
+A2,Warum verlassen Sie Ihre aktuelle Stelle?,Ich möchte meine Expertise gezielt in einem deutschen Gesundheits-IT-Umfeld einsetzen. (I want to apply my expertise specifically in a German health IT environment.)
+// cluster: technical skills
+B1,Welche Codierstandards beherrschen Sie?,ICD-10 SNOMED CT ATC DRG und CPT – alle auf Produktionsniveau implementiert. (ICD-10 SNOMED CT ATC DRG and CPT – all implemented at production level.)
+B1,Was wissen Sie über die deutsche Gesundheits-IT-Landschaft?,ePA E-Rezept Telematikinfrastruktur KHZG DiGA-Zulassung und MDR – ich habe DiaTwin für den DiGA Fast-Track-Pfad konzipiert. (ePA E-Rezept Telematik infrastructure KHZG DiGA approval and MDR – I designed DiaTwin for the DiGA Fast-Track pathway.)
+B1,Wie gehen Sie mit komplexen IT-Projekten im Gesundheitswesen um?,Ich arbeite strukturiert mit klaren Meilensteinen enge Abstimmung mit klinischen Stakeholdern und kontinuierlichem Testing. (I work in a structured way with clear milestones close coordination with clinical stakeholders and continuous testing.)
+// cluster: motivation & fit
+B2,Warum sind Sie der beste Kandidat für diese Stelle?,Ich kombiniere eine klinische Lizenz als Apotheker IT-Implementierungserfahrung auf nationaler Ebene und eigene KI-Entwicklung – das ist eine sehr seltene Kombination. (I combine a clinical licence as a pharmacist IT implementation experience at national level and my own AI development – this is a very rare combination.)
+B2,Wo sehen Sie sich in fünf Jahren?,Ich sehe mich in einer Führungsrolle im Bereich medizinischer IT mit Verantwortung für digitale Transformationsprojekte. (I see myself in a leadership role in medical IT with responsibility for digital transformation projects.)
+// ── NEW: cluster: FHIR & interoperability ──
+B1,Was versteht man unter einem FHIR-Profil?,Ein FHIR-Profil ist eine Anpassung einer Basis-FHIR-Ressource durch Constraints und Extensions um spezifische klinische Anforderungen abzubilden. (A FHIR profile is a customisation of a base FHIR resource through constraints and extensions to represent specific clinical requirements.)
+B1,Was ist der Unterschied zwischen HL7 v2 und FHIR?,HL7 v2 ist ein älterer nachrichtenbasierter Standard während FHIR REST-basiert und wesentlich einfacher zu implementieren und zu testen ist. (HL7 v2 is an older message-based standard while FHIR is REST-based and significantly easier to implement and test.)
+B2,Wie gehen Sie mit Systemen um die noch kein FHIR unterstützen?,Ich setze eine Middleware oder einen FHIR-Konverter ein um Legacy-Formate wie HL7 v2 oder CDA in FHIR-Ressourcen zu transformieren. (I use middleware or a FHIR converter to transform legacy formats such as HL7 v2 or CDA into FHIR resources.)
+B2,Welche FHIR-Ressourcen haben Sie am häufigsten implementiert?,Patient Observation MedicationRequest Condition AllergyIntolerance und DiagnosticReport – alle im Kontext realer klinischer Workflows. (Patient Observation MedicationRequest Condition AllergyIntolerance and DiagnosticReport – all in the context of real clinical workflows.)
+C1,Wie stellen Sie sicher dass FHIR-Implementierungen auch semantisch interoperabel sind?,Durch die Nutzung verbindlicher Terminologiebindungen auf Basis von SNOMED CT und LOINC sowie die Validierung gegen nationale FHIR-Profile wie die deutschen Basisprofile. (By using mandatory terminology bindings based on SNOMED CT and LOINC and validating against national FHIR profiles such as the German base profiles.)
+// ── NEW: cluster: German health IT ──
+B1,Was ist die Telematikinfrastruktur?,Die Telematikinfrastruktur ist das sichere digitale Kommunikationsnetz des deutschen Gesundheitswesens das Praxen Krankenhäuser und Apotheken verbindet. (The telematics infrastructure is the secure digital communication network of the German healthcare system connecting practices hospitals and pharmacies.)
+B2,Was bedeutet DiGA für Softwareentwickler im Gesundheitswesen?,DiGA steht für Digitale Gesundheitsanwendung. Als Hersteller muss ich einen positiven Versorgungseffekt nachweisen und DSGVO MDR sowie die BfArM-Anforderungen erfüllen. (DiGA stands for Digital Health Application. As a manufacturer I must demonstrate a positive care effect and comply with GDPR MDR and BfArM requirements.)
+B2,Was ist ISiK und warum ist es relevant?,ISiK – Interoperabler Informationsaustausch im Krankenhaus – definiert verpflichtende FHIR-Schnittstellen für nach KHZG geförderte Krankenhäuser. (ISiK – Interoperable Information Exchange in Hospitals – defines mandatory FHIR interfaces for hospitals funded under the KHZG.)
+C1,Welche Auswirkungen hat das KHZG auf die Systemintegration in Krankenhäusern?,Das KHZG verpflichtet Krankenhäuser zur Einführung digitaler Dienste und fördert die Interoperabilität – das erzeugt eine hohe Nachfrage nach FHIR-kompetenten Fachkräften und macht Migration zu einem zentralen Thema. (The KHZG obliges hospitals to introduce digital services and promotes interoperability – this creates high demand for FHIR-competent professionals and makes migration a central topic.)
+// ── NEW: cluster: Pflege 4.0 ──
+B2,Was verstehen Sie unter Pflege 4.0?,Pflege 4.0 bezeichnet die digitale Transformation der Pflege durch den Einsatz von IT-Systemen Sensorik und vernetzter Dokumentation um Pflegeprozesse effizienter und patientenzentrierter zu gestalten. (Pflege 4.0 describes the digital transformation of care through the use of IT systems sensors and networked documentation to make care processes more efficient and patient-centred.)
+C1,Welche Standards sind für die digitale Pflegedokumentation besonders relevant?,LiST und PKMS auf der Prozessebene sowie FHIR-Ressourcen wie CarePlan CareTeam und Observation für die technische Interoperabilität. (LiST and PKMS at the process level as well as FHIR resources such as CarePlan CareTeam and Observation for technical interoperability.)
+`.trim();
+
+// ─── SENTENCES ───
+const sentencesCSV = `
+// cluster: the application process
+A1,Ich bewerbe mich auf die Stelle als Medical IT Spezialist.,I am applying for the position of Medical IT Specialist.
+A1,Meine Bewerbungsunterlagen sind vollständig und aktuell.,My application documents are complete and up to date.
+A1,Ich freue mich sehr auf das Vorstellungsgespräch.,I am very much looking forward to the job interview.
+A2,Ich habe meine Bewerbung fristgerecht eingereicht.,I submitted my application on time.
+A2,Das Anschreiben erklärt warum ich für diese Stelle geeignet bin.,The cover letter explains why I am suitable for this position.
+A2,Im Lebenslauf liste ich alle relevanten Berufsstationen auf.,In the CV I list all relevant professional stages.
+// cluster: self-presentation
+A1,Ich bin Apotheker mit einer deutschen Berufserlaubnis nach §11 BApO.,I am a pharmacist with a German professional licence under §11 BApO.
+A2,Ich habe meinen Master in Digital Health mit der Note 1,6 abgeschlossen.,I completed my Master's in Digital Health with a grade of 1.6.
+B1,Mein fachlicher Hintergrund verbindet klinisches Wissen mit IT-Kompetenz.,My professional background combines clinical knowledge with IT competency.
+B1,Ich habe die Fachsprachenprüfung in pharmazeutischem Deutsch bestanden.,I passed the specialist language exam in pharmaceutical German.
+// cluster: professional experience
+A2,In meiner letzten Stelle habe ich ein nationales EHR-Rollout geleitet.,In my last position I led a national EHR rollout.
+B1,Ich habe HL7-FHIR R4 auf Produktionsniveau implementiert – nicht nur konfiguriert.,I implemented HL7-FHIR R4 at production level – not just configured it.
+B1,Bei der ägyptischen Gesundheitsbehörde war ich für die Integration von HIS LIS PACS und Abrechnungssystemen verantwortlich.,At the Egyptian Healthcare Authority I was responsible for integrating HIS LIS PACS and billing systems.
+B2,Ich habe klinische Daten-Governance-Frameworks entwickelt die mit der DSGVO übereinstimmen.,I developed clinical data governance frameworks aligned with the GDPR.
+// cluster: AI & projects
+B1,DiaTwin ist eine personalisierte Diabetes-Management-Plattform die ich entwickelt und live geschaltet habe.,DiaTwin is a personalised diabetes management platform that I developed and deployed.
+B1,Das System wurde von Prof. Dr. Klaus Parhofer der LMU München mit einem Clinical Utility Score von 8,7 von 10 bewertet.,The system was evaluated by Prof. Dr. Klaus Parhofer of LMU Munich with a Clinical Utility Score of 8.7 out of 10.
+B2,Das Reinforcement-Learning-Modell in DiaTwin wurde auf über 50.000 realen Mahlzeiten-Outcome-Paaren trainiert.,The reinforcement learning model in DiaTwin was trained on over 50,000 real meal-outcome pairs.
+// cluster: German context & compliance
+A2,Mein Master-Studium habe ich in Bayern abgeschlossen.,I completed my Master's degree in Bavaria.
+B1,Ich bin mit der deutschen Gesundheits-IT-Landschaft einschließlich ePA E-Rezept und Telematikinfrastruktur vertraut.,I am familiar with the German health IT landscape including ePA E-Rezept and Telematik infrastructure.
+B2,DiaTwin wurde für den DiGA Fast-Track-Zulassungspfad und die CE-Klasse IIa konzipiert.,DiaTwin was designed for the DiGA Fast-Track approval pathway and CE Class IIa.
+// cluster: motivation & fit
+A2,Diese Stelle passt sehr gut zu meinen Qualifikationen und Interessen.,This position is a very good match for my qualifications and interests.
+B1,Ich möchte meine praktische Erfahrung aus nationalen IT-Projekten in einem deutschen Unternehmen einbringen.,I would like to contribute my practical experience from national IT projects in a German company.
+B2,Die Kombination aus klinischer Lizenz IT-Erfahrung auf nationaler Ebene und KI-Entwicklung macht mich zu einem außergewöhnlichen Kandidaten.,The combination of a clinical licence national-level IT experience and AI development makes me an exceptional candidate.
+// ── NEW: cluster: FHIR & interoperability ──
+B1,FHIR-Ressourcen wie Patient und Observation sind die Bausteine moderner Gesundheits-IT.,FHIR resources such as Patient and Observation are the building blocks of modern health IT.
+B1,Ich habe Schnittstellen zwischen HIS LIS und PACS auf Basis von HL7 v2 und FHIR implementiert.,I implemented interfaces between HIS LIS and PACS based on HL7 v2 and FHIR.
+B2,Die Validierung von FHIR-Profilen gegen einen Referenzserver ist für mich ein unverzichtbarer Schritt im Entwicklungsprozess.,Validating FHIR profiles against a reference server is for me an indispensable step in the development process.
+B2,Ich habe FHIR-Terminologiebindungen mit SNOMED CT und LOINC in einem Produktionssystem konfiguriert.,I configured FHIR terminology bindings with SNOMED CT and LOINC in a production system.
+C1,Das FHIR-Capability-Statement definiert welche Ressourcen und Operationen ein Server unterstützt – ich nutze es aktiv für die Systemintegration.,The FHIR capability statement defines which resources and operations a server supports – I use it actively for system integration.
+C1,Bei der Profilierung halte ich mich an den deutschen Basisprofilstandard von HL7 Deutschland um maximale Kompatibilität sicherzustellen.,When profiling I adhere to the German base profile standard from HL7 Germany to ensure maximum compatibility.
+// ── NEW: cluster: German health IT specifics ──
+B1,Die Telematikinfrastruktur verbindet alle Akteure des deutschen Gesundheitswesens über einen sicheren Kommunikationskanal.,The telematics infrastructure connects all actors in the German healthcare system via a secure communication channel.
+B2,Das KHZG hat Investitionen in die Krankenhausdigitalisierung erheblich beschleunigt und den Bedarf an FHIR-Expertise erhöht.,The KHZG has significantly accelerated investment in hospital digitalisation and increased demand for FHIR expertise.
+B2,Für die DiGA-Zulassung muss ich einen positiven Versorgungseffekt durch eine klinische Studie oder durch Patientenbefragungen nachweisen.,For DiGA approval I must demonstrate a positive care effect through a clinical study or patient surveys.
+C1,ISiK Stufe 3 schreibt vor dass geförderte Krankenhäuser bestimmte FHIR-Ressourcen über standardisierte Endpunkte bereitstellen.,ISiK stage 3 stipulates that funded hospitals must provide certain FHIR resources via standardised endpoints.
+C1,Die ePA der zweiten Generation basiert auf FHIR und ermöglicht erstmals einen strukturierten semantischen Datenaustausch auf nationaler Ebene.,The second-generation ePA is based on FHIR and for the first time enables structured semantic data exchange at national level.
+// ── NEW: cluster: MDR & regulatory ──
+B2,Als SaMD-Hersteller muss ich eine klinische Evaluation durchführen und in der technischen Dokumentation festhalten.,As a SaMD manufacturer I must carry out a clinical evaluation and record it in the technical documentation.
+C1,Die MDR-Risikoklasse IIa für DiaTwin ergibt sich aus der aktiven therapeutischen Funktion des Insulindosierungsassistenten.,The MDR risk class IIa for DiaTwin results from the active therapeutic function of the insulin dosing assistant.
+// ── NEW: cluster: Pflege 4.0 ──
+B2,Pflege 4.0 erfordert standardisierte Schnittstellen damit Pflegesoftware nahtlos in die Krankenhausinfrastruktur integriert werden kann.,Pflege 4.0 requires standardised interfaces so that care software can be seamlessly integrated into hospital infrastructure.
+C1,FHIR-Ressourcen wie CarePlan und CareTeam bieten eine solide Grundlage für die sektorenübergreifende Pflegedokumentation.,FHIR resources such as CarePlan and CareTeam provide a solid foundation for cross-sector care documentation.
+`.trim();
+
+// ============================================
+// CSV PARSER
+// ============================================
+function parseCSV(csv) {
+    return csv.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(l => l.split(',').map(c => c.trim()));
+}
+
+// ============================================
+// LEVEL FILTER STATE
+// ============================================
+let currentLevel = 'all';
+
+function filterByLevel(level) {
+    currentLevel = level;
+    document.querySelectorAll('.level-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.level === level);
+    });
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    updateFilterCount();
+}
+
+function updateFilterCount() {
+    const el = document.getElementById('filterCount');
+    if (!el) return;
+    if (currentLevel === 'all') { el.textContent = ''; return; }
+    let total = 0;
+    [nounsCSV, adjectivesCSV, verbsCSV, expressionsCSV, qaCSV, sentencesCSV].forEach(csv => {
+        parseCSV(csv).forEach(row => { if (row[0] === currentLevel) total++; });
+    });
+    conversationsCSV.split('\n').forEach(line => {
+        line = line.trim();
+        if (line && !line.startsWith('//') && line.startsWith(currentLevel + '|')) total++;
+    });
+    el.textContent = `${total} entries`;
+}
+
+function badge(level) {
+    return `<span class="lvl-badge ${level}">${level}</span>`;
+}
+
+// ============================================
+// RENDER NOUNS
+// ============================================
+function renderNounsTable() {
+    const data = parseCSV(nounsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const grouped = { das: [], der: [], die: [] };
+    data.forEach(row => {
+        const [level, article, german, pluralNotation, pluralFull, english] = row;
+        if (grouped[article] !== undefined) {
+            grouped[article].push({ level, article, german, pluralNotation, pluralFull, english });
+        }
+    });
+
+    const tbody = document.getElementById('nounTableBody');
+    let html = '';
+
+    const articles = [
+        { key: 'der', label: 'Maskulinum (der)', rowClass: 'der-row', artClass: 'der-article' },
+        { key: 'das', label: 'Neutrum (das)',     rowClass: 'das-row', artClass: 'das-article' },
+        { key: 'die', label: 'Femininum (die)',   rowClass: 'die-row', artClass: 'die-article' },
+    ];
+
+    let anyContent = false;
+
+    articles.forEach(({ key, label, rowClass, artClass }, artIdx) => {
+        const words = grouped[key];
+        if (words.length === 0) return;
+        anyContent = true;
+
+        html += `<tr class="separator"><td colspan="8">${label}</td></tr>`;
+
+        const half = Math.ceil(words.length / 2);
+        for (let i = 0; i < half; i++) {
+            const w1 = words[i];
+            const w2 = words[i + half] || null;
+
+            html += `<tr class="${rowClass}">`;
+            html += `<td class="article-cell ${artClass} left-pair">${w1.article}</td>`;
+            html += `<td class="german-cell left-pair">${w1.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w1.article)}','${escAttr(w1.german)}','${escAttr(w1.pluralFull)}','${escAttr(w1.english)}')">🔊</button></td>`;
+            html += `<td class="plural-cell left-pair">${w1.pluralNotation}</td>`;
+            html += `<td class="english-cell left-pair">${w1.english}</td>`;
+
+            if (w2) {
+                html += `<td class="article-cell ${artClass} right-pair">${w2.article}</td>`;
+                html += `<td class="german-cell right-pair">${w2.german} <button class="audio-btn" onclick="event.stopPropagation();speakNounRow('${escAttr(w2.article)}','${escAttr(w2.german)}','${escAttr(w2.pluralFull)}','${escAttr(w2.english)}')">🔊</button></td>`;
+                html += `<td class="plural-cell right-pair">${w2.pluralNotation}</td>`;
+                html += `<td class="english-cell right-pair">${w2.english}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    });
+
+    if (!anyContent) {
+        html = `<tr><td colspan="8" style="text-align:center; color:#999; padding:12px;">No nouns at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER ADJECTIVES & VERBS
+// ============================================
+function renderWordsTable() {
+    const adjData = parseCSV(adjectivesCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const verbData = parseCSV(verbsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const tbody = document.getElementById('wordTableBody');
+    let html = '';
+
+    if (adjData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Adjectives (- prefix = opposite pairs)</td></tr>`;
+        const half = Math.ceil(adjData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = adjData[i];
+            const r2 = adjData[i + half] || null;
+            html += `<tr class="adjective-row">`;
+            html += `<td class="german-col left-pair">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[2])}','${escAttr(r1[3])}','${escAttr(r1[4])}')">🔊</button></td><td class="english-col left-pair">${r1[2]}</td>`;
+            html += `<td class="german-col left-pair">${r1[3]}</td><td class="english-col left-pair">${r1[4]}</td>`;
+            if (r2) {
+                html += `<td class="german-col right-pair">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[2])}','${escAttr(r2[3])}','${escAttr(r2[4])}')">🔊</button></td><td class="english-col right-pair">${r2[2]}</td>`;
+                html += `<td class="german-col right-pair">${r2[3]}</td><td class="english-col right-pair">${r2[4]}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+
+    if (verbData.length > 0) {
+        html += `<tr class="separator"><td colspan="8">Verbs (* Weak | + Strong — opposite / related pairs)</td></tr>`;
+        const half = Math.ceil(verbData.length / 2);
+        for (let i = 0; i < half; i++) {
+            const r1 = verbData[i];
+            const r2 = verbData[i + half] || null;
+            html += `<tr class="verb-row">`;
+            html += `<td class="german-col left-pair">${r1[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r1[1])}','${escAttr(r1[2])}','${escAttr(r1[3])}','${escAttr(r1[4])}')">🔊</button></td><td class="english-col left-pair">${r1[2]}</td>`;
+            html += `<td class="german-col left-pair">${r1[3]}</td><td class="english-col left-pair">${r1[4]}</td>`;
+            if (r2) {
+                html += `<td class="german-col right-pair">${r2[1]} <button class="audio-btn" onclick="event.stopPropagation();speakPair('${escAttr(r2[1])}','${escAttr(r2[2])}','${escAttr(r2[3])}','${escAttr(r2[4])}')">🔊</button></td><td class="english-col right-pair">${r2[2]}</td>`;
+                html += `<td class="german-col right-pair">${r2[3]}</td><td class="english-col right-pair">${r2[4]}</td>`;
+            } else {
+                html += `<td></td><td></td><td></td><td></td>`;
+            }
+            html += `</tr>`;
+        }
+    }
+
+    if (adjData.length === 0 && verbData.length === 0) {
+        html = `<tr><td colspan="8" style="text-align:center; color:#999; padding:12px;">No adjectives or verbs at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER EXPRESSIONS
+// ============================================
+function renderExpressionsTable() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+
+    const tbody = document.getElementById('expressionsTableBody');
+    let html = '';
+
+    for (let i = 0; i < data.length; i += 2) {
+        const [lvl1, ger1, ...eng1parts] = data[i];
+        const eng1 = eng1parts.join(',');
+        html += `<tr>`;
+        html += `<td class="german-cell left-pair">${ger1} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(eng1)}','${escAttr(ger1)}')">🔊</button></td>`;
+        html += `<td class="english-cell left-pair">${eng1}</td>`;
+        if (i + 1 < data.length) {
+            const [lvl2, ger2, ...eng2parts] = data[i + 1];
+            const eng2 = eng2parts.join(',');
+            html += `<td class="german-cell right-pair">${ger2} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(eng2)}','${escAttr(ger2)}')">🔊</button></td>`;
+            html += `<td class="english-cell right-pair">${eng2}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (data.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No expressions at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER CONVERSATIONS
+// ============================================
+function renderConversations() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+
+    const conversations = {};
+    const convOrder = [];
+    const convLevels = {};
+
+    rawLines.forEach(line => {
+        const firstPipe  = line.indexOf('|');
+        const secondPipe = line.indexOf('|', firstPipe + 1);
+        const firstComma = line.indexOf(',', secondPipe + 1);
+        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+
+        const level   = line.substring(0, firstPipe).trim();
+        const title   = line.substring(firstPipe + 1, secondPipe).trim();
+        const speaker = line.substring(secondPipe + 1, firstComma).trim();
+
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+
+        const rest         = line.substring(firstComma + 1);
+        const secondComma  = rest.indexOf(',');
+        const german       = rest.substring(0, secondComma).trim();
+        const english      = rest.substring(secondComma + 1).trim();
+
+        const key = `${level}|${title}`;
+        if (!conversations[key]) {
+            conversations[key] = [];
+            convOrder.push(key);
+            convLevels[key] = level;
+        }
+        conversations[key].push({ speaker, german, english });
+    });
+
+    const container = document.getElementById('conversationsContainer');
+    let html = '';
+
+    if (convOrder.length === 0) {
+        html = `<p style="text-align:center; color:#999; padding:12px;">No conversations at ${currentLevel} level</p>`;
+        container.innerHTML = html;
+        return;
+    }
+
+    convOrder.forEach(key => {
+        const title = key.split('|').slice(1).join('|');
+        const lines = conversations[key];
+
+        const linesA = lines.filter(l => l.speaker === 'A');
+        const linesB = lines.filter(l => l.speaker === 'B');
+        const maxRows = Math.max(linesA.length, linesB.length);
+
+        html += `<table class="conversations-table">`;
+        html += `<tr><td colspan="4" class="conversation-title">💬 ${title}</td></tr>`;
+        html += `<tr>`;
+        html += `<td class="conv-subheader" style="width:27%;">Speaker A — Deutsch</td>`;
+        html += `<td class="conv-subheader" style="width:23%;">Speaker A — English</td>`;
+        html += `<td class="conv-subheader" style="width:27%;">Speaker B — Deutsch</td>`;
+        html += `<td class="conv-subheader" style="width:23%;">Speaker B — English</td>`;
+        html += `</tr>`;
+
+        for (let i = 0; i < maxRows; i++) {
+            const a = linesA[i] || null;
+            const b = linesB[i] || null;
+
+            html += `<tr>`;
+            html += `<td class="conv-ger-a left-pair">${a ? a.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(a.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-a left-pair">${a ? a.english : ''}</td>`;
+            html += `<td class="conv-ger-b right-pair">${b ? b.german + ` <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(b.german)}')">🔊</button>` : ''}</td>`;
+            html += `<td class="conv-eng-b right-pair">${b ? b.english : ''}</td>`;
+            html += `</tr>`;
+        }
+
+        html += `</table>`;
+    });
+
+    container.innerHTML = html;
+}
+
+// ============================================
+// RENDER Q&A
+// ============================================
+function renderQATable() {
+    const qaRows = qaCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(line => {
+            const firstComma  = line.indexOf(',');
+            const secondComma = line.indexOf(',', firstComma + 1);
+            if (firstComma === -1 || secondComma === -1) return null;
+            return {
+                level:    line.substring(0, firstComma).trim(),
+                question: line.substring(firstComma + 1, secondComma).trim(),
+                answer:   line.substring(secondComma + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('qaTableBody');
+    let html = '';
+
+    for (let i = 0; i < qaRows.length; i += 2) {
+        const r1 = qaRows[i];
+        const r2 = qaRows[i + 1] || null;
+        html += `<tr>`;
+        html += `<td class="question-cell left-pair">${r1.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r1.question)}')">🔊</button></td>`;
+        html += `<td class="answer-cell left-pair">${r1.answer}</td>`;
+        if (r2) {
+            html += `<td class="question-cell right-pair">${r2.question} <button class="audio-btn" onclick="event.stopPropagation();speakText('${escAttr(r2.question)}')">🔊</button></td>`;
+            html += `<td class="answer-cell right-pair">${r2.answer}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (qaRows.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No Q&amp;A at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// RENDER SENTENCES
+// ============================================
+function renderSentencesTable() {
+    const sentRows = sentencesCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'))
+        .map(line => {
+            const firstComma  = line.indexOf(',');
+            const secondComma = line.indexOf(',', firstComma + 1);
+            if (firstComma === -1 || secondComma === -1) return null;
+            return {
+                level:   line.substring(0, firstComma).trim(),
+                german:  line.substring(firstComma + 1, secondComma).trim(),
+                english: line.substring(secondComma + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('sentencesTableBody');
+    let html = '';
+
+    for (let i = 0; i < sentRows.length; i += 2) {
+        const r1 = sentRows[i];
+        const r2 = sentRows[i + 1] || null;
+        html += `<tr>`;
+        html += `<td class="german-cell left-pair">${r1.german} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(r1.english)}','${escAttr(r1.german)}')">🔊</button></td>`;
+        html += `<td class="english-cell left-pair">${r1.english}</td>`;
+        if (r2) {
+            html += `<td class="german-cell right-pair">${r2.german} <button class="audio-btn" onclick="event.stopPropagation();speakBilingual('${escAttr(r2.english)}','${escAttr(r2.german)}')">🔊</button></td>`;
+            html += `<td class="english-cell right-pair">${r2.english}</td>`;
+        } else {
+            html += `<td></td><td></td>`;
+        }
+        html += `</tr>`;
+    }
+
+    if (sentRows.length === 0) {
+        html = `<tr><td colspan="4" style="text-align:center; color:#999; padding:12px;">No sentences at ${currentLevel} level</td></tr>`;
+    }
+
+    tbody.innerHTML = html;
+}
+
+// ============================================
+// TOGGLE CONTROLS PANEL
+// ============================================
+function toggleControls() {
+    const panel = document.getElementById('controlsPanel');
+    const btn   = document.getElementById('controlsToggle');
+    const collapsed = panel.classList.toggle('collapsed');
+    btn.style.display = collapsed ? 'block' : 'none';
+}
+
+function toggleSecondary() {
+    const sec = document.getElementById('secondaryControls');
+    const btn = document.getElementById('secToggleBtn');
+    const open = sec.classList.toggle('open');
+    btn.classList.toggle('open', open);
+    btn.textContent = open ? '⚙ Zoom & Print ▲' : '⚙ Zoom & Print';
+}
+
+// ============================================
+// ZOOM
+// ============================================
+let vocabZoom = 100, phrasesZoom = 100;
+const zoomStep = 10, minZoom = 50, maxZoom = 200;
+const baseFontSize = 0.7;
+
+function updateVocabZoom() {
+    document.getElementById('vocabSection').style.fontSize = `${baseFontSize * vocabZoom / 100}em`;
+    document.getElementById('zoomLevelVocab').textContent = `${vocabZoom}%`;
+}
+function updatePhrasesZoom() {
+    document.getElementById('phrasesSection').style.fontSize = `${baseFontSize * phrasesZoom / 100}em`;
+    document.getElementById('zoomLevelPhrases').textContent = `${phrasesZoom}%`;
+}
+function zoomInVocab()     { if (vocabZoom < maxZoom)   { vocabZoom   += zoomStep; updateVocabZoom(); } }
+function zoomOutVocab()    { if (vocabZoom > minZoom)   { vocabZoom   -= zoomStep; updateVocabZoom(); } }
+function resetZoomVocab()  { vocabZoom = 100;   updateVocabZoom(); }
+function zoomInPhrases()   { if (phrasesZoom < maxZoom) { phrasesZoom += zoomStep; updatePhrasesZoom(); } }
+function zoomOutPhrases()  { if (phrasesZoom > minZoom) { phrasesZoom -= zoomStep; updatePhrasesZoom(); } }
+function resetZoomPhrases(){ phrasesZoom = 100; updatePhrasesZoom(); }
+
+// ============================================
+// KEYBOARD SHORTCUTS
+// ============================================
+document.addEventListener('keydown', e => {
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'SELECT') return;
+    const map = { '0': 'all', '1': 'A1', '2': 'A2', '3': 'B1', '4': 'B2' };
+    if (map[e.key]) filterByLevel(map[e.key]);
+    if (e.key === 'p' || e.key === 'P') window.print();
+});
+
+// ============================================
+// SPEECH SYNTHESIS (TTS)
+// ============================================
+let germanVoice = null;
+let englishVoice = null;
+let currentUtterance = null;
+let isSpeaking = false;
+let isPlayingSequence = false;
+let ttsWarmedUp = false;
+
+function loadVoices() {
+    const voices = window.speechSynthesis.getVoices();
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (!voiceSelect) return;
+    voiceSelect.innerHTML = '';
+
+    const germanVoices = voices.filter(v => v.lang.startsWith('de'));
+    if (germanVoices.length === 0) {
+        voiceSelect.innerHTML = '<option value="">No German voice – using default</option>';
+        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0] || null;
+    } else {
+        germanVoices.forEach(voice => {
+            const opt = document.createElement('option');
+            opt.value = voice.name;
+            opt.textContent = `${voice.name} (${voice.lang})`;
+            voiceSelect.appendChild(opt);
+        });
+        germanVoice = germanVoices[0];
+    }
+
+    // Pick best English voice for bilingual playback
+    const enVoices = voices.filter(v => v.lang.startsWith('en'));
+    englishVoice = enVoices.find(v => v.lang === 'en-US') || enVoices[0] || null;
+}
+
+if (typeof speechSynthesis !== 'undefined' && speechSynthesis.onvoiceschanged !== undefined) {
+    speechSynthesis.onvoiceschanged = loadVoices;
+}
+setTimeout(loadVoices, 100);
+setTimeout(loadVoices, 600);
+
+document.addEventListener('DOMContentLoaded', function() {
+    const voiceSelect = document.getElementById('voiceSelect');
+    if (voiceSelect) {
+        voiceSelect.addEventListener('change', function(e) {
+            stopAllSpeech();
+            const voices = window.speechSynthesis.getVoices();
+            germanVoice = voices.find(v => v.name === e.target.value) || voices[0] || null;
+        });
+    }
+    const speedControl = document.getElementById('speedControl');
+    if (speedControl) {
+        speedControl.addEventListener('input', function(e) {
+            const el = document.getElementById('speedValue');
+            if (el) el.textContent = e.target.value + '×';
+        });
+    }
+});
+
+function warmUpTTS(callback) {
+    if (ttsWarmedUp) { callback(); return; }
+    const primer = new SpeechSynthesisUtterance(' ');
+    primer.volume = 0;
+    primer.lang = 'de-DE';
+    if (germanVoice) primer.voice = germanVoice;
+    primer.onend  = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    primer.onerror = () => { ttsWarmedUp = true; setTimeout(callback, 50); };
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(primer);
+}
+
+function speak(text, callback, lang) {
+    if (!text || text.trim() === '') { if (callback) callback(); return; }
+    lang = lang || 'de-DE';
+    text = text.replace('🔊', '').trim();
+    if (!isPlayingSequence) stopAllSpeech();
+    if (!ttsWarmedUp) {
+        warmUpTTS(() => speakNow(text, callback, lang));
+    } else {
+        window.speechSynthesis.resume();
+        setTimeout(() => speakNow(text, callback, lang), 100);
+    }
+}
+
+function stopAllSpeech() {
+    isPlayingSequence = false;
+    playAllActive = false;
+    isPaused = false;
+    if (typeof speechSynthesis !== 'undefined') window.speechSynthesis.cancel();
+    isSpeaking = false;
+    hideAudioStatus();
+    hidePauseBtn();
+}
+
+function speakNow(text, callback, lang) {
+    if (!('speechSynthesis' in window)) {
+        alert('⚠️ Text-to-speech not supported in this browser.');
+        if (callback) callback();
+        return;
+    }
+    lang = lang || 'de-DE';
+    showAudioStatus(text);
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = lang;
+    if (lang.startsWith('en')) {
+        if (englishVoice) utterance.voice = englishVoice;
+    } else {
+        if (germanVoice) utterance.voice = germanVoice;
+    }
+    const speedEl = document.getElementById('speedControl');
+    utterance.rate = speedEl ? parseFloat(speedEl.value) : 0.8;
+    utterance.pitch = 1.0;
+    utterance.volume = 1.0;
+    let hasEnded = false;
+    utterance.onstart = () => { isSpeaking = true; };
+    utterance.onend = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) setTimeout(callback, 100);
+    };
+    utterance.onerror = () => {
+        if (hasEnded) return;
+        hasEnded = true;
+        isSpeaking = false;
+        hideAudioStatus();
+        if (callback) callback();
+    };
+    currentUtterance = utterance;
+    try { window.speechSynthesis.speak(utterance); }
+    catch(e) { isSpeaking = false; hideAudioStatus(); if (callback) callback(); }
+}
+
+function showAudioStatus(text) {
+    const status = document.getElementById('audioStatus');
+    const statusText = document.getElementById('audioStatusText');
+    if (!status || !statusText) return;
+    statusText.textContent = '🔊 ' + (text.length > 40 ? text.substring(0, 40) + '…' : text);
+    status.classList.add('show');
+}
+
+function hideAudioStatus() {
+    setTimeout(() => {
+        const el = document.getElementById('audioStatus');
+        if (el) el.classList.remove('show');
+    }, 300);
+}
+
+// English TTS shortcut
+function speakEnglish(text, callback) {
+    speak(text, callback, 'en-US');
+}
+
+// English → article+singular → plural
+function speakNounRow(article, singular, pluralFull, english) {
+    isPlayingSequence = true;
+    const startGerman = () => {
+        speak(article + ' ' + singular, () => {
+            if (pluralFull && pluralFull !== '---' && pluralFull !== 'kein Plural' && pluralFull !== 'nur P') {
+                setTimeout(() => speak(pluralFull, () => { isPlayingSequence = false; }), 350);
+            } else { isPlayingSequence = false; }
+        });
+    };
+    if (english) {
+        speakEnglish(english, () => setTimeout(startGerman, 500));
+    } else {
+        startGerman();
+    }
+}
+
+// English₁ → German₁ → English₂ → German₂
+function speakPair(word1, english1, word2, english2) {
+    const w1 = word1.replace(/[*+\-]/g, '').trim();
+    const w2 = word2.replace(/[*+\-]/g, '').trim();
+    isPlayingSequence = true;
+    speakEnglish(english1, () =>
+        setTimeout(() => speak(w1, () =>
+            setTimeout(() => speakEnglish(english2, () =>
+                setTimeout(() => speak(w2, () => { isPlayingSequence = false; }), 500)
+            ), 800)
+        ), 500)
+    );
+}
+
+// English → German (expressions & sentences)
+function speakBilingual(english, german) {
+    isPlayingSequence = true;
+    speakEnglish(english, () => setTimeout(() => speak(german, () => { isPlayingSequence = false; }), 500));
+}
+
+// German-only (conversations & Q&A)
+function speakText(text) {
+    speak(text);
+}
+
+// ============================================
+// PLAY SECTION — data-driven, column-first order
+// ============================================
+let playAllActive = false;
+let playAllIndex = 0;
+let playAllTexts = [];
+let currentPlaySection = null;
+let isPaused = false;
+
+// ============================================
+// PLAY HIGHLIGHT HELPERS
+// ============================================
+function clearPlayHighlight() {
+    document.querySelectorAll('tr[data-playing]').forEach(el => el.removeAttribute('data-playing'));
+}
+
+function highlightAndScroll(el, side) {
+    clearPlayHighlight();
+    if (!el) return;
+    el.setAttribute('data-playing', side || 'all');
+    // auto-scroll disabled
+}
+
+// Nouns: English → article+singular → plural, with row highlight
+function collectNounItems(articleFilter) {
+    const data = parseCSV(nounsCSV).filter(row =>
+        (currentLevel === 'all' || row[0] === currentLevel) && row[1] === articleFilter
+    );
+    const tbody = document.getElementById('nounTableBody');
+    const domRows = Array.from(tbody.querySelectorAll('tr.' + articleFilter + '-row'));
+    const items = [];
+    const half = Math.ceil(data.length / 2);
+
+    function pushNoun(row, domRow, side) {
+        const [lvl, art, ger, pn, pf, eng] = row;
+        if (eng) items.push({ text: eng, lang: 'en-US', el: domRow, side });
+        items.push({ text: art + ' ' + ger, el: domRow, side });
+        if (pf && pf !== '---' && pf !== 'nur P' && pf !== '=' && pf !== 'kein Plural') {
+            items.push({ text: pf, el: domRow, side });
+        }
+    }
+    for (let i = 0; i < half; i++)           pushNoun(data[i],        domRows[i]      || null, 'left');
+    for (let i = half; i < data.length; i++) pushNoun(data[i],        domRows[i-half] || null, 'right');
+    return items;
+}
+
+// Adjectives/Verbs: English₁ → German₁ → English₂ → German₂, with row highlight
+function collectWordItems(csv, rowClass) {
+    const data = parseCSV(csv).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const tbody = document.getElementById('wordTableBody');
+    const domRows = Array.from(tbody.querySelectorAll('tr.' + rowClass));
+    const items = [];
+    const half = Math.ceil(data.length / 2);
+
+    function pushPair(row, domRow, side) {
+        const [lvl, w1, eng1, w2, eng2] = row;
+        if (eng1) items.push({ text: eng1, lang: 'en-US', el: domRow, side });
+        items.push({ text: w1.replace(/[*+\-]/g, '').trim(), el: domRow, side });
+        if (eng2) items.push({ text: eng2, lang: 'en-US', el: domRow, side });
+        items.push({ text: w2.replace(/[*+\-]/g, '').trim(), el: domRow, side });
+    }
+    for (let i = 0; i < half; i++)           pushPair(data[i],        domRows[i]      || null, 'left');
+    for (let i = half; i < data.length; i++) pushPair(data[i],        domRows[i-half] || null, 'right');
+    return items;
+}
+
+// Expressions: English → German, with row highlight
+function collectExprItems() {
+    const data = parseCSV(expressionsCSV).filter(row =>
+        currentLevel === 'all' || row[0] === currentLevel
+    );
+    const tbody = document.getElementById('expressionsTableBody');
+    const domRows = Array.from(tbody.querySelectorAll('tr'));
+    const evens = data.filter((_, i) => i % 2 === 0);
+    const odds  = data.filter((_, i) => i % 2 === 1);
+    const items = [];
+    [...evens, ...odds].forEach((row, idx) => {
+        const [lvl, ger, ...engParts] = row;
+        const eng = engParts.join(',');
+        const side = idx < evens.length ? 'left' : 'right';
+        const domRow = domRows[idx < evens.length ? idx : idx - evens.length] || null;
+        if (eng) items.push({ text: eng, lang: 'en-US', el: domRow, side });
+        items.push({ text: ger, el: domRow, side });
+    });
+    return items;
+}
+
+// Conversations: Speaker A → Speaker B per row (horizontal order, matching table layout)
+function collectConvItems() {
+    const rawLines = conversationsCSV.split('\n')
+        .map(l => l.trim())
+        .filter(l => l.length > 0 && !l.startsWith('//'));
+    const conversations = {};
+    const convOrder = [];
+    rawLines.forEach(line => {
+        const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1), fc = line.indexOf(',', sp + 1);
+        if (fp < 0 || sp < 0 || fc < 0) return;
+        const level = line.substring(0, fp).trim();
+        const title = line.substring(fp + 1, sp).trim();
+        if (currentLevel !== 'all' && level !== currentLevel) return;
+        const speaker = line.substring(sp + 1, fc).trim();
+        const rest = line.substring(fc + 1);
+        const sc = rest.indexOf(',');
+        const german = rest.substring(0, sc).trim();
+        const key = level + '|' + title;
+        if (!conversations[key]) { conversations[key] = { A: [], B: [] }; convOrder.push(key); }
+        if (speaker === 'A') conversations[key].A.push(german);
+        else                  conversations[key].B.push(german);
+    });
+
+    // Grab only the data rows (those with conv-ger-a cells, skipping title/header rows)
+    const domRows = Array.from(document.querySelectorAll('.conversations-table tr'))
+        .filter(tr => tr.querySelector('.conv-ger-a'));
+
+    const items = [];
+    let rowIdx = 0;
+    convOrder.forEach(key => {
+        const { A, B } = conversations[key];
+        const maxRows = Math.max(A.length, B.length);
+        for (let i = 0; i < maxRows; i++) {
+            const domRow = domRows[rowIdx++] || null;
+            if (A[i]) items.push({ text: A[i], el: domRow, side: 'left' });
+            if (B[i]) items.push({ text: B[i], el: domRow, side: 'right' });
+        }
+    });
+    return items;
+}
+
+// Q&A: question → answer left-to-right per row (horizontal order, matching table layout)
+// Only the German portion is spoken — English translation in parentheses is stripped.
+function germanOnlyQA(text) {
+    // Answers are formatted: "German sentence. (English translation.)"
+    // Strip everything from the first ' (' onward to keep only German.
+    const idx = text.indexOf(' (');
+    return idx >= 0 ? text.substring(0, idx).trim() : text.trim();
+}
+
+function collectQAItems() {
+    const rows = qaCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return {
+                level:    line.substring(0, fc).trim(),
+                question: line.substring(fc + 1, sc).trim(),
+                answer:   germanOnlyQA(line.substring(sc + 1).trim())
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('qaTableBody');
+    const domRows = Array.from(tbody.querySelectorAll('tr'));
+    const items = [];
+
+    for (let i = 0; i < domRows.length; i++) {
+        const leftIdx  = i * 2;
+        const rightIdx = i * 2 + 1;
+
+        if (leftIdx < rows.length) {
+            items.push({ text: rows[leftIdx].question, el: domRows[i], side: 'left' });
+            if (rows[leftIdx].answer) items.push({ text: rows[leftIdx].answer, el: domRows[i], side: 'left' });
+        }
+        if (rightIdx < rows.length) {
+            items.push({ text: rows[rightIdx].question, el: domRows[i], side: 'right' });
+            if (rows[rightIdx].answer) items.push({ text: rows[rightIdx].answer, el: domRows[i], side: 'right' });
+        }
+    }
+    return items;
+}
+
+// Sentences: English → German, left-to-right per row (horizontal order, matching table layout)
+function collectSentItems() {
+    const rows = sentencesCSV.split('\n').map(l => l.trim())
+        .filter(l => l && !l.startsWith('//'))
+        .map(line => {
+            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
+            if (fc < 0 || sc < 0) return null;
+            return {
+                level:   line.substring(0, fc).trim(),
+                german:  line.substring(fc + 1, sc).trim(),
+                english: line.substring(sc + 1).trim()
+            };
+        })
+        .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
+
+    const tbody = document.getElementById('sentencesTableBody');
+    const domRows = Array.from(tbody.querySelectorAll('tr'));
+    const items = [];
+
+    for (let i = 0; i < domRows.length; i++) {
+        const leftIdx  = i * 2;
+        const rightIdx = i * 2 + 1;
+
+        if (leftIdx < rows.length) {
+            if (rows[leftIdx].english) items.push({ text: rows[leftIdx].english, lang: 'en-US', el: domRows[i], side: 'left' });
+            items.push({ text: rows[leftIdx].german, el: domRows[i], side: 'left' });
+        }
+        if (rightIdx < rows.length) {
+            if (rows[rightIdx].english) items.push({ text: rows[rightIdx].english, lang: 'en-US', el: domRows[i], side: 'right' });
+            items.push({ text: rows[rightIdx].german, el: domRows[i], side: 'right' });
+        }
+    }
+    return items;
+}
+
+const sectionBtnIds = {
+    all: 'btnAll', der: 'btnDer', das: 'btnDas', die: 'btnDie',
+    adj: 'btnAdj', verb: 'btnVerb', expr: 'btnExpr',
+    conv: 'btnConv', qa: 'btnQa', sent: 'btnSent'
+};
+
+// ── German-only mode: skip all English translation items during playback ──
+let germanOnlyMode = false;
+function toggleGermanOnly() {
+    germanOnlyMode = !germanOnlyMode;
+    const btn = document.getElementById('deOnlyBtn');
+    if (btn) btn.classList.toggle('active', germanOnlyMode);
+}
+function applyGermanOnlyFilter(items) {
+    return germanOnlyMode ? items.filter(i => i.lang !== 'en-US') : items;
+}
+
+function showPauseBtn() {
+    const btn = document.getElementById('pauseBtn');
+    if (btn) { btn.style.display = 'inline-block'; btn.classList.remove('paused'); btn.textContent = '⏸ Pause'; }
+}
+function hidePauseBtn() {
+    const btn = document.getElementById('pauseBtn');
+    if (btn) { btn.style.display = 'none'; btn.classList.remove('paused'); isPaused = false; }
+}
+function togglePause() {
+    const btn = document.getElementById('pauseBtn');
+    if (!playAllActive) return;
+    if (isPaused) {
+        isPaused = false;
+        if (btn) { btn.classList.remove('paused'); btn.textContent = '⏸ Pause'; }
+        window.speechSynthesis.resume();
+        // If synth already finished the utterance while paused, advance manually
+        if (!isSpeaking) setTimeout(playNextInSequence, 100);
+    } else {
+        isPaused = true;
+        if (btn) { btn.classList.add('paused'); btn.textContent = '▶ Resume'; }
+        window.speechSynthesis.pause();
+    }
+}
+
+function setPlayingBtn(section) {
+    Object.entries(sectionBtnIds).forEach(([key, id]) => {
+        const el = document.getElementById(id);
+        if (el) el.classList.toggle('playing', key === section);
+    });
+}
+
+function playSection(section) {
+    if (playAllActive && currentPlaySection === section) {
+        stopAllSpeech();
+        playAllActive = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        clearPlayHighlight();
+        return;
+    }
+    stopAllSpeech();
+    clearPlayHighlight();
+    playAllTexts = [];
+
+    if (section === 'all') {
+        playAllTexts = [
+            ...collectNounItems('der'),
+            ...collectNounItems('das'),
+            ...collectNounItems('die'),
+            ...collectWordItems(adjectivesCSV, 'adjective-row'),
+            ...collectWordItems(verbsCSV, 'verb-row'),
+            ...collectExprItems(),
+            ...collectConvItems(),
+            ...collectQAItems(),
+            ...collectSentItems()
+        ];
+    } else if (section === 'der')  { playAllTexts = collectNounItems('der'); }
+    else if (section === 'das')    { playAllTexts = collectNounItems('das'); }
+    else if (section === 'die')    { playAllTexts = collectNounItems('die'); }
+    else if (section === 'adj')    { playAllTexts = collectWordItems(adjectivesCSV, 'adjective-row'); }
+    else if (section === 'verb')   { playAllTexts = collectWordItems(verbsCSV, 'verb-row'); }
+    else if (section === 'expr')   { playAllTexts = collectExprItems(); }
+    else if (section === 'conv')   { playAllTexts = collectConvItems(); }
+    else if (section === 'qa')     { playAllTexts = collectQAItems(); }
+    else if (section === 'sent')   { playAllTexts = collectSentItems(); }
+
+    playAllTexts = playAllTexts.filter(item => item && item.text && item.text.trim());
+    playAllTexts = applyGermanOnlyFilter(playAllTexts);
+    if (playAllTexts.length === 0) return;
+
+    playAllActive = true;
+    playAllIndex = 0;
+    currentPlaySection = section;
+    isPlayingSequence = true;
+    isPaused = false;
+    setPlayingBtn(section);
+    showPauseBtn();
+    playNextInSequence();
+}
+
+function playNextInSequence() {
+    if (!playAllActive || playAllIndex >= playAllTexts.length) {
+        playAllActive = false;
+        isPlayingSequence = false;
+        currentPlaySection = null;
+        setPlayingBtn(null);
+        clearPlayHighlight();
+        hidePauseBtn();
+        return;
+    }
+    if (isPaused) return;  // wait for resume
+    const item = playAllTexts[playAllIndex++];
+    highlightAndScroll(item.el || null, item.side || 'all');
+    speak(item.text, () => setTimeout(playNextInSequence, 500), item.lang || 'de-DE');
+}
+
+// Helper: escape text for HTML attribute
+function escAttr(s) {
+    return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+}
+
+// ============================================
+// INITIALIZE
+// ============================================
+window.addEventListener('load', function() {
+    updateVocabZoom();
+    updatePhrasesZoom();
+    renderNounsTable();
+    renderWordsTable();
+    renderExpressionsTable();
+    renderConversations();
+    renderQATable();
+    renderSentencesTable();
+    console.log('✅ German Vocabulary Reference loaded!');
+    console.log('💡 Keys: 0=All | 1=A1 | 2=A2 | 3=B1 | 4=B2 | P=Print');
+});
+// ============================================
+// RECORD MODE ORCHESTRATOR
+// ============================================
+
+// ── Card data (mirrors SeparatorCards_editor) ──
+let REC_UNIT  = '25';
+let REC_TOPIC = 'Time & Daily Routine';
+
+const _glow = (r,g,b,a=0.45) =>
+    `radial-gradient(ellipse at 78% 45%, rgba(${r},${g},${b},${a*0.55}) 0%, transparent 58%)`;
+
+const REC_CARDS = {
+    cover: {
+        type:'cover', tag:`Unit ${REC_UNIT}`,
+        titleLines:['Time', '& Daily', 'Routine'],
+        badges:[{label:'der',color:'#1E88E5'},{label:'das',color:'#2E7D32'},{label:'die',color:'#C62828'}],
+        overlay:`radial-gradient(ellipse at 72% 40%, rgba(30,136,229,0.28) 0%, transparent 50%),
+                 radial-gradient(ellipse at 28% 65%, rgba(198,40,40,0.22) 0%, transparent 45%)`,
+        bottomL:'⬡ 259 words total', bottomR:'A1 – B2',
+    },
+    nouns_all: {
+        type:'table-header', tag:'TABLE 1',
+        titleLines:['Nouns','(Die Nomen)'],
+        badges:[{label:'der',color:'#1E88E5'},{label:'das',color:'#2E7D32'},{label:'die',color:'#C62828'}],
+        overlay:`radial-gradient(ellipse at 25% 45%, rgba(30,136,229,0.22) 0%, transparent 45%),
+                 radial-gradient(ellipse at 55% 60%, rgba(46,125,50,0.2) 0%, transparent 40%),
+                 radial-gradient(ellipse at 80% 35%, rgba(198,40,40,0.2) 0%, transparent 40%)`,
+        bottomL:'⬡ 92 nouns · der 31 · das 18 · die 43', bottomR:'A1 – B2',
+    },
+    der: {
+        type:'section', tag:'TABLE 1 · NOUNS',
+        titleLines:['Masculine','Words'],
+        badge:{label:'der',color:'#1E88E5',bg:'rgba(30,136,229,0.18)',border:'rgba(30,136,229,0.55)'},
+        overlay:_glow(30,136,229), cornerTxt:'DER', cornerColor:'rgba(30,136,229,0.07)',
+        bottomL:'⬡ 31 words', bottomR:'A1 – B2',
+    },
+    das: {
+        type:'section', tag:'TABLE 1 · NOUNS',
+        titleLines:['Neuter','Words'],
+        badge:{label:'das',color:'#2E7D32',bg:'rgba(46,125,50,0.18)',border:'rgba(46,125,50,0.55)'},
+        overlay:_glow(46,125,50), cornerTxt:'DAS', cornerColor:'rgba(46,125,50,0.07)',
+        bottomL:'⬡ 18 words', bottomR:'A1 – B2',
+    },
+    die: {
+        type:'section', tag:'TABLE 1 · NOUNS',
+        titleLines:['Feminine','Words'],
+        badge:{label:'die',color:'#C62828',bg:'rgba(198,40,40,0.18)',border:'rgba(198,40,40,0.55)'},
+        overlay:_glow(198,40,40), cornerTxt:'DIE', cornerColor:'rgba(198,40,40,0.07)',
+        bottomL:'⬡ 43 words', bottomR:'A1 – B2',
+    },
+    adj_verb_all: {
+        type:'table-header', tag:'TABLE 2',
+        titleLines:['Adjectives','& Verbs'],
+        badges:[{label:'adj',color:'#F57F17'},{label:'verb',color:'#00838F'}],
+        overlay:`radial-gradient(ellipse at 75% 40%, rgba(245,127,23,0.28) 0%, transparent 50%),
+                 radial-gradient(ellipse at 28% 65%, rgba(0,131,143,0.22) 0%, transparent 45%)`,
+        bottomL:'⬡ 40 words · adj 20 · verb 20', bottomR:'A1 – B2',
+    },
+    adj: {
+        type:'section', tag:'TABLE 2 · ADJ & VERBS',
+        titleLines:['Adjectives','with Opposites'],
+        badge:{label:'adj',color:'#F57F17',bg:'rgba(245,127,23,0.18)',border:'rgba(245,127,23,0.55)'},
+        overlay:_glow(245,127,23,0.4), cornerTxt:'ADJ', cornerColor:'rgba(245,127,23,0.07)',
+        bottomL:'⬡ 20 adjectives', bottomR:'A1 – B2',
+    },
+    verb: {
+        type:'section', tag:'TABLE 2 · ADJ & VERBS',
+        titleLines:['Verbs','with Opposites'],
+        badge:{label:'verb',color:'#00838F',bg:'rgba(0,131,143,0.18)',border:'rgba(0,131,143,0.55)'},
+        overlay:_glow(0,131,143,0.4), cornerTxt:'VERB', cornerColor:'rgba(0,131,143,0.07)',
+        bottomL:'⬡ 20 verbs', bottomR:'A1 – B2',
+    },
+    phrases_divider: {
+        type:'divider', tag:'SECTION DIVIDER',
+        titleLines:['Phrases','&','Sentences'],
+        overlay:`radial-gradient(ellipse at 50% 50%, rgba(106,27,154,0.55) 0%, transparent 62%)`,
+        cornerTxt:'💬', cornerColor:'rgba(106,27,154,0.12)', isEmoji:true,
+        bottomL:'⬡ 127 phrases & sentences', bottomR:'A1 – B2',
+    },
+    expr: {
+        type:'section', tag:'TABLE 3',
+        titleLines:['Common','Expressions'],
+        badge:{label:'expr',color:'#6A1B9A',bg:'rgba(106,27,154,0.18)',border:'rgba(106,27,154,0.55)'},
+        overlay:_glow(106,27,154), cornerTxt:'EXPR', cornerColor:'rgba(106,27,154,0.07)',
+        bottomL:'⬡ 27 expressions', bottomR:'A1 – B2',
+    },
+    conv: {
+        type:'section', tag:'TABLE 4',
+        titleLines:['Conversations'],
+        badge:{label:'conv',color:'#5C6BC0',bg:'rgba(40,53,147,0.2)',border:'rgba(57,73,171,0.6)'},
+        overlay:_glow(40,53,147,0.5), cornerTxt:'CONV', cornerColor:'rgba(40,53,147,0.07)',
+        bottomL:'⬡ 4 dialogues · 35 lines', bottomR:'A1 – B2',
+    },
+    qa: {
+        type:'section', tag:'TABLE 5',
+        titleLines:['Questions','& Answers'],
+        badge:{label:'Q&A',color:'#A1887F',bg:'rgba(78,52,46,0.22)',border:'rgba(109,76,65,0.6)'},
+        overlay:_glow(78,52,46,0.6), cornerTxt:'Q&A', cornerColor:'rgba(78,52,46,0.07)',
+        bottomL:'⬡ 27 Q&A pairs', bottomR:'A1 – B2',
+    },
+    sent: {
+        type:'section', tag:'TABLE 6',
+        titleLines:['Complete','Sentences'],
+        badge:{label:'sent',color:'#5C7AEA',bg:'rgba(26,35,126,0.22)',border:'rgba(40,53,147,0.6)'},
+        overlay:_glow(26,35,126,0.55), cornerTxt:'SENT', cornerColor:'rgba(26,35,126,0.07)',
+        bottomL:'⬡ 38 sentences', bottomR:'A1 – B2',
+    },
+};
+
+// ── Card rendering ──
+function _titleFontSize(lines) {
+    const maxLen = Math.max(...lines.map(l => l.length));
+    if (lines.length === 1 && maxLen <= 10) return '9em';
+    if (lines.length === 1 && maxLen <= 14) return '7.5em';
+    if (lines.length === 1)                 return '6.2em';
+    if (lines.length === 2 && maxLen <= 10) return '6.5em';
+    if (lines.length === 2 && maxLen <= 14) return '5.5em';
+    if (lines.length === 2)                 return '4.8em';
+    return '4em';
+}
+
+function renderOverlayCard(c) {
+    const card = document.getElementById('overlayCard');
+    if (!card || !c) return;
+
+    const cornerStyle = c.isEmoji
+        ? `font-size:11em;opacity:0.12;right:-10px;`
+        : `font-size:13em;color:${c.cornerColor||'rgba(0,0,0,0.05)'};right:-18px;letter-spacing:-4px;`;
+
+    const fs = _titleFontSize(c.titleLines);
+    const titleContent = c.titleLines.join('<br>');
+
+    let badgeArea = '';
+    if (c.type === 'cover' || c.type === 'table-header') {
+        badgeArea = `<div class="oc-badges-row">${(c.badges||[]).map(b =>
+            `<div class="oc-art-badge oc-med" style="background:rgba(0,0,0,0.05);border-color:${b.color};color:${b.color}">${b.label}</div>`
+        ).join('')}</div>`;
+    } else if (c.type !== 'divider' && c.badge) {
+        badgeArea = `<div class="oc-badges-row">
+            <div class="oc-art-badge oc-big" style="background:${c.badge.bg};border-color:${c.badge.border};color:${c.badge.color}">${c.badge.label}</div>
+        </div>`;
+    }
+
+    let mainContent = (c.type === 'cover')
+        ? `<div class="oc-cover-logo"><span class="oc-lc-der">Der</span><span class="oc-lc-die">Die</span><span class="oc-lc-das">Das</span>Method</div>
+           <div class="oc-section-tag">Unit ${REC_UNIT} · Topic Overview</div>
+           <div class="oc-card-title" style="font-size:${fs}">${titleContent}</div>${badgeArea}`
+        : `<div class="oc-section-tag">${c.tag}</div>
+           <div class="oc-card-title" style="font-size:${fs}">${titleContent}</div>${badgeArea}`;
+
+    card.innerHTML = `
+        <div class="oc-card-bg-overlay" style="background:${c.overlay}"></div>
+        <div class="oc-card-noise"></div>
+        <div class="oc-corner-wm" style="${cornerStyle}">${c.cornerTxt||''}</div>
+        <div class="oc-accent-line"></div>
+        <div class="oc-card-inner">
+            <div class="oc-card-top">
+                <div class="oc-logo-mark">
+                    <span><span class="oc-lm-der">Der</span><span class="oc-lm-die">Die</span><span class="oc-lm-das">Das</span></span>
+                    <span class="oc-thematic-sub">Method</span>
+                </div>
+                <div class="oc-unit-info">Unit ${REC_UNIT} · ${REC_TOPIC}</div>
+                <div class="oc-level-pill">A1 – B2</div>
+            </div>
+            <div class="oc-card-main">${mainContent}</div>
+            <div class="oc-card-foot">
+                <div class="oc-word-count">${c.bottomL||''}</div>
+                <div class="oc-foot-sub">${c.bottomR||''}</div>
+            </div>
+        </div>`;
+}
+
+function scaleOverlayCard() {
+    const wrap = document.getElementById('overlayCardWrap');
+    if (!wrap) return;
+    const scale = Math.min(window.innerWidth / 1280, window.innerHeight / 720);
+    wrap.style.transform = `scale(${scale})`;
+    wrap.style.marginTop    = `${(720 * scale - 720) / 2}px`;
+    wrap.style.marginBottom = `${(720 * scale - 720) / 2}px`;
+}
+window.addEventListener('resize', scaleOverlayCard);
+
+// ── Overlay show/hide with fade ──
+function showCard(cardId, duration) {
+    return new Promise(resolve => {
+        const c = REC_CARDS[cardId];
+        if (!c) { resolve(); return; }
+        renderOverlayCard(c);
+        scaleOverlayCard();
+
+        const overlay = document.getElementById('cardOverlay');
+        overlay.style.opacity = '0';
+        overlay.style.transition = 'opacity 0.45s ease';
+        overlay.style.display = 'flex';
+        requestAnimationFrame(() => requestAnimationFrame(() => { overlay.style.opacity = '1'; }));
+
+        const fadeDelay = Math.max(duration - 450, 200);
+        setTimeout(() => {
+            overlay.style.opacity = '0';
+            setTimeout(() => { overlay.style.display = 'none'; resolve(); }, 450);
+        }, fadeDelay);
+    });
+}
+
+// ── Countdown ──
+function showCountdown() {
+    return new Promise(resolve => {
+        const overlay = document.getElementById('countdownOverlay');
+        const num     = document.getElementById('countdownNumber');
+        overlay.style.display = 'flex';
+        let count = 3;
+        num.textContent = count;
+
+        const tick = setInterval(() => {
+            count--;
+            if (count <= 0) {
+                clearInterval(tick);
+                overlay.style.display = 'none';
+                resolve();
+            } else {
+                num.textContent = count;
+                num.style.animation = 'none';
+                requestAnimationFrame(() => requestAnimationFrame(() => {
+                    num.style.animation = 'cdPulse 1s ease-in-out';
+                }));
+            }
+        }, 1000);
+    });
+}
+
+// ── Play section as Promise ──
+function playAudioSectionAsync(section) {
+    return new Promise(resolve => {
+        stopAllSpeech();
+        clearPlayHighlight();
+
+        let items = [];
+        if      (section === 'der')  items = collectNounItems('der');
+        else if (section === 'das')  items = collectNounItems('das');
+        else if (section === 'die')  items = collectNounItems('die');
+        else if (section === 'adj')  items = collectWordItems(adjectivesCSV, 'adjective-row');
+        else if (section === 'verb') items = collectWordItems(verbsCSV, 'verb-row');
+        else if (section === 'expr') items = collectExprItems();
+        else if (section === 'conv') items = collectConvItems();
+        else if (section === 'qa')   items = collectQAItems();
+        else if (section === 'sent') items = collectSentItems();
+
+        items = items.filter(i => i && i.text && i.text.trim());
+        items = applyGermanOnlyFilter(items);
+        if (!items.length) { resolve(); return; }
+
+        playAllActive    = true;
+        isPlayingSequence = true;
+        let idx = 0;
+
+        function next() {
+            if (!recModeActive) { playAllActive = false; isPlayingSequence = false; clearPlayHighlight(); resolve(); return; }
+            if (recIsPaused) { setTimeout(next, 150); return; }
+            if (!playAllActive || idx >= items.length) {
+                playAllActive = false; isPlayingSequence = false;
+                clearPlayHighlight(); resolve(); return;
+            }
+            const item = items[idx++];
+            highlightAndScroll(item.el || null, item.side || 'all');
+            speak(item.text, () => setTimeout(next, 500), item.lang || 'de-DE');
+        }
+        next();
+    });
+}
+
+// ── Recording state ──
+let recModeActive = false;
+let recIsPaused   = false;
+let recStartTime  = null;
+let recChapters   = [];
+let recTsInterval = null;
+
+function _fmtTs(ms) {
+    const s = Math.floor(ms / 1000);
+    return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+}
+function _logChapter(label) {
+    const ts = recStartTime ? _fmtTs(Date.now() - recStartTime) : '0:00';
+    recChapters.push(`${ts} ${label}`);
+}
+
+function _showMiniBar() {
+    const bar = document.getElementById('recMiniBar');
+    bar.style.display = 'flex';
+    recTsInterval = setInterval(() => {
+        if (recStartTime) {
+            document.getElementById('recTs').textContent = _fmtTs(Date.now() - recStartTime);
+        }
+    }, 500);
+}
+function _hideMiniBar() {
+    document.getElementById('recMiniBar').style.display = 'none';
+    clearInterval(recTsInterval);
+}
+
+function toggleRecPause() {
+    const btn = document.getElementById('recPauseBtn');
+    const zc  = document.getElementById('recZoomControls');
+    recIsPaused = !recIsPaused;
+    if (recIsPaused) {
+        window.speechSynthesis.pause();
+        btn.textContent = '▶ Resume';
+        btn.style.color = '#FFCE00';
+        // show zoom controls and sync labels
+        zc.classList.add('visible');
+        document.getElementById('recZoomV').textContent = vocabZoom + '%';
+        document.getElementById('recZoomP').textContent = phrasesZoom + '%';
+    } else {
+        window.speechSynthesis.resume();
+        btn.textContent = '⏸ Pause';
+        btn.style.color = '';
+        zc.classList.remove('visible');
+        if (!isSpeaking) setTimeout(() => {}, 100);
+    }
+}
+
+// ── Main orchestrator ──
+async function startRecordingMode() {
+    if (recModeActive) return;
+    recModeActive = true;
+    recIsPaused   = false;
+    recChapters   = [];
+
+    // Hide controls, show stop button, hide start-from selector
+    document.getElementById('controlsPanel').classList.add('collapsed');
+    document.getElementById('controlsToggle').style.display = 'none';
+    document.getElementById('recModeBtn').style.display = 'none';
+    document.getElementById('stopRecBtn').style.display = 'inline-block';
+
+    // Read start-from value
+    const startIdx = parseInt(document.getElementById('recStartFrom').value) || 0;
+
+    // Warm up TTS before countdown so it's ready immediately
+    warmUpTTS(() => {});
+
+    // Countdown
+    await showCountdown();
+
+    recStartTime = Date.now();
+    _showMiniBar();
+
+    // ── Full sequence definition ──
+    const FULL_SEQ = [
+        { card:'cover',          chLabel:'🎬 Intro — Time & Daily Routine', audio: null },
+        { card:'nouns_all',      chLabel:'📖 Table 1 — Nouns (Die Nomen)',            audio: null },
+        { card:'der',            chLabel:'🔵 der — Masculine Nouns',                  audio: 'der'  },
+        { card:'das',            chLabel:'🟢 das — Neuter Nouns',                     audio: 'das'  },
+        { card:'die',            chLabel:'🔴 die — Feminine Nouns',                   audio: 'die'  },
+        { card:'adj_verb_all',   chLabel:'📖 Table 2 — Adjectives & Verbs',           audio: null },
+        { card:'adj',            chLabel:'🟠 Adjectives with Opposites',              audio: 'adj'  },
+        { card:'verb',           chLabel:'🩵 Verbs with Opposites',                   audio: 'verb' },
+        { card:'phrases_divider',chLabel:'💬 Phrases & Sentences',                    audio: null },
+        { card:'expr',           chLabel:'🟣 Table 3 — Common Expressions',           audio: 'expr' },
+        { card:'conv',           chLabel:'💙 Table 4 — Conversations',                audio: 'conv' },
+        { card:'qa',             chLabel:'🤎 Table 5 — Questions & Answers',          audio: 'qa'   },
+        { card:'sent',           chLabel:'🔷 Table 6 — Complete Sentences',           audio: 'sent' },
+    ];
+
+    const seq = FULL_SEQ.slice(startIdx);
+
+    for (const step of seq) {
+        if (!recModeActive) break;
+        _logChapter(step.chLabel);
+        await showCard(step.card, 3000);
+        if (!recModeActive) break;
+        if (step.audio) await playAudioSectionAsync(step.audio);
+    }
+
+    if (recModeActive) _finishRecording();
+}
+
+function _finishRecording() {
+    recModeActive = false;
+    _hideMiniBar();
+
+    const text = recChapters.join('\n');
+    navigator.clipboard.writeText(text).catch(() => {});
+
+    document.getElementById('chapterText').textContent = text;
+    document.getElementById('chapterModal').style.display = 'flex';
+}
+
+function exitRecordingMode() {
+    // Restore controls
+    document.getElementById('controlsPanel').classList.remove('collapsed');
+    document.getElementById('controlsToggle').style.display = '';
+    document.getElementById('recModeBtn').style.display = '';
+    document.getElementById('stopRecBtn').style.display = 'none';
+}
+
+function stopRecordingMode() {
+    recModeActive = false;
+    stopAllSpeech();
+    _hideMiniBar();
+    document.getElementById('cardOverlay').style.display = 'none';
+    document.getElementById('countdownOverlay').style.display = 'none';
+    exitRecordingMode();
+}
+
+    </script>
+    <!-- ============================================
+         RECORD MODE OVERLAYS
+    ============================================ -->
+
+    <!-- Card overlay — fullscreen separator card display -->
+    <div id="cardOverlay">
+        <div id="overlayCardWrap">
+            <div id="overlayCard"></div>
+        </div>
+    </div>
+
+    <!-- Countdown 3-2-1 -->
+    <div id="countdownOverlay">
+        <div id="countdownNumber">3</div>
+        <div class="countdown-sub">Recording starts…</div>
+    </div>
+
+    <!-- Floating mini-bar during recording -->
+    <div id="recMiniBar">
+        <div class="rec-indicator"></div>
+        <span class="rec-label">REC</span>
+        <span class="rec-ts" id="recTs">0:00</span>
+        <button id="recPauseBtn" onclick="toggleRecPause()">⏸ Pause</button>
+        <div id="recZoomControls">
+            <span class="rz-label">ZOOM</span>
+            <span class="rz-label" style="color:rgba(255,255,255,0.5)">📚</span>
+            <button class="rz-btn" onclick="zoomOutVocab()">−</button>
+            <span class="rz-btn" style="cursor:default;min-width:34px;text-align:center" id="recZoomV">100%</span>
+            <button class="rz-btn" onclick="zoomInVocab()">+</button>
+            <span class="rz-sep">|</span>
+            <span class="rz-label" style="color:rgba(255,255,255,0.5)">💬</span>
+            <button class="rz-btn" onclick="zoomOutPhrases()">−</button>
+            <span class="rz-btn" style="cursor:default;min-width:34px;text-align:center" id="recZoomP">100%</span>
+            <button class="rz-btn" onclick="zoomInPhrases()">+</button>
+        </div>
+        <button onclick="stopRecordingMode()" style="color:#f88; border-color:rgba(248,136,136,0.3);">⏹ Stop</button>
+    </div>
+
+    <!-- Chapter summary modal -->
+    <div id="chapterModal">
+        <div class="chapter-modal-box">
+            <div class="chapter-modal-title">✅ Recording Complete</div>
+            <div class="chapter-modal-sub">YouTube chapters copied to clipboard — paste directly into your video description.<br>Each timestamp was logged at the moment its separator card appeared.</div>
+            <pre id="chapterText"></pre>
+            <div class="chapter-modal-actions">
+                <button onclick="navigator.clipboard.writeText(document.getElementById('chapterText').textContent)" style="background:#667eea; color:white;">📋 Copy Again</button>
+                <button onclick="document.getElementById('chapterModal').style.display='none'; exitRecordingMode();" style="background:#333; color:rgba(255,255,255,0.65);">Close</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
