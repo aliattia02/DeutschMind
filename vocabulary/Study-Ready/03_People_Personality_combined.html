@@ -2467,8 +2467,7 @@ function collectExprItems() {
 
 // Conversations: Speaker A → Speaker B per row (horizontal order, matching table layout)
 function collectConvItems() {
-    const rawLines = conversationsCSV.split('
-')
+    const rawLines = conversationsCSV.split('\n')
         .map(l => l.trim())
         .filter(l => l.length > 0 && !l.startsWith('//'));
     const conversations = {};
@@ -2517,8 +2516,7 @@ function germanOnlyQA(text) {
 }
 
 function collectQAItems() {
-    const rows = qaCSV.split('
-').map(l => l.trim())
+    const rows = qaCSV.split('\n').map(l => l.trim())
         .filter(l => l && !l.startsWith('//'))
         .map(line => {
             const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
@@ -2553,8 +2551,7 @@ function collectQAItems() {
 
 // Sentences: English → German, left-to-right per row (horizontal order, matching table layout)
 function collectSentItems() {
-    const rows = sentencesCSV.split('
-').map(l => l.trim())
+    const rows = sentencesCSV.split('\n').map(l => l.trim())
         .filter(l => l && !l.startsWith('//'))
         .map(line => {
             const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
