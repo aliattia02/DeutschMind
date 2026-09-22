@@ -398,6 +398,8 @@
         }
         .footer-col a { display: block; color: rgba(255,255,255,.4); text-decoration: none; font-size: .67rem; padding: 2.5px 0; transition: color .15s; }
         .footer-col a:hover { color: var(--yellow); }
+        /* Not-yet-built destinations: an <a> without href is not a link */
+        .is-soon { opacity: .5; pointer-events: none; cursor: default; }
         .footer-bottom {
             padding-top: 14px; border-top: 1px solid rgba(255,255,255,.05);
             text-align: center; font-size: .65rem; color: rgba(255,255,255,.25);
@@ -586,7 +588,7 @@
             <div class="level-cta">Explore B2 <span class="level-cta-arrow">→</span></div>
         </a>
 
-        <a href="Pages/level-c1.html" class="level-card lv-c1">
+        <a class="level-card lv-c1 is-soon" aria-disabled="true">
             <div class="level-top">
                 <div class="level-badge">C1</div>
                 <div class="level-meta">
@@ -601,10 +603,10 @@
                 <span class="level-tag">12 topics</span>
                 <span class="level-tag">60+ chats</span>
             </div>
-            <div class="level-cta">Explore C1 <span class="level-cta-arrow">→</span></div>
+            <div class="level-cta">Coming Soon</div>
         </a>
 
-        <a href="Pages/level-c2.html" class="level-card lv-c2">
+        <a class="level-card lv-c2 is-soon" aria-disabled="true">
             <div class="level-top">
                 <div class="level-badge">C2</div>
                 <div class="level-meta">
@@ -619,7 +621,7 @@
                 <span class="level-tag">All topics</span>
                 <span class="level-tag">80+ chats</span>
             </div>
-            <div class="level-cta">Explore C2 <span class="level-cta-arrow">→</span></div>
+            <div class="level-cta">Coming Soon</div>
         </a>
     </div>
 
@@ -717,12 +719,12 @@
                 </div>
             </div>
             <div class="cat-body">
-                <a href="Pages/tools.html" class="cat-main-btn">Browse All Tools <span class="cat-arrow-circle">→</span></a>
+                <a class="cat-main-btn is-soon" aria-disabled="true">Coming Soon</a>
                 <div class="cat-links">
-                    <a href="tools/flashcards.html"    class="cat-link">Flashcards <span class="cat-link-arr">→</span></a>
-                    <a href="tools/quiz.html"           class="cat-link">Quiz &amp; Games <span class="cat-link-arr">→</span></a>
-                    <a href="tools/progress.html"       class="cat-link">Progress Tracker <span class="cat-link-arr">→</span></a>
-                    <a href="tools/daily-practice.html" class="cat-link">Daily Practice <span class="cat-link-arr">→</span></a>
+                    <a     class="cat-link is-soon" aria-disabled="true">Flashcards <span class="cat-link-arr">→</span></a>
+                    <a            class="cat-link is-soon" aria-disabled="true">Quiz &amp; Games <span class="cat-link-arr">→</span></a>
+                    <a        class="cat-link is-soon" aria-disabled="true">Progress Tracker <span class="cat-link-arr">→</span></a>
+                    <a  class="cat-link is-soon" aria-disabled="true">Daily Practice <span class="cat-link-arr">→</span></a>
                 </div>
             </div>
         </div>
@@ -736,12 +738,12 @@
                 </div>
             </div>
             <div class="cat-body">
-                <a href="Pages/practice.html" class="cat-main-btn">Browse All Practice <span class="cat-arrow-circle">→</span></a>
+                <a class="cat-main-btn is-soon" aria-disabled="true">Coming Soon</a>
                 <div class="cat-links">
-                    <a href="practice/conversations.html" class="cat-link">Conversations <span class="cat-link-arr">→</span></a>
-                    <a href="practice/listening.html"     class="cat-link">Listening Practice <span class="cat-link-arr">→</span></a>
-                    <a href="practice/writing.html"       class="cat-link">Writing Exercises <span class="cat-link-arr">→</span></a>
-                    <a href="practice/pronunciation.html" class="cat-link">Pronunciation Guide <span class="cat-link-arr">→</span></a>
+                    <a  class="cat-link is-soon" aria-disabled="true">Conversations <span class="cat-link-arr">→</span></a>
+                    <a      class="cat-link is-soon" aria-disabled="true">Listening Practice <span class="cat-link-arr">→</span></a>
+                    <a        class="cat-link is-soon" aria-disabled="true">Writing Exercises <span class="cat-link-arr">→</span></a>
+                    <a  class="cat-link is-soon" aria-disabled="true">Pronunciation Guide <span class="cat-link-arr">→</span></a>
                 </div>
             </div>
         </div>
@@ -755,12 +757,12 @@
                 </div>
             </div>
             <div class="cat-body">
-                <a href="Pages/resources.html" class="cat-main-btn">Browse All Resources <span class="cat-arrow-circle">→</span></a>
+                <a class="cat-main-btn is-soon" aria-disabled="true">Coming Soon</a>
                 <div class="cat-links">
-                    <a href="resources/resources-beginner.html"     class="cat-link">Beginner Resources (A1-A2) <span class="cat-link-arr">→</span></a>
-                    <a href="resources/resources-intermediate.html" class="cat-link">Intermediate (B1-B2) <span class="cat-link-arr">→</span></a>
-                    <a href="resources/resources-advanced.html"     class="cat-link">Advanced (C1-C2) <span class="cat-link-arr">→</span></a>
-                    <a href="resources/media.html"                  class="cat-link">German Media <span class="cat-link-arr">→</span></a>
+                    <a      class="cat-link is-soon" aria-disabled="true">Beginner Resources (A1-A2) <span class="cat-link-arr">→</span></a>
+                    <a  class="cat-link is-soon" aria-disabled="true">Intermediate (B1-B2) <span class="cat-link-arr">→</span></a>
+                    <a      class="cat-link is-soon" aria-disabled="true">Advanced (C1-C2) <span class="cat-link-arr">→</span></a>
+                    <a                   class="cat-link is-soon" aria-disabled="true">German Media <span class="cat-link-arr">→</span></a>
                 </div>
             </div>
         </div>
@@ -779,17 +781,17 @@
                 <a href="Pages/level-a2.html">🔵 A2 — Elementary</a>
                 <a href="Pages/level-b1.html">🟡 B1 — Intermediate</a>
                 <a href="Pages/level-b2.html">🟠 B2 — Upper Int.</a>
-                <a href="Pages/level-c1.html">🔴 C1 — Advanced</a>
-                <a href="Pages/level-c2.html">🟣 C2 — Mastery</a>
+                <a class="is-soon" aria-disabled="true">🔴 C1 — Advanced</a>
+                <a class="is-soon" aria-disabled="true">🟣 C2 — Mastery</a>
             </div>
             <div class="footer-col">
                 <h4>Categories</h4>
                 <a href="Pages/vocabulary.html">📚 Vocabulary</a>
                 <a href="vocabulary/FSP/main.html">🎓 FSP</a>
                 <a href="Pages/grammar.html">📖 Grammar</a>
-                <a href="Pages/tools.html">🎮 Tools</a>
-                <a href="Pages/practice.html">🗣️ Practice</a>
-                <a href="Pages/resources.html">🔗 Resources</a>
+                <a class="is-soon" aria-disabled="true">🎮 Tools</a>
+                <a class="is-soon" aria-disabled="true">🗣️ Practice</a>
+                <a class="is-soon" aria-disabled="true">🔗 Resources</a>
             </div>
             <div class="footer-col">
                 <h4>Quick Access</h4>

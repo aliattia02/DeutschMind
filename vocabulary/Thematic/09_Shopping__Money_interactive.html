@@ -878,40 +878,44 @@ B2,Wie hoch sind die Zinsen auf diesem Konto?,What is the interest rate on this 
 // CONVERSATIONS — format: level|Title|Speaker,german,english
 // ============================================
 const conversationsRaw = `
-A1|Talking About Family|A,Hast du Geschwister?,Do you have siblings?
-A1|Talking About Family|B,Ja ich habe einen Bruder und eine Schwester. Und du?,Yes I have a brother and a sister. And you?
-A1|Talking About Family|A,Ich bin Einzelkind. Wo wohnen deine Eltern?,I am an only child. Where do your parents live?
-A1|Talking About Family|B,Meine Eltern wohnen in Hamburg.,My parents live in Hamburg.
-A1|Talking About Family|A,Hast du auch Großeltern?,Do you also have grandparents?
-A1|Talking About Family|B,Ja meine Großmutter wohnt bei uns zu Hause.,Yes my grandmother lives with us at home.
-A1|Talking About Family|A,Wie alt ist sie?,How old is she?
-A1|Talking About Family|B,Sie ist achtzig Jahre alt und sehr aktiv.,She is eighty years old and very active.
-A2|Describing Your Family|A,Erzähl mir von deiner Familie.,Tell me about your family.
-A2|Describing Your Family|B,Wir sind eine große Familie. Ich habe drei Geschwister und viele Cousins.,We are a large family. I have three siblings and many cousins.
-A2|Describing Your Family|A,Verstehst du dich gut mit deinen Geschwistern?,Do you get along well with your siblings?
-A2|Describing Your Family|B,Ja wir verstehen uns sehr gut. Mein Bruder ist mein bester Freund.,Yes we get along very well. My brother is my best friend.
-A2|Describing Your Family|A,Sind deine Eltern noch verheiratet?,Are your parents still married?
-A2|Describing Your Family|B,Ja seit dreißig Jahren. Sie feiern nächstes Jahr ihr Jubiläum.,Yes for thirty years. They are celebrating their anniversary next year.
-A2|Describing Your Family|A,Das ist wunderbar! Habt ihr viele Familienfeste?,That is wonderful! Do you have many family celebrations?
-A2|Describing Your Family|B,Ja wir treffen die ganze Familie immer zu Weihnachten und Ostern.,Yes we always meet the whole family at Christmas and Easter.
-B1|Wedding Plans|A,Herzlichen Glückwunsch zur Verlobung! Wann ist die Hochzeit?,Congratulations on the engagement! When is the wedding?
-B1|Wedding Plans|B,Danke! Wir heiraten im September in einem kleinen Schloss.,Thank you! We are getting married in September in a small castle.
-B1|Wedding Plans|A,Habt ihr schon viele Gäste eingeladen?,Have you already invited many guests?
-B1|Wedding Plans|B,Ja wir laden die ganze Familie und enge Freunde ein. Das sind fast achtzig Personen.,Yes we are inviting the whole family and close friends. That is almost eighty people.
-B1|Wedding Plans|A,Und wer ist Trauzeuge?,And who is the best man?
-B1|Wedding Plans|B,Mein Bruder. Er hält auch eine Rede.,My brother. He is also giving a speech.
-B1|Wedding Plans|A,Werden die Kinder auch dabei sein?,Will the children be there too?
-B1|Wedding Plans|B,Ja natürlich. Meine Nichten sind die Blumenmädchen.,Yes of course. My nieces are the flower girls.
-B1|Wedding Plans|A,Das wird sicher ein unvergessliches Fest.,That will certainly be an unforgettable celebration.
-B1|Wedding Plans|B,Wir freuen uns riesig darauf.,We are very much looking forward to it.
-B2|Family Law Matters|A,Ich brauche Ihren Rat in einer Familienangelegenheit.,I need your advice in a family matter.
-B2|Family Law Matters|B,Natürlich. Worum geht es?,Of course. What is it about?
-B2|Family Law Matters|A,Mein Partner und ich haben uns getrennt. Wir haben ein Kind und wissen nicht wie das Sorgerecht geregelt wird.,My partner and I have separated. We have a child and do not know how custody is regulated.
-B2|Family Law Matters|B,Das Gericht entscheidet nach dem Kindeswohl. Meist wird gemeinsames Sorgerecht vereinbart.,The court decides based on the child's best interest. Joint custody is usually agreed upon.
-B2|Family Law Matters|A,Was ist wenn wir uns nicht einigen können?,What if we cannot agree?
-B2|Family Law Matters|B,Dann kann ein Mediator helfen bevor man vor Gericht geht.,Then a mediator can help before going to court.
-B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about visitation rights?
-B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
+A1|At the Checkout|A,Entschuldigung — was kostet das hier?,Excuse me — how much is this?
+A1|At the Checkout|B,Das kostet drei Euro fünfzig.,That costs three euros fifty.
+A1|At the Checkout|A,Und das hier?,And this one?
+A1|At the Checkout|B,Das kostet zwei Euro.,That costs two euros.
+A1|At the Checkout|A,Gut. Ich nehme beides.,Good. I will take both.
+A1|At the Checkout|B,Zusammen macht das fünf Euro fünfzig.,Together that is five euros fifty.
+A1|At the Checkout|A,Ich zahle bar. Hier sind zehn Euro.,I am paying cash. Here is ten euros.
+A1|At the Checkout|B,Vier Euro fünfzig zurück. Danke schön!,Four euros fifty change. Thank you very much!
+A1|At the Checkout|A,Danke. Auf Wiedersehen!,Thank you. Goodbye!
+A2|At the Clothes Shop|A,Haben Sie dieses Hemd in Größe M?,Do you have this shirt in size M?
+A2|At the Clothes Shop|B,"Ja, natürlich. Möchten Sie es anprobieren?",Yes of course. Would you like to try it on?
+A2|At the Clothes Shop|A,"Ja, gern. Wo ist die Umkleidekabine?",Yes please. Where is the changing room?
+A2|At the Clothes Shop|B,Dort hinten links.,Over there on the left.
+A2|At the Clothes Shop|A,Es passt gut. Gibt es gerade einen Rabatt?,It fits well. Is there a discount at the moment?
+A2|At the Clothes Shop|B,Wir haben heute zwanzig Prozent auf alles.,We have twenty percent off everything today.
+A2|At the Clothes Shop|A,Super! Dann nehme ich es. Kann ich mit Karte zahlen?,Great! I will take it then. Can I pay by card?
+A2|At the Clothes Shop|B,Natürlich. Bitte geben Sie Ihre PIN ein.,Of course. Please enter your PIN.
+A2|At the Clothes Shop|A,Kann ich einen Kassenbon bekommen?,Can I get a receipt?
+A2|At the Clothes Shop|B,"Ja, hier ist Ihr Bon. Auf Wiedersehen!",Yes here is your receipt. Goodbye!
+B1|Returning a Purchase|A,Guten Tag. Ich möchte dieses Produkt zurückgeben.,Good day. I would like to return this product.
+B1|Returning a Purchase|B,Haben Sie noch den Kassenbon?,Do you still have the receipt?
+B1|Returning a Purchase|A,"Ja, hier. Es ist leider defekt.",Yes here. Unfortunately it is defective.
+B1|Returning a Purchase|B,Möchten Sie lieber einen Umtausch oder eine Rückerstattung?,Would you prefer an exchange or a refund?
+B1|Returning a Purchase|A,Ich hätte lieber eine Rückerstattung.,I would prefer a refund.
+B1|Returning a Purchase|B,Kein Problem. Darf ich Ihre Kontonummer notieren?,No problem. May I note your account number?
+B1|Returning a Purchase|A,Natürlich. Hier sind meine Daten.,Of course. Here are my details.
+B1|Returning a Purchase|B,Das Geld wird innerhalb von drei Werktagen erstattet.,The money will be refunded within three working days.
+B1|Returning a Purchase|A,Vielen Dank für Ihre Hilfe.,Thank you very much for your help.
+B2|At the Bank|A,Guten Tag. Ich interessiere mich für einen Kredit.,Good day. I am interested in a loan.
+B2|At the Bank|B,Wie viel möchten Sie leihen und für welchen Zweck?,How much would you like to borrow and for what purpose?
+B2|At the Bank|A,Ich brauche fünftausend Euro für eine Renovierung.,I need five thousand euros for a renovation.
+B2|At the Bank|B,Wie hoch ist Ihr monatliches Nettoeinkommen?,What is your monthly net income?
+B2|At the Bank|A,Etwa zweitausend Euro netto.,About two thousand euros net.
+B2|At the Bank|B,Der aktuelle Zinssatz beträgt vier Prozent pro Jahr.,The current interest rate is four percent per year.
+B2|At the Bank|A,Und wie lange läuft der Kredit?,And how long is the loan term?
+B2|At the Bank|B,Das können Sie zwischen zwei und fünf Jahren wählen.,You can choose between two and five years.
+B2|At the Bank|A,Ich würde gern den Vertrag erst durchlesen.,I would like to read through the contract first.
+B2|At the Bank|B,Natürlich. Nehmen Sie sich die nötige Zeit.,Of course. Take the time you need.
 `.trim();
 
 const qaCSV = `
@@ -920,31 +924,31 @@ A1,Wo kaufst du ein?,Ich kaufe in kleinen Läden und im Kaufhaus ein. (I shop in
 A1,Bezahlst du lieber bar oder mit Karte?,Ich zahle meistens bar. (I usually pay cash.)
 A1,Was kaufst du am liebsten?,Ich kaufe gern Kleidung und Bücher. (I like buying clothes and books.)
 A1,Wie viel kostet das?,Das kostet drei Euro fünfzig. (That costs three euros fifty.)
-A1,Hast du Kleingeld?,Ja ich habe genug Münzen dabei. (Yes I have enough coins with me.)
+A1,Hast du Kleingeld?,Ja, ich habe genug Münzen dabei. (Yes I have enough coins with me.)
 A1,Wo ist die Kasse?,Die Kasse ist dort drüben. (The checkout is over there.)
-A1,Nimmst du eine Tüte?,Nein danke ich habe meine eigene Tasche. (No thanks I have my own bag.)
-A1,Ist der Laden geöffnet?,Ja er ist bis acht Uhr geöffnet. (Yes it is open until eight o'clock.)
+A1,Nimmst du eine Tüte?,Nein, danke, ich habe meine eigene Tasche. (No thanks I have my own bag.)
+A1,Ist der Laden geöffnet?,Ja, er ist bis acht Uhr geöffnet. (Yes it is open until eight o'clock.)
 A2,Wie viel Geld gibst du pro Woche aus?,Ich gebe etwa hundert Euro pro Woche aus. (I spend about one hundred euros per week.)
-A2,Gibt es hier Sonderangebote?,Ja heute sind viele Produkte reduziert. (Yes today many products are discounted.)
-A2,Kannst du das umtauschen?,Ja mit dem Kassenbon ist das kein Problem. (Yes with the receipt that is no problem.)
-A2,Hast du ein Konto bei dieser Bank?,Ja ich habe ein Girokonto und ein Sparkonto. (Yes I have a current account and a savings account.)
+A2,Gibt es hier Sonderangebote?,Ja, heute sind viele Produkte reduziert. (Yes today many products are discounted.)
+A2,Kannst du das umtauschen?,Ja, mit dem Kassenbon ist das kein Problem. (Yes with the receipt that is no problem.)
+A2,Hast du ein Konto bei dieser Bank?,Ja, ich habe ein Girokonto und ein Sparkonto. (Yes I have a current account and a savings account.)
 A2,Wie bezahlst du online?,Ich nutze meist meine Kreditkarte oder eine Überweisung. (I usually use my credit card or a bank transfer.)
-A2,Hast du einen Rabatt bekommen?,Ja ich habe zehn Prozent Rabatt bekommen. (Yes I got a ten percent discount.)
+A2,Hast du einen Rabatt bekommen?,Ja, ich habe zehn Prozent Rabatt bekommen. (Yes I got a ten percent discount.)
 A2,Was ist ein Gutschein?,Das ist ein Beleg mit dem man beim Einkauf sparen kann. (That is a voucher with which you can save on a purchase.)
 A2,Wie viel hast du diesen Monat gespart?,Ich habe fünfzig Euro gespart. (I saved fifty euros.)
 // cluster: budgeting & money management
 B1,Wie planst du dein Budget?,Ich schreibe alle Ausgaben auf und spare regelmäßig. (I write down all expenses and save regularly.)
-B1,Was machst du wenn ein Produkt defekt ist?,Ich gehe zurück und beanspruche die Garantie. (I go back and claim the guarantee.)
-B1,Was ist ein Kontostand?,Er zeigt wie viel Geld man auf dem Konto hat. (It shows how much money you have in the account.)
+B1,"Was machst du, wenn ein Produkt defekt ist?",Ich gehe zurück und beanspruche die Garantie. (I go back and claim the guarantee.)
+B1,Was ist ein Kontostand?,Er zeigt, wie viel Geld man auf dem Konto hat. (It shows how much money you have in the account.)
 B1,Was bedeutet Ratenzahlung?,Man bezahlt einen Kauf in mehreren monatlichen Raten. (You pay for a purchase in several monthly instalments.)
-B1,Lohnt es sich im Ausverkauf einzukaufen?,Ja man kann viel Geld sparen wenn man Sonderangebote nutzt. (Yes you can save a lot of money by using special offers.)
+B1,Lohnt es sich im Ausverkauf einzukaufen?,Ja, man kann viel Geld sparen, wenn man Sonderangebote nutzt. (Yes you can save a lot of money by using special offers.)
 B1,Was ist eine Überweisung?,Das ist eine elektronische Zahlung von einem Konto auf ein anderes. (That is an electronic payment from one account to another.)
 // cluster: financial concepts
-B2,Was ist ein Wechselkurs?,Er zeigt an wie viel eine Währung im Vergleich zu einer anderen wert ist. (It shows how much a currency is worth compared to another.)
-B2,Was bedeutet Kreditwürdigkeit?,Es bewertet ob jemand in der Lage ist einen Kredit zurückzuzahlen. (It assesses whether someone is able to repay a loan.)
+B2,Was ist ein Wechselkurs?,Er zeigt an, wie viel eine Währung im Vergleich zu einer anderen wert ist. (It shows how much a currency is worth compared to another.)
+B2,Was bedeutet Kreditwürdigkeit?,Es bewertet, ob jemand in der Lage ist, einen Kredit zurückzuzahlen. (It assesses whether someone is able to repay a loan.)
 B2,Was ist eine Lastschrift?,Das Geld wird automatisch vom Konto des Käufers abgebucht. (The money is automatically debited from the buyer's account.)
 B2,Was ist eine Investition?,Geld das man anlegt um langfristig Gewinne zu erzielen. (Money that is put in to generate long-term profits.)
-B2,Was ist Kaufkraft?,Sie gibt an wie viel man mit einer bestimmten Geldmenge kaufen kann. (It indicates how much you can buy with a given amount of money.)
+B2,Was ist Kaufkraft?,Sie gibt an, wie viel man mit einer bestimmten Geldmenge kaufen kann. (It indicates how much you can buy with a given amount of money.)
 `.trim();
 
 const sentencesCSV = `
@@ -974,9 +978,9 @@ A2,Auf dem Einkaufszettel stehen zehn Produkte.,There are ten products on the sh
 B1,Der Ausverkauf beginnt nach den Feiertagen.,The sale starts after the holidays.
 B1,Ich möchte das Gerät gegen ein anderes Modell umtauschen.,I would like to exchange the device for a different model.
 B1,Der Händler bietet eine zweijährige Garantie an.,The trader offers a two-year guarantee.
-B1,Ich habe die Karte gesperrt weil sie verloren war.,I blocked the card because it was lost.
+B1,"Ich habe die Karte gesperrt, weil sie verloren war.",I blocked the card because it was lost.
 B1,Der Nachlass macht das Produkt wirklich attraktiv.,The price reduction makes the product really attractive.
-B1,Ich vergleiche immer mehrere Angebote bevor ich kaufe.,I always compare several offers before buying.
+B1,"Ich vergleiche immer mehrere Angebote, bevor ich kaufe.",I always compare several offers before buying.
 B1,Man kann den Betrag in drei Raten bezahlen.,You can pay the amount in three instalments.
 B1,Das Sortiment dieser Boutique ist sehr vielfältig.,The range of this boutique is very varied.
 // cluster: financial & market context
@@ -992,11 +996,32 @@ B2,Maßgeschneiderte Produkte haben oft einen höheren Marktpreis.,Custom-made p
 // ============================================
 // CSV PARSER — strips blank lines AND comment lines
 // ============================================
+// Split one data line on commas. Wrap a field in double quotes to put commas inside it:
+//   A1,"Ja, gern.",Yes please.
+// With maxCols, the last column takes the rest of the line verbatim (commas included).
+function splitCSVLine(line, maxCols) {
+    const cols = [];
+    let cur = '', quoted = false;
+    for (let i = 0; i < line.length; i++) {
+        if (maxCols && cols.length === maxCols - 1) {
+            cur = line.slice(i).trim();
+            if (cur.length > 1 && cur[0] === '"' && cur[cur.length - 1] === '"') cur = cur.slice(1, -1);
+            break;
+        }
+        const ch = line[i];
+        if (ch === '"') quoted = !quoted;
+        else if (ch === ',' && !quoted) { cols.push(cur.trim()); cur = ''; }
+        else cur += ch;
+    }
+    cols.push(cur.trim());
+    return cols;
+}
+
 function parseCSV(csv) {
     return csv.split('\n')
         .map(line => line.trim())
         .filter(line => line.length > 0 && !line.startsWith('//'))
-        .map(line => line.split(',').map(cell => cell.trim()));
+        .map(line => splitCSVLine(line));
 }
 
 // ============================================
@@ -1016,14 +1041,16 @@ function loadVoices() {
 
     if (germanVoices.length === 0) {
         voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
-        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+        germanVoice = null; // no German voice: let the browser pick one from utterance.lang
     } else {
+        // keep the current choice if loadVoices runs again (voiceschanged can fire repeatedly)
+        const keepName = germanVoice && germanVoices.some(v => v.name === germanVoice.name) ? germanVoice.name : null;
         germanVoices.forEach((voice, index) => {
             const option = document.createElement('option');
             option.value = index;
             option.textContent = `${voice.name} (${voice.lang})`;
             voiceSelect.appendChild(option);
-            if (index === 0) germanVoice = voice;
+            if (keepName ? voice.name === keepName : index === 0) { germanVoice = voice; option.selected = true; }
         });
     }
     console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
@@ -1040,7 +1067,7 @@ document.getElementById('voiceSelect').addEventListener('change', function(e) {
     stopAllSpeech();
     const voices = window.speechSynthesis.getVoices();
     const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
-    germanVoice = germanVoices[e.target.value] || voices[0];
+    germanVoice = germanVoices[e.target.value] || null;
 });
 
 document.getElementById('speedControl').addEventListener('input', function(e) {
@@ -1068,7 +1095,7 @@ function speak(text, callback) {
         if (callback) callback();
         return;
     }
-    text = text.replace('🔊', '').trim();
+    text = text.replaceAll('🔊', '').trim();
     if (!isPlayingSequence) stopAllSpeech();
     if (!ttsWarmedUp) {
         warmUpTTS(() => speakNow(text, callback));
@@ -1456,19 +1483,15 @@ function renderConversations() {
         // Format: LEVEL|Title|Speaker,german text,english text
         const firstPipe  = line.indexOf('|');
         const secondPipe = line.indexOf('|', firstPipe + 1);
-        const firstComma = line.indexOf(',', secondPipe + 1);
-        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+        const cols       = splitCSVLine(line.substring(secondPipe + 1), 3);  // speaker, german, english
+        if (firstPipe === -1 || secondPipe === -1 || cols.length < 3) return;
 
         const level   = line.substring(0, firstPipe).trim();
         const title   = line.substring(firstPipe + 1, secondPipe).trim();
-        const speaker = line.substring(secondPipe + 1, firstComma).trim();
-        const rest    = line.substring(firstComma + 1);
+        const speaker = cols[0];
 
-        const secondComma = rest.indexOf(',');
-        if (secondComma === -1) return;
-
-        const german  = rest.substring(0, secondComma).trim();
-        const english = rest.substring(secondComma + 1).trim();
+        const german  = cols[1];
+        const english = cols[2];
 
         const key = `${level}|${title}`;
         if (!conversations[key]) {
@@ -1504,6 +1527,7 @@ function renderConversations() {
         html += `</div></div>`;
     });
 
+    if (!convOrder.length) html = '<p style="text-align:center;color:#999;padding:12px;">No conversations for this unit yet.</p>';
     document.getElementById('conversationsContainer').innerHTML = html;
 }
 
@@ -1517,13 +1541,12 @@ function renderQA() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level    = line.substring(0, firstComma).trim();
-        const question = line.substring(firstComma + 1, secondComma).trim();
-        const answer   = line.substring(secondComma + 1).trim();
+        const level    = cols[0];
+        const question = cols[1];
+        const answer   = cols[2];
         const eq = question.replace(/'/g, "\\'");
         const ea = answer.replace(/'/g, "\\'");
 
@@ -1546,13 +1569,12 @@ function renderSentences() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level   = line.substring(0, firstComma).trim();
-        const german  = line.substring(firstComma + 1, secondComma).trim();
-        const english = line.substring(secondComma + 1).trim();
+        const level   = cols[0];
+        const german  = cols[1];
+        const english = cols[2];
         const eg = german.replace(/'/g, "\\'");
 
         html += `<div class="sentence-card" data-level="${level}" onclick="speak('${eg}')">

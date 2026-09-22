@@ -1650,7 +1650,7 @@ const conversationsCSV = `
 A1|An der Bushaltestelle|A,Entschuldigung wann kommt der Bus?,Excuse me when does the bus come?
 A1|An der Bushaltestelle|B,Der Bus kommt in zehn Minuten.,The bus comes in ten minutes.
 A1|An der Bushaltestelle|A,Fährt dieser Bus zum Bahnhof?,Does this bus go to the station?
-A1|An der Bushaltestelle|B,Ja er fährt direkt zum Bahnhof.,Yes it goes directly to the station.
+A1|An der Bushaltestelle|B,"Ja, er fährt direkt zum Bahnhof.",Yes it goes directly to the station.
 A1|An der Bushaltestelle|A,Was kostet eine Fahrkarte?,How much does a ticket cost?
 A1|An der Bushaltestelle|B,Eine Fahrkarte kostet zwei Euro.,A ticket costs two euros.
 A1|An der Bushaltestelle|A,Wo kaufe ich die Fahrkarte?,Where do I buy the ticket?
@@ -1662,7 +1662,7 @@ A2|Am Fahrkartenschalter|B,Einfach oder hin und zurück?,Single or return?
 A2|Am Fahrkartenschalter|A,Einfach bitte. Wann fährt der nächste Zug?,Single please. When does the next train leave?
 A2|Am Fahrkartenschalter|B,In zwanzig Minuten von Gleis vier.,In twenty minutes from platform four.
 A2|Am Fahrkartenschalter|A,Muss ich umsteigen?,Do I need to change?
-A2|Am Fahrkartenschalter|B,Nein es ist eine Direktverbindung.,No it is a direct connection.
+A2|Am Fahrkartenschalter|B,"Nein, es ist eine Direktverbindung.",No it is a direct connection.
 A2|Am Fahrkartenschalter|A,Wie lange dauert die Fahrt?,How long does the journey take?
 A2|Am Fahrkartenschalter|B,Ungefähr zwei Stunden.,About two hours.
 A2|Am Fahrkartenschalter|A,Was kostet die Fahrkarte?,How much does the ticket cost?
@@ -1670,23 +1670,23 @@ A2|Am Fahrkartenschalter|B,Das macht siebenundzwanzig Euro fünfzig.,That is twe
 B1|Pendelroute besprechen|A,Wie kommst du jeden Tag zur Arbeit?,How do you get to work every day?
 B1|Pendelroute besprechen|B,Ich nehme die S-Bahn und steige dann in die U-Bahn um.,I take the suburban train and then transfer to the underground.
 B1|Pendelroute besprechen|A,Wie lange brauchst du dafür?,How long does it take you?
-B1|Pendelroute besprechen|B,Meistens vierzig Minuten aber bei Verspätungen auch länger.,Usually forty minutes but longer when there are delays.
+B1|Pendelroute besprechen|B,"Meistens vierzig Minuten, aber bei Verspätungen auch länger.",Usually forty minutes but longer when there are delays.
 B1|Pendelroute besprechen|A,Hast du eine Monatskarte?,Do you have a monthly pass?
-B1|Pendelroute besprechen|B,Ja das ist viel günstiger als jeden Tag eine Fahrkarte zu lösen.,Yes that is much cheaper than buying a ticket every day.
-B1|Pendelroute besprechen|A,Ich überlege ob ich mit dem Fahrrad fahren soll.,I am wondering whether to cycle instead.
+B1|Pendelroute besprechen|B,"Ja, das ist viel günstiger, als jeden Tag eine Fahrkarte zu lösen.",Yes that is much cheaper than buying a ticket every day.
+B1|Pendelroute besprechen|A,"Ich überlege, ob ich mit dem Fahrrad fahren soll.",I am wondering whether to cycle instead.
 B1|Pendelroute besprechen|B,Das geht auch. Es gibt einen guten Radweg entlang der Strecke.,That works too. There is a good cycle path along the route.
-B1|Pendelroute besprechen|A,Aber was machst du wenn es regnet?,But what do you do when it rains?
+B1|Pendelroute besprechen|A,"Aber was machst du, wenn es regnet?",But what do you do when it rains?
 B1|Pendelroute besprechen|B,Dann nehme ich lieber die Bahn.,Then I prefer to take the train.
 B2|Verkehrsplanung|A,Die Stadt plant einen neuen Radschnellweg.,The city is planning a new express cycle route.
 B2|Verkehrsplanung|B,Das ist überfällig. Der Radverkehr wird oft vernachlässigt.,That is overdue. Cycling traffic is often neglected.
 B2|Verkehrsplanung|A,Gleichzeitig sollen mehrere Fahrspuren für den Kfz-Verkehr gesperrt werden.,Several lanes for motor vehicles are also to be closed.
 B2|Verkehrsplanung|B,Das wird sicher Widerstand auslösen.,That will certainly cause resistance.
-B2|Verkehrsplanung|A,Ja aber Verkehrsexperten befürworten die Maßnahmen zur Emissionsreduzierung.,Yes but traffic experts support the emission reduction measures.
+B2|Verkehrsplanung|A,"Ja, aber Verkehrsexperten befürworten die Maßnahmen zur Emissionsreduzierung.",Yes but traffic experts support the emission reduction measures.
 B2|Verkehrsplanung|B,Hat man auch den öffentlichen Nahverkehr ausgebaut?,Has public transport also been expanded?
-B2|Verkehrsplanung|A,Ja die Taktfolge auf vielen Linien wird erhöht.,Yes the frequency on many lines is being increased.
+B2|Verkehrsplanung|A,"Ja, die Taktfolge auf vielen Linien wird erhöht.",Yes the frequency on many lines is being increased.
 B2|Verkehrsplanung|B,Das könnte Pendler dazu bringen das Auto stehen zu lassen.,That could encourage commuters to leave the car at home.
 B2|Verkehrsplanung|A,Genau. Nachhaltige Mobilität ist das Ziel.,Exactly. Sustainable mobility is the goal.
-B2|Verkehrsplanung|B,Wenn die Infrastruktur stimmt folgen die Menschen.,If the infrastructure is right people will follow.
+B2|Verkehrsplanung|B,"Wenn die Infrastruktur stimmt, folgen die Menschen.",If the infrastructure is right people will follow.
 `.trim();
 
 const qaCSV = `
@@ -1702,15 +1702,15 @@ A1,Was ist eine Straßenbahn?,Eine Straßenbahn fährt auf Schienen durch die St
 // cluster: directions & everyday transport
 A2,Wie fragt man nach dem Weg?,Man fragt Entschuldigung wie komme ich zum Bahnhof? (You ask Excuse me how do I get to the station?)
 A2,Was bedeutet geradeaus?,Geradeaus bedeutet ohne abzubiegen in eine Richtung weitergehen. (Straight ahead means to keep going without turning.)
-A2,Was ist ein Stau?,Ein Stau ist wenn der Verkehr stoppt und sich Fahrzeuge stauen. (A traffic jam is when traffic stops and vehicles queue up.)
+A2,Was ist ein Stau?,Ein Stau ist, wenn der Verkehr stoppt und sich Fahrzeuge stauen. (A traffic jam is when traffic stops and vehicles queue up.)
 A2,Was ist eine Monatskarte?,Eine Monatskarte erlaubt unbegrenzte Fahrten für einen Monat. (A monthly pass allows unlimited travel for one month.)
 A2,Was macht man beim Umsteigen?,Man verlässt ein Verkehrsmittel und steigt in ein anderes um. (You leave one vehicle and transfer to another.)
 A2,Wie weit ist ein Kilometer?,Ein Kilometer sind tausend Meter. (A kilometre is one thousand metres.)
 A2,Was ist der Unterschied zwischen S-Bahn und U-Bahn?,Die S-Bahn fährt auch über der Erde die U-Bahn immer darunter. (The S-Bahn also runs above ground the U-Bahn always below.)
 A2,Wo kauft man Fahrkarten?,An einem Automaten oder am Schalter im Bahnhof. (At a machine or at the counter in the station.)
 // cluster: public transport & fares
-B1,Was ist der Berufsverkehr?,Die Zeit morgens und abends wenn viele Menschen zur Arbeit fahren. (The time in the morning and evening when many people travel to work.)
-B1,Was ist eine Verspätung?,Eine Verspätung ist wenn ein Zug oder Bus nicht pünktlich kommt. (A delay is when a train or bus does not arrive on time.)
+B1,Was ist der Berufsverkehr?,Die Zeit morgens und abends, wenn viele Menschen zur Arbeit fahren. (The time in the morning and evening when many people travel to work.)
+B1,Was ist eine Verspätung?,Eine Verspätung ist, wenn ein Zug oder Bus nicht pünktlich kommt. (A delay is when a train or bus does not arrive on time.)
 B1,Was bedeutet Anschluss im Bahnverkehr?,Ein Anschluss ist ein weiterer Zug den man nach dem Umsteigen erreichen muss. (A connection is a further train that you need to catch after transferring.)
 B1,Was ist eine Einbahnstraße?,Eine Straße auf der Fahrzeuge nur in eine Richtung fahren dürfen. (A road on which vehicles may only travel in one direction.)
 B1,Warum muss man die Fahrkarte entwerten?,Damit der Fahrschein gültig ist und man kein Bußgeld zahlt. (So the ticket is valid and you do not have to pay a fine.)
@@ -1748,7 +1748,7 @@ B1,In der Fußgängerzone dürfen keine Autos fahren.,No cars are allowed in the
 B1,Der Zebrastreifen schützt Fußgänger beim Überqueren der Straße.,The pedestrian crossing protects pedestrians when crossing the road.
 B1,Man muss die Fahrkarte vor der Fahrt entwerten.,You must validate the ticket before the journey.
 B1,Bei Frost kann die Fahrbahn sehr rutschig werden.,In frosty conditions the road surface can become very slippery.
-B1,Ich fahre lieber mit dem Zug weil das weniger stressig ist.,I prefer to take the train because it is less stressful.
+B1,"Ich fahre lieber mit dem Zug, weil das weniger stressig ist.",I prefer to take the train because it is less stressful.
 // cluster: vehicles & sustainability
 B1,Elektroautos haben keine direkten Abgasemissionen.,Electric cars have no direct exhaust emissions.
 B1,Der öffentliche Nahverkehr ist umweltfreundlicher als das Auto.,Public transport is more environmentally friendly than the car.
@@ -1767,11 +1767,32 @@ B2,Die Verkehrsinfrastruktur eines Landes beeinflusst seine wirtschaftliche Entw
 // ============================================
 // CSV PARSER
 // ============================================
+// Split one data line on commas. Wrap a field in double quotes to put commas inside it:
+//   A1,"Ja, gern.",Yes please.
+// With maxCols, the last column takes the rest of the line verbatim (commas included).
+function splitCSVLine(line, maxCols) {
+    const cols = [];
+    let cur = '', quoted = false;
+    for (let i = 0; i < line.length; i++) {
+        if (maxCols && cols.length === maxCols - 1) {
+            cur = line.slice(i).trim();
+            if (cur.length > 1 && cur[0] === '"' && cur[cur.length - 1] === '"') cur = cur.slice(1, -1);
+            break;
+        }
+        const ch = line[i];
+        if (ch === '"') quoted = !quoted;
+        else if (ch === ',' && !quoted) { cols.push(cur.trim()); cur = ''; }
+        else cur += ch;
+    }
+    cols.push(cur.trim());
+    return cols;
+}
+
 function parseCSV(csv) {
     return csv.split('\n')
         .map(l => l.trim())
         .filter(l => l.length > 0 && !l.startsWith('//'))
-        .map(l => l.split(',').map(c => c.trim()));
+        .map(l => splitCSVLine(l));
 }
 
 // ============================================
@@ -1985,19 +2006,17 @@ function renderConversations() {
     rawLines.forEach(line => {
         const firstPipe  = line.indexOf('|');
         const secondPipe = line.indexOf('|', firstPipe + 1);
-        const firstComma = line.indexOf(',', secondPipe + 1);
-        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+        const cols       = splitCSVLine(line.substring(secondPipe + 1), 3);  // speaker, german, english
+        if (firstPipe === -1 || secondPipe === -1 || cols.length < 3) return;
 
         const level   = line.substring(0, firstPipe).trim();
         const title   = line.substring(firstPipe + 1, secondPipe).trim();
-        const speaker = line.substring(secondPipe + 1, firstComma).trim();
+        const speaker = cols[0];
 
         if (currentLevel !== 'all' && level !== currentLevel) return;
 
-        const rest         = line.substring(firstComma + 1);
-        const secondComma  = rest.indexOf(',');
-        const german       = rest.substring(0, secondComma).trim();
-        const english      = rest.substring(secondComma + 1).trim();
+        const german       = cols[1];
+        const english      = cols[2];
 
         const key = `${level}|${title}`;
         if (!conversations[key]) {
@@ -2060,13 +2079,12 @@ function renderQATable() {
         .map(l => l.trim())
         .filter(l => l.length > 0 && !l.startsWith('//'))
         .map(line => {
-            const firstComma  = line.indexOf(',');
-            const secondComma = line.indexOf(',', firstComma + 1);
-            if (firstComma === -1 || secondComma === -1) return null;
+            const cols = splitCSVLine(line, 3);
+            if (cols.length < 3) return null;
             return {
-                level:    line.substring(0, firstComma).trim(),
-                question: line.substring(firstComma + 1, secondComma).trim(),
-                answer:   line.substring(secondComma + 1).trim()
+                level:    cols[0],
+                question: cols[1],
+                answer:   cols[2]
             };
         })
         .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
@@ -2104,13 +2122,12 @@ function renderSentencesTable() {
         .map(l => l.trim())
         .filter(l => l.length > 0 && !l.startsWith('//'))
         .map(line => {
-            const firstComma  = line.indexOf(',');
-            const secondComma = line.indexOf(',', firstComma + 1);
-            if (firstComma === -1 || secondComma === -1) return null;
+            const cols = splitCSVLine(line, 3);
+            if (cols.length < 3) return null;
             return {
-                level:   line.substring(0, firstComma).trim(),
-                german:  line.substring(firstComma + 1, secondComma).trim(),
-                english: line.substring(secondComma + 1).trim()
+                level:   cols[0],
+                german:  cols[1],
+                english: cols[2]
             };
         })
         .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
@@ -2209,7 +2226,7 @@ function loadVoices() {
     const germanVoices = voices.filter(v => v.lang.startsWith('de'));
     if (germanVoices.length === 0) {
         voiceSelect.innerHTML = '<option value="">No German voice – using default</option>';
-        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0] || null;
+        germanVoice = null; // no German voice: let the browser pick one from utterance.lang
     } else {
         germanVoices.forEach(voice => {
             const opt = document.createElement('option');
@@ -2217,7 +2234,9 @@ function loadVoices() {
             opt.textContent = `${voice.name} (${voice.lang})`;
             voiceSelect.appendChild(opt);
         });
-        germanVoice = germanVoices[0];
+        // keep the current choice if loadVoices runs again (voiceschanged can fire repeatedly)
+        germanVoice = germanVoices.find(v => germanVoice && v.name === germanVoice.name) || germanVoices[0];
+        voiceSelect.value = germanVoice.name;
     }
 
     // Pick best English voice for bilingual playback
@@ -2237,7 +2256,7 @@ document.addEventListener('DOMContentLoaded', function() {
         voiceSelect.addEventListener('change', function(e) {
             stopAllSpeech();
             const voices = window.speechSynthesis.getVoices();
-            germanVoice = voices.find(v => v.name === e.target.value) || voices[0] || null;
+            germanVoice = voices.find(v => v.name === e.target.value) || null;
         });
     }
     const speedControl = document.getElementById('speedControl');
@@ -2264,7 +2283,7 @@ function warmUpTTS(callback) {
 function speak(text, callback, lang) {
     if (!text || text.trim() === '') { if (callback) callback(); return; }
     lang = lang || 'de-DE';
-    text = text.replace('🔊', '').trim();
+    text = text.replaceAll('🔊', '').trim();
     if (!isPlayingSequence) stopAllSpeech();
     if (!ttsWarmedUp) {
         warmUpTTS(() => speakNow(text, callback, lang));
@@ -2491,15 +2510,14 @@ function collectConvItems() {
     const conversations = {};
     const convOrder = [];
     rawLines.forEach(line => {
-        const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1), fc = line.indexOf(',', sp + 1);
-        if (fp < 0 || sp < 0 || fc < 0) return;
+        const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1);
+        const cols = splitCSVLine(line.substring(sp + 1), 3);  // speaker, german, english
+        if (fp < 0 || sp < 0 || cols.length < 3) return;
         const level = line.substring(0, fp).trim();
         const title = line.substring(fp + 1, sp).trim();
         if (currentLevel !== 'all' && level !== currentLevel) return;
-        const speaker = line.substring(sp + 1, fc).trim();
-        const rest = line.substring(fc + 1);
-        const sc = rest.indexOf(',');
-        const german = rest.substring(0, sc).trim();
+        const speaker = cols[0];
+        const german = cols[1];
         const key = level + '|' + title;
         if (!conversations[key]) { conversations[key] = { A: [], B: [] }; convOrder.push(key); }
         if (speaker === 'A') conversations[key].A.push(german);
@@ -2537,12 +2555,12 @@ function collectQAItems() {
     const rows = qaCSV.split('\n').map(l => l.trim())
         .filter(l => l && !l.startsWith('//'))
         .map(line => {
-            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
-            if (fc < 0 || sc < 0) return null;
+            const cols = splitCSVLine(line, 3);
+            if (cols.length < 3) return null;
             return {
-                level:    line.substring(0, fc).trim(),
-                question: line.substring(fc + 1, sc).trim(),
-                answer:   germanOnlyQA(line.substring(sc + 1).trim())
+                level:    cols[0],
+                question: cols[1],
+                answer:   germanOnlyQA(cols[2])
             };
         })
         .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
@@ -2572,12 +2590,12 @@ function collectSentItems() {
     const rows = sentencesCSV.split('\n').map(l => l.trim())
         .filter(l => l && !l.startsWith('//'))
         .map(line => {
-            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
-            if (fc < 0 || sc < 0) return null;
+            const cols = splitCSVLine(line, 3);
+            if (cols.length < 3) return null;
             return {
-                level:   line.substring(0, fc).trim(),
-                german:  line.substring(fc + 1, sc).trim(),
-                english: line.substring(sc + 1).trim()
+                level:   cols[0],
+                german:  cols[1],
+                english: cols[2]
             };
         })
         .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
@@ -2717,7 +2735,9 @@ function playNextInSequence() {
 
 // Helper: escape text for HTML attribute
 function escAttr(s) {
-    return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    // Used inside onclick="…('value')…": escape for the JS string literal, then for the HTML attribute.
+    return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'")
+        .replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 }
 
 // ============================================
@@ -3009,15 +3029,22 @@ function playAudioSectionAsync(section) {
 let recModeActive = false;
 let recIsPaused   = false;
 let recStartTime  = null;
+let recPausedMs   = 0;     // time spent paused, excluded from chapter timestamps
+let recPauseStart = null;
 let recChapters   = [];
 let recTsInterval = null;
 
 function _fmtTs(ms) {
     const s = Math.floor(ms / 1000);
-    return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+    const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), sec = String(s % 60).padStart(2, '0');
+    return h ? `${h}:${String(m).padStart(2, '0')}:${sec}` : `${m}:${sec}`;
+}
+function _recElapsed() {
+    const pausedNow = recPauseStart ? Date.now() - recPauseStart : 0;
+    return Date.now() - recStartTime - recPausedMs - pausedNow;
 }
 function _logChapter(label) {
-    const ts = recStartTime ? _fmtTs(Date.now() - recStartTime) : '0:00';
+    const ts = recStartTime ? _fmtTs(_recElapsed()) : '0:00';
     recChapters.push(`${ts} ${label}`);
 }
 
@@ -3026,7 +3053,7 @@ function _showMiniBar() {
     bar.style.display = 'flex';
     recTsInterval = setInterval(() => {
         if (recStartTime) {
-            document.getElementById('recTs').textContent = _fmtTs(Date.now() - recStartTime);
+            document.getElementById('recTs').textContent = _fmtTs(_recElapsed());
         }
     }, 500);
 }
@@ -3041,6 +3068,7 @@ function toggleRecPause() {
     recIsPaused = !recIsPaused;
     if (recIsPaused) {
         window.speechSynthesis.pause();
+        recPauseStart = Date.now();
         btn.textContent = '▶ Resume';
         btn.style.color = '#FFCE00';
         // show zoom controls and sync labels
@@ -3052,13 +3080,39 @@ function toggleRecPause() {
         btn.textContent = '⏸ Pause';
         btn.style.color = '';
         zc.classList.remove('visible');
-        if (!isSpeaking) setTimeout(() => {}, 100);
+        if (recPauseStart) { recPausedMs += Date.now() - recPauseStart; recPauseStart = null; }
     }
 }
 
 // ── Main orchestrator ──
+// Word counts on the Record Mode cards, computed from the data so they never go stale
+function _syncRecCounts() {
+    const nouns = parseCSV(nounsCSV);
+    const art = a => nouns.filter(r => r[1] === a).length;
+    const adj = parseCSV(adjectivesCSV).length, verb = parseCSV(verbsCSV).length;
+    const expr = parseCSV(expressionsCSV).length, qa = parseCSV(qaCSV).length, sent = parseCSV(sentencesCSV).length;
+    const conv = parseCSV(conversationsCSV);
+    const dialogues = new Set(conv.map(r => r[0].split('|').slice(0, 2).join('|'))).size;
+    const phrases = expr + conv.length + qa + sent;
+    const set = (k, txt) => { if (REC_CARDS[k]) REC_CARDS[k].bottomL = '⬡ ' + txt; };
+    set('cover', `${nouns.length + adj + verb + phrases} words total`);
+    set('nouns_all', `${nouns.length} nouns · der ${art('der')} · das ${art('das')} · die ${art('die')}`);
+    set('der', `${art('der')} words`);
+    set('das', `${art('das')} words`);
+    set('die', `${art('die')} words`);
+    set('adj_verb_all', `${adj + verb} words · adj ${adj} · verb ${verb}`);
+    set('adj', `${adj} adjectives`);
+    set('verb', `${verb} verbs`);
+    set('phrases_divider', `${phrases} phrases & sentences`);
+    set('expr', `${expr} expressions`);
+    set('conv', `${dialogues} dialogues · ${conv.length} lines`);
+    set('qa', `${qa} Q&A pairs`);
+    set('sent', `${sent} sentences`);
+}
+
 async function startRecordingMode() {
     if (recModeActive) return;
+    _syncRecCounts();
     recModeActive = true;
     recIsPaused   = false;
     recChapters   = [];
@@ -3079,6 +3133,8 @@ async function startRecordingMode() {
     await showCountdown();
 
     recStartTime = Date.now();
+    recPausedMs = 0;
+    recPauseStart = null;
     _showMiniBar();
 
     // ── Full sequence definition ──

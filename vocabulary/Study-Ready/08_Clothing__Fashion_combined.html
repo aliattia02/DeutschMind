@@ -1632,42 +1632,6 @@ B2,Diese Kollektion setzt neue Maßstäbe in der Modewelt.,This collection sets 
 // ============================================
 // CONVERSATIONS — format: level|Title|Speaker,german,english
 // ============================================
-const conversationsRaw = `
-A1|Talking About Family|A,Hast du Geschwister?,Do you have siblings?
-A1|Talking About Family|B,Ja ich habe einen Bruder und eine Schwester. Und du?,Yes I have a brother and a sister. And you?
-A1|Talking About Family|A,Ich bin Einzelkind. Wo wohnen deine Eltern?,I am an only child. Where do your parents live?
-A1|Talking About Family|B,Meine Eltern wohnen in Hamburg.,My parents live in Hamburg.
-A1|Talking About Family|A,Hast du auch Großeltern?,Do you also have grandparents?
-A1|Talking About Family|B,Ja meine Großmutter wohnt bei uns zu Hause.,Yes my grandmother lives with us at home.
-A1|Talking About Family|A,Wie alt ist sie?,How old is she?
-A1|Talking About Family|B,Sie ist achtzig Jahre alt und sehr aktiv.,She is eighty years old and very active.
-A2|Describing Your Family|A,Erzähl mir von deiner Familie.,Tell me about your family.
-A2|Describing Your Family|B,Wir sind eine große Familie. Ich habe drei Geschwister und viele Cousins.,We are a large family. I have three siblings and many cousins.
-A2|Describing Your Family|A,Verstehst du dich gut mit deinen Geschwistern?,Do you get along well with your siblings?
-A2|Describing Your Family|B,Ja wir verstehen uns sehr gut. Mein Bruder ist mein bester Freund.,Yes we get along very well. My brother is my best friend.
-A2|Describing Your Family|A,Sind deine Eltern noch verheiratet?,Are your parents still married?
-A2|Describing Your Family|B,Ja seit dreißig Jahren. Sie feiern nächstes Jahr ihr Jubiläum.,Yes for thirty years. They are celebrating their anniversary next year.
-A2|Describing Your Family|A,Das ist wunderbar! Habt ihr viele Familienfeste?,That is wonderful! Do you have many family celebrations?
-A2|Describing Your Family|B,Ja wir treffen die ganze Familie immer zu Weihnachten und Ostern.,Yes we always meet the whole family at Christmas and Easter.
-B1|Wedding Plans|A,Herzlichen Glückwunsch zur Verlobung! Wann ist die Hochzeit?,Congratulations on the engagement! When is the wedding?
-B1|Wedding Plans|B,Danke! Wir heiraten im September in einem kleinen Schloss.,Thank you! We are getting married in September in a small castle.
-B1|Wedding Plans|A,Habt ihr schon viele Gäste eingeladen?,Have you already invited many guests?
-B1|Wedding Plans|B,Ja wir laden die ganze Familie und enge Freunde ein. Das sind fast achtzig Personen.,Yes we are inviting the whole family and close friends. That is almost eighty people.
-B1|Wedding Plans|A,Und wer ist Trauzeuge?,And who is the best man?
-B1|Wedding Plans|B,Mein Bruder. Er hält auch eine Rede.,My brother. He is also giving a speech.
-B1|Wedding Plans|A,Werden die Kinder auch dabei sein?,Will the children be there too?
-B1|Wedding Plans|B,Ja natürlich. Meine Nichten sind die Blumenmädchen.,Yes of course. My nieces are the flower girls.
-B1|Wedding Plans|A,Das wird sicher ein unvergessliches Fest.,That will certainly be an unforgettable celebration.
-B1|Wedding Plans|B,Wir freuen uns riesig darauf.,We are very much looking forward to it.
-B2|Family Law Matters|A,Ich brauche Ihren Rat in einer Familienangelegenheit.,I need your advice in a family matter.
-B2|Family Law Matters|B,Natürlich. Worum geht es?,Of course. What is it about?
-B2|Family Law Matters|A,Mein Partner und ich haben uns getrennt. Wir haben ein Kind und wissen nicht wie das Sorgerecht geregelt wird.,My partner and I have separated. We have a child and do not know how custody is regulated.
-B2|Family Law Matters|B,Das Gericht entscheidet nach dem Kindeswohl. Meist wird gemeinsames Sorgerecht vereinbart.,The court decides based on the child's best interest. Joint custody is usually agreed upon.
-B2|Family Law Matters|A,Was ist wenn wir uns nicht einigen können?,What if we cannot agree?
-B2|Family Law Matters|B,Dann kann ein Mediator helfen bevor man vor Gericht geht.,Then a mediator can help before going to court.
-B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about visitation rights?
-B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
-`.trim();
 
 
 const conversationsCSV = `
@@ -1677,24 +1641,24 @@ const qaCSV = `
 // cluster: basic clothing & dressing
 A1,Was ziehst du heute an?,Ich ziehe eine Hose und ein T-Shirt an. (I am putting on trousers and a T-shirt.)
 A1,Welche Farbe hat dein Pullover?,Mein Pullover ist blau. (My jumper is blue.)
-A1,Trägst du gerne Kleider?,Nein ich trage lieber Hosen. (No I prefer wearing trousers.)
+A1,Trägst du gerne Kleider?,Nein, ich trage lieber Hosen. (No I prefer wearing trousers.)
 A1,Was kostet diese Jacke?,Sie kostet fünfzig Euro. (It costs fifty euros.)
 A1,Welche Größe hast du?,Ich habe Kleidergröße 38. (I am a clothing size 38.)
-A1,Magst du diese Mütze?,Ja sie ist sehr schön. (Yes it is very beautiful.)
+A1,Magst du diese Mütze?,Ja, sie ist sehr schön. (Yes it is very beautiful.)
 A1,Wo kaufst du Kleidung?,Ich kaufe Kleidung im Kaufhaus. (I buy clothes at the department store.)
 A1,Was trägst du im Winter?,Im Winter trage ich einen Mantel und Handschuhe. (In winter I wear a coat and gloves.)
 // cluster: fashion & shopping habits
 A2,Was ist gerade in der Mode?,Weite Hosen und helle Farben sind gerade sehr angesagt. (Wide trousers and light colours are very on-trend now.)
-A2,Welche Marke kaufst du am liebsten?,Ich kaufe lieber Markenkleidung aber manchmal auch billigere Sachen. (I prefer branded clothing but sometimes cheaper things too.)
+A2,Welche Marke kaufst du am liebsten?,Ich kaufe lieber Markenkleidung, aber manchmal auch billigere Sachen. (I prefer branded clothing but sometimes cheaper things too.)
 A2,Was trägst du zu einer Hochzeit?,Ich trage ein elegantes Kleid und passende Schuhe. (I wear an elegant dress and matching shoes.)
-A2,Kaufst du lieber online oder im Geschäft?,Ich kaufe lieber im Geschäft weil ich die Kleidung anprobieren kann. (I prefer buying in store because I can try the clothes on.)
+A2,Kaufst du lieber online oder im Geschäft?,Ich kaufe lieber im Geschäft, weil ich die Kleidung anprobieren kann. (I prefer buying in store because I can try the clothes on.)
 A2,Was ist dein Lieblingsstück in deiner Garderobe?,Mein Lieblingsstück ist eine schwarze Strickjacke. (My favourite piece is a black cardigan.)
 A2,Wie pflegst du deine Kleidung?,Ich wasche sie bei niedrigen Temperaturen. (I wash them at low temperatures.)
 A2,Was ziehst du für die Arbeit an?,Ich trage formelle Kleidung zur Arbeit. (I wear formal clothing to work.)
-A2,Hast du viele Schuhe?,Ja ich habe viele Schuhe in verschiedenen Farben. (Yes I have many shoes in different colours.)
+A2,Hast du viele Schuhe?,Ja, ich habe viele Schuhe in verschiedenen Farben. (Yes I have many shoes in different colours.)
 // cluster: fit & quality
-B1,Wie wichtig ist dir die Qualität von Kleidung?,Sie ist mir sehr wichtig. Ich kaufe lieber weniger aber dafür besser Verarbeitetes. (It is very important to me. I prefer to buy less but better crafted pieces.)
-B1,Was macht gute Passform aus?,Gute Passform bedeutet dass die Kleidung den Körper betont ohne einzuengen. (Good fit means the clothing flatters the body without restricting it.)
+B1,Wie wichtig ist dir die Qualität von Kleidung?,Sie ist mir sehr wichtig. Ich kaufe lieber weniger, aber dafür besser Verarbeitetes. (It is very important to me. I prefer to buy less but better crafted pieces.)
+B1,Was macht gute Passform aus?,Gute Passform bedeutet, dass die Kleidung den Körper betont, ohne einzuengen. (Good fit means the clothing flatters the body without restricting it.)
 B1,Wie erkennst du qualitativ gute Kleidung?,An der Naht der Qualität des Stoffs und dem Sitz des Schnitts. (By the seam the quality of the fabric and how the cut sits.)
 B1,Was machst du mit Kleidung die dir nicht mehr passt?,Ich gebe sie an Kleiderspenden weiter oder verkaufe sie online. (I donate it or sell it online.)
 B1,Welche Materialien bevorzugst du?,Ich bevorzuge Naturfasern wie Baumwolle und Wolle. (I prefer natural fibres like cotton and wool.)
@@ -1721,7 +1685,7 @@ A1,Der Hut passt perfekt zu deinem Mantel.,The hat goes perfectly with your coat
 A1,Ich kaufe meine Kleidung am liebsten im Kaufhaus.,I prefer to buy my clothes at the department store.
 // cluster: shopping & fit
 A2,Ich probiere die Jacke in der Umkleidekabine an.,I try on the jacket in the fitting room.
-A2,Die Hose ist ein bisschen zu weit aber die Farbe ist sehr schön.,The trousers are a bit too loose but the colour is very beautiful.
+A2,"Die Hose ist ein bisschen zu weit, aber die Farbe ist sehr schön.",The trousers are a bit too loose but the colour is very beautiful.
 A2,Ich suche eine elegante Bluse für die Arbeit.,I am looking for an elegant blouse for work.
 A2,Im Schlussverkauf kann man viele Markenartikel preiswert kaufen.,During the sale you can buy many brand-name items at a good price.
 A2,Die Handtasche ist aus echtem Leder.,The handbag is made of genuine leather.
@@ -1731,11 +1695,11 @@ A2,Nach dem Waschen muss man die Kleidung gut falten.,After washing you must fol
 A2,Ich bügele meine Hemden immer selbst.,I always iron my shirts myself.
 A2,Ich wasche meine Wollkleidung immer von Hand.,I always wash my woollen clothes by hand.
 // cluster: style & quality
-B1,Gut verarbeitete Kleidung hält oft viele Jahre wenn man sie sorgfältig pflegt.,Well-crafted clothing often lasts for many years when you care for it properly.
+B1,"Gut verarbeitete Kleidung hält oft viele Jahre, wenn man sie sorgfältig pflegt.",Well-crafted clothing often lasts for many years when you care for it properly.
 B1,Die Naht dieser Hose ist sehr sorgfältig gearbeitet.,The seam of these trousers is very carefully stitched.
 B1,Ich kombiniere gerne einen klassischen Anzug mit einem schlichten Hemd.,I like to combine a classic suit with an understated shirt.
 B1,Diese Kollektion wurde von einem bekannten deutschen Designer entworfen.,This collection was designed by a well-known German designer.
-B1,Das Abendkleid muss chemisch gereinigt werden weil es aus empfindlicher Seide ist.,The evening dress needs dry-cleaning because it is made of delicate silk.
+B1,"Das Abendkleid muss chemisch gereinigt werden, weil es aus empfindlicher Seide ist.",The evening dress needs dry-cleaning because it is made of delicate silk.
 B1,Guter Stil muss kein Vermögen kosten man braucht nur die richtigen Kombinationen.,Good style does not have to cost a fortune you just need the right combinations.
 B1,Beim Kauf achte ich immer auf das Material und die Passform.,When buying I always pay attention to the material and the fit.
 B1,Zeitlose Kleidungsstücke sind eine bessere Investition als kurzlebige Trends.,Timeless garments are a better investment than short-lived trends.
@@ -1753,11 +1717,32 @@ B2,Das Upcycling von Alttextilien gewinnt in der Modewelt zunehmend an Bedeutung
 // ============================================
 // CSV PARSER
 // ============================================
+// Split one data line on commas. Wrap a field in double quotes to put commas inside it:
+//   A1,"Ja, gern.",Yes please.
+// With maxCols, the last column takes the rest of the line verbatim (commas included).
+function splitCSVLine(line, maxCols) {
+    const cols = [];
+    let cur = '', quoted = false;
+    for (let i = 0; i < line.length; i++) {
+        if (maxCols && cols.length === maxCols - 1) {
+            cur = line.slice(i).trim();
+            if (cur.length > 1 && cur[0] === '"' && cur[cur.length - 1] === '"') cur = cur.slice(1, -1);
+            break;
+        }
+        const ch = line[i];
+        if (ch === '"') quoted = !quoted;
+        else if (ch === ',' && !quoted) { cols.push(cur.trim()); cur = ''; }
+        else cur += ch;
+    }
+    cols.push(cur.trim());
+    return cols;
+}
+
 function parseCSV(csv) {
     return csv.split('\n')
         .map(l => l.trim())
         .filter(l => l.length > 0 && !l.startsWith('//'))
-        .map(l => l.split(',').map(c => c.trim()));
+        .map(l => splitCSVLine(l));
 }
 
 // ============================================
@@ -1971,19 +1956,17 @@ function renderConversations() {
     rawLines.forEach(line => {
         const firstPipe  = line.indexOf('|');
         const secondPipe = line.indexOf('|', firstPipe + 1);
-        const firstComma = line.indexOf(',', secondPipe + 1);
-        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+        const cols       = splitCSVLine(line.substring(secondPipe + 1), 3);  // speaker, german, english
+        if (firstPipe === -1 || secondPipe === -1 || cols.length < 3) return;
 
         const level   = line.substring(0, firstPipe).trim();
         const title   = line.substring(firstPipe + 1, secondPipe).trim();
-        const speaker = line.substring(secondPipe + 1, firstComma).trim();
+        const speaker = cols[0];
 
         if (currentLevel !== 'all' && level !== currentLevel) return;
 
-        const rest         = line.substring(firstComma + 1);
-        const secondComma  = rest.indexOf(',');
-        const german       = rest.substring(0, secondComma).trim();
-        const english      = rest.substring(secondComma + 1).trim();
+        const german       = cols[1];
+        const english      = cols[2];
 
         const key = `${level}|${title}`;
         if (!conversations[key]) {
@@ -2046,13 +2029,12 @@ function renderQATable() {
         .map(l => l.trim())
         .filter(l => l.length > 0 && !l.startsWith('//'))
         .map(line => {
-            const firstComma  = line.indexOf(',');
-            const secondComma = line.indexOf(',', firstComma + 1);
-            if (firstComma === -1 || secondComma === -1) return null;
+            const cols = splitCSVLine(line, 3);
+            if (cols.length < 3) return null;
             return {
-                level:    line.substring(0, firstComma).trim(),
-                question: line.substring(firstComma + 1, secondComma).trim(),
-                answer:   line.substring(secondComma + 1).trim()
+                level:    cols[0],
+                question: cols[1],
+                answer:   cols[2]
             };
         })
         .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
@@ -2090,13 +2072,12 @@ function renderSentencesTable() {
         .map(l => l.trim())
         .filter(l => l.length > 0 && !l.startsWith('//'))
         .map(line => {
-            const firstComma  = line.indexOf(',');
-            const secondComma = line.indexOf(',', firstComma + 1);
-            if (firstComma === -1 || secondComma === -1) return null;
+            const cols = splitCSVLine(line, 3);
+            if (cols.length < 3) return null;
             return {
-                level:   line.substring(0, firstComma).trim(),
-                german:  line.substring(firstComma + 1, secondComma).trim(),
-                english: line.substring(secondComma + 1).trim()
+                level:   cols[0],
+                german:  cols[1],
+                english: cols[2]
             };
         })
         .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
@@ -2195,7 +2176,7 @@ function loadVoices() {
     const germanVoices = voices.filter(v => v.lang.startsWith('de'));
     if (germanVoices.length === 0) {
         voiceSelect.innerHTML = '<option value="">No German voice – using default</option>';
-        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0] || null;
+        germanVoice = null; // no German voice: let the browser pick one from utterance.lang
     } else {
         germanVoices.forEach(voice => {
             const opt = document.createElement('option');
@@ -2203,7 +2184,9 @@ function loadVoices() {
             opt.textContent = `${voice.name} (${voice.lang})`;
             voiceSelect.appendChild(opt);
         });
-        germanVoice = germanVoices[0];
+        // keep the current choice if loadVoices runs again (voiceschanged can fire repeatedly)
+        germanVoice = germanVoices.find(v => germanVoice && v.name === germanVoice.name) || germanVoices[0];
+        voiceSelect.value = germanVoice.name;
     }
 
     // Pick best English voice for bilingual playback
@@ -2223,7 +2206,7 @@ document.addEventListener('DOMContentLoaded', function() {
         voiceSelect.addEventListener('change', function(e) {
             stopAllSpeech();
             const voices = window.speechSynthesis.getVoices();
-            germanVoice = voices.find(v => v.name === e.target.value) || voices[0] || null;
+            germanVoice = voices.find(v => v.name === e.target.value) || null;
         });
     }
     const speedControl = document.getElementById('speedControl');
@@ -2250,7 +2233,7 @@ function warmUpTTS(callback) {
 function speak(text, callback, lang) {
     if (!text || text.trim() === '') { if (callback) callback(); return; }
     lang = lang || 'de-DE';
-    text = text.replace('🔊', '').trim();
+    text = text.replaceAll('🔊', '').trim();
     if (!isPlayingSequence) stopAllSpeech();
     if (!ttsWarmedUp) {
         warmUpTTS(() => speakNow(text, callback, lang));
@@ -2477,15 +2460,14 @@ function collectConvItems() {
     const conversations = {};
     const convOrder = [];
     rawLines.forEach(line => {
-        const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1), fc = line.indexOf(',', sp + 1);
-        if (fp < 0 || sp < 0 || fc < 0) return;
+        const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1);
+        const cols = splitCSVLine(line.substring(sp + 1), 3);  // speaker, german, english
+        if (fp < 0 || sp < 0 || cols.length < 3) return;
         const level = line.substring(0, fp).trim();
         const title = line.substring(fp + 1, sp).trim();
         if (currentLevel !== 'all' && level !== currentLevel) return;
-        const speaker = line.substring(sp + 1, fc).trim();
-        const rest = line.substring(fc + 1);
-        const sc = rest.indexOf(',');
-        const german = rest.substring(0, sc).trim();
+        const speaker = cols[0];
+        const german = cols[1];
         const key = level + '|' + title;
         if (!conversations[key]) { conversations[key] = { A: [], B: [] }; convOrder.push(key); }
         if (speaker === 'A') conversations[key].A.push(german);
@@ -2523,12 +2505,12 @@ function collectQAItems() {
     const rows = qaCSV.split('\n').map(l => l.trim())
         .filter(l => l && !l.startsWith('//'))
         .map(line => {
-            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
-            if (fc < 0 || sc < 0) return null;
+            const cols = splitCSVLine(line, 3);
+            if (cols.length < 3) return null;
             return {
-                level:    line.substring(0, fc).trim(),
-                question: line.substring(fc + 1, sc).trim(),
-                answer:   germanOnlyQA(line.substring(sc + 1).trim())
+                level:    cols[0],
+                question: cols[1],
+                answer:   germanOnlyQA(cols[2])
             };
         })
         .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
@@ -2558,12 +2540,12 @@ function collectSentItems() {
     const rows = sentencesCSV.split('\n').map(l => l.trim())
         .filter(l => l && !l.startsWith('//'))
         .map(line => {
-            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
-            if (fc < 0 || sc < 0) return null;
+            const cols = splitCSVLine(line, 3);
+            if (cols.length < 3) return null;
             return {
-                level:   line.substring(0, fc).trim(),
-                german:  line.substring(fc + 1, sc).trim(),
-                english: line.substring(sc + 1).trim()
+                level:   cols[0],
+                german:  cols[1],
+                english: cols[2]
             };
         })
         .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
@@ -2703,7 +2685,9 @@ function playNextInSequence() {
 
 // Helper: escape text for HTML attribute
 function escAttr(s) {
-    return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    // Used inside onclick="…('value')…": escape for the JS string literal, then for the HTML attribute.
+    return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'")
+        .replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 }
 
 // ============================================
@@ -2995,15 +2979,22 @@ function playAudioSectionAsync(section) {
 let recModeActive = false;
 let recIsPaused   = false;
 let recStartTime  = null;
+let recPausedMs   = 0;     // time spent paused, excluded from chapter timestamps
+let recPauseStart = null;
 let recChapters   = [];
 let recTsInterval = null;
 
 function _fmtTs(ms) {
     const s = Math.floor(ms / 1000);
-    return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+    const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), sec = String(s % 60).padStart(2, '0');
+    return h ? `${h}:${String(m).padStart(2, '0')}:${sec}` : `${m}:${sec}`;
+}
+function _recElapsed() {
+    const pausedNow = recPauseStart ? Date.now() - recPauseStart : 0;
+    return Date.now() - recStartTime - recPausedMs - pausedNow;
 }
 function _logChapter(label) {
-    const ts = recStartTime ? _fmtTs(Date.now() - recStartTime) : '0:00';
+    const ts = recStartTime ? _fmtTs(_recElapsed()) : '0:00';
     recChapters.push(`${ts} ${label}`);
 }
 
@@ -3012,7 +3003,7 @@ function _showMiniBar() {
     bar.style.display = 'flex';
     recTsInterval = setInterval(() => {
         if (recStartTime) {
-            document.getElementById('recTs').textContent = _fmtTs(Date.now() - recStartTime);
+            document.getElementById('recTs').textContent = _fmtTs(_recElapsed());
         }
     }, 500);
 }
@@ -3027,6 +3018,7 @@ function toggleRecPause() {
     recIsPaused = !recIsPaused;
     if (recIsPaused) {
         window.speechSynthesis.pause();
+        recPauseStart = Date.now();
         btn.textContent = '▶ Resume';
         btn.style.color = '#FFCE00';
         // show zoom controls and sync labels
@@ -3038,13 +3030,39 @@ function toggleRecPause() {
         btn.textContent = '⏸ Pause';
         btn.style.color = '';
         zc.classList.remove('visible');
-        if (!isSpeaking) setTimeout(() => {}, 100);
+        if (recPauseStart) { recPausedMs += Date.now() - recPauseStart; recPauseStart = null; }
     }
 }
 
 // ── Main orchestrator ──
+// Word counts on the Record Mode cards, computed from the data so they never go stale
+function _syncRecCounts() {
+    const nouns = parseCSV(nounsCSV);
+    const art = a => nouns.filter(r => r[1] === a).length;
+    const adj = parseCSV(adjectivesCSV).length, verb = parseCSV(verbsCSV).length;
+    const expr = parseCSV(expressionsCSV).length, qa = parseCSV(qaCSV).length, sent = parseCSV(sentencesCSV).length;
+    const conv = parseCSV(conversationsCSV);
+    const dialogues = new Set(conv.map(r => r[0].split('|').slice(0, 2).join('|'))).size;
+    const phrases = expr + conv.length + qa + sent;
+    const set = (k, txt) => { if (REC_CARDS[k]) REC_CARDS[k].bottomL = '⬡ ' + txt; };
+    set('cover', `${nouns.length + adj + verb + phrases} words total`);
+    set('nouns_all', `${nouns.length} nouns · der ${art('der')} · das ${art('das')} · die ${art('die')}`);
+    set('der', `${art('der')} words`);
+    set('das', `${art('das')} words`);
+    set('die', `${art('die')} words`);
+    set('adj_verb_all', `${adj + verb} words · adj ${adj} · verb ${verb}`);
+    set('adj', `${adj} adjectives`);
+    set('verb', `${verb} verbs`);
+    set('phrases_divider', `${phrases} phrases & sentences`);
+    set('expr', `${expr} expressions`);
+    set('conv', `${dialogues} dialogues · ${conv.length} lines`);
+    set('qa', `${qa} Q&A pairs`);
+    set('sent', `${sent} sentences`);
+}
+
 async function startRecordingMode() {
     if (recModeActive) return;
+    _syncRecCounts();
     recModeActive = true;
     recIsPaused   = false;
     recChapters   = [];
@@ -3065,6 +3083,8 @@ async function startRecordingMode() {
     await showCountdown();
 
     recStartTime = Date.now();
+    recPausedMs = 0;
+    recPauseStart = null;
     _showMiniBar();
 
     // ── Full sequence definition ──

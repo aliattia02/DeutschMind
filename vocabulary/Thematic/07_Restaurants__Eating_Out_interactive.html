@@ -884,45 +884,50 @@ B2,Welche Gerichte auf der Karte sind glutenfrei?,Which dishes on the menu are g
 // CONVERSATIONS — format: level|Title|Speaker,german,english
 // ============================================
 const conversationsRaw = `
-A1|Talking About Family|A,Hast du Geschwister?,Do you have siblings?
-A1|Talking About Family|B,Ja ich habe einen Bruder und eine Schwester. Und du?,Yes I have a brother and a sister. And you?
-A1|Talking About Family|A,Ich bin Einzelkind. Wo wohnen deine Eltern?,I am an only child. Where do your parents live?
-A1|Talking About Family|B,Meine Eltern wohnen in Hamburg.,My parents live in Hamburg.
-A1|Talking About Family|A,Hast du auch Großeltern?,Do you also have grandparents?
-A1|Talking About Family|B,Ja meine Großmutter wohnt bei uns zu Hause.,Yes my grandmother lives with us at home.
-A1|Talking About Family|A,Wie alt ist sie?,How old is she?
-A1|Talking About Family|B,Sie ist achtzig Jahre alt und sehr aktiv.,She is eighty years old and very active.
-A2|Describing Your Family|A,Erzähl mir von deiner Familie.,Tell me about your family.
-A2|Describing Your Family|B,Wir sind eine große Familie. Ich habe drei Geschwister und viele Cousins.,We are a large family. I have three siblings and many cousins.
-A2|Describing Your Family|A,Verstehst du dich gut mit deinen Geschwistern?,Do you get along well with your siblings?
-A2|Describing Your Family|B,Ja wir verstehen uns sehr gut. Mein Bruder ist mein bester Freund.,Yes we get along very well. My brother is my best friend.
-A2|Describing Your Family|A,Sind deine Eltern noch verheiratet?,Are your parents still married?
-A2|Describing Your Family|B,Ja seit dreißig Jahren. Sie feiern nächstes Jahr ihr Jubiläum.,Yes for thirty years. They are celebrating their anniversary next year.
-A2|Describing Your Family|A,Das ist wunderbar! Habt ihr viele Familienfeste?,That is wonderful! Do you have many family celebrations?
-A2|Describing Your Family|B,Ja wir treffen die ganze Familie immer zu Weihnachten und Ostern.,Yes we always meet the whole family at Christmas and Easter.
-B1|Wedding Plans|A,Herzlichen Glückwunsch zur Verlobung! Wann ist die Hochzeit?,Congratulations on the engagement! When is the wedding?
-B1|Wedding Plans|B,Danke! Wir heiraten im September in einem kleinen Schloss.,Thank you! We are getting married in September in a small castle.
-B1|Wedding Plans|A,Habt ihr schon viele Gäste eingeladen?,Have you already invited many guests?
-B1|Wedding Plans|B,Ja wir laden die ganze Familie und enge Freunde ein. Das sind fast achtzig Personen.,Yes we are inviting the whole family and close friends. That is almost eighty people.
-B1|Wedding Plans|A,Und wer ist Trauzeuge?,And who is the best man?
-B1|Wedding Plans|B,Mein Bruder. Er hält auch eine Rede.,My brother. He is also giving a speech.
-B1|Wedding Plans|A,Werden die Kinder auch dabei sein?,Will the children be there too?
-B1|Wedding Plans|B,Ja natürlich. Meine Nichten sind die Blumenmädchen.,Yes of course. My nieces are the flower girls.
-B1|Wedding Plans|A,Das wird sicher ein unvergessliches Fest.,That will certainly be an unforgettable celebration.
-B1|Wedding Plans|B,Wir freuen uns riesig darauf.,We are very much looking forward to it.
-B2|Family Law Matters|A,Ich brauche Ihren Rat in einer Familienangelegenheit.,I need your advice in a family matter.
-B2|Family Law Matters|B,Natürlich. Worum geht es?,Of course. What is it about?
-B2|Family Law Matters|A,Mein Partner und ich haben uns getrennt. Wir haben ein Kind und wissen nicht wie das Sorgerecht geregelt wird.,My partner and I have separated. We have a child and do not know how custody is regulated.
-B2|Family Law Matters|B,Das Gericht entscheidet nach dem Kindeswohl. Meist wird gemeinsames Sorgerecht vereinbart.,The court decides based on the child's best interest. Joint custody is usually agreed upon.
-B2|Family Law Matters|A,Was ist wenn wir uns nicht einigen können?,What if we cannot agree?
-B2|Family Law Matters|B,Dann kann ein Mediator helfen bevor man vor Gericht geht.,Then a mediator can help before going to court.
-B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about visitation rights?
-B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
+A1|At the Restaurant|A,Guten Abend! Haben Sie einen Tisch frei?,Good evening! Do you have a table free?
+A1|At the Restaurant|B,"Ja, natürlich. Für wie viele Personen?",Yes of course. For how many people?
+A1|At the Restaurant|A,Für zwei Personen bitte.,For two people please.
+A1|At the Restaurant|B,Bitte folgen Sie mir. Hier ist Ihre Speisekarte.,Please follow me. Here is your menu.
+A1|At the Restaurant|A,Danke. Was empfehlen Sie heute?,Thank you. What do you recommend today?
+A1|At the Restaurant|B,Das Tagesmenü ist sehr gut.,The daily menu is very good.
+A1|At the Restaurant|A,Gut. Ich nehme das Tagesmenü.,Good. I will have the daily menu.
+A1|At the Restaurant|B,Sehr gerne. Was möchten Sie trinken?,Of course. What would you like to drink?
+A1|At the Restaurant|A,Ein Glas Wasser bitte.,A glass of water please.
+A1|At the Restaurant|B,Gerne. Guten Appetit!,Certainly. Enjoy your meal!
+A2|Making a Reservation|A,Guten Tag. Ich möchte einen Tisch reservieren.,Hello. I would like to reserve a table.
+A2|Making a Reservation|B,Gerne. Für wann und für wie viele Personen?,Of course. For when and for how many people?
+A2|Making a Reservation|A,Für Samstag Abend um 19 Uhr. Wir sind vier Personen.,For Saturday evening at 7pm. We are four people.
+A2|Making a Reservation|B,"Einen Moment bitte. Ja, das ist möglich.",One moment please. Yes that is possible.
+A2|Making a Reservation|A,Haben Sie auch einen Tisch im Außenbereich?,Do you also have a table in the outdoor area?
+A2|Making a Reservation|B,"Ja, aber nur, wenn das Wetter gut ist.",Yes but only if the weather is good.
+A2|Making a Reservation|A,Das ist kein Problem. Auf welchen Namen soll ich reservieren?,That is no problem. In which name should I reserve?
+A2|Making a Reservation|B,Ihren Namen bitte und eine Telefonnummer.,Your name please and a phone number.
+A2|Making a Reservation|A,Müller. Meine Nummer ist 0171 345678.,Müller. My number is 0171 345678.
+A2|Making a Reservation|B,Perfekt. Ihre Tischreservierung ist bestätigt. Auf Wiederhören!,Perfect. Your table reservation is confirmed. Goodbye!
+B1|Sending a Dish Back|A,Entschuldigung. Ich glaube das ist nicht meine Bestellung.,Excuse me. I think this is not my order.
+B1|Sending a Dish Back|B,"Oh, es tut mir leid. Was haben Sie bestellt?",Oh I am sorry. What did you order?
+B1|Sending a Dish Back|A,Ich habe das vegetarische Gericht bestellt. Das hier enthält Fleisch.,I ordered the vegetarian dish. This one contains meat.
+B1|Sending a Dish Back|B,Das ist ein Missverständnis. Ich bringe Ihnen sofort das richtige Gericht.,That is a misunderstanding. I will bring you the correct dish immediately.
+B1|Sending a Dish Back|A,Danke. Außerdem ist das Fleisch meines Partners nicht durch.,Thank you. Also my partner's meat is not cooked through.
+B1|Sending a Dish Back|B,Ich nehme den Teller zurück und spreche mit der Küche.,I will take the plate back and speak with the kitchen.
+B1|Sending a Dish Back|A,Gut. Wir sind leider nicht ganz zufrieden heute.,Good. We are unfortunately not quite satisfied today.
+B1|Sending a Dish Back|B,Das verstehe ich. Als Entschädigung laden wir Sie zum Dessert ein.,I understand. As compensation we invite you to dessert.
+B1|Sending a Dish Back|A,Das ist sehr nett. Vielen Dank.,That is very kind. Thank you very much.
+B2|Fine Dining|A,Guten Abend. Ich habe eine Reservierung auf den Namen Weber.,Good evening. I have a reservation in the name of Weber.
+B2|Fine Dining|B,Herzlich willkommen Herr Weber. Ich begleite Sie zu Ihrem Tisch.,Welcome Mr Weber. I will accompany you to your table.
+B2|Fine Dining|A,Das Interieur ist wirklich exquisit. Ich bin beeindruckt.,The interior is truly exquisite. I am impressed.
+B2|Fine Dining|B,Vielen Dank. Darf ich Ihnen unsere Weinkarte vorstellen?,Thank you very much. May I present you with our wine list?
+B2|Fine Dining|A,Sehr gerne. Was würden Sie zum heutigen Überraschungsmenü empfehlen?,With pleasure. What would you recommend with today's surprise menu?
+B2|Fine Dining|B,Unser Sommelier empfiehlt einen Weißwein aus dem Burgund.,Our sommelier recommends a white wine from Burgundy.
+B2|Fine Dining|A,"Ausgezeichnet. Können Sie mir sagen, ob die Gerichte glutenfrei sind?",Excellent. Can you tell me whether the dishes are gluten-free?
+B2|Fine Dining|B,"Ja, das Überraschungsmenü ist vollständig glutenfrei und laktosefrei.",Yes the surprise menu is completely gluten-free and lactose-free.
+B2|Fine Dining|A,Perfekt. Dann freue ich mich sehr auf den Abend.,Perfect. Then I am very much looking forward to the evening.
+B2|Fine Dining|B,Wir wünschen Ihnen einen unvergesslichen Abend.,We wish you an unforgettable evening.
 `.trim();
 
 const qaCSV = `
 // cluster: venue & opening
-A1,Haben Sie heute einen Tisch frei?,Ja wir haben noch Plätze frei. (Yes we still have seats available.)
+A1,Haben Sie heute einen Tisch frei?,Ja, wir haben noch Plätze frei. (Yes we still have seats available.)
 A1,Wann öffnet das Restaurant?,Das Restaurant öffnet um 12 Uhr. (The restaurant opens at 12 o'clock.)
 A1,Was trinkt man zum Essen?,Man trinkt Wasser Wein oder Saft. (You drink water wine or juice.)
 A1,Wie ruft man den Kellner?,Man hebt die Hand oder sagt Entschuldigung. (You raise your hand or say excuse me.)
@@ -934,14 +939,14 @@ A2,Was ist eine Tageskarte?,Eine Tageskarte zeigt Gerichte die nur heute erhält
 A1,Was ist die Speisekarte?,Das ist die Liste mit allen Gerichten und Preisen. (That is the list with all dishes and prices.)
 A1,Was empfehlen Sie?,Ich empfehle das Tagesmenü. Es ist frisch und günstig. (I recommend the daily menu. It is fresh and affordable.)
 A2,Was ist das Tagesgericht?,Das ist ein besonderes Gericht das der Koch jeden Tag wechselt. (That is a special dish the chef changes every day.)
-A2,Kann ich die Bestellung ändern?,Ja solange das Essen noch nicht zubereitet wurde. (Yes as long as the food has not yet been prepared.)
+A2,Kann ich die Bestellung ändern?,Ja, solange das Essen noch nicht zubereitet wurde. (Yes as long as the food has not yet been prepared.)
 B1,Was bedeutet ein 3-Gang-Menü?,Es besteht aus Vorspeise Hauptgang und Nachspeise. (It consists of a starter main course and dessert.)
-B1,Darf man ein Gericht reklamieren?,Ja wenn es falsch zubereitet oder nicht genießbar ist. (Yes if it is incorrectly prepared or inedible.)
+B1,Darf man ein Gericht reklamieren?,Ja, wenn es falsch zubereitet oder nicht genießbar ist. (Yes if it is incorrectly prepared or inedible.)
 // cluster: paying & tipping
 A1,Wie viel kostet das Menü?,Das Menü kostet 15 Euro. (The set menu costs 15 euros.)
 A2,Wie hoch ist das Trinkgeld üblich?,Meist 10 Prozent der Rechnung. (Usually 10 percent of the bill.)
 A2,Wie bezahlt man in deutschen Restaurants?,Man zahlt meist nach dem Essen. Bar oder mit Karte ist möglich. (You usually pay after the meal. Cash or card is possible.)
-B1,Was bedeutet Stimmt so?,Das bedeutet dass man kein Wechselgeld möchte. (That means you do not want any change.)
+B1,Was bedeutet Stimmt so?,Das bedeutet, dass man kein Wechselgeld möchte. (That means you do not want any change.)
 B2,Wann ist eine Servicegebühr inbegriffen?,In manchen Restaurants ist sie automatisch auf der Rechnung. (In some restaurants it is automatically on the bill.)
 // cluster: evaluating & experience
 A2,Wie war das Essen?,Das Essen war köstlich und die Bedienung sehr aufmerksam. (The food was delicious and the service very attentive.)
@@ -970,7 +975,7 @@ A2,Ich hätte gern das Tagesgericht und einen Salat bitte.,I would like the dish
 A2,Der Kellner empfiehlt den Rotwein zur Vorspeise.,The waiter recommends the red wine with the starter.
 B1,Enthält dieses Gericht Nüsse? Ich habe eine Allergie.,Does this dish contain nuts? I have an allergy.
 B1,Die Bedienung bringt uns schnell unsere Bestellung.,The waitress brings us our order quickly.
-B2,Der Sommelier erklärt welcher Wein am besten zum Überraschungsmenü passt.,The sommelier explains which wine goes best with the surprise menu.
+B2,"Der Sommelier erklärt, welcher Wein am besten zum Überraschungsmenü passt.",The sommelier explains which wine goes best with the surprise menu.
 // cluster: during the meal
 A1,Das Essen schmeckt wirklich gut.,The food tastes really good.
 A2,Die Portion ist sehr großzügig.,The portion is very generous.
@@ -997,11 +1002,32 @@ B2,Der Restaurantkritiker bewertete das Lokal als eines der besten in der Stadt.
 // ============================================
 // CSV PARSER — strips blank lines AND comment lines
 // ============================================
+// Split one data line on commas. Wrap a field in double quotes to put commas inside it:
+//   A1,"Ja, gern.",Yes please.
+// With maxCols, the last column takes the rest of the line verbatim (commas included).
+function splitCSVLine(line, maxCols) {
+    const cols = [];
+    let cur = '', quoted = false;
+    for (let i = 0; i < line.length; i++) {
+        if (maxCols && cols.length === maxCols - 1) {
+            cur = line.slice(i).trim();
+            if (cur.length > 1 && cur[0] === '"' && cur[cur.length - 1] === '"') cur = cur.slice(1, -1);
+            break;
+        }
+        const ch = line[i];
+        if (ch === '"') quoted = !quoted;
+        else if (ch === ',' && !quoted) { cols.push(cur.trim()); cur = ''; }
+        else cur += ch;
+    }
+    cols.push(cur.trim());
+    return cols;
+}
+
 function parseCSV(csv) {
     return csv.split('\n')
         .map(line => line.trim())
         .filter(line => line.length > 0 && !line.startsWith('//'))
-        .map(line => line.split(',').map(cell => cell.trim()));
+        .map(line => splitCSVLine(line));
 }
 
 // ============================================
@@ -1021,14 +1047,16 @@ function loadVoices() {
 
     if (germanVoices.length === 0) {
         voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
-        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+        germanVoice = null; // no German voice: let the browser pick one from utterance.lang
     } else {
+        // keep the current choice if loadVoices runs again (voiceschanged can fire repeatedly)
+        const keepName = germanVoice && germanVoices.some(v => v.name === germanVoice.name) ? germanVoice.name : null;
         germanVoices.forEach((voice, index) => {
             const option = document.createElement('option');
             option.value = index;
             option.textContent = `${voice.name} (${voice.lang})`;
             voiceSelect.appendChild(option);
-            if (index === 0) germanVoice = voice;
+            if (keepName ? voice.name === keepName : index === 0) { germanVoice = voice; option.selected = true; }
         });
     }
     console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
@@ -1045,7 +1073,7 @@ document.getElementById('voiceSelect').addEventListener('change', function(e) {
     stopAllSpeech();
     const voices = window.speechSynthesis.getVoices();
     const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
-    germanVoice = germanVoices[e.target.value] || voices[0];
+    germanVoice = germanVoices[e.target.value] || null;
 });
 
 document.getElementById('speedControl').addEventListener('input', function(e) {
@@ -1073,7 +1101,7 @@ function speak(text, callback) {
         if (callback) callback();
         return;
     }
-    text = text.replace('🔊', '').trim();
+    text = text.replaceAll('🔊', '').trim();
     if (!isPlayingSequence) stopAllSpeech();
     if (!ttsWarmedUp) {
         warmUpTTS(() => speakNow(text, callback));
@@ -1461,19 +1489,15 @@ function renderConversations() {
         // Format: LEVEL|Title|Speaker,german text,english text
         const firstPipe  = line.indexOf('|');
         const secondPipe = line.indexOf('|', firstPipe + 1);
-        const firstComma = line.indexOf(',', secondPipe + 1);
-        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+        const cols       = splitCSVLine(line.substring(secondPipe + 1), 3);  // speaker, german, english
+        if (firstPipe === -1 || secondPipe === -1 || cols.length < 3) return;
 
         const level   = line.substring(0, firstPipe).trim();
         const title   = line.substring(firstPipe + 1, secondPipe).trim();
-        const speaker = line.substring(secondPipe + 1, firstComma).trim();
-        const rest    = line.substring(firstComma + 1);
+        const speaker = cols[0];
 
-        const secondComma = rest.indexOf(',');
-        if (secondComma === -1) return;
-
-        const german  = rest.substring(0, secondComma).trim();
-        const english = rest.substring(secondComma + 1).trim();
+        const german  = cols[1];
+        const english = cols[2];
 
         const key = `${level}|${title}`;
         if (!conversations[key]) {
@@ -1509,6 +1533,7 @@ function renderConversations() {
         html += `</div></div>`;
     });
 
+    if (!convOrder.length) html = '<p style="text-align:center;color:#999;padding:12px;">No conversations for this unit yet.</p>';
     document.getElementById('conversationsContainer').innerHTML = html;
 }
 
@@ -1522,13 +1547,12 @@ function renderQA() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level    = line.substring(0, firstComma).trim();
-        const question = line.substring(firstComma + 1, secondComma).trim();
-        const answer   = line.substring(secondComma + 1).trim();
+        const level    = cols[0];
+        const question = cols[1];
+        const answer   = cols[2];
         const eq = question.replace(/'/g, "\\'");
         const ea = answer.replace(/'/g, "\\'");
 
@@ -1551,13 +1575,12 @@ function renderSentences() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level   = line.substring(0, firstComma).trim();
-        const german  = line.substring(firstComma + 1, secondComma).trim();
-        const english = line.substring(secondComma + 1).trim();
+        const level   = cols[0];
+        const german  = cols[1];
+        const english = cols[2];
         const eg = german.replace(/'/g, "\\'");
 
         html += `<div class="sentence-card" data-level="${level}" onclick="speak('${eg}')">

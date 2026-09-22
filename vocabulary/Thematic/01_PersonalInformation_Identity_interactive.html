@@ -694,11 +694,11 @@
 <body>
 <!-- NAVIGATION -->
 <div style="background: #000; padding: 15px; text-align: center;">
-    <a href="../index.html" style="color: #FFCE00; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🏠 Home</a>
-    <a href="../index.html#levels" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📚 Levels</a>
-    <a href="../index.html#categories" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🎯 Categories</a>
-    <a href="../tools/progress.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📊 Progress</a>
-    <a href="../about.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">ℹ️ About</a>
+    <a href="../../index.html" style="color: #FFCE00; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🏠 Home</a>
+    <a href="../../index.html#levels" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📚 Levels</a>
+    <a href="../../index.html#categories" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">🎯 Categories</a>
+    <a href="../../tools/progress.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">📊 Progress</a>
+    <a href="../../about.html" style="color: white; text-decoration: none; margin: 0 10px; font-size: 1.1em;">ℹ️ About</a>
 </div>
 
     <header>
@@ -1088,40 +1088,42 @@ B2,Ich benötige eine amtliche Bescheinigung.,I need an official certificate.
 // CONVERSATIONS — format: level|Title|Speaker,german,english
 // ============================================
 const conversationsRaw = `
-A1|Talking About Family|A,Hast du Geschwister?,Do you have siblings?
-A1|Talking About Family|B,Ja ich habe einen Bruder und eine Schwester. Und du?,Yes I have a brother and a sister. And you?
-A1|Talking About Family|A,Ich bin Einzelkind. Wo wohnen deine Eltern?,I am an only child. Where do your parents live?
-A1|Talking About Family|B,Meine Eltern wohnen in Hamburg.,My parents live in Hamburg.
-A1|Talking About Family|A,Hast du auch Großeltern?,Do you also have grandparents?
-A1|Talking About Family|B,Ja meine Großmutter wohnt bei uns zu Hause.,Yes my grandmother lives with us at home.
-A1|Talking About Family|A,Wie alt ist sie?,How old is she?
-A1|Talking About Family|B,Sie ist achtzig Jahre alt und sehr aktiv.,She is eighty years old and very active.
-A2|Describing Your Family|A,Erzähl mir von deiner Familie.,Tell me about your family.
-A2|Describing Your Family|B,Wir sind eine große Familie. Ich habe drei Geschwister und viele Cousins.,We are a large family. I have three siblings and many cousins.
-A2|Describing Your Family|A,Verstehst du dich gut mit deinen Geschwistern?,Do you get along well with your siblings?
-A2|Describing Your Family|B,Ja wir verstehen uns sehr gut. Mein Bruder ist mein bester Freund.,Yes we get along very well. My brother is my best friend.
-A2|Describing Your Family|A,Sind deine Eltern noch verheiratet?,Are your parents still married?
-A2|Describing Your Family|B,Ja seit dreißig Jahren. Sie feiern nächstes Jahr ihr Jubiläum.,Yes for thirty years. They are celebrating their anniversary next year.
-A2|Describing Your Family|A,Das ist wunderbar! Habt ihr viele Familienfeste?,That is wonderful! Do you have many family celebrations?
-A2|Describing Your Family|B,Ja wir treffen die ganze Familie immer zu Weihnachten und Ostern.,Yes we always meet the whole family at Christmas and Easter.
-B1|Wedding Plans|A,Herzlichen Glückwunsch zur Verlobung! Wann ist die Hochzeit?,Congratulations on the engagement! When is the wedding?
-B1|Wedding Plans|B,Danke! Wir heiraten im September in einem kleinen Schloss.,Thank you! We are getting married in September in a small castle.
-B1|Wedding Plans|A,Habt ihr schon viele Gäste eingeladen?,Have you already invited many guests?
-B1|Wedding Plans|B,Ja wir laden die ganze Familie und enge Freunde ein. Das sind fast achtzig Personen.,Yes we are inviting the whole family and close friends. That is almost eighty people.
-B1|Wedding Plans|A,Und wer ist Trauzeuge?,And who is the best man?
-B1|Wedding Plans|B,Mein Bruder. Er hält auch eine Rede.,My brother. He is also giving a speech.
-B1|Wedding Plans|A,Werden die Kinder auch dabei sein?,Will the children be there too?
-B1|Wedding Plans|B,Ja natürlich. Meine Nichten sind die Blumenmädchen.,Yes of course. My nieces are the flower girls.
-B1|Wedding Plans|A,Das wird sicher ein unvergessliches Fest.,That will certainly be an unforgettable celebration.
-B1|Wedding Plans|B,Wir freuen uns riesig darauf.,We are very much looking forward to it.
-B2|Family Law Matters|A,Ich brauche Ihren Rat in einer Familienangelegenheit.,I need your advice in a family matter.
-B2|Family Law Matters|B,Natürlich. Worum geht es?,Of course. What is it about?
-B2|Family Law Matters|A,Mein Partner und ich haben uns getrennt. Wir haben ein Kind und wissen nicht wie das Sorgerecht geregelt wird.,My partner and I have separated. We have a child and do not know how custody is regulated.
-B2|Family Law Matters|B,Das Gericht entscheidet nach dem Kindeswohl. Meist wird gemeinsames Sorgerecht vereinbart.,The court decides based on the child's best interest. Joint custody is usually agreed upon.
-B2|Family Law Matters|A,Was ist wenn wir uns nicht einigen können?,What if we cannot agree?
-B2|Family Law Matters|B,Dann kann ein Mediator helfen bevor man vor Gericht geht.,Then a mediator can help before going to court.
-B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about visitation rights?
-B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
+A1|Meeting Someone New|A,Hallo! Wie heißt du?,Hello! What is your name?
+A1|Meeting Someone New|B,Ich heiße Maria. Und du?,My name is Maria. And you?
+A1|Meeting Someone New|A,Ich bin Tom. Woher kommst du?,I am Tom. Where are you from?
+A1|Meeting Someone New|B,Ich komme aus Spanien. Und du?,I come from Spain. And you?
+A1|Meeting Someone New|A,Ich komme aus Deutschland. Wie alt bist du?,I come from Germany. How old are you?
+A1|Meeting Someone New|B,Ich bin zwanzig Jahre alt.,I am twenty years old.
+A1|Meeting Someone New|A,Sprichst du Deutsch?,Do you speak German?
+A1|Meeting Someone New|B,"Ja, ein bisschen. Ich lerne noch.",Yes a little. I am still learning.
+A2|Filling Out a Form|A,Guten Tag. Ich brauche Ihre persönlichen Daten.,Good day. I need your personal details.
+A2|Filling Out a Form|B,Natürlich. Was möchten Sie wissen?,Of course. What would you like to know?
+A2|Filling Out a Form|A,Ihr vollständiger Name bitte.,Your full name please.
+A2|Filling Out a Form|B,Maria García López.,Maria García López.
+A2|Filling Out a Form|A,Wie schreibt man das? Bitte buchstabieren Sie.,How do you spell that? Please spell it out.
+A2|Filling Out a Form|B,G-A-R-C-I-A.,G-A-R-C-I-A.
+A2|Filling Out a Form|A,Ihr Geburtsdatum und Ihr Geburtsort?,Your date of birth and place of birth?
+A2|Filling Out a Form|B,Der fünfte März neunzehnhundertneunundneunzig in Madrid.,The fifth of March nineteen ninety-nine in Madrid.
+A2|Filling Out a Form|A,Und Ihre aktuelle Adresse mit Postleitzahl?,And your current address with postal code?
+A2|Filling Out a Form|B,Berliner Straße zwölf achtzig dreiunddreißig München.,Berliner Straße twelve eighty thirty-three Munich.
+B1|Registering at the Residents Office|A,Guten Morgen. Ich möchte mich anmelden.,Good morning. I would like to register.
+B1|Registering at the Residents Office|B,Haben Sie alle Unterlagen dabei?,Do you have all the documents with you?
+B1|Registering at the Residents Office|A,"Ja, ich habe Reisepass und Mietvertrag.",Yes I have passport and rental contract.
+B1|Registering at the Residents Office|B,Sind Sie schon früher in Deutschland gemeldet gewesen?,Have you been registered in Germany before?
+B1|Registering at the Residents Office|A,"Nein, das ist meine erste Meldung hier.",No this is my first registration here.
+B1|Registering at the Residents Office|B,Welche Staatsangehörigkeit haben Sie?,What nationality do you have?
+B1|Registering at the Residents Office|A,Ich bin spanische Staatsbürgerin und beantrage gerade die Einbürgerung.,I am a Spanish citizen and am currently applying for naturalization.
+B1|Registering at the Residents Office|B,Das können Sie hier separat beantragen. Wann möchten Sie einziehen?,You can apply for that separately here. When do you want to move in?
+B1|Registering at the Residents Office|A,Ich bin bereits eingezogen. Wann bekomme ich die Meldebestätigung?,I have already moved in. When will I get the registration confirmation?
+B1|Registering at the Residents Office|B,Sie bekommen sie direkt heute.,You will receive it directly today.
+B2|Applying for Naturalization|A,Ich möchte die deutsche Staatsbürgerschaft beantragen.,I would like to apply for German citizenship.
+B2|Applying for Naturalization|B,Wie lange sind Sie bereits in Deutschland ansässig?,How long have you been resident in Germany?
+B2|Applying for Naturalization|A,Seit acht Jahren mit durchgehendem rechtmäßigem Aufenthalt.,For eight years with continuous legal residence.
+B2|Applying for Naturalization|B,Beabsichtigen Sie Ihre bisherige Staatsangehörigkeit aufzugeben?,Do you intend to give up your previous citizenship?
+B2|Applying for Naturalization|A,"Nein, ich möchte die doppelte Staatsbürgerschaft beantragen.",No I would like to apply for dual citizenship.
+B2|Applying for Naturalization|B,Das ist möglich sofern Ihr Heimatland das erlaubt.,That is possible provided your home country permits it.
+B2|Applying for Naturalization|A,Welche Dokumente müssen notariell beglaubigt werden?,Which documents must be notarially certified?
+B2|Applying for Naturalization|B,Geburtsurkunde und alle ausländischen Dokumente müssen beglaubigt und übersetzt sein.,Birth certificate and all foreign documents must be certified and translated.
 `.trim();
 
 const qaCSV = `
@@ -1134,18 +1136,18 @@ A1,Was ist Ihre Telefonnummer?,Meine Nummer ist null-eins-sieben-drei. (My numbe
 A1,Welche Sprache sprechen Sie?,Ich spreche Deutsch und Englisch. (I speak German and English.)
 // cluster: family & marital status
 A2,Was ist Ihr Familienstand?,Ich bin verheiratet und habe zwei Kinder. (I am married and have two children.)
-A2,Haben Sie einen Ausweis?,Ja ich habe meinen Personalausweis dabei. (Yes I have my national ID with me.)
+A2,Haben Sie einen Ausweis?,Ja, ich habe meinen Personalausweis dabei. (Yes I have my national ID with me.)
 A2,Was ist Ihr Geburtsort?,Ich bin in München geboren. (I was born in Munich.)
 A2,Was ist Ihre Postleitzahl?,Meine Postleitzahl ist achtzig dreiunddreißig sieben. (My postal code is eighty-three thirty-seven.)
 A2,Wie buchstabiert man Ihren Namen?,M-Ü-L-L-E-R. (M-Ü-L-L-E-R.)
 A2,Was ist Ihre Nationalität?,Ich bin deutsche Staatsbürgerin. (I am a German citizen.)
 // cluster: citizenship & registration
-B1,Haben Sie die deutsche Staatsbürgerschaft?,Ja ich bin eingebürgert worden. (Yes I have been naturalized.)
-B1,Was ist Ihre Muttersprache?,Meine Muttersprache ist Türkisch aber ich spreche Deutsch fließend. (My mother tongue is Turkish but I speak German fluently.)
-B1,Sind Sie in Deutschland gemeldet?,Ja ich bin seit drei Jahren in Berlin gemeldet. (Yes I have been registered in Berlin for three years.)
+B1,Haben Sie die deutsche Staatsbürgerschaft?,Ja, ich bin eingebürgert worden. (Yes I have been naturalized.)
+B1,Was ist Ihre Muttersprache?,Meine Muttersprache ist Türkisch, aber ich spreche Deutsch fließend. (My mother tongue is Turkish but I speak German fluently.)
+B1,Sind Sie in Deutschland gemeldet?,Ja, ich bin seit drei Jahren in Berlin gemeldet. (Yes I have been registered in Berlin for three years.)
 B1,Haben Sie einen gültigen Reisepass?,Mein Reisepass läuft noch bis nächstes Jahr. (My passport is still valid until next year.)
 B1,Welchen Beruf üben Sie aus?,Ich bin als Ingenieurin bei einer deutschen Firma angestellt. (I am employed as an engineer at a German company.)
-B1,Was ist Ihr Geburtsname?,Mein Geburtsname ist Schmidt aber ich heiße jetzt Müller. (My birth name is Schmidt but I am now called Müller.)
+B1,Was ist Ihr Geburtsname?,Mein Geburtsname ist Schmidt, aber ich heiße jetzt Müller. (My birth name is Schmidt but I am now called Müller.)
 // cluster: advanced legal & identity
 B2,Was bedeutet doppelte Staatsbürgerschaft?,Man besitzt gleichzeitig die Staatsangehörigkeit zweier Länder. (One holds the citizenship of two countries simultaneously.)
 B2,Was brauche ich für die Einbürgerung?,Langen Aufenthalt Sprachkenntnisse und Aufgabe der bisherigen Staatsangehörigkeit. (Long residence language skills and giving up previous citizenship.)
@@ -1192,11 +1194,32 @@ B2,Der Antrag auf Einbürgerung wird von der zuständigen Behörde geprüft.,The
 // ============================================
 // CSV PARSER — strips blank lines AND comment lines
 // ============================================
+// Split one data line on commas. Wrap a field in double quotes to put commas inside it:
+//   A1,"Ja, gern.",Yes please.
+// With maxCols, the last column takes the rest of the line verbatim (commas included).
+function splitCSVLine(line, maxCols) {
+    const cols = [];
+    let cur = '', quoted = false;
+    for (let i = 0; i < line.length; i++) {
+        if (maxCols && cols.length === maxCols - 1) {
+            cur = line.slice(i).trim();
+            if (cur.length > 1 && cur[0] === '"' && cur[cur.length - 1] === '"') cur = cur.slice(1, -1);
+            break;
+        }
+        const ch = line[i];
+        if (ch === '"') quoted = !quoted;
+        else if (ch === ',' && !quoted) { cols.push(cur.trim()); cur = ''; }
+        else cur += ch;
+    }
+    cols.push(cur.trim());
+    return cols;
+}
+
 function parseCSV(csv) {
     return csv.split('\n')
         .map(line => line.trim())
         .filter(line => line.length > 0 && !line.startsWith('//'))
-        .map(line => line.split(',').map(cell => cell.trim()));
+        .map(line => splitCSVLine(line));
 }
 
 // ============================================
@@ -1228,14 +1251,16 @@ function loadVoices() {
 
     if (germanVoices.length === 0) {
         voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
-        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+        germanVoice = null; // no German voice: let the browser pick one from utterance.lang
     } else {
+        // keep the current choice if loadVoices runs again (voiceschanged can fire repeatedly)
+        const keepName = germanVoice && germanVoices.some(v => v.name === germanVoice.name) ? germanVoice.name : null;
         germanVoices.forEach((voice, index) => {
             const option = document.createElement('option');
             option.value = index;
             option.textContent = `${voice.name} (${voice.lang})`;
             voiceSelect.appendChild(option);
-            if (index === 0) germanVoice = voice;
+            if (keepName ? voice.name === keepName : index === 0) { germanVoice = voice; option.selected = true; }
         });
     }
     // Also pick an English voice for bilingual playback
@@ -1255,7 +1280,7 @@ document.getElementById('voiceSelect').addEventListener('change', function(e) {
     stopAllSpeech();
     const voices = window.speechSynthesis.getVoices();
     const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
-    germanVoice = germanVoices[e.target.value] || voices[0];
+    germanVoice = germanVoices[e.target.value] || null;
 });
 
 document.getElementById('speedControl').addEventListener('input', function(e) {
@@ -1294,7 +1319,7 @@ function warmUpTTS(callback) {
 function speak(text, callback, lang) {
     if (!text || text.trim() === '') { if (callback) callback(); return; }
     lang = lang || 'de-DE';
-    text = text.replace('🔊', '').trim();
+    text = text.replaceAll('🔊', '').trim();
     // When called for a one-off click (not in sequence), stop any ongoing speech
     if (!isPlayingSequence) stopAllSpeech();
     if (!ttsWarmedUp) {
@@ -1886,19 +1911,15 @@ function renderConversations() {
         // Format: LEVEL|Title|Speaker,german text,english text
         const firstPipe  = line.indexOf('|');
         const secondPipe = line.indexOf('|', firstPipe + 1);
-        const firstComma = line.indexOf(',', secondPipe + 1);
-        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+        const cols       = splitCSVLine(line.substring(secondPipe + 1), 3);  // speaker, german, english
+        if (firstPipe === -1 || secondPipe === -1 || cols.length < 3) return;
 
         const level   = line.substring(0, firstPipe).trim();
         const title   = line.substring(firstPipe + 1, secondPipe).trim();
-        const speaker = line.substring(secondPipe + 1, firstComma).trim();
-        const rest    = line.substring(firstComma + 1);
+        const speaker = cols[0];
 
-        const secondComma = rest.indexOf(',');
-        if (secondComma === -1) return;
-
-        const german  = rest.substring(0, secondComma).trim();
-        const english = rest.substring(secondComma + 1).trim();
+        const german  = cols[1];
+        const english = cols[2];
 
         const key = `${level}|${title}`;
         if (!conversations[key]) {
@@ -1934,6 +1955,7 @@ function renderConversations() {
         html += `</div></div>`;
     });
 
+    if (!convOrder.length) html = '<p style="text-align:center;color:#999;padding:12px;">No conversations for this unit yet.</p>';
     document.getElementById('conversationsContainer').innerHTML = html;
 }
 
@@ -1947,13 +1969,12 @@ function renderQA() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level    = line.substring(0, firstComma).trim();
-        const question = line.substring(firstComma + 1, secondComma).trim();
-        const answer   = line.substring(secondComma + 1).trim();
+        const level    = cols[0];
+        const question = cols[1];
+        const answer   = cols[2];
         const eq = question.replace(/'/g, "\\'");
         const ea = answer.replace(/'/g, "\\'");
 
@@ -1976,13 +1997,12 @@ function renderSentences() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level   = line.substring(0, firstComma).trim();
-        const german  = line.substring(firstComma + 1, secondComma).trim();
-        const english = line.substring(secondComma + 1).trim();
+        const level   = cols[0];
+        const german  = cols[1];
+        const english = cols[2];
         const eg = german.replace(/'/g, "\\'");
         const eEng = english.replace(/'/g, "\\'");
 

@@ -872,45 +872,51 @@ B2,Raubbau an natürlichen Ressourcen gefährdet zukünftige Generationen.,Overe
 // CONVERSATIONS — format: level|Title|Speaker,german,english
 // ============================================
 const conversationsRaw = `
-A1|Talking About Family|A,Hast du Geschwister?,Do you have siblings?
-A1|Talking About Family|B,Ja ich habe einen Bruder und eine Schwester. Und du?,Yes I have a brother and a sister. And you?
-A1|Talking About Family|A,Ich bin Einzelkind. Wo wohnen deine Eltern?,I am an only child. Where do your parents live?
-A1|Talking About Family|B,Meine Eltern wohnen in Hamburg.,My parents live in Hamburg.
-A1|Talking About Family|A,Hast du auch Großeltern?,Do you also have grandparents?
-A1|Talking About Family|B,Ja meine Großmutter wohnt bei uns zu Hause.,Yes my grandmother lives with us at home.
-A1|Talking About Family|A,Wie alt ist sie?,How old is she?
-A1|Talking About Family|B,Sie ist achtzig Jahre alt und sehr aktiv.,She is eighty years old and very active.
-A2|Describing Your Family|A,Erzähl mir von deiner Familie.,Tell me about your family.
-A2|Describing Your Family|B,Wir sind eine große Familie. Ich habe drei Geschwister und viele Cousins.,We are a large family. I have three siblings and many cousins.
-A2|Describing Your Family|A,Verstehst du dich gut mit deinen Geschwistern?,Do you get along well with your siblings?
-A2|Describing Your Family|B,Ja wir verstehen uns sehr gut. Mein Bruder ist mein bester Freund.,Yes we get along very well. My brother is my best friend.
-A2|Describing Your Family|A,Sind deine Eltern noch verheiratet?,Are your parents still married?
-A2|Describing Your Family|B,Ja seit dreißig Jahren. Sie feiern nächstes Jahr ihr Jubiläum.,Yes for thirty years. They are celebrating their anniversary next year.
-A2|Describing Your Family|A,Das ist wunderbar! Habt ihr viele Familienfeste?,That is wonderful! Do you have many family celebrations?
-A2|Describing Your Family|B,Ja wir treffen die ganze Familie immer zu Weihnachten und Ostern.,Yes we always meet the whole family at Christmas and Easter.
-B1|Wedding Plans|A,Herzlichen Glückwunsch zur Verlobung! Wann ist die Hochzeit?,Congratulations on the engagement! When is the wedding?
-B1|Wedding Plans|B,Danke! Wir heiraten im September in einem kleinen Schloss.,Thank you! We are getting married in September in a small castle.
-B1|Wedding Plans|A,Habt ihr schon viele Gäste eingeladen?,Have you already invited many guests?
-B1|Wedding Plans|B,Ja wir laden die ganze Familie und enge Freunde ein. Das sind fast achtzig Personen.,Yes we are inviting the whole family and close friends. That is almost eighty people.
-B1|Wedding Plans|A,Und wer ist Trauzeuge?,And who is the best man?
-B1|Wedding Plans|B,Mein Bruder. Er hält auch eine Rede.,My brother. He is also giving a speech.
-B1|Wedding Plans|A,Werden die Kinder auch dabei sein?,Will the children be there too?
-B1|Wedding Plans|B,Ja natürlich. Meine Nichten sind die Blumenmädchen.,Yes of course. My nieces are the flower girls.
-B1|Wedding Plans|A,Das wird sicher ein unvergessliches Fest.,That will certainly be an unforgettable celebration.
-B1|Wedding Plans|B,Wir freuen uns riesig darauf.,We are very much looking forward to it.
-B2|Family Law Matters|A,Ich brauche Ihren Rat in einer Familienangelegenheit.,I need your advice in a family matter.
-B2|Family Law Matters|B,Natürlich. Worum geht es?,Of course. What is it about?
-B2|Family Law Matters|A,Mein Partner und ich haben uns getrennt. Wir haben ein Kind und wissen nicht wie das Sorgerecht geregelt wird.,My partner and I have separated. We have a child and do not know how custody is regulated.
-B2|Family Law Matters|B,Das Gericht entscheidet nach dem Kindeswohl. Meist wird gemeinsames Sorgerecht vereinbart.,The court decides based on the child's best interest. Joint custody is usually agreed upon.
-B2|Family Law Matters|A,Was ist wenn wir uns nicht einigen können?,What if we cannot agree?
-B2|Family Law Matters|B,Dann kann ein Mediator helfen bevor man vor Gericht geht.,Then a mediator can help before going to court.
-B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about visitation rights?
-B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
+A1|Müll trennen|A,Wohin kommt die Plastikflasche?,Where does the plastic bottle go?
+A1|Müll trennen|B,In die gelbe Tonne. Das ist Kunststoff.,In the yellow bin. That is plastic.
+A1|Müll trennen|A,Und der Apfelrest?,And the apple core?
+A1|Müll trennen|B,In den Biomüll. Der wird kompostiert.,In the organic waste. That gets composted.
+A1|Müll trennen|A,Warum trennen wir den Müll?,Why do we separate the rubbish?
+A1|Müll trennen|B,Damit Materialien recycelt werden können.,So that materials can be recycled.
+A1|Müll trennen|A,Ist das wirklich so wichtig?,Is that really so important?
+A1|Müll trennen|B,Ja. Es spart Energie und schützt die Umwelt.,Yes. It saves energy and protects the environment.
+A1|Müll trennen|A,Ich mache das ab heute auch.,I will do that from today too.
+A1|Müll trennen|B,Super! Jeder kleine Beitrag zählt.,Great! Every small contribution counts.
+A2|Klimawandel im Alltag|A,Ich kaufe jetzt mehr Bioprodukte um die Umwelt zu schonen.,I am now buying more organic products to protect the environment.
+A2|Klimawandel im Alltag|B,Gut. Auch weniger Fleisch essen hilft dem Klima.,Good. Eating less meat also helps the climate.
+A2|Klimawandel im Alltag|A,Wirklich? Wie das?,Really? How so?
+A2|Klimawandel im Alltag|B,Tierhaltung erzeugt viel CO₂ und verbraucht viel Wasser.,Livestock farming produces a lot of CO₂ and uses a lot of water.
+A2|Klimawandel im Alltag|A,Das wusste ich nicht. Was kann ich noch tun?,I did not know that. What else can I do?
+A2|Klimawandel im Alltag|B,Weniger fliegen und mehr öffentliche Verkehrsmittel nutzen.,Fly less and use public transport more.
+A2|Klimawandel im Alltag|B,Und Plastik so weit wie möglich vermeiden.,And avoid plastic as much as possible.
+A2|Klimawandel im Alltag|A,Ich versuche auch meinen Wasserverbrauch zu reduzieren.,I am also trying to reduce my water consumption.
+A2|Klimawandel im Alltag|B,Prima! Kleine Schritte im Alltag machen zusammen einen großen Unterschied.,Great! Small daily steps together make a big difference.
+A2|Klimawandel im Alltag|A,Ich rede auch mit meiner Familie darüber.,I will also talk to my family about it.
+B1|Naturschutzprojekt|A,Unsere Schule plant ein Wiederaufforstungsprojekt im Stadtumland.,Our school is planning a reforestation project in the urban fringe.
+B1|Naturschutzprojekt|B,Tolle Initiative! Welche Baumarten wollt ihr pflanzen?,Great initiative! Which tree species do you want to plant?
+B1|Naturschutzprojekt|A,"Nur heimische Arten, damit das Ökosystem intakt bleibt.",Only native species so the ecosystem remains intact.
+B1|Naturschutzprojekt|B,Gut. Invasive Arten würden das Gleichgewicht stören.,Good. Invasive species would disturb the balance.
+B1|Naturschutzprojekt|A,Wir möchten auch Flächen renaturieren die durch Landwirtschaft geschädigt wurden.,We also want to rewild areas damaged by agriculture.
+B1|Naturschutzprojekt|B,Das ist wichtig für die Artenvielfalt. Viele Lebensräume sind stark bedroht.,That is important for biodiversity. Many habitats are severely threatened.
+B1|Naturschutzprojekt|A,Wir arbeiten mit der Umweltbehörde zusammen.,We are cooperating with the environmental authority.
+B1|Naturschutzprojekt|B,Das ist gut. Ohne behördliche Unterstützung ist so ein Projekt schwer umzusetzen.,That is good. Without official support such a project is hard to implement.
+B1|Naturschutzprojekt|A,Wir messen auch die Wasserqualität im nahen Bach.,We are also measuring the water quality in the nearby stream.
+B1|Naturschutzprojekt|B,Ausgezeichnet. Solche Daten helfen die Bodenverschmutzung zu bewerten.,Excellent. Such data helps to assess soil pollution.
+B2|Energiepolitik|A,Die Dekarbonisierung der Industrie ist das entscheidende Ziel der kommenden Jahrzehnte.,The decarbonisation of industry is the decisive goal of the coming decades.
+B2|Energiepolitik|B,Stimmt. Aber viele Unternehmen sind noch stark fossilabhängig.,True. But many companies are still heavily fossil-dependent.
+B2|Energiepolitik|A,Der Emissionshandel soll wirtschaftliche Anreize setzen.,Emissions trading is meant to create economic incentives.
+B2|Energiepolitik|B,"Das funktioniert nur, wenn Emissionsrechte teuer genug sind.",That only works if emission allowances are expensive enough.
+B2|Energiepolitik|A,Gleichzeitig muss die Energiewende sozialverträglich gestaltet werden.,At the same time the energy transition must be designed in a socially acceptable way.
+B2|Energiepolitik|B,Sonst riskiert man gesellschaftlichen Widerstand gegen Klimaschutzmaßnahmen.,Otherwise you risk social resistance to climate protection measures.
+B2|Energiepolitik|A,Wasserstoff könnte fossile Brennstoffe in vielen Bereichen ersetzen.,Hydrogen could replace fossil fuels in many areas.
+B2|Energiepolitik|B,"Ja, aber grüner Wasserstoff muss noch günstiger und skalierbarer werden.",Yes but green hydrogen still needs to become cheaper and more scalable.
+B2|Energiepolitik|A,Die Klimakonferenzen müssen verbindlichere Ziele beschließen.,The climate conferences must adopt more binding targets.
+B2|Energiepolitik|B,Ohne internationale Kooperation werden die Emissionsgrenzen nicht eingehalten.,Without international cooperation emission limits will not be met.
 `.trim();
 
 const qaCSV = `
 // cluster: basic environment & waste
-A1,Was ist Umweltverschmutzung?,Wenn Luft Wasser oder Boden durch schädliche Stoffe verunreinigt werden. (When air water or soil is contaminated by harmful substances.)
+A1,Was ist Umweltverschmutzung?,Wenn Luft, Wasser oder Boden durch schädliche Stoffe verunreinigt werden. (When air water or soil is contaminated by harmful substances.)
 A1,Warum sollen wir Müll trennen?,Damit Materialien recycelt und Ressourcen geschont werden. (So that materials are recycled and resources are conserved.)
 A1,Was bedeutet Recycling?,Abfallmaterialien werden wiederaufbereitet und neu verwendet. (Waste materials are reprocessed and reused.)
 A1,Was ist Plastik?,Ein synthetisches Material das sich in der Natur kaum abbaut. (A synthetic material that barely breaks down in nature.)
@@ -921,7 +927,7 @@ A1,Was ist Lärm als Umweltproblem?,Übermäßiger Lärm schadet Menschen Tieren
 // cluster: climate & energy
 A2,Was ist der Klimawandel?,Die langfristige Veränderung des Klimas durch menschliche Aktivitäten. (The long-term change of the climate due to human activities.)
 A2,Was ist erneuerbare Energie?,Energie aus Quellen die sich natürlich erneuern wie Sonne und Wind. (Energy from sources that renew naturally such as sun and wind.)
-A2,Was ist Nachhaltigkeit?,Ressourcen so zu nutzen dass zukünftige Generationen genug davon haben. (Using resources so that future generations have enough of them.)
+A2,Was ist Nachhaltigkeit?,Ressourcen so zu nutzen, dass zukünftige Generationen genug davon haben. (Using resources so that future generations have enough of them.)
 A2,Was bedeutet CO₂-Ausstoß?,Die Menge an Kohlendioxid die durch Verbrennung fossiler Brennstoffe entsteht. (The amount of carbon dioxide produced by burning fossil fuels.)
 A2,Was ist Luftverschmutzung?,Das Vorhandensein schädlicher Stoffe in der Luft die wir atmen. (The presence of harmful substances in the air we breathe.)
 A2,Was ist Solarenergie?,Energie die durch Sonnenlicht erzeugt und in Strom umgewandelt wird. (Energy generated from sunlight and converted into electricity.)
@@ -949,7 +955,7 @@ A1,Ich werfe meinen Abfall in den richtigen Mülleimer.,I put my waste in the co
 A1,Plastik ist sehr schlecht für die Umwelt.,Plastic is very bad for the environment.
 A1,Wir sollen jeden Tag Wasser sparen.,We should save water every day.
 A2,Mülltrennung hilft dabei viele Materialien wiederzuverwenden.,Waste separation helps to reuse many materials.
-A2,Ich kaufe Produkte aus recycelten Materialien wenn möglich.,I buy products made from recycled materials when possible.
+A2,"Ich kaufe Produkte aus recycelten Materialien, wenn möglich.",I buy products made from recycled materials when possible.
 A2,Durch Kompostieren kann man Bioabfälle sinnvoll nutzen.,Through composting organic waste can be used meaningfully.
 A2,Einwegplastik ist in vielen Ländern bereits verboten.,Single-use plastic is already banned in many countries.
 A2,Jeder kann mit kleinen Änderungen im Alltag die Umwelt schützen.,Everyone can protect the environment with small changes in daily life.
@@ -964,7 +970,7 @@ B1,Der Treibhauseffekt verstärkt sich durch den steigenden Methangehalt in der 
 B2,Die Energiewende erfordert massive Investitionen in erneuerbare Infrastruktur.,The energy transition requires massive investment in renewable infrastructure.
 B2,Ohne Dekarbonisierung der Industrie sind die Klimaziele nicht erreichbar.,Without decarbonisation of industry the climate targets are not achievable.
 // cluster: conservation & ecology
-A2,Viele Tierarten sterben aus weil ihre Lebensräume zerstört werden.,Many animal species are dying out because their habitats are being destroyed.
+A2,"Viele Tierarten sterben aus, weil ihre Lebensräume zerstört werden.",Many animal species are dying out because their habitats are being destroyed.
 B1,Die Artenvielfalt nimmt weltweit durch menschliche Eingriffe ab.,Biodiversity is declining worldwide due to human intervention.
 B1,Naturschutzzonen bewahren wichtige Ökosysteme vor menschlicher Zerstörung.,Nature conservation zones preserve important ecosystems from human destruction.
 B1,Wiederaufforstungsprogramme helfen den Kohlenstoffhaushalt der Erde zu stabilisieren.,Reforestation programmes help to stabilise the earth's carbon balance.
@@ -982,11 +988,32 @@ B2,Die Bodenversiegelung in Ballungsräumen verschlechtert das Mikroklima erhebl
 // ============================================
 // CSV PARSER — strips blank lines AND comment lines
 // ============================================
+// Split one data line on commas. Wrap a field in double quotes to put commas inside it:
+//   A1,"Ja, gern.",Yes please.
+// With maxCols, the last column takes the rest of the line verbatim (commas included).
+function splitCSVLine(line, maxCols) {
+    const cols = [];
+    let cur = '', quoted = false;
+    for (let i = 0; i < line.length; i++) {
+        if (maxCols && cols.length === maxCols - 1) {
+            cur = line.slice(i).trim();
+            if (cur.length > 1 && cur[0] === '"' && cur[cur.length - 1] === '"') cur = cur.slice(1, -1);
+            break;
+        }
+        const ch = line[i];
+        if (ch === '"') quoted = !quoted;
+        else if (ch === ',' && !quoted) { cols.push(cur.trim()); cur = ''; }
+        else cur += ch;
+    }
+    cols.push(cur.trim());
+    return cols;
+}
+
 function parseCSV(csv) {
     return csv.split('\n')
         .map(line => line.trim())
         .filter(line => line.length > 0 && !line.startsWith('//'))
-        .map(line => line.split(',').map(cell => cell.trim()));
+        .map(line => splitCSVLine(line));
 }
 
 // ============================================
@@ -1006,14 +1033,16 @@ function loadVoices() {
 
     if (germanVoices.length === 0) {
         voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
-        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+        germanVoice = null; // no German voice: let the browser pick one from utterance.lang
     } else {
+        // keep the current choice if loadVoices runs again (voiceschanged can fire repeatedly)
+        const keepName = germanVoice && germanVoices.some(v => v.name === germanVoice.name) ? germanVoice.name : null;
         germanVoices.forEach((voice, index) => {
             const option = document.createElement('option');
             option.value = index;
             option.textContent = `${voice.name} (${voice.lang})`;
             voiceSelect.appendChild(option);
-            if (index === 0) germanVoice = voice;
+            if (keepName ? voice.name === keepName : index === 0) { germanVoice = voice; option.selected = true; }
         });
     }
     console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
@@ -1030,7 +1059,7 @@ document.getElementById('voiceSelect').addEventListener('change', function(e) {
     stopAllSpeech();
     const voices = window.speechSynthesis.getVoices();
     const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
-    germanVoice = germanVoices[e.target.value] || voices[0];
+    germanVoice = germanVoices[e.target.value] || null;
 });
 
 document.getElementById('speedControl').addEventListener('input', function(e) {
@@ -1058,7 +1087,7 @@ function speak(text, callback) {
         if (callback) callback();
         return;
     }
-    text = text.replace('🔊', '').trim();
+    text = text.replaceAll('🔊', '').trim();
     if (!isPlayingSequence) stopAllSpeech();
     if (!ttsWarmedUp) {
         warmUpTTS(() => speakNow(text, callback));
@@ -1446,19 +1475,15 @@ function renderConversations() {
         // Format: LEVEL|Title|Speaker,german text,english text
         const firstPipe  = line.indexOf('|');
         const secondPipe = line.indexOf('|', firstPipe + 1);
-        const firstComma = line.indexOf(',', secondPipe + 1);
-        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+        const cols       = splitCSVLine(line.substring(secondPipe + 1), 3);  // speaker, german, english
+        if (firstPipe === -1 || secondPipe === -1 || cols.length < 3) return;
 
         const level   = line.substring(0, firstPipe).trim();
         const title   = line.substring(firstPipe + 1, secondPipe).trim();
-        const speaker = line.substring(secondPipe + 1, firstComma).trim();
-        const rest    = line.substring(firstComma + 1);
+        const speaker = cols[0];
 
-        const secondComma = rest.indexOf(',');
-        if (secondComma === -1) return;
-
-        const german  = rest.substring(0, secondComma).trim();
-        const english = rest.substring(secondComma + 1).trim();
+        const german  = cols[1];
+        const english = cols[2];
 
         const key = `${level}|${title}`;
         if (!conversations[key]) {
@@ -1494,6 +1519,7 @@ function renderConversations() {
         html += `</div></div>`;
     });
 
+    if (!convOrder.length) html = '<p style="text-align:center;color:#999;padding:12px;">No conversations for this unit yet.</p>';
     document.getElementById('conversationsContainer').innerHTML = html;
 }
 
@@ -1507,13 +1533,12 @@ function renderQA() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level    = line.substring(0, firstComma).trim();
-        const question = line.substring(firstComma + 1, secondComma).trim();
-        const answer   = line.substring(secondComma + 1).trim();
+        const level    = cols[0];
+        const question = cols[1];
+        const answer   = cols[2];
         const eq = question.replace(/'/g, "\\'");
         const ea = answer.replace(/'/g, "\\'");
 
@@ -1536,13 +1561,12 @@ function renderSentences() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level   = line.substring(0, firstComma).trim();
-        const german  = line.substring(firstComma + 1, secondComma).trim();
-        const english = line.substring(secondComma + 1).trim();
+        const level   = cols[0];
+        const german  = cols[1];
+        const english = cols[2];
         const eg = german.replace(/'/g, "\\'");
 
         html += `<div class="sentence-card" data-level="${level}" onclick="speak('${eg}')">

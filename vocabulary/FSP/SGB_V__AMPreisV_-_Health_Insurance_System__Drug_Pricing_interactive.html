@@ -1154,14 +1154,16 @@ Der Sponsor organisiert die klinische Prüfung.,The sponsor organizes the clinic
 
             if (germanVoices.length === 0) {
                 voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
-                germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+                germanVoice = null; // no German voice: let the browser pick one from utterance.lang
             } else {
+                // keep the current choice if loadVoices runs again (voiceschanged can fire repeatedly)
+                const keepName = germanVoice && germanVoices.some(v => v.name === germanVoice.name) ? germanVoice.name : null;
                 germanVoices.forEach((voice, index) => {
                     const option = document.createElement('option');
                     option.value = index;
                     option.textContent = `${voice.name} (${voice.lang})`;
                     voiceSelect.appendChild(option);
-                    if (index === 0) germanVoice = voice;
+                    if (keepName ? voice.name === keepName : index === 0) { germanVoice = voice; option.selected = true; }
                 });
             }
             console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
@@ -1178,7 +1180,7 @@ Der Sponsor organisiert die klinische Prüfung.,The sponsor organizes the clinic
             stopAllSpeech();
             const voices = window.speechSynthesis.getVoices();
             const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
-            germanVoice = germanVoices[e.target.value] || voices[0];
+            germanVoice = germanVoices[e.target.value] || null;
             console.log('🔄 Voice changed to:', germanVoice ? germanVoice.name : 'default');
         });
 
@@ -1198,7 +1200,7 @@ Der Sponsor organisiert die klinische Prüfung.,The sponsor organizes the clinic
                 return;
             }
 
-            text = text.replace('🔊', '').trim();
+            text = text.replaceAll('🔊', '').trim();
 
             // Only stop if NOT playing a sequence
             if (!isPlayingSequence) {

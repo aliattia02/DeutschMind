@@ -920,40 +920,46 @@ B2,Die Bahnreform soll den Nahverkehr stärken.,The railway reform aims to stren
 // CONVERSATIONS — format: level|Title|Speaker,german,english
 // ============================================
 const conversationsRaw = `
-A1|Talking About Family|A,Hast du Geschwister?,Do you have siblings?
-A1|Talking About Family|B,Ja ich habe einen Bruder und eine Schwester. Und du?,Yes I have a brother and a sister. And you?
-A1|Talking About Family|A,Ich bin Einzelkind. Wo wohnen deine Eltern?,I am an only child. Where do your parents live?
-A1|Talking About Family|B,Meine Eltern wohnen in Hamburg.,My parents live in Hamburg.
-A1|Talking About Family|A,Hast du auch Großeltern?,Do you also have grandparents?
-A1|Talking About Family|B,Ja meine Großmutter wohnt bei uns zu Hause.,Yes my grandmother lives with us at home.
-A1|Talking About Family|A,Wie alt ist sie?,How old is she?
-A1|Talking About Family|B,Sie ist achtzig Jahre alt und sehr aktiv.,She is eighty years old and very active.
-A2|Describing Your Family|A,Erzähl mir von deiner Familie.,Tell me about your family.
-A2|Describing Your Family|B,Wir sind eine große Familie. Ich habe drei Geschwister und viele Cousins.,We are a large family. I have three siblings and many cousins.
-A2|Describing Your Family|A,Verstehst du dich gut mit deinen Geschwistern?,Do you get along well with your siblings?
-A2|Describing Your Family|B,Ja wir verstehen uns sehr gut. Mein Bruder ist mein bester Freund.,Yes we get along very well. My brother is my best friend.
-A2|Describing Your Family|A,Sind deine Eltern noch verheiratet?,Are your parents still married?
-A2|Describing Your Family|B,Ja seit dreißig Jahren. Sie feiern nächstes Jahr ihr Jubiläum.,Yes for thirty years. They are celebrating their anniversary next year.
-A2|Describing Your Family|A,Das ist wunderbar! Habt ihr viele Familienfeste?,That is wonderful! Do you have many family celebrations?
-A2|Describing Your Family|B,Ja wir treffen die ganze Familie immer zu Weihnachten und Ostern.,Yes we always meet the whole family at Christmas and Easter.
-B1|Wedding Plans|A,Herzlichen Glückwunsch zur Verlobung! Wann ist die Hochzeit?,Congratulations on the engagement! When is the wedding?
-B1|Wedding Plans|B,Danke! Wir heiraten im September in einem kleinen Schloss.,Thank you! We are getting married in September in a small castle.
-B1|Wedding Plans|A,Habt ihr schon viele Gäste eingeladen?,Have you already invited many guests?
-B1|Wedding Plans|B,Ja wir laden die ganze Familie und enge Freunde ein. Das sind fast achtzig Personen.,Yes we are inviting the whole family and close friends. That is almost eighty people.
-B1|Wedding Plans|A,Und wer ist Trauzeuge?,And who is the best man?
-B1|Wedding Plans|B,Mein Bruder. Er hält auch eine Rede.,My brother. He is also giving a speech.
-B1|Wedding Plans|A,Werden die Kinder auch dabei sein?,Will the children be there too?
-B1|Wedding Plans|B,Ja natürlich. Meine Nichten sind die Blumenmädchen.,Yes of course. My nieces are the flower girls.
-B1|Wedding Plans|A,Das wird sicher ein unvergessliches Fest.,That will certainly be an unforgettable celebration.
-B1|Wedding Plans|B,Wir freuen uns riesig darauf.,We are very much looking forward to it.
-B2|Family Law Matters|A,Ich brauche Ihren Rat in einer Familienangelegenheit.,I need your advice in a family matter.
-B2|Family Law Matters|B,Natürlich. Worum geht es?,Of course. What is it about?
-B2|Family Law Matters|A,Mein Partner und ich haben uns getrennt. Wir haben ein Kind und wissen nicht wie das Sorgerecht geregelt wird.,My partner and I have separated. We have a child and do not know how custody is regulated.
-B2|Family Law Matters|B,Das Gericht entscheidet nach dem Kindeswohl. Meist wird gemeinsames Sorgerecht vereinbart.,The court decides based on the child's best interest. Joint custody is usually agreed upon.
-B2|Family Law Matters|A,Was ist wenn wir uns nicht einigen können?,What if we cannot agree?
-B2|Family Law Matters|B,Dann kann ein Mediator helfen bevor man vor Gericht geht.,Then a mediator can help before going to court.
-B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about visitation rights?
-B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
+A1|An der Bushaltestelle|A,Entschuldigung wann kommt der Bus?,Excuse me when does the bus come?
+A1|An der Bushaltestelle|B,Der Bus kommt in zehn Minuten.,The bus comes in ten minutes.
+A1|An der Bushaltestelle|A,Fährt dieser Bus zum Bahnhof?,Does this bus go to the station?
+A1|An der Bushaltestelle|B,"Ja, er fährt direkt zum Bahnhof.",Yes it goes directly to the station.
+A1|An der Bushaltestelle|A,Was kostet eine Fahrkarte?,How much does a ticket cost?
+A1|An der Bushaltestelle|B,Eine Fahrkarte kostet zwei Euro.,A ticket costs two euros.
+A1|An der Bushaltestelle|A,Wo kaufe ich die Fahrkarte?,Where do I buy the ticket?
+A1|An der Bushaltestelle|B,Am Automaten dort drüben.,At the machine over there.
+A1|An der Bushaltestelle|A,Danke sehr.,Thank you very much.
+A1|An der Bushaltestelle|B,Bitte. Gute Fahrt!,You are welcome. Have a good trip!
+A2|Am Fahrkartenschalter|A,Ich möchte eine Fahrkarte nach München.,I would like a ticket to Munich.
+A2|Am Fahrkartenschalter|B,Einfach oder hin und zurück?,Single or return?
+A2|Am Fahrkartenschalter|A,Einfach bitte. Wann fährt der nächste Zug?,Single please. When does the next train leave?
+A2|Am Fahrkartenschalter|B,In zwanzig Minuten von Gleis vier.,In twenty minutes from platform four.
+A2|Am Fahrkartenschalter|A,Muss ich umsteigen?,Do I need to change?
+A2|Am Fahrkartenschalter|B,"Nein, es ist eine Direktverbindung.",No it is a direct connection.
+A2|Am Fahrkartenschalter|A,Wie lange dauert die Fahrt?,How long does the journey take?
+A2|Am Fahrkartenschalter|B,Ungefähr zwei Stunden.,About two hours.
+A2|Am Fahrkartenschalter|A,Was kostet die Fahrkarte?,How much does the ticket cost?
+A2|Am Fahrkartenschalter|B,Das macht siebenundzwanzig Euro fünfzig.,That is twenty-seven euros fifty.
+B1|Pendelroute besprechen|A,Wie kommst du jeden Tag zur Arbeit?,How do you get to work every day?
+B1|Pendelroute besprechen|B,Ich nehme die S-Bahn und steige dann in die U-Bahn um.,I take the suburban train and then transfer to the underground.
+B1|Pendelroute besprechen|A,Wie lange brauchst du dafür?,How long does it take you?
+B1|Pendelroute besprechen|B,"Meistens vierzig Minuten, aber bei Verspätungen auch länger.",Usually forty minutes but longer when there are delays.
+B1|Pendelroute besprechen|A,Hast du eine Monatskarte?,Do you have a monthly pass?
+B1|Pendelroute besprechen|B,"Ja, das ist viel günstiger, als jeden Tag eine Fahrkarte zu lösen.",Yes that is much cheaper than buying a ticket every day.
+B1|Pendelroute besprechen|A,"Ich überlege, ob ich mit dem Fahrrad fahren soll.",I am wondering whether to cycle instead.
+B1|Pendelroute besprechen|B,Das geht auch. Es gibt einen guten Radweg entlang der Strecke.,That works too. There is a good cycle path along the route.
+B1|Pendelroute besprechen|A,"Aber was machst du, wenn es regnet?",But what do you do when it rains?
+B1|Pendelroute besprechen|B,Dann nehme ich lieber die Bahn.,Then I prefer to take the train.
+B2|Verkehrsplanung|A,Die Stadt plant einen neuen Radschnellweg.,The city is planning a new express cycle route.
+B2|Verkehrsplanung|B,Das ist überfällig. Der Radverkehr wird oft vernachlässigt.,That is overdue. Cycling traffic is often neglected.
+B2|Verkehrsplanung|A,Gleichzeitig sollen mehrere Fahrspuren für den Kfz-Verkehr gesperrt werden.,Several lanes for motor vehicles are also to be closed.
+B2|Verkehrsplanung|B,Das wird sicher Widerstand auslösen.,That will certainly cause resistance.
+B2|Verkehrsplanung|A,"Ja, aber Verkehrsexperten befürworten die Maßnahmen zur Emissionsreduzierung.",Yes but traffic experts support the emission reduction measures.
+B2|Verkehrsplanung|B,Hat man auch den öffentlichen Nahverkehr ausgebaut?,Has public transport also been expanded?
+B2|Verkehrsplanung|A,"Ja, die Taktfolge auf vielen Linien wird erhöht.",Yes the frequency on many lines is being increased.
+B2|Verkehrsplanung|B,Das könnte Pendler dazu bringen das Auto stehen zu lassen.,That could encourage commuters to leave the car at home.
+B2|Verkehrsplanung|A,Genau. Nachhaltige Mobilität ist das Ziel.,Exactly. Sustainable mobility is the goal.
+B2|Verkehrsplanung|B,"Wenn die Infrastruktur stimmt, folgen die Menschen.",If the infrastructure is right people will follow.
 `.trim();
 
 const qaCSV = `
@@ -969,15 +975,15 @@ A1,Was ist eine Straßenbahn?,Eine Straßenbahn fährt auf Schienen durch die St
 // cluster: directions & everyday transport
 A2,Wie fragt man nach dem Weg?,Man fragt Entschuldigung wie komme ich zum Bahnhof? (You ask Excuse me how do I get to the station?)
 A2,Was bedeutet geradeaus?,Geradeaus bedeutet ohne abzubiegen in eine Richtung weitergehen. (Straight ahead means to keep going without turning.)
-A2,Was ist ein Stau?,Ein Stau ist wenn der Verkehr stoppt und sich Fahrzeuge stauen. (A traffic jam is when traffic stops and vehicles queue up.)
+A2,Was ist ein Stau?,Ein Stau ist, wenn der Verkehr stoppt und sich Fahrzeuge stauen. (A traffic jam is when traffic stops and vehicles queue up.)
 A2,Was ist eine Monatskarte?,Eine Monatskarte erlaubt unbegrenzte Fahrten für einen Monat. (A monthly pass allows unlimited travel for one month.)
 A2,Was macht man beim Umsteigen?,Man verlässt ein Verkehrsmittel und steigt in ein anderes um. (You leave one vehicle and transfer to another.)
 A2,Wie weit ist ein Kilometer?,Ein Kilometer sind tausend Meter. (A kilometre is one thousand metres.)
 A2,Was ist der Unterschied zwischen S-Bahn und U-Bahn?,Die S-Bahn fährt auch über der Erde die U-Bahn immer darunter. (The S-Bahn also runs above ground the U-Bahn always below.)
 A2,Wo kauft man Fahrkarten?,An einem Automaten oder am Schalter im Bahnhof. (At a machine or at the counter in the station.)
 // cluster: public transport & fares
-B1,Was ist der Berufsverkehr?,Die Zeit morgens und abends wenn viele Menschen zur Arbeit fahren. (The time in the morning and evening when many people travel to work.)
-B1,Was ist eine Verspätung?,Eine Verspätung ist wenn ein Zug oder Bus nicht pünktlich kommt. (A delay is when a train or bus does not arrive on time.)
+B1,Was ist der Berufsverkehr?,Die Zeit morgens und abends, wenn viele Menschen zur Arbeit fahren. (The time in the morning and evening when many people travel to work.)
+B1,Was ist eine Verspätung?,Eine Verspätung ist, wenn ein Zug oder Bus nicht pünktlich kommt. (A delay is when a train or bus does not arrive on time.)
 B1,Was bedeutet Anschluss im Bahnverkehr?,Ein Anschluss ist ein weiterer Zug den man nach dem Umsteigen erreichen muss. (A connection is a further train that you need to catch after transferring.)
 B1,Was ist eine Einbahnstraße?,Eine Straße auf der Fahrzeuge nur in eine Richtung fahren dürfen. (A road on which vehicles may only travel in one direction.)
 B1,Warum muss man die Fahrkarte entwerten?,Damit der Fahrschein gültig ist und man kein Bußgeld zahlt. (So the ticket is valid and you do not have to pay a fine.)
@@ -1015,7 +1021,7 @@ B1,In der Fußgängerzone dürfen keine Autos fahren.,No cars are allowed in the
 B1,Der Zebrastreifen schützt Fußgänger beim Überqueren der Straße.,The pedestrian crossing protects pedestrians when crossing the road.
 B1,Man muss die Fahrkarte vor der Fahrt entwerten.,You must validate the ticket before the journey.
 B1,Bei Frost kann die Fahrbahn sehr rutschig werden.,In frosty conditions the road surface can become very slippery.
-B1,Ich fahre lieber mit dem Zug weil das weniger stressig ist.,I prefer to take the train because it is less stressful.
+B1,"Ich fahre lieber mit dem Zug, weil das weniger stressig ist.",I prefer to take the train because it is less stressful.
 // cluster: vehicles & sustainability
 B1,Elektroautos haben keine direkten Abgasemissionen.,Electric cars have no direct exhaust emissions.
 B1,Der öffentliche Nahverkehr ist umweltfreundlicher als das Auto.,Public transport is more environmentally friendly than the car.
@@ -1033,11 +1039,32 @@ B2,Die Verkehrsinfrastruktur eines Landes beeinflusst seine wirtschaftliche Entw
 // ============================================
 // CSV PARSER — strips blank lines AND comment lines
 // ============================================
+// Split one data line on commas. Wrap a field in double quotes to put commas inside it:
+//   A1,"Ja, gern.",Yes please.
+// With maxCols, the last column takes the rest of the line verbatim (commas included).
+function splitCSVLine(line, maxCols) {
+    const cols = [];
+    let cur = '', quoted = false;
+    for (let i = 0; i < line.length; i++) {
+        if (maxCols && cols.length === maxCols - 1) {
+            cur = line.slice(i).trim();
+            if (cur.length > 1 && cur[0] === '"' && cur[cur.length - 1] === '"') cur = cur.slice(1, -1);
+            break;
+        }
+        const ch = line[i];
+        if (ch === '"') quoted = !quoted;
+        else if (ch === ',' && !quoted) { cols.push(cur.trim()); cur = ''; }
+        else cur += ch;
+    }
+    cols.push(cur.trim());
+    return cols;
+}
+
 function parseCSV(csv) {
     return csv.split('\n')
         .map(line => line.trim())
         .filter(line => line.length > 0 && !line.startsWith('//'))
-        .map(line => line.split(',').map(cell => cell.trim()));
+        .map(line => splitCSVLine(line));
 }
 
 // ============================================
@@ -1057,14 +1084,16 @@ function loadVoices() {
 
     if (germanVoices.length === 0) {
         voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
-        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+        germanVoice = null; // no German voice: let the browser pick one from utterance.lang
     } else {
+        // keep the current choice if loadVoices runs again (voiceschanged can fire repeatedly)
+        const keepName = germanVoice && germanVoices.some(v => v.name === germanVoice.name) ? germanVoice.name : null;
         germanVoices.forEach((voice, index) => {
             const option = document.createElement('option');
             option.value = index;
             option.textContent = `${voice.name} (${voice.lang})`;
             voiceSelect.appendChild(option);
-            if (index === 0) germanVoice = voice;
+            if (keepName ? voice.name === keepName : index === 0) { germanVoice = voice; option.selected = true; }
         });
     }
     console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
@@ -1081,7 +1110,7 @@ document.getElementById('voiceSelect').addEventListener('change', function(e) {
     stopAllSpeech();
     const voices = window.speechSynthesis.getVoices();
     const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
-    germanVoice = germanVoices[e.target.value] || voices[0];
+    germanVoice = germanVoices[e.target.value] || null;
 });
 
 document.getElementById('speedControl').addEventListener('input', function(e) {
@@ -1109,7 +1138,7 @@ function speak(text, callback) {
         if (callback) callback();
         return;
     }
-    text = text.replace('🔊', '').trim();
+    text = text.replaceAll('🔊', '').trim();
     if (!isPlayingSequence) stopAllSpeech();
     if (!ttsWarmedUp) {
         warmUpTTS(() => speakNow(text, callback));
@@ -1497,19 +1526,15 @@ function renderConversations() {
         // Format: LEVEL|Title|Speaker,german text,english text
         const firstPipe  = line.indexOf('|');
         const secondPipe = line.indexOf('|', firstPipe + 1);
-        const firstComma = line.indexOf(',', secondPipe + 1);
-        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+        const cols       = splitCSVLine(line.substring(secondPipe + 1), 3);  // speaker, german, english
+        if (firstPipe === -1 || secondPipe === -1 || cols.length < 3) return;
 
         const level   = line.substring(0, firstPipe).trim();
         const title   = line.substring(firstPipe + 1, secondPipe).trim();
-        const speaker = line.substring(secondPipe + 1, firstComma).trim();
-        const rest    = line.substring(firstComma + 1);
+        const speaker = cols[0];
 
-        const secondComma = rest.indexOf(',');
-        if (secondComma === -1) return;
-
-        const german  = rest.substring(0, secondComma).trim();
-        const english = rest.substring(secondComma + 1).trim();
+        const german  = cols[1];
+        const english = cols[2];
 
         const key = `${level}|${title}`;
         if (!conversations[key]) {
@@ -1545,6 +1570,7 @@ function renderConversations() {
         html += `</div></div>`;
     });
 
+    if (!convOrder.length) html = '<p style="text-align:center;color:#999;padding:12px;">No conversations for this unit yet.</p>';
     document.getElementById('conversationsContainer').innerHTML = html;
 }
 
@@ -1558,13 +1584,12 @@ function renderQA() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level    = line.substring(0, firstComma).trim();
-        const question = line.substring(firstComma + 1, secondComma).trim();
-        const answer   = line.substring(secondComma + 1).trim();
+        const level    = cols[0];
+        const question = cols[1];
+        const answer   = cols[2];
         const eq = question.replace(/'/g, "\\'");
         const ea = answer.replace(/'/g, "\\'");
 
@@ -1587,13 +1612,12 @@ function renderSentences() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level   = line.substring(0, firstComma).trim();
-        const german  = line.substring(firstComma + 1, secondComma).trim();
-        const english = line.substring(secondComma + 1).trim();
+        const level   = cols[0];
+        const german  = cols[1];
+        const english = cols[2];
         const eg = german.replace(/'/g, "\\'");
 
         html += `<div class="sentence-card" data-level="${level}" onclick="speak('${eg}')">

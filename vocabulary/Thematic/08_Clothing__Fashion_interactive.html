@@ -907,64 +907,30 @@ B2,Diese Kollektion setzt neue Maßstäbe in der Modewelt.,This collection sets 
 // CONVERSATIONS — format: level|Title|Speaker,german,english
 // ============================================
 const conversationsRaw = `
-A1|Talking About Family|A,Hast du Geschwister?,Do you have siblings?
-A1|Talking About Family|B,Ja ich habe einen Bruder und eine Schwester. Und du?,Yes I have a brother and a sister. And you?
-A1|Talking About Family|A,Ich bin Einzelkind. Wo wohnen deine Eltern?,I am an only child. Where do your parents live?
-A1|Talking About Family|B,Meine Eltern wohnen in Hamburg.,My parents live in Hamburg.
-A1|Talking About Family|A,Hast du auch Großeltern?,Do you also have grandparents?
-A1|Talking About Family|B,Ja meine Großmutter wohnt bei uns zu Hause.,Yes my grandmother lives with us at home.
-A1|Talking About Family|A,Wie alt ist sie?,How old is she?
-A1|Talking About Family|B,Sie ist achtzig Jahre alt und sehr aktiv.,She is eighty years old and very active.
-A2|Describing Your Family|A,Erzähl mir von deiner Familie.,Tell me about your family.
-A2|Describing Your Family|B,Wir sind eine große Familie. Ich habe drei Geschwister und viele Cousins.,We are a large family. I have three siblings and many cousins.
-A2|Describing Your Family|A,Verstehst du dich gut mit deinen Geschwistern?,Do you get along well with your siblings?
-A2|Describing Your Family|B,Ja wir verstehen uns sehr gut. Mein Bruder ist mein bester Freund.,Yes we get along very well. My brother is my best friend.
-A2|Describing Your Family|A,Sind deine Eltern noch verheiratet?,Are your parents still married?
-A2|Describing Your Family|B,Ja seit dreißig Jahren. Sie feiern nächstes Jahr ihr Jubiläum.,Yes for thirty years. They are celebrating their anniversary next year.
-A2|Describing Your Family|A,Das ist wunderbar! Habt ihr viele Familienfeste?,That is wonderful! Do you have many family celebrations?
-A2|Describing Your Family|B,Ja wir treffen die ganze Familie immer zu Weihnachten und Ostern.,Yes we always meet the whole family at Christmas and Easter.
-B1|Wedding Plans|A,Herzlichen Glückwunsch zur Verlobung! Wann ist die Hochzeit?,Congratulations on the engagement! When is the wedding?
-B1|Wedding Plans|B,Danke! Wir heiraten im September in einem kleinen Schloss.,Thank you! We are getting married in September in a small castle.
-B1|Wedding Plans|A,Habt ihr schon viele Gäste eingeladen?,Have you already invited many guests?
-B1|Wedding Plans|B,Ja wir laden die ganze Familie und enge Freunde ein. Das sind fast achtzig Personen.,Yes we are inviting the whole family and close friends. That is almost eighty people.
-B1|Wedding Plans|A,Und wer ist Trauzeuge?,And who is the best man?
-B1|Wedding Plans|B,Mein Bruder. Er hält auch eine Rede.,My brother. He is also giving a speech.
-B1|Wedding Plans|A,Werden die Kinder auch dabei sein?,Will the children be there too?
-B1|Wedding Plans|B,Ja natürlich. Meine Nichten sind die Blumenmädchen.,Yes of course. My nieces are the flower girls.
-B1|Wedding Plans|A,Das wird sicher ein unvergessliches Fest.,That will certainly be an unforgettable celebration.
-B1|Wedding Plans|B,Wir freuen uns riesig darauf.,We are very much looking forward to it.
-B2|Family Law Matters|A,Ich brauche Ihren Rat in einer Familienangelegenheit.,I need your advice in a family matter.
-B2|Family Law Matters|B,Natürlich. Worum geht es?,Of course. What is it about?
-B2|Family Law Matters|A,Mein Partner und ich haben uns getrennt. Wir haben ein Kind und wissen nicht wie das Sorgerecht geregelt wird.,My partner and I have separated. We have a child and do not know how custody is regulated.
-B2|Family Law Matters|B,Das Gericht entscheidet nach dem Kindeswohl. Meist wird gemeinsames Sorgerecht vereinbart.,The court decides based on the child's best interest. Joint custody is usually agreed upon.
-B2|Family Law Matters|A,Was ist wenn wir uns nicht einigen können?,What if we cannot agree?
-B2|Family Law Matters|B,Dann kann ein Mediator helfen bevor man vor Gericht geht.,Then a mediator can help before going to court.
-B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about visitation rights?
-B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
 `.trim();
 
 const qaCSV = `
 // cluster: basic clothing & dressing
 A1,Was ziehst du heute an?,Ich ziehe eine Hose und ein T-Shirt an. (I am putting on trousers and a T-shirt.)
 A1,Welche Farbe hat dein Pullover?,Mein Pullover ist blau. (My jumper is blue.)
-A1,Trägst du gerne Kleider?,Nein ich trage lieber Hosen. (No I prefer wearing trousers.)
+A1,Trägst du gerne Kleider?,Nein, ich trage lieber Hosen. (No I prefer wearing trousers.)
 A1,Was kostet diese Jacke?,Sie kostet fünfzig Euro. (It costs fifty euros.)
 A1,Welche Größe hast du?,Ich habe Kleidergröße 38. (I am a clothing size 38.)
-A1,Magst du diese Mütze?,Ja sie ist sehr schön. (Yes it is very beautiful.)
+A1,Magst du diese Mütze?,Ja, sie ist sehr schön. (Yes it is very beautiful.)
 A1,Wo kaufst du Kleidung?,Ich kaufe Kleidung im Kaufhaus. (I buy clothes at the department store.)
 A1,Was trägst du im Winter?,Im Winter trage ich einen Mantel und Handschuhe. (In winter I wear a coat and gloves.)
 // cluster: fashion & shopping habits
 A2,Was ist gerade in der Mode?,Weite Hosen und helle Farben sind gerade sehr angesagt. (Wide trousers and light colours are very on-trend now.)
-A2,Welche Marke kaufst du am liebsten?,Ich kaufe lieber Markenkleidung aber manchmal auch billigere Sachen. (I prefer branded clothing but sometimes cheaper things too.)
+A2,Welche Marke kaufst du am liebsten?,Ich kaufe lieber Markenkleidung, aber manchmal auch billigere Sachen. (I prefer branded clothing but sometimes cheaper things too.)
 A2,Was trägst du zu einer Hochzeit?,Ich trage ein elegantes Kleid und passende Schuhe. (I wear an elegant dress and matching shoes.)
-A2,Kaufst du lieber online oder im Geschäft?,Ich kaufe lieber im Geschäft weil ich die Kleidung anprobieren kann. (I prefer buying in store because I can try the clothes on.)
+A2,Kaufst du lieber online oder im Geschäft?,Ich kaufe lieber im Geschäft, weil ich die Kleidung anprobieren kann. (I prefer buying in store because I can try the clothes on.)
 A2,Was ist dein Lieblingsstück in deiner Garderobe?,Mein Lieblingsstück ist eine schwarze Strickjacke. (My favourite piece is a black cardigan.)
 A2,Wie pflegst du deine Kleidung?,Ich wasche sie bei niedrigen Temperaturen. (I wash them at low temperatures.)
 A2,Was ziehst du für die Arbeit an?,Ich trage formelle Kleidung zur Arbeit. (I wear formal clothing to work.)
-A2,Hast du viele Schuhe?,Ja ich habe viele Schuhe in verschiedenen Farben. (Yes I have many shoes in different colours.)
+A2,Hast du viele Schuhe?,Ja, ich habe viele Schuhe in verschiedenen Farben. (Yes I have many shoes in different colours.)
 // cluster: fit & quality
-B1,Wie wichtig ist dir die Qualität von Kleidung?,Sie ist mir sehr wichtig. Ich kaufe lieber weniger aber dafür besser Verarbeitetes. (It is very important to me. I prefer to buy less but better crafted pieces.)
-B1,Was macht gute Passform aus?,Gute Passform bedeutet dass die Kleidung den Körper betont ohne einzuengen. (Good fit means the clothing flatters the body without restricting it.)
+B1,Wie wichtig ist dir die Qualität von Kleidung?,Sie ist mir sehr wichtig. Ich kaufe lieber weniger, aber dafür besser Verarbeitetes. (It is very important to me. I prefer to buy less but better crafted pieces.)
+B1,Was macht gute Passform aus?,Gute Passform bedeutet, dass die Kleidung den Körper betont, ohne einzuengen. (Good fit means the clothing flatters the body without restricting it.)
 B1,Wie erkennst du qualitativ gute Kleidung?,An der Naht der Qualität des Stoffs und dem Sitz des Schnitts. (By the seam the quality of the fabric and how the cut sits.)
 B1,Was machst du mit Kleidung die dir nicht mehr passt?,Ich gebe sie an Kleiderspenden weiter oder verkaufe sie online. (I donate it or sell it online.)
 B1,Welche Materialien bevorzugst du?,Ich bevorzuge Naturfasern wie Baumwolle und Wolle. (I prefer natural fibres like cotton and wool.)
@@ -991,7 +957,7 @@ A1,Der Hut passt perfekt zu deinem Mantel.,The hat goes perfectly with your coat
 A1,Ich kaufe meine Kleidung am liebsten im Kaufhaus.,I prefer to buy my clothes at the department store.
 // cluster: shopping & fit
 A2,Ich probiere die Jacke in der Umkleidekabine an.,I try on the jacket in the fitting room.
-A2,Die Hose ist ein bisschen zu weit aber die Farbe ist sehr schön.,The trousers are a bit too loose but the colour is very beautiful.
+A2,"Die Hose ist ein bisschen zu weit, aber die Farbe ist sehr schön.",The trousers are a bit too loose but the colour is very beautiful.
 A2,Ich suche eine elegante Bluse für die Arbeit.,I am looking for an elegant blouse for work.
 A2,Im Schlussverkauf kann man viele Markenartikel preiswert kaufen.,During the sale you can buy many brand-name items at a good price.
 A2,Die Handtasche ist aus echtem Leder.,The handbag is made of genuine leather.
@@ -1001,11 +967,11 @@ A2,Nach dem Waschen muss man die Kleidung gut falten.,After washing you must fol
 A2,Ich bügele meine Hemden immer selbst.,I always iron my shirts myself.
 A2,Ich wasche meine Wollkleidung immer von Hand.,I always wash my woollen clothes by hand.
 // cluster: style & quality
-B1,Gut verarbeitete Kleidung hält oft viele Jahre wenn man sie sorgfältig pflegt.,Well-crafted clothing often lasts for many years when you care for it properly.
+B1,"Gut verarbeitete Kleidung hält oft viele Jahre, wenn man sie sorgfältig pflegt.",Well-crafted clothing often lasts for many years when you care for it properly.
 B1,Die Naht dieser Hose ist sehr sorgfältig gearbeitet.,The seam of these trousers is very carefully stitched.
 B1,Ich kombiniere gerne einen klassischen Anzug mit einem schlichten Hemd.,I like to combine a classic suit with an understated shirt.
 B1,Diese Kollektion wurde von einem bekannten deutschen Designer entworfen.,This collection was designed by a well-known German designer.
-B1,Das Abendkleid muss chemisch gereinigt werden weil es aus empfindlicher Seide ist.,The evening dress needs dry-cleaning because it is made of delicate silk.
+B1,"Das Abendkleid muss chemisch gereinigt werden, weil es aus empfindlicher Seide ist.",The evening dress needs dry-cleaning because it is made of delicate silk.
 B1,Guter Stil muss kein Vermögen kosten man braucht nur die richtigen Kombinationen.,Good style does not have to cost a fortune you just need the right combinations.
 B1,Beim Kauf achte ich immer auf das Material und die Passform.,When buying I always pay attention to the material and the fit.
 B1,Zeitlose Kleidungsstücke sind eine bessere Investition als kurzlebige Trends.,Timeless garments are a better investment than short-lived trends.
@@ -1022,11 +988,32 @@ B2,Das Upcycling von Alttextilien gewinnt in der Modewelt zunehmend an Bedeutung
 // ============================================
 // CSV PARSER — strips blank lines AND comment lines
 // ============================================
+// Split one data line on commas. Wrap a field in double quotes to put commas inside it:
+//   A1,"Ja, gern.",Yes please.
+// With maxCols, the last column takes the rest of the line verbatim (commas included).
+function splitCSVLine(line, maxCols) {
+    const cols = [];
+    let cur = '', quoted = false;
+    for (let i = 0; i < line.length; i++) {
+        if (maxCols && cols.length === maxCols - 1) {
+            cur = line.slice(i).trim();
+            if (cur.length > 1 && cur[0] === '"' && cur[cur.length - 1] === '"') cur = cur.slice(1, -1);
+            break;
+        }
+        const ch = line[i];
+        if (ch === '"') quoted = !quoted;
+        else if (ch === ',' && !quoted) { cols.push(cur.trim()); cur = ''; }
+        else cur += ch;
+    }
+    cols.push(cur.trim());
+    return cols;
+}
+
 function parseCSV(csv) {
     return csv.split('\n')
         .map(line => line.trim())
         .filter(line => line.length > 0 && !line.startsWith('//'))
-        .map(line => line.split(',').map(cell => cell.trim()));
+        .map(line => splitCSVLine(line));
 }
 
 // ============================================
@@ -1045,14 +1032,16 @@ function loadVoices() {
 
     if (germanVoices.length === 0) {
         voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
-        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+        germanVoice = null; // no German voice: let the browser pick one from utterance.lang
     } else {
+        // keep the current choice if loadVoices runs again (voiceschanged can fire repeatedly)
+        const keepName = germanVoice && germanVoices.some(v => v.name === germanVoice.name) ? germanVoice.name : null;
         germanVoices.forEach((voice, index) => {
             const option = document.createElement('option');
             option.value = index;
             option.textContent = `${voice.name} (${voice.lang})`;
             voiceSelect.appendChild(option);
-            if (index === 0) germanVoice = voice;
+            if (keepName ? voice.name === keepName : index === 0) { germanVoice = voice; option.selected = true; }
         });
     }
     console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
@@ -1069,7 +1058,7 @@ document.getElementById('voiceSelect').addEventListener('change', function(e) {
     stopAllSpeech();
     const voices = window.speechSynthesis.getVoices();
     const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
-    germanVoice = germanVoices[e.target.value] || voices[0];
+    germanVoice = germanVoices[e.target.value] || null;
 });
 
 document.getElementById('speedControl').addEventListener('input', function(e) {
@@ -1085,7 +1074,7 @@ function speak(text, callback) {
         if (callback) callback();
         return;
     }
-    text = text.replace('🔊', '').trim();
+    text = text.replaceAll('🔊', '').trim();
     if (!isPlayingSequence) stopAllSpeech();
     setTimeout(() => speakNow(text, callback), 100);
 }
@@ -1468,19 +1457,15 @@ function renderConversations() {
         // Format: LEVEL|Title|Speaker,german text,english text
         const firstPipe  = line.indexOf('|');
         const secondPipe = line.indexOf('|', firstPipe + 1);
-        const firstComma = line.indexOf(',', secondPipe + 1);
-        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+        const cols       = splitCSVLine(line.substring(secondPipe + 1), 3);  // speaker, german, english
+        if (firstPipe === -1 || secondPipe === -1 || cols.length < 3) return;
 
         const level   = line.substring(0, firstPipe).trim();
         const title   = line.substring(firstPipe + 1, secondPipe).trim();
-        const speaker = line.substring(secondPipe + 1, firstComma).trim();
-        const rest    = line.substring(firstComma + 1);
+        const speaker = cols[0];
 
-        const secondComma = rest.indexOf(',');
-        if (secondComma === -1) return;
-
-        const german  = rest.substring(0, secondComma).trim();
-        const english = rest.substring(secondComma + 1).trim();
+        const german  = cols[1];
+        const english = cols[2];
 
         const key = `${level}|${title}`;
         if (!conversations[key]) {
@@ -1516,6 +1501,7 @@ function renderConversations() {
         html += `</div></div>`;
     });
 
+    if (!convOrder.length) html = '<p style="text-align:center;color:#999;padding:12px;">No conversations for this unit yet.</p>';
     document.getElementById('conversationsContainer').innerHTML = html;
 }
 
@@ -1529,13 +1515,12 @@ function renderQA() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level    = line.substring(0, firstComma).trim();
-        const question = line.substring(firstComma + 1, secondComma).trim();
-        const answer   = line.substring(secondComma + 1).trim();
+        const level    = cols[0];
+        const question = cols[1];
+        const answer   = cols[2];
         const eq = question.replace(/'/g, "\\'");
         const ea = answer.replace(/'/g, "\\'");
 
@@ -1558,13 +1543,12 @@ function renderSentences() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level   = line.substring(0, firstComma).trim();
-        const german  = line.substring(firstComma + 1, secondComma).trim();
-        const english = line.substring(secondComma + 1).trim();
+        const level   = cols[0];
+        const german  = cols[1];
+        const english = cols[2];
         const eg = german.replace(/'/g, "\\'");
 
         html += `<div class="sentence-card" data-level="${level}" onclick="speak('${eg}')">

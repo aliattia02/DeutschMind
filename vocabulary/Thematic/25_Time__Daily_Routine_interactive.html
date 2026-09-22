@@ -857,7 +857,7 @@ B2,Das Prokrastinieren kostet mich jeden Tag wertvolle Zeit.,Procrastinating cos
 // cluster: time idioms
 B1,Die Zeit vergeht wie im Flug.,Time flies.
 B1,Ich lebe lieber im Moment als in der Vergangenheit.,I prefer living in the moment to living in the past.
-B2,Das hat seine Zeit gebraucht aber es hat sich gelohnt.,That took time but it was worth it.
+B2,"Das hat seine Zeit gebraucht, aber es hat sich gelohnt.",That took time but it was worth it.
 B2,Wer früh aufsteht hat mehr vom Tag.,The early bird catches the worm.
 B2,Die biologische Uhr tickt anders als die Wanduhr.,The biological clock ticks differently from the wall clock.
 `.trim();
@@ -866,40 +866,41 @@ B2,Die biologische Uhr tickt anders als die Wanduhr.,The biological clock ticks 
 // CONVERSATIONS — format: level|Title|Speaker,german,english
 // ============================================
 const conversationsRaw = `
-A1|Talking About Family|A,Hast du Geschwister?,Do you have siblings?
-A1|Talking About Family|B,Ja ich habe einen Bruder und eine Schwester. Und du?,Yes I have a brother and a sister. And you?
-A1|Talking About Family|A,Ich bin Einzelkind. Wo wohnen deine Eltern?,I am an only child. Where do your parents live?
-A1|Talking About Family|B,Meine Eltern wohnen in Hamburg.,My parents live in Hamburg.
-A1|Talking About Family|A,Hast du auch Großeltern?,Do you also have grandparents?
-A1|Talking About Family|B,Ja meine Großmutter wohnt bei uns zu Hause.,Yes my grandmother lives with us at home.
-A1|Talking About Family|A,Wie alt ist sie?,How old is she?
-A1|Talking About Family|B,Sie ist achtzig Jahre alt und sehr aktiv.,She is eighty years old and very active.
-A2|Describing Your Family|A,Erzähl mir von deiner Familie.,Tell me about your family.
-A2|Describing Your Family|B,Wir sind eine große Familie. Ich habe drei Geschwister und viele Cousins.,We are a large family. I have three siblings and many cousins.
-A2|Describing Your Family|A,Verstehst du dich gut mit deinen Geschwistern?,Do you get along well with your siblings?
-A2|Describing Your Family|B,Ja wir verstehen uns sehr gut. Mein Bruder ist mein bester Freund.,Yes we get along very well. My brother is my best friend.
-A2|Describing Your Family|A,Sind deine Eltern noch verheiratet?,Are your parents still married?
-A2|Describing Your Family|B,Ja seit dreißig Jahren. Sie feiern nächstes Jahr ihr Jubiläum.,Yes for thirty years. They are celebrating their anniversary next year.
-A2|Describing Your Family|A,Das ist wunderbar! Habt ihr viele Familienfeste?,That is wonderful! Do you have many family celebrations?
-A2|Describing Your Family|B,Ja wir treffen die ganze Familie immer zu Weihnachten und Ostern.,Yes we always meet the whole family at Christmas and Easter.
-B1|Wedding Plans|A,Herzlichen Glückwunsch zur Verlobung! Wann ist die Hochzeit?,Congratulations on the engagement! When is the wedding?
-B1|Wedding Plans|B,Danke! Wir heiraten im September in einem kleinen Schloss.,Thank you! We are getting married in September in a small castle.
-B1|Wedding Plans|A,Habt ihr schon viele Gäste eingeladen?,Have you already invited many guests?
-B1|Wedding Plans|B,Ja wir laden die ganze Familie und enge Freunde ein. Das sind fast achtzig Personen.,Yes we are inviting the whole family and close friends. That is almost eighty people.
-B1|Wedding Plans|A,Und wer ist Trauzeuge?,And who is the best man?
-B1|Wedding Plans|B,Mein Bruder. Er hält auch eine Rede.,My brother. He is also giving a speech.
-B1|Wedding Plans|A,Werden die Kinder auch dabei sein?,Will the children be there too?
-B1|Wedding Plans|B,Ja natürlich. Meine Nichten sind die Blumenmädchen.,Yes of course. My nieces are the flower girls.
-B1|Wedding Plans|A,Das wird sicher ein unvergessliches Fest.,That will certainly be an unforgettable celebration.
-B1|Wedding Plans|B,Wir freuen uns riesig darauf.,We are very much looking forward to it.
-B2|Family Law Matters|A,Ich brauche Ihren Rat in einer Familienangelegenheit.,I need your advice in a family matter.
-B2|Family Law Matters|B,Natürlich. Worum geht es?,Of course. What is it about?
-B2|Family Law Matters|A,Mein Partner und ich haben uns getrennt. Wir haben ein Kind und wissen nicht wie das Sorgerecht geregelt wird.,My partner and I have separated. We have a child and do not know how custody is regulated.
-B2|Family Law Matters|B,Das Gericht entscheidet nach dem Kindeswohl. Meist wird gemeinsames Sorgerecht vereinbart.,The court decides based on the child's best interest. Joint custody is usually agreed upon.
-B2|Family Law Matters|A,Was ist wenn wir uns nicht einigen können?,What if we cannot agree?
-B2|Family Law Matters|B,Dann kann ein Mediator helfen bevor man vor Gericht geht.,Then a mediator can help before going to court.
-B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about visitation rights?
-B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
+A1|What Time Is It?|A,Entschuldigung. Wie spät ist es bitte?,Excuse me. What time is it please?
+A1|What Time Is It?|B,Es ist halb zehn.,It is half past nine.
+A1|What Time Is It?|A,Oh! Ich bin schon wieder zu spät.,Oh! I am late again.
+A1|What Time Is It?|B,Wohin musst du?,Where do you need to be?
+A1|What Time Is It?|A,Ich muss um zehn Uhr in der Schule sein.,I need to be at school at ten o'clock.
+A1|What Time Is It?|B,Das schaffst du noch. Die Schule ist nicht weit.,You can still make it. The school is not far.
+A1|What Time Is It?|A,Danke! Ich beeile mich.,Thank you! I will hurry.
+A1|What Time Is It?|B,Viel Erfolg! Und kaufe dir eine Uhr!,Good luck! And buy yourself a watch!
+A2|A Typical Day|A,Wann stehst du normalerweise auf?,When do you normally get up?
+A2|A Typical Day|B,Ich bin ein Frühaufsteher. Ich stehe um sechs Uhr auf.,I am an early riser. I get up at six o'clock.
+A2|A Typical Day|A,So früh? Ich schlafe lieber bis acht.,That early? I prefer to sleep until eight.
+A2|A Typical Day|B,"Ich frühstücke dann und mache Sport, bevor die Arbeit beginnt.",I then have breakfast and exercise before work starts.
+A2|A Typical Day|A,Und abends? Was machst du nach der Arbeit?,And in the evenings? What do you do after work?
+A2|A Typical Day|B,Ich koche und entspanne mich. Um zehn gehe ich ins Bett.,I cook and relax. I go to bed at ten.
+A2|A Typical Day|A,Das klingt sehr strukturiert. Ich bin viel chaotischer.,That sounds very structured. I am much more chaotic.
+A2|A Typical Day|B,Eine gute Abendroutine hilft wirklich beim Einschlafen.,A good evening routine really helps with falling asleep.
+A2|A Typical Day|A,Das glaube ich dir. Ich versuche das auch einzuführen.,I believe you. I will try to introduce that too.
+B1|Time Management|A,Ich komme nie mit meinen Aufgaben hinterher.,I never manage to keep up with my tasks.
+B1|Time Management|B,Hast du schon mal einen Terminplan ausprobiert?,Have you ever tried using an appointment schedule?
+B1|Time Management|A,"Ja, aber ich halte ihn nie ein. Ich schiebe immer alles auf.",Yes but I never stick to it. I always put everything off.
+B1|Time Management|B,Das kenne ich. Prokrastination ist wirklich ein echtes Problem.,I know that feeling. Procrastination is really a genuine problem.
+B1|Time Management|A,Wie hast du das bei dir überwunden?,How did you overcome it in your own life?
+B1|Time Management|B,Ich teile große Aufgaben in kleine Schritte auf und hake jeden ab.,I divide big tasks into small steps and tick each one off.
+B1|Time Management|A,Und du lebst wirklich nach deiner Tagesstruktur?,And you really live by your daily structure?
+B1|Time Management|B,Meistens. Aber ich gebe mir auch Zeit für Spontanes.,Mostly. But I also give myself time for spontaneous things.
+B1|Time Management|A,Das klingt ausgewogen. Ich versuche das mal so.,That sounds balanced. I will give that a try.
+B2|Chronobiology & Sleep|A,Hast du schon mal etwas über den Biorhythmus gelesen?,Have you ever read anything about biorhythm?
+B2|Chronobiology & Sleep|B,"Ja. Die Chronobiologie sagt, dass jeder eine innere Uhr hat.",Yes. Chronobiology says that everyone has an internal clock.
+B2|Chronobiology & Sleep|A,Und was bedeutet das für den Alltag?,And what does that mean for everyday life?
+B2|Chronobiology & Sleep|B,Manche Menschen sind morgens leistungsfähiger andere abends.,Some people are more capable in the mornings others in the evenings.
+B2|Chronobiology & Sleep|A,Ich bin definitiv ein Nachtmensch. Früh bin ich kaum ansprechbar.,I am definitely a night owl. I am barely approachable early on.
+B2|Chronobiology & Sleep|B,Dann solltest du zeitkritische Aufgaben auf den Abend legen.,Then you should schedule time-critical tasks in the evening.
+B2|Chronobiology & Sleep|A,Das tue ich auch. Aber die Zeitumstellung im Herbst bringt mich immer aus dem Takt.,I do that too. But the clock change in autumn always throws me off.
+B2|Chronobiology & Sleep|B,Die Schlafarchitektur braucht dann bis zu zwei Wochen zur Anpassung.,Sleep architecture can take up to two weeks to adjust.
+B2|Chronobiology & Sleep|A,Das erklärt viel. Vielleicht sollte ich meinen Lebensrhythmus besser dokumentieren.,That explains a lot. Perhaps I should document my life rhythm more carefully.
 `.trim();
 
 const qaCSV = `
@@ -910,7 +911,7 @@ A1,Welcher Tag ist heute?,Heute ist Mittwoch. (Today is Wednesday.)
 A1,Wann gehst du schlafen?,Ich gehe um elf Uhr ins Bett. (I go to bed at eleven o'clock.)
 A1,Wie viele Stunden schläfst du?,Ich schlafe ungefähr acht Stunden. (I sleep about eight hours.)
 A1,Was machst du am Montag?,Am Montag arbeite ich von neun bis fünf. (On Monday I work from nine to five.)
-A1,Hast du heute viel zu tun?,Ja ich habe einen vollen Terminplan. (Yes I have a full schedule.)
+A1,Hast du heute viel zu tun?,Ja, ich habe einen vollen Terminplan. (Yes I have a full schedule.)
 A1,Was machst du am Abend?,Am Abend esse ich zu Abend und entspanne mich. (In the evening I have dinner and relax.)
 // cluster: daily routine
 A2,Wie sieht dein Morgen aus?,Ich stehe auf duschen mich frühstücke und fahre dann zur Arbeit. (I get up shower have breakfast and then go to work.)
@@ -918,11 +919,11 @@ A2,Bist du ein Frühaufsteher oder ein Nachtmensch?,Ich bin ein Nachtmensch. Mor
 A2,Wie lange brauchst du um dich fertigzumachen?,Etwa dreißig Minuten reichen mir normalerweise. (About thirty minutes are normally enough for me.)
 A2,Was machst du in deiner Abendroutine?,Ich lese ein Buch höre Musik und gehe dann schlafen. (I read a book listen to music and then go to sleep.)
 A2,Wie planst du deine Woche?,Ich schreibe am Sonntag eine Liste mit Aufgaben für die ganze Woche. (On Sunday I write a list of tasks for the whole week.)
-A2,Wie reagierst du wenn du zu spät bist?,Ich entschuldige mich sofort und erkläre was passiert ist. (I apologize straight away and explain what happened.)
-A2,Was machst du wenn du zu viel Zeitdruck hast?,Ich priorisiere die wichtigsten Aufgaben und mache zuerst die dringlichsten. (I prioritize the most important tasks and do the most urgent ones first.)
-A2,Was ist dein liebster Wochentag?,Mein liebster Wochentag ist Freitag weil dann das Wochenende beginnt. (My favorite day of the week is Friday because the weekend starts then.)
+A2,"Wie reagierst du, wenn du zu spät bist?",Ich entschuldige mich sofort und erkläre was passiert ist. (I apologize straight away and explain what happened.)
+A2,"Was machst du, wenn du zu viel Zeitdruck hast?",Ich priorisiere die wichtigsten Aufgaben und mache zuerst die dringlichsten. (I prioritize the most important tasks and do the most urgent ones first.)
+A2,Was ist dein liebster Wochentag?,Mein liebster Wochentag ist Freitag, weil dann das Wochenende beginnt. (My favorite day of the week is Friday because the weekend starts then.)
 // cluster: time & planning
-B1,Was bedeutet Zeitmanagement für dich?,Es bedeutet Aufgaben sinnvoll einzuteilen damit man Fristen einhält. (It means dividing tasks sensibly so that you meet deadlines.)
+B1,Was bedeutet Zeitmanagement für dich?,Es bedeutet, Aufgaben sinnvoll einzuteilen, damit man Fristen einhält. (It means dividing tasks sensibly so that you meet deadlines.)
 B1,Wie gehst du mit Prokrastination um?,Ich versuche große Aufgaben in kleinere Schritte aufzuteilen. (I try to divide large tasks into smaller steps.)
 B1,Wie hilft eine Morgenroutine beim Start in den Tag?,Sie gibt dem Tag Struktur und man fühlt sich kontrollierter. (It gives the day structure and you feel more in control.)
 B1,Warum ist Schlafqualität wichtig?,Schlechter Schlaf beeinträchtigt Konzentration und Stimmung den ganzen Tag. (Poor sleep affects concentration and mood all day.)
@@ -947,14 +948,14 @@ A1,Ich habe heute keine Zeit für einen Spaziergang.,I have no time for a walk t
 A1,Montag und Mittwoch sind meine langen Arbeitstage.,Monday and Wednesday are my long working days.
 A1,Um Mitternacht bin ich immer schon im Bett.,I am always in bed by midnight.
 A1,Mein Wecker klingelt jeden Morgen um sechs.,My alarm clock rings every morning at six.
-A1,Die Minuten vergehen sehr langsam wenn man wartet.,The minutes pass very slowly when you are waiting.
+A1,"Die Minuten vergehen sehr langsam, wenn man wartet.",The minutes pass very slowly when you are waiting.
 A1,Januar ist der erste Monat des Jahres.,January is the first month of the year.
 // cluster: daily routine
 A2,Ich habe eine feste Morgenroutine die mir den Start erleichtert.,I have a fixed morning routine that makes starting the day easier.
 A2,Am Wochenende schlafe ich meistens länger aus als unter der Woche.,At the weekend I usually sleep in longer than on weekdays.
-A2,Ich frühstücke immer bevor ich das Haus verlasse.,I always have breakfast before I leave the house.
+A2,"Ich frühstücke immer, bevor ich das Haus verlasse.",I always have breakfast before I leave the house.
 A2,Meine Abendroutine beginnt um neun Uhr mit einem Buch.,My evening routine starts at nine with a book.
-A2,Es ist wichtig genug Schlafzeit einzuplanen damit man erholt ist.,It is important to plan enough sleeping time so that you are rested.
+A2,"Es ist wichtig, genug Schlafzeit einzuplanen, damit man erholt ist.",It is important to plan enough sleeping time so that you are rested.
 A2,Am Dienstag habe ich einen vollen Terminplan mit fünf Terminen.,On Tuesday I have a packed schedule with five appointments.
 A2,Das Wochenende vergeht immer viel schneller als die Woche.,The weekend always passes much faster than the week.
 A2,Ich bin kein Frühaufsteher und brauche zwei Tassen Kaffee um wach zu werden.,I am not an early riser and need two cups of coffee to wake up.
@@ -962,19 +963,19 @@ A2,Ich schreibe mir jeden Abend auf was ich am nächsten Tag erledigen muss.,I w
 A2,Bei Verspätungen beeile ich mich so sehr wie möglich.,When late I hurry as much as possible.
 A2,Meine Hauptverkehrszeit fällt immer mit dem Berufsverkehr zusammen.,My rush hour always coincides with commuter traffic.
 // cluster: time planning & pressure
-B1,Wenn die Frist naht fällt es mir schwer mich zu konzentrieren.,When the deadline approaches it is hard for me to concentrate.
+B1,"Wenn die Frist naht, fällt es mir schwer, mich zu konzentrieren.",When the deadline approaches it is hard for me to concentrate.
 B1,Ich teile meine Wochenplanung in kleine erreichbare Tagespensum-Abschnitte ein.,I divide my weekly planning into small achievable daily quota sections.
 B1,Ein gutes Zeitbudget hilft dabei Überstunden und Rückstände zu vermeiden.,A good time budget helps to avoid overtime and backlogs.
 B1,Das Einhalten von Routinen stabilisiert den eigenen Tagesrhythmus erheblich.,Keeping to routines considerably stabilizes one's own daily rhythm.
 B1,Die Sommerzeit bringt meinen Schlafrhythmus jedes Jahr durcheinander.,Daylight saving time disrupts my sleeping rhythm every year.
 B1,Ein Wendepunkt im Leben erfordert oft eine völlig neue Tagesstruktur.,A turning point in life often requires a completely new daily structure.
-B1,Die Zeit vergeht wie im Flug wenn man aufgeht was man tut.,Time flies when you are absorbed in what you are doing.
-B1,Ich sage mir oft ich fange morgen an aber das Aufschieben wird immer schlimmer.,I often tell myself I will start tomorrow but the procrastination keeps getting worse.
+B1,"Die Zeit vergeht wie im Flug, wenn man in dem aufgeht, was man tut.",Time flies when you are absorbed in what you are doing.
+B1,"Ich sage mir oft, ich fange morgen an, aber das Aufschieben wird immer schlimmer.",I often tell myself I will start tomorrow but the procrastination keeps getting worse.
 B1,Ich versuche zeitaufwändige Aufgaben auf zeitsparende Methoden umzustellen.,I am trying to switch time-consuming tasks to time-saving methods.
 // cluster: advanced time concepts
-B2,Die Chronobiologie erklärt warum nicht alle Menschen dieselbe Schlafarchitektur haben.,Chronobiology explains why not all people have the same sleep architecture.
+B2,"Die Chronobiologie erklärt, warum nicht alle Menschen dieselbe Schlafarchitektur haben.",Chronobiology explains why not all people have the same sleep architecture.
 B2,Im Zeitalter der Echtzeit-Kommunikation ist Prokrastination ein wachsendes Problem.,In the age of real-time communication procrastination is a growing problem.
-B2,Der Biorhythmus bestimmt maßgeblich zu welchen Tageszeiten wir am leistungsfähigsten sind.,Biorhythm largely determines at which times of day we are most capable.
+B2,"Der Biorhythmus bestimmt maßgeblich, zu welchen Tageszeiten wir am leistungsfähigsten sind.",Biorhythm largely determines at which times of day we are most capable.
 B2,Zeitkritische Entscheidungen müssen ohne Verzögerung getroffen werden.,Time-critical decisions must be made without delay.
 B2,Die Zeitumstellung wurde über Jahrzehnte kontrovers diskutiert ohne abgeschafft zu werden.,The clock change was controversially discussed for decades without being abolished.
 B2,Wer kontinuierlich an seinen Gewohnheiten arbeitet schafft sich einen stabilen Lebensrhythmus.,Whoever continuously works on their habits creates a stable life rhythm for themselves.
@@ -984,11 +985,32 @@ B2,Die lineare Zeitwahrnehmung des Westens steht in Kontrast zu zyklischen Zeitk
 // ============================================
 // CSV PARSER — strips blank lines AND comment lines
 // ============================================
+// Split one data line on commas. Wrap a field in double quotes to put commas inside it:
+//   A1,"Ja, gern.",Yes please.
+// With maxCols, the last column takes the rest of the line verbatim (commas included).
+function splitCSVLine(line, maxCols) {
+    const cols = [];
+    let cur = '', quoted = false;
+    for (let i = 0; i < line.length; i++) {
+        if (maxCols && cols.length === maxCols - 1) {
+            cur = line.slice(i).trim();
+            if (cur.length > 1 && cur[0] === '"' && cur[cur.length - 1] === '"') cur = cur.slice(1, -1);
+            break;
+        }
+        const ch = line[i];
+        if (ch === '"') quoted = !quoted;
+        else if (ch === ',' && !quoted) { cols.push(cur.trim()); cur = ''; }
+        else cur += ch;
+    }
+    cols.push(cur.trim());
+    return cols;
+}
+
 function parseCSV(csv) {
     return csv.split('\n')
         .map(line => line.trim())
         .filter(line => line.length > 0 && !line.startsWith('//'))
-        .map(line => line.split(',').map(cell => cell.trim()));
+        .map(line => splitCSVLine(line));
 }
 
 // ============================================
@@ -1008,14 +1030,16 @@ function loadVoices() {
 
     if (germanVoices.length === 0) {
         voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
-        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+        germanVoice = null; // no German voice: let the browser pick one from utterance.lang
     } else {
+        // keep the current choice if loadVoices runs again (voiceschanged can fire repeatedly)
+        const keepName = germanVoice && germanVoices.some(v => v.name === germanVoice.name) ? germanVoice.name : null;
         germanVoices.forEach((voice, index) => {
             const option = document.createElement('option');
             option.value = index;
             option.textContent = `${voice.name} (${voice.lang})`;
             voiceSelect.appendChild(option);
-            if (index === 0) germanVoice = voice;
+            if (keepName ? voice.name === keepName : index === 0) { germanVoice = voice; option.selected = true; }
         });
     }
     console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
@@ -1032,7 +1056,7 @@ document.getElementById('voiceSelect').addEventListener('change', function(e) {
     stopAllSpeech();
     const voices = window.speechSynthesis.getVoices();
     const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
-    germanVoice = germanVoices[e.target.value] || voices[0];
+    germanVoice = germanVoices[e.target.value] || null;
 });
 
 document.getElementById('speedControl').addEventListener('input', function(e) {
@@ -1060,7 +1084,7 @@ function speak(text, callback) {
         if (callback) callback();
         return;
     }
-    text = text.replace('🔊', '').trim();
+    text = text.replaceAll('🔊', '').trim();
     if (!isPlayingSequence) stopAllSpeech();
     if (!ttsWarmedUp) {
         warmUpTTS(() => speakNow(text, callback));
@@ -1448,19 +1472,15 @@ function renderConversations() {
         // Format: LEVEL|Title|Speaker,german text,english text
         const firstPipe  = line.indexOf('|');
         const secondPipe = line.indexOf('|', firstPipe + 1);
-        const firstComma = line.indexOf(',', secondPipe + 1);
-        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+        const cols       = splitCSVLine(line.substring(secondPipe + 1), 3);  // speaker, german, english
+        if (firstPipe === -1 || secondPipe === -1 || cols.length < 3) return;
 
         const level   = line.substring(0, firstPipe).trim();
         const title   = line.substring(firstPipe + 1, secondPipe).trim();
-        const speaker = line.substring(secondPipe + 1, firstComma).trim();
-        const rest    = line.substring(firstComma + 1);
+        const speaker = cols[0];
 
-        const secondComma = rest.indexOf(',');
-        if (secondComma === -1) return;
-
-        const german  = rest.substring(0, secondComma).trim();
-        const english = rest.substring(secondComma + 1).trim();
+        const german  = cols[1];
+        const english = cols[2];
 
         const key = `${level}|${title}`;
         if (!conversations[key]) {
@@ -1496,6 +1516,7 @@ function renderConversations() {
         html += `</div></div>`;
     });
 
+    if (!convOrder.length) html = '<p style="text-align:center;color:#999;padding:12px;">No conversations for this unit yet.</p>';
     document.getElementById('conversationsContainer').innerHTML = html;
 }
 
@@ -1509,13 +1530,12 @@ function renderQA() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level    = line.substring(0, firstComma).trim();
-        const question = line.substring(firstComma + 1, secondComma).trim();
-        const answer   = line.substring(secondComma + 1).trim();
+        const level    = cols[0];
+        const question = cols[1];
+        const answer   = cols[2];
         const eq = question.replace(/'/g, "\\'");
         const ea = answer.replace(/'/g, "\\'");
 
@@ -1538,13 +1558,12 @@ function renderSentences() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level   = line.substring(0, firstComma).trim();
-        const german  = line.substring(firstComma + 1, secondComma).trim();
-        const english = line.substring(secondComma + 1).trim();
+        const level   = cols[0];
+        const german  = cols[1];
+        const english = cols[2];
         const eg = german.replace(/'/g, "\\'");
 
         html += `<div class="sentence-card" data-level="${level}" onclick="speak('${eg}')">

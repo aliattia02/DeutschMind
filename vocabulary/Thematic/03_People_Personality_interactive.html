@@ -904,61 +904,63 @@ B2,Man soll nicht nach dem Äußeren urteilen.,One should not judge by appearanc
 // CONVERSATIONS — format: level|Title|Speaker,german,english
 // ============================================
 const conversationsRaw = `
-A1|Talking About Family|A,Hast du Geschwister?,Do you have siblings?
-A1|Talking About Family|B,Ja ich habe einen Bruder und eine Schwester. Und du?,Yes I have a brother and a sister. And you?
-A1|Talking About Family|A,Ich bin Einzelkind. Wo wohnen deine Eltern?,I am an only child. Where do your parents live?
-A1|Talking About Family|B,Meine Eltern wohnen in Hamburg.,My parents live in Hamburg.
-A1|Talking About Family|A,Hast du auch Großeltern?,Do you also have grandparents?
-A1|Talking About Family|B,Ja meine Großmutter wohnt bei uns zu Hause.,Yes my grandmother lives with us at home.
-A1|Talking About Family|A,Wie alt ist sie?,How old is she?
-A1|Talking About Family|B,Sie ist achtzig Jahre alt und sehr aktiv.,She is eighty years old and very active.
-A2|Describing Your Family|A,Erzähl mir von deiner Familie.,Tell me about your family.
-A2|Describing Your Family|B,Wir sind eine große Familie. Ich habe drei Geschwister und viele Cousins.,We are a large family. I have three siblings and many cousins.
-A2|Describing Your Family|A,Verstehst du dich gut mit deinen Geschwistern?,Do you get along well with your siblings?
-A2|Describing Your Family|B,Ja wir verstehen uns sehr gut. Mein Bruder ist mein bester Freund.,Yes we get along very well. My brother is my best friend.
-A2|Describing Your Family|A,Sind deine Eltern noch verheiratet?,Are your parents still married?
-A2|Describing Your Family|B,Ja seit dreißig Jahren. Sie feiern nächstes Jahr ihr Jubiläum.,Yes for thirty years. They are celebrating their anniversary next year.
-A2|Describing Your Family|A,Das ist wunderbar! Habt ihr viele Familienfeste?,That is wonderful! Do you have many family celebrations?
-A2|Describing Your Family|B,Ja wir treffen die ganze Familie immer zu Weihnachten und Ostern.,Yes we always meet the whole family at Christmas and Easter.
-B1|Wedding Plans|A,Herzlichen Glückwunsch zur Verlobung! Wann ist die Hochzeit?,Congratulations on the engagement! When is the wedding?
-B1|Wedding Plans|B,Danke! Wir heiraten im September in einem kleinen Schloss.,Thank you! We are getting married in September in a small castle.
-B1|Wedding Plans|A,Habt ihr schon viele Gäste eingeladen?,Have you already invited many guests?
-B1|Wedding Plans|B,Ja wir laden die ganze Familie und enge Freunde ein. Das sind fast achtzig Personen.,Yes we are inviting the whole family and close friends. That is almost eighty people.
-B1|Wedding Plans|A,Und wer ist Trauzeuge?,And who is the best man?
-B1|Wedding Plans|B,Mein Bruder. Er hält auch eine Rede.,My brother. He is also giving a speech.
-B1|Wedding Plans|A,Werden die Kinder auch dabei sein?,Will the children be there too?
-B1|Wedding Plans|B,Ja natürlich. Meine Nichten sind die Blumenmädchen.,Yes of course. My nieces are the flower girls.
-B1|Wedding Plans|A,Das wird sicher ein unvergessliches Fest.,That will certainly be an unforgettable celebration.
-B1|Wedding Plans|B,Wir freuen uns riesig darauf.,We are very much looking forward to it.
-B2|Family Law Matters|A,Ich brauche Ihren Rat in einer Familienangelegenheit.,I need your advice in a family matter.
-B2|Family Law Matters|B,Natürlich. Worum geht es?,Of course. What is it about?
-B2|Family Law Matters|A,Mein Partner und ich haben uns getrennt. Wir haben ein Kind und wissen nicht wie das Sorgerecht geregelt wird.,My partner and I have separated. We have a child and do not know how custody is regulated.
-B2|Family Law Matters|B,Das Gericht entscheidet nach dem Kindeswohl. Meist wird gemeinsames Sorgerecht vereinbart.,The court decides based on the child's best interest. Joint custody is usually agreed upon.
-B2|Family Law Matters|A,Was ist wenn wir uns nicht einigen können?,What if we cannot agree?
-B2|Family Law Matters|B,Dann kann ein Mediator helfen bevor man vor Gericht geht.,Then a mediator can help before going to court.
-B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about visitation rights?
-B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
+A1|Describing a Friend|A,Wer ist dein bester Freund?,Who is your best friend?
+A1|Describing a Friend|B,Mein bester Freund heißt Max. Er ist sehr nett.,My best friend is called Max. He is very nice.
+A1|Describing a Friend|A,Wie sieht er aus?,What does he look like?
+A1|Describing a Friend|B,Er ist groß und hat braune Haare und blaue Augen.,He is tall and has brown hair and blue eyes.
+A1|Describing a Friend|A,Ist er lustig?,Is he funny?
+A1|Describing a Friend|B,"Ja, er ist sehr lustig. Er macht immer Witze.",Yes he is very funny. He always makes jokes.
+A1|Describing a Friend|A,Bist du oft mit ihm zusammen?,Are you often together with him?
+A1|Describing a Friend|B,"Ja, wir treffen uns fast jeden Tag nach der Schule.",Yes we meet almost every day after school.
+A2|Getting to Know Someone|A,Hallo! Ich bin Lisa. Wie heißt du?,Hello! I am Lisa. What is your name?
+A2|Getting to Know Someone|B,Ich bin Jonas. Freut mich dich kennenzulernen.,I am Jonas. Nice to meet you.
+A2|Getting to Know Someone|A,Bist du neu hier?,Are you new here?
+A2|Getting to Know Someone|B,"Ja, ich bin letzte Woche hier eingezogen. Ich kenne noch nicht viele Leute.",Yes I moved here last week. I do not know many people yet.
+A2|Getting to Know Someone|A,Wie würdest du dich beschreiben?,How would you describe yourself?
+A2|Getting to Know Someone|B,"Ich bin eher ruhig und schüchtern, aber wenn ich jemanden besser kenne, bin ich sehr offen.",I am rather quiet and shy but when I know someone better I am very open.
+A2|Getting to Know Someone|A,Ich bin total das Gegenteil. Ich bin sehr gesellig und rede gerne.,I am the complete opposite. I am very sociable and like talking.
+A2|Getting to Know Someone|B,Das ist gut! Dann ergänzen wir uns bestimmt.,That is great! Then we certainly complement each other.
+A2|Getting to Know Someone|A,Hast du besondere Interessen oder Hobbys?,Do you have special interests or hobbies?
+A2|Getting to Know Someone|B,"Ja, ich lese sehr gerne und interessiere mich für Musik.",Yes I really like reading and I am interested in music.
+A2|Getting to Know Someone|A,Cool! Ich auch. Ich glaube wir werden gute Freunde.,Cool! Me too. I think we will be good friends.
+A2|Getting to Know Someone|B,Das hoffe ich auch! Möchtest du einen Kaffee trinken?,I hope so too! Would you like to have a coffee?
+B1|Discussing a Colleague|A,Was denkst du über unseren neuen Kollegen?,What do you think about our new colleague?
+B1|Discussing a Colleague|B,Er macht einen guten Eindruck. Er wirkt sehr kompetent und selbstbewusst.,He makes a good impression. He seems very competent and self-confident.
+B1|Discussing a Colleague|A,Ich finde ihn etwas dominant. Er unterbricht andere oft.,I find him a bit dominant. He often interrupts others.
+B1|Discussing a Colleague|B,Das stimmt. Aber er ist auch sehr kreativ und bringt viele gute Ideen.,That is true. But he is also very creative and brings many good ideas.
+B1|Discussing a Colleague|A,"Man sollte ihn besser kennenlernen, bevor man urteilt.",One should get to know him better before judging.
+B1|Discussing a Colleague|B,Genau. Der erste Eindruck täuscht manchmal.,Exactly. The first impression can sometimes be deceiving.
+B1|Discussing a Colleague|A,Hast du schon länger mit ihm gesprochen?,Have you spoken with him at length yet?
+B1|Discussing a Colleague|B,"Ja, kurz. Er wirkt eigentlich sehr hilfsbereit und offen für Kritik.",Yes briefly. He actually seems very helpful and open to criticism.
+B2|Self-Reflection|A,Du wirkst heute nachdenklich. Was beschäftigt dich?,You seem thoughtful today. What is on your mind?
+B2|Self-Reflection|B,"Ich reflektiere gerade viel über mich selbst. Ich frage mich, ob ich zu egozentrisch bin.",I am currently reflecting a lot about myself. I wonder whether I am too self-centered.
+B2|Self-Reflection|A,Was hat dich zu dieser Reflexion gebracht?,What brought you to this reflection?
+B2|Self-Reflection|B,Ein Gespräch mit einem Freund. Er meinte ich höre anderen manchmal nicht wirklich zu.,A conversation with a friend. He said I sometimes do not really listen to others.
+B2|Self-Reflection|A,Das ist mutig das anzunehmen. Viele Menschen sind nicht bereit Kritik zu akzeptieren.,That is brave to accept. Many people are not willing to accept criticism.
+B2|Self-Reflection|B,Ich glaube Selbstreflexion ist ein Zeichen von Reife. Man muss bereit sein sich weiterzuentwickeln.,I believe self-reflection is a sign of maturity. One must be willing to continue developing.
+B2|Self-Reflection|A,"Absolut. Niemand ist perfekt, aber wer über sich nachdenkt, kann wachsen.",Absolutely. Nobody is perfect but whoever reflects on themselves can grow.
+B2|Self-Reflection|B,Genau. Ich möchte empathischer werden und besser zuhören lernen.,Exactly. I want to become more empathetic and learn to listen better.
 `.trim();
 
 const qaCSV = `
 // cluster: physical appearance
 A1,Wie siehst du aus?,Ich habe braune Haare und grüne Augen. (I have brown hair and green eyes.)
 A1,Wie groß bist du?,Ich bin eins achtzig groß. (I am one eighty tall.)
-A1,Wer ist deine Lieblingsperson und warum?,Meine Mutter weil sie sehr geduldig und liebevoll ist. (My mother because she is very patient and loving.)
+A1,Wer ist deine Lieblingsperson und warum?,Meine Mutter, weil sie sehr geduldig und liebevoll ist. (My mother because she is very patient and loving.)
 A2,Welche Haarfarbe hat sie?,Sie hat lockige rote Haare. (She has curly red hair.)
 A2,Wie würdest du dich äußerlich beschreiben?,Ich bin mittelgroß und schlank mit kurzen braunen Haaren. (I am medium-height and slim with short brown hair.)
 // cluster: personality & character
 A1,Wie bist du so als Person?,Ich bin freundlich und hilfsbereit. (I am friendly and helpful.)
 A1,Bist du lustig oder ernst?,Ich bin meistens lustig und gut gelaunt. (I am mostly funny and in a good mood.)
-A1,Bist du glücklich?,Ja ich bin sehr glücklich mit meinem Leben. (Yes I am very happy with my life.)
+A1,Bist du glücklich?,Ja, ich bin sehr glücklich mit meinem Leben. (Yes I am very happy with my life.)
 A2,Was sind deine Stärken?,Meine Stärken sind Geduld und Kreativität. (My strengths are patience and creativity.)
 A2,Was sind deine Schwächen?,Manchmal bin ich zu ungeduldig. (Sometimes I am too impatient.)
 A2,Bist du eher introvertiert oder extrovertiert?,Ich bin eher ein Typ der gerne allein ist. (I am rather the type who likes being alone.)
 A2,Wie beschreibst du einen guten Freund?,Ein guter Freund ist ehrlich hilfsbereit und immer für mich da. (A good friend is honest helpful and always there for me.)
 // cluster: emotions & reactions
-A2,Wie gehst du um wenn du wütend bist?,Ich versuche ruhig zu bleiben und zu reden. (I try to stay calm and talk.)
+A2,"Wie gehst du damit um, wenn du wütend bist?",Ich versuche ruhig zu bleiben und zu reden. (I try to stay calm and talk.)
 A2,Was macht dich traurig?,Wenn Freunde oder Familie Probleme haben. (When friends or family have problems.)
-A2,Bist du ein geselliger Mensch?,Ja ich bin gerne mit anderen Menschen zusammen. (Yes I like being together with other people.)
+A2,Bist du ein geselliger Mensch?,Ja, ich bin gerne mit anderen Menschen zusammen. (Yes I like being together with other people.)
 B1,Wie würden deine Freunde dich beschreiben?,Sie würden sagen ich bin zuverlässig und ehrlich. (They would say I am reliable and honest.)
 B1,Wie gehst du mit Stress um?,Ich versuche ruhig zu bleiben und das Problem zu lösen. (I try to stay calm and solve the problem.)
 B1,Was macht einen guten Charakter aus?,Ehrlichkeit Empathie und Respekt gegenüber anderen. (Honesty empathy and respect towards others.)
@@ -993,9 +995,9 @@ A2,Er ist eher schüchtern und ruhig in der Gruppe.,He is rather shy and quiet i
 A2,Sie wirkt sehr selbstsicher in jeder Situation.,She seems very self-assured in every situation.
 // cluster: personality at depth
 A2,Er ist der Typ Mensch der immer zuhört.,He is the type of person who always listens.
-A2,Wir verstehen uns sehr gut weil wir ähnliche Werte haben.,We get along very well because we have similar values.
-A2,Sie hat viele Freunde weil sie so gesellig und offen ist.,She has many friends because she is so sociable and open.
-B1,Er neigt dazu impulsiv zu reagieren wenn er gestresst ist.,He tends to react impulsively when he is stressed.
+A2,"Wir verstehen uns sehr gut, weil wir ähnliche Werte haben.",We get along very well because we have similar values.
+A2,"Sie hat viele Freunde, weil sie so gesellig und offen ist.",She has many friends because she is so sociable and open.
+B1,"Er neigt dazu, impulsiv zu reagieren, wenn er gestresst ist.",He tends to react impulsively when he is stressed.
 B1,Sie ist sehr empathisch und versteht andere gut.,She is very empathetic and understands others well.
 B1,Er hat eine starke Persönlichkeit und überzeugt andere leicht.,He has a strong personality and easily convinces others.
 B1,Sie ist sehr ehrgeizig und verfolgt ihre Ziele konsequent.,She is very ambitious and pursues her goals consistently.
@@ -1004,15 +1006,15 @@ B1,Man sollte andere nicht nach ihrem Äußeren beurteilen.,One should not judge
 B1,Ich kenne meine Stärken und Schwächen sehr gut.,I know my strengths and weaknesses very well.
 // cluster: emotions & moods
 A1,Ich bin heute sehr glücklich.,I am very happy today.
-A1,Sie weint weil sie sehr traurig ist.,She is crying because she is very sad.
-A2,Er ist wütend weil er sich ungerecht behandelt fühlt.,He is angry because he feels treated unfairly.
-A2,Ich freue mich wenn ich neue Leute kennenlerne.,I am glad when I get to know new people.
-B1,Sie kämpft manchmal mit Einsamkeit wenn sie allein ist.,She sometimes struggles with loneliness when she is alone.
+A1,"Sie weint, weil sie sehr traurig ist.",She is crying because she is very sad.
+A2,"Er ist wütend, weil er sich ungerecht behandelt fühlt.",He is angry because he feels treated unfairly.
+A2,"Ich freue mich, wenn ich neue Leute kennenlerne.",I am glad when I get to know new people.
+B1,"Sie kämpft manchmal mit Einsamkeit, wenn sie allein ist.",She sometimes struggles with loneliness when she is alone.
 B1,Er ist ein ausgeglichener Mensch der selten die Nerven verliert.,He is a balanced person who rarely loses his temper.
 B1,Sie hat ein gutes Gespür für die Gefühle anderer Menschen.,She has a good feel for the feelings of other people.
 // cluster: self-knowledge & reflection
 B2,Er reflektiert regelmäßig über sein Verhalten und seine Werte.,He regularly reflects on his behavior and values.
-B2,Selbstbewusstsein und Arroganz werden oft verwechselt aber sind sehr verschieden.,Self-confidence and arrogance are often confused but are very different.
+B2,"Selbstbewusstsein und Arroganz werden oft verwechselt, sind aber sehr verschieden.",Self-confidence and arrogance are often confused but are very different.
 B2,Ihre Persönlichkeit hat sich durch schwierige Erfahrungen weiterentwickelt.,Her personality has developed further through difficult experiences.
 B2,Er leidet unter einem tiefen Gefühl der Melancholie.,He suffers from a deep feeling of melancholy.
 B2,Er besitzt eine seltene Kombination aus Intelligenz Empathie und Charme.,He possesses a rare combination of intelligence empathy and charm.
@@ -1023,11 +1025,32 @@ B2,Die Fähigkeit zur Selbstreflexion ist ein Zeichen von Reife.,The ability for
 // ============================================
 // CSV PARSER — strips blank lines AND comment lines
 // ============================================
+// Split one data line on commas. Wrap a field in double quotes to put commas inside it:
+//   A1,"Ja, gern.",Yes please.
+// With maxCols, the last column takes the rest of the line verbatim (commas included).
+function splitCSVLine(line, maxCols) {
+    const cols = [];
+    let cur = '', quoted = false;
+    for (let i = 0; i < line.length; i++) {
+        if (maxCols && cols.length === maxCols - 1) {
+            cur = line.slice(i).trim();
+            if (cur.length > 1 && cur[0] === '"' && cur[cur.length - 1] === '"') cur = cur.slice(1, -1);
+            break;
+        }
+        const ch = line[i];
+        if (ch === '"') quoted = !quoted;
+        else if (ch === ',' && !quoted) { cols.push(cur.trim()); cur = ''; }
+        else cur += ch;
+    }
+    cols.push(cur.trim());
+    return cols;
+}
+
 function parseCSV(csv) {
     return csv.split('\n')
         .map(line => line.trim())
         .filter(line => line.length > 0 && !line.startsWith('//'))
-        .map(line => line.split(',').map(cell => cell.trim()));
+        .map(line => splitCSVLine(line));
 }
 
 // ============================================
@@ -1047,14 +1070,16 @@ function loadVoices() {
 
     if (germanVoices.length === 0) {
         voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
-        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+        germanVoice = null; // no German voice: let the browser pick one from utterance.lang
     } else {
+        // keep the current choice if loadVoices runs again (voiceschanged can fire repeatedly)
+        const keepName = germanVoice && germanVoices.some(v => v.name === germanVoice.name) ? germanVoice.name : null;
         germanVoices.forEach((voice, index) => {
             const option = document.createElement('option');
             option.value = index;
             option.textContent = `${voice.name} (${voice.lang})`;
             voiceSelect.appendChild(option);
-            if (index === 0) germanVoice = voice;
+            if (keepName ? voice.name === keepName : index === 0) { germanVoice = voice; option.selected = true; }
         });
     }
     console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
@@ -1071,7 +1096,7 @@ document.getElementById('voiceSelect').addEventListener('change', function(e) {
     stopAllSpeech();
     const voices = window.speechSynthesis.getVoices();
     const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
-    germanVoice = germanVoices[e.target.value] || voices[0];
+    germanVoice = germanVoices[e.target.value] || null;
 });
 
 document.getElementById('speedControl').addEventListener('input', function(e) {
@@ -1099,7 +1124,7 @@ function speak(text, callback) {
         if (callback) callback();
         return;
     }
-    text = text.replace('🔊', '').trim();
+    text = text.replaceAll('🔊', '').trim();
     if (!isPlayingSequence) stopAllSpeech();
     if (!ttsWarmedUp) {
         warmUpTTS(() => speakNow(text, callback));
@@ -1487,19 +1512,15 @@ function renderConversations() {
         // Format: LEVEL|Title|Speaker,german text,english text
         const firstPipe  = line.indexOf('|');
         const secondPipe = line.indexOf('|', firstPipe + 1);
-        const firstComma = line.indexOf(',', secondPipe + 1);
-        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+        const cols       = splitCSVLine(line.substring(secondPipe + 1), 3);  // speaker, german, english
+        if (firstPipe === -1 || secondPipe === -1 || cols.length < 3) return;
 
         const level   = line.substring(0, firstPipe).trim();
         const title   = line.substring(firstPipe + 1, secondPipe).trim();
-        const speaker = line.substring(secondPipe + 1, firstComma).trim();
-        const rest    = line.substring(firstComma + 1);
+        const speaker = cols[0];
 
-        const secondComma = rest.indexOf(',');
-        if (secondComma === -1) return;
-
-        const german  = rest.substring(0, secondComma).trim();
-        const english = rest.substring(secondComma + 1).trim();
+        const german  = cols[1];
+        const english = cols[2];
 
         const key = `${level}|${title}`;
         if (!conversations[key]) {
@@ -1535,6 +1556,7 @@ function renderConversations() {
         html += `</div></div>`;
     });
 
+    if (!convOrder.length) html = '<p style="text-align:center;color:#999;padding:12px;">No conversations for this unit yet.</p>';
     document.getElementById('conversationsContainer').innerHTML = html;
 }
 
@@ -1548,13 +1570,12 @@ function renderQA() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level    = line.substring(0, firstComma).trim();
-        const question = line.substring(firstComma + 1, secondComma).trim();
-        const answer   = line.substring(secondComma + 1).trim();
+        const level    = cols[0];
+        const question = cols[1];
+        const answer   = cols[2];
         const eq = question.replace(/'/g, "\\'");
         const ea = answer.replace(/'/g, "\\'");
 
@@ -1577,13 +1598,12 @@ function renderSentences() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level   = line.substring(0, firstComma).trim();
-        const german  = line.substring(firstComma + 1, secondComma).trim();
-        const english = line.substring(secondComma + 1).trim();
+        const level   = cols[0];
+        const german  = cols[1];
+        const english = cols[2];
         const eg = german.replace(/'/g, "\\'");
 
         html += `<div class="sentence-card" data-level="${level}" onclick="speak('${eg}')">

@@ -7,6 +7,7 @@
 
 // Global variables
 let germanVoice = null;
+let germanVoices = [];
 let isSpeaking = false;
 
 /* ============================================ */
@@ -24,27 +25,34 @@ function loadVoices() {
     
     voiceSelect.innerHTML = '';
 
-    const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
+    germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
 
     if (germanVoices.length === 0) {
         voiceSelect.innerHTML = '<option value="">No German voices found</option>';
+        germanVoice = null; // let the browser pick a voice from utterance.lang
         console.warn('No German voices available');
         return;
     }
+
+    // loadVoices runs several times (timeouts + voiceschanged): keep the user's current choice
+    const keep = germanVoice && germanVoices.find(v => v.name === germanVoice.name);
+    germanVoice = keep || germanVoices[0];
 
     germanVoices.forEach((voice, index) => {
         const option = document.createElement('option');
         option.value = index;
         option.textContent = `${voice.name} (${voice.lang})`;
+        option.selected = voice === germanVoice;
         voiceSelect.appendChild(option);
     });
 
-    germanVoice = germanVoices[0];
-    
-    voiceSelect.addEventListener('change', function() {
-        germanVoice = germanVoices[this.value];
-        console.log('Voice changed to:', germanVoice.name);
-    });
+    // Attach the change handler only once; it reads the latest germanVoices list
+    if (!voiceSelect.dataset.voiceHandler) {
+        voiceSelect.dataset.voiceHandler = '1';
+        voiceSelect.addEventListener('change', function() {
+            germanVoice = germanVoices[this.value] || null;
+        });
+    }
 }
 
 // Load voices with multiple attempts (browser compatibility)

@@ -1612,7 +1612,7 @@ B2,Welche Gerichte auf der Karte sind glutenfrei?,Which dishes on the menu are g
 // ============================================
 const conversationsCSV = `
 A1|At the Restaurant|A,Guten Abend! Haben Sie einen Tisch frei?,Good evening! Do you have a table free?
-A1|At the Restaurant|B,Ja natürlich. Für wie viele Personen?,Yes of course. For how many people?
+A1|At the Restaurant|B,"Ja, natürlich. Für wie viele Personen?",Yes of course. For how many people?
 A1|At the Restaurant|A,Für zwei Personen bitte.,For two people please.
 A1|At the Restaurant|B,Bitte folgen Sie mir. Hier ist Ihre Speisekarte.,Please follow me. Here is your menu.
 A1|At the Restaurant|A,Danke. Was empfehlen Sie heute?,Thank you. What do you recommend today?
@@ -1624,15 +1624,15 @@ A1|At the Restaurant|B,Gerne. Guten Appetit!,Certainly. Enjoy your meal!
 A2|Making a Reservation|A,Guten Tag. Ich möchte einen Tisch reservieren.,Hello. I would like to reserve a table.
 A2|Making a Reservation|B,Gerne. Für wann und für wie viele Personen?,Of course. For when and for how many people?
 A2|Making a Reservation|A,Für Samstag Abend um 19 Uhr. Wir sind vier Personen.,For Saturday evening at 7pm. We are four people.
-A2|Making a Reservation|B,Einen Moment bitte. Ja das ist möglich.,One moment please. Yes that is possible.
+A2|Making a Reservation|B,"Einen Moment bitte. Ja, das ist möglich.",One moment please. Yes that is possible.
 A2|Making a Reservation|A,Haben Sie auch einen Tisch im Außenbereich?,Do you also have a table in the outdoor area?
-A2|Making a Reservation|B,Ja aber nur wenn das Wetter gut ist.,Yes but only if the weather is good.
+A2|Making a Reservation|B,"Ja, aber nur, wenn das Wetter gut ist.",Yes but only if the weather is good.
 A2|Making a Reservation|A,Das ist kein Problem. Auf welchen Namen soll ich reservieren?,That is no problem. In which name should I reserve?
 A2|Making a Reservation|B,Ihren Namen bitte und eine Telefonnummer.,Your name please and a phone number.
 A2|Making a Reservation|A,Müller. Meine Nummer ist 0171 345678.,Müller. My number is 0171 345678.
 A2|Making a Reservation|B,Perfekt. Ihre Tischreservierung ist bestätigt. Auf Wiederhören!,Perfect. Your table reservation is confirmed. Goodbye!
 B1|Sending a Dish Back|A,Entschuldigung. Ich glaube das ist nicht meine Bestellung.,Excuse me. I think this is not my order.
-B1|Sending a Dish Back|B,Oh es tut mir leid. Was haben Sie bestellt?,Oh I am sorry. What did you order?
+B1|Sending a Dish Back|B,"Oh, es tut mir leid. Was haben Sie bestellt?",Oh I am sorry. What did you order?
 B1|Sending a Dish Back|A,Ich habe das vegetarische Gericht bestellt. Das hier enthält Fleisch.,I ordered the vegetarian dish. This one contains meat.
 B1|Sending a Dish Back|B,Das ist ein Missverständnis. Ich bringe Ihnen sofort das richtige Gericht.,That is a misunderstanding. I will bring you the correct dish immediately.
 B1|Sending a Dish Back|A,Danke. Außerdem ist das Fleisch meines Partners nicht durch.,Thank you. Also my partner's meat is not cooked through.
@@ -1646,15 +1646,15 @@ B2|Fine Dining|A,Das Interieur ist wirklich exquisit. Ich bin beeindruckt.,The i
 B2|Fine Dining|B,Vielen Dank. Darf ich Ihnen unsere Weinkarte vorstellen?,Thank you very much. May I present you with our wine list?
 B2|Fine Dining|A,Sehr gerne. Was würden Sie zum heutigen Überraschungsmenü empfehlen?,With pleasure. What would you recommend with today's surprise menu?
 B2|Fine Dining|B,Unser Sommelier empfiehlt einen Weißwein aus dem Burgund.,Our sommelier recommends a white wine from Burgundy.
-B2|Fine Dining|A,Ausgezeichnet. Können Sie mir sagen ob die Gerichte glutenfrei sind?,Excellent. Can you tell me whether the dishes are gluten-free?
-B2|Fine Dining|B,Ja das Überraschungsmenü ist vollständig glutenfrei und laktosefrei.,Yes the surprise menu is completely gluten-free and lactose-free.
+B2|Fine Dining|A,"Ausgezeichnet. Können Sie mir sagen, ob die Gerichte glutenfrei sind?",Excellent. Can you tell me whether the dishes are gluten-free?
+B2|Fine Dining|B,"Ja, das Überraschungsmenü ist vollständig glutenfrei und laktosefrei.",Yes the surprise menu is completely gluten-free and lactose-free.
 B2|Fine Dining|A,Perfekt. Dann freue ich mich sehr auf den Abend.,Perfect. Then I am very much looking forward to the evening.
 B2|Fine Dining|B,Wir wünschen Ihnen einen unvergesslichen Abend.,We wish you an unforgettable evening.
 `.trim();
 
 const qaCSV = `
 // cluster: venue & opening
-A1,Haben Sie heute einen Tisch frei?,Ja wir haben noch Plätze frei. (Yes we still have seats available.)
+A1,Haben Sie heute einen Tisch frei?,Ja, wir haben noch Plätze frei. (Yes we still have seats available.)
 A1,Wann öffnet das Restaurant?,Das Restaurant öffnet um 12 Uhr. (The restaurant opens at 12 o'clock.)
 A1,Was trinkt man zum Essen?,Man trinkt Wasser Wein oder Saft. (You drink water wine or juice.)
 A1,Wie ruft man den Kellner?,Man hebt die Hand oder sagt Entschuldigung. (You raise your hand or say excuse me.)
@@ -1666,14 +1666,14 @@ A2,Was ist eine Tageskarte?,Eine Tageskarte zeigt Gerichte die nur heute erhält
 A1,Was ist die Speisekarte?,Das ist die Liste mit allen Gerichten und Preisen. (That is the list with all dishes and prices.)
 A1,Was empfehlen Sie?,Ich empfehle das Tagesmenü. Es ist frisch und günstig. (I recommend the daily menu. It is fresh and affordable.)
 A2,Was ist das Tagesgericht?,Das ist ein besonderes Gericht das der Koch jeden Tag wechselt. (That is a special dish the chef changes every day.)
-A2,Kann ich die Bestellung ändern?,Ja solange das Essen noch nicht zubereitet wurde. (Yes as long as the food has not yet been prepared.)
+A2,Kann ich die Bestellung ändern?,Ja, solange das Essen noch nicht zubereitet wurde. (Yes as long as the food has not yet been prepared.)
 B1,Was bedeutet ein 3-Gang-Menü?,Es besteht aus Vorspeise Hauptgang und Nachspeise. (It consists of a starter main course and dessert.)
-B1,Darf man ein Gericht reklamieren?,Ja wenn es falsch zubereitet oder nicht genießbar ist. (Yes if it is incorrectly prepared or inedible.)
+B1,Darf man ein Gericht reklamieren?,Ja, wenn es falsch zubereitet oder nicht genießbar ist. (Yes if it is incorrectly prepared or inedible.)
 // cluster: paying & tipping
 A1,Wie viel kostet das Menü?,Das Menü kostet 15 Euro. (The set menu costs 15 euros.)
 A2,Wie hoch ist das Trinkgeld üblich?,Meist 10 Prozent der Rechnung. (Usually 10 percent of the bill.)
 A2,Wie bezahlt man in deutschen Restaurants?,Man zahlt meist nach dem Essen. Bar oder mit Karte ist möglich. (You usually pay after the meal. Cash or card is possible.)
-B1,Was bedeutet Stimmt so?,Das bedeutet dass man kein Wechselgeld möchte. (That means you do not want any change.)
+B1,Was bedeutet Stimmt so?,Das bedeutet, dass man kein Wechselgeld möchte. (That means you do not want any change.)
 B2,Wann ist eine Servicegebühr inbegriffen?,In manchen Restaurants ist sie automatisch auf der Rechnung. (In some restaurants it is automatically on the bill.)
 // cluster: evaluating & experience
 A2,Wie war das Essen?,Das Essen war köstlich und die Bedienung sehr aufmerksam. (The food was delicious and the service very attentive.)
@@ -1702,7 +1702,7 @@ A2,Ich hätte gern das Tagesgericht und einen Salat bitte.,I would like the dish
 A2,Der Kellner empfiehlt den Rotwein zur Vorspeise.,The waiter recommends the red wine with the starter.
 B1,Enthält dieses Gericht Nüsse? Ich habe eine Allergie.,Does this dish contain nuts? I have an allergy.
 B1,Die Bedienung bringt uns schnell unsere Bestellung.,The waitress brings us our order quickly.
-B2,Der Sommelier erklärt welcher Wein am besten zum Überraschungsmenü passt.,The sommelier explains which wine goes best with the surprise menu.
+B2,"Der Sommelier erklärt, welcher Wein am besten zum Überraschungsmenü passt.",The sommelier explains which wine goes best with the surprise menu.
 // cluster: during the meal
 A1,Das Essen schmeckt wirklich gut.,The food tastes really good.
 A2,Die Portion ist sehr großzügig.,The portion is very generous.
@@ -1730,11 +1730,32 @@ B2,Der Restaurantkritiker bewertete das Lokal als eines der besten in der Stadt.
 // ============================================
 // CSV PARSER
 // ============================================
+// Split one data line on commas. Wrap a field in double quotes to put commas inside it:
+//   A1,"Ja, gern.",Yes please.
+// With maxCols, the last column takes the rest of the line verbatim (commas included).
+function splitCSVLine(line, maxCols) {
+    const cols = [];
+    let cur = '', quoted = false;
+    for (let i = 0; i < line.length; i++) {
+        if (maxCols && cols.length === maxCols - 1) {
+            cur = line.slice(i).trim();
+            if (cur.length > 1 && cur[0] === '"' && cur[cur.length - 1] === '"') cur = cur.slice(1, -1);
+            break;
+        }
+        const ch = line[i];
+        if (ch === '"') quoted = !quoted;
+        else if (ch === ',' && !quoted) { cols.push(cur.trim()); cur = ''; }
+        else cur += ch;
+    }
+    cols.push(cur.trim());
+    return cols;
+}
+
 function parseCSV(csv) {
     return csv.split('\n')
         .map(l => l.trim())
         .filter(l => l.length > 0 && !l.startsWith('//'))
-        .map(l => l.split(',').map(c => c.trim()));
+        .map(l => splitCSVLine(l));
 }
 
 // ============================================
@@ -1948,19 +1969,17 @@ function renderConversations() {
     rawLines.forEach(line => {
         const firstPipe  = line.indexOf('|');
         const secondPipe = line.indexOf('|', firstPipe + 1);
-        const firstComma = line.indexOf(',', secondPipe + 1);
-        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+        const cols       = splitCSVLine(line.substring(secondPipe + 1), 3);  // speaker, german, english
+        if (firstPipe === -1 || secondPipe === -1 || cols.length < 3) return;
 
         const level   = line.substring(0, firstPipe).trim();
         const title   = line.substring(firstPipe + 1, secondPipe).trim();
-        const speaker = line.substring(secondPipe + 1, firstComma).trim();
+        const speaker = cols[0];
 
         if (currentLevel !== 'all' && level !== currentLevel) return;
 
-        const rest         = line.substring(firstComma + 1);
-        const secondComma  = rest.indexOf(',');
-        const german       = rest.substring(0, secondComma).trim();
-        const english      = rest.substring(secondComma + 1).trim();
+        const german       = cols[1];
+        const english      = cols[2];
 
         const key = `${level}|${title}`;
         if (!conversations[key]) {
@@ -2023,13 +2042,12 @@ function renderQATable() {
         .map(l => l.trim())
         .filter(l => l.length > 0 && !l.startsWith('//'))
         .map(line => {
-            const firstComma  = line.indexOf(',');
-            const secondComma = line.indexOf(',', firstComma + 1);
-            if (firstComma === -1 || secondComma === -1) return null;
+            const cols = splitCSVLine(line, 3);
+            if (cols.length < 3) return null;
             return {
-                level:    line.substring(0, firstComma).trim(),
-                question: line.substring(firstComma + 1, secondComma).trim(),
-                answer:   line.substring(secondComma + 1).trim()
+                level:    cols[0],
+                question: cols[1],
+                answer:   cols[2]
             };
         })
         .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
@@ -2067,13 +2085,12 @@ function renderSentencesTable() {
         .map(l => l.trim())
         .filter(l => l.length > 0 && !l.startsWith('//'))
         .map(line => {
-            const firstComma  = line.indexOf(',');
-            const secondComma = line.indexOf(',', firstComma + 1);
-            if (firstComma === -1 || secondComma === -1) return null;
+            const cols = splitCSVLine(line, 3);
+            if (cols.length < 3) return null;
             return {
-                level:   line.substring(0, firstComma).trim(),
-                german:  line.substring(firstComma + 1, secondComma).trim(),
-                english: line.substring(secondComma + 1).trim()
+                level:   cols[0],
+                german:  cols[1],
+                english: cols[2]
             };
         })
         .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
@@ -2172,7 +2189,7 @@ function loadVoices() {
     const germanVoices = voices.filter(v => v.lang.startsWith('de'));
     if (germanVoices.length === 0) {
         voiceSelect.innerHTML = '<option value="">No German voice – using default</option>';
-        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0] || null;
+        germanVoice = null; // no German voice: let the browser pick one from utterance.lang
     } else {
         germanVoices.forEach(voice => {
             const opt = document.createElement('option');
@@ -2180,7 +2197,9 @@ function loadVoices() {
             opt.textContent = `${voice.name} (${voice.lang})`;
             voiceSelect.appendChild(opt);
         });
-        germanVoice = germanVoices[0];
+        // keep the current choice if loadVoices runs again (voiceschanged can fire repeatedly)
+        germanVoice = germanVoices.find(v => germanVoice && v.name === germanVoice.name) || germanVoices[0];
+        voiceSelect.value = germanVoice.name;
     }
 
     // Pick best English voice for bilingual playback
@@ -2200,7 +2219,7 @@ document.addEventListener('DOMContentLoaded', function() {
         voiceSelect.addEventListener('change', function(e) {
             stopAllSpeech();
             const voices = window.speechSynthesis.getVoices();
-            germanVoice = voices.find(v => v.name === e.target.value) || voices[0] || null;
+            germanVoice = voices.find(v => v.name === e.target.value) || null;
         });
     }
     const speedControl = document.getElementById('speedControl');
@@ -2227,7 +2246,7 @@ function warmUpTTS(callback) {
 function speak(text, callback, lang) {
     if (!text || text.trim() === '') { if (callback) callback(); return; }
     lang = lang || 'de-DE';
-    text = text.replace('🔊', '').trim();
+    text = text.replaceAll('🔊', '').trim();
     if (!isPlayingSequence) stopAllSpeech();
     if (!ttsWarmedUp) {
         warmUpTTS(() => speakNow(text, callback, lang));
@@ -2454,15 +2473,14 @@ function collectConvItems() {
     const conversations = {};
     const convOrder = [];
     rawLines.forEach(line => {
-        const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1), fc = line.indexOf(',', sp + 1);
-        if (fp < 0 || sp < 0 || fc < 0) return;
+        const fp = line.indexOf('|'), sp = line.indexOf('|', fp + 1);
+        const cols = splitCSVLine(line.substring(sp + 1), 3);  // speaker, german, english
+        if (fp < 0 || sp < 0 || cols.length < 3) return;
         const level = line.substring(0, fp).trim();
         const title = line.substring(fp + 1, sp).trim();
         if (currentLevel !== 'all' && level !== currentLevel) return;
-        const speaker = line.substring(sp + 1, fc).trim();
-        const rest = line.substring(fc + 1);
-        const sc = rest.indexOf(',');
-        const german = rest.substring(0, sc).trim();
+        const speaker = cols[0];
+        const german = cols[1];
         const key = level + '|' + title;
         if (!conversations[key]) { conversations[key] = { A: [], B: [] }; convOrder.push(key); }
         if (speaker === 'A') conversations[key].A.push(german);
@@ -2500,12 +2518,12 @@ function collectQAItems() {
     const rows = qaCSV.split('\n').map(l => l.trim())
         .filter(l => l && !l.startsWith('//'))
         .map(line => {
-            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
-            if (fc < 0 || sc < 0) return null;
+            const cols = splitCSVLine(line, 3);
+            if (cols.length < 3) return null;
             return {
-                level:    line.substring(0, fc).trim(),
-                question: line.substring(fc + 1, sc).trim(),
-                answer:   germanOnlyQA(line.substring(sc + 1).trim())
+                level:    cols[0],
+                question: cols[1],
+                answer:   germanOnlyQA(cols[2])
             };
         })
         .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
@@ -2535,12 +2553,12 @@ function collectSentItems() {
     const rows = sentencesCSV.split('\n').map(l => l.trim())
         .filter(l => l && !l.startsWith('//'))
         .map(line => {
-            const fc = line.indexOf(','), sc = line.indexOf(',', fc + 1);
-            if (fc < 0 || sc < 0) return null;
+            const cols = splitCSVLine(line, 3);
+            if (cols.length < 3) return null;
             return {
-                level:   line.substring(0, fc).trim(),
-                german:  line.substring(fc + 1, sc).trim(),
-                english: line.substring(sc + 1).trim()
+                level:   cols[0],
+                german:  cols[1],
+                english: cols[2]
             };
         })
         .filter(r => r && (currentLevel === 'all' || r.level === currentLevel));
@@ -2680,7 +2698,9 @@ function playNextInSequence() {
 
 // Helper: escape text for HTML attribute
 function escAttr(s) {
-    return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+    // Used inside onclick="…('value')…": escape for the JS string literal, then for the HTML attribute.
+    return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'")
+        .replace(/&/g, '&amp;').replace(/"/g, '&quot;').replace(/</g, '&lt;');
 }
 
 // ============================================
@@ -2972,15 +2992,22 @@ function playAudioSectionAsync(section) {
 let recModeActive = false;
 let recIsPaused   = false;
 let recStartTime  = null;
+let recPausedMs   = 0;     // time spent paused, excluded from chapter timestamps
+let recPauseStart = null;
 let recChapters   = [];
 let recTsInterval = null;
 
 function _fmtTs(ms) {
     const s = Math.floor(ms / 1000);
-    return `${Math.floor(s/60)}:${String(s%60).padStart(2,'0')}`;
+    const h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), sec = String(s % 60).padStart(2, '0');
+    return h ? `${h}:${String(m).padStart(2, '0')}:${sec}` : `${m}:${sec}`;
+}
+function _recElapsed() {
+    const pausedNow = recPauseStart ? Date.now() - recPauseStart : 0;
+    return Date.now() - recStartTime - recPausedMs - pausedNow;
 }
 function _logChapter(label) {
-    const ts = recStartTime ? _fmtTs(Date.now() - recStartTime) : '0:00';
+    const ts = recStartTime ? _fmtTs(_recElapsed()) : '0:00';
     recChapters.push(`${ts} ${label}`);
 }
 
@@ -2989,7 +3016,7 @@ function _showMiniBar() {
     bar.style.display = 'flex';
     recTsInterval = setInterval(() => {
         if (recStartTime) {
-            document.getElementById('recTs').textContent = _fmtTs(Date.now() - recStartTime);
+            document.getElementById('recTs').textContent = _fmtTs(_recElapsed());
         }
     }, 500);
 }
@@ -3004,6 +3031,7 @@ function toggleRecPause() {
     recIsPaused = !recIsPaused;
     if (recIsPaused) {
         window.speechSynthesis.pause();
+        recPauseStart = Date.now();
         btn.textContent = '▶ Resume';
         btn.style.color = '#FFCE00';
         // show zoom controls and sync labels
@@ -3015,13 +3043,39 @@ function toggleRecPause() {
         btn.textContent = '⏸ Pause';
         btn.style.color = '';
         zc.classList.remove('visible');
-        if (!isSpeaking) setTimeout(() => {}, 100);
+        if (recPauseStart) { recPausedMs += Date.now() - recPauseStart; recPauseStart = null; }
     }
 }
 
 // ── Main orchestrator ──
+// Word counts on the Record Mode cards, computed from the data so they never go stale
+function _syncRecCounts() {
+    const nouns = parseCSV(nounsCSV);
+    const art = a => nouns.filter(r => r[1] === a).length;
+    const adj = parseCSV(adjectivesCSV).length, verb = parseCSV(verbsCSV).length;
+    const expr = parseCSV(expressionsCSV).length, qa = parseCSV(qaCSV).length, sent = parseCSV(sentencesCSV).length;
+    const conv = parseCSV(conversationsCSV);
+    const dialogues = new Set(conv.map(r => r[0].split('|').slice(0, 2).join('|'))).size;
+    const phrases = expr + conv.length + qa + sent;
+    const set = (k, txt) => { if (REC_CARDS[k]) REC_CARDS[k].bottomL = '⬡ ' + txt; };
+    set('cover', `${nouns.length + adj + verb + phrases} words total`);
+    set('nouns_all', `${nouns.length} nouns · der ${art('der')} · das ${art('das')} · die ${art('die')}`);
+    set('der', `${art('der')} words`);
+    set('das', `${art('das')} words`);
+    set('die', `${art('die')} words`);
+    set('adj_verb_all', `${adj + verb} words · adj ${adj} · verb ${verb}`);
+    set('adj', `${adj} adjectives`);
+    set('verb', `${verb} verbs`);
+    set('phrases_divider', `${phrases} phrases & sentences`);
+    set('expr', `${expr} expressions`);
+    set('conv', `${dialogues} dialogues · ${conv.length} lines`);
+    set('qa', `${qa} Q&A pairs`);
+    set('sent', `${sent} sentences`);
+}
+
 async function startRecordingMode() {
     if (recModeActive) return;
+    _syncRecCounts();
     recModeActive = true;
     recIsPaused   = false;
     recChapters   = [];
@@ -3042,6 +3096,8 @@ async function startRecordingMode() {
     await showCountdown();
 
     recStartTime = Date.now();
+    recPausedMs = 0;
+    recPauseStart = null;
     _showMiniBar();
 
     // ── Full sequence definition ──

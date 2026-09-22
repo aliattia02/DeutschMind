@@ -892,40 +892,45 @@ B2,Das Habsburger Erbe prägte Jahrhunderte lang die politische Landschaft Mitte
 // CONVERSATIONS — format: level|Title|Speaker,german,english
 // ============================================
 const conversationsRaw = `
-A1|Talking About Family|A,Hast du Geschwister?,Do you have siblings?
-A1|Talking About Family|B,Ja ich habe einen Bruder und eine Schwester. Und du?,Yes I have a brother and a sister. And you?
-A1|Talking About Family|A,Ich bin Einzelkind. Wo wohnen deine Eltern?,I am an only child. Where do your parents live?
-A1|Talking About Family|B,Meine Eltern wohnen in Hamburg.,My parents live in Hamburg.
-A1|Talking About Family|A,Hast du auch Großeltern?,Do you also have grandparents?
-A1|Talking About Family|B,Ja meine Großmutter wohnt bei uns zu Hause.,Yes my grandmother lives with us at home.
-A1|Talking About Family|A,Wie alt ist sie?,How old is she?
-A1|Talking About Family|B,Sie ist achtzig Jahre alt und sehr aktiv.,She is eighty years old and very active.
-A2|Describing Your Family|A,Erzähl mir von deiner Familie.,Tell me about your family.
-A2|Describing Your Family|B,Wir sind eine große Familie. Ich habe drei Geschwister und viele Cousins.,We are a large family. I have three siblings and many cousins.
-A2|Describing Your Family|A,Verstehst du dich gut mit deinen Geschwistern?,Do you get along well with your siblings?
-A2|Describing Your Family|B,Ja wir verstehen uns sehr gut. Mein Bruder ist mein bester Freund.,Yes we get along very well. My brother is my best friend.
-A2|Describing Your Family|A,Sind deine Eltern noch verheiratet?,Are your parents still married?
-A2|Describing Your Family|B,Ja seit dreißig Jahren. Sie feiern nächstes Jahr ihr Jubiläum.,Yes for thirty years. They are celebrating their anniversary next year.
-A2|Describing Your Family|A,Das ist wunderbar! Habt ihr viele Familienfeste?,That is wonderful! Do you have many family celebrations?
-A2|Describing Your Family|B,Ja wir treffen die ganze Familie immer zu Weihnachten und Ostern.,Yes we always meet the whole family at Christmas and Easter.
-B1|Wedding Plans|A,Herzlichen Glückwunsch zur Verlobung! Wann ist die Hochzeit?,Congratulations on the engagement! When is the wedding?
-B1|Wedding Plans|B,Danke! Wir heiraten im September in einem kleinen Schloss.,Thank you! We are getting married in September in a small castle.
-B1|Wedding Plans|A,Habt ihr schon viele Gäste eingeladen?,Have you already invited many guests?
-B1|Wedding Plans|B,Ja wir laden die ganze Familie und enge Freunde ein. Das sind fast achtzig Personen.,Yes we are inviting the whole family and close friends. That is almost eighty people.
-B1|Wedding Plans|A,Und wer ist Trauzeuge?,And who is the best man?
-B1|Wedding Plans|B,Mein Bruder. Er hält auch eine Rede.,My brother. He is also giving a speech.
-B1|Wedding Plans|A,Werden die Kinder auch dabei sein?,Will the children be there too?
-B1|Wedding Plans|B,Ja natürlich. Meine Nichten sind die Blumenmädchen.,Yes of course. My nieces are the flower girls.
-B1|Wedding Plans|A,Das wird sicher ein unvergessliches Fest.,That will certainly be an unforgettable celebration.
-B1|Wedding Plans|B,Wir freuen uns riesig darauf.,We are very much looking forward to it.
-B2|Family Law Matters|A,Ich brauche Ihren Rat in einer Familienangelegenheit.,I need your advice in a family matter.
-B2|Family Law Matters|B,Natürlich. Worum geht es?,Of course. What is it about?
-B2|Family Law Matters|A,Mein Partner und ich haben uns getrennt. Wir haben ein Kind und wissen nicht wie das Sorgerecht geregelt wird.,My partner and I have separated. We have a child and do not know how custody is regulated.
-B2|Family Law Matters|B,Das Gericht entscheidet nach dem Kindeswohl. Meist wird gemeinsames Sorgerecht vereinbart.,The court decides based on the child's best interest. Joint custody is usually agreed upon.
-B2|Family Law Matters|A,Was ist wenn wir uns nicht einigen können?,What if we cannot agree?
-B2|Family Law Matters|B,Dann kann ein Mediator helfen bevor man vor Gericht geht.,Then a mediator can help before going to court.
-B2|Family Law Matters|A,Und wie ist das mit dem Umgangsrecht?,And what about visitation rights?
-B2|Family Law Matters|B,Das Umgangsrecht ist gesetzlich geregelt. Der Elternteil ohne Sorgerecht hat in der Regel regelmäßige Besuche.,Visitation rights are regulated by law. The parent without custody usually has regular visits.
+A1|Discussing Countries|A,Woher kommst du?,Where do you come from?
+A1|Discussing Countries|B,Ich komme aus Deutschland. Und du?,I come from Germany. And you?
+A1|Discussing Countries|A,Ich komme aus Österreich.,I come from Austria.
+A1|Discussing Countries|B,Sprichst du auch Deutsch?,Do you speak German too?
+A1|Discussing Countries|A,"Ja, ich spreche Deutsch. Wo liegt dein Heimatort?",Yes I speak German. Where is your hometown?
+A1|Discussing Countries|B,Es liegt in Bayern nahe der Grenze.,It is in Bavaria near the border.
+A1|Discussing Countries|A,Das kenne ich! Bayern ist sehr schön.,I know it! Bavaria is very beautiful.
+A1|Discussing Countries|B,Ja. Und du? Wohnst du in Wien?,Yes. And you? Do you live in Vienna?
+A1|Discussing Countries|A,"Ja, ich wohne in Wien. Es ist die Hauptstadt.",Yes I live in Vienna. It is the capital.
+A1|Discussing Countries|B,Das weiß ich. Wien ist eine wunderschöne Stadt.,I know that. Vienna is a wonderful city.
+A2|At the Oktoberfest|A,Bist du zum ersten Mal auf dem Oktoberfest?,Is this your first time at the Oktoberfest?
+A2|At the Oktoberfest|B,Ja! Es ist so groß und laut hier.,Yes! It is so big and loud here.
+A2|At the Oktoberfest|A,Das Oktoberfest findet jeden Herbst in München statt.,The Oktoberfest takes place every autumn in Munich.
+A2|At the Oktoberfest|B,Was soll ich hier essen und trinken?,What should I eat and drink here?
+A2|At the Oktoberfest|A,Du musst eine Maß Bier und eine Brezel probieren.,You must try a litre of beer and a pretzel.
+A2|At the Oktoberfest|B,Trägt man hier wirklich Tracht?,Do people really wear traditional costume here?
+A2|At the Oktoberfest|A,"Ja, viele tragen Dirndl oder Lederhosen.",Yes many wear dirndl or lederhosen.
+A2|At the Oktoberfest|B,Das ist eine so alte Tradition!,That is such an old tradition!
+A2|At the Oktoberfest|A,Stimmt. Das Volksfest verbindet Gäste aus aller Welt.,True. The folk festival connects guests from all over the world.
+B1|German Reunification|A,Wann fiel die Berliner Mauer?,When did the Berlin Wall fall?
+B1|German Reunification|B,Am neunten November neunzehnhundertneunundachtzig.,On the ninth of November nineteen eighty-nine.
+B1|German Reunification|A,Und wann fand die Wiedervereinigung statt?,And when did reunification take place?
+B1|German Reunification|B,Sie wurde am dritten Oktober 1990 vollendet.,It was completed on the third of October 1990.
+B1|German Reunification|A,Was war die DDR eigentlich?,What exactly was the GDR?
+B1|German Reunification|B,Die DDR war der kommunistische Ostteil Deutschlands.,The GDR was the communist eastern part of Germany.
+B1|German Reunification|A,Was hat sich nach der Wende geändert?,What changed after the political turning point?
+B1|German Reunification|B,Vieles: die Wirtschaft die Gesellschaft und die politische Ordnung.,Much: the economy society and the political order.
+B1|German Reunification|A,Gibt es heute noch Unterschiede zwischen Ost und West?,Are there still differences between east and west today?
+B1|German Reunification|B,"In manchen Bereichen schon, aber die Integration schreitet voran.",In some areas yes but integration is progressing.
+B2|Germany's Federal System|A,Wie ist das deutsche Regierungssystem aufgebaut?,How is the German system of government structured?
+B2|Germany's Federal System|B,Deutschland ist ein Bundesstaat mit sechzehn Ländern mit erheblichen Eigenkompetenzen.,Germany is a federal state with sixteen states that have considerable autonomous powers.
+B2|Germany's Federal System|A,Welche Rolle spielt der Nationalrat in Österreich?,What role does the National Council play in Austria?
+B2|Germany's Federal System|B,Er ist die direkt gewählte Kammer des österreichischen Parlaments.,It is the directly elected chamber of the Austrian parliament.
+B2|Germany's Federal System|A,Wie unterscheidet sich das Schweizer Bundesratsmodell?,How does the Swiss Federal Council model differ?
+B2|Germany's Federal System|B,In der Schweiz fungiert der Bundesrat als kollektive Regierung ohne einzelnen Regierungschef.,In Switzerland the Federal Council functions as a collective government without a single head of government.
+B2|Germany's Federal System|A,Gilt das Subsidiaritätsprinzip auch in Österreich?,Does the principle of subsidiarity also apply in Austria?
+B2|Germany's Federal System|B,"Ja, es ist in allen deutschsprachigen Bundesstaaten ein verfassungsrechtliches Grundprinzip.",Yes it is a constitutional basic principle in all German-speaking federal states.
+B2|Germany's Federal System|A,Wie beeinflusst der Föderalismus die regionale Identität?,How does federalism influence regional identity?
+B2|Germany's Federal System|B,Er stärkt lokale Kulturen und Dialekte und schützt regionale Eigenheiten vor Zentralisierung.,It strengthens local cultures and dialects and protects regional characteristics from centralization.
 `.trim();
 
 const qaCSV = `
@@ -968,7 +973,7 @@ A1,Deutschland liegt in Mitteleuropa.,Germany is located in Central Europe.
 A1,Die Alpen liegen im Süden Deutschlands und Österreichs.,The Alps are located in the south of Germany and Austria.
 A1,Berlin ist die Hauptstadt von Deutschland.,Berlin is the capital of Germany.
 A1,Wien ist die Hauptstadt von Österreich.,Vienna is the capital of Austria.
-A1,Die Schweiz ist ein kleines aber reiches Land.,Switzerland is a small but wealthy country.
+A1,"Die Schweiz ist ein kleines, aber reiches Land.",Switzerland is a small but wealthy country.
 A1,Der Rhein ist ein wichtiger Fluss in Deutschland.,The Rhine is an important river in Germany.
 A1,Österreich grenzt an Deutschland und die Schweiz.,Austria borders Germany and Switzerland.
 A1,In der Schweiz gibt es viele hohe Berge.,In Switzerland there are many high mountains.
@@ -1010,11 +1015,32 @@ B2,Die Entnazifizierung nach 1945 war ein schwieriger politischer und gesellscha
 // ============================================
 // CSV PARSER — strips blank lines AND comment lines
 // ============================================
+// Split one data line on commas. Wrap a field in double quotes to put commas inside it:
+//   A1,"Ja, gern.",Yes please.
+// With maxCols, the last column takes the rest of the line verbatim (commas included).
+function splitCSVLine(line, maxCols) {
+    const cols = [];
+    let cur = '', quoted = false;
+    for (let i = 0; i < line.length; i++) {
+        if (maxCols && cols.length === maxCols - 1) {
+            cur = line.slice(i).trim();
+            if (cur.length > 1 && cur[0] === '"' && cur[cur.length - 1] === '"') cur = cur.slice(1, -1);
+            break;
+        }
+        const ch = line[i];
+        if (ch === '"') quoted = !quoted;
+        else if (ch === ',' && !quoted) { cols.push(cur.trim()); cur = ''; }
+        else cur += ch;
+    }
+    cols.push(cur.trim());
+    return cols;
+}
+
 function parseCSV(csv) {
     return csv.split('\n')
         .map(line => line.trim())
         .filter(line => line.length > 0 && !line.startsWith('//'))
-        .map(line => line.split(',').map(cell => cell.trim()));
+        .map(line => splitCSVLine(line));
 }
 
 // ============================================
@@ -1034,14 +1060,16 @@ function loadVoices() {
 
     if (germanVoices.length === 0) {
         voiceSelect.innerHTML = '<option value="">No German voice found - Using default</option>';
-        germanVoice = voices.find(v => v.lang.includes('en')) || voices[0];
+        germanVoice = null; // no German voice: let the browser pick one from utterance.lang
     } else {
+        // keep the current choice if loadVoices runs again (voiceschanged can fire repeatedly)
+        const keepName = germanVoice && germanVoices.some(v => v.name === germanVoice.name) ? germanVoice.name : null;
         germanVoices.forEach((voice, index) => {
             const option = document.createElement('option');
             option.value = index;
             option.textContent = `${voice.name} (${voice.lang})`;
             voiceSelect.appendChild(option);
-            if (index === 0) germanVoice = voice;
+            if (keepName ? voice.name === keepName : index === 0) { germanVoice = voice; option.selected = true; }
         });
     }
     console.log('✅ Voice loaded:', germanVoice ? germanVoice.name : 'None');
@@ -1058,7 +1086,7 @@ document.getElementById('voiceSelect').addEventListener('change', function(e) {
     stopAllSpeech();
     const voices = window.speechSynthesis.getVoices();
     const germanVoices = voices.filter(voice => voice.lang.startsWith('de'));
-    germanVoice = germanVoices[e.target.value] || voices[0];
+    germanVoice = germanVoices[e.target.value] || null;
 });
 
 document.getElementById('speedControl').addEventListener('input', function(e) {
@@ -1086,7 +1114,7 @@ function speak(text, callback) {
         if (callback) callback();
         return;
     }
-    text = text.replace('🔊', '').trim();
+    text = text.replaceAll('🔊', '').trim();
     if (!isPlayingSequence) stopAllSpeech();
     if (!ttsWarmedUp) {
         warmUpTTS(() => speakNow(text, callback));
@@ -1474,19 +1502,15 @@ function renderConversations() {
         // Format: LEVEL|Title|Speaker,german text,english text
         const firstPipe  = line.indexOf('|');
         const secondPipe = line.indexOf('|', firstPipe + 1);
-        const firstComma = line.indexOf(',', secondPipe + 1);
-        if (firstPipe === -1 || secondPipe === -1 || firstComma === -1) return;
+        const cols       = splitCSVLine(line.substring(secondPipe + 1), 3);  // speaker, german, english
+        if (firstPipe === -1 || secondPipe === -1 || cols.length < 3) return;
 
         const level   = line.substring(0, firstPipe).trim();
         const title   = line.substring(firstPipe + 1, secondPipe).trim();
-        const speaker = line.substring(secondPipe + 1, firstComma).trim();
-        const rest    = line.substring(firstComma + 1);
+        const speaker = cols[0];
 
-        const secondComma = rest.indexOf(',');
-        if (secondComma === -1) return;
-
-        const german  = rest.substring(0, secondComma).trim();
-        const english = rest.substring(secondComma + 1).trim();
+        const german  = cols[1];
+        const english = cols[2];
 
         const key = `${level}|${title}`;
         if (!conversations[key]) {
@@ -1522,6 +1546,7 @@ function renderConversations() {
         html += `</div></div>`;
     });
 
+    if (!convOrder.length) html = '<p style="text-align:center;color:#999;padding:12px;">No conversations for this unit yet.</p>';
     document.getElementById('conversationsContainer').innerHTML = html;
 }
 
@@ -1535,13 +1560,12 @@ function renderQA() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level    = line.substring(0, firstComma).trim();
-        const question = line.substring(firstComma + 1, secondComma).trim();
-        const answer   = line.substring(secondComma + 1).trim();
+        const level    = cols[0];
+        const question = cols[1];
+        const answer   = cols[2];
         const eq = question.replace(/'/g, "\\'");
         const ea = answer.replace(/'/g, "\\'");
 
@@ -1564,13 +1588,12 @@ function renderSentences() {
 
     let html = '';
     lines.forEach(line => {
-        const firstComma  = line.indexOf(',');
-        const secondComma = line.indexOf(',', firstComma + 1);
-        if (firstComma === -1 || secondComma === -1) return;
+        const cols = splitCSVLine(line, 3);
+        if (cols.length < 3) return;
 
-        const level   = line.substring(0, firstComma).trim();
-        const german  = line.substring(firstComma + 1, secondComma).trim();
-        const english = line.substring(secondComma + 1).trim();
+        const level   = cols[0];
+        const german  = cols[1];
+        const english = cols[2];
         const eg = german.replace(/'/g, "\\'");
 
         html += `<div class="sentence-card" data-level="${level}" onclick="speak('${eg}')">
